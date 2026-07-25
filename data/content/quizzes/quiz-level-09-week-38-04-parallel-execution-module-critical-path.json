@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-38-04-parallel-execution-module-critical-path",
+  "title": "Parallel Execution and Module Critical Paths Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-38-04-parallel-execution-module-critical-path"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-38-04-parallel-execution-module-critical-path-decision",
+      "prompt": "Which approach best applies parallel execution and module critical paths?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Expose independent graph work and reduce invalidation before tuning bounded parallel resources.",
+        "Split every package into a module",
+        "Maximise worker count",
+        "Put shared types in one frequently changed core module"
+      ],
+      "answer": "Expose independent graph work and reduce invalidation before tuning bounded parallel resources.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-38-04-parallel-execution-module-critical-path"
+    },
+    {
+      "id": "q-level-09-week-38-04-parallel-execution-module-critical-path-truth",
+      "prompt": "A private implementation change in an implementation dependency should always recompile every consumer.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Increasing org.gradle.workers.max on a memory-bound agent can make builds slower or unstable through contention and swapping.",
+      "lessonId": "level-09-week-38-04-parallel-execution-module-critical-path"
+    },
+    {
+      "id": "q-level-09-week-38-04-parallel-execution-module-critical-path-recall",
+      "prompt": "Which graph property limits the best possible parallel build time?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The duration of the longest dependent chain—the critical path.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-38-04-parallel-execution-module-critical-path"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-09-week-38",
+  "title": "Week 38 Critical Path Tuner",
+  "description": "Awarded for completing the Week 38 Gradle and build-engineering checkpoint.",
+  "categoryId": "level-09-gradle-build-cicd",
+  "icon": "build-week-38",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-09-week-38-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 450,
+  "rarity": "rare",
+  "version": "0.12.0"
+}

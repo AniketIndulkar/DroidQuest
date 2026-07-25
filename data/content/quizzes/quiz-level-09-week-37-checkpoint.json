@@ -1,0 +1,115 @@
+{
+  "id": "quiz-level-09-week-37-checkpoint",
+  "title": "Week 37: Scalable and Tested Build Logic Checkpoint",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-37-01-convention-plugins-build-standards",
+    "level-09-week-37-02-buildsrc-included-build-build-logic",
+    "level-09-week-37-03-custom-plugin-extension-design",
+    "level-09-week-37-04-variant-aware-code-generation",
+    "level-09-week-37-05-gradle-testkit-functional-tests",
+    "level-09-week-37-06-composable-build-convention-suite"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-09-week-37-1",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-01-convention-plugins-build-standards",
+      "prompt": "Which two properties enable safe Gradle reuse?",
+      "type": "multiple_choice",
+      "options": [
+        "Complete declared inputs",
+        "Deterministic isolated outputs",
+        "Current timestamps",
+        "Global mutable state"
+      ],
+      "answer": [
+        "Complete declared inputs",
+        "Deterministic isolated outputs"
+      ]
+    },
+    {
+      "id": "q-level-09-week-37-2",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-02-buildsrc-included-build-build-logic",
+      "prompt": "Order the build-engineering loop.",
+      "type": "order_steps",
+      "options": [
+        "Name workflow",
+        "Model graph",
+        "Verify behaviour",
+        "Measure",
+        "Operate"
+      ],
+      "answer": [
+        "Name workflow",
+        "Model graph",
+        "Verify behaviour",
+        "Measure",
+        "Operate"
+      ]
+    },
+    {
+      "id": "q-level-09-week-37-3",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-03-custom-plugin-extension-design",
+      "prompt": "Match mechanism to reused work.",
+      "type": "match_pairs",
+      "options": [
+        "Up-to-date check",
+        "Build cache",
+        "Configuration cache"
+      ],
+      "answer": {
+        "Up-to-date check": "Outputs in current workspace",
+        "Build cache": "Task outputs across executions",
+        "Configuration cache": "Configured task graph"
+      }
+    },
+    {
+      "id": "q-level-09-week-37-4",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-04-variant-aware-code-generation",
+      "prompt": "Spot the build defect: Downloading “latest” schema during the task without a declared immutable input lets identical cache keys represent different generated source.",
+      "type": "spot_bug",
+      "answer": "Downloading “latest” schema during the task without a declared immutable input lets identical cache keys represent different generated source.",
+      "acceptedAnswers": [
+        "The build violates lazy, declared, deterministic, variant-safe or measured execution."
+      ]
+    },
+    {
+      "id": "q-level-09-week-37-5",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-05-gradle-testkit-functional-tests",
+      "prompt": "Complete the rule: connect a producer output ____ to a consumer input to preserve lazy dependency wiring.",
+      "type": "fill_blank",
+      "answer": "Provider",
+      "acceptedAnswers": [
+        "Provider",
+        "provider"
+      ]
+    },
+    {
+      "id": "q-level-09-week-37-6",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-37-06-composable-build-convention-suite",
+      "prompt": "What prints? val selected=setOf(\"debug\",\"release\").intersect(setOf(\"release\",\"benchmark\")); print(selected.single())",
+      "type": "code_output",
+      "answer": "release"
+    }
+  ],
+  "rewards": {
+    "xp": 225,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

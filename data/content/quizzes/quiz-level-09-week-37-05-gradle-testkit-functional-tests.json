@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-37-05-gradle-testkit-functional-tests",
+  "title": "Gradle TestKit Functional Testing Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-37-05-gradle-testkit-functional-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-37-05-gradle-testkit-functional-tests-decision",
+      "prompt": "Which approach best applies gradle testkit functional testing?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Exercise public plugin behaviour through isolated real builds and meaningful task outcomes.",
+        "Test only helper functions",
+        "Assert the complete console log",
+        "Use the current repository as a fixture"
+      ],
+      "answer": "Exercise public plugin behaviour through isolated real builds and meaningful task outcomes.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-37-05-gradle-testkit-functional-tests"
+    },
+    {
+      "id": "q-level-09-week-37-05-gradle-testkit-functional-tests-truth",
+      "prompt": "TestKit automatically includes JUnit and chooses the project’s test framework.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Sharing one fixture directory between parallel tests allows outputs and configuration state from one case to make another case pass.",
+      "lessonId": "level-09-week-37-05-gradle-testkit-functional-tests"
+    },
+    {
+      "id": "q-level-09-week-37-05-gradle-testkit-functional-tests-recall",
+      "prompt": "What does a functional plugin test prove that a pure unit test cannot?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "That the plugin applies and behaves correctly inside a real Gradle build lifecycle and task graph.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-37-05-gradle-testkit-functional-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

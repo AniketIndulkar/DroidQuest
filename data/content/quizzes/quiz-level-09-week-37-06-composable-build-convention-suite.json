@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-37-06-composable-build-convention-suite",
+  "title": "Composable Android Build Convention Suite Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-37-06-composable-build-convention-suite"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-37-06-composable-build-convention-suite-decision",
+      "prompt": "Which approach best applies composable android build convention suite?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Compose small capability plugins and test representative module combinations as a public build platform.",
+        "Put release signing in library convention",
+        "Require plugin order",
+        "Apply every quality tool to every lifecycle command"
+      ],
+      "answer": "Compose small capability plugins and test representative module combinations as a public build platform.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-37-06-composable-build-convention-suite"
+    },
+    {
+      "id": "q-level-09-week-37-06-composable-build-convention-suite-truth",
+      "prompt": "A convention suite should eliminate every module-level configuration difference.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Coupling coverage, signing, publishing and every analysis tool into the base Android library convention makes harmless modules pay cost and gain unsafe capabilities.",
+      "lessonId": "level-09-week-37-06-composable-build-convention-suite"
+    },
+    {
+      "id": "q-level-09-week-37-06-composable-build-convention-suite-recall",
+      "prompt": "What is the organising unit of a scalable convention suite?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "A cohesive build capability that a module explicitly opts into through a stable plugin ID.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-37-06-composable-build-convention-suite"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

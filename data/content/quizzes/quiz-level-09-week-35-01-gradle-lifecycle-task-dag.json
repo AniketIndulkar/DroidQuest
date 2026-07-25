@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-35-01-gradle-lifecycle-task-dag",
+  "title": "Gradle Lifecycle and the Task DAG Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-35-01-gradle-lifecycle-task-dag"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-35-01-gradle-lifecycle-task-dag-decision",
+      "prompt": "Which approach best applies gradle lifecycle and the task dag?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Register cheap task models during configuration and express required order through data or task dependencies.",
+        "Run file generation at the top of build.gradle.kts",
+        "Assume task declaration order controls execution",
+        "Resolve every configuration before graph creation"
+      ],
+      "answer": "Register cheap task models during configuration and express required order through data or task dependencies.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-35-01-gradle-lifecycle-task-dag"
+    },
+    {
+      "id": "q-level-09-week-35-01-gradle-lifecycle-task-dag-truth",
+      "prompt": "Gradle executes every registered task after configuration.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Calling an expensive function while configuring a registered task still performs that work during configuration; placing text inside the registration block does not make it an execution action.",
+      "lessonId": "level-09-week-35-01-gradle-lifecycle-task-dag"
+    },
+    {
+      "id": "q-level-09-week-35-01-gradle-lifecycle-task-dag-recall",
+      "prompt": "What determines which tasks execute?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The requested tasks and the directed dependency graph Gradle constructs for that invocation.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-35-01-gradle-lifecycle-task-dag"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

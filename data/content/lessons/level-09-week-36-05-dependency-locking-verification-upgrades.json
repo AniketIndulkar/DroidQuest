@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-36-05-dependency-locking-verification-upgrades",
+  "title": "Dependency Locking, Verification, and Controlled Upgrades",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 36,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-36-04-version-catalogs-boms-platforms"
+  ],
+  "tags": [
+    "gradle",
+    "dependency-locking",
+    "supply-chain"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn dependency locking, verification, and controlled upgrades into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency locking records resolved versions so the same declarations do not drift through dynamic selectors or changing transitive graphs. Lock relevant resolvable configurations, commit lock state, and update it intentionally. Locks do not prove an artifact is authentic, vulnerability-free or compatible. Understand strict lock behaviour when a declared version moves, and avoid dynamic/SNAPSHOT inputs in release paths unless an explicit workflow refreshes, tests and records them."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency verification checks external artifacts, plugin artifacts and metadata against trusted checksums or signatures in verification-metadata.xml. Bootstrap metadata in a controlled environment, review every added component and checksum, and investigate unexpected alternates rather than blindly regenerating the file until CI passes. Verification is global across the build, with included-build nuances. Repository content filters and exclusive content reduce where coordinates may resolve and limit dependency-confusion exposure."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew dependencies --write-locks\n./gradlew --write-verification-metadata sha256 help\n# Review diffs before committing; do not accept generated trust blindly.",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create an upgrade transaction: choose a small set, read release/security notes, update catalogues or constraints, refresh locks, update verification metadata after independent validation, inspect the graph and licenses, run tests and retain rollback. Automate pull requests but keep human review of new publishers, repositories, checksums and capabilities. SBOM and vulnerability tools add evidence; they do not replace resolution reproducibility or artifact verification."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Regenerating verification metadata from the same potentially compromised repository and approving every checksum only records the attack as trusted."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Dependency Locking",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/dependency_locking.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Dependency Verification",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/dependency_verification.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Dependency Locking, Verification, and Controlled Upgrades",
+      "language": "shell",
+      "code": "./gradlew dependencies --write-locks\n./gradlew --write-verification-metadata sha256 help\n# Review diffs before committing; do not accept generated trust blindly.",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Regenerating verification metadata from the same potentially compromised repository and approving every checksum only records the attack as trusted.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Introduce locking and verification to a sample, simulate a transitive upgrade and checksum change, and document the safe review and rollback workflow.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "What distinct problem does dependency verification solve beyond locking?",
+        "answer": "It checks resolved artifact and metadata identity against trusted checksums or signatures, while locking fixes versions."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-36-05-dependency-locking-verification-upgrades",
+  "challengeId": "challenge-level-09-week-36-05-dependency-locking-verification-upgrades",
+  "revision": {
+    "objectives": [
+      "Explain Dependency Locking, Verification, and Controlled Upgrades from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/dependency_locking.html",
+    "https://docs.gradle.org/current/userguide/dependency_verification.html"
+  ],
+  "version": "0.12.0"
+}

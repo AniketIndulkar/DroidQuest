@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-36-06-android-components-variant-api",
+  "title": "Android Components Variant API Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-36-06-android-components-variant-api"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-36-06-android-components-variant-api-decision",
+      "prompt": "Which approach best applies android components variant api?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Use public variant callbacks and Provider-backed per-variant artifacts with isolated outputs.",
+        "Find AGP tasks by name",
+        "Write generated code into src",
+        "Configure all variants afterEvaluate"
+      ],
+      "answer": "Use public variant callbacks and Provider-backed per-variant artifacts with isolated outputs.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-36-06-android-components-variant-api"
+    },
+    {
+      "id": "q-level-09-week-36-06-android-components-variant-api-truth",
+      "prompt": "beforeVariants and onVariants are interchangeable points for disabling a variant.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Writing every variant’s generated file to the same build/generated/config directory creates races and cross-variant contamination.",
+      "lessonId": "level-09-week-36-06-android-components-variant-api"
+    },
+    {
+      "id": "q-level-09-week-36-06-android-components-variant-api-recall",
+      "prompt": "Why must generated output include the variant identity?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Multiple variants may build together; isolated paths prevent overwrites, races and incorrect cache reuse.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-36-06-android-components-variant-api"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

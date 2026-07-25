@@ -1,0 +1,218 @@
+{
+  "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+  "title": "Measure Builds with Scans, Profiles, and Build Analyzer",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 38,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-37-06-composable-build-convention-suite"
+  ],
+  "tags": [
+    "gradle",
+    "build-performance",
+    "measurement"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn measure builds with scans, profiles, and build analyzer into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Optimisation begins with a representative workflow and baseline: clean CI build, incremental edit-build-test loop, branch switch, IDE sync or targeted test. Record machine, JDK, Gradle/AGP versions, daemon state, cache state and network conditions. Median and tail latency matter more than one lucky run. Gradle profile reports, Build Analyzer and build scans expose configuration time, task timeline, cache behaviour, dependency resolution and critical path. Review what a hosted scan captures before publishing sensitive metadata."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Break total time into initialization/configuration, dependency resolution, task execution, worker utilisation, cache transfer and queueing. Optimise the critical path and frequent developer workflows rather than the individually slowest task in an irrelevant full build. Compare avoided work, not only faster execution. A cache with high hit count can still lose time downloading large outputs. Tie each proposed change to a measured mechanism and a regression threshold."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:assembleDebug --profile\n./gradlew :feature:map:testDebugUnitTest --scan\n# Compare same workflow, environment and cache state.",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create a performance experiment with warmups, controlled before/after runs and correctness checks. Keep build-speed dashboards segmented by workflow and environment. Investigate regressions from dependency updates, module graph changes, ABI expansion, code generators and configuration logic. Do not make build scans mandatory if privacy or network policy forbids them; local profiling remains possible. Performance is a product property of the build platform, with owners, budgets and repeatable evidence."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Comparing a cold clean build before the change with a warm cached build after it attributes cache state to the optimisation."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Improve Gradle Build Performance",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/performance.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Build Scan Basics",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/build_scans.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Optimise Your Android Build",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/optimize-your-build",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Measure Builds with Scans, Profiles, and Build Analyzer",
+      "language": "shell",
+      "code": "./gradlew :app:assembleDebug --profile\n./gradlew :feature:map:testDebugUnitTest --scan\n# Compare same workflow, environment and cache state.",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Comparing a cold clean build before the change with a warm cached build after it attributes cache state to the optimisation.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Baseline three real workflows, identify their critical paths and run one controlled optimisation experiment with correctness and regression evidence.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why record cache and daemon state in a benchmark?",
+        "answer": "They materially change the work performed, so uncontrolled states make before/after results incomparable."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-38-01-measure-build-scans-profiles-analyzer",
+  "challengeId": "challenge-level-09-week-38-01-measure-build-scans-profiles-analyzer",
+  "revision": {
+    "objectives": [
+      "Explain Measure Builds with Scans, Profiles, and Build Analyzer from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/performance.html",
+    "https://docs.gradle.org/current/userguide/build_scans.html",
+    "https://developer.android.com/build/optimize-your-build"
+  ],
+  "version": "0.12.0"
+}

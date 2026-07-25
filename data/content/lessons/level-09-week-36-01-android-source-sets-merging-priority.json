@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-36-01-android-source-sets-merging-priority",
+  "title": "Android Source Sets and Merge Priority",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 36,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-35-06-shared-services-workers-parallel-safety"
+  ],
+  "tags": [
+    "android-build",
+    "source-sets",
+    "manifest-merging"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn android source sets and merge priority into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android source sets separate common, build-type, product-flavour, variant and test content. For a demoDebug variant, variant-specific content has higher priority than build-type, flavour and main content; dependencies contribute at lower priority. Kotlin and Java sources compile together and duplicate classes fail rather than override. Resources and manifests merge according to documented priority. Inspect the merged manifest and resources because the packaged result—not one source file—defines permissions, components, placeholders and security behaviour."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use a source set when code or resources genuinely differ by variant, not to duplicate entire features. Keep production behaviour in main and inject small environment contracts where possible. Variant-specific service files, endpoints, icons or debug tooling need explicit ownership and tests. Never let debug manifests accidentally export components, permit cleartext or add backup/debug flags to release. Test source sets belong to local, instrumented or dedicated test-fixture contexts and should not leak dependencies into production."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "android { sourceSets {\n getByName(\"qa\") { res.srcDir(\"src/qa/res\") }\n getByName(\"androidTest\") { assets.srcDir(\"schemas\") }\n} }",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Document the supported matrix and delete dead combinations. A combinatorial directory tree becomes hard to reason about when every flavour dimension intersects every build type. Use sourceSets configuration only for intentional layouts, avoiding parent-and-child resource roots that overlap. Run source-set reports and inspect packaged artifacts for each releaseable variant. Treat merge warnings as design feedback. A correct build makes origin and priority of every overridden value discoverable."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Defining a release class with the same fully qualified name in main and release does not override main; both compile and cause a duplicate-class failure."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Configure Your Android Build",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Configure Android Build Variants",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/build-variants",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Android Source Sets and Merge Priority",
+      "language": "kotlin",
+      "code": "android { sourceSets {\n getByName(\"qa\") { res.srcDir(\"src/qa/res\") }\n getByName(\"androidTest\") { assets.srcDir(\"schemas\") }\n} }",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Defining a release class with the same fully qualified name in main and release does not override main; both compile and cause a duplicate-class failure.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Map and simplify a four-variant source-set tree, verify manifest/resource priority, and add tests preventing debug-only security configuration from entering release.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "What should be inspected to understand final component export and permissions?",
+        "answer": "The merged manifest for the exact built variant."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-36-01-android-source-sets-merging-priority",
+  "challengeId": "challenge-level-09-week-36-01-android-source-sets-merging-priority",
+  "revision": {
+    "objectives": [
+      "Explain Android Source Sets and Merge Priority from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/build",
+    "https://developer.android.com/build/build-variants"
+  ],
+  "version": "0.12.0"
+}

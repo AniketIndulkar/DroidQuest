@@ -1,0 +1,115 @@
+{
+  "id": "quiz-level-09-week-36-checkpoint",
+  "title": "Week 36: Android Variants and Dependency Governance Checkpoint",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-36-01-android-source-sets-merging-priority",
+    "level-09-week-36-02-build-types-flavours-variant-matrix",
+    "level-09-week-36-03-variant-aware-dependency-resolution",
+    "level-09-week-36-04-version-catalogs-boms-platforms",
+    "level-09-week-36-05-dependency-locking-verification-upgrades",
+    "level-09-week-36-06-android-components-variant-api"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-09-week-36-1",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-01-android-source-sets-merging-priority",
+      "prompt": "Which two properties enable safe Gradle reuse?",
+      "type": "multiple_choice",
+      "options": [
+        "Complete declared inputs",
+        "Deterministic isolated outputs",
+        "Current timestamps",
+        "Global mutable state"
+      ],
+      "answer": [
+        "Complete declared inputs",
+        "Deterministic isolated outputs"
+      ]
+    },
+    {
+      "id": "q-level-09-week-36-2",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-02-build-types-flavours-variant-matrix",
+      "prompt": "Order the build-engineering loop.",
+      "type": "order_steps",
+      "options": [
+        "Name workflow",
+        "Model graph",
+        "Verify behaviour",
+        "Measure",
+        "Operate"
+      ],
+      "answer": [
+        "Name workflow",
+        "Model graph",
+        "Verify behaviour",
+        "Measure",
+        "Operate"
+      ]
+    },
+    {
+      "id": "q-level-09-week-36-3",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-03-variant-aware-dependency-resolution",
+      "prompt": "Match mechanism to reused work.",
+      "type": "match_pairs",
+      "options": [
+        "Up-to-date check",
+        "Build cache",
+        "Configuration cache"
+      ],
+      "answer": {
+        "Up-to-date check": "Outputs in current workspace",
+        "Build cache": "Task outputs across executions",
+        "Configuration cache": "Configured task graph"
+      }
+    },
+    {
+      "id": "q-level-09-week-36-4",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-04-version-catalogs-boms-platforms",
+      "prompt": "Spot the build defect: Assuming the Compose BOM adds Material3 or forces every Compose-related tool version confuses alignment constraints with actual dependency declarations.",
+      "type": "spot_bug",
+      "answer": "Assuming the Compose BOM adds Material3 or forces every Compose-related tool version confuses alignment constraints with actual dependency declarations.",
+      "acceptedAnswers": [
+        "The build violates lazy, declared, deterministic, variant-safe or measured execution."
+      ]
+    },
+    {
+      "id": "q-level-09-week-36-5",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-05-dependency-locking-verification-upgrades",
+      "prompt": "Complete the rule: connect a producer output ____ to a consumer input to preserve lazy dependency wiring.",
+      "type": "fill_blank",
+      "answer": "Provider",
+      "acceptedAnswers": [
+        "Provider",
+        "provider"
+      ]
+    },
+    {
+      "id": "q-level-09-week-36-6",
+      "difficulty": "advanced",
+      "explanation": "Reliable build engineering comes from explicit graph and variant models, declared data flow, functional evidence and controlled measurement.",
+      "lessonId": "level-09-week-36-06-android-components-variant-api",
+      "prompt": "What prints? val selected=setOf(\"debug\",\"release\").intersect(setOf(\"release\",\"benchmark\")); print(selected.single())",
+      "type": "code_output",
+      "answer": "release"
+    }
+  ],
+  "rewards": {
+    "xp": 225,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

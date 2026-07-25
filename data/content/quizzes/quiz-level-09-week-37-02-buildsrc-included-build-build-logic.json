@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-37-02-buildsrc-included-build-build-logic",
+  "title": "buildSrc, Included Builds, and Build-Logic Boundaries Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-37-02-buildsrc-included-build-build-logic"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-37-02-buildsrc-included-build-build-logic-decision",
+      "prompt": "Which approach best applies buildsrc, included builds, and build-logic boundaries?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Select an isolated build-logic boundary and expose stable plugins rather than script-time mutation helpers.",
+        "Depend build logic on app modules",
+        "Assume buildSrc inherits libs automatically",
+        "Use an included build without verification review"
+      ],
+      "answer": "Select an isolated build-logic boundary and expose stable plugins rather than script-time mutation helpers.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-37-02-buildsrc-included-build-build-logic"
+    },
+    {
+      "id": "q-level-09-week-37-02-buildsrc-included-build-build-logic-truth",
+      "prompt": "An included build and buildSrc have identical isolation and invalidation behaviour.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Moving copied scripts into buildSrc without extracting plugins still leaves imperative helpers, hidden mutation and little functional-test surface.",
+      "lessonId": "level-09-week-37-02-buildsrc-included-build-build-logic"
+    },
+    {
+      "id": "q-level-09-week-37-02-buildsrc-included-build-build-logic-recall",
+      "prompt": "What is the main architectural benefit of a build-logic included build?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It provides an explicit, separately structured and testable build boundary with stable plugin interfaces.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-37-02-buildsrc-included-build-build-logic"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

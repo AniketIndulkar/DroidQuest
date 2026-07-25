@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-37-01-convention-plugins-build-standards",
+  "title": "Convention Plugins as Build Standards",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 37,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-36-06-android-components-variant-api"
+  ],
+  "tags": [
+    "gradle",
+    "convention-plugins",
+    "architecture"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn convention plugins as build standards into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Convention plugins turn repeated build configuration into named capabilities such as droidquest.android.library or droidquest.compose. They can apply public plugins, set toolchains and Android defaults, add dependencies and register tasks. Modules then declare intent and a small number of genuine differences. This is preferable to root allprojects or subprojects mutation, which couples evaluation order, hides ownership and configures modules that may not share the same model."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Design conventions around cohesive responsibilities, not one giant company plugin. Application, library, Compose, testing, static analysis and coverage can compose independently. Defaults should use conventions so module overrides remain possible where supported; hard enforcement needs an explicit invariant and useful error. Do not read project paths to infer product meaning or expose a large extension for every underlying option. Public plugin IDs form an API that needs versioning and migration."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class AndroidLibraryConvention:Plugin<Project>{ override fun apply(target:Project)=with(target){\n pluginManager.apply(\"com.android.library\")\n extensions.configure<LibraryExtension>{ compileSdk=approvedCompileSdk }\n} }",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Document what each convention owns, its applied plugins, dependencies, tasks, supported module kinds and escape hatches. Test plugin combinations and order independence. A convention should not create dependency cycles between build logic and application modules. Review changes like production platform code because one line can alter every module and artifact. Measure configuration impact and keep plugin application lazy and configuration-cache compatible."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "A single convention plugin that applies every tool to every module recreates global configuration under a new name and increases cost and coupling."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Convention Plugins",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Developing Custom Gradle Plugins",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/custom_plugins.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Convention Plugins as Build Standards",
+      "language": "kotlin",
+      "code": "class AndroidLibraryConvention:Plugin<Project>{ override fun apply(target:Project)=with(target){\n pluginManager.apply(\"com.android.library\")\n extensions.configure<LibraryExtension>{ compileSdk=approvedCompileSdk }\n} }",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "A single convention plugin that applies every tool to every module recreates global configuration under a new name and increases cost and coupling.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Extract application, library and Compose conventions from duplicated scripts, define ownership boundaries and prove module overrides and composition.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why are convention plugins preferable to subprojects blocks?",
+        "answer": "They make shared configuration explicit, composable, testable and applied only to modules declaring that capability."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-37-01-convention-plugins-build-standards",
+  "challengeId": "challenge-level-09-week-37-01-convention-plugins-build-standards",
+  "revision": {
+    "objectives": [
+      "Explain Convention Plugins as Build Standards from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html",
+    "https://docs.gradle.org/current/userguide/custom_plugins.html"
+  ],
+  "version": "0.12.0"
+}

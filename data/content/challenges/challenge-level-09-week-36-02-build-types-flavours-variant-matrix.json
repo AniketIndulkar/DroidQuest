@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-09-week-36-02-build-types-flavours-variant-matrix",
+  "title": "Apply Build Types, Product Flavours, and the Variant Matrix",
+  "categoryId": "level-09-gradle-build-cicd",
+  "lessonId": "level-09-week-36-02-build-types-flavours-variant-matrix",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Design and validate a minimal environment/distribution variant matrix, disabling invalid combinations and documenting signing, endpoints, links and CI evidence.",
+  "successCriteria": [
+    "The task, variant or dependency model and expected artifact are explicit.",
+    "Lazy inputs, outputs and dependencies behave correctly for changed, unchanged and failure paths.",
+    "Functional tests plus performance, compatibility, security and rollback evidence are documented."
+  ],
+  "hints": [
+    "Inspect the requested graph and resolved model before adding ordering or resolution rules.",
+    "Test a second run and one meaningful input change; success once is insufficient."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "androidComponents { beforeVariants(selector().withBuildType(\"release\")) { b ->\n if (b.productFlavors.any { it.second==\"mock\" }) b.enable=false\n} }"
+  },
+  "solutionOutline": [
+    "Model the workflow with public typed APIs and complete data flow.",
+    "Test clean, incremental, parallel/cached and failure behaviour, then measure the intended workflow."
+  ],
+  "verification": [
+    "Run in a clean and relocated fixture plus the representative project workflow.",
+    "Record task outcomes, generated artifact, critical path and regression guard."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

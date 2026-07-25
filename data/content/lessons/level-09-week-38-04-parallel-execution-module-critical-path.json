@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-38-04-parallel-execution-module-critical-path",
+  "title": "Parallel Execution and Module Critical Paths",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 38,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-38-03-local-remote-build-cache-correctness"
+  ],
+  "tags": [
+    "gradle",
+    "parallelism",
+    "modularization"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn parallel execution and module critical paths into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Parallel project execution helps only when the task graph contains independent work and the machine has available CPU, memory and I/O. A long serial chain through core modules remains the critical path no matter how many workers are configured. Build scans reveal idle gaps, dependency chains and contention. Tune worker count and heap together; excessive parallel Kotlin, dexing and analysis can cause garbage collection, swapping or thermal throttling."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Module boundaries affect performance through parallelism, configuration overhead and change propagation. A stable narrow API module can allow independent implementation work; an over-central “core” touched by every feature invalidates downstream compilation. implementation dependencies and avoiding unnecessary public ABI changes improve compile avoidance. More modules are not automatically faster: measure configuration, dependency resolution and task overhead against improved isolation and ownership."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :feature:map:assembleDebug --parallel --scan\n# Compare critical path and affected tasks after private versus ABI changes.",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create change scenarios—private implementation edit, public signature edit, resource edit, test edit—and record affected tasks. Remove accidental dependency edges and api exposure before splitting modules reflexively. Ensure custom tasks and processors are incremental and outputs isolated for safe parallelism. CI should run appropriately scoped workflows while a full build remains a release gate. Performance decisions must preserve architecture and developer comprehension, not optimise a synthetic graph alone."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Increasing org.gradle.workers.max on a memory-bound agent can make builds slower or unstable through contention and swapping."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Improve Gradle Build Performance",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/performance.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Optimise Your Android Build",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/optimize-your-build",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Parallel Execution and Module Critical Paths",
+      "language": "shell",
+      "code": "./gradlew :feature:map:assembleDebug --parallel --scan\n# Compare critical path and affected tasks after private versus ABI changes.",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Increasing org.gradle.workers.max on a memory-bound agent can make builds slower or unstable through contention and swapping.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Measure the module critical path, remove one accidental edge/API exposure and compare affected tasks for private and public changes.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Which graph property limits the best possible parallel build time?",
+        "answer": "The duration of the longest dependent chain—the critical path."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-38-04-parallel-execution-module-critical-path",
+  "challengeId": "challenge-level-09-week-38-04-parallel-execution-module-critical-path",
+  "revision": {
+    "objectives": [
+      "Explain Parallel Execution and Module Critical Paths from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/performance.html",
+    "https://developer.android.com/build/optimize-your-build"
+  ],
+  "version": "0.12.0"
+}

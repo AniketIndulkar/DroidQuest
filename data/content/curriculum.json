@@ -2,8 +2,8 @@
   "id": "droidquest-curriculum",
   "title": "DroidQuest: Beginner to Android Platform Expert",
   "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
-  "version": "0.11.0",
-  "contentRevision": 11,
+  "version": "0.12.0",
+  "contentRevision": 12,
   "releasedAt": "2026-07-25",
   "defaultLocale": "en-GB",
   "supportedLocales": [
@@ -582,6 +582,70 @@
         "level-08-week-34-06-banking-security-review-capstone"
       ],
       "checkpointQuizId": "quiz-level-08-week-34-checkpoint"
+    },
+    {
+      "id": "week-35",
+      "number": 35,
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Gradle Execution Model",
+      "status": "available",
+      "lessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag",
+        "level-09-week-35-02-task-registration-dependencies-ordering",
+        "level-09-week-35-03-providers-properties-build-inputs",
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+        "level-09-week-35-05-kotlin-dsl-model-configuration",
+        "level-09-week-35-06-shared-services-workers-parallel-safety"
+      ],
+      "checkpointQuizId": "quiz-level-09-week-35-checkpoint"
+    },
+    {
+      "id": "week-36",
+      "number": 36,
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Android Variants and Dependency Governance",
+      "status": "available",
+      "lessonIds": [
+        "level-09-week-36-01-android-source-sets-merging-priority",
+        "level-09-week-36-02-build-types-flavours-variant-matrix",
+        "level-09-week-36-03-variant-aware-dependency-resolution",
+        "level-09-week-36-04-version-catalogs-boms-platforms",
+        "level-09-week-36-05-dependency-locking-verification-upgrades",
+        "level-09-week-36-06-android-components-variant-api"
+      ],
+      "checkpointQuizId": "quiz-level-09-week-36-checkpoint"
+    },
+    {
+      "id": "week-37",
+      "number": 37,
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Scalable and Tested Build Logic",
+      "status": "available",
+      "lessonIds": [
+        "level-09-week-37-01-convention-plugins-build-standards",
+        "level-09-week-37-02-buildsrc-included-build-build-logic",
+        "level-09-week-37-03-custom-plugin-extension-design",
+        "level-09-week-37-04-variant-aware-code-generation",
+        "level-09-week-37-05-gradle-testkit-functional-tests",
+        "level-09-week-37-06-composable-build-convention-suite"
+      ],
+      "checkpointQuizId": "quiz-level-09-week-37-checkpoint"
+    },
+    {
+      "id": "week-38",
+      "number": 38,
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Measured Build Performance",
+      "status": "available",
+      "lessonIds": [
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+        "level-09-week-38-02-configuration-cache-adoption",
+        "level-09-week-38-03-local-remote-build-cache-correctness",
+        "level-09-week-38-04-parallel-execution-module-critical-path",
+        "level-09-week-38-05-ksp-incremental-processing",
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+      ],
+      "checkpointQuizId": "quiz-level-09-week-38-checkpoint"
     }
   ],
   "specialisationPolicy": {

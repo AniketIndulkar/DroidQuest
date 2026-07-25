@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -2677,6 +2677,318 @@
       ],
       "relatedLessonIds": [
         "level-08-week-34-06-banking-security-review-capstone"
+      ]
+    },
+    {
+      "id": "term-gradle-lifecycle",
+      "term": "Gradle lifecycle",
+      "definition": "The initialization, configuration, and execution phases through which Gradle discovers builds, creates the model and task graph, then runs selected work.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "lifecycle"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag"
+      ]
+    },
+    {
+      "id": "term-task-provider",
+      "term": "TaskProvider",
+      "definition": "A lazy handle to a registered task that can be configured and wired without immediately creating the task.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "tasks"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-02-task-registration-dependencies-ordering"
+      ]
+    },
+    {
+      "id": "term-provider-api",
+      "term": "Provider API",
+      "definition": "Gradle’s lazy value model for connecting configurable properties, environment or project inputs, and task outputs without eager reads.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "provider-api"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-03-providers-properties-build-inputs"
+      ]
+    },
+    {
+      "id": "term-up-to-date-check",
+      "term": "Up-to-date check",
+      "definition": "A comparison of declared task inputs and outputs used to skip work when the existing outputs already represent those inputs.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "incremental-build"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic"
+      ]
+    },
+    {
+      "id": "term-type-safe-accessor",
+      "term": "Type-safe accessor",
+      "definition": "A Kotlin DSL accessor generated from plugins and model elements known before a project script body is compiled.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "kotlin-dsl"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-05-kotlin-dsl-model-configuration"
+      ]
+    },
+    {
+      "id": "term-build-service",
+      "term": "Build service",
+      "definition": "A shared, lifecycle-managed service for controlled state or resources used by tasks without relying on global mutable objects.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "build-services"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-35-06-shared-services-workers-parallel-safety"
+      ]
+    },
+    {
+      "id": "term-android-source-set",
+      "term": "Android source set",
+      "definition": "A named collection of code, resources, manifest and assets contributing to one or more Android variants.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "android-build",
+        "source-sets"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-01-android-source-sets-merging-priority"
+      ]
+    },
+    {
+      "id": "term-build-variant",
+      "term": "Build variant",
+      "definition": "A concrete Android build configuration formed from one build type and one flavour from each declared flavour dimension.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "android-build",
+        "build-types"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-02-build-types-flavours-variant-matrix"
+      ]
+    },
+    {
+      "id": "term-variant-attribute",
+      "term": "Variant attribute",
+      "definition": "Typed metadata Gradle uses to select the compatible consumable variant of a dependency.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "dependencies"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-03-variant-aware-dependency-resolution"
+      ]
+    },
+    {
+      "id": "term-version-catalog",
+      "term": "Version catalog",
+      "definition": "A central catalogue of dependency and plugin aliases that improves declaration consistency but does not itself enforce resolved versions.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "version-catalog"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-04-version-catalogs-boms-platforms"
+      ]
+    },
+    {
+      "id": "term-dependency-verification",
+      "term": "Dependency verification",
+      "definition": "Gradle validation of resolved external artifacts and metadata against trusted checksums or signatures.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "dependency-locking"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-05-dependency-locking-verification-upgrades"
+      ]
+    },
+    {
+      "id": "term-android-components-api",
+      "term": "Android Components API",
+      "definition": "AGP’s public variant lifecycle for selecting, configuring and wiring variant properties, sources and artifacts lazily.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "android-build",
+        "variant-api"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-36-06-android-components-variant-api"
+      ]
+    },
+    {
+      "id": "term-convention-plugin",
+      "term": "Convention plugin",
+      "definition": "A plugin that applies and configures other plugins to encode reusable organisational build defaults and capabilities.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "convention-plugins"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-01-convention-plugins-build-standards"
+      ]
+    },
+    {
+      "id": "term-included-build",
+      "term": "Included build",
+      "definition": "A separately structured Gradle build composed into another build for plugins or dependencies through composite build substitution.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "included-build"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-02-buildsrc-included-build-build-logic"
+      ]
+    },
+    {
+      "id": "term-gradle-extension",
+      "term": "Gradle extension",
+      "definition": "A typed configuration model exposed by a plugin for build authors to supply values and conventions.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "custom-plugin"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-03-custom-plugin-extension-design"
+      ]
+    },
+    {
+      "id": "term-generated-source",
+      "term": "Generated source",
+      "definition": "A build output registered with a compilation or packaging model rather than committed or written into human-owned source directories.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "code-generation"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-04-variant-aware-code-generation"
+      ]
+    },
+    {
+      "id": "term-gradle-testkit",
+      "term": "Gradle TestKit",
+      "definition": "Gradle’s toolkit for executing real isolated builds and asserting plugin behaviour, output, failures and task outcomes.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "testkit"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-05-gradle-testkit-functional-tests"
+      ]
+    },
+    {
+      "id": "term-build-capability",
+      "term": "Build capability",
+      "definition": "A cohesive, named set of build behaviour a module opts into through a plugin, such as Android library, Compose or static analysis.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "convention-plugins"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-37-06-composable-build-convention-suite"
+      ]
+    },
+    {
+      "id": "term-critical-path",
+      "term": "Build critical path",
+      "definition": "The longest dependency chain of work determining the earliest possible completion time for a build invocation.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "build-performance"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer"
+      ]
+    },
+    {
+      "id": "term-configuration-cache",
+      "term": "Configuration cache",
+      "definition": "A stored representation of the configured task graph that lets a later compatible invocation skip the configuration phase.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "configuration-cache"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-02-configuration-cache-adoption"
+      ]
+    },
+    {
+      "id": "term-build-cache-key",
+      "term": "Build cache key",
+      "definition": "A fingerprint of a cacheable task implementation and declared inputs used to locate equivalent task outputs.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "build-cache"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-03-local-remote-build-cache-correctness"
+      ]
+    },
+    {
+      "id": "term-compile-avoidance",
+      "term": "Compile avoidance",
+      "definition": "Skipping downstream compilation when a dependency change does not alter the ABI visible to consumers.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "parallelism"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-04-parallel-execution-module-critical-path"
+      ]
+    },
+    {
+      "id": "term-isolating-output",
+      "term": "Isolating processor output",
+      "definition": "Generated output associated with a specific originating input set so unrelated source changes need not regenerate it.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "kotlin",
+        "ksp"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-05-ksp-incremental-processing"
+      ]
+    },
+    {
+      "id": "term-abi-change",
+      "term": "ABI change",
+      "definition": "A change to binary-visible declarations that may require dependent compilation even when internal implementation behaviour is unchanged.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "abi"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
       ]
     }
   ]

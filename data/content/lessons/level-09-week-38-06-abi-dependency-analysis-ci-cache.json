@@ -1,0 +1,218 @@
+{
+  "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+  "title": "ABI-Aware Dependency Analysis and CI Cache Policy",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 38,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-38-05-ksp-incremental-processing"
+  ],
+  "tags": [
+    "gradle",
+    "abi",
+    "dependency-analysis"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn abi-aware dependency analysis and ci cache policy into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A module’s ABI includes public/protected types, methods, fields, generic signatures and exposed dependency types. Changing it can invalidate downstream compilation; changing private implementation may allow compile avoidance. Kotlin inline functions and constants can spread implementation into consumers, while public data models in central modules create broad blast radius. Use implementation scopes and small stable interfaces, and inspect why a change rebuilds modules before adding cache infrastructure."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency analysis finds unused direct dependencies, transitive use, incorrect api/implementation scope and graph edges that expand classpaths. Apply recommendations with semantic review: reflection, service loading, lint checks, code generation and runtime-only use can be invisible to static analysis. Enforce graph boundaries and keep release variants free of debug tools. Smaller accurate classpaths improve resolution, compilation, cache keys and supply-chain surface."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:dependencies\n./gradlew :feature:map:dependencyInsight --dependency core-model --configuration debugCompileClasspath\n# Relate graph edges to ABI-driven recompilation.",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "CI cache policy separates wrapper/distribution, dependency cache, configuration cache and build cache, each with different portability and trust. Key on true compatibility dimensions—OS where relevant, JDK, Gradle, toolchain and lock/verification inputs—while supporting safe restore. Untrusted forks read only or use isolated namespaces. Track time saved, misses, corruption and fallback. Finish with a performance report linking ABI and graph improvements to measured affected tasks and cache behaviour, not headline cache size."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Automatically removing every dependency labelled unused can break reflection, generated code, runtime service loading or tooling that static analysis cannot observe."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Improve Gradle Build Performance",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/performance.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Gradle Build Cache",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/build_cache.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Dependency Management",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/core_dependency_management.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect ABI-Aware Dependency Analysis and CI Cache Policy",
+      "language": "shell",
+      "code": "./gradlew :app:dependencies\n./gradlew :feature:map:dependencyInsight --dependency core-model --configuration debugCompileClasspath\n# Relate graph edges to ABI-driven recompilation.",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Automatically removing every dependency labelled unused can break reflection, generated code, runtime service loading or tooling that static analysis cannot observe.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Audit API exposure and dependencies, reduce one invalidation path, then design a trust-aware CI cache matrix and measure affected tasks.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why can implementation dependencies improve build performance?",
+        "answer": "They keep internal dependency types off consumer compile ABIs, reducing classpaths and downstream invalidation."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-38-06-abi-dependency-analysis-ci-cache",
+  "challengeId": "challenge-level-09-week-38-06-abi-dependency-analysis-ci-cache",
+  "revision": {
+    "objectives": [
+      "Explain ABI-Aware Dependency Analysis and CI Cache Policy from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/performance.html",
+    "https://docs.gradle.org/current/userguide/build_cache.html",
+    "https://docs.gradle.org/current/userguide/core_dependency_management.html"
+  ],
+  "version": "0.12.0"
+}

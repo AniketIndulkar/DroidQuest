@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-38-03-local-remote-build-cache-correctness",
+  "title": "Local and Remote Build Cache Correctness Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-38-03-local-remote-build-cache-correctness"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-38-03-local-remote-build-cache-correctness-decision",
+      "prompt": "Which approach best applies local and remote build cache correctness?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Share only deterministic declared outputs through an authenticated cache with trusted writers and measured value.",
+        "Let every CI job push",
+        "Cache signed release artifacts casually",
+        "Use hit rate as the sole metric"
+      ],
+      "answer": "Share only deterministic declared outputs through an authenticated cache with trusted writers and measured value.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-38-03-local-remote-build-cache-correctness"
+    },
+    {
+      "id": "q-level-09-week-38-03-local-remote-build-cache-correctness-truth",
+      "prompt": "The Gradle dependency cache and build cache store the same kind of reusable data.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Allowing forked pull requests to push into the same remote cache lets untrusted code publish outputs later consumed by trusted release jobs.",
+      "lessonId": "level-09-week-38-03-local-remote-build-cache-correctness"
+    },
+    {
+      "id": "q-level-09-week-38-03-local-remote-build-cache-correctness-recall",
+      "prompt": "Why should trusted CI often be the only remote-cache writer?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It reduces cache-poisoning risk while still letting developers and other jobs consume verified reusable outputs.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-38-03-local-remote-build-cache-correctness"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

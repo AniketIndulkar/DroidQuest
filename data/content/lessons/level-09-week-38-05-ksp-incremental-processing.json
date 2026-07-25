@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-38-05-ksp-incremental-processing",
+  "title": "KSP and Incremental Symbol Processing",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 38,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-38-04-parallel-execution-module-critical-path"
+  ],
+  "tags": [
+    "kotlin",
+    "ksp",
+    "code-generation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn ksp and incremental symbol processing into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "KSP models Kotlin symbols directly and can reduce overhead compared with Java annotation-processing paths, but migration alone does not guarantee speed or correctness. Incremental KSP tracks relationships from root sources to generated outputs. Isolating output belongs to specific origins; aggregating output can depend on a broad set and invalidates more work. Processor authors must report dependencies accurately when creating files, including symbols reached through resolution."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Generate stable names and order, avoid current time and absolute paths, close outputs and handle removed symbols. Do not scan every file when annotated roots suffice. An output that collects all routes or database entities is naturally aggregating; pretending it is isolating risks stale output. Processor options and implementation classpath affect results and belong in inputs. Use KSP incremental logs to investigate dirty sets rather than disabling incrementality as a permanent fix."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "codeGenerator.createNewFile(\n dependencies=Dependencies(aggregating=false,sourceFile),\n packageName=\"com.droidquest.generated\",fileName=\"${name}Route\"\n)",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Benchmark clean and representative incremental edits, verify generated diffs and downstream compilation. Test source add/change/delete, dependency symbol change, multi-round generation, errors and cache relocation. Evaluate processor compatibility before replacing kapt and retain functional behaviour tests. Reduce generated public ABI where possible because a small processor invalidation can still trigger wide consumer recompilation. Correct dependency modelling is the foundation of both incremental processing and cache reuse."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Marking a registry built from every annotated class as isolating can leave stale entries when another source is added or removed."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "KSP Incremental Processing",
+          "publisher": "Kotlin",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/ksp-incremental.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Incremental Builds",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/incremental_build.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect KSP and Incremental Symbol Processing",
+      "language": "kotlin",
+      "code": "codeGenerator.createNewFile(\n dependencies=Dependencies(aggregating=false,sourceFile),\n packageName=\"com.droidquest.generated\",fileName=\"${name}Route\"\n)",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Marking a registry built from every annotated class as isolating can leave stale entries when another source is added or removed.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Classify processor outputs as isolating or aggregating, implement accurate origins and measure dirty sets for add/change/delete scenarios.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "When is an output aggregating?",
+        "answer": "When it can be affected by a set of inputs beyond one independently originating source, such as a global registry."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-38-05-ksp-incremental-processing",
+  "challengeId": "challenge-level-09-week-38-05-ksp-incremental-processing",
+  "revision": {
+    "objectives": [
+      "Explain KSP and Incremental Symbol Processing from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/ksp-incremental.html",
+    "https://docs.gradle.org/current/userguide/incremental_build.html"
+  ],
+  "version": "0.12.0"
+}

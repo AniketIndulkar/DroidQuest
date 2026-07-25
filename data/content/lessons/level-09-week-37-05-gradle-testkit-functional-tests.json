@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-37-05-gradle-testkit-functional-tests",
+  "title": "Gradle TestKit Functional Testing",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 37,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-37-04-variant-aware-code-generation"
+  ],
+  "tags": [
+    "gradle",
+    "testkit",
+    "functional-testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn gradle testkit functional testing into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "TestKit’s GradleRunner creates a real build invocation against a temporary fixture and exposes output and TaskOutcome values such as SUCCESS, UP_TO_DATE and FROM_CACHE. java-gradle-plugin can inject the plugin-under-test classpath. Keep functional tests separate from fast pure unit tests: unit tests verify mapping and validation, while functional tests prove plugin application, task registration, dependency wiring, configuration and Gradle integration."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Build fixtures should be minimal, explicit and isolated. Control Gradle version, arguments, environment and TestKit directory; never rely on the developer’s projects or credentials. Test success and buildAndFail paths, plugin application order, missing configuration, multi-project use and supported version edges. For cache testing, run once, rerun, relocate if relevant and assert outcomes. TestKit reuses a Gradle user home unless configured, so isolate cases whose cache state must be independent."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val result=GradleRunner.create().withProjectDir(fixture).withArguments(\"verifyQuality\",\"--configuration-cache\").withPluginClasspath().build()\nassertEquals(TaskOutcome.SUCCESS,result.task(\":verifyQuality\")?.outcome)",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Avoid assertions tied to noisy full logs or internal task names. Assert public plugin outcomes, generated content, model-visible tasks, errors and cache/configuration-cache behaviour. Fixtures are executable documentation and should show intended consumer syntax. Run functional tests in CI on the wrapper’s Java matrix and a bounded set of supported Gradle/AGP versions. A convention affecting every module deserves tests for both policy and accidental broad application."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Sharing one fixture directory between parallel tests allows outputs and configuration state from one case to make another case pass."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Testing Build Logic with TestKit",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/test_kit.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Developing Custom Gradle Plugins",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/custom_plugins.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Gradle TestKit Functional Testing",
+      "language": "kotlin",
+      "code": "val result=GradleRunner.create().withProjectDir(fixture).withArguments(\"verifyQuality\",\"--configuration-cache\").withPluginClasspath().build()\nassertEquals(TaskOutcome.SUCCESS,result.task(\":verifyQuality\")?.outcome)",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Sharing one fixture directory between parallel tests allows outputs and configuration state from one case to make another case pass.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write TestKit tests for a convention plugin covering defaults, override, failure, UP_TO_DATE, FROM_CACHE, configuration cache and two Gradle versions.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "What does a functional plugin test prove that a pure unit test cannot?",
+        "answer": "That the plugin applies and behaves correctly inside a real Gradle build lifecycle and task graph."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-37-05-gradle-testkit-functional-tests",
+  "challengeId": "challenge-level-09-week-37-05-gradle-testkit-functional-tests",
+  "revision": {
+    "objectives": [
+      "Explain Gradle TestKit Functional Testing from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/test_kit.html",
+    "https://docs.gradle.org/current/userguide/custom_plugins.html"
+  ],
+  "version": "0.12.0"
+}

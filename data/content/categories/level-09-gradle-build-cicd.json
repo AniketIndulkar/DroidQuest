@@ -2,9 +2,9 @@
   "id": "level-09-gradle-build-cicd",
   "title": "Level 9: Gradle, Build Engineering, and CI/CD",
   "order": 9,
-  "description": "Engineer scalable, testable and secure Android builds using Gradle internals, convention plugins, caching, variant APIs, signing, and automated release pipelines.",
+  "description": "Engineer predictable Android builds through Gradle lifecycle and lazy task models, Android variants and dependency governance, composable tested convention plugins, and measured cache-correct performance.",
   "difficulty": "advanced",
-  "status": "planned",
+  "status": "in_progress",
   "weekRange": {
     "start": 35,
     "end": 39
@@ -17,14 +17,40 @@
     "build-engineering",
     "ci-cd"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-09-preview",
+  "estimatedLearningMinutes": 240,
+  "lessonIds": [
+    "level-09-week-35-01-gradle-lifecycle-task-dag",
+    "level-09-week-35-02-task-registration-dependencies-ordering",
+    "level-09-week-35-03-providers-properties-build-inputs",
+    "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+    "level-09-week-35-05-kotlin-dsl-model-configuration",
+    "level-09-week-35-06-shared-services-workers-parallel-safety",
+    "level-09-week-36-01-android-source-sets-merging-priority",
+    "level-09-week-36-02-build-types-flavours-variant-matrix",
+    "level-09-week-36-03-variant-aware-dependency-resolution",
+    "level-09-week-36-04-version-catalogs-boms-platforms",
+    "level-09-week-36-05-dependency-locking-verification-upgrades",
+    "level-09-week-36-06-android-components-variant-api",
+    "level-09-week-37-01-convention-plugins-build-standards",
+    "level-09-week-37-02-buildsrc-included-build-build-logic",
+    "level-09-week-37-03-custom-plugin-extension-design",
+    "level-09-week-37-04-variant-aware-code-generation",
+    "level-09-week-37-05-gradle-testkit-functional-tests",
+    "level-09-week-37-06-composable-build-convention-suite",
+    "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+    "level-09-week-38-02-configuration-cache-adoption",
+    "level-09-week-38-03-local-remote-build-cache-correctness",
+    "level-09-week-38-04-parallel-execution-module-critical-path",
+    "level-09-week-38-05-ksp-incremental-processing",
+    "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+  ],
+  "roadmapStartNodeId": "node-level-09-week-35-01-gradle-lifecycle-task-dag",
   "plannedTopics": [
-    "Gradle lifecycle, task graph, and lazy configuration",
-    "Convention plugins, included builds, and TestKit",
-    "Build performance, caches, KSP, and dependency analysis",
-    "Signing, bundles, shrinking, release tracks, and CI security"
+    "Gradle initialization, configuration and execution, task DAGs, Providers, inputs and outputs, incremental work, Kotlin DSL, services and workers",
+    "Android source sets, build types, flavours, variant-aware resolution, catalogues, BOMs, locking, verification and Android Components",
+    "Convention plugins, buildSrc versus included builds, typed extensions, code generation, TestKit and a composable convention suite",
+    "Build measurement, configuration and build caches, parallel critical paths, KSP incrementality, ABI analysis and CI cache correctness",
+    "Week 39: signed release artifacts, App Bundles, R8 outputs, release tracks, CI/CD security and the completed convention-plugin project"
   ],
   "project": {
     "title": "Convention Plugin Build",
@@ -35,5 +61,5 @@
     "icon": "build",
     "mapMood": "A build pipeline where inputs, outputs, caches, and releases are traceable."
   },
-  "version": "0.2.0"
+  "version": "0.12.0"
 }

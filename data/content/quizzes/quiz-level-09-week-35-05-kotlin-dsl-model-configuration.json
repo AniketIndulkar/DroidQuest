@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-35-05-kotlin-dsl-model-configuration",
+  "title": "Kotlin DSL and Model-Safe Configuration Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-35-05-kotlin-dsl-model-configuration"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-35-05-kotlin-dsl-model-configuration-decision",
+      "prompt": "Which approach best applies kotlin dsl and model-safe configuration?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Use public typed models for module intent and move shared configuration behind tested convention plugins.",
+        "Configure every subproject from the root",
+        "Use internal AGP task classes",
+        "Resolve timing problems with afterEvaluate"
+      ],
+      "answer": "Use public typed models for module intent and move shared configuration behind tested convention plugins.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-35-05-kotlin-dsl-model-configuration"
+    },
+    {
+      "id": "q-level-09-week-35-05-kotlin-dsl-model-configuration-truth",
+      "prompt": "A type-safe Kotlin DSL script is automatically configuration-cache compatible.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Kotlin compilation can hide architectural sprawl when every module still copies a large, tightly coupled script with subtle divergent defaults.",
+      "lessonId": "level-09-week-35-05-kotlin-dsl-model-configuration"
+    },
+    {
+      "id": "q-level-09-week-35-05-kotlin-dsl-model-configuration-recall",
+      "prompt": "Why might a dynamically created model element lack a type-safe accessor?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Accessors are generated from plugins and model elements known before the script body is compiled.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-35-05-kotlin-dsl-model-configuration"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

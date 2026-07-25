@@ -1,0 +1,218 @@
+{
+  "id": "level-09-week-37-04-variant-aware-code-generation",
+  "title": "Variant-Aware Code Generation Tasks",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 37,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-37-03-custom-plugin-extension-design"
+  ],
+  "tags": [
+    "gradle",
+    "code-generation",
+    "variant-api"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn variant-aware code generation tasks into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Code generation is build work with a strict input-output function. Model templates, schemas, plugin options, tool classpath and format version as inputs; use a variant-specific DirectoryProperty as output; stable-sort symbols and normalise line endings. Never fetch mutable network content inside a cacheable generator. If remote schema retrieval is required, make it a separate verified task whose downloaded file is an explicit input and whose provenance is recorded."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Register the generator only for selected variants through Android Components and connect its output as generated Java/Kotlin/assets/resources using supported APIs. Provider wiring establishes execution order without compileTask.dependsOn string hacks. One output directory per variant prevents collisions. Handle removed inputs by replacing the complete output atomically or tracking incremental changes correctly. Generated names and content form source/ABI and must remain deterministic across machines."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@CacheableTask abstract class GenerateRoutes:DefaultTask(){\n @get:InputFiles @get:PathSensitive(PathSensitivity.RELATIVE) abstract val schemas:ConfigurableFileCollection\n @get:OutputDirectory abstract val outputDir:DirectoryProperty\n @TaskAction fun run(){ /* deterministic atomic generation */ }\n}",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test clean generation, unchanged UP-TO-DATE, single-input change, deletion, multiple variants concurrently, relocation, configuration cache and FROM_CACHE. Compile the consumer to prove registration. Include generator implementation/version in the cache key through task classpath. Do not edit generated files manually; make error messages point to the source schema. Large aggregated generators can invalidate too much work, so choose isolating outputs where the domain allows."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Downloading “latest” schema during the task without a declared immutable input lets identical cache keys represent different generated source."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Write Plugins with the Android Gradle Plugin API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/extend-agp",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Incremental Builds",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/incremental_build.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Best Practices for Tasks",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/best_practices_tasks.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Variant-Aware Code Generation Tasks",
+      "language": "kotlin",
+      "code": "@CacheableTask abstract class GenerateRoutes:DefaultTask(){\n @get:InputFiles @get:PathSensitive(PathSensitivity.RELATIVE) abstract val schemas:ConfigurableFileCollection\n @get:OutputDirectory abstract val outputDir:DirectoryProperty\n @TaskAction fun run(){ /* deterministic atomic generation */ }\n}",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Downloading “latest” schema during the task without a declared immutable input lets identical cache keys represent different generated source.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a per-variant route generator, register it through Android Components and prove deterministic incremental and cached behaviour.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why separate remote schema retrieval from generation?",
+        "answer": "It makes downloaded bytes and provenance explicit inputs instead of hidden mutable network state."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-37-04-variant-aware-code-generation",
+  "challengeId": "challenge-level-09-week-37-04-variant-aware-code-generation",
+  "revision": {
+    "objectives": [
+      "Explain Variant-Aware Code Generation Tasks from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/build/extend-agp",
+    "https://docs.gradle.org/current/userguide/incremental_build.html",
+    "https://docs.gradle.org/current/userguide/best_practices_tasks.html"
+  ],
+  "version": "0.12.0"
+}

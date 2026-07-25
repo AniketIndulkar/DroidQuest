@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-09-week-37-06-composable-build-convention-suite",
+  "title": "Apply Composable Android Build Convention Suite",
+  "categoryId": "level-09-gradle-build-cicd",
+  "lessonId": "level-09-week-37-06-composable-build-convention-suite",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Design and functionally test application, library, Compose, testing, coverage and analysis convention plugins with an explicit compatibility matrix.",
+  "successCriteria": [
+    "The task, variant or dependency model and expected artifact are explicit.",
+    "Lazy inputs, outputs and dependencies behave correctly for changed, unchanged and failure paths.",
+    "Functional tests plus performance, compatibility, security and rollback evidence are documented."
+  ],
+  "hints": [
+    "Inspect the requested graph and resolved model before adding ordering or resolution rules.",
+    "Test a second run and one meaningful input change; success once is insufficient."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "plugins {\n id(\"droidquest.android.library\")\n id(\"droidquest.android.compose\")\n id(\"droidquest.quality\")\n}\n// Module script declares capabilities, not copied mechanics."
+  },
+  "solutionOutline": [
+    "Model the workflow with public typed APIs and complete data flow.",
+    "Test clean, incremental, parallel/cached and failure behaviour, then measure the intended workflow."
+  ],
+  "verification": [
+    "Run in a clean and relocated fixture plus the representative project workflow.",
+    "Record task outcomes, generated artifact, critical path and regression guard."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

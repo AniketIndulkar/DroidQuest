@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-35-02-task-registration-dependencies-ordering",
+  "title": "Lazy Task Registration, Dependencies, and Ordering Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-35-02-task-registration-dependencies-ordering"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-35-02-task-registration-dependencies-ordering-decision",
+      "prompt": "Which approach best applies lazy task registration, dependencies, and ordering?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Keep TaskProvider values lazy and express task relationships through Provider-backed data flow.",
+        "Call get on every registered task",
+        "Use mustRunAfter as a dependency",
+        "Wire all tasks in taskGraph.whenReady"
+      ],
+      "answer": "Keep TaskProvider values lazy and express task relationships through Provider-backed data flow.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-35-02-task-registration-dependencies-ordering"
+    },
+    {
+      "id": "q-level-09-week-35-02-task-registration-dependencies-ordering-truth",
+      "prompt": "mustRunAfter causes the referenced task to be added to the graph.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Calling schema.get().outputFile during configuration realises the producer and discards the automatic lazy wiring available through flatMap.",
+      "lessonId": "level-09-week-35-02-task-registration-dependencies-ordering"
+    },
+    {
+      "id": "q-level-09-week-35-02-task-registration-dependencies-ordering-recall",
+      "prompt": "What is the safest way to connect two file-producing tasks?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Set the consumer input from the producer output Provider so Gradle infers the task dependency.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-35-02-task-registration-dependencies-ordering"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

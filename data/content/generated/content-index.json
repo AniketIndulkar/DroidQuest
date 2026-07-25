@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.11.0",
-  "contentRevision": 11,
+  "curriculumVersion": "0.12.0",
+  "contentRevision": 12,
   "counts": {
     "categories": 12,
-    "lessons": 194,
-    "quizzes": 235,
-    "challenges": 194,
-    "badges": 41,
-    "glossaryEntries": 206
+    "lessons": 218,
+    "quizzes": 263,
+    "challenges": 218,
+    "badges": 45,
+    "glossaryEntries": 230
   },
   "categories": [
     {
@@ -281,9 +281,34 @@
       "id": "level-09-gradle-build-cicd",
       "title": "Level 9: Gradle, Build Engineering, and CI/CD",
       "order": 9,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag",
+        "level-09-week-35-02-task-registration-dependencies-ordering",
+        "level-09-week-35-03-providers-properties-build-inputs",
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+        "level-09-week-35-05-kotlin-dsl-model-configuration",
+        "level-09-week-35-06-shared-services-workers-parallel-safety",
+        "level-09-week-36-01-android-source-sets-merging-priority",
+        "level-09-week-36-02-build-types-flavours-variant-matrix",
+        "level-09-week-36-03-variant-aware-dependency-resolution",
+        "level-09-week-36-04-version-catalogs-boms-platforms",
+        "level-09-week-36-05-dependency-locking-verification-upgrades",
+        "level-09-week-36-06-android-components-variant-api",
+        "level-09-week-37-01-convention-plugins-build-standards",
+        "level-09-week-37-02-buildsrc-included-build-build-logic",
+        "level-09-week-37-03-custom-plugin-extension-design",
+        "level-09-week-37-04-variant-aware-code-generation",
+        "level-09-week-37-05-gradle-testkit-functional-tests",
+        "level-09-week-37-06-composable-build-convention-suite",
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+        "level-09-week-38-02-configuration-cache-adoption",
+        "level-09-week-38-03-local-remote-build-cache-correctness",
+        "level-09-week-38-04-parallel-execution-module-critical-path",
+        "level-09-week-38-05-ksp-incremental-processing",
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+      ],
       "path": "content/categories/level-09-gradle-build-cicd.json",
-      "sha256": "2eded760c9646b8619463ef5bb8e7a19b1451cdb57b4e8db6c2292a0586a7f2f"
+      "sha256": "7616772fdf0350eeeee1a2db1abfd4043ff458cc97f604cc9e1dd5f36657432c"
     },
     {
       "id": "level-10-performance-reliability-observability",
@@ -3074,6 +3099,342 @@
       ],
       "path": "content/lessons/level-08-week-34-06-banking-security-review-capstone.json",
       "sha256": "d0c8a58cfe1cd3fbb48d45d62d15f1aca3136f70cc848483a9349f112b2b6d94"
+    },
+    {
+      "id": "level-09-week-35-01-gradle-lifecycle-task-dag",
+      "title": "Gradle Lifecycle and the Task DAG",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "lifecycle",
+        "task-graph"
+      ],
+      "path": "content/lessons/level-09-week-35-01-gradle-lifecycle-task-dag.json",
+      "sha256": "ad7fa6d99652e7d76fe69fed5923fba930856d102f9dc745acf660c5d09becb2"
+    },
+    {
+      "id": "level-09-week-35-02-task-registration-dependencies-ordering",
+      "title": "Lazy Task Registration, Dependencies, and Ordering",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "tasks",
+        "lazy-configuration"
+      ],
+      "path": "content/lessons/level-09-week-35-02-task-registration-dependencies-ordering.json",
+      "sha256": "429a897207af16ef8f1411a706b8c1408f79f905e53839b562d74d65878a93fa"
+    },
+    {
+      "id": "level-09-week-35-03-providers-properties-build-inputs",
+      "title": "Providers, Properties, and Build Inputs",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "provider-api",
+        "properties"
+      ],
+      "path": "content/lessons/level-09-week-35-03-providers-properties-build-inputs.json",
+      "sha256": "175cf4e08d93e9151dabc314ca569b90ff3010727c4dd2eca75c69dbfd66fdc4"
+    },
+    {
+      "id": "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+      "title": "Task Inputs, Outputs, Incrementality, and Determinism",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "incremental-build",
+        "build-cache"
+      ],
+      "path": "content/lessons/level-09-week-35-04-task-inputs-outputs-incremental-deterministic.json",
+      "sha256": "a41037ae70ccf2475d305bab18af772b8b9a42c8dc0b700c6edaf9b8677ec918"
+    },
+    {
+      "id": "level-09-week-35-05-kotlin-dsl-model-configuration",
+      "title": "Kotlin DSL and Model-Safe Configuration",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "kotlin-dsl",
+        "build-logic"
+      ],
+      "path": "content/lessons/level-09-week-35-05-kotlin-dsl-model-configuration.json",
+      "sha256": "a741e8611549037c7994c08c69b50b43d66022ec6843d122b47503e06ba3259b"
+    },
+    {
+      "id": "level-09-week-35-06-shared-services-workers-parallel-safety",
+      "title": "Shared Build Services, Workers, and Parallel Safety",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "build-services",
+        "worker-api"
+      ],
+      "path": "content/lessons/level-09-week-35-06-shared-services-workers-parallel-safety.json",
+      "sha256": "831b262e5ba721f5a98cf27223aca32097cf06cb11201c90732b022a8777fd9b"
+    },
+    {
+      "id": "level-09-week-36-01-android-source-sets-merging-priority",
+      "title": "Android Source Sets and Merge Priority",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "android-build",
+        "source-sets",
+        "manifest-merging"
+      ],
+      "path": "content/lessons/level-09-week-36-01-android-source-sets-merging-priority.json",
+      "sha256": "4e7ebbf84e812c60065480fea461f24cc1cb7af400de07d96f292889b200ab2a"
+    },
+    {
+      "id": "level-09-week-36-02-build-types-flavours-variant-matrix",
+      "title": "Build Types, Product Flavours, and the Variant Matrix",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "android-build",
+        "build-types",
+        "product-flavors"
+      ],
+      "path": "content/lessons/level-09-week-36-02-build-types-flavours-variant-matrix.json",
+      "sha256": "808e14fda340b0196820afa2a19dba0de002de9f253908d9ceff98a41cc009ce"
+    },
+    {
+      "id": "level-09-week-36-03-variant-aware-dependency-resolution",
+      "title": "Variant-Aware Dependency Resolution",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "dependencies",
+        "variants"
+      ],
+      "path": "content/lessons/level-09-week-36-03-variant-aware-dependency-resolution.json",
+      "sha256": "7347e29b3650886f387a198a66e030b14da1e26c6fb1702b1c79331d95a78c41"
+    },
+    {
+      "id": "level-09-week-36-04-version-catalogs-boms-platforms",
+      "title": "Version Catalogs, BOMs, and Platforms",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "version-catalog",
+        "bom"
+      ],
+      "path": "content/lessons/level-09-week-36-04-version-catalogs-boms-platforms.json",
+      "sha256": "96933a61b213bc39dbf6fbe5693e489f61aad7369e02c888740d9032bc503186"
+    },
+    {
+      "id": "level-09-week-36-05-dependency-locking-verification-upgrades",
+      "title": "Dependency Locking, Verification, and Controlled Upgrades",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "dependency-locking",
+        "supply-chain"
+      ],
+      "path": "content/lessons/level-09-week-36-05-dependency-locking-verification-upgrades.json",
+      "sha256": "1b1b54bf1134dbfa11f44beacdd14f861cd4e2aa44d06bc80e89f645394df653"
+    },
+    {
+      "id": "level-09-week-36-06-android-components-variant-api",
+      "title": "Android Components Variant API",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "android-build",
+        "variant-api",
+        "agp"
+      ],
+      "path": "content/lessons/level-09-week-36-06-android-components-variant-api.json",
+      "sha256": "05a74e2d41d490c65c06f9e635871b7f493fcc67bf2e11112b23fdf9cc723665"
+    },
+    {
+      "id": "level-09-week-37-01-convention-plugins-build-standards",
+      "title": "Convention Plugins as Build Standards",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "convention-plugins",
+        "architecture"
+      ],
+      "path": "content/lessons/level-09-week-37-01-convention-plugins-build-standards.json",
+      "sha256": "e0a0e5a9a3968163003885588cb17dc4c3d6d891ad771252f5063f5cb4dd7912"
+    },
+    {
+      "id": "level-09-week-37-02-buildsrc-included-build-build-logic",
+      "title": "buildSrc, Included Builds, and Build-Logic Boundaries",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "included-build",
+        "build-logic"
+      ],
+      "path": "content/lessons/level-09-week-37-02-buildsrc-included-build-build-logic.json",
+      "sha256": "3a64d662ccce99b9ba995d2a3dbcff34031dd311bd2b0cc93470852a5ba0efa1"
+    },
+    {
+      "id": "level-09-week-37-03-custom-plugin-extension-design",
+      "title": "Custom Plugin and Extension Design",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "custom-plugin",
+        "provider-api"
+      ],
+      "path": "content/lessons/level-09-week-37-03-custom-plugin-extension-design.json",
+      "sha256": "fab3d7d5604abed5d2799227654839a1edce478ef8bf7cb1ba9c7861d2bba2a4"
+    },
+    {
+      "id": "level-09-week-37-04-variant-aware-code-generation",
+      "title": "Variant-Aware Code Generation Tasks",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "code-generation",
+        "variant-api"
+      ],
+      "path": "content/lessons/level-09-week-37-04-variant-aware-code-generation.json",
+      "sha256": "6ca38d944351249009f7bdfe2093211ab0a4bdf1c4d3b7f7395aed4091f6f0b0"
+    },
+    {
+      "id": "level-09-week-37-05-gradle-testkit-functional-tests",
+      "title": "Gradle TestKit Functional Testing",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "testkit",
+        "functional-testing"
+      ],
+      "path": "content/lessons/level-09-week-37-05-gradle-testkit-functional-tests.json",
+      "sha256": "166462a877a86c4f4bf58cb2f13231c293c7f69a64cef9ea269055556a000479"
+    },
+    {
+      "id": "level-09-week-37-06-composable-build-convention-suite",
+      "title": "Composable Android Build Convention Suite",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "convention-plugins",
+        "build-project"
+      ],
+      "path": "content/lessons/level-09-week-37-06-composable-build-convention-suite.json",
+      "sha256": "4aef7414dbcc90a2eb573996cf7652af6e1aee62d9af46a2c496bee530980c85"
+    },
+    {
+      "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+      "title": "Measure Builds with Scans, Profiles, and Build Analyzer",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "build-performance",
+        "measurement"
+      ],
+      "path": "content/lessons/level-09-week-38-01-measure-build-scans-profiles-analyzer.json",
+      "sha256": "e651ea6e0cc9dbed41d4984696a43811ef2db73fa4b7557223073bd954be6d13"
+    },
+    {
+      "id": "level-09-week-38-02-configuration-cache-adoption",
+      "title": "Configuration Cache Adoption and Compatibility",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "configuration-cache",
+        "performance"
+      ],
+      "path": "content/lessons/level-09-week-38-02-configuration-cache-adoption.json",
+      "sha256": "9ac565d1fd67c37f38b35504ee0f5d45136b24208abf9039732bcf1ad511d769"
+    },
+    {
+      "id": "level-09-week-38-03-local-remote-build-cache-correctness",
+      "title": "Local and Remote Build Cache Correctness",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "build-cache",
+        "ci-cache"
+      ],
+      "path": "content/lessons/level-09-week-38-03-local-remote-build-cache-correctness.json",
+      "sha256": "d244532c6dd884bdfec9756df07febaf2133ac72cd3c5120ed79ff49d424d564"
+    },
+    {
+      "id": "level-09-week-38-04-parallel-execution-module-critical-path",
+      "title": "Parallel Execution and Module Critical Paths",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "parallelism",
+        "modularization"
+      ],
+      "path": "content/lessons/level-09-week-38-04-parallel-execution-module-critical-path.json",
+      "sha256": "ad35b4bb981719e87c30c2fcffec5cb780b03e1c481c2219443bb7aee9c92817"
+    },
+    {
+      "id": "level-09-week-38-05-ksp-incremental-processing",
+      "title": "KSP and Incremental Symbol Processing",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "kotlin",
+        "ksp",
+        "code-generation"
+      ],
+      "path": "content/lessons/level-09-week-38-05-ksp-incremental-processing.json",
+      "sha256": "ff13dcfe8286b476f9f3bee4a04786260b6f775fdea1fedaae8636669d21aa4b"
+    },
+    {
+      "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+      "title": "ABI-Aware Dependency Analysis and CI Cache Policy",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "abi",
+        "dependency-analysis"
+      ],
+      "path": "content/lessons/level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
+      "sha256": "f93bddd50914f54d0caa1dc45e544b77f1e7992917f2c7a2c7fbc2e3de1c518d"
     }
   ],
   "quizzes": [
@@ -6002,6 +6363,334 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-08-week-34-checkpoint.json",
       "sha256": "857fcf81275a821369d6bd40abb964f71d542d49c15e07d15021ea345e7aac7a"
+    },
+    {
+      "id": "quiz-level-09-week-35-01-gradle-lifecycle-task-dag",
+      "title": "Gradle Lifecycle and the Task DAG Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-01-gradle-lifecycle-task-dag.json",
+      "sha256": "7c36292f3c1e7a035c712d8c13fcc899bc4af9a41bb0c04b79753490464c64d9"
+    },
+    {
+      "id": "quiz-level-09-week-35-02-task-registration-dependencies-ordering",
+      "title": "Lazy Task Registration, Dependencies, and Ordering Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-02-task-registration-dependencies-ordering"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-02-task-registration-dependencies-ordering.json",
+      "sha256": "bbc5441fd9c505327c95f105b067f9821715dde7aa49e45e8e0399a4d18deba1"
+    },
+    {
+      "id": "quiz-level-09-week-35-03-providers-properties-build-inputs",
+      "title": "Providers, Properties, and Build Inputs Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-03-providers-properties-build-inputs"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-03-providers-properties-build-inputs.json",
+      "sha256": "e7b63344ac25c66690c0e08a870dacc1ed10128af407432374199139efeb7502"
+    },
+    {
+      "id": "quiz-level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+      "title": "Task Inputs, Outputs, Incrementality, and Determinism Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-04-task-inputs-outputs-incremental-deterministic.json",
+      "sha256": "624278e4dcbaab037276dee7d38757bfcc8fa46d9e54a3a4abe9e86624d2472a"
+    },
+    {
+      "id": "quiz-level-09-week-35-05-kotlin-dsl-model-configuration",
+      "title": "Kotlin DSL and Model-Safe Configuration Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-05-kotlin-dsl-model-configuration"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-05-kotlin-dsl-model-configuration.json",
+      "sha256": "fea6436e5e7ef79b9b6479a7374b5e156625197d436254206b52541839ee222e"
+    },
+    {
+      "id": "quiz-level-09-week-35-06-shared-services-workers-parallel-safety",
+      "title": "Shared Build Services, Workers, and Parallel Safety Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-06-shared-services-workers-parallel-safety"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-35-06-shared-services-workers-parallel-safety.json",
+      "sha256": "84f9cd59ecabb10421a5eacf9deb34f7bd3c3724e64e690edba6a783e01c72f7"
+    },
+    {
+      "id": "quiz-level-09-week-35-checkpoint",
+      "title": "Week 35: Gradle Execution Model Checkpoint",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag",
+        "level-09-week-35-02-task-registration-dependencies-ordering",
+        "level-09-week-35-03-providers-properties-build-inputs",
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+        "level-09-week-35-05-kotlin-dsl-model-configuration",
+        "level-09-week-35-06-shared-services-workers-parallel-safety"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-09-week-35-checkpoint.json",
+      "sha256": "a7c75806ba83dab929aece4874ee923920fdcd768595c55d5becf2772b9d399e"
+    },
+    {
+      "id": "quiz-level-09-week-36-01-android-source-sets-merging-priority",
+      "title": "Android Source Sets and Merge Priority Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-01-android-source-sets-merging-priority"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-01-android-source-sets-merging-priority.json",
+      "sha256": "0eeac52abb0061a9d3c00c07f74e12d39c601f61978d03285925f4fc710ec905"
+    },
+    {
+      "id": "quiz-level-09-week-36-02-build-types-flavours-variant-matrix",
+      "title": "Build Types, Product Flavours, and the Variant Matrix Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-02-build-types-flavours-variant-matrix"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-02-build-types-flavours-variant-matrix.json",
+      "sha256": "9f15ca15a6159330d248e4bd0189ab31bc4772d845640201615fb3411d59ab09"
+    },
+    {
+      "id": "quiz-level-09-week-36-03-variant-aware-dependency-resolution",
+      "title": "Variant-Aware Dependency Resolution Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-03-variant-aware-dependency-resolution"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-03-variant-aware-dependency-resolution.json",
+      "sha256": "9c182ee73605242b1aa8f93926cefb3a43f900253837a573edde7b1f7ca543f6"
+    },
+    {
+      "id": "quiz-level-09-week-36-04-version-catalogs-boms-platforms",
+      "title": "Version Catalogs, BOMs, and Platforms Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-04-version-catalogs-boms-platforms"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-04-version-catalogs-boms-platforms.json",
+      "sha256": "c7bac4da6a5bf4c00e6f63134d1eb007e87c79e61ac21605d99ba5d4368c9c27"
+    },
+    {
+      "id": "quiz-level-09-week-36-05-dependency-locking-verification-upgrades",
+      "title": "Dependency Locking, Verification, and Controlled Upgrades Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-05-dependency-locking-verification-upgrades"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-05-dependency-locking-verification-upgrades.json",
+      "sha256": "fdb411d7b48c944bcfc2c972d7f5d61340b6bfdce6cdb1df7914d072f5ed10b0"
+    },
+    {
+      "id": "quiz-level-09-week-36-06-android-components-variant-api",
+      "title": "Android Components Variant API Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-06-android-components-variant-api"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-36-06-android-components-variant-api.json",
+      "sha256": "864c8ea170fe1883a20f918713f2986cb88978b928a3fa2bba0cb148807355cb"
+    },
+    {
+      "id": "quiz-level-09-week-36-checkpoint",
+      "title": "Week 36: Android Variants and Dependency Governance Checkpoint",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-36-01-android-source-sets-merging-priority",
+        "level-09-week-36-02-build-types-flavours-variant-matrix",
+        "level-09-week-36-03-variant-aware-dependency-resolution",
+        "level-09-week-36-04-version-catalogs-boms-platforms",
+        "level-09-week-36-05-dependency-locking-verification-upgrades",
+        "level-09-week-36-06-android-components-variant-api"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-09-week-36-checkpoint.json",
+      "sha256": "534b086443344c5992465d912f368d1216afd733b7b70df259f450e31047dc5e"
+    },
+    {
+      "id": "quiz-level-09-week-37-01-convention-plugins-build-standards",
+      "title": "Convention Plugins as Build Standards Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-01-convention-plugins-build-standards"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-01-convention-plugins-build-standards.json",
+      "sha256": "e9c4aaf1e44bd23c6b89c48de843fdf6193857b3e2ba4393cb5b270bc0fe20b6"
+    },
+    {
+      "id": "quiz-level-09-week-37-02-buildsrc-included-build-build-logic",
+      "title": "buildSrc, Included Builds, and Build-Logic Boundaries Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-02-buildsrc-included-build-build-logic"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-02-buildsrc-included-build-build-logic.json",
+      "sha256": "2eb2e5dd1b4d2d44506fedec56bc90e56f3a66e4179510aff49ea7cb16faeb88"
+    },
+    {
+      "id": "quiz-level-09-week-37-03-custom-plugin-extension-design",
+      "title": "Custom Plugin and Extension Design Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-03-custom-plugin-extension-design"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-03-custom-plugin-extension-design.json",
+      "sha256": "f2efd023fa8c991388363128c9ab959ed1e04eca1db3c982a520cac45acf122a"
+    },
+    {
+      "id": "quiz-level-09-week-37-04-variant-aware-code-generation",
+      "title": "Variant-Aware Code Generation Tasks Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-04-variant-aware-code-generation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-04-variant-aware-code-generation.json",
+      "sha256": "ac4a8a51c1c48943ee0fc27da33f236bd646fce7703707e9bfaeb526f6ad0fdd"
+    },
+    {
+      "id": "quiz-level-09-week-37-05-gradle-testkit-functional-tests",
+      "title": "Gradle TestKit Functional Testing Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-05-gradle-testkit-functional-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-05-gradle-testkit-functional-tests.json",
+      "sha256": "72fe91014c885e4c532028b5ced628ed699f63e63a1910be86a9e4a4ad6e080e"
+    },
+    {
+      "id": "quiz-level-09-week-37-06-composable-build-convention-suite",
+      "title": "Composable Android Build Convention Suite Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-06-composable-build-convention-suite"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-37-06-composable-build-convention-suite.json",
+      "sha256": "e7c2d6d2b0cb97ab7d5f7dea73aeac4b900d77bd31c7f24851c3aa426f7eacfa"
+    },
+    {
+      "id": "quiz-level-09-week-37-checkpoint",
+      "title": "Week 37: Scalable and Tested Build Logic Checkpoint",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-37-01-convention-plugins-build-standards",
+        "level-09-week-37-02-buildsrc-included-build-build-logic",
+        "level-09-week-37-03-custom-plugin-extension-design",
+        "level-09-week-37-04-variant-aware-code-generation",
+        "level-09-week-37-05-gradle-testkit-functional-tests",
+        "level-09-week-37-06-composable-build-convention-suite"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-09-week-37-checkpoint.json",
+      "sha256": "034f352c45c801a1cc538b8695486aeedd0aaf1ac29c296eaadcd97b4d00e97b"
+    },
+    {
+      "id": "quiz-level-09-week-38-01-measure-build-scans-profiles-analyzer",
+      "title": "Measure Builds with Scans, Profiles, and Build Analyzer Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-01-measure-build-scans-profiles-analyzer.json",
+      "sha256": "f81e34e0707965da024aab08263b2fc1e4fedf53ecdb79eddea57ab7ec9eaef9"
+    },
+    {
+      "id": "quiz-level-09-week-38-02-configuration-cache-adoption",
+      "title": "Configuration Cache Adoption and Compatibility Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-02-configuration-cache-adoption"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-02-configuration-cache-adoption.json",
+      "sha256": "8b63d780981a964e66db35421ef8a26cda8855ed923f889855078680c87d1f04"
+    },
+    {
+      "id": "quiz-level-09-week-38-03-local-remote-build-cache-correctness",
+      "title": "Local and Remote Build Cache Correctness Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-03-local-remote-build-cache-correctness"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-03-local-remote-build-cache-correctness.json",
+      "sha256": "b997dbcc85b1f88c0a7e56cbefb55eb9adc2c51418bd4f1a78311d2efa922f72"
+    },
+    {
+      "id": "quiz-level-09-week-38-04-parallel-execution-module-critical-path",
+      "title": "Parallel Execution and Module Critical Paths Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-04-parallel-execution-module-critical-path"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-04-parallel-execution-module-critical-path.json",
+      "sha256": "722b2411499b9d69e87721e5d842510ce96dba3d3ae9e1b8bce7b93925a6c49f"
+    },
+    {
+      "id": "quiz-level-09-week-38-05-ksp-incremental-processing",
+      "title": "KSP and Incremental Symbol Processing Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-05-ksp-incremental-processing"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-05-ksp-incremental-processing.json",
+      "sha256": "50b921ea27f7ee84e011b830ace65a7a8bdfb54268ffc87400cb13bfda2798fb"
+    },
+    {
+      "id": "quiz-level-09-week-38-06-abi-dependency-analysis-ci-cache",
+      "title": "ABI-Aware Dependency Analysis and CI Cache Policy Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
+      "sha256": "057b28332f7cdde9f7619c0027f7c3d44c60efdbee6ba5fabb3c81ec4e4d0dde"
+    },
+    {
+      "id": "quiz-level-09-week-38-checkpoint",
+      "title": "Week 38: Measured Build Performance Checkpoint",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+        "level-09-week-38-02-configuration-cache-adoption",
+        "level-09-week-38-03-local-remote-build-cache-correctness",
+        "level-09-week-38-04-parallel-execution-module-critical-path",
+        "level-09-week-38-05-ksp-incremental-processing",
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-09-week-38-checkpoint.json",
+      "sha256": "a80a49f22afc3c8a7921cf5257b139b728a703c343a8576c275bee2a89d14bfc"
     }
   ],
   "challenges": [
@@ -7556,6 +8245,198 @@
       "lessonId": "level-08-week-34-06-banking-security-review-capstone",
       "path": "content/challenges/challenge-level-08-week-34-06-banking-security-review-capstone.json",
       "sha256": "45f9d3e576c99f34aaecab738c2e14fc3f8862bad4065b74fe40a2ee52039a16"
+    },
+    {
+      "id": "challenge-level-09-week-35-01-gradle-lifecycle-task-dag",
+      "title": "Apply Gradle Lifecycle and the Task DAG",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-01-gradle-lifecycle-task-dag",
+      "path": "content/challenges/challenge-level-09-week-35-01-gradle-lifecycle-task-dag.json",
+      "sha256": "d0d9c1636d14fa6e0931479d867c8e29474a11d19897c6dc373f6f34207dbc3b"
+    },
+    {
+      "id": "challenge-level-09-week-35-02-task-registration-dependencies-ordering",
+      "title": "Apply Lazy Task Registration, Dependencies, and Ordering",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-02-task-registration-dependencies-ordering",
+      "path": "content/challenges/challenge-level-09-week-35-02-task-registration-dependencies-ordering.json",
+      "sha256": "211e1c808cfd304ff2f346a46d19543d1c732590e39590bf407980a142b08726"
+    },
+    {
+      "id": "challenge-level-09-week-35-03-providers-properties-build-inputs",
+      "title": "Apply Providers, Properties, and Build Inputs",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-03-providers-properties-build-inputs",
+      "path": "content/challenges/challenge-level-09-week-35-03-providers-properties-build-inputs.json",
+      "sha256": "17ae861f01a7ad2fa00d49ce3677a3379c4f5c709ae80c816e8c8a176617313b"
+    },
+    {
+      "id": "challenge-level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+      "title": "Apply Task Inputs, Outputs, Incrementality, and Determinism",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+      "path": "content/challenges/challenge-level-09-week-35-04-task-inputs-outputs-incremental-deterministic.json",
+      "sha256": "17527c10f7dcd5cbf9636e3770f74b77cee55b8214e769c2a45533b9c364ef58"
+    },
+    {
+      "id": "challenge-level-09-week-35-05-kotlin-dsl-model-configuration",
+      "title": "Apply Kotlin DSL and Model-Safe Configuration",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-05-kotlin-dsl-model-configuration",
+      "path": "content/challenges/challenge-level-09-week-35-05-kotlin-dsl-model-configuration.json",
+      "sha256": "81695ff01c8bc059b8ffb779079476e9fe3f567c88598fad8a15ea24dd8c7e8b"
+    },
+    {
+      "id": "challenge-level-09-week-35-06-shared-services-workers-parallel-safety",
+      "title": "Apply Shared Build Services, Workers, and Parallel Safety",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-35-06-shared-services-workers-parallel-safety",
+      "path": "content/challenges/challenge-level-09-week-35-06-shared-services-workers-parallel-safety.json",
+      "sha256": "955a8a99e2b3156d3a9c0a414a7246453b5ffff31da204eb620d28ce2b9c5987"
+    },
+    {
+      "id": "challenge-level-09-week-36-01-android-source-sets-merging-priority",
+      "title": "Apply Android Source Sets and Merge Priority",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-01-android-source-sets-merging-priority",
+      "path": "content/challenges/challenge-level-09-week-36-01-android-source-sets-merging-priority.json",
+      "sha256": "0d51908494be78352dc84276fb9787c249965a962d1a056d0555102b17e41ce2"
+    },
+    {
+      "id": "challenge-level-09-week-36-02-build-types-flavours-variant-matrix",
+      "title": "Apply Build Types, Product Flavours, and the Variant Matrix",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-02-build-types-flavours-variant-matrix",
+      "path": "content/challenges/challenge-level-09-week-36-02-build-types-flavours-variant-matrix.json",
+      "sha256": "f51bd63715090cb3b7efdf333af8f2126d7d54825534ccf6285706711325c334"
+    },
+    {
+      "id": "challenge-level-09-week-36-03-variant-aware-dependency-resolution",
+      "title": "Apply Variant-Aware Dependency Resolution",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-03-variant-aware-dependency-resolution",
+      "path": "content/challenges/challenge-level-09-week-36-03-variant-aware-dependency-resolution.json",
+      "sha256": "0f5a81210c5cfbc6e0595617db59a424edc320488b076c2d0c4c061f9d37cd38"
+    },
+    {
+      "id": "challenge-level-09-week-36-04-version-catalogs-boms-platforms",
+      "title": "Apply Version Catalogs, BOMs, and Platforms",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-04-version-catalogs-boms-platforms",
+      "path": "content/challenges/challenge-level-09-week-36-04-version-catalogs-boms-platforms.json",
+      "sha256": "262b7981fe794af28e16c6ca1d651ffd439d045d138568198a118510e3bf6bb0"
+    },
+    {
+      "id": "challenge-level-09-week-36-05-dependency-locking-verification-upgrades",
+      "title": "Apply Dependency Locking, Verification, and Controlled Upgrades",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-05-dependency-locking-verification-upgrades",
+      "path": "content/challenges/challenge-level-09-week-36-05-dependency-locking-verification-upgrades.json",
+      "sha256": "68ebf5a6dc829134a50283400e906b2f84640266df2291c08da0b5e0fb6745c9"
+    },
+    {
+      "id": "challenge-level-09-week-36-06-android-components-variant-api",
+      "title": "Apply Android Components Variant API",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-36-06-android-components-variant-api",
+      "path": "content/challenges/challenge-level-09-week-36-06-android-components-variant-api.json",
+      "sha256": "1fde37de5b4b417454a83baefc3d8727ac79bdc07505199aef549ea7809af44c"
+    },
+    {
+      "id": "challenge-level-09-week-37-01-convention-plugins-build-standards",
+      "title": "Apply Convention Plugins as Build Standards",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-01-convention-plugins-build-standards",
+      "path": "content/challenges/challenge-level-09-week-37-01-convention-plugins-build-standards.json",
+      "sha256": "8a5ed6d09b05f9d97e512f8211fe703971fa293e727f9b9b3a138096cc01b0a7"
+    },
+    {
+      "id": "challenge-level-09-week-37-02-buildsrc-included-build-build-logic",
+      "title": "Apply buildSrc, Included Builds, and Build-Logic Boundaries",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-02-buildsrc-included-build-build-logic",
+      "path": "content/challenges/challenge-level-09-week-37-02-buildsrc-included-build-build-logic.json",
+      "sha256": "ab534b16109553e4ce61e8c5dd7fa57a91a28ef0fcef04dc78c80822f95e462d"
+    },
+    {
+      "id": "challenge-level-09-week-37-03-custom-plugin-extension-design",
+      "title": "Apply Custom Plugin and Extension Design",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-03-custom-plugin-extension-design",
+      "path": "content/challenges/challenge-level-09-week-37-03-custom-plugin-extension-design.json",
+      "sha256": "5b3c0ade699c2a84f158130c2d0dae06973e53116d3511dcf20b0d31b3f3ca16"
+    },
+    {
+      "id": "challenge-level-09-week-37-04-variant-aware-code-generation",
+      "title": "Apply Variant-Aware Code Generation Tasks",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-04-variant-aware-code-generation",
+      "path": "content/challenges/challenge-level-09-week-37-04-variant-aware-code-generation.json",
+      "sha256": "c0063f307f58c237dfd06dd582428fd1a51fa1ec0a7ff3aa386e129281357392"
+    },
+    {
+      "id": "challenge-level-09-week-37-05-gradle-testkit-functional-tests",
+      "title": "Apply Gradle TestKit Functional Testing",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-05-gradle-testkit-functional-tests",
+      "path": "content/challenges/challenge-level-09-week-37-05-gradle-testkit-functional-tests.json",
+      "sha256": "35385e70760487399bbddcd73dae864dcfa30ad946353d27e76bf22923acc863"
+    },
+    {
+      "id": "challenge-level-09-week-37-06-composable-build-convention-suite",
+      "title": "Apply Composable Android Build Convention Suite",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-37-06-composable-build-convention-suite",
+      "path": "content/challenges/challenge-level-09-week-37-06-composable-build-convention-suite.json",
+      "sha256": "08694585a8a472539ddf984800ad481e5c686736defed223950aa42cc1177cf3"
+    },
+    {
+      "id": "challenge-level-09-week-38-01-measure-build-scans-profiles-analyzer",
+      "title": "Apply Measure Builds with Scans, Profiles, and Build Analyzer",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+      "path": "content/challenges/challenge-level-09-week-38-01-measure-build-scans-profiles-analyzer.json",
+      "sha256": "872eea1e411f126ed8e6a869f08df559a1a8cb0e04908dde39c384fc337c5afe"
+    },
+    {
+      "id": "challenge-level-09-week-38-02-configuration-cache-adoption",
+      "title": "Apply Configuration Cache Adoption and Compatibility",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-02-configuration-cache-adoption",
+      "path": "content/challenges/challenge-level-09-week-38-02-configuration-cache-adoption.json",
+      "sha256": "85bc8f57ad6a10c4baf76e6fef08f8f29722ce583b85733ea8e40a33e6a5ed1b"
+    },
+    {
+      "id": "challenge-level-09-week-38-03-local-remote-build-cache-correctness",
+      "title": "Apply Local and Remote Build Cache Correctness",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-03-local-remote-build-cache-correctness",
+      "path": "content/challenges/challenge-level-09-week-38-03-local-remote-build-cache-correctness.json",
+      "sha256": "d1a82c127252676d084771833e0eb00cef7b4a8da7fb9f278ae0492f82e1387f"
+    },
+    {
+      "id": "challenge-level-09-week-38-04-parallel-execution-module-critical-path",
+      "title": "Apply Parallel Execution and Module Critical Paths",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-04-parallel-execution-module-critical-path",
+      "path": "content/challenges/challenge-level-09-week-38-04-parallel-execution-module-critical-path.json",
+      "sha256": "fae655a71e9a5cdd0237a1092da9a5f8749cd6af111ca5734e01740ff454327d"
+    },
+    {
+      "id": "challenge-level-09-week-38-05-ksp-incremental-processing",
+      "title": "Apply KSP and Incremental Symbol Processing",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-05-ksp-incremental-processing",
+      "path": "content/challenges/challenge-level-09-week-38-05-ksp-incremental-processing.json",
+      "sha256": "c33b5e528917d6961f4a88c200dd7e64981894e01219ffbfe18ec6d8fd29fde7"
+    },
+    {
+      "id": "challenge-level-09-week-38-06-abi-dependency-analysis-ci-cache",
+      "title": "Apply ABI-Aware Dependency Analysis and CI Cache Policy",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+      "path": "content/challenges/challenge-level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
+      "sha256": "b2653f45b4ddcfa5e4e9967bf988b77fe32d92f0fff630a833552942bd569e59"
     }
   ],
   "badges": [
@@ -7845,6 +8726,34 @@
       "categoryId": "level-08-android-security-engineering",
       "path": "content/badges/badge-level-08-week-34.json",
       "sha256": "e4090aa793563c65be8d9e9b4d1297df2fb41e9d665d147f48b7aca5b8f53f3b"
+    },
+    {
+      "id": "badge-level-09-week-35",
+      "title": "Week 35 Graph Cartographer",
+      "categoryId": "level-09-gradle-build-cicd",
+      "path": "content/badges/badge-level-09-week-35.json",
+      "sha256": "edeb6169853d3533e035f552416efeec61ef054cfb401e92c5b7d10b02192b56"
+    },
+    {
+      "id": "badge-level-09-week-36",
+      "title": "Week 36 Variant Architect",
+      "categoryId": "level-09-gradle-build-cicd",
+      "path": "content/badges/badge-level-09-week-36.json",
+      "sha256": "7db06ba816028c09c069ee4c25bbd98cf76c2a2b3e03cc49a9b6275b82cca4ab"
+    },
+    {
+      "id": "badge-level-09-week-37",
+      "title": "Week 37 Build Platform Builder",
+      "categoryId": "level-09-gradle-build-cicd",
+      "path": "content/badges/badge-level-09-week-37.json",
+      "sha256": "df9f3e05560fbd84aa0ed38dfdf595d4287fca114800a85e7b3239727b0f7bf8"
+    },
+    {
+      "id": "badge-level-09-week-38",
+      "title": "Week 38 Critical Path Tuner",
+      "categoryId": "level-09-gradle-build-cicd",
+      "path": "content/badges/badge-level-09-week-38.json",
+      "sha256": "90c33530aa963bc289a1f619a6d5b6f0ad9bea64c7ba014eb913ae9d4ee89bbc"
     }
   ],
   "roadmap": [
@@ -7852,7 +8761,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "97f1e3591c58de2e9ae24e7d0ea7533c992f54fa24eb6699ac9f978d1e9bdda3"
+      "sha256": "31966b3bd59a7654173233896acaa938151ad224e1da7539dc4bc205f578ff0c"
     }
   ]
 }

@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-36-02-build-types-flavours-variant-matrix",
+  "title": "Build Types, Product Flavours, and the Variant Matrix",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 36,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-36-01-android-source-sets-merging-priority"
+  ],
+  "tags": [
+    "android-build",
+    "build-types",
+    "product-flavors"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn build types, product flavours, and the variant matrix into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Build types usually express how an artifact is built and operated—debuggability, optimisation, signing and release policy. Product flavours express a product dimension such as environment, distribution or branded capability. With multiple flavour dimensions, Gradle forms their cross-product with build types, which can create unsupported or meaningless variants. Name dimensions by business meaning, define explicit fallbacks only when semantics are safe, and disable impossible variants early through the public Variant API."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Do not encode secrets or server authority in flavours. BuildConfig and manifest values are packaged and inspectable. Keep package/application ID, versioning, endpoints and feature availability consistent with backend and distribution contracts. Debug and QA variants should be unmistakable, isolated from production data and signed appropriately. release is not synonymous with production when multiple environments exist; model signing, optimisation and service configuration independently enough to prevent an internal build reaching public users."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "androidComponents { beforeVariants(selector().withBuildType(\"release\")) { b ->\n if (b.productFlavors.any { it.second==\"mock\" }) b.enable=false\n} }",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create a variant table listing application ID, signing identity, debuggable state, minification, backend, analytics project, deep-link domains, tests, distribution and retention. Build and inspect every releaseable row in CI while pruning unsupported rows. Test matchingFallbacks and missingDimensionStrategy deliberately; a fallback selects another producer variant and can silently import wrong behaviour. The best matrix is the smallest one that represents real delivery contracts without conditional build-script sprawl."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Adding a flavour for every feature flag multiplies variants, source sets and CI cost even when runtime configuration would model the capability safely."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Configure Android Build Variants",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/build-variants",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Configure Your Android Build",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Build Types, Product Flavours, and the Variant Matrix",
+      "language": "kotlin",
+      "code": "androidComponents { beforeVariants(selector().withBuildType(\"release\")) { b ->\n if (b.productFlavors.any { it.second==\"mock\" }) b.enable=false\n} }",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Adding a flavour for every feature flag multiplies variants, source sets and CI cost even when runtime configuration would model the capability safely.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and validate a minimal environment/distribution variant matrix, disabling invalid combinations and documenting signing, endpoints, links and CI evidence.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "What risk does matchingFallbacks introduce?",
+        "answer": "A consumer may receive a different producer variant whose behaviour or dependencies are not semantically compatible."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-36-02-build-types-flavours-variant-matrix",
+  "challengeId": "challenge-level-09-week-36-02-build-types-flavours-variant-matrix",
+  "revision": {
+    "objectives": [
+      "Explain Build Types, Product Flavours, and the Variant Matrix from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/build/build-variants",
+    "https://developer.android.com/build"
+  ],
+  "version": "0.12.0"
+}

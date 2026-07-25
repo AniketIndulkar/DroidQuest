@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-09-week-38-03-local-remote-build-cache-correctness",
+  "title": "Apply Local and Remote Build Cache Correctness",
+  "categoryId": "level-09-gradle-build-cicd",
+  "lessonId": "level-09-week-38-03-local-remote-build-cache-correctness",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Design a remote-cache trust policy and prove a custom task relocatable across two clean workspaces without exposing secrets or allowing fork writes.",
+  "successCriteria": [
+    "The task, variant or dependency model and expected artifact are explicit.",
+    "Lazy inputs, outputs and dependencies behave correctly for changed, unchanged and failure paths.",
+    "Functional tests plus performance, compatibility, security and rollback evidence are documented."
+  ],
+  "hints": [
+    "Inspect the requested graph and resolved model before adding ordering or resolution rules.",
+    "Test a second run and one meaningful input change; success once is insufficient."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "buildCache { remote<HttpBuildCache> {\n url=uri(providers.gradleProperty(\"cacheUrl\"))\n isPush=providers.environmentVariable(\"TRUSTED_CI\").isPresent\n} }"
+  },
+  "solutionOutline": [
+    "Model the workflow with public typed APIs and complete data flow.",
+    "Test clean, incremental, parallel/cached and failure behaviour, then measure the intended workflow."
+  ],
+  "verification": [
+    "Run in a clean and relocated fixture plus the representative project workflow.",
+    "Record task outcomes, generated artifact, critical path and regression guard."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

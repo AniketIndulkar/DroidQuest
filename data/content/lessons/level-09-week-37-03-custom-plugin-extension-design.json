@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-37-03-custom-plugin-extension-design",
+  "title": "Custom Plugin and Extension Design",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 37,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-37-02-buildsrc-included-build-build-logic"
+  ],
+  "tags": [
+    "gradle",
+    "custom-plugin",
+    "provider-api"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn custom plugin and extension design into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A custom plugin packages reusable behaviour; an extension is its intentional configuration API. Apply required plugins through pluginManager, register tasks lazily and create an extension backed by Property types injected from ObjectFactory. Give defaults with convention, validate cross-field rules at an appropriate boundary and wire properties directly into task inputs. Avoid reading extension values during apply, because the consuming script has not configured them and unrelated commands may not need them."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep the extension small and domain-oriented: releaseChannel and failOnWarnings communicate intent better than mirroring every tool flag. Use nested managed types for cohesive groups and document stability. React to other plugins with withPlugin callbacks. Do not expose Project, Task or mutable collections as extension state, and do not store configuration in static objects. Mark task inputs correctly and protect secrets from output, cache and diagnostic leakage."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "abstract class QualityExtension @Inject constructor(objects:ObjectFactory){\n val failOnWarnings=objects.property<Boolean>().convention(true)\n}\nextensions.create<QualityExtension>(\"quality\")",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test defaults, overrides, missing/invalid combinations, multiple projects, plugin order, configuration cache and supported Gradle versions. Give failures actionable locations and remedies. Version plugin IDs and extension semantics; removing or changing a default can alter every artifact. Unit tests cover pure mapping, while TestKit proves real plugin application, generated task graph and outcomes. A plugin is successful when consumer scripts describe policy, not lifecycle choreography."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Calling extension.failOnWarnings.get inside apply observes the default before the consuming build script can override it."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Developing Custom Gradle Plugins",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/custom_plugins.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Configuring Tasks Lazily",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/lazy_configuration.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Custom Plugin and Extension Design",
+      "language": "kotlin",
+      "code": "abstract class QualityExtension @Inject constructor(objects:ObjectFactory){\n val failOnWarnings=objects.property<Boolean>().convention(true)\n}\nextensions.create<QualityExtension>(\"quality\")",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling extension.failOnWarnings.get inside apply observes the default before the consuming build script can override it.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a typed quality plugin extension, wire its Providers into tasks and test defaults, overrides, invalid values, order and configuration cache.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "When should an extension Property normally be read?",
+        "answer": "By a consuming task or late model boundary through its Provider, after build scripts can configure it."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-37-03-custom-plugin-extension-design",
+  "challengeId": "challenge-level-09-week-37-03-custom-plugin-extension-design",
+  "revision": {
+    "objectives": [
+      "Explain Custom Plugin and Extension Design from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/custom_plugins.html",
+    "https://docs.gradle.org/current/userguide/lazy_configuration.html"
+  ],
+  "version": "0.12.0"
+}

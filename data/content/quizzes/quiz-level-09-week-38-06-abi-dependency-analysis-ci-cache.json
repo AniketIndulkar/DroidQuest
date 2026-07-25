@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-38-06-abi-dependency-analysis-ci-cache",
+  "title": "ABI-Aware Dependency Analysis and CI Cache Policy Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-38-06-abi-dependency-analysis-ci-cache-decision",
+      "prompt": "Which approach best applies abi-aware dependency analysis and ci cache policy?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Shrink and stabilise ABI/dependency edges, then cache accurately modelled work under explicit compatibility and trust policy.",
+        "Apply analysis fixes blindly",
+        "Share writable caches with forks",
+        "Expose implementation libraries through api"
+      ],
+      "answer": "Shrink and stabilise ABI/dependency edges, then cache accurately modelled work under explicit compatibility and trust policy.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+    },
+    {
+      "id": "q-level-09-week-38-06-abi-dependency-analysis-ci-cache-truth",
+      "prompt": "A remote build cache eliminates the cost of unnecessary ABI changes.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Automatically removing every dependency labelled unused can break reflection, generated code, runtime service loading or tooling that static analysis cannot observe.",
+      "lessonId": "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+    },
+    {
+      "id": "q-level-09-week-38-06-abi-dependency-analysis-ci-cache-recall",
+      "prompt": "Why can implementation dependencies improve build performance?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "They keep internal dependency types off consumer compile ABIs, reducing classpaths and downstream invalidation.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-35-03-providers-properties-build-inputs",
+  "title": "Providers, Properties, and Build Inputs Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-35-03-providers-properties-build-inputs"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-35-03-providers-properties-build-inputs-decision",
+      "prompt": "Which approach best applies providers, properties, and build inputs?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Keep values as typed Providers or Properties until the consuming model or task requires them.",
+        "Convert all Providers to strings immediately",
+        "Read environment globals inside cacheable actions",
+        "Use mutable project extra properties as shared state"
+      ],
+      "answer": "Keep values as typed Providers or Properties until the consuming model or task requires them.",
+      "explanation": "The correct approach preserves Gradle’s lazy model, explicit data flow, variant correctness, functional evidence and operability.",
+      "lessonId": "level-09-week-35-03-providers-properties-build-inputs"
+    },
+    {
+      "id": "q-level-09-week-35-03-providers-properties-build-inputs-truth",
+      "prompt": "Property convention prevents a build script from overriding the value.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Calling provider.get at plugin application time defeats deferred calculation and can make unrelated commands fail because an optional value is absent.",
+      "lessonId": "level-09-week-35-03-providers-properties-build-inputs"
+    },
+    {
+      "id": "q-level-09-week-35-03-providers-properties-build-inputs-recall",
+      "prompt": "What does flatMap preserve that reading a file path early can lose?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Lazy calculation and producer dependency information carried by the nested Provider.",
+      "explanation": "The answer names the model property that makes the build behaviour predictable rather than relying on incidental script order.",
+      "lessonId": "level-09-week-35-03-providers-properties-build-inputs"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.12.0"
+}

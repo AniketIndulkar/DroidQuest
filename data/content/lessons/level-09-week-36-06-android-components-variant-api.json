@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-36-06-android-components-variant-api",
+  "title": "Android Components Variant API",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 36,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-36-05-dependency-locking-verification-upgrades"
+  ],
+  "tags": [
+    "android-build",
+    "variant-api",
+    "agp"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn android components variant api into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Android Components API replaces task-name guessing and internal AGP hooks with public variant-aware callbacks. beforeVariants can alter or disable variant builders before artifacts are fixed; onVariants configures realised variant models and wires tasks, sources or artifacts. Use selectors to target only required build types, flavours or names. The API evolves with AGP, so compile build logic against a supported version matrix and follow migration guidance rather than reaching into internal task classes."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Register one task per selected variant with a unique output under the build directory. Set task inputs from variant Properties and connect outputs back through Providers, so AGP and Gradle infer ordering. The artifacts API can append, transform or replace supported artifacts with explicit semantics. Generated sources should be registered as generated inputs, never written into src. Do not enumerate variants with afterEvaluate or build task names by capitalising strings."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "androidComponents { onVariants(selector().withBuildType(\"release\")) { variant ->\n val task=tasks.register<GenerateNotice>(\"generate${variant.name.replaceFirstChar(Char::uppercase)}Notice\")\n variant.sources.assets?.addGeneratedSourceDirectory(task,GenerateNotice::outputDir)\n} }",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test simultaneous variant builds to detect output collisions, targeted selection to prove unrelated tasks remain unrealised, and configuration-cache reuse. Verify disabled variants disappear from IDE and CI expectations. Keep custom work deterministic and cacheable. Variant APIs enable powerful release changes such as version codes or generated config; require tests because mistakes affect every packaged artifact. Public API use is a compatibility boundary, not a guarantee that logic is correct."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Writing every variant’s generated file to the same build/generated/config directory creates races and cross-variant contamination."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Write Plugins with the Android Gradle Plugin API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/extend-agp",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Configure Android Build Variants",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/build-variants",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Android Components Variant API",
+      "language": "kotlin",
+      "code": "androidComponents { onVariants(selector().withBuildType(\"release\")) { variant ->\n val task=tasks.register<GenerateNotice>(\"generate${variant.name.replaceFirstChar(Char::uppercase)}Notice\")\n variant.sources.assets?.addGeneratedSourceDirectory(task,GenerateNotice::outputDir)\n} }",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing every variant’s generated file to the same build/generated/config directory creates races and cross-variant contamination.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Use selectors and onVariants to register a cacheable per-variant generator, wire its output as a source and test two variants concurrently.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why must generated output include the variant identity?",
+        "answer": "Multiple variants may build together; isolated paths prevent overwrites, races and incorrect cache reuse."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-36-06-android-components-variant-api",
+  "challengeId": "challenge-level-09-week-36-06-android-components-variant-api",
+  "revision": {
+    "objectives": [
+      "Explain Android Components Variant API from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/build/extend-agp",
+    "https://developer.android.com/build/build-variants"
+  ],
+  "version": "0.12.0"
+}

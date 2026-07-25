@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-09-week-36-05-dependency-locking-verification-upgrades",
+  "title": "Apply Dependency Locking, Verification, and Controlled Upgrades",
+  "categoryId": "level-09-gradle-build-cicd",
+  "lessonId": "level-09-week-36-05-dependency-locking-verification-upgrades",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Introduce locking and verification to a sample, simulate a transitive upgrade and checksum change, and document the safe review and rollback workflow.",
+  "successCriteria": [
+    "The task, variant or dependency model and expected artifact are explicit.",
+    "Lazy inputs, outputs and dependencies behave correctly for changed, unchanged and failure paths.",
+    "Functional tests plus performance, compatibility, security and rollback evidence are documented."
+  ],
+  "hints": [
+    "Inspect the requested graph and resolved model before adding ordering or resolution rules.",
+    "Test a second run and one meaningful input change; success once is insufficient."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "./gradlew dependencies --write-locks\n./gradlew --write-verification-metadata sha256 help\n# Review diffs before committing; do not accept generated trust blindly."
+  },
+  "solutionOutline": [
+    "Model the workflow with public typed APIs and complete data flow.",
+    "Test clean, incremental, parallel/cached and failure behaviour, then measure the intended workflow."
+  ],
+  "verification": [
+    "Run in a clean and relocated fixture plus the representative project workflow.",
+    "Record task outcomes, generated artifact, critical path and regression guard."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.12.0"
+}

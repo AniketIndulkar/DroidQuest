@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-38-03-local-remote-build-cache-correctness",
+  "title": "Local and Remote Build Cache Correctness",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 38,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-38-02-configuration-cache-adoption"
+  ],
+  "tags": [
+    "gradle",
+    "build-cache",
+    "ci-cache"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Turn local and remote build cache correctness into a predictable, testable build-system contract.",
+      "realWorldUse": "Large Android builds must produce trustworthy variants quickly across developer machines and CI while tooling and module graphs evolve.",
+      "outcome": "Model the build behaviour, implement it with lazy public APIs, and verify correctness plus performance."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the correct mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The build cache reuses cacheable task outputs beyond the current workspace; local cache survives branch switches and remote cache can share results across CI and developers. A key includes task implementation and declared inputs. Remote reuse magnifies both benefit and modelling mistakes: an undeclared input can distribute incorrect output widely. Enable read first, allow trusted CI to push, and keep untrusted fork jobs from poisoning a shared writable cache."
+            },
+            {
+              "type": "flow",
+              "title": "Build-engineering loop",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name workflow",
+                  "detail": "Define artifact, user and correctness contract."
+                },
+                {
+                  "id": "model",
+                  "label": "Model graph",
+                  "detail": "Declare variants, inputs, outputs and dependencies."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify behaviour",
+                  "detail": "Test clean, changed, parallel and failure paths."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Inspect critical path, invalidation and reuse."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate",
+                  "detail": "Own compatibility, security, metrics and rollback."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement with lazy typed APIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Correct cacheable tasks are deterministic, relocatable and isolated. Normalise paths, toolchains, environment and archive metadata; declare compiler/plugin classpaths and every byte-affecting option. Secrets and signing outputs usually require special treatment or no shared caching. Separate dependency cache from build cache: copying Gradle directories is not equivalent to a governed remote task-output cache. Protect transport, authentication, retention, namespace and access policy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "buildCache { remote<HttpBuildCache> {\n url=uri(providers.gradleProperty(\"cacheUrl\"))\n isPush=providers.environmentVariable(\"TRUSTED_CI\").isPresent\n} }",
+              "caption": "A focused build fragment; its full correctness depends on declared inputs, lifecycle, compatibility and functional evidence."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Prove correctness and scalability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measure hit/miss reason, download cost and time saved. Test clean second build, relocated checkout and cross-agent restoration with output verification. Version namespaces during incompatible changes and provide purge/disable incident controls. Do not chase hit rate by caching tiny tasks whose transfer costs exceed execution. CI cache keys that include a unique commit for every entry without restore strategy rarely reuse; overly broad keys risk incompatible state. Cache design is correctness and trust architecture."
+            },
+            {
+              "type": "paragraph",
+              "text": "Build logic is production infrastructure: it shapes every developer feedback loop and release artifact. Make ownership, inputs, outputs, compatibility, security boundaries, failure messages, metrics and rollback explicit. Prefer public typed APIs, lazy Provider wiring and deterministic isolated tasks. Verify the model through representative local and CI workflows, clean and incremental changes, parallel execution, relocated workspaces, configuration-cache reuse and trusted build-cache restoration. Measure before optimising, then preserve correctness with functional tests and regression budgets. Avoid hidden environment state, internal APIs, task-name guessing, global project mutation, mutable network inputs and credentials in logs or reusable outputs. Record the supported Gradle, AGP, Kotlin, Java and operating-system matrix, and make upgrades controlled experiments with safe rollback evidence. A fast build is valuable only when it produces the right traceable artifact consistently."
+            },
+            {
+              "type": "table",
+              "title": "Build review record",
+              "columns": [
+                "Concern",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Correctness",
+                  "Declared model, expected artifact and failure behaviour"
+                ],
+                [
+                  "Incrementality",
+                  "Changed and unchanged input outcomes"
+                ],
+                [
+                  "Portability",
+                  "Parallel, relocated, cached and CI execution"
+                ],
+                [
+                  "Operations",
+                  "Compatibility, security, metrics, owner and rollback"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common build trap",
+              "text": "Allowing forked pull requests to push into the same remote cache lets untrusted code publish outputs later consumed by trusted release jobs."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Gradle Build Cache",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/build_cache.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        },
+        {
+          "title": "Build Cache Performance",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/build_cache_performance.html",
+          "whyRead": "Primary documentation for the build model, API contract, limitations, diagnostics, and current recommended practice taught here."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Local and Remote Build Cache Correctness",
+      "language": "kotlin",
+      "code": "buildCache { remote<HttpBuildCache> {\n url=uri(providers.gradleProperty(\"cacheUrl\"))\n isPush=providers.environmentVariable(\"TRUSTED_CI\").isPresent\n} }",
+      "walkthrough": [
+        "Identify which lifecycle model, variant, task or dependency contract this fragment configures.",
+        "Trace lazy values, producers, consumers, declared inputs and isolated outputs.",
+        "Define functional tests, performance evidence, compatibility range, security boundary and rollback."
+      ],
+      "expectedOutput": "A deterministic, lazy, testable build contract whose correctness and performance can be explained from the graph."
+    },
+    "trap_check": [
+      {
+        "mistake": "Allowing forked pull requests to push into the same remote cache lets untrusted code publish outputs later consumed by trusted release jobs.",
+        "why": "The build may become eager, stale, nondeterministic, incorrectly variant-aware or unsafe under parallel and cached execution.",
+        "fix": "Use the public model, declare the complete data flow and add a functional regression test."
+      },
+      {
+        "mistake": "Optimising a synthetic clean build without measuring the team’s frequent workflow.",
+        "why": "The change can shift cost or complexity without improving developer or CI feedback.",
+        "fix": "Baseline representative workflows and compare controlled before/after critical paths."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design a remote-cache trust policy and prove a custom task relocatable across two clean workspaces without exposing secrets or allowing fork writes.",
+      "successLooksLike": "The build behaviour is correct for clean, incremental, parallel and cached paths and has measured evidence, diagnostics and ownership."
+    },
+    "recall": [
+      {
+        "prompt": "Why should trusted CI often be the only remote-cache writer?",
+        "answer": "It reduces cache-poisoning risk while still letting developers and other jobs consume verified reusable outputs."
+      },
+      {
+        "prompt": "What makes custom Gradle work trustworthy?",
+        "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
+      },
+      {
+        "prompt": "What should precede a build-performance change?",
+        "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-38-03-local-remote-build-cache-correctness",
+  "challengeId": "challenge-level-09-week-38-03-local-remote-build-cache-correctness",
+  "revision": {
+    "objectives": [
+      "Explain Local and Remote Build Cache Correctness from the underlying Gradle or AGP model.",
+      "Implement it with lazy typed public APIs.",
+      "Verify correctness, reuse, compatibility and measured performance."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/build_cache.html",
+    "https://docs.gradle.org/current/userguide/build_cache_performance.html"
+  ],
+  "version": "0.12.0"
+}
