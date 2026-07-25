@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-11-week-44-02-zygote-fork-app-process-creation",
+  "title": "Apply Zygote, Forking, and Application Process Creation",
+  "categoryId": "level-11-android-internals-aosp",
+  "lessonId": "level-11-week-44-02-zygote-fork-app-process-creation",
+  "difficulty": "expert",
+  "estimatedMinutes": 60,
+  "prompt": "Annotate a cold-start trace from system_server request through Zygote fork, specialization, ActivityThread attach, Application creation, activity launch, and first frame.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "adb shell am force-stop dev.droidquest; adb shell perfetto --txt -c startup.pbtxt -o /data/misc/perfetto-traces/startup.perfetto-trace; adb shell monkey -p dev.droidquest 1"
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

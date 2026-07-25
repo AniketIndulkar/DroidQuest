@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-11-week-44-checkpoint",
+  "title": "Week 44: Processes, Zygote, Binder, and System Services Checkpoint",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+    "level-11-week-44-02-zygote-fork-app-process-creation",
+    "level-11-week-44-03-system-server-boot-system-services",
+    "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+    "level-11-week-44-05-service-manager-discovery-handles",
+    "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-44-1-linux-processes-threads-uids-sandbox",
+      "prompt": "Checkpoint: What is the security-relevant distinction between UID and PID?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "The UID identifies the app sandbox and permissions, while a PID identifies one temporary running process instance. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "options": [
+        "Model PID as ephemeral execution, UID as security identity, threads as shared-memory execution, and persist state needed after process death.",
+        "Use PID as app identity",
+        "Assume onTerminate always runs",
+        "Share mutable globals across processes"
+      ],
+      "answer": "Model PID as ephemeral execution, UID as security identity, threads as shared-memory execution, and persist state needed after process death."
+    },
+    {
+      "id": "q-week-44-2-zygote-fork-app-process-creation",
+      "prompt": "Select the two sound practices for zygote, forking, and application process creation.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Forked children can reuse clean copy-on-write pages and avoid repeating part of runtime initialization. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-02-zygote-fork-app-process-creation",
+      "options": [
+        "Treat Zygote as a preinitialised runtime parent whose child is security-specialised before the app entry point runs.",
+        "Capture matching runtime evidence and exercise one adverse path",
+        "Fork the previous app process",
+        "Initialize user state in Zygote"
+      ],
+      "answer": [
+        "Treat Zygote as a preinitialised runtime parent whose child is security-specialised before the app entry point runs.",
+        "Capture matching runtime evidence and exercise one adverse path"
+      ]
+    },
+    {
+      "id": "q-week-44-3-system-server-boot-system-services",
+      "prompt": "Every Android system service runs as a Java object inside system_server.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "A local client facade or proxy for state and operations owned by a framework service, often across Binder. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services",
+      "answer": false
+    },
+    {
+      "id": "q-week-44-4-binder-proxy-stub-parcel-identity-death",
+      "prompt": "Checkpoint: Why must authorization happen before clearCallingIdentity?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "The original kernel-supplied caller identity is the trustworthy subject; clearing it changes subsequent checks to the service identity. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "answer": "The original kernel-supplied caller identity is the trustworthy subject; clearing it changes subsequent checks to the service identity.",
+      "acceptedAnswers": [
+        "The original kernel-supplied caller identity is the trustworthy subject; clearing it changes subsequent checks to the service identity."
+      ]
+    },
+    {
+      "id": "q-week-44-5-service-manager-discovery-handles",
+      "prompt": "Order the investigation for servicemanager discovery and binder handles.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "A Binder reference or handle that the client wraps in a proxy for the endpoint hosted elsewhere. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles",
+      "options": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ],
+      "answer": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ]
+    },
+    {
+      "id": "q-week-44-6-activity-task-package-window-manager-boundaries",
+      "prompt": "Match each systems question to its evidence for activity, task, package, and window manager boundaries.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "PackageManager; task, process, and window services consume that information for their own responsibilities. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "options": [
+        "Ownership → process, service, thread, queue, or buffer",
+        "Timing → trace with expected and actual boundaries",
+        "Safety → denial, death, pressure, and compatibility tests"
+      ],
+      "answer": {
+        "Ownership": "process, service, thread, queue, or buffer",
+        "Timing": "trace with expected and actual boundaries",
+        "Safety": "denial, death, pressure, and compatibility tests"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 325,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

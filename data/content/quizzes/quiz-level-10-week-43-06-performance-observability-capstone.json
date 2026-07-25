@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-06-performance-observability-capstone",
+  "title": "Performance and Observability Capstone Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-06-performance-observability-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-06-performance-observability-capstone-decision",
+      "prompt": "Which approach best applies performance and observability capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Preserve a reproducible evidence chain from representative baseline through causal fixes, regression guards, field SLIs, rollout gates, and recovery.",
+        "Report only best runs",
+        "Tune without raw traces",
+        "Ship dashboards without owners"
+      ],
+      "answer": "Preserve a reproducible evidence chain from representative baseline through causal fixes, regression guards, field SLIs, rollout gates, and recovery.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone"
+    },
+    {
+      "id": "q-level-10-week-43-06-performance-observability-capstone-truth",
+      "prompt": "A passing Macrobenchmark alone proves that production users meet the release SLO.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Selecting the fastest after-result and comparing it with the slowest baseline produces an impressive number but no defensible performance evidence.",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone"
+    },
+    {
+      "id": "q-level-10-week-43-06-performance-observability-capstone-recall",
+      "prompt": "What is the central distinction in the capstone evidence?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Controlled lab measurements establish causal performance changes; field observability establishes population health after release.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+  "title": "Binder Transactions, Proxies, Stubs, Identity, and Death Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-44-04-binder-proxy-stub-parcel-identity-death-decision",
+      "prompt": "Which approach best applies binder transactions, proxies, stubs, identity, and death?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Treat Binder as bounded remote execution with kernel identity, scheduling, failure, reentrancy, and versioned contract concerns.",
+        "Send multi-megabyte bitmaps in Parcel",
+        "Authorize by package string",
+        "Blindly retry after DeadObjectException"
+      ],
+      "answer": "Treat Binder as bounded remote execution with kernel identity, scheduling, failure, reentrancy, and versioned contract concerns.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+    },
+    {
+      "id": "q-level-11-week-44-04-binder-proxy-stub-parcel-identity-death-truth",
+      "prompt": "A one-way Binder transaction cannot be delayed by a busy remote process.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Holding a mutex while making a synchronous Binder call can deadlock when the remote service calls back into code that needs the same mutex.",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+    },
+    {
+      "id": "q-level-11-week-44-04-binder-proxy-stub-parcel-identity-death-recall",
+      "prompt": "Why must authorization happen before clearCallingIdentity?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The original kernel-supplied caller identity is the trustworthy subject; clearing it changes subsequent checks to the service identity.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

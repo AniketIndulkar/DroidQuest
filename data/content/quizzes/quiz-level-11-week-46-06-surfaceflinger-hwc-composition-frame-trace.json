@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+  "title": "SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace-decision",
+      "prompt": "Which approach best applies surfaceflinger, hardware composer, and end-to-end frame tracing?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Follow the buffer and timeline across app, GPU, queue, SurfaceFlinger, HWC, and display before assigning cause.",
+        "WindowManager draws pixels",
+        "SurfaceFlinger wakes at fixed rate when idle",
+        "Every layer uses GPU composition"
+      ],
+      "answer": "Follow the buffer and timeline across app, GPU, queue, SurfaceFlinger, HWC, and display before assigning cause.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+    },
+    {
+      "id": "q-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace-truth",
+      "prompt": "WindowManager composites all visible application buffers into the final display image.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Blaming every missed frame on slow Compose or Views ignores RenderThread, GPU, buffer latch, SurfaceFlinger, HWC, and display stages.",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+    },
+    {
+      "id": "q-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace-recall",
+      "prompt": "How do SurfaceFlinger and Hardware Composer divide composition?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "SurfaceFlinger selects layers and may perform client GPU composition; HWC chooses and executes supported display composition and presentation work.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

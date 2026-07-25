@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-44-05-service-manager-discovery-handles",
+  "title": "ServiceManager Discovery and Binder Handles Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-05-service-manager-discovery-handles"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-44-05-service-manager-discovery-handles-decision",
+      "prompt": "Which approach best applies servicemanager discovery and binder handles?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use supported manager APIs and understand ServiceManager as policy-controlled discovery of endpoints, not the service implementation itself.",
+        "Treat handles as raw pointers",
+        "Call hidden numeric transactions",
+        "Assume a cached proxy cannot die"
+      ],
+      "answer": "Use supported manager APIs and understand ServiceManager as policy-controlled discovery of endpoints, not the service implementation itself.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles"
+    },
+    {
+      "id": "q-level-11-week-44-05-service-manager-discovery-handles-truth",
+      "prompt": "ServiceManager executes the business logic for all registered Android services.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Using reflection to fetch an undocumented service name couples an app to hidden policy, interfaces, transaction behavior, and release-specific availability.",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles"
+    },
+    {
+      "id": "q-level-11-week-44-05-service-manager-discovery-handles-recall",
+      "prompt": "What does ServiceManager return to a successful lookup?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A Binder reference or handle that the client wraps in a proxy for the endpoint hosted elsewhere.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-44-03-system-server-boot-system-services",
+  "title": "system_server Boot and System Service Architecture Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-03-system-server-boot-system-services"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-44-03-system-server-boot-system-services-decision",
+      "prompt": "Which approach best applies system_server boot and system service architecture?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Separate local framework facades from remote service authority and account for Binder, permissions, boot readiness, latency, and failure.",
+        "Treat system_server as the kernel",
+        "Reflect into hidden managers",
+        "Assume all services share one thread"
+      ],
+      "answer": "Separate local framework facades from remote service authority and account for Binder, permissions, boot readiness, latency, and failure.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services"
+    },
+    {
+      "id": "q-level-11-week-44-03-system-server-boot-system-services-truth",
+      "prompt": "Every Android system service runs as a Java object inside system_server.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Calling getSystemService returns a local manager object, but assuming all work is local hides Binder latency, remote failure, permission checks, and system ownership.",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services"
+    },
+    {
+      "id": "q-level-11-week-44-03-system-server-boot-system-services-recall",
+      "prompt": "What does a framework manager object usually represent?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A local client facade or proxy for state and operations owned by a framework service, often across Binder.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

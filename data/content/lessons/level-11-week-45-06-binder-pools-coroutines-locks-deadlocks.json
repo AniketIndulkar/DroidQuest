@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+  "title": "Binder Pools, Coroutines, Synchronisation, and Deadlocks",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+  ],
+  "tags": [
+    "internals",
+    "threading",
+    "deadlocks"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand binder pools, coroutines, synchronisation, and deadlocks as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply binder pools, coroutines, synchronisation, and deadlocks."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A process hosting Binder objects services incoming transactions on Binder threads. Synchronous nested transactions may be handled in ways that preserve call chains, while one-way work is asynchronous to the caller but still queued. An app main thread can call a remote service, whose Binder thread calls back into the app and waits for main-thread work: if the main thread still waits for the original reply, a cycle forms. Thread-pool saturation can mimic deadlock when every worker waits for work requiring that same pool."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Coroutines do not remove these boundaries. A suspend function may call synchronous Binder and block its current dispatcher thread. withContext selects execution, but locks held across suspension or remote calls remain dangerous. Kotlin Mutex suspends waiters; synchronized and ReentrantLock block threads. Establish lock ordering inside a process, never hold locks while invoking unknown callbacks or Binder, copy state before remote work, and make cancellation or timeout semantics explicit. Timeouts release callers but do not necessarily stop remote execution."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val snapshot = mutex.withLock { state.copy() }; val reply = withContext(Dispatchers.IO) { remote.update(snapshot) }; mutex.withLock { apply(reply) }",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Diagnose with complete thread dumps across involved processes, ANR traces, Perfetto Binder and scheduling tracks, lock owner information, and service state. Build a wait-for graph: thread, resource or reply awaited, current owner, and next dependency. Test reentrant callbacks, service death, cancellation, pool saturation, slow remote calls, and duplicate completion. Fix the ownership cycle rather than increasing pools or timeouts blindly; those changes can postpone failure and increase load."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Increasing a Binder or coroutine thread pool can hide saturation briefly while preserving the wait cycle that causes the failure."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Binder Threading Model",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture/ipc/binder-threading",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Binder Overview",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture/ipc/binder-overview",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Processes and Threads Overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/processes-and-threads",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Binder Pools, Coroutines, Synchronisation, and Deadlocks",
+      "language": "kotlin",
+      "code": "val snapshot = mutex.withLock { state.copy() }; val reply = withContext(Dispatchers.IO) { remote.update(snapshot) }; mutex.withLock { apply(reply) }",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Increasing a Binder or coroutine thread pool can hide saturation briefly while preserving the wait cycle that causes the failure.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Construct a cross-process wait-for graph from an ANR involving main, Binder, coroutine, and lock edges; remove the cycle and verify callbacks and cancellation.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why should state be copied before a synchronous Binder call?",
+        "answer": "It avoids holding an application lock across remote work that can block, reenter, call back, or die."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+  "challengeId": "challenge-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Binder Pools, Coroutines, Synchronisation, and Deadlocks.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/architecture/ipc/binder-threading",
+    "https://source.android.com/docs/core/architecture/ipc/binder-overview",
+    "https://developer.android.com/guide/components/processes-and-threads"
+  ],
+  "version": "0.14.0"
+}

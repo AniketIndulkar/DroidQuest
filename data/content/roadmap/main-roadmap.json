@@ -1,7 +1,7 @@
 {
   "id": "main-roadmap",
   "title": "DroidQuest Beginner-to-Expert Roadmap",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "nodes": [
     {
       "id": "node-level-01-week-01-01-first-program",
@@ -886,22 +886,6 @@
       }
     },
     {
-      "id": "node-level-11-preview",
-      "categoryId": "level-11-android-internals-aosp",
-      "title": "Level 11: Android Internals and AOSP",
-      "type": "level_preview",
-      "status": "planned",
-      "difficulty": "expert",
-      "estimatedLearningMinutes": 0,
-      "unlockPrerequisites": [
-        "node-level-10-week-43-preview"
-      ],
-      "rewards": {
-        "xp": 0,
-        "stars": 0
-      }
-    },
-    {
       "id": "node-level-12-preview",
       "categoryId": "level-12-advanced-specialisations",
       "title": "Level 12: Advanced Specialisations",
@@ -910,7 +894,7 @@
       "difficulty": "expert",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-11-preview"
+        "node-level-11-week-47-preview"
       ],
       "rewards": {
         "xp": 0,
@@ -4981,15 +4965,491 @@
       }
     },
     {
-      "id": "node-level-10-week-43-preview",
+      "id": "node-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
       "categoryId": "level-10-performance-reliability-observability",
-      "title": "Week 43: Observability, Release Health, and Performance Capstone",
+      "title": "Structured Logging, Event Taxonomy, and Redaction",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-checkpoint"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Crash Reporting, Breadcrumbs, and Correlation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Analytics Measurement Plans, Consent, and Cardinality",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-43-04-performance-monitoring-traces-slis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Performance Monitoring, Custom Traces, and SLIs",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Operational Dashboards, Release Health, SLOs, and Alerting",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-04-performance-monitoring-traces-slis"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-43-06-performance-observability-capstone",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Performance and Observability Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-05-dashboards-release-health-slos-alerting"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-boss",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Level 10 Boss: Measured Performance and Release Health",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-10-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-10-week-43-06-performance-observability-capstone"
+      ],
+      "rewards": {
+        "xp": 950,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Linux Processes, Threads, UIDs, and the App Sandbox",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-boss"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-02-zygote-fork-app-process-creation",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Zygote, Forking, and Application Process Creation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-44-02-zygote-fork-app-process-creation",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-01-linux-processes-threads-uids-sandbox"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-03-system-server-boot-system-services",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "system_server Boot and System Service Architecture",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-02-zygote-fork-app-process-creation"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Binder Transactions, Proxies, Stubs, Identity, and Death",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-03-system-server-boot-system-services"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-05-service-manager-discovery-handles",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "ServiceManager Discovery and Binder Handles",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Activity, Task, Package, and Window Manager Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-05-service-manager-discovery-handles"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-44-checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Week 44 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-11-week-44-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-06-activity-task-package-window-manager-boundaries"
+      ],
+      "rewards": {
+        "xp": 325,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Launcher Intent Resolution and Task Launch",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-44-checkpoint"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-02-activitythread-main-application-bind",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "ActivityThread.main and Application Binding",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-02-activitythread-main-application-bind",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-01-launcher-intent-resolution-task-launch"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Instrumentation, Activity Attachment, and Lifecycle Dispatch",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-02-activitythread-main-application-bind"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-04-window-creation-surface-first-frame",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Window Creation, Surface Setup, and the First Frame",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-03-instrumentation-activity-attach-lifecycle"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Looper, MessageQueue, Handler, and Frame Starvation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-04-window-creation-surface-first-frame"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Binder Pools, Coroutines, Synchronisation, and Deadlocks",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-45-checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Week 45 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-11-week-45-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+      ],
+      "rewards": {
+        "xp": 325,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-11-week-46-01-view-traversal-measure-layout-draw",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "View Traversal: Measure, Layout, Draw, and Invalidation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-01-view-traversal-measure-layout-draw",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-45-checkpoint"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Compose Phases, Snapshot Reads, and Skippable Work",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-01-view-traversal-measure-layout-draw"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Choreographer, VSync, FrameTimeline, and Deadlines",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-02-compose-composition-layout-draw-snapshots"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "RenderThread, Display Lists, and Hardware Acceleration",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Surface, BufferQueue, Gralloc, and Synchronisation Fences",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-04-renderthread-display-lists-hardware-acceleration"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-05-surface-bufferqueue-gralloc-fences"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-46-checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Week 46 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-11-week-46-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ],
+      "rewards": {
+        "xp": 325,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-11-week-47-preview",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Week 47: Runtime, Memory, Power, Diagnostics, and Internals Capstone",
       "type": "level_preview",
       "status": "planned",
       "difficulty": "expert",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-10-week-42-checkpoint"
+        "node-level-11-week-46-checkpoint"
       ],
       "rewards": {
         "xp": 0,
@@ -5252,11 +5712,6 @@
       "from": "node-level-02-week-08-checkpoint",
       "to": "node-level-02-boss",
       "kind": "prerequisite"
-    },
-    {
-      "from": "node-level-11-preview",
-      "to": "node-level-12-preview",
-      "kind": "planned_sequence"
     },
     {
       "from": "node-level-02-boss",
@@ -6455,12 +6910,152 @@
     },
     {
       "from": "node-level-10-week-42-checkpoint",
-      "to": "node-level-10-week-43-preview",
+      "to": "node-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-10-week-43-preview",
-      "to": "node-level-11-preview",
+      "from": "node-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "to": "node-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "to": "node-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "to": "node-level-10-week-43-04-performance-monitoring-traces-slis",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-04-performance-monitoring-traces-slis",
+      "to": "node-level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "to": "node-level-10-week-43-06-performance-observability-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-06-performance-observability-capstone",
+      "to": "node-level-10-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-boss",
+      "to": "node-level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "kind": "level_unlock"
+    },
+    {
+      "from": "node-level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "to": "node-level-11-week-44-02-zygote-fork-app-process-creation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-02-zygote-fork-app-process-creation",
+      "to": "node-level-11-week-44-03-system-server-boot-system-services",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-03-system-server-boot-system-services",
+      "to": "node-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "to": "node-level-11-week-44-05-service-manager-discovery-handles",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-05-service-manager-discovery-handles",
+      "to": "node-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "to": "node-level-11-week-44-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-44-checkpoint",
+      "to": "node-level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "to": "node-level-11-week-45-02-activitythread-main-application-bind",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-02-activitythread-main-application-bind",
+      "to": "node-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "to": "node-level-11-week-45-04-window-creation-surface-first-frame",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-04-window-creation-surface-first-frame",
+      "to": "node-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "to": "node-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "to": "node-level-11-week-45-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-45-checkpoint",
+      "to": "node-level-11-week-46-01-view-traversal-measure-layout-draw",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-01-view-traversal-measure-layout-draw",
+      "to": "node-level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "to": "node-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "to": "node-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "to": "node-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "to": "node-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "to": "node-level-11-week-46-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-46-checkpoint",
+      "to": "node-level-11-week-47-preview",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-preview",
+      "to": "node-level-12-preview",
       "kind": "planned_sequence"
     }
   ]

@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "title": "Operational Dashboards, Release Health, SLOs, and Alerting",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 43,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-43-04-performance-monitoring-traces-slis"
+  ],
+  "tags": [
+    "observability",
+    "release-health",
+    "slo"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand operational dashboards, release health, slos, and alerting as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Production teams need trustworthy signals that connect release changes to user impact while respecting privacy and operational limits.",
+      "outcome": "You can explain, inspect, test, and safely apply operational dashboards, release health, slos, and alerting."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A dashboard is a decision surface, not a wall of charts. Begin with traffic or eligible users, then show user outcomes, crash and ANR stability, startup and rendering tails, battery signals, backend dependency health, and telemetry quality. Segment by app version, OS, device class, country only where justified, and rollout cohort; high-cardinality slicing creates noise and privacy risk. Annotate deployments, flag changes, incidents, and SDK or schema changes so correlation can be interpreted."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An SLO sets a target over a window, while an error budget represents tolerated failure. Mobile signals arrive late and clients remain on old versions, so release gates combine leading canary or internal evidence with lagging field cohorts. Define minimum sample size, observation time, baseline comparison, absolute guardrails, and decision owner. A percentage improvement on a tiny population is not evidence. Distinguish global health from a severe per-device cluster that affects fewer users but makes the app unusable."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "releaseGate.evaluate(cohort = versionCode, requiredSamples = 1_000, guards = listOf(crashFreeUsers, anrRate, startupP95, telemetryCoverage))",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Alerts must be actionable: state impact, version or cohort, evidence links, likely owner, and immediate mitigation. Page only for urgent user harm; create tickets or digests for slower degradation. Test alerts with synthetic or game-day signals and record acknowledgement and resolution times. During staged rollout, use promote, hold, halt, kill-switch, and hotfix-forward actions. After recovery, confirm metrics and telemetry coverage return, then document the cause, missing guard, and permanent prevention."
+            },
+            {
+              "type": "paragraph",
+              "text": "Observability is useful only when it changes a decision without creating greater correctness, privacy, performance, or operational risk. Define the user outcome, eligible population, event semantics, version dimensions, data-quality checks, retention, consent, and owner before choosing a backend. Keep schemas bounded and test collection-off, offline, process-death, quota, and SDK-failure paths. Connect laboratory evidence to field health but do not confuse them: controlled benchmarks isolate causality, while production indicators describe populations with delay and bias. Every dashboard threshold needs an explicit promote, investigate, mitigate, halt, or recover action. Preserve release identity and raw evidence so another engineer can reproduce the conclusion and audit what data crossed the device boundary."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "A green global average can hide a catastrophic regression isolated to one common device model or OS version."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Android Vitals",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/vitals",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Google Play Developer Reporting API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/google/play/developer-api#reporting",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "App Quality Insights",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug/app-quality-insights",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Operational Dashboards, Release Health, SLOs, and Alerting",
+      "language": "kotlin",
+      "code": "releaseGate.evaluate(cohort = versionCode, requiredSamples = 1_000, guards = listOf(crashFreeUsers, anrRate, startupP95, telemetryCoverage))",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "A green global average can hide a catastrophic regression isolated to one common device model or OS version.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design a release-health dashboard and alert policy with SLOs, error budgets, cohort gates, sample rules, device clusters, telemetry quality, and five response actions.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What makes a release-health alert actionable?",
+        "answer": "It names user impact, affected cohort, trustworthy evidence, owner, urgency, and an immediate safe response."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "challengeId": "challenge-level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Operational Dashboards, Release Health, SLOs, and Alerting.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/vitals",
+    "https://developer.android.com/google/play/developer-api#reporting",
+    "https://developer.android.com/studio/debug/app-quality-insights"
+  ],
+  "version": "0.14.0"
+}

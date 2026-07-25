@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-04-performance-monitoring-traces-slis",
+  "title": "Performance Monitoring, Custom Traces, and SLIs Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-04-performance-monitoring-traces-slis"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-04-performance-monitoring-traces-slis-decision",
+      "prompt": "Which approach best applies performance monitoring, custom traces, and slis?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Measure a user-relevant operation with precise boundaries, bounded dimensions, tail distributions, and a response tied to sustained impact.",
+        "Alert on averages alone",
+        "Trace every function",
+        "Treat missing telemetry as success"
+      ],
+      "answer": "Measure a user-relevant operation with precise boundaries, bounded dimensions, tail distributions, and a response tied to sustained impact.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis"
+    },
+    {
+      "id": "q-level-10-week-43-04-performance-monitoring-traces-slis-truth",
+      "prompt": "A field p95 regression identifies the exact method responsible for the slowdown.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Starting one custom trace for every rendered item creates overhead and unbounded event volume without measuring the user-visible journey.",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis"
+    },
+    {
+      "id": "q-level-10-week-43-04-performance-monitoring-traces-slis-recall",
+      "prompt": "Why pair an SLI with a data-quality indicator?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Coverage, duplication, delay, or version skew can change the reported metric without changing the actual user experience.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

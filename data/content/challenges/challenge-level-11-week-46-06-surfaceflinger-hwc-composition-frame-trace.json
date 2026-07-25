@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+  "title": "Apply SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing",
+  "categoryId": "level-11-android-internals-aosp",
+  "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+  "difficulty": "expert",
+  "estimatedMinutes": 60,
+  "prompt": "Produce an end-to-end annotated frame trace for UI plus video, identify layer and composition choices, and distinguish app-production jank from system-composition delay.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "adb shell perfetto --txt -c frame_trace.pbtxt -o /data/misc/perfetto-traces/frame.perfetto-trace; adb shell dumpsys SurfaceFlinger --list"
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

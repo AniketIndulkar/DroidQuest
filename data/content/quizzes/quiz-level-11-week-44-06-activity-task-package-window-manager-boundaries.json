@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+  "title": "Activity, Task, Package, and Window Manager Boundaries Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-44-06-activity-task-package-window-manager-boundaries-decision",
+      "prompt": "Which approach best applies activity, task, package, and window manager boundaries?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Assign package, task, process, and window facts to their distinct authorities and trace the tokens and Binder calls connecting them.",
+        "Treat task ID as PID",
+        "Let PackageManager draw windows",
+        "Assume one activity equals one window forever"
+      ],
+      "answer": "Assign package, task, process, and window facts to their distinct authorities and trace the tokens and Binder calls connecting them.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+    },
+    {
+      "id": "q-level-11-week-44-06-activity-task-package-window-manager-boundaries-truth",
+      "prompt": "ActivityTaskManager owns the installed signature and permission metadata used for intent resolution.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Equating an activity task with a Linux process fails because tasks can outlive processes and one process can host components participating in different task states.",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+    },
+    {
+      "id": "q-level-11-week-44-06-activity-task-package-window-manager-boundaries-recall",
+      "prompt": "Which service boundary owns installed component and signature metadata?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "PackageManager; task, process, and window services consume that information for their own responsibilities.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

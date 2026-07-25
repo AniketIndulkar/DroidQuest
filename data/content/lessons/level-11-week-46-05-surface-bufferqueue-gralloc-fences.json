@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+  "title": "Surface, BufferQueue, Gralloc, and Synchronisation Fences",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 46,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-46-04-renderthread-display-lists-hardware-acceleration"
+  ],
+  "tags": [
+    "internals",
+    "bufferqueue",
+    "graphics"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand surface, bufferqueue, gralloc, and synchronisation fences as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply surface, bufferqueue, gralloc, and synchronisation fences."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Surface represents a producer endpoint for graphics buffers. The consumer creates and owns a BufferQueue; the producer dequeues a free buffer with dimensions, format, and usage, renders into it, then queues it. The consumer acquires the filled buffer, uses it, and releases it for reuse. Buffer contents move by shared handles rather than copying full pixel arrays. Gralloc selects allocation compatible with CPU, GPU, composer, encoder, protection, and vendor constraints."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Acquire and release fences express when asynchronous producers and consumers have finished accessing a buffer. Without them, reuse could race GPU or display work and show corruption. Queue capacity and mode affect blocking, latency, dropping, and backpressure. More buffers can decouple stages but add memory and latency; fewer can stall producers. SurfaceView, TextureView, camera, video decoders, ImageReader, and app UI use producer-consumer combinations with different composition and lifecycle behavior."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "holder.addCallback(object : SurfaceHolder.Callback { override fun surfaceCreated(h: SurfaceHolder) = renderer.attach(h.surface); override fun surfaceDestroyed(h: SurfaceHolder) = renderer.detachAndWait() })",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Trace BufferQueue counters, dequeue or queue waits, fence delays, SurfaceFlinger latch, and producer scheduling. Record size, format, usage, refresh mode, and layer type. Test surface recreation, rotation, producer faster or slower than consumer, secure content, video, camera, and process death. Do not retain a Surface after its lifecycle says invalid, write buffers concurrently without ownership, or solve backpressure by unbounded queues. Diagnose whether starvation begins at producer, fence, consumer, or composition."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Treating Surface lifecycle as identical to Activity lifecycle can render into a destroyed queue during pause, rotation, or window replacement."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "BufferQueue and Gralloc",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/graphics/arch-bq-gralloc",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Graphics Architecture",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/graphics/architecture",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "SurfaceFlinger and WindowManager",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/graphics/surfaceflinger-windowmanager",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Surface, BufferQueue, Gralloc, and Synchronisation Fences",
+      "language": "kotlin",
+      "code": "holder.addCallback(object : SurfaceHolder.Callback { override fun surfaceCreated(h: SurfaceHolder) = renderer.attach(h.surface); override fun surfaceDestroyed(h: SurfaceHolder) = renderer.detachAndWait() })",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating Surface lifecycle as identical to Activity lifecycle can render into a destroyed queue during pause, rotation, or window replacement.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Trace a SurfaceView producer through dequeue, render, queue, acquire, latch, release, and recreation; diagnose one producer stall and one consumer stall.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What does a release fence protect?",
+        "answer": "It indicates when the consumer has finished using a buffer so the producer can safely reuse it."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+  "challengeId": "challenge-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Surface, BufferQueue, Gralloc, and Synchronisation Fences.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/graphics/arch-bq-gralloc",
+    "https://source.android.com/docs/core/graphics/architecture",
+    "https://source.android.com/docs/core/graphics/surfaceflinger-windowmanager"
+  ],
+  "version": "0.14.0"
+}

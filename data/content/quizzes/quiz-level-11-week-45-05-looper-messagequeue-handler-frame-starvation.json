@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+  "title": "Looper, MessageQueue, Handler, and Frame Starvation Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-45-05-looper-messagequeue-handler-frame-starvation-decision",
+      "prompt": "Which approach best applies looper, messagequeue, handler, and frame starvation?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Keep main dispatch bounded and move appropriate work to owned execution while treating coroutine resumption as real queue work.",
+        "Handler creates a worker thread",
+        "postDelayed is exact timing",
+        "Main.immediate runs in parallel"
+      ],
+      "answer": "Keep main dispatch bounded and move appropriate work to owned execution while treating coroutine resumption as real queue work.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+    },
+    {
+      "id": "q-level-11-week-45-05-looper-messagequeue-handler-frame-starvation-truth",
+      "prompt": "A coroutine launched on Dispatchers.Main automatically moves blocking work off the UI thread.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Wrapping blocking work in launch on Dispatchers.Main keeps the blocking call on the UI thread even though the code uses a coroutine.",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+    },
+    {
+      "id": "q-level-11-week-45-05-looper-messagequeue-handler-frame-starvation-recall",
+      "prompt": "What does a Handler determine?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It enqueues work onto the MessageQueue associated with its Looper and therefore onto that Looper thread.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

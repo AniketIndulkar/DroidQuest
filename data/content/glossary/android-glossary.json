@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -3118,20 +3118,6 @@
       ]
     },
     {
-      "id": "term-frame-deadline",
-      "term": "Frame deadline",
-      "definition": "The time budget in which application, rendering and GPU work must complete for a frame at the current refresh rate.",
-      "categoryId": "level-10-performance-reliability-observability",
-      "tags": [
-        "performance",
-        "jank",
-        "compose"
-      ],
-      "relatedLessonIds": [
-        "level-10-week-40-04-frame-timing-jank-compose-recomposition"
-      ]
-    },
-    {
       "id": "term-radio-tail",
       "term": "Radio tail energy",
       "definition": "Energy consumed while cellular radio remains in a higher-power state after transfers, making many small requests costly.",
@@ -3325,6 +3311,342 @@
       ],
       "relatedLessonIds": [
         "level-10-week-42-06-compatible-migrations-rollback-planning"
+      ]
+    },
+    {
+      "id": "term-structured-log-event",
+      "term": "Structured log event",
+      "definition": "A bounded, machine-queryable record with a stable event name, severity, context fields, and an explicit privacy policy.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "observability",
+        "logging",
+        "privacy"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+      ]
+    },
+    {
+      "id": "term-diagnostic-breadcrumb",
+      "term": "Diagnostic breadcrumb",
+      "definition": "A bounded event describing relevant state or user-flow progress before a failure, without storing sensitive content.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "observability",
+        "crash-reporting",
+        "correlation"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+      ]
+    },
+    {
+      "id": "term-measurement-plan",
+      "term": "Measurement plan",
+      "definition": "A versioned contract connecting a product question to an event, bounded parameters, population, privacy basis, validation, owner, and decision.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "observability",
+        "analytics",
+        "privacy"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+      ]
+    },
+    {
+      "id": "term-service-level-indicator",
+      "term": "Service-level indicator",
+      "definition": "A precisely defined measurement of a user-relevant service outcome, including population, aggregation, exclusions, and time window.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "observability",
+        "performance",
+        "sli"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-04-performance-monitoring-traces-slis"
+      ]
+    },
+    {
+      "id": "term-release-health-gate",
+      "term": "Release health gate",
+      "definition": "A version-aware decision rule that compares user-impact and telemetry-quality signals against explicit promote, pause, or mitigate actions.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "observability",
+        "release-health",
+        "slo"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-05-dashboards-release-health-slos-alerting"
+      ]
+    },
+    {
+      "id": "term-performance-evidence-pack",
+      "term": "Performance evidence pack",
+      "definition": "A reproducible set of baselines, traces, changes, field indicators, regression tests, rollout gates, and recovery decisions for a critical journey.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "observability",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-43-06-performance-observability-capstone"
+      ]
+    },
+    {
+      "id": "term-android-process-sandbox",
+      "term": "Android process sandbox",
+      "definition": "The kernel-enforced isolation created primarily through a distinct Linux UID, process boundaries, filesystem permissions, capabilities, and SELinux policy.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "linux",
+        "processes"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox"
+      ]
+    },
+    {
+      "id": "term-zygote-process",
+      "term": "Zygote process",
+      "definition": "A preinitialised Android runtime process from which system and application processes are forked and then specialised.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "zygote",
+        "process-start"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-02-zygote-fork-app-process-creation"
+      ]
+    },
+    {
+      "id": "term-system-server",
+      "term": "system_server",
+      "definition": "The privileged Java process that hosts many Android framework services and coordinates system-wide policy and lifecycle.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "system-server",
+        "services"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-03-system-server-boot-system-services"
+      ]
+    },
+    {
+      "id": "term-binder-transaction",
+      "term": "Binder transaction",
+      "definition": "A kernel-mediated IPC operation carrying a target, method code, parcelled data, calling identity, flags, and optionally a reply.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "binder",
+        "ipc"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+      ]
+    },
+    {
+      "id": "term-binder-context-manager",
+      "term": "Binder context manager",
+      "definition": "The special service registry for a Binder domain that maps service names to Binder endpoints under registration and lookup policy.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "service-manager",
+        "binder"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-05-service-manager-discovery-handles"
+      ]
+    },
+    {
+      "id": "term-framework-service-boundary",
+      "term": "Framework service boundary",
+      "definition": "The division of system-wide authority among services that own process/component state, task organization, package metadata, and window/display policy.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "system-services",
+        "framework"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+      ]
+    },
+    {
+      "id": "term-launch-transaction",
+      "term": "Launch transaction",
+      "definition": "The coordinated system and app operations that resolve an intent, choose task and process state, schedule a component, create a window, and present a frame.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "app-launch",
+        "intents"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-01-launcher-intent-resolution-task-launch"
+      ]
+    },
+    {
+      "id": "term-application-binding",
+      "term": "Application binding",
+      "definition": "The system-to-client setup that supplies package/runtime configuration and causes the app process to create its loaded application environment before components run.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "activitythread",
+        "process-start"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-02-activitythread-main-application-bind"
+      ]
+    },
+    {
+      "id": "term-activity-attachment",
+      "term": "Activity attachment",
+      "definition": "The framework setup that connects a newly constructed Activity to its base context, token, application, window, instrumentation, and configuration.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "instrumentation",
+        "lifecycle"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle"
+      ]
+    },
+    {
+      "id": "term-first-frame-presentation",
+      "term": "First-frame presentation",
+      "definition": "The end-to-end completion in which app UI work produces a buffer that is accepted and composited for display, not merely the return of a lifecycle callback.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "window-manager",
+        "first-frame"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-04-window-creation-surface-first-frame"
+      ]
+    },
+    {
+      "id": "term-message-loop-starvation",
+      "term": "Message-loop starvation",
+      "definition": "A condition where long or blocked dispatch prevents the Looper from processing ready callbacks, input, lifecycle work, or frame tasks within their deadlines.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "looper",
+        "main-thread"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+      ]
+    },
+    {
+      "id": "term-cross-process-deadlock",
+      "term": "Cross-process deadlock",
+      "definition": "A wait cycle spanning locks, Binder calls, callbacks, or thread pools in two or more execution contexts.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "threading",
+        "deadlocks"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+      ]
+    },
+    {
+      "id": "term-view-traversal",
+      "term": "View traversal",
+      "definition": "The scheduled pass in which a View hierarchy resolves measurements and positions, then records or draws visual content for a frame.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "views",
+        "rendering"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-01-view-traversal-measure-layout-draw"
+      ]
+    },
+    {
+      "id": "term-phase-local-state-read",
+      "term": "Phase-local state read",
+      "definition": "A Compose snapshot read whose invalidation can restart the narrowest applicable phase: composition, layout, or drawing.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "compose",
+        "rendering"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots"
+      ]
+    },
+    {
+      "id": "term-frame-deadline",
+      "term": "Frame deadline",
+      "definition": "The time by which work for a frame must be ready for the intended display presentation, considering the device refresh schedule and pipeline.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "choreographer",
+        "frame-timing"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+      ]
+    },
+    {
+      "id": "term-display-list",
+      "term": "Display list",
+      "definition": "A recorded sequence of rendering operations and properties that can be reused or submitted by the hardware-accelerated UI pipeline.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "renderthread",
+        "gpu"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration"
+      ]
+    },
+    {
+      "id": "term-buffer-queue",
+      "term": "BufferQueue",
+      "definition": "The producer-consumer structure that owns reusable graphics buffers and coordinates dequeue, queue, acquire, and release across pipeline components.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "bufferqueue",
+        "graphics"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences"
+      ]
+    },
+    {
+      "id": "term-display-composition",
+      "term": "Display composition",
+      "definition": "The process of selecting visible layers, latching buffers, applying geometry and effects, and combining them through hardware planes or client GPU work for presentation.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "surfaceflinger",
+        "composition"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
       ]
     }
   ]

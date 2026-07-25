@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+  "title": "Choreographer, VSync, FrameTimeline, and Deadlines",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 46,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-46-02-compose-composition-layout-draw-snapshots"
+  ],
+  "tags": [
+    "internals",
+    "choreographer",
+    "frame-timing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand choreographer, vsync, frametimeline, and deadlines as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply choreographer, vsync, frametimeline, and deadlines."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The display refresh rhythm provides timing signals, but an app does not simply draw whenever VSync occurs. Choreographer coordinates input, animation, traversal, and commit callbacks on the UI thread for a frame. The platform predicts intended presentation and provides frame timelines appropriate to current refresh behavior. A 60 Hz interval is about 16.7 ms, but high or variable refresh devices use different intervals, and app plus RenderThread or GPU work form a pipeline rather than one indivisible budget."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "If main-thread work starts late or exceeds its portion, traversal and buffer submission slip. Even when main work finishes, RenderThread, GPU, BufferQueue, SurfaceFlinger, or Hardware Composer can miss intended presentation. Triple buffering can keep throughput while adding latency; judging only average frames per second hides individual late frames and frozen frames. Animation should use frame time supplied by the scheduler, not assume fixed delays, so movement remains time-correct when frames drop or refresh rate changes."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Choreographer.getInstance().postFrameCallback { frameTimeNanos -> animator.advanceTo(frameTimeNanos); invalidate() }",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use FrameTimeline and Perfetto to connect expected and actual timelines, jank type, main thread, RenderThread, GPU completion, buffer latch, and display. Capture representative interactions under controlled thermal and refresh settings. Avoid interpreting a single long slice without dependencies. Test high refresh, variable refresh, touch latency, animation, video or SurfaceView, and background contention. Fix the responsible stage and verify percentile or jank distributions, not only one smooth replay."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Assuming every device supplies a fixed 16-millisecond frame budget makes animations and thresholds wrong on high and variable refresh displays."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Rendering Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/rendering",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "UI Jank Detection",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile/jank-detection",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Graphics Architecture",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/graphics/architecture",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Choreographer, VSync, FrameTimeline, and Deadlines",
+      "language": "kotlin",
+      "code": "Choreographer.getInstance().postFrameCallback { frameTimeNanos -> animator.advanceTo(frameTimeNanos); invalidate() }",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming every device supplies a fixed 16-millisecond frame budget makes animations and thresholds wrong on high and variable refresh displays.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Capture a janky animation at two refresh rates and attribute five late frames across main, RenderThread, GPU, BufferQueue, or composition using FrameTimeline.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why use frameTimeNanos for animation progress?",
+        "answer": "It represents the scheduler frame timeline, keeping motion time-based across dropped frames and changing refresh rates."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+  "challengeId": "challenge-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Choreographer, VSync, FrameTimeline, and Deadlines.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/rendering",
+    "https://developer.android.com/studio/profile/jank-detection",
+    "https://source.android.com/docs/core/graphics/architecture"
+  ],
+  "version": "0.14.0"
+}

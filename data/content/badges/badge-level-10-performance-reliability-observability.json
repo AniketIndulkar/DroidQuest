@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-10-performance-reliability-observability",
+  "title": "Android Performance and Reliability Engineer",
+  "description": "Awarded for a causal performance investigation with regression guards, privacy-safe observability, release gates, and rehearsed recovery.",
+  "categoryId": "level-10-performance-reliability-observability",
+  "icon": "android-performance-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-10-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 1200,
+  "rarity": "epic",
+  "version": "0.14.0"
+}

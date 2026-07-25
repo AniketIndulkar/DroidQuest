@@ -1,0 +1,210 @@
+{
+  "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+  "title": "Structured Logging, Event Taxonomy, and Redaction",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 43,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-42-06-compatible-migrations-rollback-planning"
+  ],
+  "tags": [
+    "observability",
+    "logging",
+    "privacy"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand structured logging, event taxonomy, and redaction as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Production teams need trustworthy signals that connect release changes to user impact while respecting privacy and operational limits.",
+      "outcome": "You can explain, inspect, test, and safely apply structured logging, event taxonomy, and redaction."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Logs should answer a diagnostic question, not narrate every line of execution. Define stable event names for state transitions, boundary failures, retries, and recovery; add bounded fields such as app version, operation type, result category, and anonymised correlation token. Severity communicates actionability: debug is development detail, info records meaningful milestones, warning signals degradation, and error describes failed outcomes. Free-form messages are difficult to aggregate and unique values can destroy grouping."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Design a typed logging facade whose schema is independent of any vendor SDK. Classify each field before collection. Never record credentials, authorization headers, personal content, raw URLs with query parameters, database rows, precise location, or stable user/device identifiers unless a reviewed purpose and consent permit it. Redact at the boundary before formatting, because filtering after a string is emitted is too late. Bound string length and cardinality, sample noisy success events, and retain failures according to policy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "logger.event(\"sync_finished\", fields = mapOf(\"result\" to result.category, \"attempt\" to attempt.coerceAtMost(9), \"correlation\" to correlation.redacted()))",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test logging like a public data contract: snapshot allowed fields, inject secrets and confirm redaction, verify release builds do not emit developer diagnostics, and ensure failures still have enough context. Document retention, access, deletion, export, data-region, consent, and incident ownership. Local-first applications can keep a small rotating diagnostic buffer under app-private storage and expose an explicit user-controlled export. Observability must degrade safely when offline or disabled and must never become a startup or crash path."
+            },
+            {
+              "type": "paragraph",
+              "text": "Observability is useful only when it changes a decision without creating greater correctness, privacy, performance, or operational risk. Define the user outcome, eligible population, event semantics, version dimensions, data-quality checks, retention, consent, and owner before choosing a backend. Keep schemas bounded and test collection-off, offline, process-death, quota, and SDK-failure paths. Connect laboratory evidence to field health but do not confuse them: controlled benchmarks isolate causality, while production indicators describe populations with delay and bias. Every dashboard threshold needs an explicit promote, investigate, mitigate, halt, or recover action. Preserve release identity and raw evidence so another engineer can reproduce the conclusion and audit what data crossed the device boundary."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Logging an entire exception request object can silently include tokens, user content, URLs, and high-cardinality values even when the top-level message looks harmless."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Log Information Disclosure",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "App Quality Insights",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug/app-quality-insights",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Structured Logging, Event Taxonomy, and Redaction",
+      "language": "kotlin",
+      "code": "logger.event(\"sync_finished\", fields = mapOf(\"result\" to result.category, \"attempt\" to attempt.coerceAtMost(9), \"correlation\" to correlation.redacted()))",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Logging an entire exception request object can silently include tokens, user content, URLs, and high-cardinality values even when the top-level message looks harmless.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Define and test a 12-event schema for startup, sync, checkout, retry, and recovery, with field classification, redaction, sampling, retention, and user export.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why should correlation values be bounded and non-identifying?",
+        "answer": "They connect related operations without exposing identity or creating unbounded grouping cardinality."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+  "challengeId": "challenge-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Structured Logging, Event Taxonomy, and Redaction.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+    "https://developer.android.com/studio/debug/app-quality-insights"
+  ],
+  "version": "0.14.0"
+}

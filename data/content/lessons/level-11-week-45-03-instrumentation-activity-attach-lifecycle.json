@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+  "title": "Instrumentation, Activity Attachment, and Lifecycle Dispatch",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-45-02-activitythread-main-application-bind"
+  ],
+  "tags": [
+    "internals",
+    "instrumentation",
+    "lifecycle"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand instrumentation, activity attachment, and lifecycle dispatch as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply instrumentation, activity attachment, and lifecycle dispatch."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "When a launch transaction reaches the app main thread, ActivityThread resolves the package class loader and asks Instrumentation to create the Activity. The framework then attaches base context, token, Application, window, component information, configuration, and related controllers before invoking lifecycle. Instrumentation calls activity lifecycle methods and is also a test and monitoring seam. Constructors and property initializers run before attachment, so accessing an attached window or fully configured context there is unsafe."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "onCreate builds state and UI under the saved-state contract; start and resume make the activity visible and interactive according to current lifecycle machinery. Server and client maintain related but not identical records and communicate changes through transactions and Binder. Lifecycle callbacks are ordering signals, not proof of process permanence or exclusive visibility. Relaunch, configuration change, multi-window, picture-in-picture, translucent activities, and process recovery create paths more complex than create-start-resume-stop-destroy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState); trace(\"activity_create\") { restoreModel(savedInstanceState); setContent { Screen() } } }",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Set breakpoints or trace sections in Application, Activity constructors, attach-adjacent observable points, lifecycle callbacks, first composition, and frame reporting on a debuggable build. Inspect token and task/window state with dumpsys. Test recreation with saved state, process death from background, launch cancellation, delayed resume, and test Instrumentation. Do not ship code relying on reflection into attach or hidden transaction classes; internal knowledge is for diagnosis and platform work, while public lifecycle APIs define app behavior."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Reading resources, Window, or injected activity state from property initializers can run before Activity attachment and create ordering-dependent failures."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Instrumentation Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/Instrumentation.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "ActivityThread Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Activity Lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/activity-lifecycle",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Instrumentation, Activity Attachment, and Lifecycle Dispatch",
+      "language": "kotlin",
+      "code": "override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState); trace(\"activity_create\") { restoreModel(savedInstanceState); setContent { Screen() } } }",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Reading resources, Window, or injected activity state from property initializers can run before Activity attachment and create ordering-dependent failures.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build an observable launch fixture that records constructor, attachment-safe hooks, lifecycle, saved-state restoration, first composition, and first frame across recreation and process death.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What critical objects are associated during Activity attachment?",
+        "answer": "Base context, application, component/token identity, window, instrumentation, configuration, and framework controllers."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+  "challengeId": "challenge-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Instrumentation, Activity Attachment, and Lifecycle Dispatch.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/Instrumentation.java",
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java",
+    "https://developer.android.com/guide/components/activities/activity-lifecycle"
+  ],
+  "version": "0.14.0"
+}

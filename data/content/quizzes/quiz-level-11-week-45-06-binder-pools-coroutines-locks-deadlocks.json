@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+  "title": "Binder Pools, Coroutines, Synchronisation, and Deadlocks Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks-decision",
+      "prompt": "Which approach best applies binder pools, coroutines, synchronisation, and deadlocks?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Keep locks away from remote or unknown calls, model actual dispatcher and Binder threads, and diagnose the complete wait-for graph.",
+        "Timeout cancels remote execution",
+        "Coroutines cannot deadlock",
+        "Fix cycles by adding threads"
+      ],
+      "answer": "Keep locks away from remote or unknown calls, model actual dispatcher and Binder threads, and diagnose the complete wait-for graph.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+    },
+    {
+      "id": "q-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks-truth",
+      "prompt": "A suspend function never blocks the thread that invokes it.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Increasing a Binder or coroutine thread pool can hide saturation briefly while preserving the wait cycle that causes the failure.",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+    },
+    {
+      "id": "q-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks-recall",
+      "prompt": "Why should state be copied before a synchronous Binder call?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It avoids holding an application lock across remote work that can block, reenter, call back, or die.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

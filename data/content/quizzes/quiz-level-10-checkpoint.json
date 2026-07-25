@@ -1,0 +1,167 @@
+{
+  "id": "quiz-level-10-checkpoint",
+  "title": "Level 10 Boss: Measured Performance and Release Health",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-01-performance-investigation-representative-evidence",
+    "level-10-week-40-02-cpu-perfetto-system-traces",
+    "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+    "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+    "level-10-week-40-05-battery-network-efficiency",
+    "level-10-week-40-06-application-size-delivery-analysis",
+    "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+    "level-10-week-41-02-startup-critical-path-providers-main-thread",
+    "level-10-week-41-03-app-startup-lazy-di-initialization",
+    "level-10-week-41-04-macrobenchmark-startup-measurement",
+    "level-10-week-41-05-baseline-profiles-critical-journeys",
+    "level-10-week-41-06-startup-profiles-dex-layout-release",
+    "level-10-week-42-01-anr-types-strictmode-diagnosis",
+    "level-10-week-42-02-managed-native-crashes-exit-info",
+    "level-10-week-42-03-oom-low-memory-process-death",
+    "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+    "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+    "level-10-week-42-06-compatible-migrations-rollback-planning",
+    "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+    "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+    "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+    "level-10-week-43-04-performance-monitoring-traces-slis",
+    "level-10-week-43-05-dashboards-release-health-slos-alerting",
+    "level-10-week-43-06-performance-observability-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-10-boss-1-structured-logging-event-taxonomy-redaction",
+      "prompt": "Checkpoint: Why should correlation values be bounded and non-identifying?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "They connect related operations without exposing identity or creating unbounded grouping cardinality. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "options": [
+        "Emit stable bounded events through a typed facade and redact sensitive data before it reaches any backend.",
+        "Log every method argument",
+        "Use email as correlation ID",
+        "Add timestamps to exception messages"
+      ],
+      "answer": "Emit stable bounded events through a typed facade and redact sensitive data before it reaches any backend."
+    },
+    {
+      "id": "q-level-10-boss-2-crash-reporting-breadcrumbs-correlation",
+      "prompt": "Select the two sound practices for crash reporting, breadcrumbs, and correlation.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Optimisation and linking change names and addresses per artifact, so nearby-build metadata can produce a false stack diagnosis. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "options": [
+        "Capture exact release context and bounded safe breadcrumbs, then prioritise grouped issues by affected users and user impact.",
+        "Capture matching runtime evidence and exercise one adverse path",
+        "Put request IDs in messages",
+        "Count every validation error as non-fatal"
+      ],
+      "answer": [
+        "Capture exact release context and bounded safe breadcrumbs, then prioritise grouped issues by affected users and user impact.",
+        "Capture matching runtime evidence and exercise one adverse path"
+      ]
+    },
+    {
+      "id": "q-level-10-boss-3-analytics-measurement-plan-consent-cardinality",
+      "prompt": "An increase in event count proves that more users completed the journey.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "A clearly defined eligible population and denominator collected under compatible semantics. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "answer": false
+    },
+    {
+      "id": "q-level-10-boss-4-performance-monitoring-traces-slis",
+      "prompt": "Checkpoint: Why pair an SLI with a data-quality indicator?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "Coverage, duplication, delay, or version skew can change the reported metric without changing the actual user experience. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis",
+      "answer": "Coverage, duplication, delay, or version skew can change the reported metric without changing the actual user experience.",
+      "acceptedAnswers": [
+        "Coverage, duplication, delay, or version skew can change the reported metric without changing the actual user experience."
+      ]
+    },
+    {
+      "id": "q-level-10-boss-5-dashboards-release-health-slos-alerting",
+      "prompt": "Order the investigation for operational dashboards, release health, slos, and alerting.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "It names user impact, affected cohort, trustworthy evidence, owner, urgency, and an immediate safe response. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "options": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ],
+      "answer": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ]
+    },
+    {
+      "id": "q-level-10-boss-6-performance-observability-capstone",
+      "prompt": "Match each systems question to its evidence for performance and observability capstone.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "Controlled lab measurements establish causal performance changes; field observability establishes population health after release. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone",
+      "options": [
+        "Ownership → process, service, thread, queue, or buffer",
+        "Timing → trace with expected and actual boundaries",
+        "Safety → denial, death, pressure, and compatibility tests"
+      ],
+      "answer": {
+        "Ownership": "process, service, thread, queue, or buffer",
+        "Timing": "trace with expected and actual boundaries",
+        "Safety": "denial, death, pressure, and compatibility tests"
+      }
+    },
+    {
+      "id": "q-level-10-boss-code-output",
+      "prompt": "Which result is a defensible performance capstone output?",
+      "type": "code_output",
+      "difficulty": "expert",
+      "options": [
+        "One fastest run",
+        "Versioned artifact, raw distributions, traces, profiles, CI guard, field SLI, gate, and recovery record",
+        "A screenshot of a green dashboard"
+      ],
+      "answer": "Versioned artifact, raw distributions, traces, profiles, CI guard, field SLI, gate, and recovery record",
+      "explanation": "The complete chain preserves causal laboratory evidence and population-level operational evidence.",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone"
+    },
+    {
+      "id": "q-level-10-boss-spot-bug",
+      "prompt": "Spot the central bug: the release dashboard groups every crash by a message containing a unique request ID and pages on raw event count.",
+      "type": "spot_bug",
+      "difficulty": "expert",
+      "answer": "Unique values fragment crash grouping and raw events ignore affected-user population; use bounded keys and user-impact rates with data-quality checks.",
+      "explanation": "Stable grouping and a defined denominator are required before a crash signal can support release decisions.",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+    },
+    {
+      "id": "q-level-10-boss-short-answer",
+      "prompt": "How should a team connect Macrobenchmark improvement to a staged-release decision?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Use the benchmark to establish a controlled causal improvement, then evaluate versioned field SLIs, telemetry quality, minimum samples, guardrails, and owned promote or halt actions.",
+      "explanation": "Laboratory and field evidence answer different questions and must meet at an explicit release gate.",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting"
+    }
+  ],
+  "rewards": {
+    "xp": 950,
+    "stars": 5
+  },
+  "version": "0.14.0"
+}

@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-01-launcher-intent-resolution-task-launch",
+  "title": "Launcher Intent Resolution and Task Launch",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+  ],
+  "tags": [
+    "internals",
+    "app-launch",
+    "intents"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand launcher intent resolution and task launch as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply launcher intent resolution and task launch."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A launcher tap sends an intent naming an action and category, usually resolving to the app launcher activity. PackageManager applies installed component, enabled state, user, visibility, exported, permission, and preferred-handler rules. ActivityTaskManager evaluates flags, launch modes, document policy, existing tasks, displays, and background-launch restrictions to choose or create task state. Resolution is not execution: the system still needs an appropriate process and must schedule the activity through the application Binder endpoint."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "If the process exists, launch can be delivered without Zygote. If absent, system services request process creation and retain pending launch state until the app attaches. Tokens connect the activity record and future window to server-owned identity; task IDs describe logical history, not Linux processes. Binder calls and callbacks cross between launcher, system_server, and app, often asynchronously around transition and process work. Warm and hot launches reuse different state, so a single cold-path diagram cannot explain all launches."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell am force-stop dev.droidquest; adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER dev.droidquest/.MainActivity",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Trace launcher tap, intent resolution, task decision, process start or reuse, client scheduling, lifecycle, window addition, frame submission, and display with Perfetto plus dumpsys before and after. Record launch flags and existing task conditions. Test deep links, multiple tasks, process death, configuration change, predictive back, multi-window, disabled components, permission denial, and background launch constraints. Use public intent and task contracts for app design; internal transaction class and trace names can change."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Interpreting am start -W total time as only application code ignores intent resolution, process creation, Binder scheduling, window, and system transition work."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "ActivityTaskManagerService Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Platform Architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/platform",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Activity Lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/activity-lifecycle",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Launcher Intent Resolution and Task Launch",
+      "language": "shell",
+      "code": "adb shell am force-stop dev.droidquest; adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER dev.droidquest/.MainActivity",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Interpreting am start -W total time as only application code ignores intent resolution, process creation, Binder scheduling, window, and system transition work.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Capture cold, warm, and hot launcher traces and label resolution, task policy, process state, client scheduling, lifecycle, window, first frame, and reported timing boundaries.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why is intent resolution distinct from activity execution?",
+        "answer": "Resolution selects an eligible component; task, process, scheduling, lifecycle, window, and rendering work still follow."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-01-launcher-intent-resolution-task-launch",
+  "challengeId": "challenge-level-11-week-45-01-launcher-intent-resolution-task-launch",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Launcher Intent Resolution and Task Launch.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java",
+    "https://developer.android.com/guide/platform",
+    "https://developer.android.com/guide/components/activities/activity-lifecycle"
+  ],
+  "version": "0.14.0"
+}

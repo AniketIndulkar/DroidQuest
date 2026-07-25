@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+  "title": "Apply RenderThread, Display Lists, and Hardware Acceleration",
+  "categoryId": "level-11-android-internals-aosp",
+  "lessonId": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+  "difficulty": "expert",
+  "estimatedMinutes": 60,
+  "prompt": "Profile a complex animated View, separate UI recording from RenderThread and GPU cost, evaluate a temporary layer, and verify frames, memory, and visuals.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "view.animate().translationX(target).alpha(0.8f).withLayer().withEndAction { view.setLayerType(View.LAYER_TYPE_NONE, null) }"
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "title": "Analytics Measurement Plans, Consent, and Cardinality Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-03-analytics-measurement-plan-consent-cardinality-decision",
+      "prompt": "Which approach best applies analytics measurement plans, consent, and cardinality?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Start with a decision and a versioned bounded event contract whose population, consent, and failure semantics are explicit.",
+        "Track every tap",
+        "Use raw IDs for accuracy",
+        "Redefine events without versioning"
+      ],
+      "answer": "Start with a decision and a versioned bounded event contract whose population, consent, and failure semantics are explicit.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+    },
+    {
+      "id": "q-level-10-week-43-03-analytics-measurement-plan-consent-cardinality-truth",
+      "prompt": "An increase in event count proves that more users completed the journey.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Sending a unique order ID as an analytics parameter creates high cardinality and may turn product measurement into unnecessary personal or transactional tracking.",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+    },
+    {
+      "id": "q-level-10-week-43-03-analytics-measurement-plan-consent-cardinality-recall",
+      "prompt": "What must accompany a conversion numerator?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "A clearly defined eligible population and denominator collected under compatible semantics.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

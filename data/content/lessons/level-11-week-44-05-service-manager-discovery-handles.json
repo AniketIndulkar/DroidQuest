@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-44-05-service-manager-discovery-handles",
+  "title": "ServiceManager Discovery and Binder Handles",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 44,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+  ],
+  "tags": [
+    "internals",
+    "service-manager",
+    "binder"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand servicemanager discovery and binder handles as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply servicemanager discovery and binder handles."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Clients need an initial route to a Binder endpoint. The ServiceManager is the context manager and registry for a Binder domain: privileged services publish a name and Binder object, while clients resolve the name to a handle and wrap it in a typed proxy. This bootstrap does not make ServiceManager the execution host for every service. Framework, vendor, and hardware communication can use distinct domains and stability contracts; modern HAL interfaces use stable AIDL where applicable rather than assuming one universal registry."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Service discovery has policy: who may register, find, or call a service is constrained by SELinux service contexts, permissions, visibility, interface stability, and boot readiness. A returned handle identifies a Binder object through the driver; it is not a raw cross-process pointer. Caching a proxy is common, but the hosting process can die. Clients need explicit reconnection and must decide whether an operation is safe to repeat. Apps ordinarily obtain supported managers from Context instead of querying hidden service names."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell service list; adb shell dumpsys -l; # Map a public Context service to its Binder registry entry and owning process.",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Inspect adb shell service list and service-specific dumpsys output, then relate a public manager to its registered endpoint and source. On an AOSP build, trace addService and getService events, registration ordering, access denial, and service death. Avoid service call commands on production data unless the transaction is understood; numeric codes and parcel formats are internal and release-dependent. Platform services need declared SELinux entries, stable ownership, compatibility tests, boot phase behavior, dump permissions, and diagnosable failure."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Using reflection to fetch an undocumented service name couples an app to hidden policy, interfaces, transaction behavior, and release-specific availability."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Binder Overview",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture/ipc/binder-overview",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "AOSP Architecture Overview",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Platform Architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/platform",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect ServiceManager Discovery and Binder Handles",
+      "language": "shell",
+      "code": "adb shell service list; adb shell dumpsys -l; # Map a public Context service to its Binder registry entry and owning process.",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using reflection to fetch an undocumented service name couples an app to hidden policy, interfaces, transaction behavior, and release-specific availability.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Map three Context managers to registry names, Binder interfaces, hosting processes, permissions, death behavior, dumpsys surfaces, and stability guarantees.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What does ServiceManager return to a successful lookup?",
+        "answer": "A Binder reference or handle that the client wraps in a proxy for the endpoint hosted elsewhere."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-44-05-service-manager-discovery-handles",
+  "challengeId": "challenge-level-11-week-44-05-service-manager-discovery-handles",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind ServiceManager Discovery and Binder Handles.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/architecture/ipc/binder-overview",
+    "https://source.android.com/docs/core/architecture",
+    "https://developer.android.com/guide/platform"
+  ],
+  "version": "0.14.0"
+}

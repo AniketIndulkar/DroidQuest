@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.13.0",
-  "contentRevision": 13,
+  "curriculumVersion": "0.14.0",
+  "contentRevision": 14,
   "counts": {
     "categories": 12,
-    "lessons": 242,
-    "quizzes": 291,
-    "challenges": 242,
-    "badges": 49,
-    "glossaryEntries": 254
+    "lessons": 266,
+    "quizzes": 319,
+    "challenges": 266,
+    "badges": 53,
+    "glossaryEntries": 277
   },
   "categories": [
     {
@@ -338,18 +338,43 @@
         "level-10-week-42-03-oom-low-memory-process-death",
         "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
         "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
-        "level-10-week-42-06-compatible-migrations-rollback-planning"
+        "level-10-week-42-06-compatible-migrations-rollback-planning",
+        "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+        "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+        "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+        "level-10-week-43-04-performance-monitoring-traces-slis",
+        "level-10-week-43-05-dashboards-release-health-slos-alerting",
+        "level-10-week-43-06-performance-observability-capstone"
       ],
       "path": "content/categories/level-10-performance-reliability-observability.json",
-      "sha256": "af8f1bc7489483c2b8acae824b2131b7c7cc71f0ec1da1b2a7d68b331d3b9d8b"
+      "sha256": "f776f95400a7092dfadcf2013ad60c180ef97f7227b5190c5d215d4590b2b98b"
     },
     {
       "id": "level-11-android-internals-aosp",
       "title": "Level 11: Android Internals and AOSP",
       "order": 11,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+        "level-11-week-44-02-zygote-fork-app-process-creation",
+        "level-11-week-44-03-system-server-boot-system-services",
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+        "level-11-week-44-05-service-manager-discovery-handles",
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+        "level-11-week-45-01-launcher-intent-resolution-task-launch",
+        "level-11-week-45-02-activitythread-main-application-bind",
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+        "level-11-week-45-04-window-creation-surface-first-frame",
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+        "level-11-week-46-01-view-traversal-measure-layout-draw",
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ],
       "path": "content/categories/level-11-android-internals-aosp.json",
-      "sha256": "5c61beb6b8c16e6746439c004dd4760d6067d91644d4105fd1f20d76b2e81e93"
+      "sha256": "2592c5634d184c0ddde465394bb8a898ed46c7a33d9dee329a6fa82fc7a8755f"
     },
     {
       "id": "level-12-advanced-specialisations",
@@ -3796,6 +3821,342 @@
       ],
       "path": "content/lessons/level-10-week-42-06-compatible-migrations-rollback-planning.json",
       "sha256": "4a1e144e0f79d8425e81fb2868318b6d1ec25a9dc2acbf9a40f49c34c45e0343"
+    },
+    {
+      "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "title": "Structured Logging, Event Taxonomy, and Redaction",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "observability",
+        "logging",
+        "privacy"
+      ],
+      "path": "content/lessons/level-10-week-43-01-structured-logging-event-taxonomy-redaction.json",
+      "sha256": "cd0645d499af14b62a909f43060c5cff564da4681dacef9769d076fb790cc294"
+    },
+    {
+      "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "title": "Crash Reporting, Breadcrumbs, and Correlation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "observability",
+        "crash-reporting",
+        "correlation"
+      ],
+      "path": "content/lessons/level-10-week-43-02-crash-reporting-breadcrumbs-correlation.json",
+      "sha256": "f6c43164be7d8a54fc0967cd62a6d64cd6a0734c23205bf67ff0c52ac635c431"
+    },
+    {
+      "id": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "title": "Analytics Measurement Plans, Consent, and Cardinality",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "observability",
+        "analytics",
+        "privacy"
+      ],
+      "path": "content/lessons/level-10-week-43-03-analytics-measurement-plan-consent-cardinality.json",
+      "sha256": "83d049defe11c9ef15bec968ab901f01bf038bd73deb6dcb9433e03b5119c658"
+    },
+    {
+      "id": "level-10-week-43-04-performance-monitoring-traces-slis",
+      "title": "Performance Monitoring, Custom Traces, and SLIs",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "observability",
+        "performance",
+        "sli"
+      ],
+      "path": "content/lessons/level-10-week-43-04-performance-monitoring-traces-slis.json",
+      "sha256": "f04c0cb235d8be539789dbdfb57be15ffeef1c175a1d958f279778bfd96991bd"
+    },
+    {
+      "id": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "title": "Operational Dashboards, Release Health, SLOs, and Alerting",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "observability",
+        "release-health",
+        "slo"
+      ],
+      "path": "content/lessons/level-10-week-43-05-dashboards-release-health-slos-alerting.json",
+      "sha256": "3e975ba8b1fb986d571ed026b98912bbc7d057bce417f179d542cb0731b366fb"
+    },
+    {
+      "id": "level-10-week-43-06-performance-observability-capstone",
+      "title": "Performance and Observability Capstone",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "observability",
+        "capstone"
+      ],
+      "path": "content/lessons/level-10-week-43-06-performance-observability-capstone.json",
+      "sha256": "597a3914bd90cf793b406be710adbfed5f21ef7b9dc067984bcffee9b923318d"
+    },
+    {
+      "id": "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "title": "Linux Processes, Threads, UIDs, and the App Sandbox",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "linux",
+        "processes"
+      ],
+      "path": "content/lessons/level-11-week-44-01-linux-processes-threads-uids-sandbox.json",
+      "sha256": "82bf1c67ac67d59f09b9e4cb59378e13e972b7eadac314fe367e870d44c7f7ff"
+    },
+    {
+      "id": "level-11-week-44-02-zygote-fork-app-process-creation",
+      "title": "Zygote, Forking, and Application Process Creation",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "zygote",
+        "process-start"
+      ],
+      "path": "content/lessons/level-11-week-44-02-zygote-fork-app-process-creation.json",
+      "sha256": "35ade1208be7fb32422fd9e28cb570f006a800c98d169c3f02d9fe332fa2004a"
+    },
+    {
+      "id": "level-11-week-44-03-system-server-boot-system-services",
+      "title": "system_server Boot and System Service Architecture",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "system-server",
+        "services"
+      ],
+      "path": "content/lessons/level-11-week-44-03-system-server-boot-system-services.json",
+      "sha256": "af229de36a8dd98a988df9df8446abc92fa3c38c5ceb65267505cb4f1e350b25"
+    },
+    {
+      "id": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "title": "Binder Transactions, Proxies, Stubs, Identity, and Death",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "binder",
+        "ipc"
+      ],
+      "path": "content/lessons/level-11-week-44-04-binder-proxy-stub-parcel-identity-death.json",
+      "sha256": "8437231adbd3cccef22db5f3bc1e58a67315d64b6273fcdf37dc5b3ddfb9507e"
+    },
+    {
+      "id": "level-11-week-44-05-service-manager-discovery-handles",
+      "title": "ServiceManager Discovery and Binder Handles",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "service-manager",
+        "binder"
+      ],
+      "path": "content/lessons/level-11-week-44-05-service-manager-discovery-handles.json",
+      "sha256": "aadfec36d052c301aaacef50a7b2ac4869f1852dae11002edc301e399c5f6557"
+    },
+    {
+      "id": "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "title": "Activity, Task, Package, and Window Manager Boundaries",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "system-services",
+        "framework"
+      ],
+      "path": "content/lessons/level-11-week-44-06-activity-task-package-window-manager-boundaries.json",
+      "sha256": "96ef197867a65c693db62a6674af1fb6af86d1965180b1b0afc44335944509ac"
+    },
+    {
+      "id": "level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "title": "Launcher Intent Resolution and Task Launch",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "app-launch",
+        "intents"
+      ],
+      "path": "content/lessons/level-11-week-45-01-launcher-intent-resolution-task-launch.json",
+      "sha256": "8476d66418d536f0c3d30b6fb480d4768a9941ef4b5f3d2d7ba9a6f9263c3d64"
+    },
+    {
+      "id": "level-11-week-45-02-activitythread-main-application-bind",
+      "title": "ActivityThread.main and Application Binding",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "activitythread",
+        "process-start"
+      ],
+      "path": "content/lessons/level-11-week-45-02-activitythread-main-application-bind.json",
+      "sha256": "1c6dc143c4925592de849bf1bfe4866bee0157a7a56984595a46a8fae5ae7ce5"
+    },
+    {
+      "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "title": "Instrumentation, Activity Attachment, and Lifecycle Dispatch",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "instrumentation",
+        "lifecycle"
+      ],
+      "path": "content/lessons/level-11-week-45-03-instrumentation-activity-attach-lifecycle.json",
+      "sha256": "751154423176eefa198bfb1d048a0ebb43af2a4da6caf36d1566d716088d0981"
+    },
+    {
+      "id": "level-11-week-45-04-window-creation-surface-first-frame",
+      "title": "Window Creation, Surface Setup, and the First Frame",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "window-manager",
+        "first-frame"
+      ],
+      "path": "content/lessons/level-11-week-45-04-window-creation-surface-first-frame.json",
+      "sha256": "bcd95b6cebcb1b645855f36b14c5e0cd3fc3451665fd1ada72bce99de64b463c"
+    },
+    {
+      "id": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "title": "Looper, MessageQueue, Handler, and Frame Starvation",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "looper",
+        "main-thread"
+      ],
+      "path": "content/lessons/level-11-week-45-05-looper-messagequeue-handler-frame-starvation.json",
+      "sha256": "0023f056e22330f4a17bbdc9a270b708edd65dd794f5def6c2d7147cfa9f3bcf"
+    },
+    {
+      "id": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "title": "Binder Pools, Coroutines, Synchronisation, and Deadlocks",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "threading",
+        "deadlocks"
+      ],
+      "path": "content/lessons/level-11-week-45-06-binder-pools-coroutines-locks-deadlocks.json",
+      "sha256": "33f1f66318495763703e3e3dbfbe53dd2dc53c3a52d298143f738587eca61b73"
+    },
+    {
+      "id": "level-11-week-46-01-view-traversal-measure-layout-draw",
+      "title": "View Traversal: Measure, Layout, Draw, and Invalidation",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "views",
+        "rendering"
+      ],
+      "path": "content/lessons/level-11-week-46-01-view-traversal-measure-layout-draw.json",
+      "sha256": "174337a15cc147b074b7fe1105a078f02487e33186f7bf041088dcd02ad9b264"
+    },
+    {
+      "id": "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "title": "Compose Phases, Snapshot Reads, and Skippable Work",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "compose",
+        "rendering"
+      ],
+      "path": "content/lessons/level-11-week-46-02-compose-composition-layout-draw-snapshots.json",
+      "sha256": "178115d5bd58e254ad9c22eda4b69eb498187cce0de906afbcd842e74caee55c"
+    },
+    {
+      "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "title": "Choreographer, VSync, FrameTimeline, and Deadlines",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "choreographer",
+        "frame-timing"
+      ],
+      "path": "content/lessons/level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines.json",
+      "sha256": "3d9193557cfbd04042d48ab06e63694b96b717b892cf9e10ed77699e0495e8f3"
+    },
+    {
+      "id": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "title": "RenderThread, Display Lists, and Hardware Acceleration",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "renderthread",
+        "gpu"
+      ],
+      "path": "content/lessons/level-11-week-46-04-renderthread-display-lists-hardware-acceleration.json",
+      "sha256": "47ff6b6d9f4110e1acaccd883cea222d0f75cfece7391c87661e83d6b183017e"
+    },
+    {
+      "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "title": "Surface, BufferQueue, Gralloc, and Synchronisation Fences",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "bufferqueue",
+        "graphics"
+      ],
+      "path": "content/lessons/level-11-week-46-05-surface-bufferqueue-gralloc-fences.json",
+      "sha256": "2f1071fb60ff7838c4245476655f0a784041ca0c778c5ae8f8cfb57442400048"
+    },
+    {
+      "id": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "title": "SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "surfaceflinger",
+        "composition"
+      ],
+      "path": "content/lessons/level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
+      "sha256": "5edec9f9f4dc0e32bbb1194ea813ec71a616d27430b8fdec0a4967c39b962d1b"
     }
   ],
   "quizzes": [
@@ -7160,6 +7521,40 @@
       "sha256": "c62a983a820fb6fbef7a953d3097bb2fdba319276eec696d74479360e5ceb4f7"
     },
     {
+      "id": "quiz-level-10-checkpoint",
+      "title": "Level 10 Boss: Measured Performance and Release Health",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence",
+        "level-10-week-40-02-cpu-perfetto-system-traces",
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+        "level-10-week-40-05-battery-network-efficiency",
+        "level-10-week-40-06-application-size-delivery-analysis",
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+        "level-10-week-41-02-startup-critical-path-providers-main-thread",
+        "level-10-week-41-03-app-startup-lazy-di-initialization",
+        "level-10-week-41-04-macrobenchmark-startup-measurement",
+        "level-10-week-41-05-baseline-profiles-critical-journeys",
+        "level-10-week-41-06-startup-profiles-dex-layout-release",
+        "level-10-week-42-01-anr-types-strictmode-diagnosis",
+        "level-10-week-42-02-managed-native-crashes-exit-info",
+        "level-10-week-42-03-oom-low-memory-process-death",
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+        "level-10-week-42-06-compatible-migrations-rollback-planning",
+        "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+        "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+        "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+        "level-10-week-43-04-performance-monitoring-traces-slis",
+        "level-10-week-43-05-dashboards-release-health-slos-alerting",
+        "level-10-week-43-06-performance-observability-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-10-checkpoint.json",
+      "sha256": "3c3df625d0f2056d321e170e1f25b8c321f14f1b9e0e511d7d87fb1b4ded2458"
+    },
+    {
       "id": "quiz-level-10-week-40-01-performance-investigation-representative-evidence",
       "title": "Performance Investigation from User Impact to Evidence Check",
       "categoryId": "level-10-performance-reliability-observability",
@@ -7404,6 +7799,318 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-10-week-42-checkpoint.json",
       "sha256": "443c6acfc1892e0b9956e293759732ebcda39c7dfd4d103bf43ab93934061a7d"
+    },
+    {
+      "id": "quiz-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "title": "Structured Logging, Event Taxonomy, and Redaction Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-01-structured-logging-event-taxonomy-redaction.json",
+      "sha256": "076c31b386337d34e23fca875cc472a897835a50313b29c8924bd1e32ee9e456"
+    },
+    {
+      "id": "quiz-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "title": "Crash Reporting, Breadcrumbs, and Correlation Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-02-crash-reporting-breadcrumbs-correlation.json",
+      "sha256": "26e3b9d524ea0fcc9bb5410540596926476aafddafc60233fc0b48176173bb2a"
+    },
+    {
+      "id": "quiz-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "title": "Analytics Measurement Plans, Consent, and Cardinality Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-03-analytics-measurement-plan-consent-cardinality"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-03-analytics-measurement-plan-consent-cardinality.json",
+      "sha256": "49c199d0bd882b6640b5790c6509bbc0ccc10d9507e3b4f8454131f2710429e6"
+    },
+    {
+      "id": "quiz-level-10-week-43-04-performance-monitoring-traces-slis",
+      "title": "Performance Monitoring, Custom Traces, and SLIs Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-04-performance-monitoring-traces-slis"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-04-performance-monitoring-traces-slis.json",
+      "sha256": "287beb427c4997a4f392c998c7b9642719091702a8dc4c22fb85817f9f298efe"
+    },
+    {
+      "id": "quiz-level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "title": "Operational Dashboards, Release Health, SLOs, and Alerting Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-05-dashboards-release-health-slos-alerting"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-05-dashboards-release-health-slos-alerting.json",
+      "sha256": "90987046bf95cc822c3e9bac4a4e05b50462fe36f41081ac0c042e843d372bbd"
+    },
+    {
+      "id": "quiz-level-10-week-43-06-performance-observability-capstone",
+      "title": "Performance and Observability Capstone Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-43-06-performance-observability-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-43-06-performance-observability-capstone.json",
+      "sha256": "75203727110e2be7c757a0ac141369c5f58094e59b259f96c72df52fb0ea3230"
+    },
+    {
+      "id": "quiz-level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "title": "Linux Processes, Threads, UIDs, and the App Sandbox Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-01-linux-processes-threads-uids-sandbox.json",
+      "sha256": "26347d01df03ac89ae8658f508e47d2855be84b04a9d587cec9e5e157f8fe956"
+    },
+    {
+      "id": "quiz-level-11-week-44-02-zygote-fork-app-process-creation",
+      "title": "Zygote, Forking, and Application Process Creation Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-02-zygote-fork-app-process-creation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-02-zygote-fork-app-process-creation.json",
+      "sha256": "893ad1f578b093b73c9973ce53eefe157004ba108599aad8005008124d4c66c1"
+    },
+    {
+      "id": "quiz-level-11-week-44-03-system-server-boot-system-services",
+      "title": "system_server Boot and System Service Architecture Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-03-system-server-boot-system-services"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-03-system-server-boot-system-services.json",
+      "sha256": "9ab6f52603fb2c97ca4bbca1b3d671b561bff3c9b9b550c60d7136863d1b6f97"
+    },
+    {
+      "id": "quiz-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "title": "Binder Transactions, Proxies, Stubs, Identity, and Death Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-04-binder-proxy-stub-parcel-identity-death.json",
+      "sha256": "a00f6cd27146de9ed2ecb6a7b0ce4b19e3e4ba81a486787aa075982d86ef220c"
+    },
+    {
+      "id": "quiz-level-11-week-44-05-service-manager-discovery-handles",
+      "title": "ServiceManager Discovery and Binder Handles Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-05-service-manager-discovery-handles"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-05-service-manager-discovery-handles.json",
+      "sha256": "324fbcff23ae375c1508b4217522caabe237f95cf0f698590e985f31610ea2d0"
+    },
+    {
+      "id": "quiz-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "title": "Activity, Task, Package, and Window Manager Boundaries Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-44-06-activity-task-package-window-manager-boundaries.json",
+      "sha256": "2612abed80dc5f399e3ded292148cec648c0423ee8b5361812eca612d475d464"
+    },
+    {
+      "id": "quiz-level-11-week-44-checkpoint",
+      "title": "Week 44: Processes, Zygote, Binder, and System Services Checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+        "level-11-week-44-02-zygote-fork-app-process-creation",
+        "level-11-week-44-03-system-server-boot-system-services",
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+        "level-11-week-44-05-service-manager-discovery-handles",
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-11-week-44-checkpoint.json",
+      "sha256": "52f8b0158ef3ed7fc0e4a0cac7f5ccbbda3d6aa23474bd8c083e26a6d956f1cc"
+    },
+    {
+      "id": "quiz-level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "title": "Launcher Intent Resolution and Task Launch Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-01-launcher-intent-resolution-task-launch"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-01-launcher-intent-resolution-task-launch.json",
+      "sha256": "50e5d3aca2349073ee9d074814efa6fcc6ddb2f7494c1b25c02f7ab0c51297d7"
+    },
+    {
+      "id": "quiz-level-11-week-45-02-activitythread-main-application-bind",
+      "title": "ActivityThread.main and Application Binding Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-02-activitythread-main-application-bind"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-02-activitythread-main-application-bind.json",
+      "sha256": "5e57c38123e56e0d6a8284ca69b0a122b642a573166a293ed7189f43166c137e"
+    },
+    {
+      "id": "quiz-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "title": "Instrumentation, Activity Attachment, and Lifecycle Dispatch Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-03-instrumentation-activity-attach-lifecycle.json",
+      "sha256": "29b348dda81f9adf226816312f77b47ee8ae3857f0d32b76dd9753f53526c9cc"
+    },
+    {
+      "id": "quiz-level-11-week-45-04-window-creation-surface-first-frame",
+      "title": "Window Creation, Surface Setup, and the First Frame Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-04-window-creation-surface-first-frame"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-04-window-creation-surface-first-frame.json",
+      "sha256": "cdce8e4487b0ab95925221582c3d445faa312258c5105b4ddcbdf02b5c108cc4"
+    },
+    {
+      "id": "quiz-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "title": "Looper, MessageQueue, Handler, and Frame Starvation Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-05-looper-messagequeue-handler-frame-starvation.json",
+      "sha256": "034fb173183b0db674e9967099cfe4264b887d5d52110aff370df2b05bc7b0ea"
+    },
+    {
+      "id": "quiz-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "title": "Binder Pools, Coroutines, Synchronisation, and Deadlocks Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks.json",
+      "sha256": "89eb86181492eee4d8c91bf9bd8be2d6720d87ebf04dc90ef7c403a57df776d7"
+    },
+    {
+      "id": "quiz-level-11-week-45-checkpoint",
+      "title": "Week 45: Application Launch and Threading Internals Checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-45-01-launcher-intent-resolution-task-launch",
+        "level-11-week-45-02-activitythread-main-application-bind",
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+        "level-11-week-45-04-window-creation-surface-first-frame",
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-11-week-45-checkpoint.json",
+      "sha256": "da073a4a55d923048a1c7b38b3142aa645350ab46c578a53ecb9e881bdac9933"
+    },
+    {
+      "id": "quiz-level-11-week-46-01-view-traversal-measure-layout-draw",
+      "title": "View Traversal: Measure, Layout, Draw, and Invalidation Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-01-view-traversal-measure-layout-draw"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-01-view-traversal-measure-layout-draw.json",
+      "sha256": "75977dd95399c1f910d937c9db1fc6d5377a9fa31bb32a2b22434dbdc55a7bbb"
+    },
+    {
+      "id": "quiz-level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "title": "Compose Phases, Snapshot Reads, and Skippable Work Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-02-compose-composition-layout-draw-snapshots.json",
+      "sha256": "1d9dc2b0ded3786a2323ecc111a45b33d04478b2791979a81fed8fbb4dcb492a"
+    },
+    {
+      "id": "quiz-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "title": "Choreographer, VSync, FrameTimeline, and Deadlines Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines.json",
+      "sha256": "925a7630d5df949b224a50b5ddfdb53d5ae48063d1399c485fe2d59fe516c1a7"
+    },
+    {
+      "id": "quiz-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "title": "RenderThread, Display Lists, and Hardware Acceleration Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-04-renderthread-display-lists-hardware-acceleration.json",
+      "sha256": "8dc22a739d8e6874796341f0e1bcb6ae78ddd483dc182853bdeca1921232a7fb"
+    },
+    {
+      "id": "quiz-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "title": "Surface, BufferQueue, Gralloc, and Synchronisation Fences Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-05-surface-bufferqueue-gralloc-fences.json",
+      "sha256": "636405704ee14081332622127b8d44e77016b7643de641440b95bc8ece4ef5ec"
+    },
+    {
+      "id": "quiz-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "title": "SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
+      "sha256": "661d91134f0f95438c7c67db5566656a76fcd914c7c3b51b4642970fa006f7ac"
+    },
+    {
+      "id": "quiz-level-11-week-46-checkpoint",
+      "title": "Week 46: Android Rendering Pipeline Checkpoint",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-46-01-view-traversal-measure-layout-draw",
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-11-week-46-checkpoint.json",
+      "sha256": "7dde5e3e93ac1e4a5f063970236b7ca4d47d5b661f56fb460f607ac5877a49bd"
     }
   ],
   "challenges": [
@@ -9342,6 +10049,198 @@
       "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning",
       "path": "content/challenges/challenge-level-10-week-42-06-compatible-migrations-rollback-planning.json",
       "sha256": "a941183a08dd28550eb8d252c1ce31a17357672bdbe2fda5260cda6633331cdf"
+    },
+    {
+      "id": "challenge-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "title": "Apply Structured Logging, Event Taxonomy, and Redaction",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+      "path": "content/challenges/challenge-level-10-week-43-01-structured-logging-event-taxonomy-redaction.json",
+      "sha256": "9ff75c7ab9fe71e78e86d4b94194bdf9ac14470c8cb531ec4d831e4c51467f3e"
+    },
+    {
+      "id": "challenge-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "title": "Apply Crash Reporting, Breadcrumbs, and Correlation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+      "path": "content/challenges/challenge-level-10-week-43-02-crash-reporting-breadcrumbs-correlation.json",
+      "sha256": "7284fd5febdafed657ce8546910fdc5ded4bc45d7c95508efe081ee2372a3bc1"
+    },
+    {
+      "id": "challenge-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "title": "Apply Analytics Measurement Plans, Consent, and Cardinality",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+      "path": "content/challenges/challenge-level-10-week-43-03-analytics-measurement-plan-consent-cardinality.json",
+      "sha256": "f4a366ee5eb2bea564bbdfb13e0355ec251bb1de2ede298df2e2caedc47776a6"
+    },
+    {
+      "id": "challenge-level-10-week-43-04-performance-monitoring-traces-slis",
+      "title": "Apply Performance Monitoring, Custom Traces, and SLIs",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-04-performance-monitoring-traces-slis",
+      "path": "content/challenges/challenge-level-10-week-43-04-performance-monitoring-traces-slis.json",
+      "sha256": "5bf42b118c89927e865533843b8700c08676bd5f16ce7483f99e9839213b0f56"
+    },
+    {
+      "id": "challenge-level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "title": "Apply Operational Dashboards, Release Health, SLOs, and Alerting",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+      "path": "content/challenges/challenge-level-10-week-43-05-dashboards-release-health-slos-alerting.json",
+      "sha256": "dcb9a54917c494f7cfec10cfe6906b73a0d20a51abd9c99efbcd892fd86070a5"
+    },
+    {
+      "id": "challenge-level-10-week-43-06-performance-observability-capstone",
+      "title": "Apply Performance and Observability Capstone",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-43-06-performance-observability-capstone",
+      "path": "content/challenges/challenge-level-10-week-43-06-performance-observability-capstone.json",
+      "sha256": "9cac3379cee6680ec2c49aafd1735ed3893ebb176185a2a2399f32bceb9c7025"
+    },
+    {
+      "id": "challenge-level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "title": "Apply Linux Processes, Threads, UIDs, and the App Sandbox",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+      "path": "content/challenges/challenge-level-11-week-44-01-linux-processes-threads-uids-sandbox.json",
+      "sha256": "682d5fc47cf6b6e58d8f10368d8f9fb98a270103c8fcf80364aea061a07e2a87"
+    },
+    {
+      "id": "challenge-level-11-week-44-02-zygote-fork-app-process-creation",
+      "title": "Apply Zygote, Forking, and Application Process Creation",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-02-zygote-fork-app-process-creation",
+      "path": "content/challenges/challenge-level-11-week-44-02-zygote-fork-app-process-creation.json",
+      "sha256": "906e7fc7ce04ab419accf7f79b1ef0524435acf79bddeb90534ff8041806ab31"
+    },
+    {
+      "id": "challenge-level-11-week-44-03-system-server-boot-system-services",
+      "title": "Apply system_server Boot and System Service Architecture",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-03-system-server-boot-system-services",
+      "path": "content/challenges/challenge-level-11-week-44-03-system-server-boot-system-services.json",
+      "sha256": "af6d5438b642fb737a9e1c7952440d728e05d5d231f1116fc241c9a72a797fba"
+    },
+    {
+      "id": "challenge-level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "title": "Apply Binder Transactions, Proxies, Stubs, Identity, and Death",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+      "path": "content/challenges/challenge-level-11-week-44-04-binder-proxy-stub-parcel-identity-death.json",
+      "sha256": "1cd414d2aa338681e8b81783ff799daa59481a43b1b789bc9372d3bdbe564735"
+    },
+    {
+      "id": "challenge-level-11-week-44-05-service-manager-discovery-handles",
+      "title": "Apply ServiceManager Discovery and Binder Handles",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-05-service-manager-discovery-handles",
+      "path": "content/challenges/challenge-level-11-week-44-05-service-manager-discovery-handles.json",
+      "sha256": "d4f09ff7754a191285b7d12ea13b48247ec922d9bc635b87ad21961fc7365715"
+    },
+    {
+      "id": "challenge-level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "title": "Apply Activity, Task, Package, and Window Manager Boundaries",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+      "path": "content/challenges/challenge-level-11-week-44-06-activity-task-package-window-manager-boundaries.json",
+      "sha256": "3708acc32b4ebb701f9eefad8c8ff4461edff4fe8814f013b9279d3dfc891d63"
+    },
+    {
+      "id": "challenge-level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "title": "Apply Launcher Intent Resolution and Task Launch",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "path": "content/challenges/challenge-level-11-week-45-01-launcher-intent-resolution-task-launch.json",
+      "sha256": "ecb37ec99267fadc9403eaf81d548c7729fd0bed85f6e49bfaf7caf1f6760c7a"
+    },
+    {
+      "id": "challenge-level-11-week-45-02-activitythread-main-application-bind",
+      "title": "Apply ActivityThread.main and Application Binding",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-02-activitythread-main-application-bind",
+      "path": "content/challenges/challenge-level-11-week-45-02-activitythread-main-application-bind.json",
+      "sha256": "f1202960a721d6035d71e19c244b1621c10908fa7a23593de00ead3af77d443d"
+    },
+    {
+      "id": "challenge-level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "title": "Apply Instrumentation, Activity Attachment, and Lifecycle Dispatch",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "path": "content/challenges/challenge-level-11-week-45-03-instrumentation-activity-attach-lifecycle.json",
+      "sha256": "ebc3a157a4d1df7a68392f38334d835248ea293f3b2bf59ae955fcccff01be34"
+    },
+    {
+      "id": "challenge-level-11-week-45-04-window-creation-surface-first-frame",
+      "title": "Apply Window Creation, Surface Setup, and the First Frame",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame",
+      "path": "content/challenges/challenge-level-11-week-45-04-window-creation-surface-first-frame.json",
+      "sha256": "f9e16a21ca4e1a09027db91d541fc39ab288d8ad212060143676f0426ff347be"
+    },
+    {
+      "id": "challenge-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "title": "Apply Looper, MessageQueue, Handler, and Frame Starvation",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "path": "content/challenges/challenge-level-11-week-45-05-looper-messagequeue-handler-frame-starvation.json",
+      "sha256": "cc1bbb73a98143cc4b56d076553ec4c420868bf63b024a9488c4c3711440987d"
+    },
+    {
+      "id": "challenge-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "title": "Apply Binder Pools, Coroutines, Synchronisation, and Deadlocks",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "path": "content/challenges/challenge-level-11-week-45-06-binder-pools-coroutines-locks-deadlocks.json",
+      "sha256": "54cdfdca712b5db418820a7ec5934f8c5c8d80ae41f22e1b6d9a308d2baa463c"
+    },
+    {
+      "id": "challenge-level-11-week-46-01-view-traversal-measure-layout-draw",
+      "title": "Apply View Traversal: Measure, Layout, Draw, and Invalidation",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-01-view-traversal-measure-layout-draw",
+      "path": "content/challenges/challenge-level-11-week-46-01-view-traversal-measure-layout-draw.json",
+      "sha256": "9f9cccdf4ae5bfa913cd3b82cb1ccf8640f61cda211f0d1699e18b32720ddd49"
+    },
+    {
+      "id": "challenge-level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "title": "Apply Compose Phases, Snapshot Reads, and Skippable Work",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "path": "content/challenges/challenge-level-11-week-46-02-compose-composition-layout-draw-snapshots.json",
+      "sha256": "e09c1b63dbeae8f7609a2e048e8a6e3a77472657759ae0c4ca6db0e89b51dceb"
+    },
+    {
+      "id": "challenge-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "title": "Apply Choreographer, VSync, FrameTimeline, and Deadlines",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "path": "content/challenges/challenge-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines.json",
+      "sha256": "0148d51f8abe85f02541038df7824dbf85864e0c42f68dff6f2bc309fd5575af"
+    },
+    {
+      "id": "challenge-level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "title": "Apply RenderThread, Display Lists, and Hardware Acceleration",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "path": "content/challenges/challenge-level-11-week-46-04-renderthread-display-lists-hardware-acceleration.json",
+      "sha256": "1f1f46794c515d62de5a93fd3ac3cea95303c7071119aa3de42e3b0c02b620a6"
+    },
+    {
+      "id": "challenge-level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "title": "Apply Surface, BufferQueue, Gralloc, and Synchronisation Fences",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "path": "content/challenges/challenge-level-11-week-46-05-surface-bufferqueue-gralloc-fences.json",
+      "sha256": "69b39fe341f065d1eecf813d0581622a9c82bc5dd9481e07d0aef61541c7269e"
+    },
+    {
+      "id": "challenge-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "title": "Apply SurfaceFlinger, Hardware Composer, and End-to-End Frame Tracing",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "path": "content/challenges/challenge-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
+      "sha256": "682730b51aae8edd34bef03fee7608f777c8b6fcf4fe5a52e0ea377cdca79505"
     }
   ],
   "badges": [
@@ -9668,6 +10567,13 @@
       "sha256": "90c33530aa963bc289a1f619a6d5b6f0ad9bea64c7ba014eb913ae9d4ee89bbc"
     },
     {
+      "id": "badge-level-10-performance-reliability-observability",
+      "title": "Android Performance and Reliability Engineer",
+      "categoryId": "level-10-performance-reliability-observability",
+      "path": "content/badges/badge-level-10-performance-reliability-observability.json",
+      "sha256": "d709c60452611b3ee2011589530bda3479fea00e36c02607643c3e12d5af5b2d"
+    },
+    {
       "id": "badge-level-10-week-40",
       "title": "Week 40 Performance Investigator",
       "categoryId": "level-10-performance-reliability-observability",
@@ -9687,6 +10593,27 @@
       "categoryId": "level-10-performance-reliability-observability",
       "path": "content/badges/badge-level-10-week-42.json",
       "sha256": "cdcc641ccefade5068419d5ddeb288905451ce2e0b51fe59aece64fb3917322b"
+    },
+    {
+      "id": "badge-level-11-week-44",
+      "title": "Week 44 Process Cartographer",
+      "categoryId": "level-11-android-internals-aosp",
+      "path": "content/badges/badge-level-11-week-44.json",
+      "sha256": "301c6949cafa6206c6c6863776292076d5ed8b5f63b850182ebde453b01b9390"
+    },
+    {
+      "id": "badge-level-11-week-45",
+      "title": "Week 45 Launch Tracer",
+      "categoryId": "level-11-android-internals-aosp",
+      "path": "content/badges/badge-level-11-week-45.json",
+      "sha256": "46db8b2faf0bad21bf8efdc3dfd3714803e9dd63e31e8dc80d8c7104bf2973c5"
+    },
+    {
+      "id": "badge-level-11-week-46",
+      "title": "Week 46 Frame Pipeline Tracer",
+      "categoryId": "level-11-android-internals-aosp",
+      "path": "content/badges/badge-level-11-week-46.json",
+      "sha256": "8d4ee8b7715697f8242118d217eccc2ec3fb05ee37c30c33e45ddf8c44896b37"
     }
   ],
   "roadmap": [
@@ -9694,7 +10621,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "2b19d92016a4663aa709d77d4d811ae26514488316a2f1edcaf3cd923fbaec8c"
+      "sha256": "cb857a8b58daf77767d45211544dfb53150958837a06961e44dab7d2112c59f0"
     }
   ]
 }

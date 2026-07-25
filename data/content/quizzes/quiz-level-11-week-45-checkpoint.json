@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-11-week-45-checkpoint",
+  "title": "Week 45: Application Launch and Threading Internals Checkpoint",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-45-01-launcher-intent-resolution-task-launch",
+    "level-11-week-45-02-activitythread-main-application-bind",
+    "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+    "level-11-week-45-04-window-creation-surface-first-frame",
+    "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+    "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-45-1-launcher-intent-resolution-task-launch",
+      "prompt": "Checkpoint: Why is intent resolution distinct from activity execution?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "Resolution selects an eligible component; task, process, scheduling, lifecycle, window, and rendering work still follow. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch",
+      "options": [
+        "Separate intent resolution, task policy, process availability, app scheduling, and display presentation, then verify each with matching evidence.",
+        "Treat task as process",
+        "Assume every tap forks",
+        "Attribute total time to onCreate"
+      ],
+      "answer": "Separate intent resolution, task policy, process availability, app scheduling, and display presentation, then verify each with matching evidence."
+    },
+    {
+      "id": "q-week-45-2-activitythread-main-application-bind",
+      "prompt": "Select the two sound practices for activitythread.main and application binding.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "The process enters ActivityThread.main, prepares the main Looper, attaches to system services, and receives application binding work. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-02-activitythread-main-application-bind",
+      "options": [
+        "Model ActivityThread as the main-process coordinator and keep bind-time provider and Application work minimal and failure-safe.",
+        "Capture matching runtime evidence and exercise one adverse path",
+        "One ActivityThread per Activity",
+        "Use hidden ActivityThread APIs"
+      ],
+      "answer": [
+        "Model ActivityThread as the main-process coordinator and keep bind-time provider and Application work minimal and failure-safe.",
+        "Capture matching runtime evidence and exercise one adverse path"
+      ]
+    },
+    {
+      "id": "q-week-45-3-instrumentation-activity-attach-lifecycle",
+      "prompt": "Activity.onDestroy is guaranteed before the process can be killed.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "Base context, application, component/token identity, window, instrumentation, configuration, and framework controllers. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+      "answer": false
+    },
+    {
+      "id": "q-week-45-4-window-creation-surface-first-frame",
+      "prompt": "Checkpoint: Which component ultimately composes visible app layers for the display?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame",
+      "answer": "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition.",
+      "acceptedAnswers": [
+        "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition."
+      ]
+    },
+    {
+      "id": "q-week-45-5-looper-messagequeue-handler-frame-starvation",
+      "prompt": "Order the investigation for looper, messagequeue, handler, and frame starvation.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "It enqueues work onto the MessageQueue associated with its Looper and therefore onto that Looper thread. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+      "options": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ],
+      "answer": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ]
+    },
+    {
+      "id": "q-week-45-6-binder-pools-coroutines-locks-deadlocks",
+      "prompt": "Match each systems question to its evidence for binder pools, coroutines, synchronisation, and deadlocks.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "It avoids holding an application lock across remote work that can block, reenter, call back, or die. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+      "options": [
+        "Ownership → process, service, thread, queue, or buffer",
+        "Timing → trace with expected and actual boundaries",
+        "Safety → denial, death, pressure, and compatibility tests"
+      ],
+      "answer": {
+        "Ownership": "process, service, thread, queue, or buffer",
+        "Timing": "trace with expected and actual boundaries",
+        "Safety": "denial, death, pressure, and compatibility tests"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 325,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

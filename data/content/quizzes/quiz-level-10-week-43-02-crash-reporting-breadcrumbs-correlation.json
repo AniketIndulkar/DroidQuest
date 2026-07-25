@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+  "title": "Crash Reporting, Breadcrumbs, and Correlation Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-02-crash-reporting-breadcrumbs-correlation-decision",
+      "prompt": "Which approach best applies crash reporting, breadcrumbs, and correlation?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Capture exact release context and bounded safe breadcrumbs, then prioritise grouped issues by affected users and user impact.",
+        "Put request IDs in messages",
+        "Count every validation error as non-fatal",
+        "Assume two tools use the same population"
+      ],
+      "answer": "Capture exact release context and bounded safe breadcrumbs, then prioritise grouped issues by affected users and user impact.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+    },
+    {
+      "id": "q-level-10-week-43-02-crash-reporting-breadcrumbs-correlation-truth",
+      "prompt": "Crashlytics and Android vitals should always report identical crash rates for the same release.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Recording every caught exception as non-fatal creates noise, consumes quotas, and can hide the few failures that need engineering action.",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+    },
+    {
+      "id": "q-level-10-week-43-02-crash-reporting-breadcrumbs-correlation-recall",
+      "prompt": "Why must mappings and symbols match the exact build?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Optimisation and linking change names and addresses per artifact, so nearby-build metadata can produce a false stack diagnosis.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

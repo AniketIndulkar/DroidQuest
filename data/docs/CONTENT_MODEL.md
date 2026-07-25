@@ -41,7 +41,7 @@ Challenges are separate practice activities with starter code, hints, success cr
 
 Roadmap nodes use `available` or `planned` status. Available lesson nodes link to lesson files, and available checkpoint nodes link to quizzes. `level_preview` nodes contain no teaching content and cannot be completed. Unlock eligibility is derived from `unlockPrerequisites` in `content/generated/roadmap-graph.json`.
 
-The current graph publishes complete Levels 1–9 and Weeks 40–42 of Level 10. Lessons and weekly checkpoints form an acyclic prerequisite chain. Level 9 starts only after the Level 8 boss and ends at its release-pipeline boss. That boss unlocks the first Level 10 lesson. The planned Week 43 observability and performance-capstone preview follows the Week 42 checkpoint and keeps the Level 11 preview locked until Level 10 is complete. Later level previews remain chained in curriculum order.
+The current graph publishes complete Levels 1–10 and Weeks 44–46 of Level 11. Lessons and weekly checkpoints form an acyclic prerequisite chain. The Level 10 observability and performance boss follows Week 43 and unlocks the first Android-internals lesson. The planned Week 47 runtime, memory, power, diagnostics, and internals-capstone preview follows the Week 46 checkpoint and keeps the Level 12 preview locked until Level 11 is complete. Later level previews remain chained in curriculum order.
 
 ## Android consumption
 

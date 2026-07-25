@@ -2,8 +2,8 @@
   "id": "droidquest-curriculum",
   "title": "DroidQuest: Beginner to Android Platform Expert",
   "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
-  "version": "0.13.0",
-  "contentRevision": 13,
+  "version": "0.14.0",
+  "contentRevision": 14,
   "releasedAt": "2026-07-25",
   "defaultLocale": "en-GB",
   "supportedLocales": [
@@ -710,6 +710,70 @@
         "level-10-week-42-06-compatible-migrations-rollback-planning"
       ],
       "checkpointQuizId": "quiz-level-10-week-42-checkpoint"
+    },
+    {
+      "id": "week-43",
+      "number": 43,
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Observability and Performance Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+        "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+        "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+        "level-10-week-43-04-performance-monitoring-traces-slis",
+        "level-10-week-43-05-dashboards-release-health-slos-alerting",
+        "level-10-week-43-06-performance-observability-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-10-checkpoint"
+    },
+    {
+      "id": "week-44",
+      "number": 44,
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Processes, Zygote, Binder, and System Services",
+      "status": "available",
+      "lessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+        "level-11-week-44-02-zygote-fork-app-process-creation",
+        "level-11-week-44-03-system-server-boot-system-services",
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+        "level-11-week-44-05-service-manager-discovery-handles",
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries"
+      ],
+      "checkpointQuizId": "quiz-level-11-week-44-checkpoint"
+    },
+    {
+      "id": "week-45",
+      "number": 45,
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Application Launch and Threading Internals",
+      "status": "available",
+      "lessonIds": [
+        "level-11-week-45-01-launcher-intent-resolution-task-launch",
+        "level-11-week-45-02-activitythread-main-application-bind",
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+        "level-11-week-45-04-window-creation-surface-first-frame",
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks"
+      ],
+      "checkpointQuizId": "quiz-level-11-week-45-checkpoint"
+    },
+    {
+      "id": "week-46",
+      "number": 46,
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Android Rendering Pipeline",
+      "status": "available",
+      "lessonIds": [
+        "level-11-week-46-01-view-traversal-measure-layout-draw",
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ],
+      "checkpointQuizId": "quiz-level-11-week-46-checkpoint"
     }
   ],
   "specialisationPolicy": {

@@ -1,0 +1,226 @@
+{
+  "id": "level-10-week-43-06-performance-observability-capstone",
+  "title": "Performance and Observability Capstone",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 43,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-10-week-43-05-dashboards-release-health-slos-alerting"
+  ],
+  "tags": [
+    "performance",
+    "observability",
+    "capstone"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand performance and observability capstone as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Production teams need trustworthy signals that connect release changes to user impact while respecting privacy and operational limits.",
+      "outcome": "You can explain, inspect, test, and safely apply performance and observability capstone."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The capstone begins with an intentionally slow, leaking, over-recomposing application and one critical journey from cold launch to useful interactive content. Establish reproducible Macrobenchmark baselines across representative devices and compilation modes. Capture Perfetto, memory, allocation, recomposition, frame, network, battery, and size evidence only where it can answer a hypothesis. Record source revision, artifact, configuration, thermal state, data fixture, repetitions, distributions, and raw outputs before changing code."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Locate main-thread blocking, startup initialization, retained ownership, unstable Compose inputs, redundant work, and delivery cost. Apply isolated fixes while preserving behavior and accessibility. Generate Baseline Profiles for critical journeys and a Startup Profile for DEX layout, package them in the release, and measure the exact optimised artifact. Add stable CI guards with realistic variance and physical-device coverage where required; a noisy threshold that fails randomly will be ignored rather than protect performance."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :benchmark:connectedReleaseAndroidTest # Archive distributions, Perfetto traces, profiles, artifact identity, and field gate definitions.",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Instrument structured safe events, crash context, critical-journey traces, SLIs, dashboards, release annotations, and cohort-aware gates. Run offline, process-death, low-memory, slow-network, and backend-failure scenarios. Rehearse hold, kill-switch, and hotfix actions. The final evidence pack must distinguish lab causality from field health, show before and after distributions rather than a best run, explain trade-offs, identify residual risk, and assign owners for regressions, telemetry, and operational response."
+            },
+            {
+              "type": "paragraph",
+              "text": "Observability is useful only when it changes a decision without creating greater correctness, privacy, performance, or operational risk. Define the user outcome, eligible population, event semantics, version dimensions, data-quality checks, retention, consent, and owner before choosing a backend. Keep schemas bounded and test collection-off, offline, process-death, quota, and SDK-failure paths. Connect laboratory evidence to field health but do not confuse them: controlled benchmarks isolate causality, while production indicators describe populations with delay and bias. Every dashboard threshold needs an explicit promote, investigate, mitigate, halt, or recover action. Preserve release identity and raw evidence so another engineer can reproduce the conclusion and audit what data crossed the device boundary."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Selecting the fastest after-result and comparing it with the slowest baseline produces an impressive number but no defensible performance evidence."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Macrobenchmark Overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Baseline Profiles Overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/baselineprofiles/overview",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Firebase Performance Monitoring",
+          "publisher": "Firebase",
+          "resourceType": "official_docs",
+          "url": "https://firebase.google.com/docs/perf-mon",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Android Vitals",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/vitals",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Performance and Observability Capstone",
+      "language": "shell",
+      "code": "./gradlew :benchmark:connectedReleaseAndroidTest # Archive distributions, Perfetto traces, profiles, artifact identity, and field gate definitions.",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Selecting the fastest after-result and comparing it with the slowest baseline produces an impressive number but no defensible performance evidence.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Complete the slow-app investigation end to end: baseline, diagnose, fix leaks, blocking and recomposition, add profiles, verify distributions, add CI guards and operate a staged release.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What is the central distinction in the capstone evidence?",
+        "answer": "Controlled lab measurements establish causal performance changes; field observability establishes population health after release."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-43-06-performance-observability-capstone",
+  "challengeId": "challenge-level-10-week-43-06-performance-observability-capstone",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Performance and Observability Capstone.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview",
+    "https://developer.android.com/topic/performance/baselineprofiles/overview",
+    "https://firebase.google.com/docs/perf-mon",
+    "https://developer.android.com/topic/performance/vitals"
+  ],
+  "version": "0.14.0"
+}

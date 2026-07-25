@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "title": "Apply Operational Dashboards, Release Health, SLOs, and Alerting",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Design a release-health dashboard and alert policy with SLOs, error budgets, cohort gates, sample rules, device clusters, telemetry quality, and five response actions.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "releaseGate.evaluate(cohort = versionCode, requiredSamples = 1_000, guards = listOf(crashFreeUsers, anrRate, startupP95, telemetryCoverage))"
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

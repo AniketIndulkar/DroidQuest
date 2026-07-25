@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-44-02-zygote-fork-app-process-creation",
+  "title": "Zygote, Forking, and Application Process Creation",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 44,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-44-01-linux-processes-threads-uids-sandbox"
+  ],
+  "tags": [
+    "internals",
+    "zygote",
+    "process-start"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand zygote, forking, and application process creation as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply zygote, forking, and application process creation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "During boot, init starts Zygote for the relevant ABI. Zygote preloads runtime classes and resources, starts ART infrastructure, and listens for process-start requests. Forking gives a child a copy-on-write view of prepared memory, reducing startup work and sharing clean pages. Modern systems may use unspecialised app process pools when configured, but the conceptual boundary remains: a generic child is specialised with UID, GID, capabilities, SELinux context, runtime flags, package data, and an application entry point."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A request from system_server reaches Zygote through its command socket after ActivityManager determines a process is needed. The child must not inherit dangerous open descriptors or privileged state; Zygote enforces file-descriptor hygiene and sets credentials before application code runs. The app child invokes the runtime entry that leads to ActivityThread.main, creates the main Looper, attaches to system services through Binder, and waits for scheduled components. Forking does not clone another app process or its live objects."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell am force-stop dev.droidquest; adb shell perfetto --txt -c startup.pbtxt -o /data/misc/perfetto-traces/startup.perfetto-trace; adb shell monkey -p dev.droidquest 1",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Trace a cold launch using Perfetto process-start events, logcat activity manager messages, ps parent relationships, and AOSP source. Distinguish time before fork, specialisation, runtime bind, provider and Application initialization, activity launch, and first frame. Device releases, ABI, USAP configuration, profiles, page size, storage, and thermal state can alter timings. Never design app correctness around implementation details such as exact preloaded classes or a stable Zygote PID; public lifecycle and persistence contracts remain authoritative."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Describing Zygote as a template containing a fully initialized copy of each app incorrectly implies that application objects and user state exist before the fork."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "About Zygote Processes",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/runtime/zygote",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "AOSP Architecture Overview",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "ActivityThread Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Zygote, Forking, and Application Process Creation",
+      "language": "shell",
+      "code": "adb shell am force-stop dev.droidquest; adb shell perfetto --txt -c startup.pbtxt -o /data/misc/perfetto-traces/startup.perfetto-trace; adb shell monkey -p dev.droidquest 1",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Describing Zygote as a template containing a fully initialized copy of each app incorrectly implies that application objects and user state exist before the fork.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Annotate a cold-start trace from system_server request through Zygote fork, specialization, ActivityThread attach, Application creation, activity launch, and first frame.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why does Zygote preload common runtime state?",
+        "answer": "Forked children can reuse clean copy-on-write pages and avoid repeating part of runtime initialization."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-44-02-zygote-fork-app-process-creation",
+  "challengeId": "challenge-level-11-week-44-02-zygote-fork-app-process-creation",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Zygote, Forking, and Application Process Creation.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/runtime/zygote",
+    "https://source.android.com/docs/core/architecture",
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java"
+  ],
+  "version": "0.14.0"
+}

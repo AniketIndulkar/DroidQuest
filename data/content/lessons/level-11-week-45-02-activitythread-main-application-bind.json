@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-02-activitythread-main-application-bind",
+  "title": "ActivityThread.main and Application Binding",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-45-01-launcher-intent-resolution-task-launch"
+  ],
+  "tags": [
+    "internals",
+    "activitythread",
+    "process-start"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand activitythread.main and application binding as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply activitythread.main and application binding."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "After Zygote specialization, the app runtime enters ActivityThread.main. Despite its name, ActivityThread is not itself a java.lang.Thread; it coordinates the process main thread. It installs the main Looper, creates ActivityThread, attaches its application thread Binder endpoint to ActivityManager, and enters the message loop. The server responds with binding data for the package and process, including configuration and providers, after which the client prepares loaded package state and eventually creates the Application instance."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Binding establishes class loaders, resources, compatibility data, instrumentation, providers, and application callbacks according to platform ordering. ContentProvider initialization commonly precedes Application.onCreate and can add cold-start cost. Multi-process components bind independently and receive distinct Application objects. The main thread processes scheduled transactions, so blocking during bind delays every pending component and first frame. App code should not depend on private ActivityThread objects; it should minimise public startup callbacks and defer nonessential work."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun Application.onCreate() { super.onCreate(); startupCoordinator.startRequiredOnly(); startupCoordinator.deferOptionalUntilNeeded() }",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Read the matching AOSP branch and connect source landmarks to Perfetto or logcat rather than memorising a call stack from one release. Mark fork, ActivityThread entry, attachApplication Binder exchange, bind application, provider creation, Application.onCreate, activity transaction, and Looper dispatch. Compare profiles with and without a warm process. Test provider authorities, direct boot, secondary processes, custom instrumentation in tests, and startup SDK failure. Persisted state and framework callbacks remain the supported contract."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "The class name ActivityThread often leads learners to claim it creates a separate thread per Activity, which is not its role."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "ActivityThread Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "About Zygote Processes",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/runtime/zygote",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Processes and App Lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/process-lifecycle",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect ActivityThread.main and Application Binding",
+      "language": "kotlin",
+      "code": "fun Application.onCreate() { super.onCreate(); startupCoordinator.startRequiredOnly(); startupCoordinator.deferOptionalUntilNeeded() }",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "The class name ActivityThread often leads learners to claim it creates a separate thread per Activity, which is not its role.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Trace a cold process from ActivityThread.main through attach and bind, then identify provider, Application, class-loader, resource, and first-activity costs by thread.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What happens before the main Looper begins handling normal component transactions?",
+        "answer": "The process enters ActivityThread.main, prepares the main Looper, attaches to system services, and receives application binding work."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-02-activitythread-main-application-bind",
+  "challengeId": "challenge-level-11-week-45-02-activitythread-main-application-bind",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind ActivityThread.main and Application Binding.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityThread.java",
+    "https://source.android.com/docs/core/runtime/zygote",
+    "https://developer.android.com/guide/components/activities/process-lifecycle"
+  ],
+  "version": "0.14.0"
+}

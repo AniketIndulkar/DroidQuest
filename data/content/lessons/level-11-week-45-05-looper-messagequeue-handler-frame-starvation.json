@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+  "title": "Looper, MessageQueue, Handler, and Frame Starvation",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-45-04-window-creation-surface-first-frame"
+  ],
+  "tags": [
+    "internals",
+    "looper",
+    "main-thread"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand looper, messagequeue, handler, and frame starvation as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply looper, messagequeue, handler, and frame starvation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Looper repeatedly selects ready work from its MessageQueue and dispatches it on one associated thread. A Handler posts Runnable or Message work to that queue; it does not create a thread. The main Looper receives lifecycle transactions, input-related callbacks, UI work, and frame scheduling. Delayed work is eligible after a time, not guaranteed at that instant. Queue ordering, synchronization barriers, asynchronous messages, native polling, and platform implementation evolve, so apps must use public ordering contracts."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A long CPU task, filesystem or network I/O, lock wait, synchronous Binder call, or large burst of tiny callbacks can starve the main queue. Posting more work to the main Handler does not make it asynchronous relative to UI execution. Coroutines on Dispatchers.Main also resume as main-queue work; suspension frees the thread only when the called operation truly suspends. Dispatchers.Main.immediate may execute inline when already on the dispatcher, changing reentrancy but not granting parallelism."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "lifecycleScope.launch { val model = withContext(Dispatchers.Default) { compute(input) }; render(model) }",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use Perfetto scheduling and main-thread slices, Looper message logging in controlled debug builds, StrictMode, ANR evidence, and thread dumps. Identify the message or callback, runnable time versus blocked time, lock owner, Binder target, deadline, and queue consequences. Test cancellation, callback removal, lifecycle destruction, bursts, nested dispatch, and slow devices. Prefer short main-thread state changes, structured worker execution, immutable results, and explicit backpressure rather than arbitrary postDelayed timing."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Wrapping blocking work in launch on Dispatchers.Main keeps the blocking call on the UI thread even though the code uses a coroutine."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Looper API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/android/os/Looper",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Handler API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/android/os/Handler",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Processes and Threads Overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/processes-and-threads",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Looper, MessageQueue, Handler, and Frame Starvation",
+      "language": "kotlin",
+      "code": "lifecycleScope.launch { val model = withContext(Dispatchers.Default) { compute(input) }; render(model) }",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Wrapping blocking work in launch on Dispatchers.Main keeps the blocking call on the UI thread even though the code uses a coroutine.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create and diagnose three main-queue stalls—CPU, lock, and synchronous Binder—then fix them with ownership, cancellation, deadlines, and trace evidence.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What does a Handler determine?",
+        "answer": "It enqueues work onto the MessageQueue associated with its Looper and therefore onto that Looper thread."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+  "challengeId": "challenge-level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Looper, MessageQueue, Handler, and Frame Starvation.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/reference/android/os/Looper",
+    "https://developer.android.com/reference/android/os/Handler",
+    "https://developer.android.com/guide/components/processes-and-threads"
+  ],
+  "version": "0.14.0"
+}

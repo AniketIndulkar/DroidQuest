@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-43-06-performance-observability-capstone",
+  "title": "Apply Performance and Observability Capstone",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-43-06-performance-observability-capstone",
+  "difficulty": "expert",
+  "estimatedMinutes": 60,
+  "prompt": "Complete the slow-app investigation end to end: baseline, diagnose, fix leaks, blocking and recomposition, add profiles, verify distributions, add CI guards and operate a staged release.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "./gradlew :benchmark:connectedReleaseAndroidTest # Archive distributions, Perfetto traces, profiles, artifact identity, and field gate definitions."
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+  "title": "Crash Reporting, Breadcrumbs, and Correlation",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 43,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+  ],
+  "tags": [
+    "observability",
+    "crash-reporting",
+    "correlation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand crash reporting, breadcrumbs, and correlation as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Production teams need trustworthy signals that connect release changes to user impact while respecting privacy and operational limits.",
+      "outcome": "You can explain, inspect, test, and safely apply crash reporting, breadcrumbs, and correlation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Crash reporting converts fatal, non-fatal, and ANR evidence into grouped issues, but grouping is not root-cause analysis. Preserve the exact app version, build identity, mapping or native symbols, OS, device class, foreground state, stack, and recent bounded breadcrumbs. Compare Android vitals with an app SDK carefully: populations, initialization time, consent, grouping, and sampling differ, so their rates need not match. Start with user impact and affected release cohorts rather than raw event count."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Attach low-cardinality custom keys for feature state, migration version, operation phase, rollout cohort, and anonymised correlation. Do not put a timestamp, request ID, or user value into exception text because it fragments issue grouping. Report handled exceptions only when they represent actionable abnormal outcomes; expected validation and offline states belong in domain telemetry. Breadcrumbs should record transitions, not taps or content. Link a crash to server traces using short-lived opaque IDs that cannot authenticate or identify a person."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "crashReporter.record(error = failure, keys = mapOf(\"phase\" to phase.name, \"build\" to buildId), breadcrumbs = breadcrumbBuffer.safeSnapshot())",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Reproduce with source, mapping and symbols matching the build, then confirm the blamed frame against thread and lifecycle context. Track first seen, regression version, affected users, crash-free users/sessions, severity, owner, fix version, and verification. Test opt-in and opt-out, offline buffering, quota, startup failure before SDK initialization, and deletion requirements. A crash SDK is itself code in the process: initialize deliberately, monitor overhead, and keep essential local recovery independent of successful upload."
+            },
+            {
+              "type": "paragraph",
+              "text": "Observability is useful only when it changes a decision without creating greater correctness, privacy, performance, or operational risk. Define the user outcome, eligible population, event semantics, version dimensions, data-quality checks, retention, consent, and owner before choosing a backend. Keep schemas bounded and test collection-off, offline, process-death, quota, and SDK-failure paths. Connect laboratory evidence to field health but do not confuse them: controlled benchmarks isolate causality, while production indicators describe populations with delay and bias. Every dashboard threshold needs an explicit promote, investigate, mitigate, halt, or recover action. Preserve release identity and raw evidence so another engineer can reproduce the conclusion and audit what data crossed the device boundary."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Recording every caught exception as non-fatal creates noise, consumes quotas, and can hide the few failures that need engineering action."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Customise Android Crash Reports",
+          "publisher": "Firebase",
+          "resourceType": "official_docs",
+          "url": "https://firebase.google.com/docs/crashlytics/android/customize-crash-reports",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "App Quality Insights",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug/app-quality-insights",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Android Vitals",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/vitals",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Crash Reporting, Breadcrumbs, and Correlation",
+      "language": "kotlin",
+      "code": "crashReporter.record(error = failure, keys = mapOf(\"phase\" to phase.name, \"build\" to buildId), breadcrumbs = breadcrumbBuffer.safeSnapshot())",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Recording every caught exception as non-fatal creates noise, consumes quotas, and can hide the few failures that need engineering action.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Instrument a staged checkout failure with safe breadcrumbs, release identity, mapping verification, correlation, consent behavior, triage fields, and a closure test.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Why must mappings and symbols match the exact build?",
+        "answer": "Optimisation and linking change names and addresses per artifact, so nearby-build metadata can produce a false stack diagnosis."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+  "challengeId": "challenge-level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Crash Reporting, Breadcrumbs, and Correlation.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://firebase.google.com/docs/crashlytics/android/customize-crash-reports",
+    "https://developer.android.com/studio/debug/app-quality-insights",
+    "https://developer.android.com/topic/performance/vitals"
+  ],
+  "version": "0.14.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+  "title": "Structured Logging, Event Taxonomy, and Redaction Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-01-structured-logging-event-taxonomy-redaction-decision",
+      "prompt": "Which approach best applies structured logging, event taxonomy, and redaction?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Emit stable bounded events through a typed facade and redact sensitive data before it reaches any backend.",
+        "Log every method argument",
+        "Use email as correlation ID",
+        "Add timestamps to exception messages"
+      ],
+      "answer": "Emit stable bounded events through a typed facade and redact sensitive data before it reaches any backend.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+    },
+    {
+      "id": "q-level-10-week-43-01-structured-logging-event-taxonomy-redaction-truth",
+      "prompt": "Removing sensitive fields from the dashboard after ingestion prevents the original disclosure.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Logging an entire exception request object can silently include tokens, user content, URLs, and high-cardinality values even when the top-level message looks harmless.",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+    },
+    {
+      "id": "q-level-10-week-43-01-structured-logging-event-taxonomy-redaction-recall",
+      "prompt": "Why should correlation values be bounded and non-identifying?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "They connect related operations without exposing identity or creating unbounded grouping cardinality.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-01-structured-logging-event-taxonomy-redaction"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

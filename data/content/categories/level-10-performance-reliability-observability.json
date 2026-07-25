@@ -2,9 +2,9 @@
   "id": "level-10-performance-reliability-observability",
   "title": "Level 10: Performance, Reliability, and Observability",
   "order": 10,
-  "description": "Measure and improve startup, rendering, memory, battery, size, crashes, ANRs, operational resilience, logging, analytics, and release health.",
+  "description": "Measure, improve, and operate Android startup, rendering, memory, battery, size, stability, recovery, privacy-safe observability, and release health through reproducible laboratory and field evidence.",
   "difficulty": "advanced",
-  "status": "in_progress",
+  "status": "complete",
   "weekRange": {
     "start": 40,
     "end": 43
@@ -17,7 +17,7 @@
     "reliability",
     "observability"
   ],
-  "estimatedLearningMinutes": 180,
+  "estimatedLearningMinutes": 240,
   "lessonIds": [
     "level-10-week-40-01-performance-investigation-representative-evidence",
     "level-10-week-40-02-cpu-perfetto-system-traces",
@@ -36,23 +36,30 @@
     "level-10-week-42-03-oom-low-memory-process-death",
     "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
     "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
-    "level-10-week-42-06-compatible-migrations-rollback-planning"
+    "level-10-week-42-06-compatible-migrations-rollback-planning",
+    "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
+    "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
+    "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+    "level-10-week-43-04-performance-monitoring-traces-slis",
+    "level-10-week-43-05-dashboards-release-health-slos-alerting",
+    "level-10-week-43-06-performance-observability-capstone"
   ],
   "roadmapStartNodeId": "node-level-10-week-40-01-performance-investigation-representative-evidence",
   "plannedTopics": [
-    "Representative performance investigation, CPU/system traces, memory, rendering, Compose, battery, network, and size",
-    "Cold, warm, and hot startup; critical paths; App Startup; Macrobenchmark; Baseline and Startup Profiles",
-    "ANRs, managed/native crashes, OOM, process death, retry storms, circuit breakers, feature flags, kill switches, migrations, and rollback",
-    "Week 43: structured logging, metrics, dashboards, release health, and the measured performance capstone"
+    "Representative profiling of CPU, memory, rendering, Compose, battery, network, and delivery size",
+    "Cold, warm, and hot startup; App Startup; Macrobenchmark; Baseline and Startup Profiles",
+    "ANRs, crashes, OOM, retry storms, kill switches, compatible migrations, and roll-forward recovery",
+    "Structured logging, crash context, analytics, SLIs, dashboards, release gates, and the performance evidence capstone"
   ],
   "project": {
-    "title": "Performance Investigation",
-    "summary": "Measure an intentionally slow application, fix verified bottlenecks, add profiles, and prevent regressions in CI."
+    "title": "Measured Performance and Release Health Investigation",
+    "summary": "Diagnose and improve a slow application, add verified profiles and regression guards, then operate it through privacy-safe SLIs, cohort gates, and recovery."
   },
   "theme": {
     "color": "#9B4D00",
     "icon": "speed",
     "mapMood": "Measured paths from user action to frames, resources, failures, and operational signals."
   },
-  "version": "0.13.0"
+  "version": "0.14.0",
+  "checkpointQuizId": "quiz-level-10-checkpoint"
 }

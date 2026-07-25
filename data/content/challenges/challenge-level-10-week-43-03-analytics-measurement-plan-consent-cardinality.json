@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "title": "Apply Analytics Measurement Plans, Consent, and Cardinality",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Write and validate a measurement plan for offline onboarding and recovery, including eligibility, event semantics, bounded schema, consent, deduplication, and decisions.",
+  "successCriteria": [
+    "The start state, result, build, device, process or thread context, and public contract are explicit.",
+    "Evidence follows the complete ownership path and distinguishes direct cause from nearby correlation.",
+    "Failure, privacy, security, compatibility, regression, ownership, and recovery behavior are verified."
+  ],
+  "hints": [
+    "Use matching AOSP or official documentation and two runtime evidence sources rather than memorising a diagram.",
+    "Change one controlled condition and predict which process, thread, queue, service, or buffer evidence should move."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "analytics.emit(name = \"offline_recovery_completed\", params = mapOf(\"result\" to result.bucket, \"queue_size\" to size.bucket()))"
+  },
+  "solutionOutline": [
+    "Draw the responsibility sequence and capture a version-matched baseline or failure reproduction.",
+    "Exercise one adverse path, verify the causal fix or explanation, then preserve a regression guard and recovery record."
+  ],
+  "verification": [
+    "Repeat the trace or telemetry capture from a documented starting state and retain raw evidence.",
+    "Test death, delay, denial, cancellation, backpressure, or configuration as appropriate to the boundary."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

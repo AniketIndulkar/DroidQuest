@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-45-04-window-creation-surface-first-frame",
+  "title": "Window Creation, Surface Setup, and the First Frame",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 45,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-45-03-instrumentation-activity-attach-lifecycle"
+  ],
+  "tags": [
+    "internals",
+    "window-manager",
+    "first-frame"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand window creation, surface setup, and the first frame as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Expert Android diagnosis requires tracing responsibility through processes, framework services, threads, queues, graphics buffers, and system composition.",
+      "outcome": "You can explain, inspect, test, and safely apply window creation, surface setup, and the first frame."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An Activity owns a Window abstraction, commonly PhoneWindow, and installs a decor hierarchy. WindowManagerGlobal and ViewRootImpl connect the hierarchy to WindowManagerService using the activity token. The server validates authority, creates window state and coordinates a SurfaceControl layer. Relayout supplies size, insets, configuration, and a drawing surface. A Window is policy and hierarchy plus a surface relationship; an Activity can have additional windows, and not every surface corresponds one-to-one with an Activity."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The first traversal measures, lays out, and records or draws content. Rendering produces a graphics buffer for a Surface or layer, queues it, and synchronizes with system composition. SurfaceFlinger latches available buffers around display refresh and composes through Hardware Composer or GPU work. Activity onResume returning does not mean pixels are presented. TTID and fully drawn markers observe different app milestones; transition completion, input readiness, and actual display presentation can differ again."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "reportFullyDrawn(); // Call only when the defined useful-content milestone is actually satisfied, then verify presentation in a system trace.",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Capture a cold launch with app, view, graphics, WindowManager, SurfaceFlinger, scheduler, and frame timeline data. Label window add, relayout, traversal, buffer queue, latch, composition, and present fence where available. Use dumpsys window and SurfaceFlinger carefully for snapshot context. Test splash-screen handoff, no-data placeholders, delayed content, rotation, multi-window, SurfaceView, and first-frame jank. Optimise the critical path without drawing an incomplete or inaccessible frame solely to improve a metric."
+            },
+            {
+              "type": "paragraph",
+              "text": "Platform internals are a causal map for diagnosis, not an invitation to depend on hidden APIs. Trace ownership across process, thread, Binder, token, queue, buffer, and display boundaries; distinguish public contracts from release-specific implementation. Use AOSP source matching the device branch, Perfetto, dumpsys, logcat, bug reports, and controlled experiments as complementary evidence. Record Android build, device, configuration, process state, workload, and timestamps. Test death, cancellation, reentrancy, backpressure, configuration, multi-window, and resource pressure. When a private class or trace label changes, the explanation should still stand at the responsibility level. Production apps use supported APIs, while platform changes require compatibility tests, security policy, boot and performance evidence, and safe rollback."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Calling reportFullyDrawn immediately in onCreate improves a number while destroying the meaning of the fully useful UI milestone."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "WindowManagerService Source",
+          "publisher": "Android Code Search",
+          "resourceType": "official_docs",
+          "url": "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "SurfaceFlinger and WindowManager",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/graphics/surfaceflinger-windowmanager",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Rendering Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/rendering",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Window Creation, Surface Setup, and the First Frame",
+      "language": "kotlin",
+      "code": "reportFullyDrawn(); // Call only when the defined useful-content milestone is actually satisfied, then verify presentation in a system trace.",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling reportFullyDrawn immediately in onCreate improves a number while destroying the meaning of the fully useful UI milestone.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Trace an activity from token and addWindow through traversal, buffer queue, SurfaceFlinger latch, composition, presentation, TTID, and TTDF.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "Which component ultimately composes visible app layers for the display?",
+        "answer": "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-45-04-window-creation-surface-first-frame",
+  "challengeId": "challenge-level-11-week-45-04-window-creation-surface-first-frame",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Window Creation, Surface Setup, and the First Frame.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java",
+    "https://source.android.com/docs/core/graphics/surfaceflinger-windowmanager",
+    "https://developer.android.com/topic/performance/rendering"
+  ],
+  "version": "0.14.0"
+}

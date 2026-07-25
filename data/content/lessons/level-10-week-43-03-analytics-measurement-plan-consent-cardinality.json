@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "title": "Analytics Measurement Plans, Consent, and Cardinality",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 43,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-43-02-crash-reporting-breadcrumbs-correlation"
+  ],
+  "tags": [
+    "observability",
+    "analytics",
+    "privacy"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand analytics measurement plans, consent, and cardinality as a causal Android engineering system rather than a vocabulary item.",
+      "realWorldUse": "Production teams need trustworthy signals that connect release changes to user impact while respecting privacy and operational limits.",
+      "outcome": "You can explain, inspect, test, and safely apply analytics measurement plans, consent, and cardinality."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "model",
+          "title": "Build the causal model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Analytics begins with a decision: what user outcome or hypothesis will change if the evidence moves? A measurement plan names the population, trigger, event, parameters, success metric, guardrails, owner, retention, and expected action. Prefer a small stable taxonomy for outcomes such as onboarding completion or offline recovery. Events are not logs: they describe product behavior in aggregate, while diagnostic telemetry explains failures. Tracking every interaction creates ambiguous data and future privacy debt."
+            },
+            {
+              "type": "flow",
+              "title": "Trace the system boundary",
+              "steps": [
+                {
+                  "id": "intent",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible or platform result and starting state."
+                },
+                {
+                  "id": "owners",
+                  "label": "Map owners",
+                  "detail": "Identify processes, threads, services, queues, tokens, or data authorities."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Capture evidence",
+                  "detail": "Use matching source, traces, reports, shell state, and controlled reproduction."
+                },
+                {
+                  "id": "failure",
+                  "label": "Exercise failure",
+                  "detail": "Test death, delay, denial, cancellation, backpressure, or missing data."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Preserve a regression check, compatibility boundary, owner, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "title": "Follow the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Specify exactly-once, at-most-once, or deduplicated semantics for important events and define what happens across process death, retries, offline queues, clock changes, and multiple devices. Use enums and bounded buckets instead of raw text, URLs, timestamps, database IDs, or ever-growing feature values. Version meaning rather than silently redefining an event. Consent and collection defaults must match policy and region; disabling collection must stop new transmission and define handling of locally queued data."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "analytics.emit(name = \"offline_recovery_completed\", params = mapOf(\"result\" to result.bucket, \"queue_size\" to size.bucket()))",
+              "caption": "A focused inspection or implementation fragment; interpret it within its process, thread, lifecycle, security, and version context."
+            }
+          ]
+        },
+        {
+          "id": "evidence-and-operation",
+          "title": "Prove and operate the result",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Validate events in debug tooling and automated tests, then reconcile expected funnels against raw counts before trusting dashboards. Record denominator and eligibility: a conversion rate without who could convert is misleading. Treat experiments separately from permanent health indicators and protect against sample-ratio mismatch. Monitor schema violations, duplicate rates, missing fields, late arrival, and SDK changes. Analytics should remain optional to core app correctness, startup, offline use, and account deletion."
+            },
+            {
+              "type": "paragraph",
+              "text": "Observability is useful only when it changes a decision without creating greater correctness, privacy, performance, or operational risk. Define the user outcome, eligible population, event semantics, version dimensions, data-quality checks, retention, consent, and owner before choosing a backend. Keep schemas bounded and test collection-off, offline, process-death, quota, and SDK-failure paths. Connect laboratory evidence to field health but do not confuse them: controlled benchmarks isolate causality, while production indicators describe populations with delay and bias. Every dashboard threshold needs an explicit promote, investigate, mitigate, halt, or recover action. Preserve release identity and raw evidence so another engineer can reproduce the conclusion and audit what data crossed the device boundary."
+            },
+            {
+              "type": "table",
+              "title": "Systems evidence record",
+              "columns": [
+                "Question",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Outcome",
+                  "Named journey, starting state, device/build, and success condition"
+                ],
+                [
+                  "Ownership",
+                  "Responsible process, thread, service, queue, buffer, or telemetry contract"
+                ],
+                [
+                  "Failure",
+                  "Death, delay, denial, cancellation, pressure, privacy, and compatibility behavior"
+                ],
+                [
+                  "Operation",
+                  "Regression guard, field signal, owner, and safe recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common systems trap",
+              "text": "Sending a unique order ID as an analytics parameter creates high cardinality and may turn product measurement into unnecessary personal or transactional tracking."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Google Analytics Events for Android",
+          "publisher": "Firebase",
+          "resourceType": "official_docs",
+          "url": "https://firebase.google.com/docs/analytics/events?platform=android",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Analytics Data Collection",
+          "publisher": "Firebase",
+          "resourceType": "official_docs",
+          "url": "https://firebase.google.com/docs/analytics/configure-data-collection?platform=android",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        },
+        {
+          "title": "Log Information Disclosure",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+          "whyRead": "Use this primary reference to verify the current platform contract, implementation boundary, diagnostics, and limitations behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Analytics Measurement Plans, Consent, and Cardinality",
+      "language": "kotlin",
+      "code": "analytics.emit(name = \"offline_recovery_completed\", params = mapOf(\"result\" to result.bucket, \"queue_size\" to size.bucket()))",
+      "walkthrough": [
+        "Name the starting state, expected result, Android build, device context, and public contract.",
+        "Trace each process, thread, Binder, lifecycle, queue, buffer, data, or service ownership transition.",
+        "Capture matching evidence, exercise an adverse path, and define the regression guard plus recovery owner."
+      ],
+      "expectedOutput": "A causal, version-aware explanation supported by reproducible evidence and safe operational boundaries."
+    },
+    "trap_check": [
+      {
+        "mistake": "Sending a unique order ID as an analytics parameter creates high cardinality and may turn product measurement into unnecessary personal or transactional tracking.",
+        "why": "It collapses distinct ownership or timing boundaries and can produce a confident but incorrect diagnosis.",
+        "fix": "Trace the complete causal path with matching source and runtime evidence before changing the system."
+      },
+      {
+        "mistake": "Depending on a hidden API, internal class name, trace label, or one device observation as a stable application contract.",
+        "why": "Platform implementation and vendor behavior can change while public compatibility guarantees remain different.",
+        "fix": "Use internals for explanation and diagnosis, but implement app behavior through supported APIs and test across versions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write and validate a measurement plan for offline onboarding and recovery, including eligibility, event semantics, bounded schema, consent, deduplication, and decisions.",
+      "successLooksLike": "The result includes a correct causal model, reproducible evidence, adverse-path testing, compatibility boundaries, and an owned regression or recovery plan."
+    },
+    "recall": [
+      {
+        "prompt": "What must accompany a conversion numerator?",
+        "answer": "A clearly defined eligible population and denominator collected under compatible semantics."
+      },
+      {
+        "prompt": "What must be recorded with systems evidence?",
+        "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
+      },
+      {
+        "prompt": "How should application code use platform-internals knowledge?",
+        "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "challengeId": "challenge-level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
+  "revision": {
+    "objectives": [
+      "Explain the complete ownership and timing model behind Analytics Measurement Plans, Consent, and Cardinality.",
+      "Collect version-matched evidence that distinguishes cause from correlation.",
+      "Test adverse paths and preserve a compatible regression and recovery plan."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://firebase.google.com/docs/analytics/events?platform=android",
+    "https://firebase.google.com/docs/analytics/configure-data-collection?platform=android",
+    "https://developer.android.com/privacy-and-security/risks/log-info-disclosure"
+  ],
+  "version": "0.14.0"
+}

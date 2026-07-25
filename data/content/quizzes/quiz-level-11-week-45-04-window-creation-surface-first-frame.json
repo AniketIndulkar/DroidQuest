@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-45-04-window-creation-surface-first-frame",
+  "title": "Window Creation, Surface Setup, and the First Frame Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-45-04-window-creation-surface-first-frame"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-45-04-window-creation-surface-first-frame-decision",
+      "prompt": "Which approach best applies window creation, surface setup, and the first frame?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Define first frame as a cross-process rendering and presentation path, and keep app milestones semantically honest.",
+        "Equate onResume with pixels",
+        "Treat Window as Surface only",
+        "Call fully drawn before useful content"
+      ],
+      "answer": "Define first frame as a cross-process rendering and presentation path, and keep app milestones semantically honest.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame"
+    },
+    {
+      "id": "q-level-11-week-45-04-window-creation-surface-first-frame-truth",
+      "prompt": "When Activity.onResume returns, the first app buffer has necessarily been displayed.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Calling reportFullyDrawn immediately in onCreate improves a number while destroying the meaning of the fully useful UI milestone.",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame"
+    },
+    {
+      "id": "q-level-11-week-45-04-window-creation-surface-first-frame-recall",
+      "prompt": "Which component ultimately composes visible app layers for the display?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-45-04-window-creation-surface-first-frame"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

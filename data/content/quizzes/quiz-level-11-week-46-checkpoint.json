@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-11-week-46-checkpoint",
+  "title": "Week 46: Android Rendering Pipeline Checkpoint",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-46-01-view-traversal-measure-layout-draw",
+    "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+    "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+    "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+    "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+    "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-46-1-view-traversal-measure-layout-draw",
+      "prompt": "Checkpoint: When is requestLayout required instead of only invalidate?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "When a change can affect measured size or child positioning and therefore requires a new geometry traversal. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-01-view-traversal-measure-layout-draw",
+      "options": [
+        "Use measure for constrained size, layout for bounds, draw for visuals, and request only the invalidation scope the change requires.",
+        "Allocate models in onDraw",
+        "Ignore AT_MOST",
+        "Call requestLayout for every color change"
+      ],
+      "answer": "Use measure for constrained size, layout for bounds, draw for visuals, and request only the invalidation scope the change requires."
+    },
+    {
+      "id": "q-week-46-2-compose-composition-layout-draw-snapshots",
+      "prompt": "Select the two sound practices for compose phases, snapshot reads, and skippable work.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Its invalidation can rerun drawing without rebuilding composition or geometry when those outputs are unchanged. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+      "options": [
+        "Place state reads in the narrowest honest phase, preserve stable identity contracts, and optimise from release trace evidence.",
+        "Capture matching runtime evidence and exercise one adverse path",
+        "Mark all models Stable",
+        "Wrap every expression in derivedStateOf"
+      ],
+      "answer": [
+        "Place state reads in the narrowest honest phase, preserve stable identity contracts, and optimise from release trace evidence.",
+        "Capture matching runtime evidence and exercise one adverse path"
+      ]
+    },
+    {
+      "id": "q-week-46-3-choreographer-vsync-frame-timeline-deadlines",
+      "prompt": "If the main thread finishes before its callback returns, the frame is guaranteed to present on time.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "It represents the scheduler frame timeline, keeping motion time-based across dropped frames and changing refresh rates. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+      "answer": false
+    },
+    {
+      "id": "q-week-46-4-renderthread-display-lists-hardware-acceleration",
+      "prompt": "Checkpoint: What work does the UI thread commonly contribute in hardware-accelerated View rendering?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "It handles state, measurement, layout, traversal, and records drawing operations for the rendering pipeline. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+      "answer": "It handles state, measurement, layout, traversal, and records drawing operations for the rendering pipeline.",
+      "acceptedAnswers": [
+        "It handles state, measurement, layout, traversal, and records drawing operations for the rendering pipeline."
+      ]
+    },
+    {
+      "id": "q-week-46-5-surface-bufferqueue-gralloc-fences",
+      "prompt": "Order the investigation for surface, bufferqueue, gralloc, and synchronisation fences.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "It indicates when the consumer has finished using a buffer so the producer can safely reuse it. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+      "options": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ],
+      "answer": [
+        "Name start state and outcome",
+        "Map responsible owners and boundaries",
+        "Capture version-matched evidence",
+        "Exercise an adverse path",
+        "Preserve guard and recovery"
+      ]
+    },
+    {
+      "id": "q-week-46-6-surfaceflinger-hwc-composition-frame-trace",
+      "prompt": "Match each systems question to its evidence for surfaceflinger, hardware composer, and end-to-end frame tracing.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "SurfaceFlinger selects layers and may perform client GPU composition; HWC chooses and executes supported display composition and presentation work. The conclusion must remain connected to the correct owner and version-matched evidence.",
+      "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+      "options": [
+        "Ownership → process, service, thread, queue, or buffer",
+        "Timing → trace with expected and actual boundaries",
+        "Safety → denial, death, pressure, and compatibility tests"
+      ],
+      "answer": {
+        "Ownership": "process, service, thread, queue, or buffer",
+        "Timing": "trace with expected and actual boundaries",
+        "Safety": "denial, death, pressure, and compatibility tests"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 325,
+    "stars": 4
+  },
+  "version": "0.14.0"
+}

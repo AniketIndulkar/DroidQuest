@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+  "title": "Choreographer, VSync, FrameTimeline, and Deadlines Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-decision",
+      "prompt": "Which approach best applies choreographer, vsync, frametimeline, and deadlines?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use intended presentation timelines and attribute missed frames to the responsible pipeline stage under the actual refresh mode.",
+        "Assume 16 ms everywhere",
+        "Use sleep for animation cadence",
+        "Judge only average FPS"
+      ],
+      "answer": "Use intended presentation timelines and attribute missed frames to the responsible pipeline stage under the actual refresh mode.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+    },
+    {
+      "id": "q-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-truth",
+      "prompt": "If the main thread finishes before its callback returns, the frame is guaranteed to present on time.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Assuming every device supplies a fixed 16-millisecond frame budget makes animations and thresholds wrong on high and variable refresh displays.",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+    },
+    {
+      "id": "q-level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-recall",
+      "prompt": "Why use frameTimeNanos for animation progress?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It represents the scheduler frame timeline, keeping motion time-based across dropped frames and changing refresh rates.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

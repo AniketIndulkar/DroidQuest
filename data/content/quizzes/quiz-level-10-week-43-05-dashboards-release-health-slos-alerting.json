@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-43-05-dashboards-release-health-slos-alerting",
+  "title": "Operational Dashboards, Release Health, SLOs, and Alerting Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-43-05-dashboards-release-health-slos-alerting"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-43-05-dashboards-release-health-slos-alerting-decision",
+      "prompt": "Which approach best applies operational dashboards, release health, slos, and alerting?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Build version-aware decision views with population, tail or user-impact signals, data quality, thresholds, owners, and rehearsed actions.",
+        "Page on every anomaly",
+        "Promote from tiny samples",
+        "Hide old versions from dashboards"
+      ],
+      "answer": "Build version-aware decision views with population, tail or user-impact signals, data quality, thresholds, owners, and rehearsed actions.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting"
+    },
+    {
+      "id": "q-level-10-week-43-05-dashboards-release-health-slos-alerting-truth",
+      "prompt": "If the global crash-free rate meets its target, no per-device release gate is necessary.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "A green global average can hide a catastrophic regression isolated to one common device model or OS version.",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting"
+    },
+    {
+      "id": "q-level-10-week-43-05-dashboards-release-health-slos-alerting-recall",
+      "prompt": "What makes a release-health alert actionable?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It names user impact, affected cohort, trustworthy evidence, owner, urgency, and an immediate safe response.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-10-week-43-05-dashboards-release-health-slos-alerting"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

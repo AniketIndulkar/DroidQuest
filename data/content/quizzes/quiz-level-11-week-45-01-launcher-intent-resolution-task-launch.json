@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-45-01-launcher-intent-resolution-task-launch",
+  "title": "Launcher Intent Resolution and Task Launch Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-45-01-launcher-intent-resolution-task-launch"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-45-01-launcher-intent-resolution-task-launch-decision",
+      "prompt": "Which approach best applies launcher intent resolution and task launch?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Separate intent resolution, task policy, process availability, app scheduling, and display presentation, then verify each with matching evidence.",
+        "Treat task as process",
+        "Assume every tap forks",
+        "Attribute total time to onCreate"
+      ],
+      "answer": "Separate intent resolution, task policy, process availability, app scheduling, and display presentation, then verify each with matching evidence.",
+      "explanation": "This answer keeps the ownership boundaries distinct and requires version-matched evidence, failure testing, compatibility, and operational follow-through.",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch"
+    },
+    {
+      "id": "q-level-11-week-45-01-launcher-intent-resolution-task-launch-truth",
+      "prompt": "Resolving the launcher activity means its process must already be running.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Interpreting am start -W total time as only application code ignores intent resolution, process creation, Binder scheduling, window, and system transition work.",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch"
+    },
+    {
+      "id": "q-level-11-week-45-01-launcher-intent-resolution-task-launch-recall",
+      "prompt": "Why is intent resolution distinct from activity execution?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Resolution selects an eligible component; task, process, scheduling, lifecycle, window, and rendering work still follow.",
+      "explanation": "The answer identifies the mechanism and owner that make the explanation causal rather than a memorised sequence.",
+      "lessonId": "level-11-week-45-01-launcher-intent-resolution-task-launch"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "stars": 3
+  },
+  "version": "0.14.0"
+}

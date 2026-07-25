@@ -4,7 +4,7 @@
   "order": 11,
   "description": "Explain Android beneath the application layer by tracing processes, Binder, system services, rendering, threads, ART, memory pressure, power rules, and diagnostics.",
   "difficulty": "expert",
-  "status": "planned",
+  "status": "in_progress",
   "weekRange": {
     "start": 44,
     "end": 47
@@ -18,14 +18,33 @@
     "binder",
     "rendering"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-11-preview",
+  "estimatedLearningMinutes": 180,
+  "lessonIds": [
+    "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+    "level-11-week-44-02-zygote-fork-app-process-creation",
+    "level-11-week-44-03-system-server-boot-system-services",
+    "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+    "level-11-week-44-05-service-manager-discovery-handles",
+    "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+    "level-11-week-45-01-launcher-intent-resolution-task-launch",
+    "level-11-week-45-02-activitythread-main-application-bind",
+    "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+    "level-11-week-45-04-window-creation-surface-first-frame",
+    "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+    "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+    "level-11-week-46-01-view-traversal-measure-layout-draw",
+    "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+    "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+    "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+    "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+    "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+  ],
+  "roadmapStartNodeId": "node-level-11-week-44-01-linux-processes-threads-uids-sandbox",
   "plannedTopics": [
-    "Processes, Zygote, Binder, and system services",
-    "Application launch and window creation",
-    "Rendering, VSync, SurfaceFlinger, and BufferQueue",
-    "ART, DEX, memory, power, ADB, dumpsys, and Perfetto"
+    "Linux process and thread identity, app sandboxes, Zygote specialization, system_server, framework services, Binder, ServiceManager, and authority boundaries",
+    "Launcher resolution, task and process selection, ActivityThread binding, Instrumentation, activity attachment, window creation, first frame, Loopers, Binder pools, coroutines, and deadlocks",
+    "View traversal, Compose phases, Choreographer and VSync, RenderThread, display lists, BufferQueue, fences, SurfaceFlinger, HWC, and end-to-end frame tracing",
+    "Week 47: ART, DEX, JIT/AOT, garbage collection, process importance, power and background internals, diagnostic tools, and interaction-trace capstone"
   ],
   "project": {
     "title": "End-to-End Interaction Trace",
@@ -36,5 +55,5 @@
     "icon": "memory",
     "mapMood": "A systems map connecting framework calls to processes, queues, surfaces, and runtime state."
   },
-  "version": "0.2.0"
+  "version": "0.14.0"
 }
