@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-12-week-50-checkpoint",
+  "title": "Week 50: Android Across Device Form Factors Checkpoint",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+    "level-12-week-50-02-wear-os-surfaces-power-health",
+    "level-12-week-50-03-android-auto-automotive-driver-safety",
+    "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+    "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+    "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-50-1-adaptive-windows-foldables-chromeos-input",
+      "prompt": "Checkpoint: Why is window size more useful than device category?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "The app renders into a changeable window whose size and features may not match a fixed phone, tablet, or foldable label. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "options": [
+        "Respond to live window and capability state, preserve the task, and support touch plus non-touch input without device-name assumptions.",
+        "Branch on model name",
+        "Lock portrait",
+        "Stretch one column"
+      ],
+      "answer": "Respond to live window and capability state, preserve the task, and support touch plus non-touch input without device-name assumptions."
+    },
+    {
+      "id": "q-week-50-2-wear-os-surfaces-power-health",
+      "prompt": "Select the two production-grade practices for wear os surfaces, power, and health context.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "For a tiny frequently glanced value or action that users need directly on the watch face. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health",
+      "options": [
+        "Choose wrist-appropriate surfaces, keep tasks focused, minimise power and data, and preserve standalone and offline behavior.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Mirror phone app",
+        "Poll sensors continuously"
+      ],
+      "answer": [
+        "Choose wrist-appropriate surfaces, keep tasks focused, minimise power and data, and preserve standalone and offline behavior.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-week-50-3-android-auto-automotive-driver-safety",
+      "prompt": "An app approved for Android Auto can use the identical UI and distribution model on Android Automotive OS.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "Auto projects a phone-powered experience into the car, while Automotive OS runs apps on the vehicle platform. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety",
+      "answer": false
+    },
+    {
+      "id": "q-week-50-4-android-tv-focus-dpad-media-quality",
+      "prompt": "Checkpoint: What must survive asynchronous TV list updates?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "Stable item identity and an intentional focus restoration target so remote navigation remains predictable. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "answer": "Stable item identity and an intentional focus restoration target so remote navigation remains predictable.",
+      "acceptedAnswers": [
+        "Stable item identity and an intentional focus restoration target so remote navigation remains predictable."
+      ]
+    },
+    {
+      "id": "q-week-50-5-android-xr-spatial-ui-comfort-capabilities",
+      "prompt": "Order the expert workflow for android xr spatial ui, comfort, and capability fallback.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "Hardware, mode, permission, and preview API availability vary, while the core task still needs a stable non-spatial implementation. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-week-50-6-multiform-factor-capability-matrix-capstone",
+      "prompt": "Match the expert review dimension for multi-form-factor capability matrix capstone.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "Stable domain, data, operation identity, and conflict rules—not assumptions about one surface, input model, permission, or lifecycle. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 350,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

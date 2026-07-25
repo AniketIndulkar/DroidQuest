@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+  "title": "Doze, Standby, Jobs, Alarms, Wake Locks, and FGS Internals Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-decision",
+      "prompt": "Which approach best applies doze, standby, jobs, alarms, wake locks, and fgs internals?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Choose jobs, alarms, or FGS from the user promise and accept system quotas, while persisting idempotent intent and testing idle states.",
+        "Poll with exact alarms",
+        "Use FGS to avoid standby",
+        "Assume wake lock grants network"
+      ],
+      "answer": "Choose jobs, alarms, or FGS from the user promise and accept system quotas, while persisting idempotent intent and testing idle states.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+    },
+    {
+      "id": "q-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-truth",
+      "prompt": "Holding a partial wake lock allows ordinary WorkManager jobs to run freely during Doze.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Adding a partial wake lock around WorkManager does not make the job run during Doze and can add battery drain or leaked-lock failures.",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+    },
+    {
+      "id": "q-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-recall",
+      "prompt": "What is the key difference between Doze and App Standby?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Doze is a device idle mode, while App Standby and its buckets restrict individual apps based on engagement and policy.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

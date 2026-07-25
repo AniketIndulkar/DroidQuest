@@ -1,0 +1,218 @@
+{
+  "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+  "title": "Library Baseline Profiles and SDK Capstone",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 48,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-48-05-sdk-testing-security-observability-samples"
+  ],
+  "tags": [
+    "sdk",
+    "baseline-profiles",
+    "capstone"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master library baseline profiles and sdk capstone through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend library baseline profiles and sdk capstone."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A library Baseline Profile identifies important library methods and classes, but generation must exercise realistic consumer journeys rather than every symbol. The consuming app merges library profiles and installation determines compilation. Profiles can improve startup or interaction without changing public behavior, yet stale or overly broad rules add install and storage cost. Generate from release-like code and stable scenarios, then inspect that the profile is packaged in the AAR and merged into a sample app."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The SDK capstone combines a minimal Kotlin and Java API, compatibility dumps, compiled-client tests, namespaced resources, minimal manifest, targeted consumer rules, signed Maven publication, initialization budget, safe telemetry, sample apps, security review, and support documentation. Add a Baseline Profile for an authorization journey and compare no-compilation, unprofiled, and profiled consumers. Keep performance evidence separate from claims about API compatibility or security."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :sdk:apiCheck :sdk:publishAllPublicationsToTestRepository :consumer:connectedReleaseAndroidTest :benchmark:connectedReleaseAndroidTest",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Release through a staging repository and consume exact coordinates in matrix fixtures. Verify checksums, metadata, sources, docs, licenses, SBOM, R8, profiles, startup, memory, threads, network, privacy-off, process death, and previous binary consumers. Produce migration and rollback plans and a vulnerability response path. The capstone succeeds when an unfamiliar team can integrate, diagnose, upgrade, disable optional behavior, and remove the SDK without undocumented assistance."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Generating a Baseline Profile by calling every public API can bloat compilation and teaches nothing about an actual consumer critical journey."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Create Baseline Profiles for Libraries",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/baselineprofiles/create-baselineprofile#library",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Create an Android Library",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/projects/android-library",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Backward Compatibility for Library Authors",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Library Baseline Profiles and SDK Capstone",
+      "language": "shell",
+      "code": "./gradlew :sdk:apiCheck :sdk:publishAllPublicationsToTestRepository :consumer:connectedReleaseAndroidTest :benchmark:connectedReleaseAndroidTest",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Generating a Baseline Profile by calling every public API can bloat compilation and teaches nothing about an actual consumer critical journey.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Publish and independently consume a production SDK with compatibility, security, observability, profiles, provenance, integration samples, support, migration, and removal evidence.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Where is a library Baseline Profile ultimately used?",
+        "answer": "It is packaged with the library, merged by the consuming app, and used by ART installation/profile compilation for matching code."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+  "challengeId": "challenge-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind Library Baseline Profiles and SDK Capstone.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/baselineprofiles/create-baselineprofile#library",
+    "https://developer.android.com/studio/projects/android-library",
+    "https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html"
+  ],
+  "version": "1.0.0"
+}

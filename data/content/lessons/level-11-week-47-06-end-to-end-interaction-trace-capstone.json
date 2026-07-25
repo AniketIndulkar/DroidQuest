@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "title": "End-to-End Interaction Trace Capstone",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 47,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+  ],
+  "tags": [
+    "internals",
+    "perfetto",
+    "capstone"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master end-to-end interaction trace capstone through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Android experts need to connect runtime, memory, power, and diagnostic evidence to the actual platform owner and recovery behavior.",
+      "outcome": "You can design, inspect, test, release, and defend end-to-end interaction trace capstone."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The capstone traces one screen tap from the input subsystem through InputDispatcher delivery, application Looper dispatch, Compose or View event handling, state mutation, invalidation, composition or traversal, RenderThread and GPU work, BufferQueue submission, SurfaceFlinger latch, Hardware Composer, and presentation. Not every visible slice lies on the critical path. Build a dependency chain using wakeups, Binder transactions, queue state, fences, and expected versus actual frame timelines."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Start from a release-like artifact and controlled device state. Record refresh rate, thermal state, data fixture, process state, compilation mode, and trace configuration. Add narrow app trace sections around domain work without perturbing every frame. Identify input-to-display latency, missed deadline, runnable versus blocked time, Binder or lock waits, buffer availability, and the exact frame that reflects the state change. Compare one healthy and one intentionally degraded capture."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell perfetto --txt -c interaction.pbtxt -o /data/misc/perfetto-traces/interaction.perfetto-trace; # Mark input, state, frame, latch, and present.",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Explain uncertainty where vendor GPU, HWC, or input detail is absent. Validate conclusions with a controlled intervention and repeated distribution, not a single annotated screenshot. Include AOSP source links matching the build, a responsibility diagram, raw traces, queries, commands, public-contract implications, and regression guard. Exercise process recreation, accessibility input, high refresh, and background contention. The final narrative must remain useful even if private class names or trace labels change."
+            },
+            {
+              "type": "paragraph",
+              "text": "Internals knowledge is useful when it connects a user-visible symptom to the correct owner without turning private implementation into an app dependency. Record the Android build, device, process and compilation state, workload, command or trace configuration, and artifact identity. Combine matching AOSP source with runtime evidence and a controlled intervention. Distinguish managed from native memory, app from system policy, and snapshots from timelines. Test death, pressure, cancellation, idle policy, version differences, and recovery. Preserve the raw evidence and uncertainty. Production applications still use supported APIs; platform changes require security, compatibility, boot, performance, testing, ownership, and rollback evidence."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Highlighting the longest slice in a trace and calling it the cause ignores whether later work actually depends on that slice."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Record Traces with Perfetto",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile/record-traces",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "dumpsys",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/tools/dumpsys",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Android Runtime and Dalvik",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/runtime",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect End-to-End Interaction Trace Capstone",
+      "language": "shell",
+      "code": "adb shell perfetto --txt -c interaction.pbtxt -o /data/misc/perfetto-traces/interaction.perfetto-trace; # Mark input, state, frame, latch, and present.",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Highlighting the longest slice in a trace and calling it the cause ignores whether later work actually depends on that slice.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Produce and defend a complete tap-to-display trace with matched AOSP source, causal critical path, controlled degradation, verified fix, uncertainty, and regression guard.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "What proves that an observed slice caused the delayed frame?",
+        "answer": "A dependency path connects it to presentation and a controlled change predictably moves the resulting latency distribution."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "challengeId": "challenge-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind End-to-End Interaction Trace Capstone.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/profile/record-traces",
+    "https://developer.android.com/tools/dumpsys",
+    "https://source.android.com/docs/core/runtime"
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+  "title": "JNI Boundaries, References, Threads, and Exceptions Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-49-04-jni-boundaries-references-threads-exceptions-decision",
+      "prompt": "Which approach best applies jni boundaries, references, threads, and exceptions?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Minimise crossings and make thread, reference, buffer, exception, handle, and callback ownership explicit and tested.",
+        "Cache JNIEnv globally",
+        "Ignore pending exceptions",
+        "Return raw pointers to UI"
+      ],
+      "answer": "Minimise crossings and make thread, reference, buffer, exception, handle, and callback ownership explicit and tested.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+    },
+    {
+      "id": "q-level-12-week-49-04-jni-boundaries-references-threads-exceptions-truth",
+      "prompt": "A JNI local reference can be stored and safely used from any native thread until the process exits.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Caching JNIEnv in a global and using it from worker threads violates its thread affinity and can corrupt runtime interaction.",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+    },
+    {
+      "id": "q-level-12-week-49-04-jni-boundaries-references-threads-exceptions-recall",
+      "prompt": "What must a native-created thread do before using JNI?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Attach to the JavaVM to obtain its own JNIEnv, then detach before the thread terminates.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

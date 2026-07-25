@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+  "title": "ART, DEX, Class Loading, JIT, AOT, and Profiles Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-01-art-dex-classloading-jit-aot-profiles-decision",
+      "prompt": "Which approach best applies art, dex, class loading, jit, aot, and profiles?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Model ART as a hybrid profile-guided runtime and interpret results within exact install, profile, and compiler-filter state.",
+        "Assume every method is AOT",
+        "Treat R8 as ART JIT",
+        "Identify classes by name alone"
+      ],
+      "answer": "Model ART as a hybrid profile-guided runtime and interpret results within exact install, profile, and compiler-filter state.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+    },
+    {
+      "id": "q-level-11-week-47-01-art-dex-classloading-jit-aot-profiles-truth",
+      "prompt": "Two classes with the same fully qualified name are always assignment-compatible even when defined by different class loaders.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Calling ART an ahead-of-time-only runtime ignores interpretation, JIT, profile-guided compilation, install state, and device policy.",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+    },
+    {
+      "id": "q-level-11-week-47-01-art-dex-classloading-jit-aot-profiles-recall",
+      "prompt": "What does speed-profile generally prioritise?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "AOT compilation and class-loading optimisation for methods and classes identified by a profile rather than the entire app.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

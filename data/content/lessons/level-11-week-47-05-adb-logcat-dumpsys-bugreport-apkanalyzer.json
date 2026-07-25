@@ -1,0 +1,226 @@
+{
+  "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+  "title": "ADB, Logcat, dumpsys, Bug Reports, and APK Analysis",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 47,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+  ],
+  "tags": [
+    "internals",
+    "diagnostics",
+    "adb"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master adb, logcat, dumpsys, bug reports, and apk analysis through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Android experts need to connect runtime, memory, power, and diagnostic evidence to the actual platform owner and recovery behavior.",
+      "outcome": "You can design, inspect, test, release, and defend adb, logcat, dumpsys, bug reports, and apk analysis."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "ADB is a transport and command gateway, not one diagnostic. shell commands expose process and service state; logcat reads structured system buffers; dumpsys asks registered services for snapshots; am, pm, and cmd exercise supported shell surfaces; bugreport packages broad system evidence; Perfetto records time; APK Analyzer and apkanalyzer inspect static artifacts. Each source answers different questions and carries permissions, privacy, timing, and version limits."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Begin from a precise hypothesis and collect the smallest sufficient evidence. Filter logcat by process, tag, time, and buffer but preserve surrounding context. Use dumpsys service help and record command output with build fingerprint. am force-stop changes package state and is not equivalent to process death. pm clear destroys user data. Bug reports contain sensitive information and require controlled storage, access, redaction, retention, and secure sharing. Shell output formats are not stable machine APIs."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell getprop ro.build.fingerprint; adb shell dumpsys activity processes; adb bugreport bugreport.zip; apkanalyzer manifest print app-release.apk",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create repeatable capture scripts that record commands, timestamps, device and app versions, exit codes, and raw artifacts without modifying production state. Correlate snapshots with traces instead of assuming ordering from log text. Verify debuggable versus release differences, multiple users, work profiles, no-root access, and OEM variance. For APKs, inspect manifest, resources, DEX, native ABIs, signing, profiles, size, and mapping association. Delete sensitive captures under policy after the investigation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Internals knowledge is useful when it connects a user-visible symptom to the correct owner without turning private implementation into an app dependency. Record the Android build, device, process and compilation state, workload, command or trace configuration, and artifact identity. Combine matching AOSP source with runtime evidence and a controlled intervention. Distinguish managed from native memory, app from system policy, and snapshots from timelines. Test death, pressure, cancellation, idle policy, version differences, and recovery. Preserve the raw evidence and uncertainty. Production applications still use supported APIs; platform changes require security, compatibility, boot, performance, testing, ownership, and rollback evidence."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Using pm clear while reproducing a restart bug removes the persisted state whose restoration behavior you intended to test."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Android Debug Bridge",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/tools/adb",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "dumpsys",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/tools/dumpsys",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Capture and Read Bug Reports",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug/bug-report",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "apkanalyzer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/tools/apkanalyzer",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect ADB, Logcat, dumpsys, Bug Reports, and APK Analysis",
+      "language": "shell",
+      "code": "adb shell getprop ro.build.fingerprint; adb shell dumpsys activity processes; adb bugreport bugreport.zip; apkanalyzer manifest print app-release.apk",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using pm clear while reproducing a restart bug removes the persisted state whose restoration behavior you intended to test.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a privacy-reviewed diagnostic playbook for startup plus process death using ADB, logcat, dumpsys, Perfetto, bugreport, and apkanalyzer evidence.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Why combine dumpsys with Perfetto?",
+        "answer": "dumpsys provides scoped state snapshots, while Perfetto shows timing and causality across an interval."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+  "challengeId": "challenge-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind ADB, Logcat, dumpsys, Bug Reports, and APK Analysis.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/tools/adb",
+    "https://developer.android.com/tools/dumpsys",
+    "https://developer.android.com/studio/debug/bug-report",
+    "https://developer.android.com/tools/apkanalyzer"
+  ],
+  "version": "1.0.0"
+}

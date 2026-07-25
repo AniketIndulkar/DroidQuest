@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-04-selinux-labels-denials-least-privilege",
+  "title": "SELinux Labels, Denials, and Least-privilege Policy Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-04-selinux-labels-denials-least-privilege"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-04-selinux-labels-denials-least-privilege-decision",
+      "prompt": "Which approach best applies selinux labels, denials, and least-privilege policy?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Start from intended ownership and labels, then grant only the minimum access supported by threat model and negative tests.",
+        "Disable enforcing",
+        "Paste audit2allow",
+        "Grant wildcard device access"
+      ],
+      "answer": "Start from intended ownership and labels, then grant only the minimum access supported by threat model and negative tests.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege"
+    },
+    {
+      "id": "q-level-12-week-51-04-selinux-labels-denials-least-privilege-truth",
+      "prompt": "If a process has Linux root privileges, SELinux allow rules no longer constrain it.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Generating and accepting every audit2allow suggestion converts observed behavior into broad authority without checking labels or architecture.",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege"
+    },
+    {
+      "id": "q-level-12-week-51-04-selinux-labels-denials-least-privilege-recall",
+      "prompt": "What four elements identify a basic SELinux access decision?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Source type, target type, object class, and requested permission.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

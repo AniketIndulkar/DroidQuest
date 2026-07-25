@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+  "title": "SDK Initialization, Lifecycle, and Process Isolation Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation-decision",
+      "prompt": "Which approach best applies sdk initialization, lifecycle, and process isolation?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Make initialization explicit or narrowly justified, idempotent, process-aware, consent-aware, measurable, and safely degradable.",
+        "Capture first Activity",
+        "Start network in provider",
+        "Use one global scope forever"
+      ],
+      "answer": "Make initialization explicit or narrowly justified, idempotent, process-aware, consent-aware, measurable, and safely degradable.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+    },
+    {
+      "id": "q-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation-truth",
+      "prompt": "A ContentProvider initializer runs only after Application.onCreate has completed.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "An auto-initializing provider that contacts the network can delay every app process and collect data before the host establishes consent.",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+    },
+    {
+      "id": "q-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation-recall",
+      "prompt": "Why separate SDK configuration from activation?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The host can validate setup and establish consent or lifecycle before starting work, collection, threads, or network access.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

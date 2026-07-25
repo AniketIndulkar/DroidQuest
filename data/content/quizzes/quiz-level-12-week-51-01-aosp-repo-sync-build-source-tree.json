@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+  "title": "AOSP Repo, Sync, Build, and Source-tree Navigation Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-01-aosp-repo-sync-build-source-tree-decision",
+      "prompt": "Which approach best applies aosp repo, sync, build, and source-tree navigation?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Pin the manifest and target, respect Repo project ownership, build narrowly then integratively, and record exact environment and artifacts.",
+        "Build unpinned main",
+        "Treat tree as one Git repo",
+        "Assume AOSP includes Google services"
+      ],
+      "answer": "Pin the manifest and target, respect Repo project ownership, build narrowly then integratively, and record exact environment and artifacts.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+    },
+    {
+      "id": "q-level-12-week-51-01-aosp-repo-sync-build-source-tree-truth",
+      "prompt": "The AOSP source tree is a single Git repository whose subdirectories share one branch and commit.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Editing files across several Git projects on one ordinary branch misses Repo project boundaries and makes upload or review incomplete.",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+    },
+    {
+      "id": "q-level-12-week-51-01-aosp-repo-sync-build-source-tree-recall",
+      "prompt": "What does a Repo manifest determine?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Which Git projects, revisions, remotes, paths, and groups compose the checked-out AOSP workspace.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

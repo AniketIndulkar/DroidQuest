@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+  "title": "Android XR Spatial UI, Comfort, and Capability Fallback Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-decision",
+      "prompt": "Which approach best applies android xr spatial ui, comfort, and capability fallback?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use space only where it improves the task and guarantee complete capability-aware, comfortable, accessible non-spatial fallback.",
+        "Require eye tracking",
+        "Spatialize every menu",
+        "Depend on preview API everywhere"
+      ],
+      "answer": "Use space only where it improves the task and guarantee complete capability-aware, comfortable, accessible non-spatial fallback.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+    },
+    {
+      "id": "q-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-truth",
+      "prompt": "An app running on Android XR must replace its normal 2D activity UI with spatial components.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Making the only confirmation control a floating spatial object blocks users when tracking, input, permission, or spatial mode is unavailable.",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+    },
+    {
+      "id": "q-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-recall",
+      "prompt": "Why isolate XR APIs behind a capability boundary?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Hardware, mode, permission, and preview API availability vary, while the core task still needs a stable non-spatial implementation.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

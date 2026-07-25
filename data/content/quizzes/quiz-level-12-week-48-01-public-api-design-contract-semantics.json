@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-01-public-api-design-contract-semantics",
+  "title": "Public SDK API Design and Behavioral Contracts Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-01-public-api-design-contract-semantics"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-01-public-api-design-contract-semantics-decision",
+      "prompt": "Which approach best applies public sdk api design and behavioral contracts?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Minimise the public surface and explicitly contract behavior, ownership, failure, threading, lifecycle, and evolution.",
+        "Expose implementation types",
+        "Return raw exceptions for states",
+        "Treat source compatibility as enough"
+      ],
+      "answer": "Minimise the public surface and explicitly contract behavior, ownership, failure, threading, lifecycle, and evolution.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics"
+    },
+    {
+      "id": "q-level-12-week-48-01-public-api-design-contract-semantics-truth",
+      "prompt": "If existing consumer source still compiles after rebuilding, the new SDK is necessarily binary-compatible.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Publishing a Kotlin data class as the request type makes generated constructor, copy, componentN, equality, and property signatures part of evolution risk.",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics"
+    },
+    {
+      "id": "q-level-12-week-48-01-public-api-design-contract-semantics-recall",
+      "prompt": "Why is behavioral compatibility distinct from binary compatibility?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Code can still link while its ordering, errors, side effects, timing, or lifecycle meaning changes and breaks consumers.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

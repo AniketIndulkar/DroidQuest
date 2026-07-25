@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+  "title": "Binary and Source Compatibility on Kotlin/JVM Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-02-binary-source-compatibility-kotlin-jvm-decision",
+      "prompt": "Which approach best applies binary and source compatibility on kotlin/jvm?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Combine API and bytecode comparison with old-compiled consumer execution, source rebuilds, and behavioral contract tests.",
+        "Trust semantic version alone",
+        "Approve every API diff",
+        "Test only latest Kotlin"
+      ],
+      "answer": "Combine API and bytecode comparison with old-compiled consumer execution, source rebuilds, and behavioral contract tests.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+    },
+    {
+      "id": "q-level-12-week-48-02-binary-source-compatibility-kotlin-jvm-truth",
+      "prompt": "Passing a binary API validator proves that the SDK behavior and Android resources remain compatible.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Updating an API dump after an accidental break only blesses the new surface; it does not make existing compiled clients compatible.",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+    },
+    {
+      "id": "q-level-12-week-48-02-binary-source-compatibility-kotlin-jvm-recall",
+      "prompt": "What is the strongest direct binary compatibility test?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Run a consumer compiled against the old library using the candidate replacement without recompiling the consumer.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

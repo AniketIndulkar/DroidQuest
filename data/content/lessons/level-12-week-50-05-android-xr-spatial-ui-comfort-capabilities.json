@@ -1,0 +1,218 @@
+{
+  "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+  "title": "Android XR Spatial UI, Comfort, and Capability Fallback",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 50,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+  ],
+  "tags": [
+    "form-factors",
+    "android-xr",
+    "spatial-ui"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master android xr spatial ui, comfort, and capability fallback through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend android xr spatial ui, comfort, and capability fallback."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android XR can extend a conventional Android activity into spatial panels, volumes, or immersive environments. Jetpack XR and Compose for XR introduce subspaces and spatial components while familiar 2D UI can remain in a panel or Home Space. Begin from a task improved by depth, scale, or placement; do not spatialize menus merely for novelty. Capabilities and APIs may be preview or device-dependent, so isolate them behind interfaces and preserve a strong 2D path."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Comfort and safety govern placement, motion, depth, field of view, input reach, locomotion, occlusion, and session duration. Support gaze or pinch, controllers, hands, keyboard, voice, and accessibility according to actual device capability. Do not assume eye tracking permission or expose inferred sensitive behavior. Own anchors, sessions, lifecycle, lost tracking, recentering, passthrough, and boundary changes. Spatial content needs meaningful scale and legibility across physical environments."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "if(spatialCapabilities.isSpatialUiEnabled){ Subspace { SpatialPanel { LessonDetails() } } } else { LessonDetails() }",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test Home Space and full space, non-XR fallback, permissions denied, tracking loss, recenter, seated and standing, different rooms, input modalities, long sessions, motion comfort, accessibility, thermal and battery. Pin preview dependencies and track release notes. Measure frame timing and asset memory on target hardware. Clearly label experimental capability and never make critical account, payment, or safety flows spatial-only."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Making the only confirmation control a floating spatial object blocks users when tracking, input, permission, or spatial mode is unavailable."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Develop for Android XR",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/xr",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Jetpack Compose for XR",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/xr/jetpack-xr-sdk/ui-compose",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Adaptive App Quality",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/quality/excellent/adaptive",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Android XR Spatial UI, Comfort, and Capability Fallback",
+      "language": "kotlin",
+      "code": "if(spatialCapabilities.isSpatialUiEnabled){ Subspace { SpatialPanel { LessonDetails() } } } else { LessonDetails() }",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Making the only confirmation control a floating spatial object blocks users when tracking, input, permission, or spatial mode is unavailable.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a spatial lesson viewer with 2D parity, capability isolation, multiple input modes, tracking-loss recovery, comfort review, and performance evidence.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Why isolate XR APIs behind a capability boundary?",
+        "answer": "Hardware, mode, permission, and preview API availability vary, while the core task still needs a stable non-spatial implementation."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+  "challengeId": "challenge-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind Android XR Spatial UI, Comfort, and Capability Fallback.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/xr",
+    "https://developer.android.com/develop/xr/jetpack-xr-sdk/ui-compose",
+    "https://developer.android.com/quality/excellent/adaptive"
+  ],
+  "version": "1.0.0"
+}

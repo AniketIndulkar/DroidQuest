@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+  "title": "Model Delivery, Multimodal Pipelines, and Offline Governance Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-49-03-model-delivery-multimodal-offline-governance-decision",
+      "prompt": "Which approach best applies model delivery, multimodal pipelines, and offline governance?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Version the entire pipeline, verify and activate atomically, retain last known good, minimise modality data, and rehearse failure.",
+        "Overwrite active file",
+        "Log raw prompts",
+        "Ship without offline state"
+      ],
+      "answer": "Version the entire pipeline, verify and activate atomically, retain last known good, minimise modality data, and rehearse failure.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+    },
+    {
+      "id": "q-level-12-week-49-03-model-delivery-multimodal-offline-governance-truth",
+      "prompt": "Updating only the model file cannot affect preprocessing, labels, thresholds, or runtime compatibility.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Replacing the active model file in place can leave a corrupt partial model after process death or storage failure.",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+    },
+    {
+      "id": "q-level-12-week-49-03-model-delivery-multimodal-offline-governance-recall",
+      "prompt": "Why retain a last known-good model?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A failed, incompatible, or harmful download can be deactivated without removing the user’s existing offline capability.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,173 @@
+{
+  "id": "quiz-level-12-checkpoint",
+  "title": "Level 12 Final Boss: Android Platform Expert Defense",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-01-public-api-design-contract-semantics",
+    "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+    "level-12-week-48-03-aar-resources-consumer-rules-publication",
+    "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+    "level-12-week-48-05-sdk-testing-security-observability-samples",
+    "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+    "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+    "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+    "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+    "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+    "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+    "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+    "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+    "level-12-week-50-02-wear-os-surfaces-power-health",
+    "level-12-week-50-03-android-auto-automotive-driver-safety",
+    "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+    "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+    "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+    "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+    "level-12-week-51-02-soong-modules-products-flags-apex",
+    "level-12-week-51-03-framework-service-system-app-change",
+    "level-12-week-51-04-selinux-labels-denials-least-privilege",
+    "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+    "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+    "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+    "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+    "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+    "level-12-week-52-04-audit-logging-regulated-release-evidence",
+    "level-12-week-52-05-specialisation-portfolio-architecture",
+    "level-12-week-52-06-android-platform-expert-final-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.85,
+  "questions": [
+    {
+      "id": "q-level-12-boss-1-integrity-attestation-strong-auth-risk",
+      "prompt": "Checkpoint: What must bind an integrity result to the protected action?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "A fresh server-known nonce or request hash plus account and transaction context checked against replay. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "options": [
+        "Verify evidence off-device and combine it with account and action context in a proportional, replay-safe, server-authoritative policy.",
+        "Trust client verdict",
+        "Block every unsupported device",
+        "Treat biometric as transaction authority"
+      ],
+      "answer": "Verify evidence off-device and combine it with account and action context in a proportional, replay-safe, server-authoritative policy."
+    },
+    {
+      "id": "q-level-12-boss-2-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "prompt": "Select the two production-grade practices for payment sdks, tokenization, and tap-to-pay boundaries.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Client amount and cart data can be stale or tampered; the trusted authority must validate the transaction before authorization. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "options": [
+        "Keep payment authority and cryptographic verification on trusted backend or certified components, with durable idempotent recovery.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Decrypt in app",
+        "Trust client amount"
+      ],
+      "answer": [
+        "Keep payment authority and cryptographic verification on trusted backend or certified components, with durable idempotent recovery.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-level-12-boss-3-certificate-lifecycle-multibrand-environments",
+      "prompt": "The Play upload certificate is the signing identity observed by every user-installed Play APK.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "An overlap window lets old clients or servers accept both identities while deployment and adoption complete. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "answer": false
+    },
+    {
+      "id": "q-level-12-boss-4-audit-logging-regulated-release-evidence",
+      "prompt": "Checkpoint: What makes release evidence reproducible?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "It is bound to exact source, configuration, artifact, tools, tests, reviewers, outcomes, and retained raw records. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "answer": "It is bound to exact source, configuration, artifact, tools, tests, reviewers, outcomes, and retained raw records.",
+      "acceptedAnswers": [
+        "It is bound to exact source, configuration, artifact, tools, tests, reviewers, outcomes, and retained raw records."
+      ]
+    },
+    {
+      "id": "q-level-12-boss-5-specialisation-portfolio-architecture",
+      "prompt": "Order the expert workflow for specialisation portfolio architecture.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "Reproducible artifacts plus defensible decisions, tests, measurements, operations, failures, limitations, and review context. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-level-12-boss-6-android-platform-expert-final-capstone",
+      "prompt": "Match the expert review dimension for android platform expert final capstone.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "Another engineer can reproduce the problem, verify the causal change, inspect exact release evidence, and operate or reverse it safely. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    },
+    {
+      "id": "q-level-12-boss-code-output",
+      "prompt": "Which output demonstrates an expert production change?",
+      "type": "code_output",
+      "difficulty": "expert",
+      "options": [
+        "A screenshot",
+        "Exact artifact plus contracts, adverse tests, distributions, release gate, incident and recovery evidence",
+        "A successful local build"
+      ],
+      "answer": "Exact artifact plus contracts, adverse tests, distributions, release gate, incident and recovery evidence",
+      "explanation": "Expert evidence is reproducible and operational, not merely visual or locally successful.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone"
+    },
+    {
+      "id": "q-level-12-boss-spot-bug",
+      "prompt": "Spot the central bug: the team approves a specialist artifact after one successful device run and no compatibility or failure matrix.",
+      "type": "spot_bug",
+      "difficulty": "expert",
+      "answer": "One run does not establish supported versions, devices, consumers, denial, death, offline, pressure, security, release, or recovery behavior.",
+      "explanation": "The support contract needs representative success, negative and compatibility evidence, exact artifact identity, and ownership.",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+    },
+    {
+      "id": "q-level-12-boss-short-answer",
+      "prompt": "What makes an expert Android conclusion defensible?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A causal model, exact reproducible evidence, controlled intervention, support and threat boundaries, adverse tests, honest uncertainty, and an owned operational response.",
+      "explanation": "These elements let another engineer challenge and reproduce the conclusion rather than trust authority.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 1500,
+    "stars": 5
+  },
+  "version": "1.0.0"
+}

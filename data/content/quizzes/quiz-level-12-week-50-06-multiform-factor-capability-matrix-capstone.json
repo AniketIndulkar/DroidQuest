@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+  "title": "Multi-form-factor Capability Matrix Capstone Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-06-multiform-factor-capability-matrix-capstone-decision",
+      "prompt": "Which approach best applies multi-form-factor capability matrix capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Reuse durable domain contracts while adapting surfaces and release evidence to actual capabilities, attention, input, power, and safety.",
+        "Reuse phone UI everywhere",
+        "Branch on model names",
+        "Force learners to pick two tracks"
+      ],
+      "answer": "Reuse durable domain contracts while adapting surfaces and release evidence to actual capabilities, attention, input, power, and safety.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+    },
+    {
+      "id": "q-level-12-week-50-06-multiform-factor-capability-matrix-capstone-truth",
+      "prompt": "Maximum code sharing is the primary measure of a successful multi-form-factor architecture.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Sharing the entire phone presentation module across every device creates interaction, permission, dependency, and release coupling disguised as reuse.",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+    },
+    {
+      "id": "q-level-12-week-50-06-multiform-factor-capability-matrix-capstone-recall",
+      "prompt": "What belongs in shared code across form factors?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Stable domain, data, operation identity, and conflict rules—not assumptions about one surface, input model, permission, or lifecycle.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

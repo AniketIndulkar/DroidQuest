@@ -1,0 +1,218 @@
+{
+  "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+  "title": "Managed Heap, Garbage Collection, and Native Memory",
+  "categoryId": "level-11-android-internals-aosp",
+  "week": 47,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+  ],
+  "tags": [
+    "internals",
+    "memory",
+    "garbage-collection"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master managed heap, garbage collection, and native memory through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Android experts need to connect runtime, memory, power, and diagnostic evidence to the actual platform owner and recovery behavior.",
+      "outcome": "You can design, inspect, test, release, and defend managed heap, garbage collection, and native memory."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "ART manages Java and Kotlin objects in a heap with generations or spaces and collector strategies that vary by release. Allocation can be cheap, but allocation rate drives collection frequency and memory footprint. GC begins from roots such as thread stacks, statics, and JNI references, then traces reachability; unreachable objects become reclaimable. Reachable does not mean useful, so a listener, cache, coroutine, or static reference can create a logical leak without a collector defect."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "GC work may be concurrent but still requires pauses for roots or phases. Large objects, bitmap pixel storage, direct buffers, graphics allocations, thread stacks, code, mmap files, and native malloc are not explained by Java heap alone. Finalizers and GC requests are not deterministic resource management. Use closeable ownership for files and native handles. JNI local, global, and weak references follow distinct lifetime rules; leaked global references keep managed objects alive."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "adb shell dumpsys meminfo dev.droidquest; adb shell am dumpheap dev.droidquest /data/local/tmp/app.hprof",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Correlate heap dumps, allocation recordings, native memory summaries, /proc maps, graphics data, GC events, and process RSS or PSS. A falling Java heap with rising RSS can be expected caching or a native leak. Test repeated journeys to steady state, trim events, backgrounding, large data, rotation, and low-memory devices. Fix ownership and bound caches before tuning collectors. Verify frame, startup, battery, and correctness because reducing allocation by pooling can increase retention or synchronization."
+            },
+            {
+              "type": "paragraph",
+              "text": "Internals knowledge is useful when it connects a user-visible symptom to the correct owner without turning private implementation into an app dependency. Record the Android build, device, process and compilation state, workload, command or trace configuration, and artifact identity. Combine matching AOSP source with runtime evidence and a controlled intervention. Distinguish managed from native memory, app from system policy, and snapshots from timelines. Test death, pressure, cancellation, idle policy, version differences, and recovery. Preserve the raw evidence and uncertainty. Production applications still use supported APIs; platform changes require security, compatibility, boot, performance, testing, ownership, and rollback evidence."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Reading a low Java heap as proof of low process memory ignores native, graphics, code, stacks, mapped files, and allocator retention."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Android Runtime and Dalvik",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/runtime",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Manage App Memory",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/memory",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Native Memory Error Debugging",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/ndk/guides/memory-debug",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Managed Heap, Garbage Collection, and Native Memory",
+      "language": "shell",
+      "code": "adb shell dumpsys meminfo dev.droidquest; adb shell am dumpheap dev.droidquest /data/local/tmp/app.hprof",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Reading a low Java heap as proof of low process memory ignores native, graphics, code, stacks, mapped files, and allocator retention.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Diagnose a growing process using heap, allocation, meminfo, maps, GC, and native evidence; identify the owning reference or allocation boundary and verify steady state.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Why can a JNI global reference cause a managed leak?",
+        "answer": "It is a GC root-like retained reference until explicitly deleted, so the object and its reachable graph remain live."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+  "challengeId": "challenge-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind Managed Heap, Garbage Collection, and Native Memory.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/runtime",
+    "https://developer.android.com/topic/performance/memory",
+    "https://developer.android.com/ndk/guides/memory-debug"
+  ],
+  "version": "1.0.0"
+}

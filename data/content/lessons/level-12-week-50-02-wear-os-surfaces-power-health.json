@@ -1,0 +1,210 @@
+{
+  "id": "level-12-week-50-02-wear-os-surfaces-power-health",
+  "title": "Wear OS Surfaces, Power, and Health Context",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 50,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+  ],
+  "tags": [
+    "form-factors",
+    "wear-os",
+    "power"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master wear os surfaces, power, and health context through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend wear os surfaces, power, and health context."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Wear OS experiences serve focused wrist tasks completed in seconds. Choose the smallest suitable surface: complication for repeated glanceable data, notification for timely events, widget or compatible tile for quick context and action, and full app for richer flows. Compose for Wear OS provides wrist-oriented components, but phone navigation and dense screens should not be copied. Round displays, edge zones, rotary input, one-handed use, and short attention shape the design."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Battery and thermal limits dominate. Batch sensor and network work, use Health Services where applicable, defer maintenance to charging, and avoid persistent updates. Standalone watches may lack a paired phone or reliable network. Model phone, watch, cloud, and sensor authorities explicitly; sync must handle duplicates, conflict, delay, and independent use. Ongoing activities and foreground work are justified only for user-visible long actions such as exercise. Health data demands permission, minimization, and deletion policy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "ScalingLazyColumn { item { Text(\"Today\") }; items(summary) { MetricRow(it) } }",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test multiple round sizes, font scaling, rotary, touch, gestures, ambient behavior where applicable, complications or widgets, offline, Bluetooth loss, phone absent, low battery, exercise duration, process death, and accessibility. Measure startup, frame timing, energy, network, and sensor use on hardware. Follow current Wear quality guidance and version transitions rather than relying on old tile or watch-face APIs. Provide phone setup only when the wrist task truly needs it."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Porting the complete phone information architecture to a watch creates deep, slow interactions that fight wrist ergonomics and battery constraints."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Wear OS Principles",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/wearables/principles",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Screen Compatibility",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/practices/screens_support",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Wear OS Surfaces, Power, and Health Context",
+      "language": "kotlin",
+      "code": "ScalingLazyColumn { item { Text(\"Today\") }; items(summary) { MetricRow(it) } }",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Porting the complete phone information architecture to a watch creates deep, slow interactions that fight wrist ergonomics and battery constraints.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design one health feature across complication or widget, notification, full app, and phone with offline authority, sync conflicts, power budget, permissions, and accessibility.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "When is a complication preferable to a full app?",
+        "answer": "For a tiny frequently glanced value or action that users need directly on the watch face."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-50-02-wear-os-surfaces-power-health",
+  "challengeId": "challenge-level-12-week-50-02-wear-os-surfaces-power-health",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind Wear OS Surfaces, Power, and Health Context.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/wearables/principles",
+    "https://developer.android.com/guide/practices/screens_support"
+  ],
+  "version": "1.0.0"
+}

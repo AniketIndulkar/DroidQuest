@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+  "title": "ADB, Logcat, dumpsys, Bug Reports, and APK Analysis Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-decision",
+      "prompt": "Which approach best applies adb, logcat, dumpsys, bug reports, and apk analysis?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Select diagnostics by hypothesis, record exact context, distinguish snapshots from timelines, and protect sensitive evidence.",
+        "Parse dumpsys as stable API",
+        "Share raw bugreports publicly",
+        "Treat force-stop as LMK"
+      ],
+      "answer": "Select diagnostics by hypothesis, record exact context, distinguish snapshots from timelines, and protect sensitive evidence.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+    },
+    {
+      "id": "q-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-truth",
+      "prompt": "adb shell am force-stop reproduces an ordinary cached-process kill without changing future launch behavior.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Using pm clear while reproducing a restart bug removes the persisted state whose restoration behavior you intended to test.",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+    },
+    {
+      "id": "q-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-recall",
+      "prompt": "Why combine dumpsys with Perfetto?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "dumpsys provides scoped state snapshots, while Perfetto shows timing and causality across an interval.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

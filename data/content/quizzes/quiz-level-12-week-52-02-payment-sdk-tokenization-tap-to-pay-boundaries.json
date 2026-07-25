@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+  "title": "Payment SDKs, Tokenization, and Tap-to-pay Boundaries Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries-decision",
+      "prompt": "Which approach best applies payment sdks, tokenization, and tap-to-pay boundaries?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Keep payment authority and cryptographic verification on trusted backend or certified components, with durable idempotent recovery.",
+        "Decrypt in app",
+        "Trust client amount",
+        "Build uncertified acceptance with HCE"
+      ],
+      "answer": "Keep payment authority and cryptographic verification on trusted backend or certified components, with durable idempotent recovery.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+    },
+    {
+      "id": "q-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries-truth",
+      "prompt": "Receiving a Google Pay PaymentData callback means the merchant has successfully captured funds.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Showing “paid” immediately after the client receives payment data can create false success when backend authorization times out or fails.",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+    },
+    {
+      "id": "q-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries-recall",
+      "prompt": "Why must the backend reprice the cart?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Client amount and cart data can be stale or tampered; the trusted authority must validate the transaction before authorization.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

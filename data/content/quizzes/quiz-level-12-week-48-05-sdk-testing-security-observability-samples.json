@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-05-sdk-testing-security-observability-samples",
+  "title": "SDK Testing, Security, Observability, and Samples Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-05-sdk-testing-security-observability-samples"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-05-sdk-testing-security-observability-samples-decision",
+      "prompt": "Which approach best applies sdk testing, security, observability, and samples?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Treat the host process as a shared boundary and prove security, containment, compatibility, diagnostics, privacy, and support behavior.",
+        "Request broad permissions",
+        "Ship hidden credentials",
+        "Use sample as undocumented setup"
+      ],
+      "answer": "Treat the host process as a shared boundary and prove security, containment, compatibility, diagnostics, privacy, and support behavior.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples"
+    },
+    {
+      "id": "q-level-12-week-48-05-sdk-testing-security-observability-samples-truth",
+      "prompt": "Because an SDK runs inside the host sandbox, its security and performance failures affect only the SDK vendor.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Logging the host request object for support can expose credentials and user data that the SDK neither needs nor has permission to retain.",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples"
+    },
+    {
+      "id": "q-level-12-week-48-05-sdk-testing-security-observability-samples-recall",
+      "prompt": "What should an SDK observability hook expose?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Bounded redacted semantic events and correlation owned by the host, without leaking SDK or host-sensitive data.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

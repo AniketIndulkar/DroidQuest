@@ -1,0 +1,210 @@
+{
+  "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+  "title": "HALs, Stable AIDL, VINTF, and Treble Compatibility",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 51,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-51-04-selinux-labels-denials-least-privilege"
+  ],
+  "tags": [
+    "aosp",
+    "hal",
+    "stable-aidl"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master hals, stable aidl, vintf, and treble compatibility through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend hals, stable aidl, vintf, and treble compatibility."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A hardware abstraction layer presents a stable interface between Android framework or services and vendor implementations. Treble separates system and vendor partitions so they can evolve under compatibility contracts. New HAL work generally uses stable AIDL where upstream defines it; HIDL remains for existing interfaces. A VINTF-stable AIDL interface marks types and build declarations, freezes versions, and appears in manifests and compatibility matrices. An app should access hardware through public framework APIs, not HALs directly."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Design bounded parcelables, explicit errors, version negotiation, thread and one-way semantics, service instances, death handling, and permissions or SELinux. Released interfaces are append-only under defined rules; clients and servers may run different frozen versions. Do not expose unstable C++ types or file paths across partitions. Framework service policy often sits above the HAL and validates users and apps. HAL implementations may be native or Rust, but Binder, lifetime, concurrency, and hardware failure remain."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "aidl_interface { name: \"android.hardware.droidquest\", srcs: [\"android/hardware/droidquest/*.aidl\"], stability: \"vintf\", backend: { cpp: { enabled: false } } }",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test manifest consistency, frozen API dumps, old framework with new vendor and new framework with old vendor where required, service restart, missing hardware, malformed input, latency, concurrency, and VTS. Trace Binder and device interactions. Review SELinux and init configuration. Avoid using passthrough or vendor shortcuts that violate partition policy. A compatible interface can still be behaviorally wrong, so combine VTS structure with device-specific functional and resilience tests."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Changing a frozen parcelable field type in place breaks old clients or servers even when both sides compile in the latest tree."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "AIDL for HALs",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture/aidl/aidl-hals",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Stable AIDL",
+          "publisher": "Android Open Source Project",
+          "resourceType": "official_docs",
+          "url": "https://source.android.com/docs/core/architecture/aidl/stable-aidl",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect HALs, Stable AIDL, VINTF, and Treble Compatibility",
+      "language": "kotlin",
+      "code": "aidl_interface { name: \"android.hardware.droidquest\", srcs: [\"android/hardware/droidquest/*.aidl\"], stability: \"vintf\", backend: { cpp: { enabled: false } } }",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Changing a frozen parcelable field type in place breaks old clients or servers even when both sides compile in the latest tree.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and freeze a small stable AIDL HAL, declare VINTF, implement service and framework client, add SELinux, death handling, version tests, and VTS evidence.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Why freeze stable AIDL versions?",
+        "answer": "Framework and vendor components can build and update against explicit compatible interface versions across partition boundaries."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+  "challengeId": "challenge-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind HALs, Stable AIDL, VINTF, and Treble Compatibility.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://source.android.com/docs/core/architecture/aidl/aidl-hals",
+    "https://source.android.com/docs/core/architecture/aidl/stable-aidl"
+  ],
+  "version": "1.0.0"
+}

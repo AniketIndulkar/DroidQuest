@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+  "title": "Apply Binary and Source Compatibility on Kotlin/JVM",
+  "categoryId": "level-12-advanced-specialisations",
+  "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+  "difficulty": "expert",
+  "estimatedMinutes": 75,
+  "prompt": "Create a compatibility matrix and CI suite that catches source, binary, behavioral, Java interop, inline, default argument, and R8 consumer regressions.",
+  "successCriteria": [
+    "The outcome, authority, lifecycle, support matrix, unsupported cases, and exact artifact identity are explicit.",
+    "Implementation and evidence cover representative success plus the relevant denial, death, offline, corruption, pressure, and version-skew paths.",
+    "Security, privacy, accessibility, compatibility, performance, distribution, support, migration, incident, and recovery decisions are documented."
+  ],
+  "hints": [
+    "Build the smallest complete vertical slice before expanding devices, variants, models, ABIs, or platform modules.",
+    "Retain raw evidence and a negative test that would fail if the central contract regressed."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "./gradlew apiCheck check; # Then run a consumer compiled against the previous AAR with the candidate runtime artifact."
+  },
+  "solutionOutline": [
+    "Define the boundary and support matrix, implement a narrow artifact, and capture representative baseline evidence.",
+    "Exercise adverse and compatibility paths, publish or integrate the exact artifact, then rehearse migration and recovery."
+  ],
+  "verification": [
+    "Reproduce the result from a clean documented environment using the exact published, installed, model, or platform artifact.",
+    "Have another engineer challenge one assumption and rerun the relevant negative, compatibility, or operational test."
+  ],
+  "rewards": {
+    "xp": 160,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

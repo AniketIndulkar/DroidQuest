@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-11-android-internals-aosp",
+  "title": "Android Internals Investigator",
+  "description": "Awarded for defending a causal tap-to-display trace and runtime, memory, power, and diagnostic investigation.",
+  "categoryId": "level-11-android-internals-aosp",
+  "icon": "android-internals-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-11-checkpoint",
+    "minimumScore": 0.85
+  },
+  "xp": 1250,
+  "rarity": "epic",
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+  "title": "Android TV Focus, D-pad Navigation, and Media Quality Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-04-android-tv-focus-dpad-media-quality-decision",
+      "prompt": "Which approach best applies android tv focus, d-pad navigation, and media quality?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Design the focus graph and media lifecycle explicitly, then test every journey without touch across content and error changes.",
+        "Use touch gestures",
+        "Hide focus ring",
+        "Reset playback on process death"
+      ],
+      "answer": "Design the focus graph and media lifecycle explicitly, then test every journey without touch across content and error changes.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+    },
+    {
+      "id": "q-level-12-week-50-04-android-tv-focus-dpad-media-quality-truth",
+      "prompt": "If all TV controls are clickable, users can necessarily reach them with a D-pad.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Reordering a loaded content rail without stable identity or focus restoration can strand focus or jump the user to an unrelated item.",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+    },
+    {
+      "id": "q-level-12-week-50-04-android-tv-focus-dpad-media-quality-recall",
+      "prompt": "What must survive asynchronous TV list updates?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Stable item identity and an intentional focus restoration target so remote navigation remains predictable.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

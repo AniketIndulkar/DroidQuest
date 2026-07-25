@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-03-aar-resources-consumer-rules-publication",
+  "title": "AAR Contents, Resources, Consumer Rules, and Publication Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-03-aar-resources-consumer-rules-publication"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-03-aar-resources-consumer-rules-publication-decision",
+      "prompt": "Which approach best applies aar contents, resources, consumer rules, and publication?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Verify the exact published artifact and metadata through external release-like consumers, including R8 and resource or manifest merging.",
+        "Overwrite released versions",
+        "Publish debug variants",
+        "Keep all SDK classes"
+      ],
+      "answer": "Verify the exact published artifact and metadata through external release-like consumers, including R8 and resource or manifest merging.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication"
+    },
+    {
+      "id": "q-level-12-week-48-03-aar-resources-consumer-rules-publication-truth",
+      "prompt": "An Android library that builds successfully as a project is guaranteed to work when consumed from Maven.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Testing only with an included project can pass even when the published POM or Gradle metadata omits a runtime dependency.",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication"
+    },
+    {
+      "id": "q-level-12-week-48-03-aar-resources-consumer-rules-publication-recall",
+      "prompt": "Who applies a library consumer R8 rule?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The consuming application shrinker applies rules packaged in the library while optimizing the final app.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,218 @@
+{
+  "id": "level-12-week-48-05-sdk-testing-security-observability-samples",
+  "title": "SDK Testing, Security, Observability, and Samples",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 48,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+  ],
+  "tags": [
+    "sdk",
+    "testing",
+    "security"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master sdk testing, security, observability, and samples through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend sdk testing, security, observability, and samples."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An SDK runs inside another application process and inherits its trust, performance, and compatibility consequences. Threat-model inputs, callbacks, IPC, WebView, file or content URIs, reflection, native code, secrets, network, storage, logs, and update channels. The server remains authority for entitlements and high-risk operations. Minimise permissions and exported components. Never embed reusable server credentials. SDK observability uses bounded vendor-neutral hooks and host-controlled collection, with redaction before data leaves the SDK."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test public contracts in plain units, Android integration fixtures, instrumented devices, minified release consumers, old-compiled clients, and adversarial hosts. Include lifecycle destruction, reentrancy, callbacks on wrong threads, process death, no network, slow backend, dependency conflicts, multiple SDK instances, missing optional features, hostile Parcelable or URI input, and host exception handling. Samples should demonstrate the safe path, error handling, privacy controls, teardown, and Java/Kotlin use without becoming undocumented required code."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "sdk.setTelemetrySink { event -> hostTelemetry.emit(event.redacted().bounded()) }; sdk.setConsentProvider { privacyState.sdkAllowed }",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Publish a support matrix, security contact, disclosure process, data inventory, SBOM, changelog, migration guides, known issues, deprecation policy, and incident playbook. Monitor crash, ANR, startup, latency, and error contribution by SDK version without collecting host secrets. Provide host correlation hooks rather than unique exception messages. Test telemetry disabled and backend unavailable. SDK release gates should stop a rollout when consumer health regresses and support rapid safe disablement."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "Logging the host request object for support can expose credentials and user data that the SDK neither needs nor has permission to retain."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Fundamentals of Testing Android Apps",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Security Checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Create an Android Library",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/projects/android-library",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect SDK Testing, Security, Observability, and Samples",
+      "language": "kotlin",
+      "code": "sdk.setTelemetrySink { event -> hostTelemetry.emit(event.redacted().bounded()) }; sdk.setConsentProvider { privacyState.sdkAllowed }",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "Logging the host request object for support can expose credentials and user data that the SDK neither needs nor has permission to retain.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a hostile-host test suite and sample app covering security, privacy, lifecycle, reentrancy, dependency conflict, minification, telemetry-off, incident, and migration paths.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "What should an SDK observability hook expose?",
+        "answer": "Bounded redacted semantic events and correlation owned by the host, without leaking SDK or host-sensitive data."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-48-05-sdk-testing-security-observability-samples",
+  "challengeId": "challenge-level-12-week-48-05-sdk-testing-security-observability-samples",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind SDK Testing, Security, Observability, and Samples.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/testing/fundamentals",
+    "https://developer.android.com/privacy-and-security/security-tips",
+    "https://developer.android.com/studio/projects/android-library"
+  ],
+  "version": "1.0.0"
+}

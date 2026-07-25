@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-06-android-platform-expert-final-capstone",
+  "title": "Android Platform Expert Final Capstone Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-06-android-platform-expert-final-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-06-android-platform-expert-final-capstone-decision",
+      "prompt": "Which approach best applies android platform expert final capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Make a scoped causal change and prove its correctness, compatibility, security, performance, release health, and recoverability with reproducible evidence.",
+        "Rewrite everything",
+        "Report only happy path",
+        "Call course completion permanent mastery"
+      ],
+      "answer": "Make a scoped causal change and prove its correctness, compatibility, security, performance, release health, and recoverability with reproducible evidence.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone"
+    },
+    {
+      "id": "q-level-12-week-52-06-android-platform-expert-final-capstone-truth",
+      "prompt": "A broad rewrite demonstrates more expertise than a small change with reproducible causal and operational evidence.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Choosing an enormous rewrite prevents controlled comparison and makes it impossible to attribute improvement or review compatibility risk.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone"
+    },
+    {
+      "id": "q-level-12-week-52-06-android-platform-expert-final-capstone-recall",
+      "prompt": "What is the defining outcome of the final capstone?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Another engineer can reproduce the problem, verify the causal change, inspect exact release evidence, and operate or reverse it safely.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.14.0",
+  "version": "1.0.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -3647,6 +3647,510 @@
       ],
       "relatedLessonIds": [
         "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+      ]
+    },
+    {
+      "id": "term-art-compilation-mode",
+      "term": "ART compilation mode",
+      "definition": "The interpreter, JIT, AOT, verification, and profile-guided strategy used to execute DEX code for a particular installation and runtime state.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "art",
+        "dex"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+      ]
+    },
+    {
+      "id": "term-gc-root",
+      "term": "GC root",
+      "definition": "A runtime-known live reference origin from which the collector traces reachable managed objects.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "memory",
+        "garbage-collection"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+      ]
+    },
+    {
+      "id": "term-memory-pressure-kill",
+      "term": "Memory-pressure kill",
+      "definition": "System termination of an eligible process to restore device health, selected using pressure and process-importance policy rather than an in-process exception.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "lmkd",
+        "process-lifecycle"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-03-process-importance-lmkd-trim-memory"
+      ]
+    },
+    {
+      "id": "term-idle-maintenance-window",
+      "term": "Idle maintenance window",
+      "definition": "A bounded period during device idle when deferred jobs, sync, alarms, and network work may be allowed to run.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "power",
+        "background-work"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+      ]
+    },
+    {
+      "id": "term-diagnostic-snapshot",
+      "term": "Diagnostic snapshot",
+      "definition": "A time- and version-scoped capture of system, process, service, log, package, trace, and artifact state used to test a hypothesis.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "diagnostics",
+        "adb"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+      ]
+    },
+    {
+      "id": "term-interaction-critical-path",
+      "term": "Interaction critical path",
+      "definition": "The causally dependent work from input availability through app state and rendering to the buffer presented for the intended display frame.",
+      "categoryId": "level-11-android-internals-aosp",
+      "tags": [
+        "internals",
+        "perfetto",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+      ]
+    },
+    {
+      "id": "term-behavioral-compatibility",
+      "term": "Behavioral compatibility",
+      "definition": "Preservation of documented meanings, side effects, errors, timing, threading, and lifecycle expectations across library versions.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "api-design",
+        "libraries"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-01-public-api-design-contract-semantics"
+      ]
+    },
+    {
+      "id": "term-binary-compatibility",
+      "term": "Binary compatibility",
+      "definition": "The ability to replace a library with a new version while already compiled consumers continue linking and running.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "binary-compatibility",
+        "kotlin"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+      ]
+    },
+    {
+      "id": "term-consumer-rule",
+      "term": "Consumer rule",
+      "definition": "An R8 rule packaged by a library to preserve behavior that the consuming application shrinker cannot infer.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "aar",
+        "publishing"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-03-aar-resources-consumer-rules-publication"
+      ]
+    },
+    {
+      "id": "term-sdk-initialization-contract",
+      "term": "SDK initialization contract",
+      "definition": "The documented timing, process, thread, configuration, idempotency, failure, consent, and teardown behavior by which a host activates an SDK.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "initialization",
+        "lifecycle"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+      ]
+    },
+    {
+      "id": "term-sdk-hostile-host-test",
+      "term": "Hostile-host test",
+      "definition": "A consumer test that intentionally supplies unusual lifecycle, threading, dependency, configuration, or adversarial input conditions to verify SDK containment.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "testing",
+        "security"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-05-sdk-testing-security-observability-samples"
+      ]
+    },
+    {
+      "id": "term-library-baseline-profile",
+      "term": "Library Baseline Profile",
+      "definition": "Profile rules shipped with a library that help consuming apps precompile important library code reached by representative critical journeys.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "sdk",
+        "baseline-profiles",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+      ]
+    },
+    {
+      "id": "term-on-device-inference-pipeline",
+      "term": "On-device inference pipeline",
+      "definition": "The owned flow from input acquisition and preprocessing through model execution, postprocessing, confidence policy, UI delivery, and resource release on the device.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ai",
+        "ml-kit",
+        "privacy"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy"
+      ]
+    },
+    {
+      "id": "term-model-delegate",
+      "term": "Model delegate",
+      "definition": "A LiteRT execution backend that maps supported graph operations to specialised CPU, GPU, NPU, or platform acceleration with its own compatibility and performance behavior.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ai",
+        "litert",
+        "benchmarking"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+      ]
+    },
+    {
+      "id": "term-model-rollout-contract",
+      "term": "Model rollout contract",
+      "definition": "The version, integrity, compatibility, download, activation, evaluation, rollback, retention, and privacy policy governing an independently delivered model.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ai",
+        "model-delivery",
+        "multimodal"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+      ]
+    },
+    {
+      "id": "term-jni-global-reference",
+      "term": "JNI global reference",
+      "definition": "An explicitly created managed-object reference valid across native calls and threads until the native code deletes it.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ndk",
+        "jni",
+        "native"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+      ]
+    },
+    {
+      "id": "term-native-abi",
+      "term": "Native ABI",
+      "definition": "The machine-level contract for instruction set, calling convention, data layout, registers, stack, symbol naming, and binary format.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ndk",
+        "cmake",
+        "rust"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+      ]
+    },
+    {
+      "id": "term-native-build-id",
+      "term": "Native build ID",
+      "definition": "An identifier embedded in an ELF binary used to associate a crash address with the exact matching symbols and source artifact.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "ndk",
+        "debugging",
+        "sanitizers"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+      ]
+    },
+    {
+      "id": "term-window-posture",
+      "term": "Window posture",
+      "definition": "The current window size, display features, folding state, and interaction context used to adapt layout without assuming a device model.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "adaptive",
+        "foldables"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+      ]
+    },
+    {
+      "id": "term-glanceable-surface",
+      "term": "Glanceable surface",
+      "definition": "A system-owned or constrained wearable surface such as a complication, widget, notification, or tile that presents immediate information or action.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "wear-os",
+        "power"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-02-wear-os-surfaces-power-health"
+      ]
+    },
+    {
+      "id": "term-driver-distraction-boundary",
+      "term": "Driver-distraction boundary",
+      "definition": "The platform and product constraint that limits interaction complexity, content, and task availability while driving to protect attention and safety.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "cars",
+        "safety"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-03-android-auto-automotive-driver-safety"
+      ]
+    },
+    {
+      "id": "term-focus-navigation-graph",
+      "term": "Focus navigation graph",
+      "definition": "The directional relationships that let remote, keyboard, or controller users move predictably among every actionable TV element.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "android-tv",
+        "media"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+      ]
+    },
+    {
+      "id": "term-spatial-capability-fallback",
+      "term": "Spatial capability fallback",
+      "definition": "A complete non-spatial or reduced-capability path that preserves the user task when XR features, permissions, hardware, or spatial mode are unavailable.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "android-xr",
+        "spatial-ui"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+      ]
+    },
+    {
+      "id": "term-capability-matrix",
+      "term": "Capability matrix",
+      "definition": "A tested mapping from user task and runtime capability to supported surface, input, layout, data authority, degradation, and release requirements.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "form-factors",
+        "capabilities",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+      ]
+    },
+    {
+      "id": "term-repo-manifest",
+      "term": "Repo manifest",
+      "definition": "The XML description that pins and places the many Git projects composing an AOSP workspace.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "build",
+        "platform"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+      ]
+    },
+    {
+      "id": "term-soong-module",
+      "term": "Soong module",
+      "definition": "A named build unit declared in Android.bp with typed properties, dependencies, variants, visibility, and generated outputs.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "soong",
+        "modules"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-02-soong-modules-products-flags-apex"
+      ]
+    },
+    {
+      "id": "term-platform-api-boundary",
+      "term": "Platform API boundary",
+      "definition": "The compatibility and authority surface between framework clients, system services, native services or HALs, and applications.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "framework-services",
+        "system-apps"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-03-framework-service-system-app-change"
+      ]
+    },
+    {
+      "id": "term-selinux-allow-rule",
+      "term": "SELinux allow rule",
+      "definition": "A narrowly scoped mandatory-access-control permission for a source type to perform specified operations on a target type and object class.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "selinux",
+        "security"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-04-selinux-labels-denials-least-privilege"
+      ]
+    },
+    {
+      "id": "term-vintf-stability",
+      "term": "VINTF stability",
+      "definition": "A cross-partition interface commitment whose frozen versions and manifest compatibility allow framework and vendor components to update independently.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "hal",
+        "stable-aidl"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+      ]
+    },
+    {
+      "id": "term-aosp-patchset",
+      "term": "AOSP patchset",
+      "definition": "A reviewed revision of one Gerrit change preserving its Change-Id while code, tests, and commit message evolve.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "aosp",
+        "testing",
+        "gerrit"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+      ]
+    },
+    {
+      "id": "term-risk-based-response",
+      "term": "Risk-based response",
+      "definition": "A server-authoritative decision that combines action context, account state, replay protection, integrity evidence, and proportional remediation rather than trusting one client signal.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "enterprise",
+        "integrity",
+        "authentication"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+      ]
+    },
+    {
+      "id": "term-payment-tokenization-boundary",
+      "term": "Payment tokenization boundary",
+      "definition": "The point where sensitive payment credentials become provider or network tokens and responsibility shifts among app, SDK, gateway, merchant backend, and regulated systems.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "enterprise",
+        "payments",
+        "tokenization"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+      ]
+    },
+    {
+      "id": "term-certificate-lifecycle-plan",
+      "term": "Certificate lifecycle plan",
+      "definition": "The inventory, ownership, issuance, storage, overlap, rotation, revocation, recovery, monitoring, and retirement policy for each signing or trust certificate.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "enterprise",
+        "certificates",
+        "multi-brand"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+      ]
+    },
+    {
+      "id": "term-audit-event",
+      "term": "Audit event",
+      "definition": "An access-controlled, tamper-evident record of a security- or business-relevant action including actor, authority, object, outcome, time, correlation, and policy context.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "enterprise",
+        "audit",
+        "compliance"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-04-audit-logging-regulated-release-evidence"
+      ]
+    },
+    {
+      "id": "term-expert-evidence-portfolio",
+      "term": "Expert evidence portfolio",
+      "definition": "A collection of independently reviewable artifacts demonstrating decisions, implementation, tests, measurements, operations, limitations, and learning across advanced Android tracks.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "portfolio",
+        "architecture",
+        "specialisations"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-05-specialisation-portfolio-architecture"
+      ]
+    },
+    {
+      "id": "term-expert-change-proposal",
+      "term": "Expert change proposal",
+      "definition": "A scoped Android improvement defended with causal evidence, compatibility and threat analysis, implementation, verification, release operation, and measurable outcome.",
+      "categoryId": "level-12-advanced-specialisations",
+      "tags": [
+        "capstone",
+        "platform-expert",
+        "production"
+      ],
+      "relatedLessonIds": [
+        "level-12-week-52-06-android-platform-expert-final-capstone"
       ]
     }
   ]

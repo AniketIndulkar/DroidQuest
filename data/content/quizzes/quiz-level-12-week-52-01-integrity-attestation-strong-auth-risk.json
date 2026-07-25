@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+  "title": "Integrity, Attestation, Strong Authentication, and Risk Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-01-integrity-attestation-strong-auth-risk-decision",
+      "prompt": "Which approach best applies integrity, attestation, strong authentication, and risk?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Verify evidence off-device and combine it with account and action context in a proportional, replay-safe, server-authoritative policy.",
+        "Trust client verdict",
+        "Block every unsupported device",
+        "Treat biometric as transaction authority"
+      ],
+      "answer": "Verify evidence off-device and combine it with account and action context in a proportional, replay-safe, server-authoritative policy.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+    },
+    {
+      "id": "q-level-12-week-52-01-integrity-attestation-strong-auth-risk-truth",
+      "prompt": "A MEETS_DEVICE_INTEGRITY verdict proves that the current user is authorized to approve a payment.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Checking an integrity verdict only in client code lets a modified client bypass or fabricate the entire decision.",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+    },
+    {
+      "id": "q-level-12-week-52-01-integrity-attestation-strong-auth-risk-recall",
+      "prompt": "What must bind an integrity result to the protected action?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A fresh server-known nonce or request hash plus account and transaction context checked against replay.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+  "title": "Native Debugging, Symbols, Sanitizers, and Crash Reports Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-decision",
+      "prompt": "Which approach best applies native debugging, symbols, sanitizers, and crash reports?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Bind every crash to exact build-ID symbols and use the appropriate sanitizer or debugger to prove and prevent the causal defect.",
+        "Use nearest symbols",
+        "Suppress SIGSEGV",
+        "Ship sanitizer timings as release benchmarks"
+      ],
+      "answer": "Bind every crash to exact build-ID symbols and use the appropriate sanitizer or debugger to prove and prevent the causal defect.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+    },
+    {
+      "id": "q-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-truth",
+      "prompt": "A successful native stack symbolication proves the displayed function caused the original memory corruption.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Symbolicating an arm64 tombstone with symbols from another version or ABI can name the wrong function and misdirect the investigation.",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+    },
+    {
+      "id": "q-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-recall",
+      "prompt": "What does a native build ID join?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The exact shipped ELF binary and crash addresses to its matching symbol and source artifacts.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

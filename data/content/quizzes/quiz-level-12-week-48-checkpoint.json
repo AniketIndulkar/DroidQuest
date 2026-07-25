@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-12-week-48-checkpoint",
+  "title": "Week 48: Android SDK and Library Engineering Checkpoint",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-01-public-api-design-contract-semantics",
+    "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+    "level-12-week-48-03-aar-resources-consumer-rules-publication",
+    "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+    "level-12-week-48-05-sdk-testing-security-observability-samples",
+    "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-48-1-public-api-design-contract-semantics",
+      "prompt": "Checkpoint: Why is behavioral compatibility distinct from binary compatibility?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "Code can still link while its ordering, errors, side effects, timing, or lifecycle meaning changes and breaks consumers. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics",
+      "options": [
+        "Minimise the public surface and explicitly contract behavior, ownership, failure, threading, lifecycle, and evolution.",
+        "Expose implementation types",
+        "Return raw exceptions for states",
+        "Treat source compatibility as enough"
+      ],
+      "answer": "Minimise the public surface and explicitly contract behavior, ownership, failure, threading, lifecycle, and evolution."
+    },
+    {
+      "id": "q-week-48-2-binary-source-compatibility-kotlin-jvm",
+      "prompt": "Select the two production-grade practices for binary and source compatibility on kotlin/jvm.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Run a consumer compiled against the old library using the candidate replacement without recompiling the consumer. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "options": [
+        "Combine API and bytecode comparison with old-compiled consumer execution, source rebuilds, and behavioral contract tests.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Trust semantic version alone",
+        "Approve every API diff"
+      ],
+      "answer": [
+        "Combine API and bytecode comparison with old-compiled consumer execution, source rebuilds, and behavioral contract tests.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-week-48-3-aar-resources-consumer-rules-publication",
+      "prompt": "An Android library that builds successfully as a project is guaranteed to work when consumed from Maven.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "The consuming application shrinker applies rules packaged in the library while optimizing the final app. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "answer": false
+    },
+    {
+      "id": "q-week-48-4-sdk-initialization-lifecycle-process-isolation",
+      "prompt": "Checkpoint: Why separate SDK configuration from activation?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "The host can validate setup and establish consent or lifecycle before starting work, collection, threads, or network access. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "answer": "The host can validate setup and establish consent or lifecycle before starting work, collection, threads, or network access.",
+      "acceptedAnswers": [
+        "The host can validate setup and establish consent or lifecycle before starting work, collection, threads, or network access."
+      ]
+    },
+    {
+      "id": "q-week-48-5-sdk-testing-security-observability-samples",
+      "prompt": "Order the expert workflow for sdk testing, security, observability, and samples.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "Bounded redacted semantic events and correlation owned by the host, without leaking SDK or host-sensitive data. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-week-48-6-library-baseline-profiles-sdk-capstone",
+      "prompt": "Match the expert review dimension for library baseline profiles and sdk capstone.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "It is packaged with the library, merged by the consuming app, and used by ART installation/profile compilation for matching code. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 350,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+  "title": "Adaptive Windows, Foldables, ChromeOS, and Input Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-01-adaptive-windows-foldables-chromeos-input-decision",
+      "prompt": "Which approach best applies adaptive windows, foldables, chromeos, and input?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Respond to live window and capability state, preserve the task, and support touch plus non-touch input without device-name assumptions.",
+        "Branch on model name",
+        "Lock portrait",
+        "Stretch one column"
+      ],
+      "answer": "Respond to live window and capability state, preserve the task, and support touch plus non-touch input without device-name assumptions.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+    },
+    {
+      "id": "q-level-12-week-50-01-adaptive-windows-foldables-chromeos-input-truth",
+      "prompt": "A foldable device always requires placing content in two panes separated by its hinge.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Checking smallestScreenWidth once at startup misses live window resizing, multi-window, fold posture, and external-display changes.",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+    },
+    {
+      "id": "q-level-12-week-50-01-adaptive-windows-foldables-chromeos-input-recall",
+      "prompt": "Why is window size more useful than device category?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The app renders into a changeable window whose size and features may not match a fixed phone, tablet, or foldable label.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

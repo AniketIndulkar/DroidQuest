@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+  "title": "CMake, ABIs, Native Memory, and Rust Interoperability Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-49-05-cmake-abis-native-memory-rust-interop-decision",
+      "prompt": "Which approach best applies cmake, abis, native memory, and rust interoperability?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use target-scoped cross-compilation and a narrow C ABI with one explicit owner and allocator for every object and buffer.",
+        "Share C++ ABI blindly",
+        "Build all ABIs in one directory",
+        "Free across runtimes"
+      ],
+      "answer": "Use target-scoped cross-compilation and a narrow C ABI with one explicit owner and allocator for every object and buffer.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+    },
+    {
+      "id": "q-level-12-week-49-05-cmake-abis-native-memory-rust-interop-truth",
+      "prompt": "Rust removes all memory and concurrency risk from native Android code, including unsafe FFI boundaries.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Passing a Rust-owned allocation to C++ free or a C++ allocation to Rust deallocation crosses allocator contracts and can corrupt memory.",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+    },
+    {
+      "id": "q-level-12-week-49-05-cmake-abis-native-memory-rust-interop-recall",
+      "prompt": "Why prefer a C ABI at a Rust interoperability boundary?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It provides a smaller, more stable and language-neutral calling contract than compiler-specific C++ ABI details.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

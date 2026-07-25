@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-03-framework-service-system-app-change",
+  "title": "Framework Service and System Application Changes Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-03-framework-service-system-app-change"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-03-framework-service-system-app-change-decision",
+      "prompt": "Which approach best applies framework service and system application changes?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Place authority in the owning service, validate Binder identity first, and prove boot, security, compatibility, persistence, and client-death behavior.",
+        "Trust package string",
+        "Expose hidden API to apps",
+        "Store only in system UI"
+      ],
+      "answer": "Place authority in the owning service, validate Binder identity first, and prove boot, security, compatibility, persistence, and client-death behavior.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change"
+    },
+    {
+      "id": "q-level-12-week-51-03-framework-service-system-app-change-truth",
+      "prompt": "A preinstalled system app can safely enforce a platform permission only in its local UI code.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Calling clearCallingIdentity before authorization makes later checks run as the privileged service rather than the original app caller.",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change"
+    },
+    {
+      "id": "q-level-12-week-51-03-framework-service-system-app-change-recall",
+      "prompt": "Why validate before clearing Binder identity?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Authorization must evaluate the kernel-supplied original caller rather than the privileged system service identity.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.14.0",
-  "contentRevision": 14,
+  "curriculumVersion": "1.0.0",
+  "contentRevision": 15,
   "counts": {
     "categories": 12,
-    "lessons": 266,
-    "quizzes": 319,
-    "challenges": 266,
-    "badges": 53,
-    "glossaryEntries": 277
+    "lessons": 302,
+    "quizzes": 361,
+    "challenges": 302,
+    "badges": 59,
+    "glossaryEntries": 313
   },
   "categories": [
     {
@@ -371,18 +371,55 @@
         "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
         "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
         "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
-        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace"
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+        "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+        "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+        "level-11-week-47-03-process-importance-lmkd-trim-memory",
+        "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+        "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+        "level-11-week-47-06-end-to-end-interaction-trace-capstone"
       ],
       "path": "content/categories/level-11-android-internals-aosp.json",
-      "sha256": "2592c5634d184c0ddde465394bb8a898ed46c7a33d9dee329a6fa82fc7a8755f"
+      "sha256": "067ec85b711bfa8ee3e7c9171c86b2c9814a48361d03b3afdbc78d2e35415656"
     },
     {
       "id": "level-12-advanced-specialisations",
       "title": "Level 12: Advanced Specialisations",
       "order": 12,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-12-week-48-01-public-api-design-contract-semantics",
+        "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+        "level-12-week-48-03-aar-resources-consumer-rules-publication",
+        "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+        "level-12-week-48-05-sdk-testing-security-observability-samples",
+        "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+        "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+        "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+        "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+        "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+        "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+        "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+        "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+        "level-12-week-50-02-wear-os-surfaces-power-health",
+        "level-12-week-50-03-android-auto-automotive-driver-safety",
+        "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+        "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+        "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+        "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+        "level-12-week-51-02-soong-modules-products-flags-apex",
+        "level-12-week-51-03-framework-service-system-app-change",
+        "level-12-week-51-04-selinux-labels-denials-least-privilege",
+        "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+        "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+        "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+        "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+        "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+        "level-12-week-52-04-audit-logging-regulated-release-evidence",
+        "level-12-week-52-05-specialisation-portfolio-architecture",
+        "level-12-week-52-06-android-platform-expert-final-capstone"
+      ],
       "path": "content/categories/level-12-advanced-specialisations.json",
-      "sha256": "2d696e4766fd2908aecab04793f479a48eae37769c2101a33230e8ea1dae5a72"
+      "sha256": "3adc169f675c6a89ec98f3e425b4e1cb64f1dc98b67a6b4e71331ad0b77513b1"
     }
   ],
   "lessons": [
@@ -4157,6 +4194,510 @@
       ],
       "path": "content/lessons/level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
       "sha256": "5edec9f9f4dc0e32bbb1194ea813ec71a616d27430b8fdec0a4967c39b962d1b"
+    },
+    {
+      "id": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "title": "ART, DEX, Class Loading, JIT, AOT, and Profiles",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "art",
+        "dex"
+      ],
+      "path": "content/lessons/level-11-week-47-01-art-dex-classloading-jit-aot-profiles.json",
+      "sha256": "b8ccb5bf56eb2f4525daf572ad25cb79baec5b480b95e32dbc4d66f6b1210172"
+    },
+    {
+      "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "title": "Managed Heap, Garbage Collection, and Native Memory",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "memory",
+        "garbage-collection"
+      ],
+      "path": "content/lessons/level-11-week-47-02-managed-heap-gc-allocation-native-memory.json",
+      "sha256": "59877f4328805bf753b0f19a5e21e741f5f93ac919834242770ffcf414f02aa9"
+    },
+    {
+      "id": "level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "title": "Process Importance, LMKD, and Memory Pressure",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "lmkd",
+        "process-lifecycle"
+      ],
+      "path": "content/lessons/level-11-week-47-03-process-importance-lmkd-trim-memory.json",
+      "sha256": "303dd6be7fc455b862a8b1d6a6a398539a57835fb9f5600a48a4b8642bdb9017"
+    },
+    {
+      "id": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "title": "Doze, Standby, Jobs, Alarms, Wake Locks, and FGS Internals",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "power",
+        "background-work"
+      ],
+      "path": "content/lessons/level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs.json",
+      "sha256": "72b17e2e9acf977d2c46e682fab3bc2aa681c649e80136699c7b57129c5d5478"
+    },
+    {
+      "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "title": "ADB, Logcat, dumpsys, Bug Reports, and APK Analysis",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "diagnostics",
+        "adb"
+      ],
+      "path": "content/lessons/level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer.json",
+      "sha256": "7396cadbf3a04d6f4ea2c0cc0acfc3113d10bf40e9c1e4b16971c4bd966b5e49"
+    },
+    {
+      "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "title": "End-to-End Interaction Trace Capstone",
+      "categoryId": "level-11-android-internals-aosp",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "internals",
+        "perfetto",
+        "capstone"
+      ],
+      "path": "content/lessons/level-11-week-47-06-end-to-end-interaction-trace-capstone.json",
+      "sha256": "211143bc9b835ecefb38959bbcda7265f00437a4dcdc554ca4cdda3389258ccf"
+    },
+    {
+      "id": "level-12-week-48-01-public-api-design-contract-semantics",
+      "title": "Public SDK API Design and Behavioral Contracts",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "api-design",
+        "libraries"
+      ],
+      "path": "content/lessons/level-12-week-48-01-public-api-design-contract-semantics.json",
+      "sha256": "5b3435dfebedc8e7727b225cb80393712f7e2db5949fb6f5fb1e01389f508f91"
+    },
+    {
+      "id": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "title": "Binary and Source Compatibility on Kotlin/JVM",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "binary-compatibility",
+        "kotlin"
+      ],
+      "path": "content/lessons/level-12-week-48-02-binary-source-compatibility-kotlin-jvm.json",
+      "sha256": "75b953c6bfe1b7a9f87d75cb98cad167f45568183191426e1b125a542a1b1d2c"
+    },
+    {
+      "id": "level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "title": "AAR Contents, Resources, Consumer Rules, and Publication",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "aar",
+        "publishing"
+      ],
+      "path": "content/lessons/level-12-week-48-03-aar-resources-consumer-rules-publication.json",
+      "sha256": "a886d526df6308230d8aa44322a04234e3d5488e2ee009cea7b167557477034b"
+    },
+    {
+      "id": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "title": "SDK Initialization, Lifecycle, and Process Isolation",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "initialization",
+        "lifecycle"
+      ],
+      "path": "content/lessons/level-12-week-48-04-sdk-initialization-lifecycle-process-isolation.json",
+      "sha256": "3b9e50c5998d3731087b9faba682b5899b46f871348d04f281bd630581e41180"
+    },
+    {
+      "id": "level-12-week-48-05-sdk-testing-security-observability-samples",
+      "title": "SDK Testing, Security, Observability, and Samples",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "testing",
+        "security"
+      ],
+      "path": "content/lessons/level-12-week-48-05-sdk-testing-security-observability-samples.json",
+      "sha256": "c96788297db128e068e8b995c154bafe7890bcee8c8df65ba1a5c50dcedb9001"
+    },
+    {
+      "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "title": "Library Baseline Profiles and SDK Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "sdk",
+        "baseline-profiles",
+        "capstone"
+      ],
+      "path": "content/lessons/level-12-week-48-06-library-baseline-profiles-sdk-capstone.json",
+      "sha256": "0edcb863a8289b9369e57b7411dbfd20971033608d8f2105fc5068f09421c455"
+    },
+    {
+      "id": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "title": "ML Kit On-device Pipelines, Lifecycle, and Privacy",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ai",
+        "ml-kit",
+        "privacy"
+      ],
+      "path": "content/lessons/level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy.json",
+      "sha256": "1b4598568111747234a59d7e4a129ab85a98a70a230f59ada93ea68ed7df2b71"
+    },
+    {
+      "id": "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "title": "LiteRT Quantization, Delegates, and Benchmarking",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ai",
+        "litert",
+        "benchmarking"
+      ],
+      "path": "content/lessons/level-12-week-49-02-litert-quantization-delegates-benchmarking.json",
+      "sha256": "e149931facdb03afbeccbee57c3458e6e003de1a25702de2baac3a3ac08f3855"
+    },
+    {
+      "id": "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "title": "Model Delivery, Multimodal Pipelines, and Offline Governance",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ai",
+        "model-delivery",
+        "multimodal"
+      ],
+      "path": "content/lessons/level-12-week-49-03-model-delivery-multimodal-offline-governance.json",
+      "sha256": "fb09f854349c6a130c0214a34e534d99db80a3f21336d9d55c7244e929749af9"
+    },
+    {
+      "id": "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "title": "JNI Boundaries, References, Threads, and Exceptions",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ndk",
+        "jni",
+        "native"
+      ],
+      "path": "content/lessons/level-12-week-49-04-jni-boundaries-references-threads-exceptions.json",
+      "sha256": "3d37b4ae52a6b19e621eea5e0b72940dfac0489b26d5814c8fec8ffa553bafba"
+    },
+    {
+      "id": "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "title": "CMake, ABIs, Native Memory, and Rust Interoperability",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ndk",
+        "cmake",
+        "rust"
+      ],
+      "path": "content/lessons/level-12-week-49-05-cmake-abis-native-memory-rust-interop.json",
+      "sha256": "0ae72d0736231f1842bf4bc3af22b4ee302e7f7723f098ae3dc00c012d6a925d"
+    },
+    {
+      "id": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "title": "Native Debugging, Symbols, Sanitizers, and Crash Reports",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ndk",
+        "debugging",
+        "sanitizers"
+      ],
+      "path": "content/lessons/level-12-week-49-06-native-debugging-symbols-sanitizers-crashes.json",
+      "sha256": "7ca534b2037dc27a36202197ee611316ea8acef94ea41263780faee4f0225293"
+    },
+    {
+      "id": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "title": "Adaptive Windows, Foldables, ChromeOS, and Input",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "adaptive",
+        "foldables"
+      ],
+      "path": "content/lessons/level-12-week-50-01-adaptive-windows-foldables-chromeos-input.json",
+      "sha256": "c1a26e3a892631327b8f2712177fd0b485ebe07030612fa268070f6cf1241c6a"
+    },
+    {
+      "id": "level-12-week-50-02-wear-os-surfaces-power-health",
+      "title": "Wear OS Surfaces, Power, and Health Context",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "wear-os",
+        "power"
+      ],
+      "path": "content/lessons/level-12-week-50-02-wear-os-surfaces-power-health.json",
+      "sha256": "d291582989abde512c3de222e0231db036d009fcb880934659c4ecfb4610808b"
+    },
+    {
+      "id": "level-12-week-50-03-android-auto-automotive-driver-safety",
+      "title": "Android Auto, Automotive OS, and Driver Safety",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "cars",
+        "safety"
+      ],
+      "path": "content/lessons/level-12-week-50-03-android-auto-automotive-driver-safety.json",
+      "sha256": "fd1e4d932b46c6305bb007b62f04688b1744e7ad455c55b4a37dabb67edf8be6"
+    },
+    {
+      "id": "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "title": "Android TV Focus, D-pad Navigation, and Media Quality",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "android-tv",
+        "media"
+      ],
+      "path": "content/lessons/level-12-week-50-04-android-tv-focus-dpad-media-quality.json",
+      "sha256": "7ee3894e67f713a44938a310e8941c57eb0415d51eb1752f75cd81a05fd0c8b0"
+    },
+    {
+      "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "title": "Android XR Spatial UI, Comfort, and Capability Fallback",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "android-xr",
+        "spatial-ui"
+      ],
+      "path": "content/lessons/level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities.json",
+      "sha256": "9ee7ae9313045f231f32d972e99d571d3ef42658c55eb916978582a733e5872d"
+    },
+    {
+      "id": "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "title": "Multi-form-factor Capability Matrix Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "form-factors",
+        "capabilities",
+        "capstone"
+      ],
+      "path": "content/lessons/level-12-week-50-06-multiform-factor-capability-matrix-capstone.json",
+      "sha256": "17fd54d6e7ede53b0580dc865b417647ab8f5c3a017cf7ac46fb840852f5d89e"
+    },
+    {
+      "id": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "title": "AOSP Repo, Sync, Build, and Source-tree Navigation",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "build",
+        "platform"
+      ],
+      "path": "content/lessons/level-12-week-51-01-aosp-repo-sync-build-source-tree.json",
+      "sha256": "0f5ce2c47b24957ef16a11efa436b00f0041160ba76b6202c7474954aa54ad0c"
+    },
+    {
+      "id": "level-12-week-51-02-soong-modules-products-flags-apex",
+      "title": "Soong Modules, Products, Flags, and APEX Boundaries",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "soong",
+        "modules"
+      ],
+      "path": "content/lessons/level-12-week-51-02-soong-modules-products-flags-apex.json",
+      "sha256": "6581c77172248940400f73f18e17b56ed1dee0ab7d882052675cd7683f957ff0"
+    },
+    {
+      "id": "level-12-week-51-03-framework-service-system-app-change",
+      "title": "Framework Service and System Application Changes",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "framework-services",
+        "system-apps"
+      ],
+      "path": "content/lessons/level-12-week-51-03-framework-service-system-app-change.json",
+      "sha256": "4e25bed3306c44efec690cdc9128a7d162e4f085d1a76d5a0f81d56cccf29059"
+    },
+    {
+      "id": "level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "title": "SELinux Labels, Denials, and Least-privilege Policy",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "selinux",
+        "security"
+      ],
+      "path": "content/lessons/level-12-week-51-04-selinux-labels-denials-least-privilege.json",
+      "sha256": "a4bbd7a14b5a19fb2ef2701f2ad98d4574f18919d0c697d412da8e9f55415edb"
+    },
+    {
+      "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "title": "HALs, Stable AIDL, VINTF, and Treble Compatibility",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "hal",
+        "stable-aidl"
+      ],
+      "path": "content/lessons/level-12-week-51-05-hal-stable-aidl-vintf-treble.json",
+      "sha256": "35f9441ff13b0d904a0191d5d518fc8057aacf3a083aec1350ed7001ad8cc003"
+    },
+    {
+      "id": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "title": "CTS, VTS, Gerrit, and an AOSP Contribution",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "aosp",
+        "testing",
+        "gerrit"
+      ],
+      "path": "content/lessons/level-12-week-51-06-cts-vts-gerrit-aosp-contribution.json",
+      "sha256": "9cc38e170d360d15ec5395ce52bf6bcb1881138c9c2abee49123a96873744850"
+    },
+    {
+      "id": "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "title": "Integrity, Attestation, Strong Authentication, and Risk",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "enterprise",
+        "integrity",
+        "authentication"
+      ],
+      "path": "content/lessons/level-12-week-52-01-integrity-attestation-strong-auth-risk.json",
+      "sha256": "0743b8511b587474819279c40cfd0d212c2de77d227b90f011a19dc0908a3982"
+    },
+    {
+      "id": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "title": "Payment SDKs, Tokenization, and Tap-to-pay Boundaries",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "enterprise",
+        "payments",
+        "tokenization"
+      ],
+      "path": "content/lessons/level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries.json",
+      "sha256": "e9b86caf3ed7a494799bad00f1fa932c765ca89a7ac9207ef53fcf27c26c7ca7"
+    },
+    {
+      "id": "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "title": "Certificate Lifecycle, Multi-brand Builds, and Environments",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "enterprise",
+        "certificates",
+        "multi-brand"
+      ],
+      "path": "content/lessons/level-12-week-52-03-certificate-lifecycle-multibrand-environments.json",
+      "sha256": "0359914e9445a3b351fdfd00580babbf75ff143c02bf97999982f93644a12fbe"
+    },
+    {
+      "id": "level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "title": "Audit Logging and Regulated Release Evidence",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "enterprise",
+        "audit",
+        "compliance"
+      ],
+      "path": "content/lessons/level-12-week-52-04-audit-logging-regulated-release-evidence.json",
+      "sha256": "02759df7166e614e21e180c817f1df719bd80463b9badb2e4c18748331dfa906"
+    },
+    {
+      "id": "level-12-week-52-05-specialisation-portfolio-architecture",
+      "title": "Specialisation Portfolio Architecture",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "portfolio",
+        "architecture",
+        "specialisations"
+      ],
+      "path": "content/lessons/level-12-week-52-05-specialisation-portfolio-architecture.json",
+      "sha256": "2426f572d6f3b4c5a912c1126966802bf97bbd7f588140ab4710f20b9eac4c4d"
+    },
+    {
+      "id": "level-12-week-52-06-android-platform-expert-final-capstone",
+      "title": "Android Platform Expert Final Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "capstone",
+        "platform-expert",
+        "production"
+      ],
+      "path": "content/lessons/level-12-week-52-06-android-platform-expert-final-capstone.json",
+      "sha256": "11c2c77eba584e34ed99c304544274254caf35dfb2e5ac268a2a098ee1b4f020"
     }
   ],
   "quizzes": [
@@ -7867,6 +8408,40 @@
       "sha256": "75203727110e2be7c757a0ac141369c5f58094e59b259f96c72df52fb0ea3230"
     },
     {
+      "id": "quiz-level-11-checkpoint",
+      "title": "Level 11 Boss: End-to-End Android Interaction Trace",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+        "level-11-week-44-02-zygote-fork-app-process-creation",
+        "level-11-week-44-03-system-server-boot-system-services",
+        "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+        "level-11-week-44-05-service-manager-discovery-handles",
+        "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+        "level-11-week-45-01-launcher-intent-resolution-task-launch",
+        "level-11-week-45-02-activitythread-main-application-bind",
+        "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+        "level-11-week-45-04-window-creation-surface-first-frame",
+        "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+        "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+        "level-11-week-46-01-view-traversal-measure-layout-draw",
+        "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+        "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+        "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+        "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+        "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+        "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+        "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+        "level-11-week-47-03-process-importance-lmkd-trim-memory",
+        "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+        "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+        "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-11-checkpoint.json",
+      "sha256": "ed97a457595fc56382d3fe01f33d618bbd146617776e3f1d3b8a86cf91ff7447"
+    },
+    {
       "id": "quiz-level-11-week-44-01-linux-processes-threads-uids-sandbox",
       "title": "Linux Processes, Threads, UIDs, and the App Sandbox Check",
       "categoryId": "level-11-android-internals-aosp",
@@ -8111,6 +8686,506 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-11-week-46-checkpoint.json",
       "sha256": "7dde5e3e93ac1e4a5f063970236b7ca4d47d5b661f56fb460f607ac5877a49bd"
+    },
+    {
+      "id": "quiz-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "title": "ART, DEX, Class Loading, JIT, AOT, and Profiles Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-01-art-dex-classloading-jit-aot-profiles.json",
+      "sha256": "652d33c4643ae6b4b4b35b15639025bf3456e9a5edc9d4e8f4929d40c2bf6b92"
+    },
+    {
+      "id": "quiz-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "title": "Managed Heap, Garbage Collection, and Native Memory Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-02-managed-heap-gc-allocation-native-memory.json",
+      "sha256": "eebeb3747075ab9bb8301e1d6432bf73028a2508e42652c08691af949a1ac16a"
+    },
+    {
+      "id": "quiz-level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "title": "Process Importance, LMKD, and Memory Pressure Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-03-process-importance-lmkd-trim-memory"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-03-process-importance-lmkd-trim-memory.json",
+      "sha256": "46e823337f776648e01b1e4fc14ea9952284a27ad3a6460c3b439b97aa4a4a58"
+    },
+    {
+      "id": "quiz-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "title": "Doze, Standby, Jobs, Alarms, Wake Locks, and FGS Internals Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs.json",
+      "sha256": "8f87838876d4cd6cffd0a97b8b20cf4fd6356f7aff94d8ed74c69074327fa163"
+    },
+    {
+      "id": "quiz-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "title": "ADB, Logcat, dumpsys, Bug Reports, and APK Analysis Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer.json",
+      "sha256": "21c383ca69b5f702ea068c08cbb357ce3d40f4ede24b39bd0a4f0b7d0aacaa8f"
+    },
+    {
+      "id": "quiz-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "title": "End-to-End Interaction Trace Capstone Check",
+      "categoryId": "level-11-android-internals-aosp",
+      "linkedLessonIds": [
+        "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-11-week-47-06-end-to-end-interaction-trace-capstone.json",
+      "sha256": "8b9c534ea23b348b1713ac6e66341a985d8a7a7db5a5aef07edcee186256401b"
+    },
+    {
+      "id": "quiz-level-12-checkpoint",
+      "title": "Level 12 Final Boss: Android Platform Expert Defense",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-01-public-api-design-contract-semantics",
+        "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+        "level-12-week-48-03-aar-resources-consumer-rules-publication",
+        "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+        "level-12-week-48-05-sdk-testing-security-observability-samples",
+        "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+        "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+        "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+        "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+        "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+        "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+        "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+        "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+        "level-12-week-50-02-wear-os-surfaces-power-health",
+        "level-12-week-50-03-android-auto-automotive-driver-safety",
+        "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+        "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+        "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+        "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+        "level-12-week-51-02-soong-modules-products-flags-apex",
+        "level-12-week-51-03-framework-service-system-app-change",
+        "level-12-week-51-04-selinux-labels-denials-least-privilege",
+        "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+        "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+        "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+        "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+        "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+        "level-12-week-52-04-audit-logging-regulated-release-evidence",
+        "level-12-week-52-05-specialisation-portfolio-architecture",
+        "level-12-week-52-06-android-platform-expert-final-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-12-checkpoint.json",
+      "sha256": "2e1b6d1a5995b4e6fdbbd1b7daa961225147370aaa879c886a8bcb3827194da6"
+    },
+    {
+      "id": "quiz-level-12-week-48-01-public-api-design-contract-semantics",
+      "title": "Public SDK API Design and Behavioral Contracts Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-01-public-api-design-contract-semantics"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-01-public-api-design-contract-semantics.json",
+      "sha256": "6b07a2ba4c404461c2f2a4387bff1f7a9301add39716b8b5a218ead3ff5acf75"
+    },
+    {
+      "id": "quiz-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "title": "Binary and Source Compatibility on Kotlin/JVM Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-02-binary-source-compatibility-kotlin-jvm.json",
+      "sha256": "ba43a1d1c8121e49d8cac9e8db189a87e1573f34383d7e9ac0de2a93d162a4c9"
+    },
+    {
+      "id": "quiz-level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "title": "AAR Contents, Resources, Consumer Rules, and Publication Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-03-aar-resources-consumer-rules-publication"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-03-aar-resources-consumer-rules-publication.json",
+      "sha256": "c4d37b36fac4aa8ffa1f71cd6c01a0adb014709fc87c3bdb0d3513ea38ba33c8"
+    },
+    {
+      "id": "quiz-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "title": "SDK Initialization, Lifecycle, and Process Isolation Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation.json",
+      "sha256": "6cf372569a6471cccdb19cdfdec56a63d4999016e234bbc974b2a678d27e6ace"
+    },
+    {
+      "id": "quiz-level-12-week-48-05-sdk-testing-security-observability-samples",
+      "title": "SDK Testing, Security, Observability, and Samples Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-05-sdk-testing-security-observability-samples"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-05-sdk-testing-security-observability-samples.json",
+      "sha256": "513a0c8a71b7fb557364875f9f613b38152aea58e15b21e7f8b196e34cbd77d4"
+    },
+    {
+      "id": "quiz-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "title": "Library Baseline Profiles and SDK Capstone Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-48-06-library-baseline-profiles-sdk-capstone.json",
+      "sha256": "a3e38651d058ef2ffb0459b031dabf3e268195a400e9742dbd9fab106bbb5094"
+    },
+    {
+      "id": "quiz-level-12-week-48-checkpoint",
+      "title": "Week 48: Android SDK and Library Engineering Checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-48-01-public-api-design-contract-semantics",
+        "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+        "level-12-week-48-03-aar-resources-consumer-rules-publication",
+        "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+        "level-12-week-48-05-sdk-testing-security-observability-samples",
+        "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-12-week-48-checkpoint.json",
+      "sha256": "6fbcf2424dabc72911e2824af7c88e9125b7958abb93d594841ad25e8c78897d"
+    },
+    {
+      "id": "quiz-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "title": "ML Kit On-device Pipelines, Lifecycle, and Privacy Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy.json",
+      "sha256": "c3d10d209fbdc3d19c792390e69464ccc4acb10c49318917d6bc0ef73f9ca5bb"
+    },
+    {
+      "id": "quiz-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "title": "LiteRT Quantization, Delegates, and Benchmarking Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-02-litert-quantization-delegates-benchmarking.json",
+      "sha256": "bbf2379e196343e068f670b5754b1f5b588847bf90f4ac03df9288606c53bc6e"
+    },
+    {
+      "id": "quiz-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "title": "Model Delivery, Multimodal Pipelines, and Offline Governance Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-03-model-delivery-multimodal-offline-governance"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-03-model-delivery-multimodal-offline-governance.json",
+      "sha256": "b2b769f8a8bea9b5e0533b35efaad2d0c66cb5f0b9aa8d0274dc46d33f3c8161"
+    },
+    {
+      "id": "quiz-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "title": "JNI Boundaries, References, Threads, and Exceptions Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-04-jni-boundaries-references-threads-exceptions.json",
+      "sha256": "169fb44a8339dd387f16b27734bb847c8a7f1a36e404337a9294b7857e0b4baf"
+    },
+    {
+      "id": "quiz-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "title": "CMake, ABIs, Native Memory, and Rust Interoperability Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-05-cmake-abis-native-memory-rust-interop.json",
+      "sha256": "70af3f2fc3f20e6af12e71447986e1a79fcce8dfc681418d845dd9a153418eec"
+    },
+    {
+      "id": "quiz-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "title": "Native Debugging, Symbols, Sanitizers, and Crash Reports Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes.json",
+      "sha256": "712dac9fd417d4236b5c0b92f5952ba7648e29c290d7ea3a4bc2ce0faf39be9d"
+    },
+    {
+      "id": "quiz-level-12-week-49-checkpoint",
+      "title": "Week 49: On-device AI and Native Android Checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+        "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+        "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+        "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+        "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+        "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-12-week-49-checkpoint.json",
+      "sha256": "f17cb529dc238a7e4f9cd6f55adb8389d66f5ead0159702a0dd543f858574456"
+    },
+    {
+      "id": "quiz-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "title": "Adaptive Windows, Foldables, ChromeOS, and Input Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-01-adaptive-windows-foldables-chromeos-input.json",
+      "sha256": "f2f617a3ee33ab78984d396c78e2069ec901acdb538f8f70a9e35c563462b6ca"
+    },
+    {
+      "id": "quiz-level-12-week-50-02-wear-os-surfaces-power-health",
+      "title": "Wear OS Surfaces, Power, and Health Context Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-02-wear-os-surfaces-power-health"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-02-wear-os-surfaces-power-health.json",
+      "sha256": "e45421bb067b5192de7f2e4c352208512d00ab49c7b2926c3481d31d3a3aadd2"
+    },
+    {
+      "id": "quiz-level-12-week-50-03-android-auto-automotive-driver-safety",
+      "title": "Android Auto, Automotive OS, and Driver Safety Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-03-android-auto-automotive-driver-safety"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-03-android-auto-automotive-driver-safety.json",
+      "sha256": "e1eac1940dafdae40863352f5b954edc3e311181b2c640d995df0d2bfa98e7ad"
+    },
+    {
+      "id": "quiz-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "title": "Android TV Focus, D-pad Navigation, and Media Quality Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-04-android-tv-focus-dpad-media-quality"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-04-android-tv-focus-dpad-media-quality.json",
+      "sha256": "1b3e3e7bf40b5dc98ddf1bd68ae2c82dbc2fc1d9c685a2e959c4e63660a15b3c"
+    },
+    {
+      "id": "quiz-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "title": "Android XR Spatial UI, Comfort, and Capability Fallback Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities.json",
+      "sha256": "ce47142c66b157f210257c1828ac0bc11610fc0284a98db230ee9097e2f446b7"
+    },
+    {
+      "id": "quiz-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "title": "Multi-form-factor Capability Matrix Capstone Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-50-06-multiform-factor-capability-matrix-capstone.json",
+      "sha256": "5ab37a70c15b3d99d555f3f1cf6e8d93812f9aecd3e5593cccc79f09bd0bb215"
+    },
+    {
+      "id": "quiz-level-12-week-50-checkpoint",
+      "title": "Week 50: Android Across Device Form Factors Checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+        "level-12-week-50-02-wear-os-surfaces-power-health",
+        "level-12-week-50-03-android-auto-automotive-driver-safety",
+        "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+        "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+        "level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-12-week-50-checkpoint.json",
+      "sha256": "11b81edb8242d828973c9fb3826db35586350ff0beb2c0f9be4e18c5111036f4"
+    },
+    {
+      "id": "quiz-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "title": "AOSP Repo, Sync, Build, and Source-tree Navigation Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-01-aosp-repo-sync-build-source-tree"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-01-aosp-repo-sync-build-source-tree.json",
+      "sha256": "22b5977f10be0a1265d9434301ed4faecd6170aec7c593571b3901b49387eabf"
+    },
+    {
+      "id": "quiz-level-12-week-51-02-soong-modules-products-flags-apex",
+      "title": "Soong Modules, Products, Flags, and APEX Boundaries Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-02-soong-modules-products-flags-apex"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-02-soong-modules-products-flags-apex.json",
+      "sha256": "8ff6c0feeacb648c6313486c3a65e94e58edafc64a2d46f7647d430c09761feb"
+    },
+    {
+      "id": "quiz-level-12-week-51-03-framework-service-system-app-change",
+      "title": "Framework Service and System Application Changes Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-03-framework-service-system-app-change"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-03-framework-service-system-app-change.json",
+      "sha256": "ed06803e29aadd1b1a84aa1dc09b0b70d164ab12d83ddfe78a4c4ef12f602d17"
+    },
+    {
+      "id": "quiz-level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "title": "SELinux Labels, Denials, and Least-privilege Policy Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-04-selinux-labels-denials-least-privilege"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-04-selinux-labels-denials-least-privilege.json",
+      "sha256": "38c452485736279dc93e98d557fb7b606f9a737a8fbbfcb32daec9980590ddc7"
+    },
+    {
+      "id": "quiz-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "title": "HALs, Stable AIDL, VINTF, and Treble Compatibility Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-05-hal-stable-aidl-vintf-treble.json",
+      "sha256": "428385ea1feb71165c87331f9f85f2aa19cb4fd8d8b630ae2585d447977131d5"
+    },
+    {
+      "id": "quiz-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "title": "CTS, VTS, Gerrit, and an AOSP Contribution Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-51-06-cts-vts-gerrit-aosp-contribution.json",
+      "sha256": "b9688dd1ef74668ff5bede4a240f64bc9a1e3ed203fdab668efd08415d84fe7a"
+    },
+    {
+      "id": "quiz-level-12-week-51-checkpoint",
+      "title": "Week 51: Platform and AOSP Engineering Checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+        "level-12-week-51-02-soong-modules-products-flags-apex",
+        "level-12-week-51-03-framework-service-system-app-change",
+        "level-12-week-51-04-selinux-labels-denials-least-privilege",
+        "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+        "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-12-week-51-checkpoint.json",
+      "sha256": "2b5b45a47d0f1a32919db76d1a82766524ab5cecb672bef287cece9da4fae3f2"
+    },
+    {
+      "id": "quiz-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "title": "Integrity, Attestation, Strong Authentication, and Risk Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-01-integrity-attestation-strong-auth-risk"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-01-integrity-attestation-strong-auth-risk.json",
+      "sha256": "5146f6c2a96c46fdca6a4a576dbdaad357b1f8f051f5e1864fe0dc7edfe1c303"
+    },
+    {
+      "id": "quiz-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "title": "Payment SDKs, Tokenization, and Tap-to-pay Boundaries Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries.json",
+      "sha256": "4f550929ddc956a8ceb040b9ffeae3814d8902e2745d76c4acf9dcd84a76c4f9"
+    },
+    {
+      "id": "quiz-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "title": "Certificate Lifecycle, Multi-brand Builds, and Environments Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-03-certificate-lifecycle-multibrand-environments.json",
+      "sha256": "1da44ed2e2de12e712606cc37bacb1f9338ddb319a4d1c346e844c7e447e42d7"
+    },
+    {
+      "id": "quiz-level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "title": "Audit Logging and Regulated Release Evidence Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-04-audit-logging-regulated-release-evidence"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-04-audit-logging-regulated-release-evidence.json",
+      "sha256": "1a55e39df64b6b2f022b8c0231452922e5a80685835f9e5f2c054fd2a9432eb7"
+    },
+    {
+      "id": "quiz-level-12-week-52-05-specialisation-portfolio-architecture",
+      "title": "Specialisation Portfolio Architecture Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-05-specialisation-portfolio-architecture"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-05-specialisation-portfolio-architecture.json",
+      "sha256": "59d05d9615e50bdbc47135c5a4beec2bd28dff5903f4d5cd65b81bb21f79d485"
+    },
+    {
+      "id": "quiz-level-12-week-52-06-android-platform-expert-final-capstone",
+      "title": "Android Platform Expert Final Capstone Check",
+      "categoryId": "level-12-advanced-specialisations",
+      "linkedLessonIds": [
+        "level-12-week-52-06-android-platform-expert-final-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-12-week-52-06-android-platform-expert-final-capstone.json",
+      "sha256": "685b69636b59d0d1faf338628a77d8176217c8cda4adcaacccb59ee168ef0136"
     }
   ],
   "challenges": [
@@ -10241,6 +11316,294 @@
       "lessonId": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
       "path": "content/challenges/challenge-level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
       "sha256": "682730b51aae8edd34bef03fee7608f777c8b6fcf4fe5a52e0ea377cdca79505"
+    },
+    {
+      "id": "challenge-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "title": "Apply ART, DEX, Class Loading, JIT, AOT, and Profiles",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "path": "content/challenges/challenge-level-11-week-47-01-art-dex-classloading-jit-aot-profiles.json",
+      "sha256": "7aef56d35bef50ea36d58119e886a310c43076cf5919eecbe830d0e15db79e9b"
+    },
+    {
+      "id": "challenge-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "title": "Apply Managed Heap, Garbage Collection, and Native Memory",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "path": "content/challenges/challenge-level-11-week-47-02-managed-heap-gc-allocation-native-memory.json",
+      "sha256": "a39a88d7fde0b13464056e2f3e1f343d3cd37b6d6613d27dbba10abe3cb1dd93"
+    },
+    {
+      "id": "challenge-level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "title": "Apply Process Importance, LMKD, and Memory Pressure",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "path": "content/challenges/challenge-level-11-week-47-03-process-importance-lmkd-trim-memory.json",
+      "sha256": "7a1c653282b8faac317b25eb6d3e327044f8d400c322e85eaf80d673950c4376"
+    },
+    {
+      "id": "challenge-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "title": "Apply Doze, Standby, Jobs, Alarms, Wake Locks, and FGS Internals",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "path": "content/challenges/challenge-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs.json",
+      "sha256": "0dd948a0d3e41c37a7f2a0f77a5de3cfc0951e10f9f3212c0ac5ab893da1605e"
+    },
+    {
+      "id": "challenge-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "title": "Apply ADB, Logcat, dumpsys, Bug Reports, and APK Analysis",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "path": "content/challenges/challenge-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer.json",
+      "sha256": "af7f0f23d7776bc4c29c0aa5aaf7fc89a465d93147c4e2a78b85cc0591f06818"
+    },
+    {
+      "id": "challenge-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "title": "Apply End-to-End Interaction Trace Capstone",
+      "categoryId": "level-11-android-internals-aosp",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "path": "content/challenges/challenge-level-11-week-47-06-end-to-end-interaction-trace-capstone.json",
+      "sha256": "58e47d46a476d4ad7e203d571d044d6fb3a16895abef7e3e592bc322c095a599"
+    },
+    {
+      "id": "challenge-level-12-week-48-01-public-api-design-contract-semantics",
+      "title": "Apply Public SDK API Design and Behavioral Contracts",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics",
+      "path": "content/challenges/challenge-level-12-week-48-01-public-api-design-contract-semantics.json",
+      "sha256": "62245338f9152c425996696b74001fc2c6211a8546f5ded54ba2c29edb5ff403"
+    },
+    {
+      "id": "challenge-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "title": "Apply Binary and Source Compatibility on Kotlin/JVM",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "path": "content/challenges/challenge-level-12-week-48-02-binary-source-compatibility-kotlin-jvm.json",
+      "sha256": "8507726acb3576a854d195c59c4fc9ab72c218c604e2ba8e7a041b546bda2df9"
+    },
+    {
+      "id": "challenge-level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "title": "Apply AAR Contents, Resources, Consumer Rules, and Publication",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "path": "content/challenges/challenge-level-12-week-48-03-aar-resources-consumer-rules-publication.json",
+      "sha256": "d016201dc9b62d668d5a0971fc2896b45bbbf05bd75dacca371c7232712c97f6"
+    },
+    {
+      "id": "challenge-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "title": "Apply SDK Initialization, Lifecycle, and Process Isolation",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "path": "content/challenges/challenge-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation.json",
+      "sha256": "d72ae3b284a53c160bb733a6223e6e4304a2e5966f9bc541149d30705470e1b1"
+    },
+    {
+      "id": "challenge-level-12-week-48-05-sdk-testing-security-observability-samples",
+      "title": "Apply SDK Testing, Security, Observability, and Samples",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples",
+      "path": "content/challenges/challenge-level-12-week-48-05-sdk-testing-security-observability-samples.json",
+      "sha256": "281d112423bd6f4b8387b8d9185084ebb0d35a7d0fe8b77b02d185e3ae589b1f"
+    },
+    {
+      "id": "challenge-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "title": "Apply Library Baseline Profiles and SDK Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "path": "content/challenges/challenge-level-12-week-48-06-library-baseline-profiles-sdk-capstone.json",
+      "sha256": "1552e0c5cdc5686bcc8a8fb12230dea4fd0639136a94924d04ed90f216134bc0"
+    },
+    {
+      "id": "challenge-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "title": "Apply ML Kit On-device Pipelines, Lifecycle, and Privacy",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "path": "content/challenges/challenge-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy.json",
+      "sha256": "d331c8de79d5689388febf483081e689f33726f612901858bbfd3159ec86f30e"
+    },
+    {
+      "id": "challenge-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "title": "Apply LiteRT Quantization, Delegates, and Benchmarking",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "path": "content/challenges/challenge-level-12-week-49-02-litert-quantization-delegates-benchmarking.json",
+      "sha256": "173df38e4c05bae29339e34d7f9c48b71cc59ee6fe0e4630d824ca97568ffd48"
+    },
+    {
+      "id": "challenge-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "title": "Apply Model Delivery, Multimodal Pipelines, and Offline Governance",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "path": "content/challenges/challenge-level-12-week-49-03-model-delivery-multimodal-offline-governance.json",
+      "sha256": "33daa431d92f583d4cc49db8cec7f9d3a26788f70ff1740b05af044ba7e3d97f"
+    },
+    {
+      "id": "challenge-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "title": "Apply JNI Boundaries, References, Threads, and Exceptions",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "path": "content/challenges/challenge-level-12-week-49-04-jni-boundaries-references-threads-exceptions.json",
+      "sha256": "605394cb7d965433a3a82cd413ff76ce750e18796a83ac5ab740c81d0aa6c28f"
+    },
+    {
+      "id": "challenge-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "title": "Apply CMake, ABIs, Native Memory, and Rust Interoperability",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "path": "content/challenges/challenge-level-12-week-49-05-cmake-abis-native-memory-rust-interop.json",
+      "sha256": "1f32ecc2bcda1e6b4ecaa3a2763fbdd2d8d3fac84397eb68bf2509c1261a26b3"
+    },
+    {
+      "id": "challenge-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "title": "Apply Native Debugging, Symbols, Sanitizers, and Crash Reports",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "path": "content/challenges/challenge-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes.json",
+      "sha256": "613c1c1483bb1760d60f6d7e08253a9e35ece88d69718e48fbdc5f60e4b4ce81"
+    },
+    {
+      "id": "challenge-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "title": "Apply Adaptive Windows, Foldables, ChromeOS, and Input",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "path": "content/challenges/challenge-level-12-week-50-01-adaptive-windows-foldables-chromeos-input.json",
+      "sha256": "673fc1f75f1020a4caa0d1caf2525929b8f368372e1fed3dd627fe1f500fc1ce"
+    },
+    {
+      "id": "challenge-level-12-week-50-02-wear-os-surfaces-power-health",
+      "title": "Apply Wear OS Surfaces, Power, and Health Context",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health",
+      "path": "content/challenges/challenge-level-12-week-50-02-wear-os-surfaces-power-health.json",
+      "sha256": "2d4432e1a24013ff1d2db5ef31a1a32fc493ac140c4e905202aa3db41d822713"
+    },
+    {
+      "id": "challenge-level-12-week-50-03-android-auto-automotive-driver-safety",
+      "title": "Apply Android Auto, Automotive OS, and Driver Safety",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety",
+      "path": "content/challenges/challenge-level-12-week-50-03-android-auto-automotive-driver-safety.json",
+      "sha256": "81110a8b0b018e9ab6fc1dbfa324a0d189affadf44f3ece57b9e283b1dc7fa36"
+    },
+    {
+      "id": "challenge-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "title": "Apply Android TV Focus, D-pad Navigation, and Media Quality",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "path": "content/challenges/challenge-level-12-week-50-04-android-tv-focus-dpad-media-quality.json",
+      "sha256": "fb79a1ab5cbb71590f7893a5a9c3ea4704e2bf90b917353800b6d1ee7864515c"
+    },
+    {
+      "id": "challenge-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "title": "Apply Android XR Spatial UI, Comfort, and Capability Fallback",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "path": "content/challenges/challenge-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities.json",
+      "sha256": "8bc964745260281e9c0c1e7ba6e97bad26f3e5bbc42bf2f4f4d0bf6e6b7947fb"
+    },
+    {
+      "id": "challenge-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "title": "Apply Multi-form-factor Capability Matrix Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "path": "content/challenges/challenge-level-12-week-50-06-multiform-factor-capability-matrix-capstone.json",
+      "sha256": "a512ed0435d8122c828e6bc58ca9c19a08051e4f8fc30b9812bd1f767249fa18"
+    },
+    {
+      "id": "challenge-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "title": "Apply AOSP Repo, Sync, Build, and Source-tree Navigation",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "path": "content/challenges/challenge-level-12-week-51-01-aosp-repo-sync-build-source-tree.json",
+      "sha256": "665eafabe43dcb8e2ee2aef9c0002909332cf04f3ab5e653679270ddc6e52483"
+    },
+    {
+      "id": "challenge-level-12-week-51-02-soong-modules-products-flags-apex",
+      "title": "Apply Soong Modules, Products, Flags, and APEX Boundaries",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex",
+      "path": "content/challenges/challenge-level-12-week-51-02-soong-modules-products-flags-apex.json",
+      "sha256": "ac17be63b7822c66f0cbf2d2e6e6bb1812dff58bb28d3f3c1ae99aef45fd21f0"
+    },
+    {
+      "id": "challenge-level-12-week-51-03-framework-service-system-app-change",
+      "title": "Apply Framework Service and System Application Changes",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change",
+      "path": "content/challenges/challenge-level-12-week-51-03-framework-service-system-app-change.json",
+      "sha256": "14573a24a41196d909636fb097fb57cbace85470957bddf10f814a520b786575"
+    },
+    {
+      "id": "challenge-level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "title": "Apply SELinux Labels, Denials, and Least-privilege Policy",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "path": "content/challenges/challenge-level-12-week-51-04-selinux-labels-denials-least-privilege.json",
+      "sha256": "966a9bb4403ebe4edae9a52646a0651ba14a76b912c65e7e0003a1570af4a0fa"
+    },
+    {
+      "id": "challenge-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "title": "Apply HALs, Stable AIDL, VINTF, and Treble Compatibility",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "path": "content/challenges/challenge-level-12-week-51-05-hal-stable-aidl-vintf-treble.json",
+      "sha256": "d774f870f3f216f8f60e42ba48550297f3373cfed565ffedcdf1dfd890b46c27"
+    },
+    {
+      "id": "challenge-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "title": "Apply CTS, VTS, Gerrit, and an AOSP Contribution",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "path": "content/challenges/challenge-level-12-week-51-06-cts-vts-gerrit-aosp-contribution.json",
+      "sha256": "b16c60141a9055d50ab16448ff11f5313d44b60c4f9cc899d24146d6c6ab3105"
+    },
+    {
+      "id": "challenge-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "title": "Apply Integrity, Attestation, Strong Authentication, and Risk",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "path": "content/challenges/challenge-level-12-week-52-01-integrity-attestation-strong-auth-risk.json",
+      "sha256": "f54b2607c6f598341c48b2e888eaf714a42cda29edccc7f8dc29e1039bc83f65"
+    },
+    {
+      "id": "challenge-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "title": "Apply Payment SDKs, Tokenization, and Tap-to-pay Boundaries",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "path": "content/challenges/challenge-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries.json",
+      "sha256": "e57da9d72a663c837c755ddacf8f9e40931857eefa6d92620bebd6f866594c1e"
+    },
+    {
+      "id": "challenge-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "title": "Apply Certificate Lifecycle, Multi-brand Builds, and Environments",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "path": "content/challenges/challenge-level-12-week-52-03-certificate-lifecycle-multibrand-environments.json",
+      "sha256": "98d07684c6e0a8615d37ee44e4fd8fb6a5fe5d6f1f413120d002d55b2d270852"
+    },
+    {
+      "id": "challenge-level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "title": "Apply Audit Logging and Regulated Release Evidence",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "path": "content/challenges/challenge-level-12-week-52-04-audit-logging-regulated-release-evidence.json",
+      "sha256": "5b99e032242ed268ddeeb3c573395603eb2157619c59ad9e9e970b8c3436a3ed"
+    },
+    {
+      "id": "challenge-level-12-week-52-05-specialisation-portfolio-architecture",
+      "title": "Apply Specialisation Portfolio Architecture",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture",
+      "path": "content/challenges/challenge-level-12-week-52-05-specialisation-portfolio-architecture.json",
+      "sha256": "62e013858ef6f8c23eea37921c981a042c7e549f2980b2053cd2e539f18e1799"
+    },
+    {
+      "id": "challenge-level-12-week-52-06-android-platform-expert-final-capstone",
+      "title": "Apply Android Platform Expert Final Capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone",
+      "path": "content/challenges/challenge-level-12-week-52-06-android-platform-expert-final-capstone.json",
+      "sha256": "a561c859a521fc4faa1178ac66d432158c3508fadc98076f48b66bde2ba9f22a"
     }
   ],
   "badges": [
@@ -10595,6 +11958,13 @@
       "sha256": "cdcc641ccefade5068419d5ddeb288905451ce2e0b51fe59aece64fb3917322b"
     },
     {
+      "id": "badge-level-11-android-internals-aosp",
+      "title": "Android Internals Investigator",
+      "categoryId": "level-11-android-internals-aosp",
+      "path": "content/badges/badge-level-11-android-internals-aosp.json",
+      "sha256": "1ca8890a428e92517963861abfc6114d18eb41cee58c52ea9bc69ddad62148ac"
+    },
+    {
       "id": "badge-level-11-week-44",
       "title": "Week 44 Process Cartographer",
       "categoryId": "level-11-android-internals-aosp",
@@ -10614,6 +11984,41 @@
       "categoryId": "level-11-android-internals-aosp",
       "path": "content/badges/badge-level-11-week-46.json",
       "sha256": "8d4ee8b7715697f8242118d217eccc2ec3fb05ee37c30c33e45ddf8c44896b37"
+    },
+    {
+      "id": "badge-level-12-advanced-specialisations",
+      "title": "Android Platform Expert",
+      "categoryId": "level-12-advanced-specialisations",
+      "path": "content/badges/badge-level-12-advanced-specialisations.json",
+      "sha256": "89b30175c8e16b507efdc9494a772d8edf2c1360de65c29186fe84a7d48b4f77"
+    },
+    {
+      "id": "badge-level-12-week-48",
+      "title": "Week 48 SDK Publisher",
+      "categoryId": "level-12-advanced-specialisations",
+      "path": "content/badges/badge-level-12-week-48.json",
+      "sha256": "14f559d1a94b7fb36e115efc98bcfc148f267c2904bfd7a80afc3ea0cd6afdad"
+    },
+    {
+      "id": "badge-level-12-week-49",
+      "title": "Week 49 AI and Native Engineer",
+      "categoryId": "level-12-advanced-specialisations",
+      "path": "content/badges/badge-level-12-week-49.json",
+      "sha256": "6804c35cbbf5046541033669770262354cbdaf5670e016fd22047407fc786c67"
+    },
+    {
+      "id": "badge-level-12-week-50",
+      "title": "Week 50 Adaptive Experience Architect",
+      "categoryId": "level-12-advanced-specialisations",
+      "path": "content/badges/badge-level-12-week-50.json",
+      "sha256": "c59de02409cc944637e8b7899b0492c3cc472b6ffacfa8ad64af09e4671697e8"
+    },
+    {
+      "id": "badge-level-12-week-51",
+      "title": "Week 51 AOSP Contributor",
+      "categoryId": "level-12-advanced-specialisations",
+      "path": "content/badges/badge-level-12-week-51.json",
+      "sha256": "5f3d65eaa957f1d33d839acea9454e557339e1e9f446116d1f49bb4fd89cefb4"
     }
   ],
   "roadmap": [
@@ -10621,7 +12026,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "cb857a8b58daf77767d45211544dfb53150958837a06961e44dab7d2112c59f0"
+      "sha256": "69fa4c2243529649c34de198f05bdac949bda32ca1429828f197a514e75c9c7a"
     }
   ]
 }

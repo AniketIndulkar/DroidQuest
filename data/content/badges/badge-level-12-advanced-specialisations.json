@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-12-advanced-specialisations",
+  "title": "Android Platform Expert",
+  "description": "Awarded for completing every specialization and defending a reproducible, secure, compatible, measurable, and operable final Android change.",
+  "categoryId": "level-12-advanced-specialisations",
+  "icon": "android-platform-expert-final-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-12-checkpoint",
+    "minimumScore": 0.85
+  },
+  "xp": 2000,
+  "rarity": "legendary",
+  "version": "1.0.0"
+}

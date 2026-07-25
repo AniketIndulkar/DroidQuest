@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-05-specialisation-portfolio-architecture",
+  "title": "Specialisation Portfolio Architecture Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-05-specialisation-portfolio-architecture"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-05-specialisation-portfolio-architecture-decision",
+      "prompt": "Which approach best applies specialisation portfolio architecture?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Present exact artifacts and evidence that another engineer can reproduce, challenge, operate, and extend across every chosen or completed track.",
+        "Show screenshots only",
+        "Hide failed experiments",
+        "Claim unsupported expertise"
+      ],
+      "answer": "Present exact artifacts and evidence that another engineer can reproduce, challenge, operate, and extend across every chosen or completed track.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture"
+    },
+    {
+      "id": "q-level-12-week-52-05-specialisation-portfolio-architecture-truth",
+      "prompt": "Completing two specialization demos is the only permitted path through Level 12.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "A portfolio containing only polished application screenshots provides no evidence of compatibility, diagnosis, security, release, or operational skill.",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture"
+    },
+    {
+      "id": "q-level-12-week-52-05-specialisation-portfolio-architecture-recall",
+      "prompt": "What turns a project into expert evidence?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Reproducible artifacts plus defensible decisions, tests, measurements, operations, failures, limitations, and review context.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

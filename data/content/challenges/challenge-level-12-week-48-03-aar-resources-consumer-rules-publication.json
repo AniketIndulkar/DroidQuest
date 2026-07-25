@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-12-week-48-03-aar-resources-consumer-rules-publication",
+  "title": "Apply AAR Contents, Resources, Consumer Rules, and Publication",
+  "categoryId": "level-12-advanced-specialisations",
+  "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication",
+  "difficulty": "expert",
+  "estimatedMinutes": 75,
+  "prompt": "Publish a namespaced minified AAR to a temporary repository and prove metadata, resources, manifest, dependencies, consumer rules, provenance, and matrix consumption.",
+  "successCriteria": [
+    "The outcome, authority, lifecycle, support matrix, unsupported cases, and exact artifact identity are explicit.",
+    "Implementation and evidence cover representative success plus the relevant denial, death, offline, corruption, pressure, and version-skew paths.",
+    "Security, privacy, accessibility, compatibility, performance, distribution, support, migration, incident, and recovery decisions are documented."
+  ],
+  "hints": [
+    "Build the smallest complete vertical slice before expanding devices, variants, models, ABIs, or platform modules.",
+    "Retain raw evidence and a negative test that would fail if the central contract regressed."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "android { defaultConfig { consumerProguardFiles(\"consumer-rules.pro\") }; publishing { singleVariant(\"release\") { withSourcesJar() } } }"
+  },
+  "solutionOutline": [
+    "Define the boundary and support matrix, implement a narrow artifact, and capture representative baseline evidence.",
+    "Exercise adverse and compatibility paths, publish or integrate the exact artifact, then rehearse migration and recovery."
+  ],
+  "verification": [
+    "Reproduce the result from a clean documented environment using the exact published, installed, model, or platform artifact.",
+    "Have another engineer challenge one assumption and rerun the relevant negative, compatibility, or operational test."
+  ],
+  "rewards": {
+    "xp": 160,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

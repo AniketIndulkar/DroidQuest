@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-12-week-50",
+  "title": "Week 50 Adaptive Experience Architect",
+  "description": "Awarded for completing the Week 50 specialization checkpoint with reproducible expert evidence.",
+  "categoryId": "level-12-advanced-specialisations",
+  "icon": "specialisation-week-50",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-12-week-50-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 500,
+  "rarity": "rare",
+  "version": "1.0.0"
+}

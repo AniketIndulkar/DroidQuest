@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+  "title": "Certificate Lifecycle, Multi-brand Builds, and Environments Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-03-certificate-lifecycle-multibrand-environments-decision",
+      "prompt": "Which approach best applies certificate lifecycle, multi-brand builds, and environments?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Inventory each identity separately, validate typed variants, rehearse overlapping rotation, and prevent cross-environment data or credential flow.",
+        "Use one key everywhere",
+        "Embed production switch",
+        "Rotate on expiry day"
+      ],
+      "answer": "Inventory each identity separately, validate typed variants, rehearse overlapping rotation, and prevent cross-environment data or credential flow.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+    },
+    {
+      "id": "q-level-12-week-52-03-certificate-lifecycle-multibrand-environments-truth",
+      "prompt": "The Play upload certificate is the signing identity observed by every user-installed Play APK.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Changing a production endpoint with an in-app hidden switch can route real credentials and data into an unapproved environment.",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+    },
+    {
+      "id": "q-level-12-week-52-03-certificate-lifecycle-multibrand-environments-recall",
+      "prompt": "Why deploy new certificate trust before using the new certificate?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "An overlap window lets old clients or servers accept both identities while deployment and adoption complete.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

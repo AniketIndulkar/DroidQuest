@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+  "title": "LiteRT Quantization, Delegates, and Benchmarking Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-49-02-litert-quantization-delegates-benchmarking-decision",
+      "prompt": "Which approach best applies litert quantization, delegates, and benchmarking?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Benchmark end to end and per stage, verify accuracy and delegate coverage, and select by representative evidence with safe fallback.",
+        "Assume GPU is fastest",
+        "Compare best run only",
+        "Skip output validation"
+      ],
+      "answer": "Benchmark end to end and per stage, verify accuracy and delegate coverage, and select by representative evidence with safe fallback.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+    },
+    {
+      "id": "q-level-12-week-49-02-litert-quantization-delegates-benchmarking-truth",
+      "prompt": "A delegate either executes the entire LiteRT graph or cannot be used at all.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Reporting only warm delegate inference time hides model download, initialization, preprocessing, fallback, and first-run cost users experience.",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+    },
+    {
+      "id": "q-level-12-week-49-02-litert-quantization-delegates-benchmarking-recall",
+      "prompt": "Why can delegate partitioning make inference slower?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Unsupported operations force backend boundaries and synchronization or data-transfer overhead that can exceed accelerated gains.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

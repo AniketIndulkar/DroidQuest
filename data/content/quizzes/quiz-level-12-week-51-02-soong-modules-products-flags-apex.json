@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-02-soong-modules-products-flags-apex",
+  "title": "Soong Modules, Products, Flags, and APEX Boundaries Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-02-soong-modules-products-flags-apex"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-02-soong-modules-products-flags-apex-decision",
+      "prompt": "Which approach best applies soong modules, products, flags, and apex boundaries?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Model explicit typed modules, dependencies, visibility, product selection, partition or APEX availability, and deterministic outputs.",
+        "Assume declaration installs",
+        "Use global visibility",
+        "Read mutable environment in tasks"
+      ],
+      "answer": "Model explicit typed modules, dependencies, visibility, product selection, partition or APEX availability, and deterministic outputs.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex"
+    },
+    {
+      "id": "q-level-12-week-51-02-soong-modules-products-flags-apex-truth",
+      "prompt": "Every module declared in Android.bp is installed automatically into all AOSP product images.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Adding a module to Android.bp compiles it only when selected by the graph; it does not automatically install it in every product image.",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex"
+    },
+    {
+      "id": "q-level-12-week-51-02-soong-modules-products-flags-apex-recall",
+      "prompt": "What decides whether a built module is present on a product?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Product and dependency selection plus install and partition properties, not merely the existence of its Android.bp declaration.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

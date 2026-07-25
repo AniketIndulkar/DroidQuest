@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-03-process-importance-lmkd-trim-memory",
+  "title": "Process Importance, LMKD, and Memory Pressure Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-03-process-importance-lmkd-trim-memory"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-03-process-importance-lmkd-trim-memory-decision",
+      "prompt": "Which approach best applies process importance, lmkd, and memory pressure?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Treat process residence as revocable, use pressure callbacks opportunistically, and make durable recovery independent of warning callbacks.",
+        "Pin with a foreground service",
+        "Treat LMK as OOM",
+        "Persist only in onTerminate"
+      ],
+      "answer": "Treat process residence as revocable, use pressure callbacks opportunistically, and make durable recovery independent of warning callbacks.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory"
+    },
+    {
+      "id": "q-level-11-week-47-03-process-importance-lmkd-trim-memory-truth",
+      "prompt": "Android always invokes onTrimMemory immediately before lmkd terminates an application process.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Relying on onTrimMemory as a guaranteed warning before termination leaves recovery broken when the process is killed without that callback.",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory"
+    },
+    {
+      "id": "q-level-11-week-47-03-process-importance-lmkd-trim-memory-recall",
+      "prompt": "What should survive a memory-pressure kill?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Durable user intent and recoverable state, while recreatable caches and process objects may be discarded.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

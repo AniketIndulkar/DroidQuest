@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "title": "Apply End-to-End Interaction Trace Capstone",
+  "categoryId": "level-11-android-internals-aosp",
+  "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "difficulty": "expert",
+  "estimatedMinutes": 75,
+  "prompt": "Produce and defend a complete tap-to-display trace with matched AOSP source, causal critical path, controlled degradation, verified fix, uncertainty, and regression guard.",
+  "successCriteria": [
+    "The outcome, authority, lifecycle, support matrix, unsupported cases, and exact artifact identity are explicit.",
+    "Implementation and evidence cover representative success plus the relevant denial, death, offline, corruption, pressure, and version-skew paths.",
+    "Security, privacy, accessibility, compatibility, performance, distribution, support, migration, incident, and recovery decisions are documented."
+  ],
+  "hints": [
+    "Build the smallest complete vertical slice before expanding devices, variants, models, ABIs, or platform modules.",
+    "Retain raw evidence and a negative test that would fail if the central contract regressed."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "adb shell perfetto --txt -c interaction.pbtxt -o /data/misc/perfetto-traces/interaction.perfetto-trace; # Mark input, state, frame, latch, and present."
+  },
+  "solutionOutline": [
+    "Define the boundary and support matrix, implement a narrow artifact, and capture representative baseline evidence.",
+    "Exercise adverse and compatibility paths, publish or integrate the exact artifact, then rehearse migration and recovery."
+  ],
+  "verification": [
+    "Reproduce the result from a clean documented environment using the exact published, installed, model, or platform artifact.",
+    "Have another engineer challenge one assumption and rerun the relevant negative, compatibility, or operational test."
+  ],
+  "rewards": {
+    "xp": 160,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

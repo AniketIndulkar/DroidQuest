@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-02-wear-os-surfaces-power-health",
+  "title": "Wear OS Surfaces, Power, and Health Context Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-02-wear-os-surfaces-power-health"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-02-wear-os-surfaces-power-health-decision",
+      "prompt": "Which approach best applies wear os surfaces, power, and health context?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Choose wrist-appropriate surfaces, keep tasks focused, minimise power and data, and preserve standalone and offline behavior.",
+        "Mirror phone app",
+        "Poll sensors continuously",
+        "Require paired phone always"
+      ],
+      "answer": "Choose wrist-appropriate surfaces, keep tasks focused, minimise power and data, and preserve standalone and offline behavior.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health"
+    },
+    {
+      "id": "q-level-12-week-50-02-wear-os-surfaces-power-health-truth",
+      "prompt": "A full-screen Wear app is the preferred surface for every piece of frequently checked information.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Porting the complete phone information architecture to a watch creates deep, slow interactions that fight wrist ergonomics and battery constraints.",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health"
+    },
+    {
+      "id": "q-level-12-week-50-02-wear-os-surfaces-power-health-recall",
+      "prompt": "When is a complication preferable to a full app?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "For a tiny frequently glanced value or action that users need directly on the watch face.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

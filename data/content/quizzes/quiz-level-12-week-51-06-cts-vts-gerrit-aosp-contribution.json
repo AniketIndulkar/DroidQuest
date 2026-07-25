@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+  "title": "CTS, VTS, Gerrit, and an AOSP Contribution Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-06-cts-vts-gerrit-aosp-contribution-decision",
+      "prompt": "Which approach best applies cts, vts, gerrit, and an aosp contribution?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Submit one scoped, tested, reviewable change with correct project ownership, Change-Id continuity, compatibility evidence, and clear rationale.",
+        "Bundle unrelated cleanup",
+        "Rerun flakes silently",
+        "Skip upstream ownership"
+      ],
+      "answer": "Submit one scoped, tested, reviewable change with correct project ownership, Change-Id continuity, compatibility evidence, and clear rationale.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+    },
+    {
+      "id": "q-level-12-week-51-06-cts-vts-gerrit-aosp-contribution-truth",
+      "prompt": "CTS and VTS are interchangeable suites that validate the same compatibility surface.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Uploading a new commit without the original Change-Id creates a separate Gerrit change instead of a new patchset for the review.",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+    },
+    {
+      "id": "q-level-12-week-51-06-cts-vts-gerrit-aosp-contribution-recall",
+      "prompt": "What keeps amended commits grouped as patchsets of one Gerrit review?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "The stable Change-Id footer in the commit message.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

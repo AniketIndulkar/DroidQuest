@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+  "title": "Apply AOSP Repo, Sync, Build, and Source-tree Navigation",
+  "categoryId": "level-12-advanced-specialisations",
+  "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+  "difficulty": "expert",
+  "estimatedMinutes": 75,
+  "prompt": "Create a reproducible AOSP workspace and build record, locate a framework behavior across projects, build its module and image, boot it, and preserve evidence.",
+  "successCriteria": [
+    "The outcome, authority, lifecycle, support matrix, unsupported cases, and exact artifact identity are explicit.",
+    "Implementation and evidence cover representative success plus the relevant denial, death, offline, corruption, pressure, and version-skew paths.",
+    "Security, privacy, accessibility, compatibility, performance, distribution, support, migration, incident, and recovery decisions are documented."
+  ],
+  "hints": [
+    "Build the smallest complete vertical slice before expanding devices, variants, models, ABIs, or platform modules.",
+    "Retain raw evidence and a negative test that would fail if the central contract regressed."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "repo init --partial-clone -b android-latest-release -u https://android.googlesource.com/platform/manifest; repo sync -c -j8; source build/envsetup.sh; lunch aosp_cf_x86_64_only_phone-aosp_current-userdebug; m"
+  },
+  "solutionOutline": [
+    "Define the boundary and support matrix, implement a narrow artifact, and capture representative baseline evidence.",
+    "Exercise adverse and compatibility paths, publish or integrate the exact artifact, then rehearse migration and recovery."
+  ],
+  "verification": [
+    "Reproduce the result from a clean documented environment using the exact published, installed, model, or platform artifact.",
+    "Have another engineer challenge one assumption and rerun the relevant negative, compatibility, or operational test."
+  ],
+  "rewards": {
+    "xp": 160,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

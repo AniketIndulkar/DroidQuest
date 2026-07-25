@@ -2,9 +2,9 @@
   "id": "level-12-advanced-specialisations",
   "title": "Level 12: Advanced Specialisations",
   "order": 12,
-  "description": "Pursue any or all expert tracks in SDK engineering, on-device AI, native Android, device form factors, AOSP, or regulated enterprise development.",
+  "description": "Complete every available expert track in SDK engineering, on-device AI, native Android, device form factors, AOSP, and regulated enterprise development, then defend a production change.",
   "difficulty": "expert",
-  "status": "planned",
+  "status": "complete",
   "weekRange": {
     "start": 48,
     "end": 52
@@ -19,25 +19,56 @@
     "ndk",
     "aosp"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-12-preview",
+  "estimatedLearningMinutes": 300,
+  "lessonIds": [
+    "level-12-week-48-01-public-api-design-contract-semantics",
+    "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+    "level-12-week-48-03-aar-resources-consumer-rules-publication",
+    "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+    "level-12-week-48-05-sdk-testing-security-observability-samples",
+    "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+    "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+    "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+    "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+    "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+    "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+    "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+    "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+    "level-12-week-50-02-wear-os-surfaces-power-health",
+    "level-12-week-50-03-android-auto-automotive-driver-safety",
+    "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+    "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+    "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+    "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+    "level-12-week-51-02-soong-modules-products-flags-apex",
+    "level-12-week-51-03-framework-service-system-app-change",
+    "level-12-week-51-04-selinux-labels-denials-least-privilege",
+    "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+    "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+    "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+    "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+    "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+    "level-12-week-52-04-audit-logging-regulated-release-evidence",
+    "level-12-week-52-05-specialisation-portfolio-architecture",
+    "level-12-week-52-06-android-platform-expert-final-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-12-week-48-01-public-api-design-contract-semantics",
   "plannedTopics": [
-    "Android SDK and library engineering",
-    "On-device AI",
-    "NDK, JNI, CMake, and native diagnostics",
-    "Wear, Auto, TV, foldables, ChromeOS, and XR",
-    "AOSP platform engineering",
-    "Enterprise and financial Android"
+    "Public SDK APIs, compatibility, AAR publication, initialization, security, observability, and library Baseline Profiles",
+    "ML Kit and LiteRT pipelines, model delivery, quantization, delegates, JNI, CMake, Rust, native memory, symbols, and sanitizers",
+    "Adaptive windows, foldables, ChromeOS, Wear OS, cars, TV, XR, and a multi-form-factor capability portfolio",
+    "AOSP Repo and Soong, framework services, SELinux, stable AIDL HALs, CTS, VTS, and Gerrit contribution",
+    "Integrity, attestation, authentication, payment tokenization, certificates, multi-brand environments, audit evidence, portfolio, and final defense"
   ],
   "project": {
-    "title": "Specialisation Portfolio",
-    "summary": "Complete one or more independent expert tracks; every track remains available and none is forced or mutually exclusive."
+    "title": "Android Platform Expert Portfolio",
+    "summary": "Complete all specialization artifacts and defend one scoped production or platform change with causal evidence, compatibility, security, release operation, and recovery."
   },
   "theme": {
     "color": "#6F3B83",
     "icon": "route",
     "mapMood": "Optional expert branches that remain open for unrestricted exploration."
   },
-  "version": "0.2.0"
+  "version": "1.0.0",
+  "checkpointQuizId": "quiz-level-12-checkpoint"
 }

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-12-week-51",
+  "title": "Week 51 AOSP Contributor",
+  "description": "Awarded for completing the Week 51 specialization checkpoint with reproducible expert evidence.",
+  "categoryId": "level-12-advanced-specialisations",
+  "icon": "specialisation-week-51",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-12-week-51-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 500,
+  "rarity": "rare",
+  "version": "1.0.0"
+}

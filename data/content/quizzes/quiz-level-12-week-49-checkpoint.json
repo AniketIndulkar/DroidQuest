@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-12-week-49-checkpoint",
+  "title": "Week 49: On-device AI and Native Android Checkpoint",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+    "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+    "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+    "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+    "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+    "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-49-1-mlkit-on-device-pipelines-lifecycle-privacy",
+      "prompt": "Checkpoint: What four versions belong in an ML evaluation record?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "Model, preprocessing, decision threshold or postprocessing, and the governed evaluation dataset version. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "options": [
+        "Own input and detector lifetimes, bound throughput, evaluate representative quality, disclose collection, and keep a usable fallback.",
+        "Store every frame",
+        "Trust confidence as certainty",
+        "Assume on-device means zero data collection"
+      ],
+      "answer": "Own input and detector lifetimes, bound throughput, evaluate representative quality, disclose collection, and keep a usable fallback."
+    },
+    {
+      "id": "q-week-49-2-litert-quantization-delegates-benchmarking",
+      "prompt": "Select the two production-grade practices for litert quantization, delegates, and benchmarking.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Unsupported operations force backend boundaries and synchronization or data-transfer overhead that can exceed accelerated gains. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "options": [
+        "Benchmark end to end and per stage, verify accuracy and delegate coverage, and select by representative evidence with safe fallback.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Assume GPU is fastest",
+        "Compare best run only"
+      ],
+      "answer": [
+        "Benchmark end to end and per stage, verify accuracy and delegate coverage, and select by representative evidence with safe fallback.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-week-49-3-model-delivery-multimodal-offline-governance",
+      "prompt": "Updating only the model file cannot affect preprocessing, labels, thresholds, or runtime compatibility.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "A failed, incompatible, or harmful download can be deactivated without removing the user’s existing offline capability. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "answer": false
+    },
+    {
+      "id": "q-week-49-4-jni-boundaries-references-threads-exceptions",
+      "prompt": "Checkpoint: What must a native-created thread do before using JNI?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "Attach to the JavaVM to obtain its own JNIEnv, then detach before the thread terminates. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "answer": "Attach to the JavaVM to obtain its own JNIEnv, then detach before the thread terminates.",
+      "acceptedAnswers": [
+        "Attach to the JavaVM to obtain its own JNIEnv, then detach before the thread terminates."
+      ]
+    },
+    {
+      "id": "q-week-49-5-cmake-abis-native-memory-rust-interop",
+      "prompt": "Order the expert workflow for cmake, abis, native memory, and rust interoperability.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "It provides a smaller, more stable and language-neutral calling contract than compiler-specific C++ ABI details. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-week-49-6-native-debugging-symbols-sanitizers-crashes",
+      "prompt": "Match the expert review dimension for native debugging, symbols, sanitizers, and crash reports.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "The exact shipped ELF binary and crash addresses to its matching symbol and source artifacts. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 350,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

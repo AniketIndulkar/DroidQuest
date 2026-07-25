@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+  "title": "Library Baseline Profiles and SDK Capstone Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-48-06-library-baseline-profiles-sdk-capstone-decision",
+      "prompt": "Which approach best applies library baseline profiles and sdk capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Ship a minimal compatible SDK and prove the exact artifact through independent consumers, critical-journey profiles, hostile hosts, and operational documentation.",
+        "Profile every method",
+        "Test project dependency only",
+        "Replace a released artifact"
+      ],
+      "answer": "Ship a minimal compatible SDK and prove the exact artifact through independent consumers, critical-journey profiles, hostile hosts, and operational documentation.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+    },
+    {
+      "id": "q-level-12-week-48-06-library-baseline-profiles-sdk-capstone-truth",
+      "prompt": "A library Baseline Profile forces all consuming apps to compile every method in the AAR.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Generating a Baseline Profile by calling every public API can bloat compilation and teaches nothing about an actual consumer critical journey.",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+    },
+    {
+      "id": "q-level-12-week-48-06-library-baseline-profiles-sdk-capstone-recall",
+      "prompt": "Where is a library Baseline Profile ultimately used?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It is packaged with the library, merged by the consuming app, and used by ART installation/profile compilation for matching code.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

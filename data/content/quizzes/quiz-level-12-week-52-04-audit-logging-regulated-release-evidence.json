@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-52-04-audit-logging-regulated-release-evidence",
+  "title": "Audit Logging and Regulated Release Evidence Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-52-04-audit-logging-regulated-release-evidence"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-52-04-audit-logging-regulated-release-evidence-decision",
+      "prompt": "Which approach best applies audit logging and regulated release evidence?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Create authoritative bounded events at trusted boundaries and bind reproducible release evidence to exact artifacts, controls, reviewers, and decisions.",
+        "Use analytics as audit",
+        "Store full payloads",
+        "Build evidence after incident"
+      ],
+      "answer": "Create authoritative bounded events at trusted boundaries and bind reproducible release evidence to exact artifacts, controls, reviewers, and decisions.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence"
+    },
+    {
+      "id": "q-level-12-week-52-04-audit-logging-regulated-release-evidence-truth",
+      "prompt": "Making an audit log append-only guarantees every recorded action is accurate and authorized.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Writing audit records only from the Android client lets a modified or offline client omit, forge, reorder, or replay authoritative actions.",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence"
+    },
+    {
+      "id": "q-level-12-week-52-04-audit-logging-regulated-release-evidence-recall",
+      "prompt": "What makes release evidence reproducible?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It is bound to exact source, configuration, artifact, tools, tests, reviewers, outcomes, and retained raw records.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

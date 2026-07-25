@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+  "title": "End-to-End Interaction Trace Capstone Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-06-end-to-end-interaction-trace-capstone-decision",
+      "prompt": "Which approach best applies end-to-end interaction trace capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Follow causal dependencies across input, app, renderer, buffers, composition, and display, then validate with a controlled intervention.",
+        "Pick longest slice",
+        "Ignore present timing",
+        "Depend on private trace names"
+      ],
+      "answer": "Follow causal dependencies across input, app, renderer, buffers, composition, and display, then validate with a controlled intervention.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+    },
+    {
+      "id": "q-level-11-week-47-06-end-to-end-interaction-trace-capstone-truth",
+      "prompt": "The longest-duration slice visible near a slow frame is necessarily on that frame critical path.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Highlighting the longest slice in a trace and calling it the cause ignores whether later work actually depends on that slice.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+    },
+    {
+      "id": "q-level-11-week-47-06-end-to-end-interaction-trace-capstone-recall",
+      "prompt": "What proves that an observed slice caused the delayed frame?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A dependency path connects it to presentation and a controlled change predictably moves the resulting latency distribution.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

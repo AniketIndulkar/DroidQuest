@@ -1,0 +1,218 @@
+{
+  "id": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+  "title": "SDK Initialization, Lifecycle, and Process Isolation",
+  "categoryId": "level-12-advanced-specialisations",
+  "week": 48,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-12-week-48-03-aar-resources-consumer-rules-publication"
+  ],
+  "tags": [
+    "sdk",
+    "initialization",
+    "lifecycle"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Master sdk initialization, lifecycle, and process isolation through a production or platform contract supported by causal evidence.",
+      "realWorldUse": "Specialist Android work must remain compatible, secure, measurable, accessible, distributable, and operable outside a demonstration.",
+      "outcome": "You can design, inspect, test, release, and defend sdk initialization, lifecycle, and process isolation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "contract",
+          "title": "Define the expert contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SDK initialization is host startup work. Prefer explicit initialization or a narrowly scoped App Startup initializer when ordering is genuinely required. Make repeated calls safe, distinguish configuration from activation, and state which process and thread own the instance. ContentProvider auto-init runs before Application.onCreate in every matching process unless constrained, which can add hidden cold-start, disk, network, or privacy work. The host must be able to disable optional collection and defer nonessential features."
+            },
+            {
+              "type": "flow",
+              "title": "Expert evidence loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "State the user or platform result, initial conditions, and success metric."
+                },
+                {
+                  "id": "boundaries",
+                  "label": "Map boundaries",
+                  "detail": "Identify authority, lifecycle, process, compatibility, privacy, and distribution ownership."
+                },
+                {
+                  "id": "evidence",
+                  "label": "Build evidence",
+                  "detail": "Implement narrowly and capture exact artifact, runtime, test, and measurement records."
+                },
+                {
+                  "id": "adversity",
+                  "label": "Exercise adversity",
+                  "detail": "Test denial, death, offline, pressure, version skew, corruption, and dependency failure."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate and evolve",
+                  "detail": "Define release gate, support, migration, incident response, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Implement the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Never capture an Activity in a singleton. Use application context only where appropriate and accept scoped owners for UI or sessions. Treat secondary and isolated processes separately; shared preferences and file locks do not create in-memory singleton identity. Initialization failures should produce typed degraded state rather than crash the host. Avoid global coroutine scopes, unmanaged executors, broadcast receivers, and callbacks that outlive registration. Expose close or unregister semantics for owned resources."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Sdk.configure(config); lifecycleScope.launch { when(val state=Sdk.activate(consent)) { is Ready -> use(state.client); is Degraded -> showFallback() } }",
+              "caption": "A focused fragment whose complete contract includes exact versions, ownership, adverse paths, compatibility, and release evidence."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify, release, and operate",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measure cold startup with and without the SDK, StrictMode, provider ordering, process count, threads, memory, network, and battery. Test duplicate init, concurrent init, missing config, opt-out, offline, process death, app update, direct boot where supported, background component start, and teardown. Publish initialization diagrams and a host integration test. A safe SDK cannot assume it is first, only, or last in a process, and must coexist with other libraries."
+            },
+            {
+              "type": "paragraph",
+              "text": "Expert engineering makes assumptions, authority, compatibility, security, privacy, accessibility, performance, distribution, and recovery reviewable. Begin with a concrete user or platform outcome, identify trust and lifecycle boundaries, and retain exact source, dependency, toolchain, configuration, model or platform version, and artifact identity. Test realistic success plus denial, offline, process death, cancellation, corruption, version skew, resource pressure, and dependency failure. Measure representative distributions rather than best runs. Document unsupported cases, residual risk, owners, release gates, incident response, deprecation, and rollback or roll-forward. A specialised solution is production-ready only when another team can integrate, verify, operate, upgrade, disable, and remove it safely."
+            },
+            {
+              "type": "table",
+              "title": "Expert review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Contract",
+                  "Outcome, authority, lifecycle, compatibility, and unsupported cases"
+                ],
+                [
+                  "Artifact",
+                  "Exact source, dependencies, tools, configuration, model or platform, and digest"
+                ],
+                [
+                  "Adversity",
+                  "Denial, offline, death, cancellation, corruption, pressure, and version skew"
+                ],
+                [
+                  "Operations",
+                  "Telemetry, owner, gate, incident response, migration, and safe recovery"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Expert trap",
+              "text": "An auto-initializing provider that contacts the network can delay every app process and collect data before the host establishes consent."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Create an Android Library",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/projects/android-library",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Processes and App Lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/process-lifecycle",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        },
+        {
+          "title": "Security Checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Use this primary reference to verify the current contract, implementation guidance, compatibility limits, diagnostics, and release requirements behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect SDK Initialization, Lifecycle, and Process Isolation",
+      "language": "kotlin",
+      "code": "Sdk.configure(config); lifecycleScope.launch { when(val state=Sdk.activate(consent)) { is Ready -> use(state.client); is Degraded -> showFallback() } }",
+      "walkthrough": [
+        "Identify the user or platform outcome, authority, lifecycle, supported versions, and exact artifact context.",
+        "Trace data, execution, security, compatibility, delivery, and failure ownership across every boundary.",
+        "Verify representative evidence, adverse paths, release gates, support, migration, and safe recovery."
+      ],
+      "expectedOutput": "A reproducible expert artifact or investigation with explicit contracts, limitations, evidence, and operational ownership."
+    },
+    "trap_check": [
+      {
+        "mistake": "An auto-initializing provider that contacts the network can delay every app process and collect data before the host establishes consent.",
+        "why": "It hides an ownership, compatibility, trust, lifecycle, or evidence gap that becomes costly outside the demonstration.",
+        "fix": "Make the disputed boundary explicit and add a representative negative or compatibility test plus operational response."
+      },
+      {
+        "mistake": "Treating one successful device, client, model, platform build, or release as proof of the supported contract.",
+        "why": "Advanced Android ecosystems contain version, hardware, consumer, policy, and runtime variation.",
+        "fix": "Define the support matrix and verify exact artifacts across representative and adverse conditions."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement and test explicit idempotent SDK startup across main and secondary processes, consent-off, offline, duplicate calls, failure, teardown, and startup budget.",
+      "successLooksLike": "The work includes a minimal coherent implementation, exact evidence, support and threat boundaries, adverse testing, release operation, and recovery."
+    },
+    "recall": [
+      {
+        "prompt": "Why separate SDK configuration from activation?",
+        "answer": "The host can validate setup and establish consent or lifecycle before starting work, collection, threads, or network access."
+      },
+      {
+        "prompt": "What must accompany an expert Android artifact?",
+        "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
+      },
+      {
+        "prompt": "Why record unsupported cases?",
+        "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
+      }
+    ]
+  },
+  "quizId": "quiz-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+  "challengeId": "challenge-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+  "revision": {
+    "objectives": [
+      "Explain and defend the complete contract behind SDK Initialization, Lifecycle, and Process Isolation.",
+      "Implement and verify the capability across representative and adverse conditions.",
+      "Release, observe, support, migrate, and recover the exact artifact safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.85,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/projects/android-library",
+    "https://developer.android.com/guide/components/activities/process-lifecycle",
+    "https://developer.android.com/privacy-and-security/security-tips"
+  ],
+  "version": "1.0.0"
+}

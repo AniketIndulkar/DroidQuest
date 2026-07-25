@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+  "title": "Managed Heap, Garbage Collection, and Native Memory Check",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-11-week-47-02-managed-heap-gc-allocation-native-memory-decision",
+      "prompt": "Which approach best applies managed heap, garbage collection, and native memory?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Separate reachability, allocation rate, managed heap, native or graphics memory, and process footprint before assigning cause.",
+        "Force GC as the fix",
+        "Use finalizers for handles",
+        "Equate RSS with Java heap"
+      ],
+      "answer": "Separate reachability, allocation rate, managed heap, native or graphics memory, and process footprint before assigning cause.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+    },
+    {
+      "id": "q-level-11-week-47-02-managed-heap-gc-allocation-native-memory-truth",
+      "prompt": "An object that remains reachable after GC is necessarily still useful to the application.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Reading a low Java heap as proof of low process memory ignores native, graphics, code, stacks, mapped files, and allocator retention.",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+    },
+    {
+      "id": "q-level-11-week-47-02-managed-heap-gc-allocation-native-memory-recall",
+      "prompt": "Why can a JNI global reference cause a managed leak?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "It is a GC root-like retained reference until explicitly deleted, so the object and its reachable graph remain live.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

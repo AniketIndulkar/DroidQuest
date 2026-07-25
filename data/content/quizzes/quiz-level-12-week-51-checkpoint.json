@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-12-week-51-checkpoint",
+  "title": "Week 51: Platform and AOSP Engineering Checkpoint",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+    "level-12-week-51-02-soong-modules-products-flags-apex",
+    "level-12-week-51-03-framework-service-system-app-change",
+    "level-12-week-51-04-selinux-labels-denials-least-privilege",
+    "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+    "level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-51-1-aosp-repo-sync-build-source-tree",
+      "prompt": "Checkpoint: What does a Repo manifest determine?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "Which Git projects, revisions, remotes, paths, and groups compose the checked-out AOSP workspace. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "options": [
+        "Pin the manifest and target, respect Repo project ownership, build narrowly then integratively, and record exact environment and artifacts.",
+        "Build unpinned main",
+        "Treat tree as one Git repo",
+        "Assume AOSP includes Google services"
+      ],
+      "answer": "Pin the manifest and target, respect Repo project ownership, build narrowly then integratively, and record exact environment and artifacts."
+    },
+    {
+      "id": "q-week-51-2-soong-modules-products-flags-apex",
+      "prompt": "Select the two production-grade practices for soong modules, products, flags, and apex boundaries.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "Product and dependency selection plus install and partition properties, not merely the existence of its Android.bp declaration. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex",
+      "options": [
+        "Model explicit typed modules, dependencies, visibility, product selection, partition or APEX availability, and deterministic outputs.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Assume declaration installs",
+        "Use global visibility"
+      ],
+      "answer": [
+        "Model explicit typed modules, dependencies, visibility, product selection, partition or APEX availability, and deterministic outputs.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-week-51-3-framework-service-system-app-change",
+      "prompt": "A preinstalled system app can safely enforce a platform permission only in its local UI code.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "Authorization must evaluate the kernel-supplied original caller rather than the privileged system service identity. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change",
+      "answer": false
+    },
+    {
+      "id": "q-week-51-4-selinux-labels-denials-least-privilege",
+      "prompt": "Checkpoint: What four elements identify a basic SELinux access decision?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "Source type, target type, object class, and requested permission. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "answer": "Source type, target type, object class, and requested permission.",
+      "acceptedAnswers": [
+        "Source type, target type, object class, and requested permission."
+      ]
+    },
+    {
+      "id": "q-week-51-5-hal-stable-aidl-vintf-treble",
+      "prompt": "Order the expert workflow for hals, stable aidl, vintf, and treble compatibility.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "Framework and vendor components can build and update against explicit compatible interface versions across partition boundaries. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-week-51-6-cts-vts-gerrit-aosp-contribution",
+      "prompt": "Match the expert review dimension for cts, vts, gerrit, and an aosp contribution.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "The stable Change-Id footer in the commit message. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 350,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-12-week-51-02-soong-modules-products-flags-apex",
+  "title": "Apply Soong Modules, Products, Flags, and APEX Boundaries",
+  "categoryId": "level-12-advanced-specialisations",
+  "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex",
+  "difficulty": "expert",
+  "estimatedMinutes": 75,
+  "prompt": "Add a typed Soong library and test, wire one product intentionally, inspect variants and install output, and verify incremental, visibility, license, and image effects.",
+  "successCriteria": [
+    "The outcome, authority, lifecycle, support matrix, unsupported cases, and exact artifact identity are explicit.",
+    "Implementation and evidence cover representative success plus the relevant denial, death, offline, corruption, pressure, and version-skew paths.",
+    "Security, privacy, accessibility, compatibility, performance, distribution, support, migration, incident, and recovery decisions are documented."
+  ],
+  "hints": [
+    "Build the smallest complete vertical slice before expanding devices, variants, models, ABIs, or platform modules.",
+    "Retain raw evidence and a negative test that would fail if the central contract regressed."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "java_library { name: \"droidquest-framework\", srcs: [\"src/**/*.java\"], visibility: [\"//frameworks/base/services\"], apex_available: [\"//apex_available:platform\"] }"
+  },
+  "solutionOutline": [
+    "Define the boundary and support matrix, implement a narrow artifact, and capture representative baseline evidence.",
+    "Exercise adverse and compatibility paths, publish or integrate the exact artifact, then rehearse migration and recovery."
+  ],
+  "verification": [
+    "Reproduce the result from a clean documented environment using the exact published, installed, model, or platform artifact.",
+    "Have another engineer challenge one assumption and rerun the relevant negative, compatibility, or operational test."
+  ],
+  "rewards": {
+    "xp": 160,
+    "stars": 4
+  },
+  "version": "1.0.0"
+}

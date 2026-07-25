@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+  "title": "HALs, Stable AIDL, VINTF, and Treble Compatibility Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-51-05-hal-stable-aidl-vintf-treble-decision",
+      "prompt": "Which approach best applies hals, stable aidl, vintf, and treble compatibility?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use frozen additive interfaces and prove cross-version, manifest, service-death, security, and hardware-failure behavior.",
+        "Let apps call HAL directly",
+        "Change frozen fields",
+        "Share vendor file paths"
+      ],
+      "answer": "Use frozen additive interfaces and prove cross-version, manifest, service-death, security, and hardware-failure behavior.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+    },
+    {
+      "id": "q-level-12-week-51-05-hal-stable-aidl-vintf-treble-truth",
+      "prompt": "Passing VTS guarantees that a HAL implementation is functionally correct for every device use case.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Changing a frozen parcelable field type in place breaks old clients or servers even when both sides compile in the latest tree.",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+    },
+    {
+      "id": "q-level-12-week-51-05-hal-stable-aidl-vintf-treble-recall",
+      "prompt": "Why freeze stable AIDL versions?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Framework and vendor components can build and update against explicit compatible interface versions across partition boundaries.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

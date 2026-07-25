@@ -1,7 +1,7 @@
 {
   "id": "main-roadmap",
   "title": "DroidQuest Beginner-to-Expert Roadmap",
-  "version": "0.14.0",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "node-level-01-week-01-01-first-program",
@@ -883,22 +883,6 @@
       "rewards": {
         "xp": 600,
         "stars": 5
-      }
-    },
-    {
-      "id": "node-level-12-preview",
-      "categoryId": "level-12-advanced-specialisations",
-      "title": "Level 12: Advanced Specialisations",
-      "type": "level_preview",
-      "status": "planned",
-      "difficulty": "expert",
-      "estimatedLearningMinutes": 0,
-      "unlockPrerequisites": [
-        "node-level-11-week-47-preview"
-      ],
-      "rewards": {
-        "xp": 0,
-        "stars": 0
       }
     },
     {
@@ -5441,19 +5425,717 @@
       }
     },
     {
-      "id": "node-level-11-week-47-preview",
+      "id": "node-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
       "categoryId": "level-11-android-internals-aosp",
-      "title": "Week 47: Runtime, Memory, Power, Diagnostics, and Internals Capstone",
-      "type": "level_preview",
-      "status": "planned",
+      "title": "ART, DEX, Class Loading, JIT, AOT, and Profiles",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
       "difficulty": "expert",
-      "estimatedLearningMinutes": 0,
+      "estimatedLearningMinutes": 10,
       "unlockPrerequisites": [
         "node-level-11-week-46-checkpoint"
       ],
       "rewards": {
-        "xp": 0,
-        "stars": 0
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Managed Heap, Garbage Collection, and Native Memory",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Process Importance, LMKD, and Memory Pressure",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-02-managed-heap-gc-allocation-native-memory"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Doze, Standby, Jobs, Alarms, Wake Locks, and FGS Internals",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-03-process-importance-lmkd-trim-memory"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "ADB, Logcat, dumpsys, Bug Reports, and APK Analysis",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "End-to-End Interaction Trace Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-11-boss",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Level 11 Boss: End-to-End Android Interaction Trace",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-11-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-11-week-47-06-end-to-end-interaction-trace-capstone"
+      ],
+      "rewards": {
+        "xp": 1000,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-12-week-48-01-public-api-design-contract-semantics",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Public SDK API Design and Behavioral Contracts",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-12-week-48-01-public-api-design-contract-semantics",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-11-boss"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Binary and Source Compatibility on Kotlin/JVM",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-01-public-api-design-contract-semantics"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "AAR Contents, Resources, Consumer Rules, and Publication",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-02-binary-source-compatibility-kotlin-jvm"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "SDK Initialization, Lifecycle, and Process Isolation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-03-aar-resources-consumer-rules-publication"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-05-sdk-testing-security-observability-samples",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "SDK Testing, Security, Observability, and Samples",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-48-05-sdk-testing-security-observability-samples",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Library Baseline Profiles and SDK Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-05-sdk-testing-security-observability-samples"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-48-checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Week 48 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-12-week-48-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-06-library-baseline-profiles-sdk-capstone"
+      ],
+      "rewards": {
+        "xp": 350,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "ML Kit On-device Pipelines, Lifecycle, and Privacy",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-48-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "LiteRT Quantization, Delegates, and Benchmarking",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Model Delivery, Multimodal Pipelines, and Offline Governance",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-02-litert-quantization-delegates-benchmarking"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "JNI Boundaries, References, Threads, and Exceptions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-03-model-delivery-multimodal-offline-governance"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "CMake, ABIs, Native Memory, and Rust Interoperability",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-04-jni-boundaries-references-threads-exceptions"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Native Debugging, Symbols, Sanitizers, and Crash Reports",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-05-cmake-abis-native-memory-rust-interop"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-49-checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Week 49 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-12-week-49-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes"
+      ],
+      "rewards": {
+        "xp": 350,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Adaptive Windows, Foldables, ChromeOS, and Input",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-49-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-02-wear-os-surfaces-power-health",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Wear OS Surfaces, Power, and Health Context",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-02-wear-os-surfaces-power-health",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-01-adaptive-windows-foldables-chromeos-input"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-03-android-auto-automotive-driver-safety",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Android Auto, Automotive OS, and Driver Safety",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-02-wear-os-surfaces-power-health"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Android TV Focus, D-pad Navigation, and Media Quality",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-03-android-auto-automotive-driver-safety"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Android XR Spatial UI, Comfort, and Capability Fallback",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-04-android-tv-focus-dpad-media-quality"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Multi-form-factor Capability Matrix Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-50-checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Week 50 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-12-week-50-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-06-multiform-factor-capability-matrix-capstone"
+      ],
+      "rewards": {
+        "xp": 350,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "AOSP Repo, Sync, Build, and Source-tree Navigation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-50-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-02-soong-modules-products-flags-apex",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Soong Modules, Products, Flags, and APEX Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-02-soong-modules-products-flags-apex",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-01-aosp-repo-sync-build-source-tree"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-03-framework-service-system-app-change",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Framework Service and System Application Changes",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-03-framework-service-system-app-change",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-02-soong-modules-products-flags-apex"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "SELinux Labels, Denials, and Least-privilege Policy",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-03-framework-service-system-app-change"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "HALs, Stable AIDL, VINTF, and Treble Compatibility",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-04-selinux-labels-denials-least-privilege"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "CTS, VTS, Gerrit, and an AOSP Contribution",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-05-hal-stable-aidl-vintf-treble"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-51-checkpoint",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Week 51 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-12-week-51-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-06-cts-vts-gerrit-aosp-contribution"
+      ],
+      "rewards": {
+        "xp": 350,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Integrity, Attestation, Strong Authentication, and Risk",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-51-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Payment SDKs, Tokenization, and Tap-to-pay Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-01-integrity-attestation-strong-auth-risk"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Certificate Lifecycle, Multi-brand Builds, and Environments",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Audit Logging and Regulated Release Evidence",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-03-certificate-lifecycle-multibrand-environments"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-52-05-specialisation-portfolio-architecture",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Specialisation Portfolio Architecture",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-05-specialisation-portfolio-architecture",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-04-audit-logging-regulated-release-evidence"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-week-52-06-android-platform-expert-final-capstone",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Android Platform Expert Final Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-12-week-52-06-android-platform-expert-final-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-05-specialisation-portfolio-architecture"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-12-boss",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Level 12 Final Boss: Android Platform Expert Defense",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-12-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-12-week-52-06-android-platform-expert-final-capstone"
+      ],
+      "rewards": {
+        "xp": 1500,
+        "stars": 5
       }
     }
   ],
@@ -7050,13 +7732,213 @@
     },
     {
       "from": "node-level-11-week-46-checkpoint",
-      "to": "node-level-11-week-47-preview",
+      "to": "node-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-11-week-47-preview",
-      "to": "node-level-12-preview",
-      "kind": "planned_sequence"
+      "from": "node-level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "to": "node-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "to": "node-level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "to": "node-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "to": "node-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "to": "node-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "to": "node-level-11-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-11-boss",
+      "to": "node-level-12-week-48-01-public-api-design-contract-semantics",
+      "kind": "level_unlock"
+    },
+    {
+      "from": "node-level-12-week-48-01-public-api-design-contract-semantics",
+      "to": "node-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
+      "to": "node-level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-03-aar-resources-consumer-rules-publication",
+      "to": "node-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
+      "to": "node-level-12-week-48-05-sdk-testing-security-observability-samples",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-05-sdk-testing-security-observability-samples",
+      "to": "node-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-06-library-baseline-profiles-sdk-capstone",
+      "to": "node-level-12-week-48-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-48-checkpoint",
+      "to": "node-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
+      "to": "node-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-02-litert-quantization-delegates-benchmarking",
+      "to": "node-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-03-model-delivery-multimodal-offline-governance",
+      "to": "node-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-04-jni-boundaries-references-threads-exceptions",
+      "to": "node-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-05-cmake-abis-native-memory-rust-interop",
+      "to": "node-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
+      "to": "node-level-12-week-49-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-49-checkpoint",
+      "to": "node-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
+      "to": "node-level-12-week-50-02-wear-os-surfaces-power-health",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-02-wear-os-surfaces-power-health",
+      "to": "node-level-12-week-50-03-android-auto-automotive-driver-safety",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-03-android-auto-automotive-driver-safety",
+      "to": "node-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-04-android-tv-focus-dpad-media-quality",
+      "to": "node-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
+      "to": "node-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-06-multiform-factor-capability-matrix-capstone",
+      "to": "node-level-12-week-50-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-50-checkpoint",
+      "to": "node-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-01-aosp-repo-sync-build-source-tree",
+      "to": "node-level-12-week-51-02-soong-modules-products-flags-apex",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-02-soong-modules-products-flags-apex",
+      "to": "node-level-12-week-51-03-framework-service-system-app-change",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-03-framework-service-system-app-change",
+      "to": "node-level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-04-selinux-labels-denials-least-privilege",
+      "to": "node-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-05-hal-stable-aidl-vintf-treble",
+      "to": "node-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
+      "to": "node-level-12-week-51-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-51-checkpoint",
+      "to": "node-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-01-integrity-attestation-strong-auth-risk",
+      "to": "node-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
+      "to": "node-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-03-certificate-lifecycle-multibrand-environments",
+      "to": "node-level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-04-audit-logging-regulated-release-evidence",
+      "to": "node-level-12-week-52-05-specialisation-portfolio-architecture",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-05-specialisation-portfolio-architecture",
+      "to": "node-level-12-week-52-06-android-platform-expert-final-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-12-week-52-06-android-platform-expert-final-capstone",
+      "to": "node-level-12-boss",
+      "kind": "prerequisite"
     }
   ]
 }

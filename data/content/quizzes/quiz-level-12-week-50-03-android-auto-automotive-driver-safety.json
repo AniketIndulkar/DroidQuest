@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-12-week-50-03-android-auto-automotive-driver-safety",
+  "title": "Android Auto, Automotive OS, and Driver Safety Check",
+  "categoryId": "level-12-advanced-specialisations",
+  "linkedLessonIds": [
+    "level-12-week-50-03-android-auto-automotive-driver-safety"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-12-week-50-03-android-auto-automotive-driver-safety-decision",
+      "prompt": "Which approach best applies android auto, automotive os, and driver safety?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Use supported category templates and make driver attention, state restrictions, host ownership, and recovery primary design constraints.",
+        "Treat car as tablet",
+        "Control vehicle via hidden APIs",
+        "Ignore parked versus driving state"
+      ],
+      "answer": "Use supported category templates and make driver attention, state restrictions, host ownership, and recovery primary design constraints.",
+      "explanation": "The correct response preserves authority, compatibility, exact artifact evidence, adverse-path behavior, and operational ownership.",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety"
+    },
+    {
+      "id": "q-level-12-week-50-03-android-auto-automotive-driver-safety-truth",
+      "prompt": "An app approved for Android Auto can use the identical UI and distribution model on Android Automotive OS.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Building a custom dense touchscreen UI for Android Automotive bypasses template and distraction constraints and may be unusable or rejected.",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety"
+    },
+    {
+      "id": "q-level-12-week-50-03-android-auto-automotive-driver-safety-recall",
+      "prompt": "What is the architectural difference between Auto and Automotive OS?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Auto projects a phone-powered experience into the car, while Automotive OS runs apps on the vehicle platform.",
+      "explanation": "The answer identifies the contract or mechanism that remains valid beyond one implementation demonstration.",
+      "lessonId": "level-12-week-50-03-android-auto-automotive-driver-safety"
+    }
+  ],
+  "rewards": {
+    "xp": 65,
+    "stars": 3
+  },
+  "version": "1.0.0"
+}

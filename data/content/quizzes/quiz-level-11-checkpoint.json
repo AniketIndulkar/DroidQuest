@@ -1,0 +1,167 @@
+{
+  "id": "quiz-level-11-checkpoint",
+  "title": "Level 11 Boss: End-to-End Android Interaction Trace",
+  "categoryId": "level-11-android-internals-aosp",
+  "linkedLessonIds": [
+    "level-11-week-44-01-linux-processes-threads-uids-sandbox",
+    "level-11-week-44-02-zygote-fork-app-process-creation",
+    "level-11-week-44-03-system-server-boot-system-services",
+    "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
+    "level-11-week-44-05-service-manager-discovery-handles",
+    "level-11-week-44-06-activity-task-package-window-manager-boundaries",
+    "level-11-week-45-01-launcher-intent-resolution-task-launch",
+    "level-11-week-45-02-activitythread-main-application-bind",
+    "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
+    "level-11-week-45-04-window-creation-surface-first-frame",
+    "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
+    "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
+    "level-11-week-46-01-view-traversal-measure-layout-draw",
+    "level-11-week-46-02-compose-composition-layout-draw-snapshots",
+    "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
+    "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
+    "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
+    "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
+    "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+    "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+    "level-11-week-47-03-process-importance-lmkd-trim-memory",
+    "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+    "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+    "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.85,
+  "questions": [
+    {
+      "id": "q-level-11-boss-1-art-dex-classloading-jit-aot-profiles",
+      "prompt": "Checkpoint: What does speed-profile generally prioritise?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "explanation": "AOT compilation and class-loading optimisation for methods and classes identified by a profile rather than the entire app. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
+      "options": [
+        "Model ART as a hybrid profile-guided runtime and interpret results within exact install, profile, and compiler-filter state.",
+        "Assume every method is AOT",
+        "Treat R8 as ART JIT",
+        "Identify classes by name alone"
+      ],
+      "answer": "Model ART as a hybrid profile-guided runtime and interpret results within exact install, profile, and compiler-filter state."
+    },
+    {
+      "id": "q-level-11-boss-2-managed-heap-gc-allocation-native-memory",
+      "prompt": "Select the two production-grade practices for managed heap, garbage collection, and native memory.",
+      "type": "multiple_choice",
+      "difficulty": "expert",
+      "explanation": "It is a GC root-like retained reference until explicitly deleted, so the object and its reachable graph remain live. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
+      "options": [
+        "Separate reachability, allocation rate, managed heap, native or graphics memory, and process footprint before assigning cause.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan",
+        "Force GC as the fix",
+        "Use finalizers for handles"
+      ],
+      "answer": [
+        "Separate reachability, allocation rate, managed heap, native or graphics memory, and process footprint before assigning cause.",
+        "Verify the exact artifact in representative and adverse conditions with an owned recovery plan"
+      ]
+    },
+    {
+      "id": "q-level-11-boss-3-process-importance-lmkd-trim-memory",
+      "prompt": "Android always invokes onTrimMemory immediately before lmkd terminates an application process.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "explanation": "Durable user intent and recoverable state, while recreatable caches and process objects may be discarded. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-03-process-importance-lmkd-trim-memory",
+      "answer": false
+    },
+    {
+      "id": "q-level-11-boss-4-doze-standby-jobs-alarms-wakelocks-fgs",
+      "prompt": "Checkpoint: What is the key difference between Doze and App Standby?",
+      "type": "fill_blank",
+      "difficulty": "expert",
+      "explanation": "Doze is a device idle mode, while App Standby and its buckets restrict individual apps based on engagement and policy. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
+      "answer": "Doze is a device idle mode, while App Standby and its buckets restrict individual apps based on engagement and policy.",
+      "acceptedAnswers": [
+        "Doze is a device idle mode, while App Standby and its buckets restrict individual apps based on engagement and policy."
+      ]
+    },
+    {
+      "id": "q-level-11-boss-5-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "prompt": "Order the expert workflow for adb, logcat, dumpsys, bug reports, and apk analysis.",
+      "type": "order_steps",
+      "difficulty": "expert",
+      "explanation": "dumpsys provides scoped state snapshots, while Perfetto shows timing and causality across an interval. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
+      "options": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ],
+      "answer": [
+        "Define outcome and support contract",
+        "Map authority and lifecycle boundaries",
+        "Implement and capture exact evidence",
+        "Exercise adversity and compatibility",
+        "Release, observe, and rehearse recovery"
+      ]
+    },
+    {
+      "id": "q-level-11-boss-6-end-to-end-interaction-trace-capstone",
+      "prompt": "Match the expert review dimension for end-to-end interaction trace capstone.",
+      "type": "match_pairs",
+      "difficulty": "expert",
+      "explanation": "A dependency path connects it to presentation and a controlled change predictably moves the resulting latency distribution. The answer must remain tied to exact artifacts, supported contracts, and adverse-path evidence.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
+      "options": [
+        "Contract → authority, lifecycle, support, and limits",
+        "Evidence → exact artifact, tests, and distributions",
+        "Operations → owner, gate, incident, migration, and recovery"
+      ],
+      "answer": {
+        "Contract": "authority, lifecycle, support, and limits",
+        "Evidence": "exact artifact, tests, and distributions",
+        "Operations": "owner, gate, incident, migration, and recovery"
+      }
+    },
+    {
+      "id": "q-level-11-boss-code-output",
+      "prompt": "Which output demonstrates an expert production change?",
+      "type": "code_output",
+      "difficulty": "expert",
+      "options": [
+        "A screenshot",
+        "Exact artifact plus contracts, adverse tests, distributions, release gate, incident and recovery evidence",
+        "A successful local build"
+      ],
+      "answer": "Exact artifact plus contracts, adverse tests, distributions, release gate, incident and recovery evidence",
+      "explanation": "Expert evidence is reproducible and operational, not merely visual or locally successful.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+    },
+    {
+      "id": "q-level-11-boss-spot-bug",
+      "prompt": "Spot the central bug: the team approves a specialist artifact after one successful device run and no compatibility or failure matrix.",
+      "type": "spot_bug",
+      "difficulty": "expert",
+      "answer": "One run does not establish supported versions, devices, consumers, denial, death, offline, pressure, security, release, or recovery behavior.",
+      "explanation": "The support contract needs representative success, negative and compatibility evidence, exact artifact identity, and ownership.",
+      "lessonId": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles"
+    },
+    {
+      "id": "q-level-11-boss-short-answer",
+      "prompt": "What makes an expert Android conclusion defensible?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A causal model, exact reproducible evidence, controlled intervention, support and threat boundaries, adverse tests, honest uncertainty, and an owned operational response.",
+      "explanation": "These elements let another engineer challenge and reproduce the conclusion rather than trust authority.",
+      "lessonId": "level-11-week-47-06-end-to-end-interaction-trace-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 1000,
+    "stars": 5
+  },
+  "version": "1.0.0"
+}
