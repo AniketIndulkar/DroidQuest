@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-06-android-platform-use-cases",
+  "title": "Android Platform Integrator",
+  "description": "Awarded for mastering user-controlled, lifecycle-safe device capabilities and the Travel Companion capstone.",
+  "categoryId": "level-06-android-platform-use-cases",
+  "icon": "android-platform-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-06-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 950,
+  "rarity": "epic",
+  "version": "0.9.0"
+}

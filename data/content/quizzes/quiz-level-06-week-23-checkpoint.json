@@ -1,0 +1,106 @@
+{
+  "id": "quiz-level-06-week-23-checkpoint",
+  "title": "Week 23: System Surfaces, Sharing, and Trusted Entry Checkpoint",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-23-01-notification-channels-permission-navigation",
+    "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+    "level-06-week-23-03-glance-app-widgets-state-updates",
+    "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+    "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+    "level-06-week-23-06-verified-app-links-deep-link-security"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-06-week-23-1",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-23-01-notification-channels-permission-navigation",
+      "prompt": "Which two questions must be answered before selecting this platform API?",
+      "type": "multiple_choice",
+      "options": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?",
+        "Which API looks most powerful?",
+        "How can every permission be requested at startup?"
+      ],
+      "answer": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?"
+      ]
+    },
+    {
+      "id": "q-level-06-week-23-2",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "prompt": "Order the platform capability loop.",
+      "type": "order_steps",
+      "options": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ],
+      "answer": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ]
+    },
+    {
+      "id": "q-level-06-week-23-3",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates",
+      "prompt": "Match each need to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Permission choice",
+        "Process recovery",
+        "Hardware support"
+      ],
+      "answer": {
+        "Permission choice": "Denial and revocation test",
+        "Process recovery": "Durable identity reconciliation",
+        "Hardware support": "Physical-device capability test"
+      }
+    },
+    {
+      "id": "q-level-06-week-23-4",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "prompt": "Spot the platform-integration defect: Building a custom share-target picker and passing an absolute private file path in the intent.",
+      "type": "spot_bug",
+      "answer": "Building a custom share-target picker and passing an absolute private file path in the intent.",
+      "acceptedAnswers": [
+        "The design violates lifecycle, permission, privacy, or system ownership."
+      ]
+    },
+    {
+      "id": "q-level-06-week-23-5",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "prompt": "Complete the rule: request a capability only at the moment the user invokes the related ____.",
+      "type": "fill_blank",
+      "answer": "feature",
+      "acceptedAnswers": [
+        "feature",
+        "user-facing feature"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

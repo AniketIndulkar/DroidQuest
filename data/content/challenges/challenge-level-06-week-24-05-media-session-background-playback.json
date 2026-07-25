@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-24-05-media-session-background-playback",
+  "title": "Apply Media Sessions and Background Playback",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-24-05-media-session-background-playback",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Move narrated trips into MediaSessionService, connect UI with MediaController, constrain commands and metadata, and prove notification, headset, process, and resumption behaviour.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class PlaybackService : MediaSessionService() {\n  private lateinit var session: MediaSession\n  override fun onGetSession(controller: MediaSession.ControllerInfo) = session\n}"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

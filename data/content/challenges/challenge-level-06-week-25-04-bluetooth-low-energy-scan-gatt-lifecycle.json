@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+  "title": "Apply Bluetooth Low Energy Scanning and GATT Lifecycle",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Connect to a travel sensor with filtered bounded scanning, modern permissions, serial GATT operations, validated data, reconnect policy, cleanup, and hardware test notes.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface BleState { data object Idle: BleState; data object Scanning: BleState; data class Connecting(val device: DeviceId): BleState; data class Ready(val services: Set<Uuid>): BleState; data class Failed(val reason: BleFailure): BleState }"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+  "title": "Bluetooth Low Energy Scanning and GATT Lifecycle Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle-decision",
+      "prompt": "Which implementation best satisfies the production contract for bluetooth low energy scanning and gatt lifecycle?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Connect to a travel sensor with filtered bounded scanning, modern permissions, serial GATT operations, validated data, reconnect policy, cleanup, and hardware test notes.",
+        "Starting an unfiltered BLE scan when the screen opens and leaving it active until the process is killed.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Connect to a travel sensor with filtered bounded scanning, modern permissions, serial GATT operations, validated data, reconnect policy, cleanup, and hardware test notes.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+    },
+    {
+      "id": "q-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+    },
+    {
+      "id": "q-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

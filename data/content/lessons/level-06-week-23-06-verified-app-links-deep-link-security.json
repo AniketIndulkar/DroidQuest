@@ -1,0 +1,210 @@
+{
+  "id": "level-06-week-23-06-verified-app-links-deep-link-security",
+  "title": "Verified App Links and Deep-Link Security",
+  "categoryId": "level-06-android-platform-use-cases",
+  "week": 23,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+  ],
+  "tags": [
+    "app-links",
+    "deep-links",
+    "security"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns verified app links and deep-link security into a complete Android capability with an explicit user promise.",
+      "realWorldUse": "Production device features must remain correct across permission changes, missing hardware, lifecycle loss, system ownership, and privacy constraints.",
+      "outcome": "Choose the appropriate API, implement its lifecycle and fallback, and verify the adverse cases that the happy path hides."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "decision-model",
+          "title": "Start with the user and system contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A deep link is any URI that routes into app content. A custom scheme can be claimed by another installed app and has no web fallback. An Android App Link is an HTTP or HTTPS URL whose domain relationship is verified with Digital Asset Links, allowing trusted routing without a chooser. Use App Links for domains you control and ordinary external browser intents for domains you do not. Verification is a deployment contract spanning manifest, website, signing certificate, and installed build."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class TripLink(val tripId: TripId)\nfun parseTrusted(uri: Uri): TripLink? =\n  uri.takeIf { it.scheme == \"https\" && it.host == \"travel.example\" }\n    ?.pathSegments?.takeIf { it.size == 2 && it[0] == \"trips\" }\n    ?.let { TripLink(TripId.parse(it[1])) }",
+              "caption": "The example exposes the capability state or ownership boundary instead of hiding the platform behind an Activity callback."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-mechanics",
+          "title": "Own lifecycle, permission, and returned data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep manifest filters broad enough to verify reliably and validate path, query, and identifier in application code. Android 15 dynamic rules can refine allowed paths where supported, but server rules cannot safely expand beyond the declared manifest scope. Never place tokens or sensitive personal data in URLs; links leak through history, logs, and referrers. Resolve the destination from authoritative data and enforce authentication or entitlement after routing."
+            },
+            {
+              "type": "table",
+              "title": "Capability review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "User promise",
+                  "What remains useful when permission or hardware is absent?"
+                ],
+                [
+                  "Owner",
+                  "Which component owns state, cleanup, and process recovery?"
+                ],
+                [
+                  "System boundary",
+                  "Which data, callback, URI, or command must be validated?"
+                ],
+                [
+                  "Evidence",
+                  "Which adverse scenario proves the integration?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-hardening",
+          "title": "Design degradation before the happy path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test cold start, warm delivery, task restoration, logged-out state, malformed encodings, duplicate parameters, unrecognised IDs, debug and Play signing certificates, and website fallback. Use domain-verification tooling rather than assuming an intent filter proves ownership. Navigation should be idempotent so repeated delivery does not duplicate purchases or edits. Maintain link compatibility as a public API and redirect deprecated web paths deliberately."
+            },
+            {
+              "type": "paragraph",
+              "text": "Treat the platform boundary as an unreliable collaborator: hardware can be absent, permission can change, the process can die, callbacks can repeat, and another application or system service may provide malformed or stale data. Persist accepted user intent before leaving the process, validate every returning identifier or URI, make cancellation and cleanup explicit, and expose capability state rather than throwing from UI. Verify the feature on representative API levels and physical hardware where emulators cannot reproduce radios, cameras, launchers, Play delivery, or vendor behaviour. Record battery, data-access, accessibility, and observability decisions as part of the feature contract. A future maintainer should know why the capability exists, which user action activates it, and how to disable it completely."
+            },
+            {
+              "type": "flow",
+              "title": "Platform capability loop",
+              "steps": [
+                {
+                  "id": "declare",
+                  "label": "Declare need",
+                  "detail": "Name visibility, timing, precision, persistence, and privacy."
+                },
+                {
+                  "id": "check",
+                  "label": "Check capability",
+                  "detail": "Inspect hardware, services, permission, and version support."
+                },
+                {
+                  "id": "request",
+                  "label": "Request in context",
+                  "detail": "Let the user grant, decline, cancel, or choose a provider."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate safely",
+                  "detail": "Persist identity, validate callbacks, and bound resource use."
+                },
+                {
+                  "id": "recover",
+                  "label": "Recover",
+                  "detail": "Reconcile after denial, duplication, process death, and reboot."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "The system is part of the feature",
+              "text": "Treating every URI that matches an intent filter as trusted and executing its requested action without validation."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "About Android App Links",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links/about",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Verify Android App Links",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links/verify-applinks",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Verified App Links and Deep-Link Security boundary",
+      "language": "kotlin",
+      "code": "data class TripLink(val tripId: TripId)\nfun parseTrusted(uri: Uri): TripLink? =\n  uri.takeIf { it.scheme == \"https\" && it.host == \"travel.example\" }\n    ?.pathSegments?.takeIf { it.size == 2 && it[0] == \"trips\" }\n    ?.let { TripLink(TripId.parse(it[1])) }",
+      "walkthrough": [
+        "Identify which state belongs to the application and which behaviour remains owned by Android or another provider.",
+        "Locate capability, permission, lifecycle, cancellation, and data-validation checks around the platform call.",
+        "Name the persistent identity and test that reconnects a returned callback with current application state after recreation."
+      ],
+      "expectedOutput": "A bounded platform integration with explicit capability state, user control, validated results, cleanup, and fallback."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating every URI that matches an intent filter as trusted and executing its requested action without validation.",
+        "why": "It violates the API lifecycle, user-control, privacy, or delivery contract and makes failure dependent on incidental process state.",
+        "fix": "Choose from the user promise, persist stable identity, validate the system result, and provide a useful fallback."
+      },
+      {
+        "mistake": "Testing only a successful emulator path while assuming hardware, permission, provider, and callback behaviour.",
+        "why": "The feature can fail on real devices, after recreation, or when the system exercises user-controlled alternatives.",
+        "fix": "Test denial, cancellation, absence, duplication, interruption, and representative physical hardware."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Configure and verify a travel App Link, parse it with strict authority and path rules, restore authenticated navigation, and test malicious plus unverified inputs.",
+      "successLooksLike": "The vertical feature works after process loss, handles unavailable or denied capability, protects private data, and includes repeatable adverse-case evidence."
+    },
+    "recall": [
+      {
+        "prompt": "What should be defined before selecting a platform API?",
+        "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
+      },
+      {
+        "prompt": "Why must a platform callback be treated as external input?",
+        "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
+      },
+      {
+        "prompt": "What proves a platform feature is production-ready?",
+        "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
+      }
+    ]
+  },
+  "quizId": "quiz-level-06-week-23-06-verified-app-links-deep-link-security",
+  "challengeId": "challenge-level-06-week-23-06-verified-app-links-deep-link-security",
+  "revision": {
+    "objectives": [
+      "Explain the decision and lifecycle contract for Verified App Links and Deep-Link Security.",
+      "Implement the capability with minimal permission and explicit fallback.",
+      "Verify process, hardware, privacy, and adverse system behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/app-links/about",
+    "https://developer.android.com/training/app-links/verify-applinks"
+  ],
+  "version": "0.9.0"
+}

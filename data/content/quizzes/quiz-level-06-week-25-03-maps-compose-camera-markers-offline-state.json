@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+  "title": "Google Maps Compose, Camera, Markers, and Offline State Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-25-03-maps-compose-camera-markers-offline-state-decision",
+      "prompt": "Which implementation best satisfies the production contract for google maps compose, camera, markers, and offline state?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Build an accessible itinerary map with repository-owned stops, marker selection, camera restoration, restricted key configuration, offline fallback, and no-location mode.",
+        "Treating a rendered Google Map as the itinerary source of truth and losing all useful trip information offline.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Build an accessible itinerary map with repository-owned stops, marker selection, camera restoration, restricted key configuration, offline fallback, and no-location mode.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    },
+    {
+      "id": "q-level-06-week-25-03-maps-compose-camera-markers-offline-state-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    },
+    {
+      "id": "q-level-06-week-25-03-maps-compose-camera-markers-offline-state-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

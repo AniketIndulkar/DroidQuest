@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-06-week-24",
+  "title": "Week 24 Media Trailblazer",
+  "description": "Awarded for completing the Week 24 Android platform capability checkpoint.",
+  "categoryId": "level-06-android-platform-use-cases",
+  "icon": "platform-week-24",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-06-week-24-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 375,
+  "rarity": "rare",
+  "version": "0.9.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-25-01-location-permissions-settings-updates",
+  "title": "Apply Location Permission, Settings, and Updates",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-25-01-location-permissions-settings-updates",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Build an opt-in nearby-itinerary feature with approximate and precise paths, settings resolution, bounded updates, age and accuracy UI, lifecycle cleanup, and privacy tests.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class Located(val point: LatLng, val accuracyMetres: Float, val observedAt: Instant)\nfun Located.isFresh(now: Instant) = now - observedAt < 30.seconds"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-25-02-background-location-geofencing",
+  "title": "Apply Background Location and Geofencing",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-25-02-background-location-geofencing",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Add opt-in arrival reminders for saved stops with staged permission, durable registration reconciliation, bounded receivers, delayed-event handling, and a complete disable path.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val fence = Geofence.Builder().setRequestId(stop.id.value)\n  .setCircularRegion(stop.lat, stop.lng, stop.radiusMetres)\n  .setTransitionTypes(GEOFENCE_TRANSITION_ENTER).build()"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

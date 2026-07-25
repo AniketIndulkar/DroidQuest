@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+  "title": "Exact Alarms, WorkManager, and Foreground-Service Decisions Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-23-02-exact-alarms-workmanager-foreground-services-decision",
+      "prompt": "Which implementation best satisfies the production contract for exact alarms, workmanager, and foreground-service decisions?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Build a decision table and scheduler for trip reminders, background sync, and active navigation, including exact-access denial, reboot reconciliation, cancellation, and duplicate prevention.",
+        "Using an exact alarm for periodic network synchronization because it appears more reliable than WorkManager.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Build a decision table and scheduler for trip reminders, background sync, and active navigation, including exact-access denial, reboot reconciliation, cancellation, and duplicate prevention.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+    },
+    {
+      "id": "q-level-06-week-23-02-exact-alarms-workmanager-foreground-services-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+    },
+    {
+      "id": "q-level-06-week-23-02-exact-alarms-workmanager-foreground-services-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

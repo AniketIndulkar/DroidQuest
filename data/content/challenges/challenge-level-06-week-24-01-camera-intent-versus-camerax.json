@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-24-01-camera-intent-versus-camerax",
+  "title": "Apply Camera Intent or CameraX: Choosing Ownership",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-24-01-camera-intent-versus-camerax",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Implement both a delegated receipt capture and a decision record for migrating to CameraX, including full-size URI output, cancellation, process death, and cleanup.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val destination = photoStore.createPendingUri()\nval capture = registerForActivityResult(TakePicture()) { saved ->\n  photoStore.completeOrDelete(destination, saved)\n}\ncapture.launch(destination)"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

@@ -1,0 +1,210 @@
+{
+  "id": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+  "title": "Media3 Player Lifecycle, Audio Focus, and State",
+  "categoryId": "level-06-android-platform-use-cases",
+  "week": 24,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-06-week-24-03-camerax-image-analysis-backpressure"
+  ],
+  "tags": [
+    "media3",
+    "exoplayer",
+    "audio-focus"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns media3 player lifecycle, audio focus, and state into a complete Android capability with an explicit user promise.",
+      "realWorldUse": "Production device features must remain correct across permission changes, missing hardware, lifecycle loss, system ownership, and privacy constraints.",
+      "outcome": "Choose the appropriate API, implement its lifecycle and fallback, and verify the adverse cases that the happy path hides."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "decision-model",
+          "title": "Start with the user and system contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Media3 defines Player and provides ExoPlayer for local and streamed media. The owner creates one player for the required playback lifetime, supplies MediaItems, prepares, observes state, and releases it. A screen-only clip may be Activity or screen scoped; playback that continues outside the UI needs a service and media session. Do not recreate the player for recomposition or store the player itself in serializable UI state."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val player = ExoPlayer.Builder(context).build().apply {\n  setAudioAttributes(audioAttributes, true)\n  setHandleAudioBecomingNoisy(true)\n  setMediaItem(MediaItem.fromUri(uri))\n  prepare()\n}",
+              "caption": "The example exposes the capability state or ownership boundary instead of hiding the platform behind an Activity callback."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-mechanics",
+          "title": "Own lifecycle, permission, and returned data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Expose an immutable playback model derived from Player events: item identity, play intent, actual playback, buffering, position, duration, and failure. User intent to play differs from isPlaying when focus, buffering, or suppression intervenes. Configure audio attributes so Media3 can request focus appropriately, handle becoming noisy, respect other audio, and support captions or track selection. Restore a meaningful item and position, not an opaque object graph."
+            },
+            {
+              "type": "table",
+              "title": "Capability review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "User promise",
+                  "What remains useful when permission or hardware is absent?"
+                ],
+                [
+                  "Owner",
+                  "Which component owns state, cleanup, and process recovery?"
+                ],
+                [
+                  "System boundary",
+                  "Which data, callback, URI, or command must be validated?"
+                ],
+                [
+                  "Evidence",
+                  "Which adverse scenario proves the integration?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-hardening",
+          "title": "Design degradation before the happy path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Networking, DRM, caching, and adaptive streaming add independent failure policies. Show recoverable errors without retry loops and avoid leaking signed media URLs. Test focus loss, headphones unplugged, buffering, rotation, backgrounding, item change, malformed media, and release. Keep progress sampling at a UI-friendly frequency; per-frame position updates waste work. Accessibility and system controls must reflect the same player truth."
+            },
+            {
+              "type": "paragraph",
+              "text": "Treat the platform boundary as an unreliable collaborator: hardware can be absent, permission can change, the process can die, callbacks can repeat, and another application or system service may provide malformed or stale data. Persist accepted user intent before leaving the process, validate every returning identifier or URI, make cancellation and cleanup explicit, and expose capability state rather than throwing from UI. Verify the feature on representative API levels and physical hardware where emulators cannot reproduce radios, cameras, launchers, Play delivery, or vendor behaviour. Record battery, data-access, accessibility, and observability decisions as part of the feature contract. A future maintainer should know why the capability exists, which user action activates it, and how to disable it completely."
+            },
+            {
+              "type": "flow",
+              "title": "Platform capability loop",
+              "steps": [
+                {
+                  "id": "declare",
+                  "label": "Declare need",
+                  "detail": "Name visibility, timing, precision, persistence, and privacy."
+                },
+                {
+                  "id": "check",
+                  "label": "Check capability",
+                  "detail": "Inspect hardware, services, permission, and version support."
+                },
+                {
+                  "id": "request",
+                  "label": "Request in context",
+                  "detail": "Let the user grant, decline, cancel, or choose a provider."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate safely",
+                  "detail": "Persist identity, validate callbacks, and bound resource use."
+                },
+                {
+                  "id": "recover",
+                  "label": "Recover",
+                  "detail": "Reconcile after denial, duplication, process death, and reboot."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "The system is part of the feature",
+              "text": "Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Introduction to Jetpack Media3",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/media/media3",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Build a Media3 playback app",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/media/implement/playback-app",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Media3 Player Lifecycle, Audio Focus, and State boundary",
+      "language": "kotlin",
+      "code": "val player = ExoPlayer.Builder(context).build().apply {\n  setAudioAttributes(audioAttributes, true)\n  setHandleAudioBecomingNoisy(true)\n  setMediaItem(MediaItem.fromUri(uri))\n  prepare()\n}",
+      "walkthrough": [
+        "Identify which state belongs to the application and which behaviour remains owned by Android or another provider.",
+        "Locate capability, permission, lifecycle, cancellation, and data-validation checks around the platform call.",
+        "Name the persistent identity and test that reconnects a returned callback with current application state after recreation."
+      ],
+      "expectedOutput": "A bounded platform integration with explicit capability state, user control, validated results, cleanup, and fallback."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes.",
+        "why": "It violates the API lifecycle, user-control, privacy, or delivery contract and makes failure dependent on incidental process state.",
+        "fix": "Choose from the user promise, persist stable identity, validate the system result, and provide a useful fallback."
+      },
+      {
+        "mistake": "Testing only a successful emulator path while assuming hardware, permission, provider, and callback behaviour.",
+        "why": "The feature can fail on real devices, after recreation, or when the system exercises user-controlled alternatives.",
+        "fix": "Test denial, cancellation, absence, duplication, interruption, and representative physical hardware."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement narrated itinerary playback with one owned player, derived UI state, focus and noisy handling, position restoration, captions, errors, and release tests.",
+      "successLooksLike": "The vertical feature works after process loss, handles unavailable or denied capability, protects private data, and includes repeatable adverse-case evidence."
+    },
+    "recall": [
+      {
+        "prompt": "What should be defined before selecting a platform API?",
+        "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
+      },
+      {
+        "prompt": "Why must a platform callback be treated as external input?",
+        "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
+      },
+      {
+        "prompt": "What proves a platform feature is production-ready?",
+        "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
+      }
+    ]
+  },
+  "quizId": "quiz-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+  "challengeId": "challenge-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+  "revision": {
+    "objectives": [
+      "Explain the decision and lifecycle contract for Media3 Player Lifecycle, Audio Focus, and State.",
+      "Implement the capability with minimal permission and explicit fallback.",
+      "Verify process, hardware, privacy, and adverse system behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/media/media3",
+    "https://developer.android.com/media/implement/playback-app"
+  ],
+  "version": "0.9.0"
+}

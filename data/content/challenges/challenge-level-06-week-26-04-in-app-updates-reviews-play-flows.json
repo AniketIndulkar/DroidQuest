@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-26-04-in-app-updates-reviews-play-flows",
+  "title": "Apply In-App Updates and Review Flows",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-26-04-in-app-updates-reviews-play-flows",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Define flexible and immediate update policies plus a respectful review trigger, including lifecycle resumption, Play unavailability, cancellation, rollout compatibility, and quota opacity.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface PlayFlowState { data object Idle: PlayFlowState; data object Downloading: PlayFlowState; data object ReadyToInstall: PlayFlowState; data object Unavailable: PlayFlowState }"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

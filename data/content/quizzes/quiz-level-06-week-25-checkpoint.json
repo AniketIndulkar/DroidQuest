@@ -1,0 +1,105 @@
+{
+  "id": "quiz-level-06-week-25-checkpoint",
+  "title": "Week 25: Location, Maps, Bluetooth, and NFC Checkpoint",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-25-01-location-permissions-settings-updates",
+    "level-06-week-25-02-background-location-geofencing",
+    "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+    "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+    "level-06-week-25-05-nfc-ndef-reader-mode-security"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-06-week-25-1",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-25-01-location-permissions-settings-updates",
+      "prompt": "Which two questions must be answered before selecting this platform API?",
+      "type": "multiple_choice",
+      "options": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?",
+        "Which API looks most powerful?",
+        "How can every permission be requested at startup?"
+      ],
+      "answer": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?"
+      ]
+    },
+    {
+      "id": "q-level-06-week-25-2",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-25-02-background-location-geofencing",
+      "prompt": "Order the platform capability loop.",
+      "type": "order_steps",
+      "options": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ],
+      "answer": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ]
+    },
+    {
+      "id": "q-level-06-week-25-3",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "prompt": "Match each need to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Permission choice",
+        "Process recovery",
+        "Hardware support"
+      ],
+      "answer": {
+        "Permission choice": "Denial and revocation test",
+        "Process recovery": "Durable identity reconciliation",
+        "Hardware support": "Physical-device capability test"
+      }
+    },
+    {
+      "id": "q-level-06-week-25-4",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "prompt": "Spot the platform-integration defect: Starting an unfiltered BLE scan when the screen opens and leaving it active until the process is killed.",
+      "type": "spot_bug",
+      "answer": "Starting an unfiltered BLE scan when the screen opens and leaving it active until the process is killed.",
+      "acceptedAnswers": [
+        "The design violates lifecycle, permission, privacy, or system ownership."
+      ]
+    },
+    {
+      "id": "q-level-06-week-25-5",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "prompt": "Complete the rule: request a capability only at the moment the user invokes the related ____.",
+      "type": "fill_blank",
+      "answer": "feature",
+      "acceptedAnswers": [
+        "feature",
+        "user-facing feature"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+  "title": "CameraX Use Cases, Lifecycle, and Image Capture Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-24-02-camerax-use-cases-lifecycle-capture-decision",
+      "prompt": "Which implementation best satisfies the production contract for camerax use cases, lifecycle, and image capture?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Build a lifecycle-safe travel-photo screen with preview, capture, rotation, flash, camera switching, capability fallback, durable output, and failure tests.",
+        "Creating and binding new CameraX use cases from recomposition, causing repeated hardware churn and inconsistent state.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Build a lifecycle-safe travel-photo screen with preview, capture, rotation, flash, camera switching, capability fallback, durable output, and failure tests.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+    },
+    {
+      "id": "q-level-06-week-24-02-camerax-use-cases-lifecycle-capture-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+    },
+    {
+      "id": "q-level-06-week-24-02-camerax-use-cases-lifecycle-capture-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

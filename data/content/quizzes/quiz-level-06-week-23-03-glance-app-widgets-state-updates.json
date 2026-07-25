@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-23-03-glance-app-widgets-state-updates",
+  "title": "Glance App Widgets, State, and Update Policy Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-23-03-glance-app-widgets-state-updates"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-23-03-glance-app-widgets-state-updates-decision",
+      "prompt": "Which implementation best satisfies the production contract for glance app widgets, state, and update policy?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Create configurable next-trip widgets that render durable state, enqueue coalesced refresh, navigate by stable itinerary ID, redact sensitive data, and support multiple instances.",
+        "Reading volatile ViewModel state from a widget receiver and assuming the app process remains alive.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Create configurable next-trip widgets that render durable state, enqueue coalesced refresh, navigate by stable itinerary ID, redact sensitive data, and support multiple instances.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates"
+    },
+    {
+      "id": "q-level-06-week-23-03-glance-app-widgets-state-updates-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates"
+    },
+    {
+      "id": "q-level-06-week-23-03-glance-app-widgets-state-updates-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

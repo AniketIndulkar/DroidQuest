@@ -1,0 +1,218 @@
+{
+  "id": "level-06-week-24-07-downloadmanager-media-downloads-storage",
+  "title": "DownloadManager, Media Downloads, and Storage Choice",
+  "categoryId": "level-06-android-platform-use-cases",
+  "week": 24,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-06-week-24-06-picture-in-picture-video-navigation"
+  ],
+  "tags": [
+    "downloads",
+    "storage",
+    "media3"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns downloadmanager, media downloads, and storage choice into a complete Android capability with an explicit user promise.",
+      "realWorldUse": "Production device features must remain correct across permission changes, missing hardware, lifecycle loss, system ownership, and privacy constraints.",
+      "outcome": "Choose the appropriate API, implement its lifecycle and fallback, and verify the adverse cases that the happy path hides."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "decision-model",
+          "title": "Start with the user and system contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android DownloadManager is a system service for long-running HTTP downloads with system retry, connectivity handling, reboot persistence, and user-visible download UI. Media3 has specialised offline-media download components for playback catalogs. WorkManager plus an application client may fit authenticated or transactional content that needs custom integrity and repository state. Choose ownership from authentication, destination, progress UX, retry, encryption, and playback needs rather than one universal downloader."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val id = downloadManager.enqueue(DownloadManager.Request(uri).setTitle(title))\nrepository.recordDownload(contentId, id)\n// Later query id and reconcile status; open the resulting content URI.",
+              "caption": "The example exposes the capability state or ownership boundary instead of hiding the platform behind an Activity callback."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-mechanics",
+          "title": "Own lifecycle, permission, and returned data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Persist the system download ID and application content identity so status can be reconciled after process death. Query status and reason; do not rely only on a completion broadcast, which may be missed or duplicated. Access results through content URIs and ContentResolver instead of deprecated filesystem paths. Verify size, MIME type, checksum or signature where the trust model requires it, free partial files, and handle storage pressure."
+            },
+            {
+              "type": "table",
+              "title": "Capability review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "User promise",
+                  "What remains useful when permission or hardware is absent?"
+                ],
+                [
+                  "Owner",
+                  "Which component owns state, cleanup, and process recovery?"
+                ],
+                [
+                  "System boundary",
+                  "Which data, callback, URI, or command must be validated?"
+                ],
+                [
+                  "Evidence",
+                  "Which adverse scenario proves the integration?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-hardening",
+          "title": "Design degradation before the happy path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use a file for large byte streams and a database for searchable metadata, ownership, state, and relationships; many features need both. Decide whether output is private cache, durable app data, shared media, or user-selected document. Test reboot, duplicate enqueue, expired authentication, metered network, cancellation, insufficient space, corrupted content, and deletion outside the app. Progress must be sampled and honest when total size is unknown."
+            },
+            {
+              "type": "paragraph",
+              "text": "Treat the platform boundary as an unreliable collaborator: hardware can be absent, permission can change, the process can die, callbacks can repeat, and another application or system service may provide malformed or stale data. Persist accepted user intent before leaving the process, validate every returning identifier or URI, make cancellation and cleanup explicit, and expose capability state rather than throwing from UI. Verify the feature on representative API levels and physical hardware where emulators cannot reproduce radios, cameras, launchers, Play delivery, or vendor behaviour. Record battery, data-access, accessibility, and observability decisions as part of the feature contract. A future maintainer should know why the capability exists, which user action activates it, and how to disable it completely."
+            },
+            {
+              "type": "flow",
+              "title": "Platform capability loop",
+              "steps": [
+                {
+                  "id": "declare",
+                  "label": "Declare need",
+                  "detail": "Name visibility, timing, precision, persistence, and privacy."
+                },
+                {
+                  "id": "check",
+                  "label": "Check capability",
+                  "detail": "Inspect hardware, services, permission, and version support."
+                },
+                {
+                  "id": "request",
+                  "label": "Request in context",
+                  "detail": "Let the user grant, decline, cancel, or choose a provider."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate safely",
+                  "detail": "Persist identity, validate callbacks, and bound resource use."
+                },
+                {
+                  "id": "recover",
+                  "label": "Recover",
+                  "detail": "Reconcile after denial, duplication, process death, and reboot."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "The system is part of the feature",
+              "text": "Listening only for ACTION_DOWNLOAD_COMPLETE and assuming the broadcast proves a valid, accessible, successful file."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "DownloadManager reference",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/android/app/DownloadManager",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Data and file storage overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Introduction to Jetpack Media3",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/media/media3",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the DownloadManager, Media Downloads, and Storage Choice boundary",
+      "language": "kotlin",
+      "code": "val id = downloadManager.enqueue(DownloadManager.Request(uri).setTitle(title))\nrepository.recordDownload(contentId, id)\n// Later query id and reconcile status; open the resulting content URI.",
+      "walkthrough": [
+        "Identify which state belongs to the application and which behaviour remains owned by Android or another provider.",
+        "Locate capability, permission, lifecycle, cancellation, and data-validation checks around the platform call.",
+        "Name the persistent identity and test that reconnects a returned callback with current application state after recreation."
+      ],
+      "expectedOutput": "A bounded platform integration with explicit capability state, user control, validated results, cleanup, and fallback."
+    },
+    "trap_check": [
+      {
+        "mistake": "Listening only for ACTION_DOWNLOAD_COMPLETE and assuming the broadcast proves a valid, accessible, successful file.",
+        "why": "It violates the API lifecycle, user-control, privacy, or delivery contract and makes failure dependent on incidental process state.",
+        "fix": "Choose from the user promise, persist stable identity, validate the system result, and provide a useful fallback."
+      },
+      {
+        "mistake": "Testing only a successful emulator path while assuming hardware, permission, provider, and callback behaviour.",
+        "why": "The feature can fail on real devices, after recreation, or when the system exercises user-controlled alternatives.",
+        "fix": "Test denial, cancellation, absence, duplication, interruption, and representative physical hardware."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement offline itinerary-map downloads with a justified mechanism, durable identity, URI access, integrity checks, storage policy, progress, reboot reconciliation, and cleanup.",
+      "successLooksLike": "The vertical feature works after process loss, handles unavailable or denied capability, protects private data, and includes repeatable adverse-case evidence."
+    },
+    "recall": [
+      {
+        "prompt": "What should be defined before selecting a platform API?",
+        "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
+      },
+      {
+        "prompt": "Why must a platform callback be treated as external input?",
+        "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
+      },
+      {
+        "prompt": "What proves a platform feature is production-ready?",
+        "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
+      }
+    ]
+  },
+  "quizId": "quiz-level-06-week-24-07-downloadmanager-media-downloads-storage",
+  "challengeId": "challenge-level-06-week-24-07-downloadmanager-media-downloads-storage",
+  "revision": {
+    "objectives": [
+      "Explain the decision and lifecycle contract for DownloadManager, Media Downloads, and Storage Choice.",
+      "Implement the capability with minimal permission and explicit fallback.",
+      "Verify process, hardware, privacy, and adverse system behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/reference/android/app/DownloadManager",
+    "https://developer.android.com/training/data-storage",
+    "https://developer.android.com/media/media3"
+  ],
+  "version": "0.9.0"
+}

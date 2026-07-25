@@ -1,0 +1,218 @@
+{
+  "id": "level-06-week-26-06-travel-companion-capstone",
+  "title": "Capstone: Travel Companion",
+  "categoryId": "level-06-android-platform-use-cases",
+  "week": 26,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-06-week-26-05-platform-api-decision-framework"
+  ],
+  "tags": [
+    "capstone",
+    "travel",
+    "platform-integration"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns capstone: travel companion into a complete Android capability with an explicit user promise.",
+      "realWorldUse": "Production device features must remain correct across permission changes, missing hardware, lifecycle loss, system ownership, and privacy constraints.",
+      "outcome": "Choose the appropriate API, implement its lifecycle and fallback, and verify the adverse cases that the happy path hides."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "decision-model",
+          "title": "Start with the user and system contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Travel Companion integrates platform APIs through one durable itinerary model. Room owns trips, stops, reminders, photo references, download records, and synchronization intent. DataStore owns small user preferences. Compose renders phone and adaptive UI, while a widget renders a privacy-safe next-stop projection. Each system entry point loads current state by stable ID rather than depending on a live Activity or passing large objects."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface TravelPlatform { val location: LocationCapability; val reminders: ReminderCapability; val media: CaptureCapability; val downloads: DownloadCapability; val widgetUpdates: WidgetCapability }",
+              "caption": "The example exposes the capability state or ownership boundary instead of hiding the platform behind an Activity callback."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-mechanics",
+          "title": "Own lifecycle, permission, and returned data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The required vertical flows are offline itinerary use, photo capture or selection, foreground location, opt-in arrival geofence where justified, trip notifications, background synchronization, map presentation with textual fallback, downloadable documents, verified trip links, and home-screen widget. Optional narration uses Media3. Credential and biometric features are included only when the product has an account or sensitive action that justifies them. Permissions are requested at feature entry and every denial has a useful fallback."
+            },
+            {
+              "type": "table",
+              "title": "Capability review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "User promise",
+                  "What remains useful when permission or hardware is absent?"
+                ],
+                [
+                  "Owner",
+                  "Which component owns state, cleanup, and process recovery?"
+                ],
+                [
+                  "System boundary",
+                  "Which data, callback, URI, or command must be validated?"
+                ],
+                [
+                  "Evidence",
+                  "Which adverse scenario proves the integration?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-hardening",
+          "title": "Design degradation before the happy path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Evidence must cover airplane-mode launch, process death during capture, duplicate sync, permission revocation, stale location, geofence delay, notification denial, disabled widget updates, expired session, rebooted download, unverified link, missing hardware, and account logout. Provide an API decision record, privacy inventory, battery rationale, module graph, test matrix, and accessibility review. Remove integrations that exist only to tick a box; depth and recovery matter more than API count."
+            },
+            {
+              "type": "paragraph",
+              "text": "Treat the platform boundary as an unreliable collaborator: hardware can be absent, permission can change, the process can die, callbacks can repeat, and another application or system service may provide malformed or stale data. Persist accepted user intent before leaving the process, validate every returning identifier or URI, make cancellation and cleanup explicit, and expose capability state rather than throwing from UI. Verify the feature on representative API levels and physical hardware where emulators cannot reproduce radios, cameras, launchers, Play delivery, or vendor behaviour. Record battery, data-access, accessibility, and observability decisions as part of the feature contract. A future maintainer should know why the capability exists, which user action activates it, and how to disable it completely."
+            },
+            {
+              "type": "flow",
+              "title": "Platform capability loop",
+              "steps": [
+                {
+                  "id": "declare",
+                  "label": "Declare need",
+                  "detail": "Name visibility, timing, precision, persistence, and privacy."
+                },
+                {
+                  "id": "check",
+                  "label": "Check capability",
+                  "detail": "Inspect hardware, services, permission, and version support."
+                },
+                {
+                  "id": "request",
+                  "label": "Request in context",
+                  "detail": "Let the user grant, decline, cancel, or choose a provider."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate safely",
+                  "detail": "Persist identity, validate callbacks, and bound resource use."
+                },
+                {
+                  "id": "recover",
+                  "label": "Recover",
+                  "detail": "Reconcile after denial, duplication, process death, and reboot."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "The system is part of the feature",
+              "text": "Connecting every platform API directly to the main Activity and treating a successful demo path as production readiness."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Persistent work with WorkManager",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/persistent",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Create an app widget with Glance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/glance/create-app-widget",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Request location permissions",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/sensors-and-location/location/permissions",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Capstone: Travel Companion boundary",
+      "language": "kotlin",
+      "code": "interface TravelPlatform { val location: LocationCapability; val reminders: ReminderCapability; val media: CaptureCapability; val downloads: DownloadCapability; val widgetUpdates: WidgetCapability }",
+      "walkthrough": [
+        "Identify which state belongs to the application and which behaviour remains owned by Android or another provider.",
+        "Locate capability, permission, lifecycle, cancellation, and data-validation checks around the platform call.",
+        "Name the persistent identity and test that reconnects a returned callback with current application state after recreation."
+      ],
+      "expectedOutput": "A bounded platform integration with explicit capability state, user control, validated results, cleanup, and fallback."
+    },
+    "trap_check": [
+      {
+        "mistake": "Connecting every platform API directly to the main Activity and treating a successful demo path as production readiness.",
+        "why": "It violates the API lifecycle, user-control, privacy, or delivery contract and makes failure dependent on incidental process state.",
+        "fix": "Choose from the user promise, persist stable identity, validate the system result, and provide a useful fallback."
+      },
+      {
+        "mistake": "Testing only a successful emulator path while assuming hardware, permission, provider, and callback behaviour.",
+        "why": "The feature can fail on real devices, after recreation, or when the system exercises user-controlled alternatives.",
+        "fix": "Test denial, cancellation, absence, duplication, interruption, and representative physical hardware."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Deliver the local-first Travel Companion with justified platform integrations, explicit permission and fallback states, durable system-entry handling, adverse-scenario tests, and an evidence pack.",
+      "successLooksLike": "The vertical feature works after process loss, handles unavailable or denied capability, protects private data, and includes repeatable adverse-case evidence."
+    },
+    "recall": [
+      {
+        "prompt": "What should be defined before selecting a platform API?",
+        "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
+      },
+      {
+        "prompt": "Why must a platform callback be treated as external input?",
+        "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
+      },
+      {
+        "prompt": "What proves a platform feature is production-ready?",
+        "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
+      }
+    ]
+  },
+  "quizId": "quiz-level-06-week-26-06-travel-companion-capstone",
+  "challengeId": "challenge-level-06-week-26-06-travel-companion-capstone",
+  "revision": {
+    "objectives": [
+      "Explain the decision and lifecycle contract for Capstone: Travel Companion.",
+      "Implement the capability with minimal permission and explicit fallback.",
+      "Verify process, hardware, privacy, and adverse system behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 5
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/background-work/background-tasks/persistent",
+    "https://developer.android.com/develop/ui/compose/glance/create-app-widget",
+    "https://developer.android.com/develop/sensors-and-location/location/permissions"
+  ],
+  "version": "0.9.0"
+}

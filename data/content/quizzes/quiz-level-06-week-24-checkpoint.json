@@ -1,0 +1,107 @@
+{
+  "id": "quiz-level-06-week-24-checkpoint",
+  "title": "Week 24: Camera, Media, PiP, and Downloads Checkpoint",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-24-01-camera-intent-versus-camerax",
+    "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+    "level-06-week-24-03-camerax-image-analysis-backpressure",
+    "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+    "level-06-week-24-05-media-session-background-playback",
+    "level-06-week-24-06-picture-in-picture-video-navigation",
+    "level-06-week-24-07-downloadmanager-media-downloads-storage"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-06-week-24-1",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-24-01-camera-intent-versus-camerax",
+      "prompt": "Which two questions must be answered before selecting this platform API?",
+      "type": "multiple_choice",
+      "options": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?",
+        "Which API looks most powerful?",
+        "How can every permission be requested at startup?"
+      ],
+      "answer": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?"
+      ]
+    },
+    {
+      "id": "q-level-06-week-24-2",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "prompt": "Order the platform capability loop.",
+      "type": "order_steps",
+      "options": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ],
+      "answer": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ]
+    },
+    {
+      "id": "q-level-06-week-24-3",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-24-03-camerax-image-analysis-backpressure",
+      "prompt": "Match each need to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Permission choice",
+        "Process recovery",
+        "Hardware support"
+      ],
+      "answer": {
+        "Permission choice": "Denial and revocation test",
+        "Process recovery": "Durable identity reconciliation",
+        "Hardware support": "Physical-device capability test"
+      }
+    },
+    {
+      "id": "q-level-06-week-24-4",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "prompt": "Spot the platform-integration defect: Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes.",
+      "type": "spot_bug",
+      "answer": "Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes.",
+      "acceptedAnswers": [
+        "The design violates lifecycle, permission, privacy, or system ownership."
+      ]
+    },
+    {
+      "id": "q-level-06-week-24-5",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-24-05-media-session-background-playback",
+      "prompt": "Complete the rule: request a capability only at the moment the user invokes the related ____.",
+      "type": "fill_blank",
+      "answer": "feature",
+      "acceptedAnswers": [
+        "feature",
+        "user-facing feature"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

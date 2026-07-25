@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-23-01-notification-channels-permission-navigation",
+  "title": "Apply Notifications, Channels, Permission, and Navigation",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-23-01-notification-channels-permission-navigation",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Implement itinerary disruption notifications with stable channels, contextual permission education, redacted lock-screen content, safe actions, and deep navigation after process death.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val channel = NotificationChannel(TRIP_ALERTS, \"Trip alerts\", IMPORTANCE_HIGH)\nval openTrip = PendingIntent.getActivity(context, trip.id.hashCode(), intent, FLAG_IMMUTABLE)\nnotificationManager.notify(trip.id.hashCode(), notification)"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

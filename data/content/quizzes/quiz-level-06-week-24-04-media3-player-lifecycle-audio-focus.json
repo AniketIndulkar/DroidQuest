@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+  "title": "Media3 Player Lifecycle, Audio Focus, and State Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-24-04-media3-player-lifecycle-audio-focus-decision",
+      "prompt": "Which implementation best satisfies the production contract for media3 player lifecycle, audio focus, and state?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Implement narrated itinerary playback with one owned player, derived UI state, focus and noisy handling, position restoration, captions, errors, and release tests.",
+        "Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Implement narrated itinerary playback with one owned player, derived UI state, focus and noisy handling, position restoration, captions, errors, and release tests.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    },
+    {
+      "id": "q-level-06-week-24-04-media3-player-lifecycle-audio-focus-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    },
+    {
+      "id": "q-level-06-week-24-04-media3-player-lifecycle-audio-focus-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

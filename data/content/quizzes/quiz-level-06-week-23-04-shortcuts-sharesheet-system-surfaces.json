@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+  "title": "App Shortcuts and the Android Sharesheet Check",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-06-week-23-04-shortcuts-sharesheet-system-surfaces-decision",
+      "prompt": "Which implementation best satisfies the production contract for app shortcuts and the android sharesheet?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Publish safe static, dynamic, and pinned travel shortcuts, then implement outbound itinerary sharing and validated inbound image sharing through system surfaces.",
+        "Building a custom share-target picker and passing an absolute private file path in the intent.",
+        "Request every related permission during first launch",
+        "Keep the operation alive in the main Activity"
+      ],
+      "answer": "Publish safe static, dynamic, and pinned travel shortcuts, then implement outbound itinerary sharing and validated inbound image sharing through system surfaces.",
+      "explanation": "The correct design starts from user value, bounds capability and permission, survives lifecycle loss, and verifies adverse behaviour.",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    },
+    {
+      "id": "q-level-06-week-23-04-shortcuts-sharesheet-system-surfaces-truth",
+      "prompt": "A successful platform API call guarantees that the user-visible outcome will occur exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "System callbacks can be delayed, duplicated, cancelled, lost to process death, or changed by user-controlled settings.",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    },
+    {
+      "id": "q-level-06-week-23-04-shortcuts-sharesheet-system-surfaces-recall",
+      "prompt": "What four conditions should every platform capability expose to UI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Availability, permission or user choice, active operation state, and useful fallback or failure.",
+      "explanation": "Explicit capability state prevents framework exceptions and hidden denial from becoming the UI model.",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.9.0"
+}

@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -1741,6 +1741,318 @@
       ],
       "relatedLessonIds": [
         "level-05-week-22-05-multi-module-banking-capstone"
+      ]
+    },
+    {
+      "id": "term-notification-channel",
+      "term": "Notification Channel",
+      "definition": "A persistent user-controlled category that defines interruption behaviour for related notifications.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "notifications",
+        "channels"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation"
+      ]
+    },
+    {
+      "id": "term-exact-alarm",
+      "term": "Exact Alarm",
+      "definition": "A system alarm intended for genuinely time-critical user-facing work at a precise clock time.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "alarms",
+        "workmanager"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+      ]
+    },
+    {
+      "id": "term-glance-widget",
+      "term": "Glance Widget",
+      "definition": "A launcher-hosted restricted remote UI whose state and updates must survive an absent application process.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "widgets",
+        "glance"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-03-glance-app-widgets-state-updates"
+      ]
+    },
+    {
+      "id": "term-sharesheet-contract",
+      "term": "Sharesheet Contract",
+      "definition": "The MIME type, payload, URI grants, and validation rules used to exchange data through the system chooser.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "shortcuts",
+        "sharing"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+      ]
+    },
+    {
+      "id": "term-content-uri-grant",
+      "term": "Content URI Grant",
+      "definition": "A temporary capability allowing another component to access a specific provider-backed resource.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "photo-picker",
+        "fileprovider"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+      ]
+    },
+    {
+      "id": "term-digital-asset-links",
+      "term": "Digital Asset Links",
+      "definition": "A hosted statement associating a web origin with an Android app signing identity for verified capabilities.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "app-links",
+        "deep-links"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-23-06-verified-app-links-deep-link-security"
+      ]
+    },
+    {
+      "id": "term-camera-ownership",
+      "term": "Camera Ownership",
+      "definition": "The decision whether system camera UI or the application owns capture lifecycle, permission, preview, and output.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "camera",
+        "camerax"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-01-camera-intent-versus-camerax"
+      ]
+    },
+    {
+      "id": "term-camerax-use-case",
+      "term": "CameraX Use Case",
+      "definition": "A lifecycle-bound camera capability such as preview, capture, video, or frame analysis.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "camerax",
+        "image-capture"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+      ]
+    },
+    {
+      "id": "term-image-analysis-backpressure",
+      "term": "Image Analysis Backpressure",
+      "definition": "The policy controlling whether camera frames are dropped or block production when analysis is slower than capture.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "camerax",
+        "image-analysis"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-03-camerax-image-analysis-backpressure"
+      ]
+    },
+    {
+      "id": "term-player-state",
+      "term": "Player State",
+      "definition": "The authoritative playback item, intent, suppression, buffering, position, and failure exposed by a media player.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "media3",
+        "exoplayer"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+      ]
+    },
+    {
+      "id": "term-media-session",
+      "term": "Media Session",
+      "definition": "A system-visible playback contract that exposes player state and accepts authorised external commands.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "media-session",
+        "background-playback"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-05-media-session-background-playback"
+      ]
+    },
+    {
+      "id": "term-picture-in-picture",
+      "term": "Picture-in-Picture",
+      "definition": "A system-managed small activity window for continuing video, calls, or navigation alongside other apps.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "picture-in-picture",
+        "video"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-06-picture-in-picture-video-navigation"
+      ]
+    },
+    {
+      "id": "term-download-reconciliation",
+      "term": "Download Reconciliation",
+      "definition": "The process of matching durable application records with current system download state after interruption or reboot.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "downloads",
+        "storage"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-24-07-downloadmanager-media-downloads-storage"
+      ]
+    },
+    {
+      "id": "term-location-freshness",
+      "term": "Location Freshness",
+      "definition": "The age and accuracy contract determining whether a location observation is suitable for a feature.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "location",
+        "permissions"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-25-01-location-permissions-settings-updates"
+      ]
+    },
+    {
+      "id": "term-geofence",
+      "term": "Geofence",
+      "definition": "A power-conscious monitored geographic region that produces approximate enter, exit, or dwell transitions.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "background-location",
+        "geofencing"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-25-02-background-location-geofencing"
+      ]
+    },
+    {
+      "id": "term-map-camera-state",
+      "term": "Map Camera State",
+      "definition": "The UI-owned viewport position, zoom, bearing, and tilt used to present geographic data.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "google-maps",
+        "maps-compose"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+      ]
+    },
+    {
+      "id": "term-gatt-operation-queue",
+      "term": "GATT Operation Queue",
+      "definition": "A serialised sequence of BLE service discovery, read, write, and subscription operations.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "bluetooth-le",
+        "gatt"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+      ]
+    },
+    {
+      "id": "term-ndef-record",
+      "term": "NDEF Record",
+      "definition": "A typed NFC payload record carrying a URI, text, MIME value, or application-defined data.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "nfc",
+        "ndef"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-25-05-nfc-ndef-reader-mode-security"
+      ]
+    },
+    {
+      "id": "term-reauthorization",
+      "term": "Reauthorization",
+      "definition": "A fresh local user-presence check performed before revealing data or confirming a sensitive action.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "biometrics",
+        "device-credential"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-01-biometric-reauthorization-device-credential"
+      ]
+    },
+    {
+      "id": "term-passkey",
+      "term": "Passkey",
+      "definition": "A phishing-resistant public-key credential whose assertion is verified by a relying-party server.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "credential-manager",
+        "passkeys"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-02-credential-manager-passkeys-sign-in"
+      ]
+    },
+    {
+      "id": "term-webview-origin-policy",
+      "term": "WebView Origin Policy",
+      "definition": "The explicit schemes, hosts, navigation, storage, and native capabilities permitted inside an embedded browser.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "webview",
+        "security"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-03-webview-containment-navigation-security"
+      ]
+    },
+    {
+      "id": "term-play-mediated-flow",
+      "term": "Play-Mediated Flow",
+      "definition": "A system or Google Play experience whose availability and visible UI are not controlled or guaranteed by the app.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "play-core",
+        "in-app-updates"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-04-in-app-updates-reviews-play-flows"
+      ]
+    },
+    {
+      "id": "term-capability-driven-design",
+      "term": "Capability-Driven Design",
+      "definition": "Selecting a platform mechanism from the required user promise, lifecycle, privacy, hardware, and fallback constraints.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "platform-apis",
+        "decision-making"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-05-platform-api-decision-framework"
+      ]
+    },
+    {
+      "id": "term-platform-capability-boundary",
+      "term": "Platform Capability Boundary",
+      "definition": "An application-owned contract that contains one Android system integration, its availability, permission, lifecycle, and fallback.",
+      "categoryId": "level-06-android-platform-use-cases",
+      "tags": [
+        "capstone",
+        "travel"
+      ],
+      "relatedLessonIds": [
+        "level-06-week-26-06-travel-companion-capstone"
       ]
     }
   ]

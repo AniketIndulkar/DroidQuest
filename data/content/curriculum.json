@@ -2,8 +2,8 @@
   "id": "droidquest-curriculum",
   "title": "DroidQuest: Beginner to Android Platform Expert",
   "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
-  "version": "0.8.0",
-  "contentRevision": 8,
+  "version": "0.9.0",
+  "contentRevision": 9,
   "releasedAt": "2026-07-25",
   "defaultLocale": "en-GB",
   "supportedLocales": [
@@ -390,6 +390,70 @@
         "level-05-week-22-05-multi-module-banking-capstone"
       ],
       "checkpointQuizId": "quiz-level-05-week-22-checkpoint"
+    },
+    {
+      "id": "week-23",
+      "number": 23,
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "System Surfaces, Sharing, and Trusted Entry",
+      "status": "available",
+      "lessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation",
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+        "level-06-week-23-03-glance-app-widgets-state-updates",
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+        "level-06-week-23-06-verified-app-links-deep-link-security"
+      ],
+      "checkpointQuizId": "quiz-level-06-week-23-checkpoint"
+    },
+    {
+      "id": "week-24",
+      "number": 24,
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Camera, Media, PiP, and Downloads",
+      "status": "available",
+      "lessonIds": [
+        "level-06-week-24-01-camera-intent-versus-camerax",
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+        "level-06-week-24-03-camerax-image-analysis-backpressure",
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+        "level-06-week-24-05-media-session-background-playback",
+        "level-06-week-24-06-picture-in-picture-video-navigation",
+        "level-06-week-24-07-downloadmanager-media-downloads-storage"
+      ],
+      "checkpointQuizId": "quiz-level-06-week-24-checkpoint"
+    },
+    {
+      "id": "week-25",
+      "number": 25,
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Location, Maps, Bluetooth, and NFC",
+      "status": "available",
+      "lessonIds": [
+        "level-06-week-25-01-location-permissions-settings-updates",
+        "level-06-week-25-02-background-location-geofencing",
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+        "level-06-week-25-05-nfc-ndef-reader-mode-security"
+      ],
+      "checkpointQuizId": "quiz-level-06-week-25-checkpoint"
+    },
+    {
+      "id": "week-26",
+      "number": 26,
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Identity, Embedded Web, Play Flows, and Travel Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-06-week-26-01-biometric-reauthorization-device-credential",
+        "level-06-week-26-02-credential-manager-passkeys-sign-in",
+        "level-06-week-26-03-webview-containment-navigation-security",
+        "level-06-week-26-04-in-app-updates-reviews-play-flows",
+        "level-06-week-26-05-platform-api-decision-framework",
+        "level-06-week-26-06-travel-companion-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-06-week-26-checkpoint"
     }
   ],
   "specialisationPolicy": {

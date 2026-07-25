@@ -2,9 +2,9 @@
   "id": "level-06-android-platform-use-cases",
   "title": "Level 6: Android Platform Use Cases",
   "order": 6,
-  "description": "Implement real device features end to end and learn to choose the correct Android API from lifecycle, privacy, reliability, and user-expectation constraints.",
+  "description": "Implement user-controlled Android platform capabilities end to end with explicit lifecycle, privacy, hardware, permission, system-ownership, fallback, and verification contracts.",
   "difficulty": "intermediate",
-  "status": "planned",
+  "status": "complete",
   "weekRange": {
     "start": 23,
     "end": 26
@@ -18,14 +18,39 @@
     "location",
     "devices"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-06-preview",
+  "estimatedLearningMinutes": 240,
+  "lessonIds": [
+    "level-06-week-23-01-notification-channels-permission-navigation",
+    "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+    "level-06-week-23-03-glance-app-widgets-state-updates",
+    "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+    "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+    "level-06-week-23-06-verified-app-links-deep-link-security",
+    "level-06-week-24-01-camera-intent-versus-camerax",
+    "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+    "level-06-week-24-03-camerax-image-analysis-backpressure",
+    "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+    "level-06-week-24-05-media-session-background-playback",
+    "level-06-week-24-06-picture-in-picture-video-navigation",
+    "level-06-week-24-07-downloadmanager-media-downloads-storage",
+    "level-06-week-25-01-location-permissions-settings-updates",
+    "level-06-week-25-02-background-location-geofencing",
+    "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+    "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+    "level-06-week-25-05-nfc-ndef-reader-mode-security",
+    "level-06-week-26-01-biometric-reauthorization-device-credential",
+    "level-06-week-26-02-credential-manager-passkeys-sign-in",
+    "level-06-week-26-03-webview-containment-navigation-security",
+    "level-06-week-26-04-in-app-updates-reviews-play-flows",
+    "level-06-week-26-05-platform-api-decision-framework",
+    "level-06-week-26-06-travel-companion-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-06-week-23-01-notification-channels-permission-navigation",
   "plannedTopics": [
-    "Notifications, widgets, shortcuts, and sharing",
-    "Camera, media, location, maps, BLE, and NFC",
-    "Biometrics, credentials, files, WebView, and app links",
-    "Platform API decision exercises"
+    "Notifications, exact alarms, widgets, shortcuts, sharing, Photo Picker, FileProvider, clipboard privacy, and verified App Links",
+    "Camera delegation, CameraX capture and analysis, Media3, media sessions, background playback, PiP, downloads, and storage choices",
+    "Foreground and background location, geofencing, Maps Compose, BLE, GATT, NFC, and NDEF",
+    "Biometric reauthorization, Credential Manager and passkeys, WebView containment, Play update and review flows, platform decisions, and capstone delivery"
   ],
   "project": {
     "title": "Travel Companion",
@@ -36,5 +61,6 @@
     "icon": "devices",
     "mapMood": "A device lab linking user-visible capabilities to responsible API choices."
   },
-  "version": "0.2.0"
+  "version": "0.9.0",
+  "checkpointQuizId": "quiz-level-06-checkpoint"
 }

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-06-week-23",
+  "title": "Week 23 System Surface Guide",
+  "description": "Awarded for completing the Week 23 Android platform capability checkpoint.",
+  "categoryId": "level-06-android-platform-use-cases",
+  "icon": "platform-week-23",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-06-week-23-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 375,
+  "rarity": "rare",
+  "version": "0.9.0"
+}

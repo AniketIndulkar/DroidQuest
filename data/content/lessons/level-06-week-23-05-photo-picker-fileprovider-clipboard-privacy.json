@@ -1,0 +1,218 @@
+{
+  "id": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+  "title": "Photo Picker, FileProvider, and Clipboard Privacy",
+  "categoryId": "level-06-android-platform-use-cases",
+  "week": 23,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+  ],
+  "tags": [
+    "photo-picker",
+    "fileprovider",
+    "privacy"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns photo picker, fileprovider, and clipboard privacy into a complete Android capability with an explicit user promise.",
+      "realWorldUse": "Production device features must remain correct across permission changes, missing hardware, lifecycle loss, system ownership, and privacy constraints.",
+      "outcome": "Choose the appropriate API, implement its lifecycle and fallback, and verify the adverse cases that the happy path hides."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "decision-model",
+          "title": "Start with the user and system contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use the Photo Picker when a person selects specific images or videos. It grants access only to chosen media and avoids requesting broad library permission for ordinary attachment flows. Treat every result as a content URI: inspect declared type carefully, stream through ContentResolver, impose size and decode limits, and tolerate providers without filesystem paths. Persist URI permission only when the selected contract and long-lived product need support it."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val picker = rememberLauncherForActivityResult(PickVisualMedia()) { uri ->\n  uri?.let { importer.copyValidated(contentResolver, it, maxBytes = 8_000_000) }\n}\nval shared: Uri = FileProvider.getUriForFile(context, authority, exportFile)",
+              "caption": "The example exposes the capability state or ownership boundary instead of hiding the platform behind an Activity callback."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-mechanics",
+          "title": "Own lifecycle, permission, and returned data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "FileProvider shares an app-owned file through a content URI and temporary read or write grants. Configure the narrowest path roots; a broad root can expose unintended private data. The recipient may read asynchronously, so keep the file available for the promised lifetime and revoke access according to the operation. For user-owned export, the Storage Access Framework may be a better contract. A database stores searchable structured metadata; files store byte streams; often a record owns a file URI."
+            },
+            {
+              "type": "table",
+              "title": "Capability review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "User promise",
+                  "What remains useful when permission or hardware is absent?"
+                ],
+                [
+                  "Owner",
+                  "Which component owns state, cleanup, and process recovery?"
+                ],
+                [
+                  "System boundary",
+                  "Which data, callback, URI, or command must be validated?"
+                ],
+                [
+                  "Evidence",
+                  "Which adverse scenario proves the integration?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-hardening",
+          "title": "Design degradation before the happy path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The clipboard is visible beyond one screen and may be surfaced by the system. Copy only after explicit user action, mark sensitive clips where supported, use clear feedback, and avoid background clipboard polling. Never use the clipboard to transfer access tokens. Test malicious provider metadata, oversized images, revoked grants, process death during import, shared-file deletion, and clipboard disclosure. Privacy comes from minimising requested and shared capability, not merely displaying a permission dialog."
+            },
+            {
+              "type": "paragraph",
+              "text": "Treat the platform boundary as an unreliable collaborator: hardware can be absent, permission can change, the process can die, callbacks can repeat, and another application or system service may provide malformed or stale data. Persist accepted user intent before leaving the process, validate every returning identifier or URI, make cancellation and cleanup explicit, and expose capability state rather than throwing from UI. Verify the feature on representative API levels and physical hardware where emulators cannot reproduce radios, cameras, launchers, Play delivery, or vendor behaviour. Record battery, data-access, accessibility, and observability decisions as part of the feature contract. A future maintainer should know why the capability exists, which user action activates it, and how to disable it completely."
+            },
+            {
+              "type": "flow",
+              "title": "Platform capability loop",
+              "steps": [
+                {
+                  "id": "declare",
+                  "label": "Declare need",
+                  "detail": "Name visibility, timing, precision, persistence, and privacy."
+                },
+                {
+                  "id": "check",
+                  "label": "Check capability",
+                  "detail": "Inspect hardware, services, permission, and version support."
+                },
+                {
+                  "id": "request",
+                  "label": "Request in context",
+                  "detail": "Let the user grant, decline, cancel, or choose a provider."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate safely",
+                  "detail": "Persist identity, validate callbacks, and bound resource use."
+                },
+                {
+                  "id": "recover",
+                  "label": "Recover",
+                  "detail": "Reconcile after denial, duplication, process death, and reboot."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "The system is part of the feature",
+              "text": "Resolving a selected content URI into a filesystem path and granting broad storage access to make it work."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Photo Picker",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/shared/photo-picker",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Secure file sharing",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/secure-file-sharing",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Secure clipboard handling",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/secure-clipboard-handling",
+          "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Photo Picker, FileProvider, and Clipboard Privacy boundary",
+      "language": "kotlin",
+      "code": "val picker = rememberLauncherForActivityResult(PickVisualMedia()) { uri ->\n  uri?.let { importer.copyValidated(contentResolver, it, maxBytes = 8_000_000) }\n}\nval shared: Uri = FileProvider.getUriForFile(context, authority, exportFile)",
+      "walkthrough": [
+        "Identify which state belongs to the application and which behaviour remains owned by Android or another provider.",
+        "Locate capability, permission, lifecycle, cancellation, and data-validation checks around the platform call.",
+        "Name the persistent identity and test that reconnects a returned callback with current application state after recreation."
+      ],
+      "expectedOutput": "A bounded platform integration with explicit capability state, user control, validated results, cleanup, and fallback."
+    },
+    "trap_check": [
+      {
+        "mistake": "Resolving a selected content URI into a filesystem path and granting broad storage access to make it work.",
+        "why": "It violates the API lifecycle, user-control, privacy, or delivery contract and makes failure dependent on incidental process state.",
+        "fix": "Choose from the user promise, persist stable identity, validate the system result, and provide a useful fallback."
+      },
+      {
+        "mistake": "Testing only a successful emulator path while assuming hardware, permission, provider, and callback behaviour.",
+        "why": "The feature can fail on real devices, after recreation, or when the system exercises user-controlled alternatives.",
+        "fix": "Test denial, cancellation, absence, duplication, interruption, and representative physical hardware."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Add travel-photo import, secure itinerary PDF sharing, and explicit address copying with URI validation, bounded streams, narrow grants, and process-death recovery.",
+      "successLooksLike": "The vertical feature works after process loss, handles unavailable or denied capability, protects private data, and includes repeatable adverse-case evidence."
+    },
+    "recall": [
+      {
+        "prompt": "What should be defined before selecting a platform API?",
+        "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
+      },
+      {
+        "prompt": "Why must a platform callback be treated as external input?",
+        "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
+      },
+      {
+        "prompt": "What proves a platform feature is production-ready?",
+        "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
+      }
+    ]
+  },
+  "quizId": "quiz-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+  "challengeId": "challenge-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+  "revision": {
+    "objectives": [
+      "Explain the decision and lifecycle contract for Photo Picker, FileProvider, and Clipboard Privacy.",
+      "Implement the capability with minimal permission and explicit fallback.",
+      "Verify process, hardware, privacy, and adverse system behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/shared/photo-picker",
+    "https://developer.android.com/training/secure-file-sharing",
+    "https://developer.android.com/privacy-and-security/risks/secure-clipboard-handling"
+  ],
+  "version": "0.9.0"
+}

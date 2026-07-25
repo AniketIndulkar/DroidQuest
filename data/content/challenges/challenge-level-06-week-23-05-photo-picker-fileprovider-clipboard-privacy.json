@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+  "title": "Apply Photo Picker, FileProvider, and Clipboard Privacy",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Add travel-photo import, secure itinerary PDF sharing, and explicit address copying with URI validation, bounded streams, narrow grants, and process-death recovery.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val picker = rememberLauncherForActivityResult(PickVisualMedia()) { uri ->\n  uri?.let { importer.copyValidated(contentResolver, it, maxBytes = 8_000_000) }\n}\nval shared: Uri = FileProvider.getUriForFile(context, authority, exportFile)"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

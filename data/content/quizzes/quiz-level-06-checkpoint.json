@@ -1,0 +1,137 @@
+{
+  "id": "quiz-level-06-checkpoint",
+  "title": "Level 6 Boss: Android Platform Capability Review",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-23-01-notification-channels-permission-navigation",
+    "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+    "level-06-week-23-03-glance-app-widgets-state-updates",
+    "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+    "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+    "level-06-week-23-06-verified-app-links-deep-link-security",
+    "level-06-week-24-01-camera-intent-versus-camerax",
+    "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+    "level-06-week-24-03-camerax-image-analysis-backpressure",
+    "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+    "level-06-week-24-05-media-session-background-playback",
+    "level-06-week-24-06-picture-in-picture-video-navigation",
+    "level-06-week-24-07-downloadmanager-media-downloads-storage",
+    "level-06-week-25-01-location-permissions-settings-updates",
+    "level-06-week-25-02-background-location-geofencing",
+    "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+    "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+    "level-06-week-25-05-nfc-ndef-reader-mode-security",
+    "level-06-week-26-01-biometric-reauthorization-device-credential",
+    "level-06-week-26-02-credential-manager-passkeys-sign-in",
+    "level-06-week-26-03-webview-containment-navigation-security",
+    "level-06-week-26-04-in-app-updates-reviews-play-flows",
+    "level-06-week-26-05-platform-api-decision-framework",
+    "level-06-week-26-06-travel-companion-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-06-boss-1",
+      "prompt": "Review this platform decision and prescribe the correction: Creating a new high-importance channel to bypass the importance the user selected on an existing channel.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Restate the user promise, choose the smallest suitable capability, persist stable identity, validate system results, provide fallback, and test denial plus lifecycle loss.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-23-01-notification-channels-permission-navigation"
+    },
+    {
+      "id": "q-level-06-boss-2",
+      "prompt": "Review this platform decision and prescribe the correction: Building a custom share-target picker and passing an absolute private file path in the intent.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Publish safe static, dynamic, and pinned travel shortcuts, then implement outbound itinerary sharing and validated inbound image sharing through system surfaces.",
+        "Request all permissions once",
+        "Use a foreground service for reliability",
+        "Store the callback in Activity memory"
+      ],
+      "answer": "Publish safe static, dynamic, and pinned travel shortcuts, then implement outbound itinerary sharing and validated inbound image sharing through system surfaces.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    },
+    {
+      "id": "q-level-06-boss-3",
+      "prompt": "Review this platform decision and prescribe the correction: Requesting CAMERA permission and embedding CameraX for a single optional receipt photo that the system camera can provide.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Restate the user promise, choose the smallest suitable capability, persist stable identity, validate system results, provide fallback, and test denial plus lifecycle loss.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-24-01-camera-intent-versus-camerax"
+    },
+    {
+      "id": "q-level-06-boss-4",
+      "prompt": "Review this platform decision and prescribe the correction: Treating playWhenReady as proof that audio is currently playing and rebuilding ExoPlayer whenever UI state changes.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Implement narrated itinerary playback with one owned player, derived UI state, focus and noisy handling, position restoration, captions, errors, and release tests.",
+        "Request all permissions once",
+        "Use a foreground service for reliability",
+        "Store the callback in Activity memory"
+      ],
+      "answer": "Implement narrated itinerary playback with one owned player, derived UI state, focus and noisy handling, position restoration, captions, errors, and release tests.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    },
+    {
+      "id": "q-level-06-boss-5",
+      "prompt": "Review this platform decision and prescribe the correction: Listening only for ACTION_DOWNLOAD_COMPLETE and assuming the broadcast proves a valid, accessible, successful file.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Restate the user promise, choose the smallest suitable capability, persist stable identity, validate system results, provide fallback, and test denial plus lifecycle loss.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-24-07-downloadmanager-media-downloads-storage"
+    },
+    {
+      "id": "q-level-06-boss-6",
+      "prompt": "Review this platform decision and prescribe the correction: Treating a rendered Google Map as the itinerary source of truth and losing all useful trip information offline.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Build an accessible itinerary map with repository-owned stops, marker selection, camera restoration, restricted key configuration, offline fallback, and no-location mode.",
+        "Request all permissions once",
+        "Use a foreground service for reliability",
+        "Store the callback in Activity memory"
+      ],
+      "answer": "Build an accessible itinerary map with repository-owned stops, marker selection, camera restoration, restricted key configuration, offline fallback, and no-location mode.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    },
+    {
+      "id": "q-level-06-boss-7",
+      "prompt": "Review this platform decision and prescribe the correction: Using a successful biometric prompt as initial server login or as proof that a particular remote account authorised payment.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Restate the user promise, choose the smallest suitable capability, persist stable identity, validate system results, provide fallback, and test denial plus lifecycle loss.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-26-01-biometric-reauthorization-device-credential"
+    },
+    {
+      "id": "q-level-06-boss-8",
+      "prompt": "Review this platform decision and prescribe the correction: Blocking the user until the in-app review card appears and treating flow completion as proof that a review was submitted.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Define flexible and immediate update policies plus a respectful review trigger, including lifecycle resumption, Play unavailability, cancellation, rollout compatibility, and quota opacity.",
+        "Request all permissions once",
+        "Use a foreground service for reliability",
+        "Store the callback in Activity memory"
+      ],
+      "answer": "Define flexible and immediate update policies plus a respectful review trigger, including lifecycle resumption, Play unavailability, cancellation, rollout compatibility, and quota opacity.",
+      "explanation": "Level 6 mastery requires justified API selection, user control, lifecycle recovery, validation, privacy, and representative evidence.",
+      "lessonId": "level-06-week-26-04-in-app-updates-reviews-play-flows"
+    }
+  ],
+  "rewards": {
+    "xp": 500,
+    "stars": 5
+  },
+  "version": "0.9.0"
+}

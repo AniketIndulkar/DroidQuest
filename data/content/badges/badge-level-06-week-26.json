@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-06-week-26",
+  "title": "Week 26 Travel Platform Architect",
+  "description": "Awarded for completing the Week 26 Android platform capability checkpoint.",
+  "categoryId": "level-06-android-platform-use-cases",
+  "icon": "platform-week-26",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-06-week-26-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 375,
+  "rarity": "rare",
+  "version": "0.9.0"
+}

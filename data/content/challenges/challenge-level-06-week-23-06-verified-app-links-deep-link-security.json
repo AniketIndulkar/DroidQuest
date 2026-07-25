@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-06-week-23-06-verified-app-links-deep-link-security",
+  "title": "Apply Verified App Links and Deep-Link Security",
+  "categoryId": "level-06-android-platform-use-cases",
+  "lessonId": "level-06-week-23-06-verified-app-links-deep-link-security",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Configure and verify a travel App Link, parse it with strict authority and path rules, restore authenticated navigation, and test malicious plus unverified inputs.",
+  "successCriteria": [
+    "Capability, permission, user education, and fallback states are explicit.",
+    "Stable identity reconnects system results with current durable state after recreation.",
+    "Adverse tests cover denial, cancellation, absence, duplication, interruption, and privacy."
+  ],
+  "hints": [
+    "Write the user promise and fallback before calling the platform API.",
+    "Test the callback after destroying the screen or process that launched it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class TripLink(val tripId: TripId)\nfun parseTrusted(uri: Uri): TripLink? =\n  uri.takeIf { it.scheme == \"https\" && it.host == \"travel.example\" }\n    ?.pathSegments?.takeIf { it.size == 2 && it[0] == \"trips\" }\n    ?.let { TripLink(TripId.parse(it[1])) }"
+  },
+  "solutionOutline": [
+    "Model capability and durable intent, then request the smallest user-controlled access.",
+    "Validate returned data, clean resources, reconcile state, and record adverse evidence."
+  ],
+  "verification": [
+    "Run deterministic state and contract tests.",
+    "Exercise the feature on representative API levels and real hardware where required."
+  ],
+  "rewards": {
+    "xp": 105,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}

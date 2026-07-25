@@ -1,6 +1,6 @@
 {
   "id": "droidquest-roadmap-graph",
-  "curriculumVersion": "0.8.0",
+  "curriculumVersion": "0.9.0",
   "nodes": [
     {
       "id": "node-level-01-boss",
@@ -2517,19 +2517,496 @@
       }
     },
     {
-      "id": "node-level-06-preview",
+      "id": "node-level-06-boss",
       "categoryId": "level-06-android-platform-use-cases",
-      "title": "Level 6: Android Platform Use Cases",
-      "type": "level_preview",
-      "status": "planned",
-      "difficulty": "intermediate",
+      "title": "Level 6 Boss: Android Platform Capability Review",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-06-checkpoint",
+      "difficulty": "advanced",
       "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-checkpoint"
+      ],
+      "rewards": {
+        "xp": 500,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-06-week-23-01-notification-channels-permission-navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Notifications, Channels, Permission, and Navigation",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-06-week-23-01-notification-channels-permission-navigation",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
       "unlockPrerequisites": [
         "node-level-05-boss"
       ],
       "rewards": {
-        "xp": 0,
-        "stars": 0
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Exact Alarms, WorkManager, and Foreground-Service Decisions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-01-notification-channels-permission-navigation"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-03-glance-app-widgets-state-updates",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Glance App Widgets, State, and Update Policy",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "App Shortcuts and the Android Sharesheet",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-03-glance-app-widgets-state-updates"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Photo Picker, FileProvider, and Clipboard Privacy",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-06-verified-app-links-deep-link-security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Verified App Links and Deep-Link Security",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-23-06-verified-app-links-deep-link-security",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-23-checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Week 23 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-06-week-23-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-06-verified-app-links-deep-link-security"
+      ],
+      "rewards": {
+        "xp": 190,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-06-week-24-01-camera-intent-versus-camerax",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Camera Intent or CameraX: Choosing Ownership",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-01-camera-intent-versus-camerax",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-23-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "CameraX Use Cases, Lifecycle, and Image Capture",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-01-camera-intent-versus-camerax"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-03-camerax-image-analysis-backpressure",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "CameraX Image Analysis and Backpressure",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-03-camerax-image-analysis-backpressure",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Media3 Player Lifecycle, Audio Focus, and State",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-03-camerax-image-analysis-backpressure"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-05-media-session-background-playback",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Media Sessions and Background Playback",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-05-media-session-background-playback",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-04-media3-player-lifecycle-audio-focus"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-06-picture-in-picture-video-navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Picture-in-Picture for Video and Navigation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-06-picture-in-picture-video-navigation",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-05-media-session-background-playback"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "DownloadManager, Media Downloads, and Storage Choice",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-06-picture-in-picture-video-navigation"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-24-checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Week 24 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-06-week-24-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-07-downloadmanager-media-downloads-storage"
+      ],
+      "rewards": {
+        "xp": 190,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-06-week-25-01-location-permissions-settings-updates",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Location Permission, Settings, and Updates",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-25-01-location-permissions-settings-updates",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-24-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-25-02-background-location-geofencing",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Background Location and Geofencing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-25-02-background-location-geofencing",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-01-location-permissions-settings-updates"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Google Maps Compose, Camera, Markers, and Offline State",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-02-background-location-geofencing"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Bluetooth Low Energy Scanning and GATT Lifecycle",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-03-maps-compose-camera-markers-offline-state"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "NFC, NDEF, Reader Mode, and Tag Security",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-25-checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Week 25 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-06-week-25-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-05-nfc-ndef-reader-mode-security"
+      ],
+      "rewards": {
+        "xp": 190,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-06-week-26-01-biometric-reauthorization-device-credential",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Biometric Reauthorization and Device Credential",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-01-biometric-reauthorization-device-credential",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-25-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Credential Manager, Passkeys, and Sign-In State",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-01-biometric-reauthorization-device-credential"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-26-03-webview-containment-navigation-security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "WebView Containment and Navigation Security",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-03-webview-containment-navigation-security",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-02-credential-manager-passkeys-sign-in"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "In-App Updates and Review Flows",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-03-webview-containment-navigation-security"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-26-05-platform-api-decision-framework",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Platform API Decision Framework",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-05-platform-api-decision-framework",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-04-in-app-updates-reviews-play-flows"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-06-week-26-06-travel-companion-capstone",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Capstone: Travel Companion",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-06-week-26-06-travel-companion-capstone",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-05-platform-api-decision-framework"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-06-week-26-checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Week 26 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-06-week-26-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-week-26-06-travel-companion-capstone"
+      ],
+      "rewards": {
+        "xp": 190,
+        "stars": 4
       }
     },
     {
@@ -2541,7 +3018,7 @@
       "difficulty": "advanced",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-06-preview"
+        "node-level-06-boss"
       ],
       "rewards": {
         "xp": 0,
@@ -3242,7 +3719,7 @@
     },
     {
       "from": "node-level-05-boss",
-      "to": "node-level-06-preview",
+      "to": "node-level-06-week-23-01-notification-channels-permission-navigation",
       "kind": "prerequisite"
     },
     {
@@ -3371,8 +3848,148 @@
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-06-preview",
+      "from": "node-level-06-boss",
       "to": "node-level-07-preview",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-01-notification-channels-permission-navigation",
+      "to": "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "to": "node-level-06-week-23-03-glance-app-widgets-state-updates",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-03-glance-app-widgets-state-updates",
+      "to": "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "to": "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "to": "node-level-06-week-23-06-verified-app-links-deep-link-security",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-06-verified-app-links-deep-link-security",
+      "to": "node-level-06-week-23-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-23-checkpoint",
+      "to": "node-level-06-week-24-01-camera-intent-versus-camerax",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-01-camera-intent-versus-camerax",
+      "to": "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "to": "node-level-06-week-24-03-camerax-image-analysis-backpressure",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-03-camerax-image-analysis-backpressure",
+      "to": "node-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "to": "node-level-06-week-24-05-media-session-background-playback",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-05-media-session-background-playback",
+      "to": "node-level-06-week-24-06-picture-in-picture-video-navigation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-06-picture-in-picture-video-navigation",
+      "to": "node-level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "to": "node-level-06-week-24-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-24-checkpoint",
+      "to": "node-level-06-week-25-01-location-permissions-settings-updates",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-01-location-permissions-settings-updates",
+      "to": "node-level-06-week-25-02-background-location-geofencing",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-02-background-location-geofencing",
+      "to": "node-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "to": "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "to": "node-level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "to": "node-level-06-week-25-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-25-checkpoint",
+      "to": "node-level-06-week-26-01-biometric-reauthorization-device-credential",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-01-biometric-reauthorization-device-credential",
+      "to": "node-level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "to": "node-level-06-week-26-03-webview-containment-navigation-security",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-03-webview-containment-navigation-security",
+      "to": "node-level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "to": "node-level-06-week-26-05-platform-api-decision-framework",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-05-platform-api-decision-framework",
+      "to": "node-level-06-week-26-06-travel-companion-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-06-travel-companion-capstone",
+      "to": "node-level-06-week-26-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-week-26-checkpoint",
+      "to": "node-level-06-boss",
       "kind": "prerequisite"
     },
     {
@@ -3557,9 +4174,6 @@
     ],
     "node-level-02-boss": [
       "node-level-03-week-09-01-compose-mental-model"
-    ],
-    "node-level-06-preview": [
-      "node-level-07-preview"
     ],
     "node-level-07-preview": [
       "node-level-08-preview"
@@ -3863,7 +4477,94 @@
       "node-level-05-boss"
     ],
     "node-level-05-boss": [
-      "node-level-06-preview"
+      "node-level-06-week-23-01-notification-channels-permission-navigation"
+    ],
+    "node-level-06-week-23-01-notification-channels-permission-navigation": [
+      "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+    ],
+    "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services": [
+      "node-level-06-week-23-03-glance-app-widgets-state-updates"
+    ],
+    "node-level-06-week-23-03-glance-app-widgets-state-updates": [
+      "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    ],
+    "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces": [
+      "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+    ],
+    "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy": [
+      "node-level-06-week-23-06-verified-app-links-deep-link-security"
+    ],
+    "node-level-06-week-23-06-verified-app-links-deep-link-security": [
+      "node-level-06-week-23-checkpoint"
+    ],
+    "node-level-06-week-23-checkpoint": [
+      "node-level-06-week-24-01-camera-intent-versus-camerax"
+    ],
+    "node-level-06-week-24-01-camera-intent-versus-camerax": [
+      "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+    ],
+    "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture": [
+      "node-level-06-week-24-03-camerax-image-analysis-backpressure"
+    ],
+    "node-level-06-week-24-03-camerax-image-analysis-backpressure": [
+      "node-level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    ],
+    "node-level-06-week-24-04-media3-player-lifecycle-audio-focus": [
+      "node-level-06-week-24-05-media-session-background-playback"
+    ],
+    "node-level-06-week-24-05-media-session-background-playback": [
+      "node-level-06-week-24-06-picture-in-picture-video-navigation"
+    ],
+    "node-level-06-week-24-06-picture-in-picture-video-navigation": [
+      "node-level-06-week-24-07-downloadmanager-media-downloads-storage"
+    ],
+    "node-level-06-week-24-07-downloadmanager-media-downloads-storage": [
+      "node-level-06-week-24-checkpoint"
+    ],
+    "node-level-06-week-24-checkpoint": [
+      "node-level-06-week-25-01-location-permissions-settings-updates"
+    ],
+    "node-level-06-week-25-01-location-permissions-settings-updates": [
+      "node-level-06-week-25-02-background-location-geofencing"
+    ],
+    "node-level-06-week-25-02-background-location-geofencing": [
+      "node-level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    ],
+    "node-level-06-week-25-03-maps-compose-camera-markers-offline-state": [
+      "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+    ],
+    "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle": [
+      "node-level-06-week-25-05-nfc-ndef-reader-mode-security"
+    ],
+    "node-level-06-week-25-05-nfc-ndef-reader-mode-security": [
+      "node-level-06-week-25-checkpoint"
+    ],
+    "node-level-06-week-25-checkpoint": [
+      "node-level-06-week-26-01-biometric-reauthorization-device-credential"
+    ],
+    "node-level-06-week-26-01-biometric-reauthorization-device-credential": [
+      "node-level-06-week-26-02-credential-manager-passkeys-sign-in"
+    ],
+    "node-level-06-week-26-02-credential-manager-passkeys-sign-in": [
+      "node-level-06-week-26-03-webview-containment-navigation-security"
+    ],
+    "node-level-06-week-26-03-webview-containment-navigation-security": [
+      "node-level-06-week-26-04-in-app-updates-reviews-play-flows"
+    ],
+    "node-level-06-week-26-04-in-app-updates-reviews-play-flows": [
+      "node-level-06-week-26-05-platform-api-decision-framework"
+    ],
+    "node-level-06-week-26-05-platform-api-decision-framework": [
+      "node-level-06-week-26-06-travel-companion-capstone"
+    ],
+    "node-level-06-week-26-06-travel-companion-capstone": [
+      "node-level-06-week-26-checkpoint"
+    ],
+    "node-level-06-week-26-checkpoint": [
+      "node-level-06-boss"
+    ],
+    "node-level-06-boss": [
+      "node-level-07-preview"
     ]
   },
   "incoming": {
@@ -4021,11 +4722,8 @@
     "node-level-02-boss": [
       "node-level-02-week-08-checkpoint"
     ],
-    "node-level-06-preview": [
-      "node-level-05-boss"
-    ],
     "node-level-07-preview": [
-      "node-level-06-preview"
+      "node-level-06-boss"
     ],
     "node-level-08-preview": [
       "node-level-07-preview"
@@ -4329,6 +5027,93 @@
     ],
     "node-level-05-boss": [
       "node-level-05-week-22-checkpoint"
+    ],
+    "node-level-06-week-23-01-notification-channels-permission-navigation": [
+      "node-level-05-boss"
+    ],
+    "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services": [
+      "node-level-06-week-23-01-notification-channels-permission-navigation"
+    ],
+    "node-level-06-week-23-03-glance-app-widgets-state-updates": [
+      "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+    ],
+    "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces": [
+      "node-level-06-week-23-03-glance-app-widgets-state-updates"
+    ],
+    "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy": [
+      "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+    ],
+    "node-level-06-week-23-06-verified-app-links-deep-link-security": [
+      "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+    ],
+    "node-level-06-week-23-checkpoint": [
+      "node-level-06-week-23-06-verified-app-links-deep-link-security"
+    ],
+    "node-level-06-week-24-01-camera-intent-versus-camerax": [
+      "node-level-06-week-23-checkpoint"
+    ],
+    "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture": [
+      "node-level-06-week-24-01-camera-intent-versus-camerax"
+    ],
+    "node-level-06-week-24-03-camerax-image-analysis-backpressure": [
+      "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+    ],
+    "node-level-06-week-24-04-media3-player-lifecycle-audio-focus": [
+      "node-level-06-week-24-03-camerax-image-analysis-backpressure"
+    ],
+    "node-level-06-week-24-05-media-session-background-playback": [
+      "node-level-06-week-24-04-media3-player-lifecycle-audio-focus"
+    ],
+    "node-level-06-week-24-06-picture-in-picture-video-navigation": [
+      "node-level-06-week-24-05-media-session-background-playback"
+    ],
+    "node-level-06-week-24-07-downloadmanager-media-downloads-storage": [
+      "node-level-06-week-24-06-picture-in-picture-video-navigation"
+    ],
+    "node-level-06-week-24-checkpoint": [
+      "node-level-06-week-24-07-downloadmanager-media-downloads-storage"
+    ],
+    "node-level-06-week-25-01-location-permissions-settings-updates": [
+      "node-level-06-week-24-checkpoint"
+    ],
+    "node-level-06-week-25-02-background-location-geofencing": [
+      "node-level-06-week-25-01-location-permissions-settings-updates"
+    ],
+    "node-level-06-week-25-03-maps-compose-camera-markers-offline-state": [
+      "node-level-06-week-25-02-background-location-geofencing"
+    ],
+    "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle": [
+      "node-level-06-week-25-03-maps-compose-camera-markers-offline-state"
+    ],
+    "node-level-06-week-25-05-nfc-ndef-reader-mode-security": [
+      "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+    ],
+    "node-level-06-week-25-checkpoint": [
+      "node-level-06-week-25-05-nfc-ndef-reader-mode-security"
+    ],
+    "node-level-06-week-26-01-biometric-reauthorization-device-credential": [
+      "node-level-06-week-25-checkpoint"
+    ],
+    "node-level-06-week-26-02-credential-manager-passkeys-sign-in": [
+      "node-level-06-week-26-01-biometric-reauthorization-device-credential"
+    ],
+    "node-level-06-week-26-03-webview-containment-navigation-security": [
+      "node-level-06-week-26-02-credential-manager-passkeys-sign-in"
+    ],
+    "node-level-06-week-26-04-in-app-updates-reviews-play-flows": [
+      "node-level-06-week-26-03-webview-containment-navigation-security"
+    ],
+    "node-level-06-week-26-05-platform-api-decision-framework": [
+      "node-level-06-week-26-04-in-app-updates-reviews-play-flows"
+    ],
+    "node-level-06-week-26-06-travel-companion-capstone": [
+      "node-level-06-week-26-05-platform-api-decision-framework"
+    ],
+    "node-level-06-week-26-checkpoint": [
+      "node-level-06-week-26-06-travel-companion-capstone"
+    ],
+    "node-level-06-boss": [
+      "node-level-06-week-26-checkpoint"
     ]
   },
   "topologicalOrder": [
@@ -4480,7 +5265,35 @@
     "node-level-05-week-22-05-multi-module-banking-capstone",
     "node-level-05-week-22-checkpoint",
     "node-level-05-boss",
-    "node-level-06-preview",
+    "node-level-06-week-23-01-notification-channels-permission-navigation",
+    "node-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+    "node-level-06-week-23-03-glance-app-widgets-state-updates",
+    "node-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+    "node-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+    "node-level-06-week-23-06-verified-app-links-deep-link-security",
+    "node-level-06-week-23-checkpoint",
+    "node-level-06-week-24-01-camera-intent-versus-camerax",
+    "node-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+    "node-level-06-week-24-03-camerax-image-analysis-backpressure",
+    "node-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+    "node-level-06-week-24-05-media-session-background-playback",
+    "node-level-06-week-24-06-picture-in-picture-video-navigation",
+    "node-level-06-week-24-07-downloadmanager-media-downloads-storage",
+    "node-level-06-week-24-checkpoint",
+    "node-level-06-week-25-01-location-permissions-settings-updates",
+    "node-level-06-week-25-02-background-location-geofencing",
+    "node-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+    "node-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+    "node-level-06-week-25-05-nfc-ndef-reader-mode-security",
+    "node-level-06-week-25-checkpoint",
+    "node-level-06-week-26-01-biometric-reauthorization-device-credential",
+    "node-level-06-week-26-02-credential-manager-passkeys-sign-in",
+    "node-level-06-week-26-03-webview-containment-navigation-security",
+    "node-level-06-week-26-04-in-app-updates-reviews-play-flows",
+    "node-level-06-week-26-05-platform-api-decision-framework",
+    "node-level-06-week-26-06-travel-companion-capstone",
+    "node-level-06-week-26-checkpoint",
+    "node-level-06-boss",
     "node-level-07-preview",
     "node-level-08-preview",
     "node-level-09-preview",
@@ -4574,11 +5387,17 @@
       "id": "level-06-android-platform-use-cases",
       "title": "Level 6: Android Platform Use Cases",
       "order": 6,
-      "startNodeIds": [],
-      "checkpointNodeIds": [],
-      "previewNodeIds": [
-        "node-level-06-preview"
-      ]
+      "startNodeIds": [
+        "node-level-06-week-23-01-notification-channels-permission-navigation"
+      ],
+      "checkpointNodeIds": [
+        "node-level-06-week-23-checkpoint",
+        "node-level-06-week-24-checkpoint",
+        "node-level-06-week-25-checkpoint",
+        "node-level-06-week-26-checkpoint",
+        "node-level-06-boss"
+      ],
+      "previewNodeIds": []
     },
     {
       "id": "level-07-testing-quality-engineering",

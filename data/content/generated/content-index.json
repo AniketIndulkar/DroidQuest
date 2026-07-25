@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.8.0",
-  "contentRevision": 8,
+  "curriculumVersion": "0.9.0",
+  "contentRevision": 9,
   "counts": {
     "categories": 12,
-    "lessons": 122,
-    "quizzes": 148,
-    "challenges": 122,
-    "badges": 26,
-    "glossaryEntries": 134
+    "lessons": 146,
+    "quizzes": 177,
+    "challenges": 146,
+    "badges": 31,
+    "glossaryEntries": 158
   },
   "categories": [
     {
@@ -182,9 +182,34 @@
       "id": "level-06-android-platform-use-cases",
       "title": "Level 6: Android Platform Use Cases",
       "order": 6,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation",
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+        "level-06-week-23-03-glance-app-widgets-state-updates",
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+        "level-06-week-23-06-verified-app-links-deep-link-security",
+        "level-06-week-24-01-camera-intent-versus-camerax",
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+        "level-06-week-24-03-camerax-image-analysis-backpressure",
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+        "level-06-week-24-05-media-session-background-playback",
+        "level-06-week-24-06-picture-in-picture-video-navigation",
+        "level-06-week-24-07-downloadmanager-media-downloads-storage",
+        "level-06-week-25-01-location-permissions-settings-updates",
+        "level-06-week-25-02-background-location-geofencing",
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+        "level-06-week-25-05-nfc-ndef-reader-mode-security",
+        "level-06-week-26-01-biometric-reauthorization-device-credential",
+        "level-06-week-26-02-credential-manager-passkeys-sign-in",
+        "level-06-week-26-03-webview-containment-navigation-security",
+        "level-06-week-26-04-in-app-updates-reviews-play-flows",
+        "level-06-week-26-05-platform-api-decision-framework",
+        "level-06-week-26-06-travel-companion-capstone"
+      ],
       "path": "content/categories/level-06-android-platform-use-cases.json",
-      "sha256": "1084efcaba179135c537c736967f83911d6bec7c50839a569df74392ab984be3"
+      "sha256": "faeca97c317b7bdfd724f2d001c831982afed2a269ece4907f3a4c2d99657b2e"
     },
     {
       "id": "level-07-testing-quality-engineering",
@@ -1991,6 +2016,342 @@
       ],
       "path": "content/lessons/level-05-week-22-05-multi-module-banking-capstone.json",
       "sha256": "dc5291820630570afe631216786ddef58a019c1be4ffd070540b9c5a9f514415"
+    },
+    {
+      "id": "level-06-week-23-01-notification-channels-permission-navigation",
+      "title": "Notifications, Channels, Permission, and Navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "notifications",
+        "channels",
+        "pending-intent"
+      ],
+      "path": "content/lessons/level-06-week-23-01-notification-channels-permission-navigation.json",
+      "sha256": "b646ad52b678644ea2ea0b307af381cc7abad95085d94c3ae82fdb766e178749"
+    },
+    {
+      "id": "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "title": "Exact Alarms, WorkManager, and Foreground-Service Decisions",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "alarms",
+        "workmanager",
+        "foreground-service"
+      ],
+      "path": "content/lessons/level-06-week-23-02-exact-alarms-workmanager-foreground-services.json",
+      "sha256": "98e5936ab7318c0aae928101a3983ca9906a863ca1e24d1131469262d3d171e4"
+    },
+    {
+      "id": "level-06-week-23-03-glance-app-widgets-state-updates",
+      "title": "Glance App Widgets, State, and Update Policy",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "widgets",
+        "glance",
+        "remote-ui"
+      ],
+      "path": "content/lessons/level-06-week-23-03-glance-app-widgets-state-updates.json",
+      "sha256": "4d65d5f707c2f3986537f381d823a22de912148d4aef9aa61608a9aa7d8b420b"
+    },
+    {
+      "id": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "title": "App Shortcuts and the Android Sharesheet",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "shortcuts",
+        "sharing",
+        "intents"
+      ],
+      "path": "content/lessons/level-06-week-23-04-shortcuts-sharesheet-system-surfaces.json",
+      "sha256": "3b1675bf6fbe044c260847d0cabba663b3d3e6465a0a2518885acc4d00724581"
+    },
+    {
+      "id": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "title": "Photo Picker, FileProvider, and Clipboard Privacy",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "photo-picker",
+        "fileprovider",
+        "privacy"
+      ],
+      "path": "content/lessons/level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy.json",
+      "sha256": "263ab99de57f6acf7e734372245980d9fda25708cc07725529e87d64d273bc2b"
+    },
+    {
+      "id": "level-06-week-23-06-verified-app-links-deep-link-security",
+      "title": "Verified App Links and Deep-Link Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "app-links",
+        "deep-links",
+        "security"
+      ],
+      "path": "content/lessons/level-06-week-23-06-verified-app-links-deep-link-security.json",
+      "sha256": "75c269d25207bb602eab72fd6574595676c1ee9d674685dfc71cdab839d0e4e6"
+    },
+    {
+      "id": "level-06-week-24-01-camera-intent-versus-camerax",
+      "title": "Camera Intent or CameraX: Choosing Ownership",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "camera",
+        "camerax",
+        "activity-results"
+      ],
+      "path": "content/lessons/level-06-week-24-01-camera-intent-versus-camerax.json",
+      "sha256": "181758c571b5f95f85775277a44e72f9413377e637deec131ad79f8e59823e50"
+    },
+    {
+      "id": "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "title": "CameraX Use Cases, Lifecycle, and Image Capture",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "camerax",
+        "image-capture",
+        "lifecycle"
+      ],
+      "path": "content/lessons/level-06-week-24-02-camerax-use-cases-lifecycle-capture.json",
+      "sha256": "5b1532d5ab991800f02afabe77224356afb416571d405b4d1334ea08acd7ea08"
+    },
+    {
+      "id": "level-06-week-24-03-camerax-image-analysis-backpressure",
+      "title": "CameraX Image Analysis and Backpressure",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "camerax",
+        "image-analysis",
+        "backpressure"
+      ],
+      "path": "content/lessons/level-06-week-24-03-camerax-image-analysis-backpressure.json",
+      "sha256": "d34f8752de5531329c727935b544a7871d728dc35d9ee16cb4945afca43d04e2"
+    },
+    {
+      "id": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "title": "Media3 Player Lifecycle, Audio Focus, and State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "media3",
+        "exoplayer",
+        "audio-focus"
+      ],
+      "path": "content/lessons/level-06-week-24-04-media3-player-lifecycle-audio-focus.json",
+      "sha256": "866e024471d06769d1c21cfb5309a617fd7cd81084f432eb6a4dafc25d3b060f"
+    },
+    {
+      "id": "level-06-week-24-05-media-session-background-playback",
+      "title": "Media Sessions and Background Playback",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "media-session",
+        "background-playback",
+        "foreground-service"
+      ],
+      "path": "content/lessons/level-06-week-24-05-media-session-background-playback.json",
+      "sha256": "8f0607f54a017b5580edb6bd1d376d93ccaafe5a9f45876ebd5cb7e6e851b0b9"
+    },
+    {
+      "id": "level-06-week-24-06-picture-in-picture-video-navigation",
+      "title": "Picture-in-Picture for Video and Navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "picture-in-picture",
+        "video",
+        "multi-window"
+      ],
+      "path": "content/lessons/level-06-week-24-06-picture-in-picture-video-navigation.json",
+      "sha256": "ddee3867011bba6eebac31f64ed53fe2fad2c8ae902f975404d04b653ea9c784"
+    },
+    {
+      "id": "level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "title": "DownloadManager, Media Downloads, and Storage Choice",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "downloads",
+        "storage",
+        "media3"
+      ],
+      "path": "content/lessons/level-06-week-24-07-downloadmanager-media-downloads-storage.json",
+      "sha256": "0e246b07f37c5b16f986f02768bd8b53d53b82fe12f71418e17b0190bad8faaf"
+    },
+    {
+      "id": "level-06-week-25-01-location-permissions-settings-updates",
+      "title": "Location Permission, Settings, and Updates",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "location",
+        "permissions",
+        "fused-location"
+      ],
+      "path": "content/lessons/level-06-week-25-01-location-permissions-settings-updates.json",
+      "sha256": "121be2a60b0bc2b6e5cd0d74356def0a2c9cad645f483305548d5616d7e9764d"
+    },
+    {
+      "id": "level-06-week-25-02-background-location-geofencing",
+      "title": "Background Location and Geofencing",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "background-location",
+        "geofencing",
+        "privacy"
+      ],
+      "path": "content/lessons/level-06-week-25-02-background-location-geofencing.json",
+      "sha256": "88153615a88e9152f5943ca3606ccb919fadeec63a7f271df98fc7e4621bb94b"
+    },
+    {
+      "id": "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "title": "Google Maps Compose, Camera, Markers, and Offline State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "google-maps",
+        "maps-compose",
+        "location"
+      ],
+      "path": "content/lessons/level-06-week-25-03-maps-compose-camera-markers-offline-state.json",
+      "sha256": "672a7471cbed338c6e1ef4319885e8bdf5bf5db4f9dc4dbdd28ea867f40887ee"
+    },
+    {
+      "id": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "title": "Bluetooth Low Energy Scanning and GATT Lifecycle",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "bluetooth-le",
+        "gatt",
+        "nearby-devices"
+      ],
+      "path": "content/lessons/level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle.json",
+      "sha256": "5a94b890e4dc622caabb73bf14983014e14f4cbbf53c674e800113b078dada2f"
+    },
+    {
+      "id": "level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "title": "NFC, NDEF, Reader Mode, and Tag Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "nfc",
+        "ndef",
+        "reader-mode"
+      ],
+      "path": "content/lessons/level-06-week-25-05-nfc-ndef-reader-mode-security.json",
+      "sha256": "24d489dd2fbb3d40da4456ad312a50187cc55dd633dd6b9e637a7d5211a0af70"
+    },
+    {
+      "id": "level-06-week-26-01-biometric-reauthorization-device-credential",
+      "title": "Biometric Reauthorization and Device Credential",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "biometrics",
+        "device-credential",
+        "security"
+      ],
+      "path": "content/lessons/level-06-week-26-01-biometric-reauthorization-device-credential.json",
+      "sha256": "884837151ff213c52fef1bb77b54e860eb86385ad043a3f26a9c8785a690794f"
+    },
+    {
+      "id": "level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "title": "Credential Manager, Passkeys, and Sign-In State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "credential-manager",
+        "passkeys",
+        "identity"
+      ],
+      "path": "content/lessons/level-06-week-26-02-credential-manager-passkeys-sign-in.json",
+      "sha256": "1ce2735014d201b9af9b846a09aaa523cbc2edafb2f9a44b0e300ae95e3b1631"
+    },
+    {
+      "id": "level-06-week-26-03-webview-containment-navigation-security",
+      "title": "WebView Containment and Navigation Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "webview",
+        "security",
+        "url-validation"
+      ],
+      "path": "content/lessons/level-06-week-26-03-webview-containment-navigation-security.json",
+      "sha256": "1a29de8458705038eb1e2bba3d44631ac23cff9389dce5ecaab2c3dd62181839"
+    },
+    {
+      "id": "level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "title": "In-App Updates and Review Flows",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "play-core",
+        "in-app-updates",
+        "in-app-review"
+      ],
+      "path": "content/lessons/level-06-week-26-04-in-app-updates-reviews-play-flows.json",
+      "sha256": "4c4b762ea2e8d39da22c3752daea6ae51e592facd539078580726971ed7e5e74"
+    },
+    {
+      "id": "level-06-week-26-05-platform-api-decision-framework",
+      "title": "Platform API Decision Framework",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "platform-apis",
+        "decision-making",
+        "lifecycle"
+      ],
+      "path": "content/lessons/level-06-week-26-05-platform-api-decision-framework.json",
+      "sha256": "55a91f7e09853a402e15b40bd5f0d07d26bdeb7b6e5874744e45e8876e31d8f9"
+    },
+    {
+      "id": "level-06-week-26-06-travel-companion-capstone",
+      "title": "Capstone: Travel Companion",
+      "categoryId": "level-06-android-platform-use-cases",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "capstone",
+        "travel",
+        "platform-integration"
+      ],
+      "path": "content/lessons/level-06-week-26-06-travel-companion-capstone.json",
+      "sha256": "c95ab6e9ca43a4d3f280ae6dd3dd2555593d22f4d5ac2d311df00e680269908c"
     }
   ],
   "quizzes": [
@@ -3833,6 +4194,368 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-05-week-22-checkpoint.json",
       "sha256": "bf44ec3a78eed06928fef620926fdd68456e76a52167f37703e6dba9a7e52f97"
+    },
+    {
+      "id": "quiz-level-06-checkpoint",
+      "title": "Level 6 Boss: Android Platform Capability Review",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation",
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+        "level-06-week-23-03-glance-app-widgets-state-updates",
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+        "level-06-week-23-06-verified-app-links-deep-link-security",
+        "level-06-week-24-01-camera-intent-versus-camerax",
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+        "level-06-week-24-03-camerax-image-analysis-backpressure",
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+        "level-06-week-24-05-media-session-background-playback",
+        "level-06-week-24-06-picture-in-picture-video-navigation",
+        "level-06-week-24-07-downloadmanager-media-downloads-storage",
+        "level-06-week-25-01-location-permissions-settings-updates",
+        "level-06-week-25-02-background-location-geofencing",
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+        "level-06-week-25-05-nfc-ndef-reader-mode-security",
+        "level-06-week-26-01-biometric-reauthorization-device-credential",
+        "level-06-week-26-02-credential-manager-passkeys-sign-in",
+        "level-06-week-26-03-webview-containment-navigation-security",
+        "level-06-week-26-04-in-app-updates-reviews-play-flows",
+        "level-06-week-26-05-platform-api-decision-framework",
+        "level-06-week-26-06-travel-companion-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-06-checkpoint.json",
+      "sha256": "cc82050de3c5703e48faf5117cf18e611a6cbfd79ed6aaa40afe577c9d25ca38"
+    },
+    {
+      "id": "quiz-level-06-week-23-01-notification-channels-permission-navigation",
+      "title": "Notifications, Channels, Permission, and Navigation Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-01-notification-channels-permission-navigation.json",
+      "sha256": "456308c7ec1340f8e7be71ef096ac44c0705f1285a82a49b61445d360a2b615b"
+    },
+    {
+      "id": "quiz-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "title": "Exact Alarms, WorkManager, and Foreground-Service Decisions Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-02-exact-alarms-workmanager-foreground-services.json",
+      "sha256": "0a575fb07176840b7c6d22e65e633bf6cdc03778254f6763e52a64a4c10787ee"
+    },
+    {
+      "id": "quiz-level-06-week-23-03-glance-app-widgets-state-updates",
+      "title": "Glance App Widgets, State, and Update Policy Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-03-glance-app-widgets-state-updates"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-03-glance-app-widgets-state-updates.json",
+      "sha256": "b7cf3b26ad8b6fa9d19f77f9fa57edac40d577778088481eefb3054db30a924b"
+    },
+    {
+      "id": "quiz-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "title": "App Shortcuts and the Android Sharesheet Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-04-shortcuts-sharesheet-system-surfaces.json",
+      "sha256": "46603690d1c48c93a485572f14e0e930156f47bc4381e8f7e90c3d43f8a938db"
+    },
+    {
+      "id": "quiz-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "title": "Photo Picker, FileProvider, and Clipboard Privacy Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy.json",
+      "sha256": "138780cd4c446317e6c7529cd07bb69989c50f947475b077ee59167403ff73d1"
+    },
+    {
+      "id": "quiz-level-06-week-23-06-verified-app-links-deep-link-security",
+      "title": "Verified App Links and Deep-Link Security Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-06-verified-app-links-deep-link-security"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-23-06-verified-app-links-deep-link-security.json",
+      "sha256": "5157430acaefaf7fbca0c2d5dc2eb9c2acbfa03e6046bdcc7b6544507e070f9f"
+    },
+    {
+      "id": "quiz-level-06-week-23-checkpoint",
+      "title": "Week 23: System Surfaces, Sharing, and Trusted Entry Checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-23-01-notification-channels-permission-navigation",
+        "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+        "level-06-week-23-03-glance-app-widgets-state-updates",
+        "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+        "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+        "level-06-week-23-06-verified-app-links-deep-link-security"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-06-week-23-checkpoint.json",
+      "sha256": "5405b8d1aae2613b750b70be07a110ac08c4416fdfea429bf7e9a8069e844773"
+    },
+    {
+      "id": "quiz-level-06-week-24-01-camera-intent-versus-camerax",
+      "title": "Camera Intent or CameraX: Choosing Ownership Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-01-camera-intent-versus-camerax"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-01-camera-intent-versus-camerax.json",
+      "sha256": "99239455b43225402f1647aff40553ae6d9454dfd8c661f47c3899899ef6d24f"
+    },
+    {
+      "id": "quiz-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "title": "CameraX Use Cases, Lifecycle, and Image Capture Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-02-camerax-use-cases-lifecycle-capture.json",
+      "sha256": "02df93b0f68e7f479265333ee1d20cf75bf6b7112255ac6f085455353aa51b11"
+    },
+    {
+      "id": "quiz-level-06-week-24-03-camerax-image-analysis-backpressure",
+      "title": "CameraX Image Analysis and Backpressure Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-03-camerax-image-analysis-backpressure"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-03-camerax-image-analysis-backpressure.json",
+      "sha256": "d0b3b385f809013dc74b189ac14500250f3198d62b52577ab481b911e8a7ffd4"
+    },
+    {
+      "id": "quiz-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "title": "Media3 Player Lifecycle, Audio Focus, and State Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-04-media3-player-lifecycle-audio-focus.json",
+      "sha256": "6ec8a025b5ba0f7ac571fa853562fd684eae54a7547faadcfcf6259bcb38ad63"
+    },
+    {
+      "id": "quiz-level-06-week-24-05-media-session-background-playback",
+      "title": "Media Sessions and Background Playback Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-05-media-session-background-playback"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-05-media-session-background-playback.json",
+      "sha256": "7e5b02327e88723ad62076b960d5fb869b0011bab77b88d8b0a904abf6cfc38c"
+    },
+    {
+      "id": "quiz-level-06-week-24-06-picture-in-picture-video-navigation",
+      "title": "Picture-in-Picture for Video and Navigation Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-06-picture-in-picture-video-navigation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-06-picture-in-picture-video-navigation.json",
+      "sha256": "6c5d41c2f10fe33da6eaa77c91185d0f1be36cc9b7320327fa3166c6c69a372f"
+    },
+    {
+      "id": "quiz-level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "title": "DownloadManager, Media Downloads, and Storage Choice Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-07-downloadmanager-media-downloads-storage"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-24-07-downloadmanager-media-downloads-storage.json",
+      "sha256": "ee82e76907c049a9729be876cfd28c2cb6d407605c290b8749a91665fdd7b3d6"
+    },
+    {
+      "id": "quiz-level-06-week-24-checkpoint",
+      "title": "Week 24: Camera, Media, PiP, and Downloads Checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-24-01-camera-intent-versus-camerax",
+        "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+        "level-06-week-24-03-camerax-image-analysis-backpressure",
+        "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+        "level-06-week-24-05-media-session-background-playback",
+        "level-06-week-24-06-picture-in-picture-video-navigation",
+        "level-06-week-24-07-downloadmanager-media-downloads-storage"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-06-week-24-checkpoint.json",
+      "sha256": "7c6370b84d0f0d1823f7742e460e049453fa7cadfd87c7753134a5affc9d9cf7"
+    },
+    {
+      "id": "quiz-level-06-week-25-01-location-permissions-settings-updates",
+      "title": "Location Permission, Settings, and Updates Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-01-location-permissions-settings-updates"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-25-01-location-permissions-settings-updates.json",
+      "sha256": "22be5b8d149a12a1137ee439c697038cc183dca7f341015f5cac76e4e690e41f"
+    },
+    {
+      "id": "quiz-level-06-week-25-02-background-location-geofencing",
+      "title": "Background Location and Geofencing Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-02-background-location-geofencing"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-25-02-background-location-geofencing.json",
+      "sha256": "4e388b6bea10360dba33bd5d410c3b4926d51f3c21474b091253b4af222576b7"
+    },
+    {
+      "id": "quiz-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "title": "Google Maps Compose, Camera, Markers, and Offline State Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-25-03-maps-compose-camera-markers-offline-state.json",
+      "sha256": "d7e3820f584b9d88335edf678b2bfae6ea86a2fc9907ff72acf7961fae979a52"
+    },
+    {
+      "id": "quiz-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "title": "Bluetooth Low Energy Scanning and GATT Lifecycle Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle.json",
+      "sha256": "9dee5e7a9202633c6d0d59413a6634068d10902b96e3108039929cd5995c73a9"
+    },
+    {
+      "id": "quiz-level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "title": "NFC, NDEF, Reader Mode, and Tag Security Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-05-nfc-ndef-reader-mode-security"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-25-05-nfc-ndef-reader-mode-security.json",
+      "sha256": "65c8a2aa47e7c79a106c47daa46809a5d81b904e35fdaa11770dab3ccbe4bf0f"
+    },
+    {
+      "id": "quiz-level-06-week-25-checkpoint",
+      "title": "Week 25: Location, Maps, Bluetooth, and NFC Checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-25-01-location-permissions-settings-updates",
+        "level-06-week-25-02-background-location-geofencing",
+        "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+        "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+        "level-06-week-25-05-nfc-ndef-reader-mode-security"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-06-week-25-checkpoint.json",
+      "sha256": "cfb332a972db145d36f0293000e0e87c2bbf0d04fa58cea92f0941d1c70d8e75"
+    },
+    {
+      "id": "quiz-level-06-week-26-01-biometric-reauthorization-device-credential",
+      "title": "Biometric Reauthorization and Device Credential Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-01-biometric-reauthorization-device-credential"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-01-biometric-reauthorization-device-credential.json",
+      "sha256": "6f1ecd379fc5f68c0794632287e2635223de0af2a60cd0bf1e8fb855ed021311"
+    },
+    {
+      "id": "quiz-level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "title": "Credential Manager, Passkeys, and Sign-In State Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-02-credential-manager-passkeys-sign-in"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-02-credential-manager-passkeys-sign-in.json",
+      "sha256": "740d1d9073d6d09d737b4a67d0f5cd20a9b271d481d3659a744bf59b92352581"
+    },
+    {
+      "id": "quiz-level-06-week-26-03-webview-containment-navigation-security",
+      "title": "WebView Containment and Navigation Security Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-03-webview-containment-navigation-security"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-03-webview-containment-navigation-security.json",
+      "sha256": "ec8c956e6783954cebe2be5354830a8e3f0872355c73a60ee31f4de2de436d95"
+    },
+    {
+      "id": "quiz-level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "title": "In-App Updates and Review Flows Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-04-in-app-updates-reviews-play-flows"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-04-in-app-updates-reviews-play-flows.json",
+      "sha256": "eebab0d93c28b92adba25fdeaf5757600e491f5e1956b5d4414c8ed5fc1ff0ad"
+    },
+    {
+      "id": "quiz-level-06-week-26-05-platform-api-decision-framework",
+      "title": "Platform API Decision Framework Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-05-platform-api-decision-framework"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-05-platform-api-decision-framework.json",
+      "sha256": "8b23f360c71894164106fef75d6d0a4c8fff4008c4b1473811f3834c029a04e3"
+    },
+    {
+      "id": "quiz-level-06-week-26-06-travel-companion-capstone",
+      "title": "Capstone: Travel Companion Check",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-06-travel-companion-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-06-week-26-06-travel-companion-capstone.json",
+      "sha256": "404d965078f4df77c7eb928220580bf15515c36bce5ef2c5c82b5416292c9ed1"
+    },
+    {
+      "id": "quiz-level-06-week-26-checkpoint",
+      "title": "Week 26: Identity, Embedded Web, Play Flows, and Travel Capstone Checkpoint",
+      "categoryId": "level-06-android-platform-use-cases",
+      "linkedLessonIds": [
+        "level-06-week-26-01-biometric-reauthorization-device-credential",
+        "level-06-week-26-02-credential-manager-passkeys-sign-in",
+        "level-06-week-26-03-webview-containment-navigation-security",
+        "level-06-week-26-04-in-app-updates-reviews-play-flows",
+        "level-06-week-26-05-platform-api-decision-framework",
+        "level-06-week-26-06-travel-companion-capstone"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-06-week-26-checkpoint.json",
+      "sha256": "2e53f6f249f4c5c1cf9969a2c5562db26b2d4e5a346a5533566cd5201f6ec32c"
     }
   ],
   "challenges": [
@@ -4811,6 +5534,198 @@
       "lessonId": "level-05-week-22-05-multi-module-banking-capstone",
       "path": "content/challenges/challenge-level-05-week-22-05-multi-module-banking-capstone.json",
       "sha256": "6081000c87d41c9ff558e5d840826658fd3dfabbfa4e9b3a8da7f1464977a3dc"
+    },
+    {
+      "id": "challenge-level-06-week-23-01-notification-channels-permission-navigation",
+      "title": "Apply Notifications, Channels, Permission, and Navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-01-notification-channels-permission-navigation",
+      "path": "content/challenges/challenge-level-06-week-23-01-notification-channels-permission-navigation.json",
+      "sha256": "cee0695952639d0b6040b23056c43b6a2b0edb858a520b7bf7dd0182faa3891e"
+    },
+    {
+      "id": "challenge-level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "title": "Apply Exact Alarms, WorkManager, and Foreground-Service Decisions",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
+      "path": "content/challenges/challenge-level-06-week-23-02-exact-alarms-workmanager-foreground-services.json",
+      "sha256": "18fea41f45f063e977eb1d48885ceb0735257e79389ca74eaf21061cea3919c5"
+    },
+    {
+      "id": "challenge-level-06-week-23-03-glance-app-widgets-state-updates",
+      "title": "Apply Glance App Widgets, State, and Update Policy",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-03-glance-app-widgets-state-updates",
+      "path": "content/challenges/challenge-level-06-week-23-03-glance-app-widgets-state-updates.json",
+      "sha256": "208cdeea513142f7690955fb20bb67f94c030f0049db7b8c07b29b869ca7378d"
+    },
+    {
+      "id": "challenge-level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "title": "Apply App Shortcuts and the Android Sharesheet",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
+      "path": "content/challenges/challenge-level-06-week-23-04-shortcuts-sharesheet-system-surfaces.json",
+      "sha256": "99d71319d86f0a7a98b67419104cf6f9b20aeec668d093dbaa070f0622d0b7f1"
+    },
+    {
+      "id": "challenge-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "title": "Apply Photo Picker, FileProvider, and Clipboard Privacy",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
+      "path": "content/challenges/challenge-level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy.json",
+      "sha256": "9ed7a42e1330efbe71d3f2bd449aa1848ec7371e377371058b9e1866c54831f6"
+    },
+    {
+      "id": "challenge-level-06-week-23-06-verified-app-links-deep-link-security",
+      "title": "Apply Verified App Links and Deep-Link Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-23-06-verified-app-links-deep-link-security",
+      "path": "content/challenges/challenge-level-06-week-23-06-verified-app-links-deep-link-security.json",
+      "sha256": "0d97230f43ea7db08dbac1a109a33bde4047fe646cb36f8d1f61ae8138187b3a"
+    },
+    {
+      "id": "challenge-level-06-week-24-01-camera-intent-versus-camerax",
+      "title": "Apply Camera Intent or CameraX: Choosing Ownership",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-01-camera-intent-versus-camerax",
+      "path": "content/challenges/challenge-level-06-week-24-01-camera-intent-versus-camerax.json",
+      "sha256": "d7cbb109a867a4dc14088eb8d325a567dcf5c62f91ac9125b35d14a3043a23be"
+    },
+    {
+      "id": "challenge-level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "title": "Apply CameraX Use Cases, Lifecycle, and Image Capture",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
+      "path": "content/challenges/challenge-level-06-week-24-02-camerax-use-cases-lifecycle-capture.json",
+      "sha256": "3f4e5b82eb6ec885da9432cc1a346799b19cd29a95f6d6d20d5c5f7eb764f094"
+    },
+    {
+      "id": "challenge-level-06-week-24-03-camerax-image-analysis-backpressure",
+      "title": "Apply CameraX Image Analysis and Backpressure",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-03-camerax-image-analysis-backpressure",
+      "path": "content/challenges/challenge-level-06-week-24-03-camerax-image-analysis-backpressure.json",
+      "sha256": "24c66472a66b83d1a3cd1d486404b3778329a32e92c1c10b985cdce15cada055"
+    },
+    {
+      "id": "challenge-level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "title": "Apply Media3 Player Lifecycle, Audio Focus, and State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
+      "path": "content/challenges/challenge-level-06-week-24-04-media3-player-lifecycle-audio-focus.json",
+      "sha256": "3002f8fd24370e38327c3ff45738ec696a97d9cdbe5861a150ac89a94c42b365"
+    },
+    {
+      "id": "challenge-level-06-week-24-05-media-session-background-playback",
+      "title": "Apply Media Sessions and Background Playback",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-05-media-session-background-playback",
+      "path": "content/challenges/challenge-level-06-week-24-05-media-session-background-playback.json",
+      "sha256": "6a39883009ea27bf20cf478d255cd76bffcdf091bd7b7171791a09ec0f6d17e2"
+    },
+    {
+      "id": "challenge-level-06-week-24-06-picture-in-picture-video-navigation",
+      "title": "Apply Picture-in-Picture for Video and Navigation",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-06-picture-in-picture-video-navigation",
+      "path": "content/challenges/challenge-level-06-week-24-06-picture-in-picture-video-navigation.json",
+      "sha256": "49fb4f96a8919dfd7779bc717e471aaf31f85ec1ce6c9436e5493b6136dd2e1e"
+    },
+    {
+      "id": "challenge-level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "title": "Apply DownloadManager, Media Downloads, and Storage Choice",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-24-07-downloadmanager-media-downloads-storage",
+      "path": "content/challenges/challenge-level-06-week-24-07-downloadmanager-media-downloads-storage.json",
+      "sha256": "6b408bcc844046f66b72646b4f93761250558909f874b180f884cfd21c81a9bc"
+    },
+    {
+      "id": "challenge-level-06-week-25-01-location-permissions-settings-updates",
+      "title": "Apply Location Permission, Settings, and Updates",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-25-01-location-permissions-settings-updates",
+      "path": "content/challenges/challenge-level-06-week-25-01-location-permissions-settings-updates.json",
+      "sha256": "c40d85e957782ab8d0f6e643db90338db72489680ce2b376f4141c4323717031"
+    },
+    {
+      "id": "challenge-level-06-week-25-02-background-location-geofencing",
+      "title": "Apply Background Location and Geofencing",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-25-02-background-location-geofencing",
+      "path": "content/challenges/challenge-level-06-week-25-02-background-location-geofencing.json",
+      "sha256": "7a4dfd9aaf3ae56d1b72bef342891971dd8f4601d65ff89403d5b6aee8d78f5a"
+    },
+    {
+      "id": "challenge-level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "title": "Apply Google Maps Compose, Camera, Markers, and Offline State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-25-03-maps-compose-camera-markers-offline-state",
+      "path": "content/challenges/challenge-level-06-week-25-03-maps-compose-camera-markers-offline-state.json",
+      "sha256": "a1c071917608f28465083518351895f075dc8ee424a3582b7a769301ec837727"
+    },
+    {
+      "id": "challenge-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "title": "Apply Bluetooth Low Energy Scanning and GATT Lifecycle",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
+      "path": "content/challenges/challenge-level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle.json",
+      "sha256": "6dbb2508876e7e28f33cf436ff307180f314876f07d335fac6244f5b4adb2a17"
+    },
+    {
+      "id": "challenge-level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "title": "Apply NFC, NDEF, Reader Mode, and Tag Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-25-05-nfc-ndef-reader-mode-security",
+      "path": "content/challenges/challenge-level-06-week-25-05-nfc-ndef-reader-mode-security.json",
+      "sha256": "b288e6a528f06990cb9055faf134b048949c6c1a2edb7759b825b9a2ec94a573"
+    },
+    {
+      "id": "challenge-level-06-week-26-01-biometric-reauthorization-device-credential",
+      "title": "Apply Biometric Reauthorization and Device Credential",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-01-biometric-reauthorization-device-credential",
+      "path": "content/challenges/challenge-level-06-week-26-01-biometric-reauthorization-device-credential.json",
+      "sha256": "8b8ec07dd38566363a130e51988b9ffc4d6852e1d387ab4fa447fff87a085f54"
+    },
+    {
+      "id": "challenge-level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "title": "Apply Credential Manager, Passkeys, and Sign-In State",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "path": "content/challenges/challenge-level-06-week-26-02-credential-manager-passkeys-sign-in.json",
+      "sha256": "8c936b2f7bc7e4eac630d85be7fb2eb02546bec246baa09e4e8d80d150b7b8fa"
+    },
+    {
+      "id": "challenge-level-06-week-26-03-webview-containment-navigation-security",
+      "title": "Apply WebView Containment and Navigation Security",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-03-webview-containment-navigation-security",
+      "path": "content/challenges/challenge-level-06-week-26-03-webview-containment-navigation-security.json",
+      "sha256": "d9e7fefe609d81ca644342e2fe4dc61965c3c6141abf250d38a45c7e7ae2fc0b"
+    },
+    {
+      "id": "challenge-level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "title": "Apply In-App Updates and Review Flows",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "path": "content/challenges/challenge-level-06-week-26-04-in-app-updates-reviews-play-flows.json",
+      "sha256": "44b2a749bb89e45e0e4d1c2ba48a530247278d96c36affd7b3cb6fb286318364"
+    },
+    {
+      "id": "challenge-level-06-week-26-05-platform-api-decision-framework",
+      "title": "Apply Platform API Decision Framework",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-05-platform-api-decision-framework",
+      "path": "content/challenges/challenge-level-06-week-26-05-platform-api-decision-framework.json",
+      "sha256": "8fbcdc9a571cc3917ced8ea4e52a64dd844d7472cf99c373bea3ec30fd5444f7"
+    },
+    {
+      "id": "challenge-level-06-week-26-06-travel-companion-capstone",
+      "title": "Apply Capstone: Travel Companion",
+      "categoryId": "level-06-android-platform-use-cases",
+      "lessonId": "level-06-week-26-06-travel-companion-capstone",
+      "path": "content/challenges/challenge-level-06-week-26-06-travel-companion-capstone.json",
+      "sha256": "7e4bc5d43468108d3f3ca16db58a8458ad4051d42c415e2b3dffdd3c83756ab6"
     }
   ],
   "badges": [
@@ -4995,6 +5910,41 @@
       "categoryId": "level-05-production-architecture",
       "path": "content/badges/badge-level-05-week-22.json",
       "sha256": "39cc84d44ab385229acd43cc51e254a302b22ff6850ccaf5c0b04f4301566c55"
+    },
+    {
+      "id": "badge-level-06-android-platform-use-cases",
+      "title": "Android Platform Integrator",
+      "categoryId": "level-06-android-platform-use-cases",
+      "path": "content/badges/badge-level-06-android-platform-use-cases.json",
+      "sha256": "b719cad15af88e49f0f22aa7965ff4346c44cc3e866ebf54568094bf99332043"
+    },
+    {
+      "id": "badge-level-06-week-23",
+      "title": "Week 23 System Surface Guide",
+      "categoryId": "level-06-android-platform-use-cases",
+      "path": "content/badges/badge-level-06-week-23.json",
+      "sha256": "7a07739659e6ab4eee5cc781e93ea90735636056ad1b57423f4288eab0ce010f"
+    },
+    {
+      "id": "badge-level-06-week-24",
+      "title": "Week 24 Media Trailblazer",
+      "categoryId": "level-06-android-platform-use-cases",
+      "path": "content/badges/badge-level-06-week-24.json",
+      "sha256": "bfad05af58403a47d923d9eb3a6e104fcb0dfaf3185476cefb9a594eb5bd0b4c"
+    },
+    {
+      "id": "badge-level-06-week-25",
+      "title": "Week 25 Nearby Explorer",
+      "categoryId": "level-06-android-platform-use-cases",
+      "path": "content/badges/badge-level-06-week-25.json",
+      "sha256": "a5bd84344a468bfdd9dec4e2861f86ef891be064f985f146c8518aac9a19203b"
+    },
+    {
+      "id": "badge-level-06-week-26",
+      "title": "Week 26 Travel Platform Architect",
+      "categoryId": "level-06-android-platform-use-cases",
+      "path": "content/badges/badge-level-06-week-26.json",
+      "sha256": "4f284c461b377ed1c962a58ab890078a6fda4a3acb1fefb00c3f238a67c60518"
     }
   ],
   "roadmap": [
@@ -5002,7 +5952,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "1ce6abee3889f9e072d4643d1c2925a53234769722417d69b2b543af4dc75b65"
+      "sha256": "eaa9b58df1b347b75f4f37f25e270deb85cc936636557a6d1516cdceed925197"
     }
   ]
 }

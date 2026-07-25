@@ -1,0 +1,106 @@
+{
+  "id": "quiz-level-06-week-26-checkpoint",
+  "title": "Week 26: Identity, Embedded Web, Play Flows, and Travel Capstone Checkpoint",
+  "categoryId": "level-06-android-platform-use-cases",
+  "linkedLessonIds": [
+    "level-06-week-26-01-biometric-reauthorization-device-credential",
+    "level-06-week-26-02-credential-manager-passkeys-sign-in",
+    "level-06-week-26-03-webview-containment-navigation-security",
+    "level-06-week-26-04-in-app-updates-reviews-play-flows",
+    "level-06-week-26-05-platform-api-decision-framework",
+    "level-06-week-26-06-travel-companion-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-06-week-26-1",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-26-01-biometric-reauthorization-device-credential",
+      "prompt": "Which two questions must be answered before selecting this platform API?",
+      "type": "multiple_choice",
+      "options": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?",
+        "Which API looks most powerful?",
+        "How can every permission be requested at startup?"
+      ],
+      "answer": [
+        "What user promise requires it?",
+        "What happens when capability is absent or denied?"
+      ]
+    },
+    {
+      "id": "q-level-06-week-26-2",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-26-02-credential-manager-passkeys-sign-in",
+      "prompt": "Order the platform capability loop.",
+      "type": "order_steps",
+      "options": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ],
+      "answer": [
+        "Declare need",
+        "Check capability",
+        "Request in context",
+        "Operate safely",
+        "Recover"
+      ]
+    },
+    {
+      "id": "q-level-06-week-26-3",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-26-03-webview-containment-navigation-security",
+      "prompt": "Match each need to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Permission choice",
+        "Process recovery",
+        "Hardware support"
+      ],
+      "answer": {
+        "Permission choice": "Denial and revocation test",
+        "Process recovery": "Durable identity reconciliation",
+        "Hardware support": "Physical-device capability test"
+      }
+    },
+    {
+      "id": "q-level-06-week-26-4",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-26-04-in-app-updates-reviews-play-flows",
+      "prompt": "Spot the platform-integration defect: Blocking the user until the in-app review card appears and treating flow completion as proof that a review was submitted.",
+      "type": "spot_bug",
+      "answer": "Blocking the user until the in-app review card appears and treating flow completion as proof that a review was submitted.",
+      "acceptedAnswers": [
+        "The design violates lifecycle, permission, privacy, or system ownership."
+      ]
+    },
+    {
+      "id": "q-level-06-week-26-5",
+      "difficulty": "intermediate",
+      "explanation": "The production choice follows the smallest-capability, explicit-lifecycle, user-controlled, recoverable platform contract.",
+      "lessonId": "level-06-week-26-05-platform-api-decision-framework",
+      "prompt": "Complete the rule: request a capability only at the moment the user invokes the related ____.",
+      "type": "fill_blank",
+      "answer": "feature",
+      "acceptedAnswers": [
+        "feature",
+        "user-facing feature"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 4
+  },
+  "version": "0.9.0"
+}
