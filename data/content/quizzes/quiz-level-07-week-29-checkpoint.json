@@ -1,0 +1,106 @@
+{
+  "id": "quiz-level-07-week-29-checkpoint",
+  "title": "Week 29: UI, Accessibility, Visual, and System Testing Checkpoint",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+    "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+    "level-07-week-29-03-ui-automator-system-boundary-tests",
+    "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+    "level-07-week-29-05-accessibility-manual-automated-tests",
+    "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-07-week-29-1",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "prompt": "Which two properties make automated evidence trustworthy?",
+      "type": "multiple_choice",
+      "options": [
+        "Controlled relevant variables",
+        "Assertions tied to observable behaviour",
+        "Live production network",
+        "Execution after every arbitrary sleep"
+      ],
+      "answer": [
+        "Controlled relevant variables",
+        "Assertions tied to observable behaviour"
+      ]
+    },
+    {
+      "id": "q-level-07-week-29-2",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "prompt": "Order the confidence feedback loop.",
+      "type": "order_steps",
+      "options": [
+        "Name risk",
+        "Choose layer",
+        "Control variables",
+        "Stress boundaries",
+        "Operate evidence"
+      ],
+      "answer": [
+        "Name risk",
+        "Choose layer",
+        "Control variables",
+        "Stress boundaries",
+        "Operate evidence"
+      ]
+    },
+    {
+      "id": "q-level-07-week-29-3",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests",
+      "prompt": "Match the risk to the most direct evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Business rule",
+        "Room migration",
+        "System permission dialog"
+      ],
+      "answer": {
+        "Business rule": "Host unit test",
+        "Room migration": "Real database migration test",
+        "System permission dialog": "Device system-boundary test"
+      }
+    },
+    {
+      "id": "q-level-07-week-29-4",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "prompt": "Spot the confidence defect: Regenerating and committing all goldens automatically after a broad visual diff without human review.",
+      "type": "spot_bug",
+      "answer": "Regenerating and committing all goldens automatically after a broad visual diff without human review.",
+      "acceptedAnswers": [
+        "The test is uncontrolled, incorrectly scoped, or asserts the wrong contract."
+      ]
+    },
+    {
+      "id": "q-level-07-week-29-5",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests",
+      "prompt": "Complete the rule: use the lowest-cost environment with sufficient ____.",
+      "type": "fill_blank",
+      "answer": "fidelity",
+      "acceptedAnswers": [
+        "fidelity",
+        "test fidelity"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 205,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

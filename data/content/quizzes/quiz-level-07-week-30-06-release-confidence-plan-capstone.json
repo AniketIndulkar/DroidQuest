@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-30-06-release-confidence-plan-capstone",
+  "title": "Capstone: Release Confidence Plan Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-30-06-release-confidence-plan-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-30-06-release-confidence-plan-capstone-decision",
+      "prompt": "Which approach gives the strongest evidence for capstone: release confidence plan?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Deliver and partially implement the complete Release Confidence Plan with layer map, critical journeys, data, device matrix, flake policy, CI schedule, artifacts, exclusions, and acceptance criteria.",
+        "Listing every available test tool without mapping it to a risk, execution trigger, owner, or release decision.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Deliver and partially implement the complete Release Confidence Plan with layer map, critical journeys, data, device matrix, flake policy, CI schedule, artifacts, exclusions, and acceptance criteria.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-30-06-release-confidence-plan-capstone"
+    },
+    {
+      "id": "q-level-07-week-30-06-release-confidence-plan-capstone-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-30-06-release-confidence-plan-capstone"
+    },
+    {
+      "id": "q-level-07-week-30-06-release-confidence-plan-capstone-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-30-06-release-confidence-plan-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

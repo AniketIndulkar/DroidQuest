@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-07-week-30-06-release-confidence-plan-capstone",
+  "title": "Apply Capstone: Release Confidence Plan",
+  "categoryId": "level-07-testing-quality-engineering",
+  "lessonId": "level-07-week-30-06-release-confidence-plan-capstone",
+  "difficulty": "expert",
+  "estimatedMinutes": 180,
+  "prompt": "Deliver and partially implement the complete Release Confidence Plan with layer map, critical journeys, data, device matrix, flake policy, CI schedule, artifacts, exclusions, and acceptance criteria.",
+  "successCriteria": [
+    "The check names the risk, observable promise, and fidelity requirement.",
+    "Time, data, asynchronous work, external state, and cleanup are deterministic.",
+    "Failure artifacts, execution trigger, owner, and intentional blind spots are documented."
+  ],
+  "hints": [
+    "Move the check down a layer until any further move would lose necessary fidelity.",
+    "Make the intended regression fail before trusting the new evidence."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class QualityGate(val risk:String,val evidence:String,val trigger:Trigger,val owner:Team,val blocksRelease:Boolean)\nval plan:List<QualityGate> = criticalRisks.map(::designCheapestEvidence)"
+  },
+  "solutionOutline": [
+    "Model the risk, select the environment, and control all relevant variables.",
+    "Assert behaviour, inject adverse cases, capture diagnostics, and document operations."
+  ],
+  "verification": [
+    "Repeat in random order and isolation to prove determinism.",
+    "Introduce the target defect and confirm the check fails with an actionable report."
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 5
+  },
+  "version": "0.10.0"
+}

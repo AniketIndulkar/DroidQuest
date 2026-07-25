@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-07-week-29",
+  "title": "Week 29 Quality Arena Champion",
+  "description": "Awarded for completing the Week 29 testing and quality checkpoint.",
+  "categoryId": "level-07-testing-quality-engineering",
+  "icon": "testing-week-29",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-07-week-29-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 400,
+  "rarity": "rare",
+  "version": "0.10.0"
+}

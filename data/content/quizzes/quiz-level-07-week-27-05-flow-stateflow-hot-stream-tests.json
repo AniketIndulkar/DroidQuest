@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+  "title": "Flow, StateFlow, and Hot-Stream Tests Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-27-05-flow-stateflow-hot-stream-tests-decision",
+      "prompt": "Which approach gives the strongest evidence for flow, stateflow, and hot-stream tests?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Test a combined account StateFlow and a finite synchronization Flow, including subscription start, latest replacement, error recovery, conflation expectations, and collector cleanup.",
+        "Collecting an infinite StateFlow with toList and waiting for the test to finish.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Test a combined account StateFlow and a finite synchronization Flow, including subscription start, latest replacement, error recovery, conflation expectations, and collector cleanup.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+    },
+    {
+      "id": "q-level-07-week-27-05-flow-stateflow-hot-stream-tests-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+    },
+    {
+      "id": "q-level-07-week-27-05-flow-stateflow-hot-stream-tests-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

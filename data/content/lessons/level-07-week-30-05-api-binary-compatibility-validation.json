@@ -1,0 +1,210 @@
+{
+  "id": "level-07-week-30-05-api-binary-compatibility-validation",
+  "title": "API and Binary Compatibility Validation",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 30,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+  ],
+  "tags": [
+    "quality",
+    "api-design",
+    "binary-compatibility"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns api and binary compatibility validation into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Source compatibility means consumers can recompile; binary compatibility means already compiled consumers continue linking. Public Kotlin changes involving signatures, default arguments, inline functions, JVM names, generics, visibility, or removed declarations can break downstream modules or SDK users. Application-internal modules may choose lighter policy, while published libraries need semantic versioning and deprecation plans."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "kotlin { abiValidation { enabled.set(true) } }\n// CI compares committed ABI dumps; reviewers approve intentional public changes.",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Kotlin Gradle binary compatibility validation generates ABI dumps and compares changes in CI. Commit approved dumps, review additions as API surface, and reject accidental removal or signature change. API design review also checks documentation, nullability, threading, errors, opt-in annotations, and resource contracts that a bytecode dump cannot express."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test consumer compilation and representative runtime where reflection, serialization, resources, or Java interoperability matter. Deprecate with replacement, maintain compatibility for the promised window, and use major releases for intentional breaks. Do not expose implementation types merely to satisfy another module. Shrinking and obfuscation rules are separate release risks and require a minified consumer test."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Updating the ABI dump automatically on every build so accidental breaking changes always appear approved."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Kotlin binary compatibility validation",
+          "publisher": "Kotlin",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/gradle-binary-compatibility-validation.html",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Viewing and debugging dependencies",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the API and Binary Compatibility Validation evidence",
+      "language": "kotlin",
+      "code": "kotlin { abiValidation { enabled.set(true) } }\n// CI compares committed ABI dumps; reviewers approve intentional public changes.",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Updating the ABI dump automatically on every build so accidental breaking changes always appear approved.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Enable ABI validation for a library module, classify intentional and accidental changes, test Kotlin and Java consumers, and define deprecation plus semantic-version policy.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-30-05-api-binary-compatibility-validation",
+  "challengeId": "challenge-level-07-week-30-05-api-binary-compatibility-validation",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for API and Binary Compatibility Validation.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/gradle-binary-compatibility-validation.html",
+    "https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html"
+  ],
+  "version": "0.10.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-07-week-28-04-mockwebserver-http-contract-tests",
+  "title": "Apply MockWebServer and HTTP Contract Tests",
+  "categoryId": "level-07-testing-quality-engineering",
+  "lessonId": "level-07-week-28-04-mockwebserver-http-contract-tests",
+  "difficulty": "advanced",
+  "estimatedMinutes": 55,
+  "prompt": "Test authenticated payment and paging clients with recorded requests, malformed bodies, status errors, disconnects, concurrent 401 refresh, idempotent retry, and redacted fixtures.",
+  "successCriteria": [
+    "The check names the risk, observable promise, and fidelity requirement.",
+    "Time, data, asynchronous work, external state, and cleanup are deterministic.",
+    "Failure artifacts, execution trigger, owner, and intentional blind spots are documented."
+  ],
+  "hints": [
+    "Move the check down a layer until any further move would lose necessary fidelity.",
+    "Make the intended regression fail before trusting the new evidence."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "server.enqueue(MockResponse().setResponseCode(401))\nserver.enqueue(MockResponse().setBody(tokenJson))\nserver.enqueue(MockResponse().setBody(paymentJson))\nassertEquals(\"Bearer refreshed\",server.takeRequest().getHeader(\"Authorization\"))"
+  },
+  "solutionOutline": [
+    "Model the risk, select the environment, and control all relevant variables.",
+    "Assert behaviour, inject adverse cases, capture diagnostics, and document operations."
+  ],
+  "verification": [
+    "Repeat in random order and isolation to prove determinism.",
+    "Introduce the target defect and confirm the check fails with an actionable report."
+  ],
+  "rewards": {
+    "xp": 115,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

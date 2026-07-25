@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-29-03-ui-automator-system-boundary-tests",
+  "title": "UI Automator and System-Boundary Tests Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-29-03-ui-automator-system-boundary-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-29-03-ui-automator-system-boundary-tests-decision",
+      "prompt": "Which approach gives the strongest evidence for ui automator and system-boundary tests?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Automate notification navigation, a permission decision, Sharesheet cancellation, and verified App Link cold start with explicit device state, conditional waits, artifacts, and cleanup.",
+        "Using screen coordinates and fixed delays to automate a permission dialog across API levels and locales.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Automate notification navigation, a permission decision, Sharesheet cancellation, and verified App Link cold start with explicit device state, conditional waits, artifacts, and cleanup.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests"
+    },
+    {
+      "id": "q-level-07-week-29-03-ui-automator-system-boundary-tests-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests"
+    },
+    {
+      "id": "q-level-07-week-29-03-ui-automator-system-boundary-tests-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

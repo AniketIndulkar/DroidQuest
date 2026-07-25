@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-07-testing-quality-engineering",
+  "title": "Quality Engineering Lead",
+  "description": "Awarded for mastering deterministic tests, Android integration evidence, UI quality, static analysis, compatibility, and release confidence.",
+  "categoryId": "level-07-testing-quality-engineering",
+  "icon": "quality-engineering-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-07-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 1000,
+  "rarity": "epic",
+  "version": "0.10.0"
+}

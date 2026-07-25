@@ -1,0 +1,137 @@
+{
+  "id": "quiz-level-07-checkpoint",
+  "title": "Level 7 Boss: Release Confidence Review",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-27-01-test-strategy-junit-behaviour",
+    "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+    "level-07-week-27-03-parameterized-property-boundary-tests",
+    "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+    "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+    "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+    "level-07-week-28-01-repository-contract-integration-tests",
+    "level-07-week-28-02-room-dao-transaction-migration-tests",
+    "level-07-week-28-03-datastore-serializer-corruption-tests",
+    "level-07-week-28-04-mockwebserver-http-contract-tests",
+    "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+    "level-07-week-28-06-process-death-config-links-notification-tests",
+    "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+    "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+    "level-07-week-29-03-ui-automator-system-boundary-tests",
+    "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+    "level-07-week-29-05-accessibility-manual-automated-tests",
+    "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+    "level-07-week-30-01-android-lint-baselines-custom-checks",
+    "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+    "level-07-week-30-03-dependency-analysis-graph-hygiene",
+    "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+    "level-07-week-30-05-api-binary-compatibility-validation",
+    "level-07-week-30-06-release-confidence-plan-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-07-boss-1",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Writing one unit test per production method without identifying the behaviour or regression it protects.",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Name the risk, choose the cheapest sufficient fidelity, control relevant variables, assert observable behaviour, and publish reproducible diagnostics.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-27-01-test-strategy-junit-behaviour"
+    },
+    {
+      "id": "q-level-07-boss-2",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Using runBlocking and Thread.sleep to wait for viewModelScope work on a real dispatcher.",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Test a retrying payment coroutine with one scheduler, intermediate states, virtual backoff, timeout, cancellation, and exception propagation.",
+        "Add fixed delays",
+        "Retry until green",
+        "Raise global line coverage"
+      ],
+      "answer": "Test a retrying payment coroutine with one scheduler, intermediate states, virtual backoff, timeout, cancellation, and exception propagation.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    },
+    {
+      "id": "q-level-07-boss-3",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Calling verify dao.insert exactly once instead of asserting the repository’s observable state and idempotency contract.",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Name the risk, choose the cheapest sufficient fidelity, control relevant variables, assert observable behaviour, and publish reproducible diagnostics.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-28-01-repository-contract-integration-tests"
+    },
+    {
+      "id": "q-level-07-boss-4",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Mocking a Retrofit service method and claiming that paths, JSON adapters, headers, and OkHttp policy are covered.",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Test authenticated payment and paging clients with recorded requests, malformed bodies, status errors, disconnects, concurrent 401 refresh, idempotent retry, and redacted fixtures.",
+        "Add fixed delays",
+        "Retry until green",
+        "Raise global line coverage"
+      ],
+      "answer": "Test authenticated payment and paging clients with recorded requests, malformed bodies, status errors, disconnects, concurrent 401 refresh, idempotent retry, and redacted fixtures.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-28-04-mockwebserver-http-contract-tests"
+    },
+    {
+      "id": "q-level-07-boss-5",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Adding test tags to every composable and asserting implementation hierarchy instead of accessible behaviour.",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Name the risk, choose the cheapest sufficient fidelity, control relevant variables, assert observable behaviour, and publish reproducible diagnostics.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+    },
+    {
+      "id": "q-level-07-boss-6",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Regenerating and committing all goldens automatically after a broad visual diff without human review.",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Create a minimal screenshot matrix for Travel Companion covering compact, tablet, RTL, large text, dark theme, error, and edge-to-edge, with deterministic goldens and review rules.",
+        "Add fixed delays",
+        "Retry until green",
+        "Raise global line coverage"
+      ],
+      "answer": "Create a minimal screenshot matrix for Travel Companion covering compact, tablet, RTL, large text, dark theme, error, and edge-to-edge, with deterministic goldens and review rules.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+    },
+    {
+      "id": "q-level-07-boss-7",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Generating a lint baseline and never reducing it, allowing obsolete suppressions and hidden defects to persist forever.",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Name the risk, choose the cheapest sufficient fidelity, control relevant variables, assert observable behaviour, and publish reproducible diagnostics.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-30-01-android-lint-baselines-custom-checks"
+    },
+    {
+      "id": "q-level-07-boss-8",
+      "prompt": "Review this quality claim and prescribe stronger evidence: Requiring 100 percent global line coverage and adding tests that execute code without asserting meaningful outcomes.",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Generate merged Kover or JaCoCo reports, define risk-based new-code gates, feed them to Sonar, and demonstrate a covered but weak test improved by stronger assertions.",
+        "Add fixed delays",
+        "Retry until green",
+        "Raise global line coverage"
+      ],
+      "answer": "Generate merged Kover or JaCoCo reports, define risk-based new-code gates, feed them to Sonar, and demonstrate a covered but weak test improved by stronger assertions.",
+      "explanation": "Level 7 mastery connects each check to a risk, fidelity boundary, deterministic environment, and release decision.",
+      "lessonId": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+    }
+  ],
+  "rewards": {
+    "xp": 525,
+    "stars": 5
+  },
+  "version": "0.10.0"
+}

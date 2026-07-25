@@ -1,0 +1,218 @@
+{
+  "id": "level-07-week-27-03-parameterized-property-boundary-tests",
+  "title": "Parameterized and Property-Based Boundary Testing",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 27,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+  ],
+  "tags": [
+    "testing",
+    "parameterized-tests",
+    "property-testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns parameterized and property-based boundary testing into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Example tests explain memorable cases. Parameterized tests run the same assertion over a curated table of inputs and expected outcomes, making equivalence classes visible. Property-based tests generate many values and verify invariants such as round-trip, idempotence, order independence, or conservation. They complement rather than replace concrete examples, because a property can be wrong or too weak."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "property(\"money formatting round-trips minor units\") {\n  checkAll(moneyArb) { money ->\n    parse(format(money, Locale.ROOT)) shouldBe money\n  }\n}",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choose generators from the real domain: valid Money values, Unicode names, time-zone transitions, malformed identifiers, and operation sequences. Constrain impossible inputs unless robustness against hostile bytes is the target. When a failure occurs, shrinking seeks a smaller counterexample; print seed and reduced input so CI failures reproduce locally. Never use uncontrolled random calls or wall-clock time inside tests."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Boundary analysis remains deliberate. Include zero, maximum, empty, duplicate, negative, locale, precision, and overflow cases even when generators might eventually find them. For state machines, generate legal commands and assert invariants after every step. Keep property runs fast in pull requests and run larger seeded campaigns on schedule. A high case count cannot compensate for a vague assertion."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Using random values without a recorded seed, domain generator, invariant, or reproducible counterexample."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "JUnit 5 user guide",
+          "publisher": "JUnit",
+          "resourceType": "official_docs",
+          "url": "https://junit.org/junit5/docs/current/user-guide/",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Property-based testing",
+          "publisher": "Kotest",
+          "resourceType": "guide",
+          "url": "https://kotest.io/docs/proptest/property-based-testing.html",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "What to test",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/what-to-test",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Parameterized and Property-Based Boundary Testing evidence",
+      "language": "kotlin",
+      "code": "property(\"money formatting round-trips minor units\") {\n  checkAll(moneyArb) { money ->\n    parse(format(money, Locale.ROOT)) shouldBe money\n  }\n}",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using random values without a recorded seed, domain generator, invariant, or reproducible counterexample.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Test itinerary date parsing with a parameter table and payment arithmetic with generated Money values, shrink failures, persist seeds, and document every invariant.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-27-03-parameterized-property-boundary-tests",
+  "challengeId": "challenge-level-07-week-27-03-parameterized-property-boundary-tests",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for Parameterized and Property-Based Boundary Testing.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://junit.org/junit5/docs/current/user-guide/",
+    "https://kotest.io/docs/proptest/property-based-testing.html",
+    "https://developer.android.com/training/testing/fundamentals/what-to-test"
+  ],
+  "version": "0.10.0"
+}

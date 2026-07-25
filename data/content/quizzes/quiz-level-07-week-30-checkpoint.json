@@ -1,0 +1,106 @@
+{
+  "id": "quiz-level-07-week-30-checkpoint",
+  "title": "Week 30: Static Quality and Release Confidence Checkpoint",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-30-01-android-lint-baselines-custom-checks",
+    "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+    "level-07-week-30-03-dependency-analysis-graph-hygiene",
+    "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+    "level-07-week-30-05-api-binary-compatibility-validation",
+    "level-07-week-30-06-release-confidence-plan-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-07-week-30-1",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-30-01-android-lint-baselines-custom-checks",
+      "prompt": "Which two properties make automated evidence trustworthy?",
+      "type": "multiple_choice",
+      "options": [
+        "Controlled relevant variables",
+        "Assertions tied to observable behaviour",
+        "Live production network",
+        "Execution after every arbitrary sleep"
+      ],
+      "answer": [
+        "Controlled relevant variables",
+        "Assertions tied to observable behaviour"
+      ]
+    },
+    {
+      "id": "q-level-07-week-30-2",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "prompt": "Order the confidence feedback loop.",
+      "type": "order_steps",
+      "options": [
+        "Name risk",
+        "Choose layer",
+        "Control variables",
+        "Stress boundaries",
+        "Operate evidence"
+      ],
+      "answer": [
+        "Name risk",
+        "Choose layer",
+        "Control variables",
+        "Stress boundaries",
+        "Operate evidence"
+      ]
+    },
+    {
+      "id": "q-level-07-week-30-3",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "prompt": "Match the risk to the most direct evidence.",
+      "type": "match_pairs",
+      "options": [
+        "Business rule",
+        "Room migration",
+        "System permission dialog"
+      ],
+      "answer": {
+        "Business rule": "Host unit test",
+        "Room migration": "Real database migration test",
+        "System permission dialog": "Device system-boundary test"
+      }
+    },
+    {
+      "id": "q-level-07-week-30-4",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "prompt": "Spot the confidence defect: Requiring 100 percent global line coverage and adding tests that execute code without asserting meaningful outcomes.",
+      "type": "spot_bug",
+      "answer": "Requiring 100 percent global line coverage and adding tests that execute code without asserting meaningful outcomes.",
+      "acceptedAnswers": [
+        "The test is uncontrolled, incorrectly scoped, or asserts the wrong contract."
+      ]
+    },
+    {
+      "id": "q-level-07-week-30-5",
+      "difficulty": "advanced",
+      "explanation": "Testing quality comes from risk-based placement, controlled variables, sufficient fidelity, and actionable diagnostics.",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation",
+      "prompt": "Complete the rule: use the lowest-cost environment with sufficient ____.",
+      "type": "fill_blank",
+      "answer": "fidelity",
+      "acceptedAnswers": [
+        "fidelity",
+        "test fidelity"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 205,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

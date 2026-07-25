@@ -1,0 +1,210 @@
+{
+  "id": "level-07-week-28-04-mockwebserver-http-contract-tests",
+  "title": "MockWebServer and HTTP Contract Tests",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 28,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-28-03-datastore-serializer-corruption-tests"
+  ],
+  "tags": [
+    "testing",
+    "mockwebserver",
+    "http"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns mockwebserver and http contract tests into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MockWebServer is a real local HTTP server with scripted responses and recorded requests. It verifies serialization, URL construction, headers, authentication, interceptors, redirects, timeouts, retries, and error mapping without a live backend. Point the production client at server.url and test the boundary from repository or data source outward; mocking the Retrofit interface cannot reveal actual HTTP mistakes."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "server.enqueue(MockResponse().setResponseCode(401))\nserver.enqueue(MockResponse().setBody(tokenJson))\nserver.enqueue(MockResponse().setBody(paymentJson))\nassertEquals(\"Bearer refreshed\",server.takeRequest().getHeader(\"Authorization\"))",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Enqueue precise responses for success, malformed JSON, status families, delayed body, disconnect, empty body, pagination headers, and refresh-token rotation. Inspect the RecordedRequest method, encoded path, query, safe headers, and body. Never assert volatile ordering unless the protocol requires it, and never include real secrets in fixtures. Dispatchers can model stateful sequences and concurrent requests."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Close the server and clients, use deterministic timeouts, and prevent external network access. A mock server proves client behaviour against examples, not compatibility with the real service schema; add provider contract or staging checks separately if justified. Test one bounded retry and idempotency identity so failures do not create duplicate writes."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Mocking a Retrofit service method and claiming that paths, JSON adapters, headers, and OkHttp policy are covered."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "MockWebServer",
+          "publisher": "Square",
+          "resourceType": "guide",
+          "url": "https://square.github.io/okhttp/features/mockwebserver/",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Testing strategies",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/strategies",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the MockWebServer and HTTP Contract Tests evidence",
+      "language": "kotlin",
+      "code": "server.enqueue(MockResponse().setResponseCode(401))\nserver.enqueue(MockResponse().setBody(tokenJson))\nserver.enqueue(MockResponse().setBody(paymentJson))\nassertEquals(\"Bearer refreshed\",server.takeRequest().getHeader(\"Authorization\"))",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Mocking a Retrofit service method and claiming that paths, JSON adapters, headers, and OkHttp policy are covered.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Test authenticated payment and paging clients with recorded requests, malformed bodies, status errors, disconnects, concurrent 401 refresh, idempotent retry, and redacted fixtures.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-28-04-mockwebserver-http-contract-tests",
+  "challengeId": "challenge-level-07-week-28-04-mockwebserver-http-contract-tests",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for MockWebServer and HTTP Contract Tests.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/okhttp/features/mockwebserver/",
+    "https://developer.android.com/training/testing/fundamentals/strategies"
+  ],
+  "version": "0.10.0"
+}

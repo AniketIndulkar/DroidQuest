@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.9.0",
-  "contentRevision": 9,
+  "curriculumVersion": "0.10.0",
+  "contentRevision": 10,
   "counts": {
     "categories": 12,
-    "lessons": 146,
-    "quizzes": 177,
-    "challenges": 146,
-    "badges": 31,
-    "glossaryEntries": 158
+    "lessons": 170,
+    "quizzes": 206,
+    "challenges": 170,
+    "badges": 36,
+    "glossaryEntries": 182
   },
   "categories": [
     {
@@ -215,9 +215,34 @@
       "id": "level-07-testing-quality-engineering",
       "title": "Level 7: Testing and Quality Engineering",
       "order": 7,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour",
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+        "level-07-week-27-03-parameterized-property-boundary-tests",
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+        "level-07-week-28-01-repository-contract-integration-tests",
+        "level-07-week-28-02-room-dao-transaction-migration-tests",
+        "level-07-week-28-03-datastore-serializer-corruption-tests",
+        "level-07-week-28-04-mockwebserver-http-contract-tests",
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+        "level-07-week-28-06-process-death-config-links-notification-tests",
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+        "level-07-week-29-03-ui-automator-system-boundary-tests",
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+        "level-07-week-29-05-accessibility-manual-automated-tests",
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+        "level-07-week-30-01-android-lint-baselines-custom-checks",
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+        "level-07-week-30-03-dependency-analysis-graph-hygiene",
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+        "level-07-week-30-05-api-binary-compatibility-validation",
+        "level-07-week-30-06-release-confidence-plan-capstone"
+      ],
       "path": "content/categories/level-07-testing-quality-engineering.json",
-      "sha256": "145983344b3f280293d3bd1f68d499c0a943f54641e790e841d58486a7685ae3"
+      "sha256": "f4bcbbb0fb1d8c2cb36a32867b649f0fb9de1810c836202c0ec8331dd6b99515"
     },
     {
       "id": "level-08-android-security-engineering",
@@ -2352,6 +2377,342 @@
       ],
       "path": "content/lessons/level-06-week-26-06-travel-companion-capstone.json",
       "sha256": "c95ab6e9ca43a4d3f280ae6dd3dd2555593d22f4d5ac2d311df00e680269908c"
+    },
+    {
+      "id": "level-07-week-27-01-test-strategy-junit-behaviour",
+      "title": "Test Strategy, JUnit, and Behavioural Evidence",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "junit",
+        "strategy"
+      ],
+      "path": "content/lessons/level-07-week-27-01-test-strategy-junit-behaviour.json",
+      "sha256": "b7fb3e5c469a080478353158fe45e22046473694b119e1134fc2e77e05d41847"
+    },
+    {
+      "id": "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "title": "Fakes, Mocks, Stubs, and Behaviour Contracts",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "test-doubles",
+        "fakes"
+      ],
+      "path": "content/lessons/level-07-week-27-02-fakes-mocks-stubs-test-contracts.json",
+      "sha256": "774fbf6515ac8412414e44c6af1d48d5a736c2cb42d3571d09ade9844c77ebd9"
+    },
+    {
+      "id": "level-07-week-27-03-parameterized-property-boundary-tests",
+      "title": "Parameterized and Property-Based Boundary Testing",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "parameterized-tests",
+        "property-testing"
+      ],
+      "path": "content/lessons/level-07-week-27-03-parameterized-property-boundary-tests.json",
+      "sha256": "7f7575889984a86f19bd460b498ea8aaa2f7f6b358ea21dc5881fa5d3cfb66d9"
+    },
+    {
+      "id": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "title": "Coroutine Tests, Virtual Time, and Dispatcher Control",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "coroutines",
+        "virtual-time"
+      ],
+      "path": "content/lessons/level-07-week-27-04-coroutine-tests-virtual-time-dispatchers.json",
+      "sha256": "87d70a46614d34590f3d20b77cc638bcae6b31225ce6240c5a5e6664d71ab6fa"
+    },
+    {
+      "id": "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "title": "Flow, StateFlow, and Hot-Stream Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "flow",
+        "stateflow"
+      ],
+      "path": "content/lessons/level-07-week-27-05-flow-stateflow-hot-stream-tests.json",
+      "sha256": "580033f638eee9ee42f271d552aa14f39fbfa3eb07c23405366498fd0e840a58"
+    },
+    {
+      "id": "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "title": "ViewModel and Use-Case State-Sequence Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "viewmodel",
+        "use-cases"
+      ],
+      "path": "content/lessons/level-07-week-27-06-viewmodel-usecase-state-sequence-tests.json",
+      "sha256": "26d99d54615ea8ec742d8a332106581de192ef05cde262239d1fdfeac93f8c5e"
+    },
+    {
+      "id": "level-07-week-28-01-repository-contract-integration-tests",
+      "title": "Repository Contract and Integration Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "repositories",
+        "contracts"
+      ],
+      "path": "content/lessons/level-07-week-28-01-repository-contract-integration-tests.json",
+      "sha256": "8a37302062aa350cf2a6bb3b248bf3198d8278c4ec144765c1ae97d0fc11971e"
+    },
+    {
+      "id": "level-07-week-28-02-room-dao-transaction-migration-tests",
+      "title": "Room DAO, Transaction, and Migration Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "room",
+        "migrations"
+      ],
+      "path": "content/lessons/level-07-week-28-02-room-dao-transaction-migration-tests.json",
+      "sha256": "062f0234be2cb790179dcb18cc1b879059385adb839a7503d740fd428e7fcfe1"
+    },
+    {
+      "id": "level-07-week-28-03-datastore-serializer-corruption-tests",
+      "title": "DataStore Serializer, Concurrency, and Corruption Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "datastore",
+        "serialization"
+      ],
+      "path": "content/lessons/level-07-week-28-03-datastore-serializer-corruption-tests.json",
+      "sha256": "a66b64f3fa97cdc2100e7251473e1a5eb211f261763353de85c56095f29e58a7"
+    },
+    {
+      "id": "level-07-week-28-04-mockwebserver-http-contract-tests",
+      "title": "MockWebServer and HTTP Contract Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "mockwebserver",
+        "http"
+      ],
+      "path": "content/lessons/level-07-week-28-04-mockwebserver-http-contract-tests.json",
+      "sha256": "86dbc515775f313185ac88457beb14ad0e6815b2026067381486a470bb5ac3d3"
+    },
+    {
+      "id": "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "title": "Robolectric or Device: Choosing Test Fidelity",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "robolectric",
+        "instrumented-tests"
+      ],
+      "path": "content/lessons/level-07-week-28-05-robolectric-instrumented-fidelity-choice.json",
+      "sha256": "42bf45ca906ebc43bda15c123c6e6fdb16312a646fa41d4b5c129355495bd38c"
+    },
+    {
+      "id": "level-07-week-28-06-process-death-config-links-notification-tests",
+      "title": "Process Death, Recreation, App Link, and Notification Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "process-death",
+        "system-entry"
+      ],
+      "path": "content/lessons/level-07-week-28-06-process-death-config-links-notification-tests.json",
+      "sha256": "9c16027a0c97cb490d9a9e9e6bea7cae54e852af79cb97af3e28d68637b49bd6"
+    },
+    {
+      "id": "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "title": "Compose Semantics and UI Behaviour Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "compose",
+        "semantics"
+      ],
+      "path": "content/lessons/level-07-week-29-01-compose-semantics-ui-behaviour-tests.json",
+      "sha256": "4e3b01c53bba84e45d1177f59031986adf9160a50ce10f3535b7665d54d84a43"
+    },
+    {
+      "id": "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "title": "Espresso, Hybrid UI, and Idling Resources",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "espresso",
+        "idling-resources"
+      ],
+      "path": "content/lessons/level-07-week-29-02-espresso-hybrid-ui-idling-resources.json",
+      "sha256": "e1cf15cfd3f64f02ba99926ac3a999631371398cb2b86c4e8e365f839f7d483a"
+    },
+    {
+      "id": "level-07-week-29-03-ui-automator-system-boundary-tests",
+      "title": "UI Automator and System-Boundary Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "ui-automator",
+        "system-ui"
+      ],
+      "path": "content/lessons/level-07-week-29-03-ui-automator-system-boundary-tests.json",
+      "sha256": "b753139136c4cd4ffd38c71632711f3273a9c7c612fc46c8065ee1c5ae39d766"
+    },
+    {
+      "id": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "title": "Screenshot Testing Across Screens, Themes, and Locales",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "screenshots",
+        "adaptive-ui"
+      ],
+      "path": "content/lessons/level-07-week-29-04-screenshot-matrix-screen-sizes-locales.json",
+      "sha256": "8c77e4017e87cd0c79bfd7de86b1988045c386bdbc425f2290ce33276da9a2f0"
+    },
+    {
+      "id": "level-07-week-29-05-accessibility-manual-automated-tests",
+      "title": "Accessibility Checks and Assistive-Technology Testing",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "accessibility",
+        "talkback"
+      ],
+      "path": "content/lessons/level-07-week-29-05-accessibility-manual-automated-tests.json",
+      "sha256": "f9600d89e988731186393e74959d02d7ef60643d9b8e73d4ea2e7e298ea0f570"
+    },
+    {
+      "id": "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "title": "Animation Tests, Flakiness, Orchestration, and Sharding",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "animations",
+        "flakiness"
+      ],
+      "path": "content/lessons/level-07-week-29-06-animation-flakiness-orchestration-sharding.json",
+      "sha256": "df56eaf949fb6c9b98664f95e2d7e4bc2ef587d343e06d615bb19ed688866e7c"
+    },
+    {
+      "id": "level-07-week-30-01-android-lint-baselines-custom-checks",
+      "title": "Android Lint, Baselines, and Custom Checks",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "quality",
+        "android-lint",
+        "static-analysis"
+      ],
+      "path": "content/lessons/level-07-week-30-01-android-lint-baselines-custom-checks.json",
+      "sha256": "e74ca61b1285e2064eb655f22e5fe4cdb5c801c959e7acfed741cb42eaaef679"
+    },
+    {
+      "id": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "title": "Detekt, Ktlint, and Kotlin Source Quality",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "quality",
+        "detekt",
+        "ktlint"
+      ],
+      "path": "content/lessons/level-07-week-30-02-detekt-ktlint-kotlin-quality.json",
+      "sha256": "c0fa83266ec43fae8ef86151463958344fbb57c768a28d713ae1fd745a6632c1"
+    },
+    {
+      "id": "level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "title": "Dependency Analysis and Graph Hygiene",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "quality",
+        "dependencies",
+        "gradle"
+      ],
+      "path": "content/lessons/level-07-week-30-03-dependency-analysis-graph-hygiene.json",
+      "sha256": "36850ee706aa342c0f4ee6299a9357aa342cdc478943122e7ac8e3ece4e5717f"
+    },
+    {
+      "id": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "title": "Coverage with Kover or JaCoCo and Sonar Quality Gates",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "quality",
+        "coverage",
+        "sonarqube"
+      ],
+      "path": "content/lessons/level-07-week-30-04-coverage-kover-jacoco-sonar-gates.json",
+      "sha256": "3686bb061c3b1bd7885b90ae0a25c3a01ca14eb1b7bd3d0531b6e4811559c908"
+    },
+    {
+      "id": "level-07-week-30-05-api-binary-compatibility-validation",
+      "title": "API and Binary Compatibility Validation",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "quality",
+        "api-design",
+        "binary-compatibility"
+      ],
+      "path": "content/lessons/level-07-week-30-05-api-binary-compatibility-validation.json",
+      "sha256": "d39cab56b41ba41a71e443d500ecfaf53bf1e7a555f4125ec4dfec73e5003799"
+    },
+    {
+      "id": "level-07-week-30-06-release-confidence-plan-capstone",
+      "title": "Capstone: Release Confidence Plan",
+      "categoryId": "level-07-testing-quality-engineering",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "testing",
+        "release-quality",
+        "capstone"
+      ],
+      "path": "content/lessons/level-07-week-30-06-release-confidence-plan-capstone.json",
+      "sha256": "f0b98a9246a7453ea03735dc5f5bb1257456e7d6433a781301c4c5519928ff88"
     }
   ],
   "quizzes": [
@@ -4556,6 +4917,368 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-06-week-26-checkpoint.json",
       "sha256": "2e53f6f249f4c5c1cf9969a2c5562db26b2d4e5a346a5533566cd5201f6ec32c"
+    },
+    {
+      "id": "quiz-level-07-checkpoint",
+      "title": "Level 7 Boss: Release Confidence Review",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour",
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+        "level-07-week-27-03-parameterized-property-boundary-tests",
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+        "level-07-week-28-01-repository-contract-integration-tests",
+        "level-07-week-28-02-room-dao-transaction-migration-tests",
+        "level-07-week-28-03-datastore-serializer-corruption-tests",
+        "level-07-week-28-04-mockwebserver-http-contract-tests",
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+        "level-07-week-28-06-process-death-config-links-notification-tests",
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+        "level-07-week-29-03-ui-automator-system-boundary-tests",
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+        "level-07-week-29-05-accessibility-manual-automated-tests",
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+        "level-07-week-30-01-android-lint-baselines-custom-checks",
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+        "level-07-week-30-03-dependency-analysis-graph-hygiene",
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+        "level-07-week-30-05-api-binary-compatibility-validation",
+        "level-07-week-30-06-release-confidence-plan-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-07-checkpoint.json",
+      "sha256": "0bb590cb675aad123e31445cd80bfae447031eeb68d03a5ffd0837998c2e3ff4"
+    },
+    {
+      "id": "quiz-level-07-week-27-01-test-strategy-junit-behaviour",
+      "title": "Test Strategy, JUnit, and Behavioural Evidence Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-01-test-strategy-junit-behaviour.json",
+      "sha256": "7ccffd83281ffee4f66a6eaba7ddf8144a7b155802804a25715bb8afb55e636d"
+    },
+    {
+      "id": "quiz-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "title": "Fakes, Mocks, Stubs, and Behaviour Contracts Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-02-fakes-mocks-stubs-test-contracts.json",
+      "sha256": "f2029434813ca08e838bdc7c8998eb6b7aad77ab78454a6868e02020f41ef726"
+    },
+    {
+      "id": "quiz-level-07-week-27-03-parameterized-property-boundary-tests",
+      "title": "Parameterized and Property-Based Boundary Testing Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-03-parameterized-property-boundary-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-03-parameterized-property-boundary-tests.json",
+      "sha256": "1d177f94a6d570b41453074d93105bd3acc7cdf57cbcb032912e060bb0f6ea22"
+    },
+    {
+      "id": "quiz-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "title": "Coroutine Tests, Virtual Time, and Dispatcher Control Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers.json",
+      "sha256": "31e83c899a9d071b45a6808d2caf0ee25ca8ba65eeb9856bb7b5a9e4889d96a5"
+    },
+    {
+      "id": "quiz-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "title": "Flow, StateFlow, and Hot-Stream Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-05-flow-stateflow-hot-stream-tests.json",
+      "sha256": "5ea6de8a2ff0dd51492ecca9a0e2ff8753cba4008612f5f0a84ba4b5ff59c17a"
+    },
+    {
+      "id": "quiz-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "title": "ViewModel and Use-Case State-Sequence Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-27-06-viewmodel-usecase-state-sequence-tests.json",
+      "sha256": "39f93400d8cb00c1958b96d468a0e25af28aa03ecb10c1e07656e80ee1ba6f4e"
+    },
+    {
+      "id": "quiz-level-07-week-27-checkpoint",
+      "title": "Week 27: Deterministic Unit and Async Testing Checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour",
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+        "level-07-week-27-03-parameterized-property-boundary-tests",
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-07-week-27-checkpoint.json",
+      "sha256": "82107f2a1b8f1d3283de655093bd595d58097b64020a532e5ad3031486536f4c"
+    },
+    {
+      "id": "quiz-level-07-week-28-01-repository-contract-integration-tests",
+      "title": "Repository Contract and Integration Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-01-repository-contract-integration-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-01-repository-contract-integration-tests.json",
+      "sha256": "c7024f5a9bbb8022a44c5fac172b6edce7451bd4611c47a05acb994b5463c5c2"
+    },
+    {
+      "id": "quiz-level-07-week-28-02-room-dao-transaction-migration-tests",
+      "title": "Room DAO, Transaction, and Migration Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-02-room-dao-transaction-migration-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-02-room-dao-transaction-migration-tests.json",
+      "sha256": "ef502cfe16e82031863cb046b4866006cfa8855023b3985b25e06eb614ab4688"
+    },
+    {
+      "id": "quiz-level-07-week-28-03-datastore-serializer-corruption-tests",
+      "title": "DataStore Serializer, Concurrency, and Corruption Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-03-datastore-serializer-corruption-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-03-datastore-serializer-corruption-tests.json",
+      "sha256": "646cf49795a249646074c5a78ab2f99931e9e7bc616535c677890406ee48ab2b"
+    },
+    {
+      "id": "quiz-level-07-week-28-04-mockwebserver-http-contract-tests",
+      "title": "MockWebServer and HTTP Contract Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-04-mockwebserver-http-contract-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-04-mockwebserver-http-contract-tests.json",
+      "sha256": "95b28779ca7025cd3f557fe8429d70c750667286acba27e10ca7d6f3318076db"
+    },
+    {
+      "id": "quiz-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "title": "Robolectric or Device: Choosing Test Fidelity Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-05-robolectric-instrumented-fidelity-choice.json",
+      "sha256": "b32d50a9aef66c4ad9e25ea94196f803c741a76ba36f3f7f30ab0d888094b6b1"
+    },
+    {
+      "id": "quiz-level-07-week-28-06-process-death-config-links-notification-tests",
+      "title": "Process Death, Recreation, App Link, and Notification Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-06-process-death-config-links-notification-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-28-06-process-death-config-links-notification-tests.json",
+      "sha256": "98a4ceb8b73a69732e8636d4cab2ba93e743030567a58a6f57221fffddf5fa8f"
+    },
+    {
+      "id": "quiz-level-07-week-28-checkpoint",
+      "title": "Week 28: Persistence, Protocol, and Android Integration Testing Checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-28-01-repository-contract-integration-tests",
+        "level-07-week-28-02-room-dao-transaction-migration-tests",
+        "level-07-week-28-03-datastore-serializer-corruption-tests",
+        "level-07-week-28-04-mockwebserver-http-contract-tests",
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+        "level-07-week-28-06-process-death-config-links-notification-tests"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-07-week-28-checkpoint.json",
+      "sha256": "90438b7b6e18cbaf503a95b32a42d65ec0e44d37523892bd0d2c706a837fcdf1"
+    },
+    {
+      "id": "quiz-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "title": "Compose Semantics and UI Behaviour Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-01-compose-semantics-ui-behaviour-tests.json",
+      "sha256": "696f3c27fbf10f4e5cbc40ac9186b9e1c5b58186fc2392b0a941baa1ae3770b4"
+    },
+    {
+      "id": "quiz-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "title": "Espresso, Hybrid UI, and Idling Resources Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-02-espresso-hybrid-ui-idling-resources.json",
+      "sha256": "e74a51d6ed2ee6603ff2ca2ac4209697c60271154aacaa39f411f653a9ff989c"
+    },
+    {
+      "id": "quiz-level-07-week-29-03-ui-automator-system-boundary-tests",
+      "title": "UI Automator and System-Boundary Tests Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-03-ui-automator-system-boundary-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-03-ui-automator-system-boundary-tests.json",
+      "sha256": "b93aa52ca00599d5c12fee1f19f57ffb54b35723714908f3c73742b1718eff90"
+    },
+    {
+      "id": "quiz-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "title": "Screenshot Testing Across Screens, Themes, and Locales Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-04-screenshot-matrix-screen-sizes-locales.json",
+      "sha256": "5f90c0de30925079c3f5445331865e657900ce9fbcc501bd0222bd3a1dc46a50"
+    },
+    {
+      "id": "quiz-level-07-week-29-05-accessibility-manual-automated-tests",
+      "title": "Accessibility Checks and Assistive-Technology Testing Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-05-accessibility-manual-automated-tests"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-05-accessibility-manual-automated-tests.json",
+      "sha256": "fe96667a2bf43cb332ae686b79279173298a3c903a7fc1e5de3ee0461b4e8380"
+    },
+    {
+      "id": "quiz-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "title": "Animation Tests, Flakiness, Orchestration, and Sharding Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-29-06-animation-flakiness-orchestration-sharding.json",
+      "sha256": "60846fe6b04bfd74d0a1da7b3b0a9ae69f2c79b674b0c766cc854e0d1a3d541b"
+    },
+    {
+      "id": "quiz-level-07-week-29-checkpoint",
+      "title": "Week 29: UI, Accessibility, Visual, and System Testing Checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+        "level-07-week-29-03-ui-automator-system-boundary-tests",
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+        "level-07-week-29-05-accessibility-manual-automated-tests",
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-07-week-29-checkpoint.json",
+      "sha256": "7e8175dca0daf510db959c22ad8bf497ef06e366f667698a2ff710d0f2b2bc17"
+    },
+    {
+      "id": "quiz-level-07-week-30-01-android-lint-baselines-custom-checks",
+      "title": "Android Lint, Baselines, and Custom Checks Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-01-android-lint-baselines-custom-checks"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-01-android-lint-baselines-custom-checks.json",
+      "sha256": "5c8bc134354d07a5caf73c7b941a60bf7c80eebe39595a068ce7160ce1206948"
+    },
+    {
+      "id": "quiz-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "title": "Detekt, Ktlint, and Kotlin Source Quality Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-02-detekt-ktlint-kotlin-quality.json",
+      "sha256": "5066d5ee09745728715875207d0f2831bd9e87ef012067080837682c9f669de4"
+    },
+    {
+      "id": "quiz-level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "title": "Dependency Analysis and Graph Hygiene Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-03-dependency-analysis-graph-hygiene"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-03-dependency-analysis-graph-hygiene.json",
+      "sha256": "fdf53832ad6056ee3325001be0f43ea2c02b7778515d9a4c00d116bc41c03e37"
+    },
+    {
+      "id": "quiz-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "title": "Coverage with Kover or JaCoCo and Sonar Quality Gates Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-04-coverage-kover-jacoco-sonar-gates.json",
+      "sha256": "df6fbce29c1a90343da378d267418586b48531f5edd53aff7a0fff56630b1782"
+    },
+    {
+      "id": "quiz-level-07-week-30-05-api-binary-compatibility-validation",
+      "title": "API and Binary Compatibility Validation Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-05-api-binary-compatibility-validation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-05-api-binary-compatibility-validation.json",
+      "sha256": "fc97d58972fe502494112e73900d1f1555e2c1b4839cd1dc2c0e10130608ba0d"
+    },
+    {
+      "id": "quiz-level-07-week-30-06-release-confidence-plan-capstone",
+      "title": "Capstone: Release Confidence Plan Check",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-06-release-confidence-plan-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-07-week-30-06-release-confidence-plan-capstone.json",
+      "sha256": "32d1d95f218fac81a9cf49469fb0cf3ab6f33117cf3f9162494827573c52cab5"
+    },
+    {
+      "id": "quiz-level-07-week-30-checkpoint",
+      "title": "Week 30: Static Quality and Release Confidence Checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "linkedLessonIds": [
+        "level-07-week-30-01-android-lint-baselines-custom-checks",
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+        "level-07-week-30-03-dependency-analysis-graph-hygiene",
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+        "level-07-week-30-05-api-binary-compatibility-validation",
+        "level-07-week-30-06-release-confidence-plan-capstone"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-07-week-30-checkpoint.json",
+      "sha256": "0d325738e3311c45e1d97efafb31e786b4c6e26f7fae6f8e86f0ba9e2b5e75a0"
     }
   ],
   "challenges": [
@@ -5726,6 +6449,198 @@
       "lessonId": "level-06-week-26-06-travel-companion-capstone",
       "path": "content/challenges/challenge-level-06-week-26-06-travel-companion-capstone.json",
       "sha256": "7e4bc5d43468108d3f3ca16db58a8458ad4051d42c415e2b3dffdd3c83756ab6"
+    },
+    {
+      "id": "challenge-level-07-week-27-01-test-strategy-junit-behaviour",
+      "title": "Apply Test Strategy, JUnit, and Behavioural Evidence",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-01-test-strategy-junit-behaviour",
+      "path": "content/challenges/challenge-level-07-week-27-01-test-strategy-junit-behaviour.json",
+      "sha256": "9f775cd994904a63f6d7c0f57b5008b9fbb8c9ab9b7f51247169ceb02beb096d"
+    },
+    {
+      "id": "challenge-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "title": "Apply Fakes, Mocks, Stubs, and Behaviour Contracts",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "path": "content/challenges/challenge-level-07-week-27-02-fakes-mocks-stubs-test-contracts.json",
+      "sha256": "96d5c8f1ab1f41e80a7c390c89f3e8aeabfd582c8417fc79db02b8335cffb103"
+    },
+    {
+      "id": "challenge-level-07-week-27-03-parameterized-property-boundary-tests",
+      "title": "Apply Parameterized and Property-Based Boundary Testing",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-03-parameterized-property-boundary-tests",
+      "path": "content/challenges/challenge-level-07-week-27-03-parameterized-property-boundary-tests.json",
+      "sha256": "f05dbf79e9dd4a28cd2f003e99763b9083c48f44efc39ea9f682f1e3475bf956"
+    },
+    {
+      "id": "challenge-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "title": "Apply Coroutine Tests, Virtual Time, and Dispatcher Control",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "path": "content/challenges/challenge-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers.json",
+      "sha256": "9c4ce1073345813431b745cf5f9423ecaf80521e2564cae5bd32218505ff24db"
+    },
+    {
+      "id": "challenge-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "title": "Apply Flow, StateFlow, and Hot-Stream Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "path": "content/challenges/challenge-level-07-week-27-05-flow-stateflow-hot-stream-tests.json",
+      "sha256": "8c698485417e8b33e0bcfadbc85f7fbb1f64de9bd79636da9ba8b83f373cfbbe"
+    },
+    {
+      "id": "challenge-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "title": "Apply ViewModel and Use-Case State-Sequence Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "path": "content/challenges/challenge-level-07-week-27-06-viewmodel-usecase-state-sequence-tests.json",
+      "sha256": "b1c7f28d34df486e5b528dfbc38501cca31f870560bbceb50adcca2637ff165e"
+    },
+    {
+      "id": "challenge-level-07-week-28-01-repository-contract-integration-tests",
+      "title": "Apply Repository Contract and Integration Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-01-repository-contract-integration-tests",
+      "path": "content/challenges/challenge-level-07-week-28-01-repository-contract-integration-tests.json",
+      "sha256": "210978968b44460a7f9f47f6cbe15a105e61f28e1abc03265ea696f125265ca7"
+    },
+    {
+      "id": "challenge-level-07-week-28-02-room-dao-transaction-migration-tests",
+      "title": "Apply Room DAO, Transaction, and Migration Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-02-room-dao-transaction-migration-tests",
+      "path": "content/challenges/challenge-level-07-week-28-02-room-dao-transaction-migration-tests.json",
+      "sha256": "be2529870383b78f7f480888d09608fbadbabd2cd1c9e6b0db696cac91df6adc"
+    },
+    {
+      "id": "challenge-level-07-week-28-03-datastore-serializer-corruption-tests",
+      "title": "Apply DataStore Serializer, Concurrency, and Corruption Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-03-datastore-serializer-corruption-tests",
+      "path": "content/challenges/challenge-level-07-week-28-03-datastore-serializer-corruption-tests.json",
+      "sha256": "f0afefd2552ef6e2b21e7cbf0d0fb0f50cc005607253eae9c34beba20ad2e7a4"
+    },
+    {
+      "id": "challenge-level-07-week-28-04-mockwebserver-http-contract-tests",
+      "title": "Apply MockWebServer and HTTP Contract Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-04-mockwebserver-http-contract-tests",
+      "path": "content/challenges/challenge-level-07-week-28-04-mockwebserver-http-contract-tests.json",
+      "sha256": "5fca3f1b0426f81b03b6a8f7233209b3a74c0aa3df72eec714034fe2935571d0"
+    },
+    {
+      "id": "challenge-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "title": "Apply Robolectric or Device: Choosing Test Fidelity",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "path": "content/challenges/challenge-level-07-week-28-05-robolectric-instrumented-fidelity-choice.json",
+      "sha256": "3d902d73bf85e89caac24f2d95df9b11158ef1165d030c208a6406d586315b38"
+    },
+    {
+      "id": "challenge-level-07-week-28-06-process-death-config-links-notification-tests",
+      "title": "Apply Process Death, Recreation, App Link, and Notification Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-28-06-process-death-config-links-notification-tests",
+      "path": "content/challenges/challenge-level-07-week-28-06-process-death-config-links-notification-tests.json",
+      "sha256": "d5801124fe4764579a91ace09bfa41583329a8f669f8b0866a1c16ad1c9e450e"
+    },
+    {
+      "id": "challenge-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "title": "Apply Compose Semantics and UI Behaviour Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "path": "content/challenges/challenge-level-07-week-29-01-compose-semantics-ui-behaviour-tests.json",
+      "sha256": "0e1f75f9fd79a3901724390ebbe50a53e2a1aa3da38a11992719f46903855cea"
+    },
+    {
+      "id": "challenge-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "title": "Apply Espresso, Hybrid UI, and Idling Resources",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "path": "content/challenges/challenge-level-07-week-29-02-espresso-hybrid-ui-idling-resources.json",
+      "sha256": "a53983e54ee3a6b831aca30fbccb6ad83fd60e075a1331e6b2ad7d22bfb3e9e4"
+    },
+    {
+      "id": "challenge-level-07-week-29-03-ui-automator-system-boundary-tests",
+      "title": "Apply UI Automator and System-Boundary Tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests",
+      "path": "content/challenges/challenge-level-07-week-29-03-ui-automator-system-boundary-tests.json",
+      "sha256": "b0c933419b9290dcee296ea8f6a38dc089a01687b68ea6baf9378eff119f9cee"
+    },
+    {
+      "id": "challenge-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "title": "Apply Screenshot Testing Across Screens, Themes, and Locales",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "path": "content/challenges/challenge-level-07-week-29-04-screenshot-matrix-screen-sizes-locales.json",
+      "sha256": "fe8d47956372b5fdd967a01ef855f79ea5ce80c856a3ba8e432aae72c924824c"
+    },
+    {
+      "id": "challenge-level-07-week-29-05-accessibility-manual-automated-tests",
+      "title": "Apply Accessibility Checks and Assistive-Technology Testing",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests",
+      "path": "content/challenges/challenge-level-07-week-29-05-accessibility-manual-automated-tests.json",
+      "sha256": "b4de27cae1d073401c8e467fdb7449f017f2d10109ad6dd76f848cba9e0f0a5b"
+    },
+    {
+      "id": "challenge-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "title": "Apply Animation Tests, Flakiness, Orchestration, and Sharding",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "path": "content/challenges/challenge-level-07-week-29-06-animation-flakiness-orchestration-sharding.json",
+      "sha256": "b90ee51b46898fca2a744fc9b5bd451c4a72900afc3b76e159d45d2a9b5b3646"
+    },
+    {
+      "id": "challenge-level-07-week-30-01-android-lint-baselines-custom-checks",
+      "title": "Apply Android Lint, Baselines, and Custom Checks",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-01-android-lint-baselines-custom-checks",
+      "path": "content/challenges/challenge-level-07-week-30-01-android-lint-baselines-custom-checks.json",
+      "sha256": "9db8ddad2b3fc082bd6b202df15a5a4c7da6b453b1afe1962889262213a9a329"
+    },
+    {
+      "id": "challenge-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "title": "Apply Detekt, Ktlint, and Kotlin Source Quality",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "path": "content/challenges/challenge-level-07-week-30-02-detekt-ktlint-kotlin-quality.json",
+      "sha256": "ad390bd452a1957cfbf49bc531e31ca05403de20843b022cb8232eac636e94d6"
+    },
+    {
+      "id": "challenge-level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "title": "Apply Dependency Analysis and Graph Hygiene",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "path": "content/challenges/challenge-level-07-week-30-03-dependency-analysis-graph-hygiene.json",
+      "sha256": "a96da0673ef316c047f05827089b06943b1145cf6c861d40c588cad67bc1d5ec"
+    },
+    {
+      "id": "challenge-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "title": "Apply Coverage with Kover or JaCoCo and Sonar Quality Gates",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "path": "content/challenges/challenge-level-07-week-30-04-coverage-kover-jacoco-sonar-gates.json",
+      "sha256": "f10e69193823d06cc68ffbd182535c6f16013aaf36b9df648e42ea5a85110cca"
+    },
+    {
+      "id": "challenge-level-07-week-30-05-api-binary-compatibility-validation",
+      "title": "Apply API and Binary Compatibility Validation",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation",
+      "path": "content/challenges/challenge-level-07-week-30-05-api-binary-compatibility-validation.json",
+      "sha256": "7483a84cd999981cd52e014f95fc2b5104a216dd5f248129f152b1c603a658f2"
+    },
+    {
+      "id": "challenge-level-07-week-30-06-release-confidence-plan-capstone",
+      "title": "Apply Capstone: Release Confidence Plan",
+      "categoryId": "level-07-testing-quality-engineering",
+      "lessonId": "level-07-week-30-06-release-confidence-plan-capstone",
+      "path": "content/challenges/challenge-level-07-week-30-06-release-confidence-plan-capstone.json",
+      "sha256": "5c815f6d6cf41181d2d3cf5b4bd15997b3a233cae3bfc9b37b55e1e87c3799ed"
     }
   ],
   "badges": [
@@ -5945,6 +6860,41 @@
       "categoryId": "level-06-android-platform-use-cases",
       "path": "content/badges/badge-level-06-week-26.json",
       "sha256": "4f284c461b377ed1c962a58ab890078a6fda4a3acb1fefb00c3f238a67c60518"
+    },
+    {
+      "id": "badge-level-07-testing-quality-engineering",
+      "title": "Quality Engineering Lead",
+      "categoryId": "level-07-testing-quality-engineering",
+      "path": "content/badges/badge-level-07-testing-quality-engineering.json",
+      "sha256": "de146f27e0e9195b2aa6eced91e7aee28c62dbd2c5bd4ef451739dd22a3c5877"
+    },
+    {
+      "id": "badge-level-07-week-27",
+      "title": "Week 27 Determinism Scout",
+      "categoryId": "level-07-testing-quality-engineering",
+      "path": "content/badges/badge-level-07-week-27.json",
+      "sha256": "5354cfd40553b21bcc525cfe8a7c0f543ab9d840fe97dd3cf39612d2e1167a40"
+    },
+    {
+      "id": "badge-level-07-week-28",
+      "title": "Week 28 Boundary Verifier",
+      "categoryId": "level-07-testing-quality-engineering",
+      "path": "content/badges/badge-level-07-week-28.json",
+      "sha256": "c06fb8f5d7944560e2fb01ec9e58407881c9de1f00073d4ea467c60486939e9a"
+    },
+    {
+      "id": "badge-level-07-week-29",
+      "title": "Week 29 Quality Arena Champion",
+      "categoryId": "level-07-testing-quality-engineering",
+      "path": "content/badges/badge-level-07-week-29.json",
+      "sha256": "6bc310175e48630248e752b602d27f9a0d844796cf70674a2329c56dd6973566"
+    },
+    {
+      "id": "badge-level-07-week-30",
+      "title": "Week 30 Release Guardian",
+      "categoryId": "level-07-testing-quality-engineering",
+      "path": "content/badges/badge-level-07-week-30.json",
+      "sha256": "f69b01693408117a992e9d482079b0e3f08842e67265d0bba81f64150b64e9ba"
     }
   ],
   "roadmap": [
@@ -5952,7 +6902,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "eaa9b58df1b347b75f4f37f25e270deb85cc936636557a6d1516cdceed925197"
+      "sha256": "77537d7ea3905d960712ddd072437fb291727c4eeb4972e4ce2bb7a86fb5c974"
     }
   ]
 }

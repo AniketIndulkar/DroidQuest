@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+  "title": "Apply Coroutine Tests, Virtual Time, and Dispatcher Control",
+  "categoryId": "level-07-testing-quality-engineering",
+  "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+  "difficulty": "advanced",
+  "estimatedMinutes": 55,
+  "prompt": "Test a retrying payment coroutine with one scheduler, intermediate states, virtual backoff, timeout, cancellation, and exception propagation.",
+  "successCriteria": [
+    "The check names the risk, observable promise, and fidelity requirement.",
+    "Time, data, asynchronous work, external state, and cleanup are deterministic.",
+    "Failure artifacts, execution trigger, owner, and intentional blind spots are documented."
+  ],
+  "hints": [
+    "Move the check down a layer until any further move would lose necessary fidelity.",
+    "Make the intended regression fail before trusting the new evidence."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Test fun `timeout becomes retryable state`()=runTest {\n  val vm=PaymentViewModel(fake, StandardTestDispatcher(testScheduler))\n  vm.submit()\n  advanceTimeBy(5_000)\n  assertEquals(RetryableTimeout,vm.state.value.status)\n}"
+  },
+  "solutionOutline": [
+    "Model the risk, select the environment, and control all relevant variables.",
+    "Assert behaviour, inject adverse cases, capture diagnostics, and document operations."
+  ],
+  "verification": [
+    "Repeat in random order and isolation to prove determinism.",
+    "Introduce the target defect and confirm the check fails with an actionable report."
+  ],
+  "rewards": {
+    "xp": 115,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

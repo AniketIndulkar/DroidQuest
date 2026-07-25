@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-30-05-api-binary-compatibility-validation",
+  "title": "API and Binary Compatibility Validation Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-30-05-api-binary-compatibility-validation"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-30-05-api-binary-compatibility-validation-decision",
+      "prompt": "Which approach gives the strongest evidence for api and binary compatibility validation?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Enable ABI validation for a library module, classify intentional and accidental changes, test Kotlin and Java consumers, and define deprecation plus semantic-version policy.",
+        "Updating the ABI dump automatically on every build so accidental breaking changes always appear approved.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Enable ABI validation for a library module, classify intentional and accidental changes, test Kotlin and Java consumers, and define deprecation plus semantic-version policy.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation"
+    },
+    {
+      "id": "q-level-07-week-30-05-api-binary-compatibility-validation-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation"
+    },
+    {
+      "id": "q-level-07-week-30-05-api-binary-compatibility-validation-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

@@ -1,0 +1,218 @@
+{
+  "id": "level-07-week-29-03-ui-automator-system-boundary-tests",
+  "title": "UI Automator and System-Boundary Tests",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 29,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+  ],
+  "tags": [
+    "testing",
+    "ui-automator",
+    "system-ui"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns ui automator and system-boundary tests into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "UI Automator interacts through accessibility windows across application and system processes. Use it when the test must open notifications, answer permission UI, interact with Settings, launcher, chooser, or another app, or test a minified release from outside. It is slower and more variable than in-process Compose or Espresso, so keep it for contracts only the system can prove."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "uiAutomator { startApp(PACKAGE); onElement { text==\"Allow\" }.click(); waitForAppToBeVisible(PACKAGE) }",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Start from an explicit device state, launch or clear the app deliberately, find elements by stable resource, text, description, or predicate, and wait for conditions using supported APIs. System wording varies by API, locale, OEM, and previous choices; avoid brittle coordinate taps. Seed permissions and accounts only when the scenario is not about those states."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Capture screenshots, hierarchy, logcat, API level, locale, and device configuration on failure. Tests for App Links should also inspect verification state; notification tests should separate posting from shade interaction. Restore changed settings and permissions. Run destructive or account-dependent cases on isolated devices. A UI Automator script is a release-candidate journey, not the place to exhaust every validation branch."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Using screen coordinates and fixed delays to automate a permission dialog across API levels and locales."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "UI Automator",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/other-components/ui-automator",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Test App Links",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links/test-applinks",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Notifications overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/views/notifications",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the UI Automator and System-Boundary Tests evidence",
+      "language": "kotlin",
+      "code": "uiAutomator { startApp(PACKAGE); onElement { text==\"Allow\" }.click(); waitForAppToBeVisible(PACKAGE) }",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using screen coordinates and fixed delays to automate a permission dialog across API levels and locales.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Automate notification navigation, a permission decision, Sharesheet cancellation, and verified App Link cold start with explicit device state, conditional waits, artifacts, and cleanup.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-29-03-ui-automator-system-boundary-tests",
+  "challengeId": "challenge-level-07-week-29-03-ui-automator-system-boundary-tests",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for UI Automator and System-Boundary Tests.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/testing/other-components/ui-automator",
+    "https://developer.android.com/training/app-links/test-applinks",
+    "https://developer.android.com/develop/ui/views/notifications"
+  ],
+  "version": "0.10.0"
+}

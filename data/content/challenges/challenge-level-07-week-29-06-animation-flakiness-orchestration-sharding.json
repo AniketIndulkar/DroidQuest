@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+  "title": "Apply Animation Tests, Flakiness, Orchestration, and Sharding",
+  "categoryId": "level-07-testing-quality-engineering",
+  "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+  "difficulty": "advanced",
+  "estimatedMinutes": 55,
+  "prompt": "Make one animation deterministic, diagnose an injected flake, define quarantine policy, and design measured Orchestrator plus sharding for the release-candidate suite.",
+  "successCriteria": [
+    "The check names the risk, observable promise, and fidelity requirement.",
+    "Time, data, asynchronous work, external state, and cleanup are deterministic.",
+    "Failure artifacts, execution trigger, owner, and intentional blind spots are documented."
+  ],
+  "hints": [
+    "Move the check down a layer until any further move would lose necessary fidelity.",
+    "Make the intended regression fail before trusting the new evidence."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "rule.mainClock.autoAdvance=false\nbutton.performClick(); rule.mainClock.advanceTimeBy(150)\ncard.assertPositionInRootIsEqualTo(expectedHalfway)"
+  },
+  "solutionOutline": [
+    "Model the risk, select the environment, and control all relevant variables.",
+    "Assert behaviour, inject adverse cases, capture diagnostics, and document operations."
+  ],
+  "verification": [
+    "Repeat in random order and isolation to prove determinism.",
+    "Introduce the target defect and confirm the check fails with an actionable report."
+  ],
+  "rewards": {
+    "xp": 115,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

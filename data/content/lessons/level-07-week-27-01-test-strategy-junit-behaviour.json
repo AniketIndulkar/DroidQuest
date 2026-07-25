@@ -1,0 +1,218 @@
+{
+  "id": "level-07-week-27-01-test-strategy-junit-behaviour",
+  "title": "Test Strategy, JUnit, and Behavioural Evidence",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 27,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-06-week-26-06-travel-companion-capstone"
+  ],
+  "tags": [
+    "testing",
+    "junit",
+    "strategy"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns test strategy, junit, and behavioural evidence into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A test is evidence for a risk, not a ritual around every method. Start with the behaviour, failure cost, and cheapest environment that can prove it. A host-side unit test isolates a small deterministic contract; component and feature tests compose more real collaborators; application and release-candidate checks buy fidelity at increasing cost. Name what each test protects and what it intentionally cannot prove."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Test fun `retry preserves one accepted payment`() {\n  val result = subject.submit(command)\n  assertEquals(Accepted(receiptId), result)\n  assertEquals(1, fakeGateway.acceptedCommands.size)\n}",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "JUnit supplies lifecycle, assertions, parameter sources, tags, and extensions, while the test body should read as arrange, act, assert. One test should have one behavioural reason to fail, even if it needs several assertions to describe the outcome. Use product language in names and failure messages. Avoid ordering and shared mutable fixtures so a test passes alone, after any neighbour, and under parallel execution."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Build a risk matrix before counting tests. Payment duplication deserves state-machine and integration evidence; a simple mapper needs examples and boundaries; framework code does not need to be retested. Track execution time, determinism, diagnostic quality, and ownership. Delete low-value tests that only mirror implementation, because maintenance burden can hide gaps in truly critical behaviour."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Writing one unit test per production method without identifying the behaviour or regression it protects."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Testing strategies",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/strategies",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "What to test",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/what-to-test",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "JUnit 5 user guide",
+          "publisher": "JUnit",
+          "resourceType": "official_docs",
+          "url": "https://junit.org/junit5/docs/current/user-guide/",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Test Strategy, JUnit, and Behavioural Evidence evidence",
+      "language": "kotlin",
+      "code": "@Test fun `retry preserves one accepted payment`() {\n  val result = subject.submit(command)\n  assertEquals(Accepted(receiptId), result)\n  assertEquals(1, fakeGateway.acceptedCommands.size)\n}",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing one unit test per production method without identifying the behaviour or regression it protects.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a risk-based test inventory for payments and travel, assign each behaviour to the cheapest trustworthy layer, and implement three independent JUnit tests with diagnostic names.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-27-01-test-strategy-junit-behaviour",
+  "challengeId": "challenge-level-07-week-27-01-test-strategy-junit-behaviour",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for Test Strategy, JUnit, and Behavioural Evidence.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/testing/fundamentals/strategies",
+    "https://developer.android.com/training/testing/fundamentals/what-to-test",
+    "https://junit.org/junit5/docs/current/user-guide/"
+  ],
+  "version": "0.10.0"
+}

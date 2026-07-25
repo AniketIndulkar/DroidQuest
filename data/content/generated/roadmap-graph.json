@@ -1,6 +1,6 @@
 {
   "id": "droidquest-roadmap-graph",
-  "curriculumVersion": "0.9.0",
+  "curriculumVersion": "0.10.0",
   "nodes": [
     {
       "id": "node-level-01-boss",
@@ -3010,19 +3010,496 @@
       }
     },
     {
-      "id": "node-level-07-preview",
+      "id": "node-level-07-boss",
       "categoryId": "level-07-testing-quality-engineering",
-      "title": "Level 7: Testing and Quality Engineering",
-      "type": "level_preview",
-      "status": "planned",
-      "difficulty": "advanced",
+      "title": "Level 7 Boss: Release Confidence Review",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-07-checkpoint",
+      "difficulty": "expert",
       "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-checkpoint"
+      ],
+      "rewards": {
+        "xp": 525,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-07-week-27-01-test-strategy-junit-behaviour",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Test Strategy, JUnit, and Behavioural Evidence",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-07-week-27-01-test-strategy-junit-behaviour",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
       "unlockPrerequisites": [
         "node-level-06-boss"
       ],
       "rewards": {
-        "xp": 0,
-        "stars": 0
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Fakes, Mocks, Stubs, and Behaviour Contracts",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-01-test-strategy-junit-behaviour"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-03-parameterized-property-boundary-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Parameterized and Property-Based Boundary Testing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-27-03-parameterized-property-boundary-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Coroutine Tests, Virtual Time, and Dispatcher Control",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-03-parameterized-property-boundary-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Flow, StateFlow, and Hot-Stream Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "ViewModel and Use-Case State-Sequence Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-05-flow-stateflow-hot-stream-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-27-checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Week 27 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-07-week-27-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+      ],
+      "rewards": {
+        "xp": 205,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-07-week-28-01-repository-contract-integration-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Repository Contract and Integration Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-01-repository-contract-integration-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-27-checkpoint"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-02-room-dao-transaction-migration-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Room DAO, Transaction, and Migration Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-02-room-dao-transaction-migration-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-01-repository-contract-integration-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-03-datastore-serializer-corruption-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "DataStore Serializer, Concurrency, and Corruption Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-03-datastore-serializer-corruption-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-02-room-dao-transaction-migration-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-04-mockwebserver-http-contract-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "MockWebServer and HTTP Contract Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-04-mockwebserver-http-contract-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-03-datastore-serializer-corruption-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Robolectric or Device: Choosing Test Fidelity",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-04-mockwebserver-http-contract-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-06-process-death-config-links-notification-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Process Death, Recreation, App Link, and Notification Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-28-06-process-death-config-links-notification-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-28-checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Week 28 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-07-week-28-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-06-process-death-config-links-notification-tests"
+      ],
+      "rewards": {
+        "xp": 205,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Compose Semantics and UI Behaviour Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-28-checkpoint"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Espresso, Hybrid UI, and Idling Resources",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-03-ui-automator-system-boundary-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "UI Automator and System-Boundary Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-03-ui-automator-system-boundary-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Screenshot Testing Across Screens, Themes, and Locales",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-03-ui-automator-system-boundary-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-05-accessibility-manual-automated-tests",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Accessibility Checks and Assistive-Technology Testing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Animation Tests, Flakiness, Orchestration, and Sharding",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-05-accessibility-manual-automated-tests"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-29-checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Week 29 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-07-week-29-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-06-animation-flakiness-orchestration-sharding"
+      ],
+      "rewards": {
+        "xp": 205,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-07-week-30-01-android-lint-baselines-custom-checks",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Android Lint, Baselines, and Custom Checks",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-01-android-lint-baselines-custom-checks",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-29-checkpoint"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Detekt, Ktlint, and Kotlin Source Quality",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-01-android-lint-baselines-custom-checks"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Dependency Analysis and Graph Hygiene",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-02-detekt-ktlint-kotlin-quality"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Coverage with Kover or JaCoCo and Sonar Quality Gates",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-03-dependency-analysis-graph-hygiene"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-30-05-api-binary-compatibility-validation",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "API and Binary Compatibility Validation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-05-api-binary-compatibility-validation",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+      ],
+      "rewards": {
+        "xp": 70,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-07-week-30-06-release-confidence-plan-capstone",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Capstone: Release Confidence Plan",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-07-week-30-06-release-confidence-plan-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-05-api-binary-compatibility-validation"
+      ],
+      "rewards": {
+        "xp": 120,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-07-week-30-checkpoint",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Week 30 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-07-week-30-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-week-30-06-release-confidence-plan-capstone"
+      ],
+      "rewards": {
+        "xp": 205,
+        "stars": 4
       }
     },
     {
@@ -3034,7 +3511,7 @@
       "difficulty": "advanced",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-07-preview"
+        "node-level-07-boss"
       ],
       "rewards": {
         "xp": 0,
@@ -3849,7 +4326,7 @@
     },
     {
       "from": "node-level-06-boss",
-      "to": "node-level-07-preview",
+      "to": "node-level-07-week-27-01-test-strategy-junit-behaviour",
       "kind": "prerequisite"
     },
     {
@@ -3993,8 +4470,148 @@
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-07-preview",
+      "from": "node-level-07-boss",
       "to": "node-level-08-preview",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-01-test-strategy-junit-behaviour",
+      "to": "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+      "to": "node-level-07-week-27-03-parameterized-property-boundary-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-03-parameterized-property-boundary-tests",
+      "to": "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+      "to": "node-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+      "to": "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+      "to": "node-level-07-week-27-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-27-checkpoint",
+      "to": "node-level-07-week-28-01-repository-contract-integration-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-01-repository-contract-integration-tests",
+      "to": "node-level-07-week-28-02-room-dao-transaction-migration-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-02-room-dao-transaction-migration-tests",
+      "to": "node-level-07-week-28-03-datastore-serializer-corruption-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-03-datastore-serializer-corruption-tests",
+      "to": "node-level-07-week-28-04-mockwebserver-http-contract-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-04-mockwebserver-http-contract-tests",
+      "to": "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+      "to": "node-level-07-week-28-06-process-death-config-links-notification-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-06-process-death-config-links-notification-tests",
+      "to": "node-level-07-week-28-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-28-checkpoint",
+      "to": "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+      "to": "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+      "to": "node-level-07-week-29-03-ui-automator-system-boundary-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-03-ui-automator-system-boundary-tests",
+      "to": "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+      "to": "node-level-07-week-29-05-accessibility-manual-automated-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-05-accessibility-manual-automated-tests",
+      "to": "node-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+      "to": "node-level-07-week-29-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-29-checkpoint",
+      "to": "node-level-07-week-30-01-android-lint-baselines-custom-checks",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-01-android-lint-baselines-custom-checks",
+      "to": "node-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+      "to": "node-level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-03-dependency-analysis-graph-hygiene",
+      "to": "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+      "to": "node-level-07-week-30-05-api-binary-compatibility-validation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-05-api-binary-compatibility-validation",
+      "to": "node-level-07-week-30-06-release-confidence-plan-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-06-release-confidence-plan-capstone",
+      "to": "node-level-07-week-30-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-07-week-30-checkpoint",
+      "to": "node-level-07-boss",
       "kind": "prerequisite"
     },
     {
@@ -4174,9 +4791,6 @@
     ],
     "node-level-02-boss": [
       "node-level-03-week-09-01-compose-mental-model"
-    ],
-    "node-level-07-preview": [
-      "node-level-08-preview"
     ],
     "node-level-08-preview": [
       "node-level-09-preview"
@@ -4564,7 +5178,94 @@
       "node-level-06-boss"
     ],
     "node-level-06-boss": [
-      "node-level-07-preview"
+      "node-level-07-week-27-01-test-strategy-junit-behaviour"
+    ],
+    "node-level-07-week-27-01-test-strategy-junit-behaviour": [
+      "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+    ],
+    "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts": [
+      "node-level-07-week-27-03-parameterized-property-boundary-tests"
+    ],
+    "node-level-07-week-27-03-parameterized-property-boundary-tests": [
+      "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    ],
+    "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers": [
+      "node-level-07-week-27-05-flow-stateflow-hot-stream-tests"
+    ],
+    "node-level-07-week-27-05-flow-stateflow-hot-stream-tests": [
+      "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+    ],
+    "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests": [
+      "node-level-07-week-27-checkpoint"
+    ],
+    "node-level-07-week-27-checkpoint": [
+      "node-level-07-week-28-01-repository-contract-integration-tests"
+    ],
+    "node-level-07-week-28-01-repository-contract-integration-tests": [
+      "node-level-07-week-28-02-room-dao-transaction-migration-tests"
+    ],
+    "node-level-07-week-28-02-room-dao-transaction-migration-tests": [
+      "node-level-07-week-28-03-datastore-serializer-corruption-tests"
+    ],
+    "node-level-07-week-28-03-datastore-serializer-corruption-tests": [
+      "node-level-07-week-28-04-mockwebserver-http-contract-tests"
+    ],
+    "node-level-07-week-28-04-mockwebserver-http-contract-tests": [
+      "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice"
+    ],
+    "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice": [
+      "node-level-07-week-28-06-process-death-config-links-notification-tests"
+    ],
+    "node-level-07-week-28-06-process-death-config-links-notification-tests": [
+      "node-level-07-week-28-checkpoint"
+    ],
+    "node-level-07-week-28-checkpoint": [
+      "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+    ],
+    "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests": [
+      "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+    ],
+    "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources": [
+      "node-level-07-week-29-03-ui-automator-system-boundary-tests"
+    ],
+    "node-level-07-week-29-03-ui-automator-system-boundary-tests": [
+      "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+    ],
+    "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales": [
+      "node-level-07-week-29-05-accessibility-manual-automated-tests"
+    ],
+    "node-level-07-week-29-05-accessibility-manual-automated-tests": [
+      "node-level-07-week-29-06-animation-flakiness-orchestration-sharding"
+    ],
+    "node-level-07-week-29-06-animation-flakiness-orchestration-sharding": [
+      "node-level-07-week-29-checkpoint"
+    ],
+    "node-level-07-week-29-checkpoint": [
+      "node-level-07-week-30-01-android-lint-baselines-custom-checks"
+    ],
+    "node-level-07-week-30-01-android-lint-baselines-custom-checks": [
+      "node-level-07-week-30-02-detekt-ktlint-kotlin-quality"
+    ],
+    "node-level-07-week-30-02-detekt-ktlint-kotlin-quality": [
+      "node-level-07-week-30-03-dependency-analysis-graph-hygiene"
+    ],
+    "node-level-07-week-30-03-dependency-analysis-graph-hygiene": [
+      "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+    ],
+    "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates": [
+      "node-level-07-week-30-05-api-binary-compatibility-validation"
+    ],
+    "node-level-07-week-30-05-api-binary-compatibility-validation": [
+      "node-level-07-week-30-06-release-confidence-plan-capstone"
+    ],
+    "node-level-07-week-30-06-release-confidence-plan-capstone": [
+      "node-level-07-week-30-checkpoint"
+    ],
+    "node-level-07-week-30-checkpoint": [
+      "node-level-07-boss"
+    ],
+    "node-level-07-boss": [
+      "node-level-08-preview"
     ]
   },
   "incoming": {
@@ -4722,11 +5423,8 @@
     "node-level-02-boss": [
       "node-level-02-week-08-checkpoint"
     ],
-    "node-level-07-preview": [
-      "node-level-06-boss"
-    ],
     "node-level-08-preview": [
-      "node-level-07-preview"
+      "node-level-07-boss"
     ],
     "node-level-09-preview": [
       "node-level-08-preview"
@@ -5114,6 +5812,93 @@
     ],
     "node-level-06-boss": [
       "node-level-06-week-26-checkpoint"
+    ],
+    "node-level-07-week-27-01-test-strategy-junit-behaviour": [
+      "node-level-06-boss"
+    ],
+    "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts": [
+      "node-level-07-week-27-01-test-strategy-junit-behaviour"
+    ],
+    "node-level-07-week-27-03-parameterized-property-boundary-tests": [
+      "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+    ],
+    "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers": [
+      "node-level-07-week-27-03-parameterized-property-boundary-tests"
+    ],
+    "node-level-07-week-27-05-flow-stateflow-hot-stream-tests": [
+      "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    ],
+    "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests": [
+      "node-level-07-week-27-05-flow-stateflow-hot-stream-tests"
+    ],
+    "node-level-07-week-27-checkpoint": [
+      "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+    ],
+    "node-level-07-week-28-01-repository-contract-integration-tests": [
+      "node-level-07-week-27-checkpoint"
+    ],
+    "node-level-07-week-28-02-room-dao-transaction-migration-tests": [
+      "node-level-07-week-28-01-repository-contract-integration-tests"
+    ],
+    "node-level-07-week-28-03-datastore-serializer-corruption-tests": [
+      "node-level-07-week-28-02-room-dao-transaction-migration-tests"
+    ],
+    "node-level-07-week-28-04-mockwebserver-http-contract-tests": [
+      "node-level-07-week-28-03-datastore-serializer-corruption-tests"
+    ],
+    "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice": [
+      "node-level-07-week-28-04-mockwebserver-http-contract-tests"
+    ],
+    "node-level-07-week-28-06-process-death-config-links-notification-tests": [
+      "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice"
+    ],
+    "node-level-07-week-28-checkpoint": [
+      "node-level-07-week-28-06-process-death-config-links-notification-tests"
+    ],
+    "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests": [
+      "node-level-07-week-28-checkpoint"
+    ],
+    "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources": [
+      "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+    ],
+    "node-level-07-week-29-03-ui-automator-system-boundary-tests": [
+      "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+    ],
+    "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales": [
+      "node-level-07-week-29-03-ui-automator-system-boundary-tests"
+    ],
+    "node-level-07-week-29-05-accessibility-manual-automated-tests": [
+      "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+    ],
+    "node-level-07-week-29-06-animation-flakiness-orchestration-sharding": [
+      "node-level-07-week-29-05-accessibility-manual-automated-tests"
+    ],
+    "node-level-07-week-29-checkpoint": [
+      "node-level-07-week-29-06-animation-flakiness-orchestration-sharding"
+    ],
+    "node-level-07-week-30-01-android-lint-baselines-custom-checks": [
+      "node-level-07-week-29-checkpoint"
+    ],
+    "node-level-07-week-30-02-detekt-ktlint-kotlin-quality": [
+      "node-level-07-week-30-01-android-lint-baselines-custom-checks"
+    ],
+    "node-level-07-week-30-03-dependency-analysis-graph-hygiene": [
+      "node-level-07-week-30-02-detekt-ktlint-kotlin-quality"
+    ],
+    "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates": [
+      "node-level-07-week-30-03-dependency-analysis-graph-hygiene"
+    ],
+    "node-level-07-week-30-05-api-binary-compatibility-validation": [
+      "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+    ],
+    "node-level-07-week-30-06-release-confidence-plan-capstone": [
+      "node-level-07-week-30-05-api-binary-compatibility-validation"
+    ],
+    "node-level-07-week-30-checkpoint": [
+      "node-level-07-week-30-06-release-confidence-plan-capstone"
+    ],
+    "node-level-07-boss": [
+      "node-level-07-week-30-checkpoint"
     ]
   },
   "topologicalOrder": [
@@ -5294,7 +6079,35 @@
     "node-level-06-week-26-06-travel-companion-capstone",
     "node-level-06-week-26-checkpoint",
     "node-level-06-boss",
-    "node-level-07-preview",
+    "node-level-07-week-27-01-test-strategy-junit-behaviour",
+    "node-level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+    "node-level-07-week-27-03-parameterized-property-boundary-tests",
+    "node-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+    "node-level-07-week-27-05-flow-stateflow-hot-stream-tests",
+    "node-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+    "node-level-07-week-27-checkpoint",
+    "node-level-07-week-28-01-repository-contract-integration-tests",
+    "node-level-07-week-28-02-room-dao-transaction-migration-tests",
+    "node-level-07-week-28-03-datastore-serializer-corruption-tests",
+    "node-level-07-week-28-04-mockwebserver-http-contract-tests",
+    "node-level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+    "node-level-07-week-28-06-process-death-config-links-notification-tests",
+    "node-level-07-week-28-checkpoint",
+    "node-level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+    "node-level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+    "node-level-07-week-29-03-ui-automator-system-boundary-tests",
+    "node-level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+    "node-level-07-week-29-05-accessibility-manual-automated-tests",
+    "node-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+    "node-level-07-week-29-checkpoint",
+    "node-level-07-week-30-01-android-lint-baselines-custom-checks",
+    "node-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+    "node-level-07-week-30-03-dependency-analysis-graph-hygiene",
+    "node-level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+    "node-level-07-week-30-05-api-binary-compatibility-validation",
+    "node-level-07-week-30-06-release-confidence-plan-capstone",
+    "node-level-07-week-30-checkpoint",
+    "node-level-07-boss",
     "node-level-08-preview",
     "node-level-09-preview",
     "node-level-10-preview",
@@ -5403,11 +6216,17 @@
       "id": "level-07-testing-quality-engineering",
       "title": "Level 7: Testing and Quality Engineering",
       "order": 7,
-      "startNodeIds": [],
-      "checkpointNodeIds": [],
-      "previewNodeIds": [
-        "node-level-07-preview"
-      ]
+      "startNodeIds": [
+        "node-level-07-week-27-01-test-strategy-junit-behaviour"
+      ],
+      "checkpointNodeIds": [
+        "node-level-07-week-27-checkpoint",
+        "node-level-07-week-28-checkpoint",
+        "node-level-07-week-29-checkpoint",
+        "node-level-07-week-30-checkpoint",
+        "node-level-07-boss"
+      ],
+      "previewNodeIds": []
     },
     {
       "id": "level-08-android-security-engineering",

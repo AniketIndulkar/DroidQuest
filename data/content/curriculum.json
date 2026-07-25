@@ -2,8 +2,8 @@
   "id": "droidquest-curriculum",
   "title": "DroidQuest: Beginner to Android Platform Expert",
   "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
-  "version": "0.9.0",
-  "contentRevision": 9,
+  "version": "0.10.0",
+  "contentRevision": 10,
   "releasedAt": "2026-07-25",
   "defaultLocale": "en-GB",
   "supportedLocales": [
@@ -454,6 +454,70 @@
         "level-06-week-26-06-travel-companion-capstone"
       ],
       "checkpointQuizId": "quiz-level-06-week-26-checkpoint"
+    },
+    {
+      "id": "week-27",
+      "number": 27,
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Deterministic Unit and Async Testing",
+      "status": "available",
+      "lessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour",
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
+        "level-07-week-27-03-parameterized-property-boundary-tests",
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests",
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+      ],
+      "checkpointQuizId": "quiz-level-07-week-27-checkpoint"
+    },
+    {
+      "id": "week-28",
+      "number": 28,
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Persistence, Protocol, and Android Integration Testing",
+      "status": "available",
+      "lessonIds": [
+        "level-07-week-28-01-repository-contract-integration-tests",
+        "level-07-week-28-02-room-dao-transaction-migration-tests",
+        "level-07-week-28-03-datastore-serializer-corruption-tests",
+        "level-07-week-28-04-mockwebserver-http-contract-tests",
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
+        "level-07-week-28-06-process-death-config-links-notification-tests"
+      ],
+      "checkpointQuizId": "quiz-level-07-week-28-checkpoint"
+    },
+    {
+      "id": "week-29",
+      "number": 29,
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "UI, Accessibility, Visual, and System Testing",
+      "status": "available",
+      "lessonIds": [
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
+        "level-07-week-29-03-ui-automator-system-boundary-tests",
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
+        "level-07-week-29-05-accessibility-manual-automated-tests",
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+      ],
+      "checkpointQuizId": "quiz-level-07-week-29-checkpoint"
+    },
+    {
+      "id": "week-30",
+      "number": 30,
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Static Quality and Release Confidence",
+      "status": "available",
+      "lessonIds": [
+        "level-07-week-30-01-android-lint-baselines-custom-checks",
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+        "level-07-week-30-03-dependency-analysis-graph-hygiene",
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
+        "level-07-week-30-05-api-binary-compatibility-validation",
+        "level-07-week-30-06-release-confidence-plan-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-07-week-30-checkpoint"
     }
   ],
   "specialisationPolicy": {

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-07-week-30-02-detekt-ktlint-kotlin-quality",
+  "title": "Apply Detekt, Ktlint, and Kotlin Source Quality",
+  "categoryId": "level-07-testing-quality-engineering",
+  "lessonId": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
+  "difficulty": "advanced",
+  "estimatedMinutes": 55,
+  "prompt": "Create a non-overlapping static-analysis policy, align IDE formatting, enable Detekt type analysis, introduce baselines responsibly, and test one project rule.",
+  "successCriteria": [
+    "The check names the risk, observable promise, and fidelity requirement.",
+    "Time, data, asynchronous work, external state, and cleanup are deterministic.",
+    "Failure artifacts, execution trigger, owner, and intentional blind spots are documented."
+  ],
+  "hints": [
+    "Move the check down a layer until any further move would lose necessary fidelity.",
+    "Make the intended regression fail before trusting the new evidence."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "tasks.withType<Detekt>().configureEach { buildUponDefaultConfig=true; parallel=true }\n// ktlintCheck verifies; ktlintFormat performs reviewed mechanical formatting."
+  },
+  "solutionOutline": [
+    "Model the risk, select the environment, and control all relevant variables.",
+    "Assert behaviour, inject adverse cases, capture diagnostics, and document operations."
+  ],
+  "verification": [
+    "Repeat in random order and isolation to prove determinism.",
+    "Introduce the target defect and confirm the check fails with an actionable report."
+  ],
+  "rewards": {
+    "xp": 115,
+    "stars": 4
+  },
+  "version": "0.10.0"
+}

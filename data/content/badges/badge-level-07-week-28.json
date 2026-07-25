@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-07-week-28",
+  "title": "Week 28 Boundary Verifier",
+  "description": "Awarded for completing the Week 28 testing and quality checkpoint.",
+  "categoryId": "level-07-testing-quality-engineering",
+  "icon": "testing-week-28",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-07-week-28-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 400,
+  "rarity": "rare",
+  "version": "0.10.0"
+}

@@ -1,0 +1,210 @@
+{
+  "id": "level-07-week-28-02-room-dao-transaction-migration-tests",
+  "title": "Room DAO, Transaction, and Migration Tests",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 28,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-28-01-repository-contract-integration-tests"
+  ],
+  "tags": [
+    "testing",
+    "room",
+    "migrations"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns room dao, transaction, and migration tests into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use a real Room database when SQL, constraints, relations, invalidation, transactions, or migrations are under test. Android recommends device tests because device SQLite can differ from a host implementation. An in-memory database gives isolation for DAO behaviour; a file-backed database is necessary for migration and reopen scenarios. Close every database and keep tests independent."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val db=helper.createDatabase(DB,1).apply{ execSQL(\"INSERT INTO trips ...\") ; close() }\nhelper.runMigrationsAndValidate(DB,LATEST,true,*ALL_MIGRATIONS)",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "DAO tests cover queries, ordering, nulls, conflict strategy, foreign keys, FTS, observable invalidation, and transaction rollback. Insert through public DAO operations instead of manufacturing impossible state unless corruption handling is the subject. For migrations, export every schema to version control, create the old database, seed representative data, run the entire migration path, and validate schema plus semantic data."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test every supported start version to current, not only adjacent latest. Include large or nullable legacy rows, renamed columns, indices, default values, and downgrade policy. Auto-migration still needs evidence. Destructive fallback is a product data-loss decision and must be explicit. A compile-time Room query check does not prove migration preservation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Testing only fresh database creation while shipping an untested upgrade path for existing users."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Test and debug Room databases",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/testing-db",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Migrate Room databases",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/migrating-db-versions",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Room DAO, Transaction, and Migration Tests evidence",
+      "language": "kotlin",
+      "code": "val db=helper.createDatabase(DB,1).apply{ execSQL(\"INSERT INTO trips ...\") ; close() }\nhelper.runMigrationsAndValidate(DB,LATEST,true,*ALL_MIGRATIONS)",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Testing only fresh database creation while shipping an untested upgrade path for existing users.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build DAO and transaction tests plus migration tests from every supported schema version, verifying constraints, invalidation, rollback, indices, and retained user data.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-28-02-room-dao-transaction-migration-tests",
+  "challengeId": "challenge-level-07-week-28-02-room-dao-transaction-migration-tests",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for Room DAO, Transaction, and Migration Tests.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/room/testing-db",
+    "https://developer.android.com/training/data-storage/room/migrating-db-versions"
+  ],
+  "version": "0.10.0"
+}

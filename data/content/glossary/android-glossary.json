@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -2053,6 +2053,318 @@
       ],
       "relatedLessonIds": [
         "level-06-week-26-06-travel-companion-capstone"
+      ]
+    },
+    {
+      "id": "term-test-evidence",
+      "term": "Test Evidence",
+      "definition": "A repeatable observation that reduces uncertainty about a named behaviour or quality risk.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "junit"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-01-test-strategy-junit-behaviour"
+      ]
+    },
+    {
+      "id": "term-purposeful-fake",
+      "term": "Purposeful Fake",
+      "definition": "A lightweight working implementation with controls that preserve only the contract semantics required by tests.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "test-doubles"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-02-fakes-mocks-stubs-test-contracts"
+      ]
+    },
+    {
+      "id": "term-property-invariant",
+      "term": "Property Invariant",
+      "definition": "A statement expected to remain true across a generated domain of inputs or operation sequences.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "parameterized-tests"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-03-parameterized-property-boundary-tests"
+      ]
+    },
+    {
+      "id": "term-test-coroutine-scheduler",
+      "term": "Test Coroutine Scheduler",
+      "definition": "The shared virtual-time scheduler that deterministically orders coroutine work in a test.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "coroutines"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+      ]
+    },
+    {
+      "id": "term-hot-flow-test",
+      "term": "Hot Flow Test",
+      "definition": "A test that explicitly controls subscription lifetime, emissions, scheduler, and cancellation for a non-terminating stream.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "flow"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+      ]
+    },
+    {
+      "id": "term-state-sequence-test",
+      "term": "State Sequence Test",
+      "definition": "A behavioural test that verifies significant renderable states produced by controlled events and dependency outputs.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "viewmodel"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-27-06-viewmodel-usecase-state-sequence-tests"
+      ]
+    },
+    {
+      "id": "term-repository-contract-suite",
+      "term": "Repository Contract Suite",
+      "definition": "A reusable set of observable behaviour tests applied to multiple repository implementations.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "repositories"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-01-repository-contract-integration-tests"
+      ]
+    },
+    {
+      "id": "term-migration-path-test",
+      "term": "Migration Path Test",
+      "definition": "A file-backed test that upgrades a seeded historical schema and verifies both current schema and preserved meaning.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "room"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-02-room-dao-transaction-migration-tests"
+      ]
+    },
+    {
+      "id": "term-datastore-boundary-test",
+      "term": "DataStore Boundary Test",
+      "definition": "A real-file test of serialization, transactional update, migration, corruption, and reopen behaviour.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "datastore"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-03-datastore-serializer-corruption-tests"
+      ]
+    },
+    {
+      "id": "term-recorded-http-request",
+      "term": "Recorded HTTP Request",
+      "definition": "The method, path, headers, and body captured by a local test server for protocol assertions.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "mockwebserver"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-04-mockwebserver-http-contract-tests"
+      ]
+    },
+    {
+      "id": "term-test-fidelity",
+      "term": "Test Fidelity",
+      "definition": "How closely a test environment reproduces the implementation and system behaviour relevant to a risk.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "robolectric"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-05-robolectric-instrumented-fidelity-choice"
+      ]
+    },
+    {
+      "id": "term-cold-entry-test",
+      "term": "Cold Entry Test",
+      "definition": "A test that starts a system entry point without relying on existing application process or navigation state.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "process-death"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-28-06-process-death-config-links-notification-tests"
+      ]
+    },
+    {
+      "id": "term-semantic-selector",
+      "term": "Semantic Selector",
+      "definition": "A UI test query based on user-visible meaning, role, state, or action rather than implementation hierarchy.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "compose"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-01-compose-semantics-ui-behaviour-tests"
+      ]
+    },
+    {
+      "id": "term-idling-contract",
+      "term": "Idling Contract",
+      "definition": "A test-visible signal that reports whether asynchronous work affecting UI assertions is busy or idle.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "espresso"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-02-espresso-hybrid-ui-idling-resources"
+      ]
+    },
+    {
+      "id": "term-system-boundary-test",
+      "term": "System Boundary Test",
+      "definition": "An outside-the-process UI test proving interaction with Android system or another application.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "ui-automator"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-03-ui-automator-system-boundary-tests"
+      ]
+    },
+    {
+      "id": "term-golden-image",
+      "term": "Golden Image",
+      "definition": "An approved reference rendering used to review and detect visual changes in screenshot tests.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "screenshots"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-04-screenshot-matrix-screen-sizes-locales"
+      ]
+    },
+    {
+      "id": "term-assistive-journey",
+      "term": "Assistive Journey Test",
+      "definition": "A manual or automated evaluation of a complete user task through semantics and assistive interaction.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "accessibility"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-05-accessibility-manual-automated-tests"
+      ]
+    },
+    {
+      "id": "term-flake-budget",
+      "term": "Flake Budget",
+      "definition": "A tracked limit and remediation policy for non-deterministic tests rather than silent retries.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "animations"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+      ]
+    },
+    {
+      "id": "term-static-quality-baseline",
+      "term": "Static Quality Baseline",
+      "definition": "A versioned inventory of existing analysis findings used to block new debt while old debt is removed.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "quality",
+        "android-lint"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-01-android-lint-baselines-custom-checks"
+      ]
+    },
+    {
+      "id": "term-static-analysis-ownership",
+      "term": "Static Analysis Ownership",
+      "definition": "The explicit assignment of each source-quality concern to one configured tool and remediation workflow.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "quality",
+        "detekt"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-02-detekt-ktlint-kotlin-quality"
+      ]
+    },
+    {
+      "id": "term-dependency-provenance",
+      "term": "Dependency Provenance",
+      "definition": "The documented reason, source, selected version, consumers, and runtime presence of a build dependency.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "quality",
+        "dependencies"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-03-dependency-analysis-graph-hygiene"
+      ]
+    },
+    {
+      "id": "term-coverage-signal",
+      "term": "Coverage Signal",
+      "definition": "Execution data used to find untested risk, interpreted alongside assertion quality and behavioural evidence.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "quality",
+        "coverage"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-04-coverage-kover-jacoco-sonar-gates"
+      ]
+    },
+    {
+      "id": "term-abi-dump",
+      "term": "ABI Dump",
+      "definition": "A version-controlled representation of public binary declarations used to review compatibility changes.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "quality",
+        "api-design"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-05-api-binary-compatibility-validation"
+      ]
+    },
+    {
+      "id": "term-release-confidence-plan",
+      "term": "Release Confidence Plan",
+      "definition": "A risk-based map from product and engineering failures to owned evidence, execution triggers, artifacts, and release decisions.",
+      "categoryId": "level-07-testing-quality-engineering",
+      "tags": [
+        "testing",
+        "release-quality"
+      ],
+      "relatedLessonIds": [
+        "level-07-week-30-06-release-confidence-plan-capstone"
       ]
     }
   ]

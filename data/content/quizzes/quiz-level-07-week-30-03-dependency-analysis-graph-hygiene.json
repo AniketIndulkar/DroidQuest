@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-30-03-dependency-analysis-graph-hygiene",
+  "title": "Dependency Analysis and Graph Hygiene Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-30-03-dependency-analysis-graph-hygiene"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-30-03-dependency-analysis-graph-hygiene-decision",
+      "prompt": "Which approach gives the strongest evidence for dependency analysis and graph hygiene?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Audit the release graph for unused, transitive, exposed, duplicate, vulnerable, and forbidden dependencies; document reviewed exceptions and verify the resulting APK.",
+        "Removing every dependency reported unused without checking reflection, generated code, service loading, or runtime-only use.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Audit the release graph for unused, transitive, exposed, duplicate, vulnerable, and forbidden dependencies; document reviewed exceptions and verify the resulting APK.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene"
+    },
+    {
+      "id": "q-level-07-week-30-03-dependency-analysis-graph-hygiene-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene"
+    },
+    {
+      "id": "q-level-07-week-30-03-dependency-analysis-graph-hygiene-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-30-03-dependency-analysis-graph-hygiene"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

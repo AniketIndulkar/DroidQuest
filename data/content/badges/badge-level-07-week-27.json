@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-07-week-27",
+  "title": "Week 27 Determinism Scout",
+  "description": "Awarded for completing the Week 27 testing and quality checkpoint.",
+  "categoryId": "level-07-testing-quality-engineering",
+  "icon": "testing-week-27",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-07-week-27-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 400,
+  "rarity": "rare",
+  "version": "0.10.0"
+}

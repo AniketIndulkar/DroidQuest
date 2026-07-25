@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-29-06-animation-flakiness-orchestration-sharding",
+  "title": "Animation Tests, Flakiness, Orchestration, and Sharding Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-29-06-animation-flakiness-orchestration-sharding-decision",
+      "prompt": "Which approach gives the strongest evidence for animation tests, flakiness, orchestration, and sharding?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Make one animation deterministic, diagnose an injected flake, define quarantine policy, and design measured Orchestrator plus sharding for the release-candidate suite.",
+        "Retrying every failed device test three times and reporting success when any attempt passes.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Make one animation deterministic, diagnose an injected flake, define quarantine policy, and design measured Orchestrator plus sharding for the release-candidate suite.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+    },
+    {
+      "id": "q-level-07-week-29-06-animation-flakiness-orchestration-sharding-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+    },
+    {
+      "id": "q-level-07-week-29-06-animation-flakiness-orchestration-sharding-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-29-06-animation-flakiness-orchestration-sharding"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

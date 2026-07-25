@@ -1,0 +1,218 @@
+{
+  "id": "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+  "title": "ViewModel and Use-Case State-Sequence Tests",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 27,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-27-05-flow-stateflow-hot-stream-tests"
+  ],
+  "tags": [
+    "testing",
+    "viewmodel",
+    "use-cases"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns viewmodel and use-case state-sequence tests into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A ViewModel test should construct the class directly with fakes, send user events, drive repository outputs, and assert renderable state. It does not need Compose, Hilt, an Activity, or an emulator. Verify loading, content, validation, pending, failure, recovery, and saved input as product states. Avoid asserting private properties or exact internal method order."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "vm.onAmountChanged(\"12.50\")\nvm.onSubmit()\nassertEquals(listOf(Editing,Submitting,Accepted),recorder.significantStates)",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use-case tests express reusable business rules with domain values and typed outcomes. They should cover eligibility boundaries, repository combinations, cancellation, and expected rejection separately from programmer failure. If a use case only forwards one call, its test may reveal that the abstraction has no policy. State-sequence tests can record significant snapshots while ignoring transient scheduler artefacts."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SavedStateHandle tests must distinguish configuration retention from actual process restoration. Construct with a saved map and verify that durable IDs reconstruct authoritative data. For one-off actions, assert the state or repository consequence that makes the outcome observable after collector absence. Test duplicate taps and simultaneous emissions to prove atomic updates."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Launching a full Activity to test a pure validation rule and asserting calls rather than UI state."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Android architecture recommendations",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/recommendations",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Testing Kotlin flows",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/flow/test",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Testing Kotlin coroutines",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/coroutines/test",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the ViewModel and Use-Case State-Sequence Tests evidence",
+      "language": "kotlin",
+      "code": "vm.onAmountChanged(\"12.50\")\nvm.onSubmit()\nassertEquals(listOf(Editing,Submitting,Accepted),recorder.significantStates)",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Launching a full Activity to test a pure validation rule and asserting calls rather than UI state.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write direct tests for a transfer ViewModel and SendPayment use case covering state sequences, duplicate events, saved input, repository recovery, rejection, and cancellation.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+  "challengeId": "challenge-level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for ViewModel and Use-Case State-Sequence Tests.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture/recommendations",
+    "https://developer.android.com/kotlin/flow/test",
+    "https://developer.android.com/kotlin/coroutines/test"
+  ],
+  "version": "0.10.0"
+}

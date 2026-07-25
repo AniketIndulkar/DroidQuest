@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-29-05-accessibility-manual-automated-tests",
+  "title": "Accessibility Checks and Assistive-Technology Testing Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-29-05-accessibility-manual-automated-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-29-05-accessibility-manual-automated-tests-decision",
+      "prompt": "Which approach gives the strongest evidence for accessibility checks and assistive-technology testing?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Create automated semantic and accessibility checks plus a manual TalkBack, keyboard, Switch Access, large-text, and reduced-motion script for two critical journeys.",
+        "Claiming accessibility coverage because every icon has a content description and automated checks pass.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Create automated semantic and accessibility checks plus a manual TalkBack, keyboard, Switch Access, large-text, and reduced-motion script for two critical journeys.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests"
+    },
+    {
+      "id": "q-level-07-week-29-05-accessibility-manual-automated-tests-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests"
+    },
+    {
+      "id": "q-level-07-week-29-05-accessibility-manual-automated-tests-recall",
+      "prompt": "What should a test failure report besides the assertion?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Reproducible inputs, expected and observed state, environment, timeline, and relevant artifacts.",
+      "explanation": "Diagnostic context turns a red check into an actionable engineering result.",
+      "lessonId": "level-07-week-29-05-accessibility-manual-automated-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

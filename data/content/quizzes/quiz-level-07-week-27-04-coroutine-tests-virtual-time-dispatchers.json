@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
+  "title": "Coroutine Tests, Virtual Time, and Dispatcher Control Check",
+  "categoryId": "level-07-testing-quality-engineering",
+  "linkedLessonIds": [
+    "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers-decision",
+      "prompt": "Which approach gives the strongest evidence for coroutine tests, virtual time, and dispatcher control?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Test a retrying payment coroutine with one scheduler, intermediate states, virtual backoff, timeout, cancellation, and exception propagation.",
+        "Using runBlocking and Thread.sleep to wait for viewModelScope work on a real dispatcher.",
+        "Run the largest possible test with live services",
+        "Raise coverage without reviewing assertions"
+      ],
+      "answer": "Test a retrying payment coroutine with one scheduler, intermediate states, virtual backoff, timeout, cancellation, and exception propagation.",
+      "explanation": "Strong evidence identifies a risk, uses sufficient fidelity, controls variables, and produces actionable failure information.",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    },
+    {
+      "id": "q-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers-truth",
+      "prompt": "A passing test proves every behaviour in the production environment is correct.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every test has a defined scope, fidelity, inputs, and blind spots; confidence comes from complementary risk-based evidence.",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    },
+    {
+      "id": "q-level-07-week-27-04-coroutine-tests-virtual-time-dispatchers-output",
+      "prompt": "What is printed by this virtual-time test?\nrunTest {\n  launch { delay(1_000); print(\"done\") }\n  advanceTimeBy(999)\n  print(\"tick|\")\n  runCurrent()\n  advanceTimeBy(1)\n  runCurrent()\n}",
+      "type": "code_output",
+      "difficulty": "advanced",
+      "answer": "tick|done",
+      "explanation": "The delayed coroutine is not eligible at virtual time 999. Advancing to 1,000 reaches its scheduled boundary, and the final runCurrent executes it, so tick| is printed before done.",
+      "lessonId": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers"
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "stars": 3
+  },
+  "version": "0.10.0"
+}

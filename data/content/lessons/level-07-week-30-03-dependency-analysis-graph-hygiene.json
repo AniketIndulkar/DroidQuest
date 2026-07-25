@@ -1,0 +1,210 @@
+{
+  "id": "level-07-week-30-03-dependency-analysis-graph-hygiene",
+  "title": "Dependency Analysis and Graph Hygiene",
+  "categoryId": "level-07-testing-quality-engineering",
+  "week": 30,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-30-02-detekt-ktlint-kotlin-quality"
+  ],
+  "tags": [
+    "quality",
+    "dependencies",
+    "gradle"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson turns dependency analysis and graph hygiene into explicit evidence for a production risk.",
+      "realWorldUse": "Android teams need fast, deterministic, diagnostic confidence across asynchronous code, persistence, UI, devices, build structure, and releases.",
+      "outcome": "Choose the correct evidence layer, control its variables, and make failures reproducible and actionable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "evidence-model",
+          "title": "Start with the risk and observable contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency quality includes direct versus transitive intent, version alignment, unused libraries, accidental API exposure, duplicate capabilities, vulnerabilities, licenses, and graph direction. Use Gradle dependencies and dependencyInsight to explain why an artifact exists and which version won. A lockfile or version catalog improves reproducibility but does not decide whether the dependency belongs."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "./gradlew :app:dependencies --configuration releaseRuntimeClasspath\n./gradlew dependencyInsight --dependency okhttp --configuration releaseRuntimeClasspath",
+              "caption": "The example expresses the behaviour or quality contract that the test and its environment must prove."
+            }
+          ]
+        },
+        {
+          "id": "test-mechanics",
+          "title": "Control the environment without hiding behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In multi-module builds, api expands consumer compile classpaths while implementation contains detail. Unused direct dependencies slow resolution and compilation; used transitive dependencies should often be declared directly so the contract survives upstream changes. Detect cycles and forbidden feature edges. Compare release and test graphs because debug tooling can mask missing production dependencies."
+            },
+            {
+              "type": "table",
+              "title": "Evidence review",
+              "columns": [
+                "Question",
+                "Required answer"
+              ],
+              "rows": [
+                [
+                  "Risk",
+                  "Which user or engineering failure is reduced?"
+                ],
+                [
+                  "Fidelity",
+                  "Why is this the cheapest sufficient environment?"
+                ],
+                [
+                  "Control",
+                  "Which time, state, data, and external variables are deterministic?"
+                ],
+                [
+                  "Diagnosis",
+                  "Which artifacts explain a failure?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quality-operation",
+          "title": "Make confidence maintainable",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Automated dependency-analysis plugins can suggest removals or configuration changes, but generated code, reflection, service loading, lint checks, and runtime discovery need review. Maintain an allowlist with reasons. Update dependencies in small observable batches, read release notes, run compatibility tests, inspect APK contents, and retain rollback. A newest-version badge is not a quality gate."
+            },
+            {
+              "type": "paragraph",
+              "text": "Trustworthy tests control time, identity, data, environment, and asynchronous completion. They leave no state for neighbours, avoid live services, print the expected contract and observed state on failure, and store enough artifacts to reproduce CI locally. Place each check at the lowest-cost layer with sufficient fidelity, then add a higher layer only for a risk the lower layer cannot expose. Review test code like production code: remove duplication without hiding intent, keep fixtures valid by default, preserve cancellation, close resources, and measure suite time plus flake rate. A green test is useful only when the team understands the uncertainty it reduces. Before adding evidence, write the failure story in user language, name the state transition, and decide which boundary owns the contract. After adding it, deliberately break the implementation to prove the check can fail for the intended reason. Record fixture ownership, supported platform range, retry policy, and expected runtime beside the suite. This makes confidence inspectable: maintainers can distinguish a product regression from environment noise, identify blind spots, and remove redundant checks without guessing."
+            },
+            {
+              "type": "flow",
+              "title": "Confidence feedback loop",
+              "steps": [
+                {
+                  "id": "risk",
+                  "label": "Name risk",
+                  "detail": "Describe observable failure and cost."
+                },
+                {
+                  "id": "layer",
+                  "label": "Choose layer",
+                  "detail": "Use the cheapest environment with sufficient fidelity."
+                },
+                {
+                  "id": "control",
+                  "label": "Control variables",
+                  "detail": "Own time, data, identity, state, and asynchronous completion."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress boundaries",
+                  "detail": "Exercise failure, recreation, concurrency, and compatibility."
+                },
+                {
+                  "id": "operate",
+                  "label": "Operate evidence",
+                  "detail": "Publish diagnostics, track flakes, and revise gaps."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A passing check can still be weak",
+              "text": "Removing every dependency reported unused without checking reflection, generated code, service loading, or runtime-only use."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Viewing and debugging dependencies",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        },
+        {
+          "title": "Testing strategies",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/strategies",
+          "whyRead": "Defines the primary behaviour, environment, limitations, and current workflow for this testing or quality practice."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Dependency Analysis and Graph Hygiene evidence",
+      "language": "kotlin",
+      "code": "./gradlew :app:dependencies --configuration releaseRuntimeClasspath\n./gradlew dependencyInsight --dependency okhttp --configuration releaseRuntimeClasspath",
+      "walkthrough": [
+        "Identify the externally observable promise and the production failure this check is intended to catch.",
+        "Verify that the chosen environment controls time, data, asynchronous work, lifecycle, and external dependencies relevant to the assertion.",
+        "Specify failure output, cleanup, execution trigger, owner, and the important risk this check intentionally leaves to another layer."
+      ],
+      "expectedOutput": "Deterministic, independent, diagnostic evidence at the cheapest environment with sufficient fidelity."
+    },
+    "trap_check": [
+      {
+        "mistake": "Removing every dependency reported unused without checking reflection, generated code, service loading, or runtime-only use.",
+        "why": "The check can pass or fail for reasons unrelated to the intended behaviour and provides misleading confidence.",
+        "fix": "Restate the risk, control all relevant variables, and assert the observable contract at the proper layer."
+      },
+      {
+        "mistake": "Adding a slower or broader test without naming the unique failure it can expose.",
+        "why": "Suite cost and flakiness rise while diagnostic quality and actual coverage may not improve.",
+        "fix": "Keep the smallest sufficient check and reserve higher fidelity for an explicit remaining gap."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Audit the release graph for unused, transitive, exposed, duplicate, vulnerable, and forbidden dependencies; document reviewed exceptions and verify the resulting APK.",
+      "successLooksLike": "The evidence is deterministic and independent, fails for the intended regression, produces actionable artifacts, and has an explicit execution trigger and owner."
+    },
+    "recall": [
+      {
+        "prompt": "What should determine the layer where a test runs?",
+        "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
+      },
+      {
+        "prompt": "Which variables commonly cause unreliable tests?",
+        "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
+      },
+      {
+        "prompt": "What makes a test failure actionable?",
+        "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
+      }
+    ]
+  },
+  "quizId": "quiz-level-07-week-30-03-dependency-analysis-graph-hygiene",
+  "challengeId": "challenge-level-07-week-30-03-dependency-analysis-graph-hygiene",
+  "revision": {
+    "objectives": [
+      "Explain the risk and evidence boundary for Dependency Analysis and Graph Hygiene.",
+      "Implement deterministic tests or quality checks with controlled inputs and cleanup.",
+      "Operate failures with useful diagnostics, ownership, and execution policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html",
+    "https://developer.android.com/training/testing/fundamentals/strategies"
+  ],
+  "version": "0.10.0"
+}
