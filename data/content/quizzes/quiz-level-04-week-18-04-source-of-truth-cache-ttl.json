@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-04-source-of-truth-cache-ttl",
+  "title": "Single Source of Truth, Cache Freshness, and TTL Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-04-source-of-truth-cache-ttl"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-04-source-of-truth-cache-ttl-decision",
+      "prompt": "What should the UI read after a successful remote refresh?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "The updated Room source of truth",
+      "explanation": "One local authority keeps online and offline identity and ordering coherent.",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl",
+      "options": [
+        "The updated Room source of truth",
+        "A second network-only list",
+        "The raw Retrofit Response",
+        "A global mutable cache"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-04-source-of-truth-cache-ttl-truth",
+      "prompt": "Expired TTL means cached content must be deleted before attempting refresh.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Stale content may remain useful offline while refresh is attempted.",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl"
+    },
+    {
+      "id": "q-level-04-week-18-04-source-of-truth-cache-ttl-recall",
+      "prompt": "What makes time-based cache tests deterministic?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "An injected Clock",
+      "explanation": "Tests can set freshness boundaries without waiting on wall time.",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

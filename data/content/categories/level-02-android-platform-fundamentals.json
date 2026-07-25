@@ -1,0 +1,62 @@
+{
+  "id": "level-02-android-platform-fundamentals",
+  "title": "Level 2: Android Platform Fundamentals",
+  "order": 2,
+  "description": "Understand Android projects, system-managed application components, lifecycle boundaries, resources, permissions, and hybrid Compose/View applications.",
+  "difficulty": "beginner",
+  "status": "complete",
+  "weekRange": {
+    "start": 5,
+    "end": 8
+  },
+  "unlockPrerequisites": [
+    "level-01-programming-foundations"
+  ],
+  "tags": [
+    "android",
+    "lifecycle",
+    "components"
+  ],
+  "estimatedLearningMinutes": 201,
+  "lessonIds": [
+    "level-02-week-05-01-studio-sdk-emulator",
+    "level-02-week-05-02-projects-modules-source-sets",
+    "level-02-week-05-03-gradle-agp-build-flow",
+    "level-02-week-05-04-manifest-resources-identity",
+    "level-02-week-05-05-sdk-levels-variants-packaging",
+    "level-02-week-06-01-application-process-context",
+    "level-02-week-06-02-activity-lifecycle",
+    "level-02-week-06-03-configuration-changes",
+    "level-02-week-06-04-saved-state-process-death",
+    "level-02-week-06-05-resources-qualifiers-localisation",
+    "level-02-week-07-01-intents-activity-results",
+    "level-02-week-07-02-runtime-permissions",
+    "level-02-week-07-03-component-selection-services",
+    "level-02-week-07-04-broadcasts-providers-pending-intents",
+    "level-02-week-07-05-tasks-back-stack-app-links",
+    "level-02-week-08-01-xml-view-hierarchies",
+    "level-02-week-08-02-constraintlayout-viewbinding",
+    "level-02-week-08-03-fragments-navigation",
+    "level-02-week-08-04-recyclerview-lists",
+    "level-02-week-08-05-view-compose-interoperability",
+    "level-02-week-08-06-notes-app-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-02-week-05-01-studio-sdk-emulator",
+  "plannedTopics": [
+    "Android Studio, SDKs, modules, Gradle, manifests, SDK levels, variants, APKs, and app bundles",
+    "Application process, Context, Activity lifecycle, configuration, saved state, and localised resources",
+    "Intents, results, permissions, components, services, broadcasts, providers, PendingIntent, tasks, and App Links",
+    "XML Views, ConstraintLayout, View Binding, fragments, RecyclerView, Compose interoperability, and the Notes capstone"
+  ],
+  "project": {
+    "title": "Personal Notes Application",
+    "summary": "Build a multi-screen notes app that survives lifecycle events, handles deep links, and includes a hybrid XML screen."
+  },
+  "theme": {
+    "color": "#2878BD",
+    "icon": "android",
+    "mapMood": "Platform districts connected by lifecycle and system boundaries."
+  },
+  "version": "0.4.0",
+  "checkpointQuizId": "quiz-level-02-checkpoint"
+}

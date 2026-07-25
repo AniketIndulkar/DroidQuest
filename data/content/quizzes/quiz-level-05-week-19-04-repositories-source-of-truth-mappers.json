@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-19-04-repositories-source-of-truth-mappers",
+  "title": "Repositories, Sources of Truth, and Mappers Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-04-repositories-source-of-truth-mappers"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-04-repositories-source-of-truth-mappers-decision",
+      "prompt": "Which approach best demonstrates sound repositories, sources of truth, and mappers?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Design an accounts repository contract, map API and Room models to an external Account model, and write contract tests for stale reads, refresh, malformed data, and transfer failure.",
+        "Exposing DAO entities and Retrofit response wrappers directly to every ViewModel.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Design an accounts repository contract, map API and Room models to an external Account model, and write contract tests for stale reads, refresh, malformed data, and transfer failure.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers"
+    },
+    {
+      "id": "q-level-05-week-19-04-repositories-source-of-truth-mappers-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers"
+    },
+    {
+      "id": "q-level-05-week-19-04-repositories-source-of-truth-mappers-recall",
+      "prompt": "What evidence should accompany the repositories, sources of truth, and mappers decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

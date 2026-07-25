@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-01-week-03-02-generics-variance",
+  "title": "Generics, Variance, and Type-Safe Reuse Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-02-generics-variance"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-03-02-mutable-variance",
+      "prompt": "Why is MutableList<CardExpense> not a MutableList<Expense>?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A broader caller could insert another Expense subtype",
+      "explanation": "Invariance prevents a mutation that would violate the specialised list element type.",
+      "lessonId": "level-01-week-03-02-generics-variance",
+      "options": [
+        "A broader caller could insert another Expense subtype",
+        "Kotlin lists have no types",
+        "CardExpense cannot inherit",
+        "Only arrays support inheritance"
+      ]
+    },
+    {
+      "id": "q-week-03-02-variance-match",
+      "prompt": "Match each role to its variance.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "producer": "out T",
+        "consumer": "in T",
+        "producerAndConsumer": "invariant T"
+      },
+      "explanation": "The direction in which values cross the API determines safe variance.",
+      "lessonId": "level-01-week-03-02-generics-variance"
+    },
+    {
+      "id": "q-week-03-02-erasure",
+      "prompt": "Most generic type arguments remain directly testable at JVM runtime.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "JVM type erasure removes most generic arguments from ordinary runtime type checks.",
+      "lessonId": "level-01-week-03-02-generics-variance"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

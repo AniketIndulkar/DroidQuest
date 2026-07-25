@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-11-04-derived-state-snapshot-flow",
+  "title": "derivedStateOf and snapshotFlow Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-04-derived-state-snapshot-flow"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-11-04-derived-state-snapshot-flow-decision",
+      "prompt": "Which API supports Flow operators over a LazyListState read?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "snapshotFlow",
+      "explanation": "It records snapshot reads and emits their changed values to a Flow collector.",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow",
+      "options": [
+        "snapshotFlow",
+        "rememberSaveable",
+        "SideEffect",
+        "Modifier.weight"
+      ]
+    },
+    {
+      "id": "q-level-03-week-11-04-derived-state-snapshot-flow-truth",
+      "prompt": "derivedStateOf is useful for every inexpensive string concatenation.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It helps when the result changes less often than inputs, not as a default derived-value wrapper.",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow"
+    },
+    {
+      "id": "q-level-03-week-11-04-derived-state-snapshot-flow-recall",
+      "prompt": "What should snapshotFlow blocks do?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Read snapshot state without mutating it",
+      "explanation": "Observation remains separate from writes and event handling.",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

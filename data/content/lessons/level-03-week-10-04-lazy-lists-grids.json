@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-10-04-lazy-lists-grids",
+  "title": "Lazy Lists and Grids",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 10,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-10-03-recomposition-snapshots-identity"
+  ],
+  "tags": [
+    "compose",
+    "lazycolumn",
+    "grids"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Large collections need viewport-aware composition, stable identity, scroll state, and explicit content types to remain correct and smooth.",
+      "realWorldUse": "Feeds, search results, settings, catalogues, chats, and responsive grids are core Android screen structures.",
+      "outcome": "Build keyed heterogeneous lazy content, preserve scroll position, and model pagination without duplicate loads."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Compose viewport content lazily",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "LazyColumn, LazyRow, and lazy grids use a DSL to describe content without composing the entire data set. item adds one element, items describes a collection, and stickyHeader can pin section context. contentPadding creates space inside the scrollable content while Modifier.padding changes the container boundary. Arrangement sets repeated gaps. LazyListState exposes position and suspending scroll operations and can be remembered to restore appropriate scroll state."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LazyColumn(state = listState, contentPadding = PaddingValues(16.dp)) {\n    stickyHeader(key = \"filters\") { FilterHeader() }\n    items(notes, key = { it.id }, contentType = { \"note\" }) { NoteRow(it) }\n}",
+              "caption": "One lazy viewport mixes a stable header with keyed note rows."
+            },
+            {
+              "type": "table",
+              "title": "Lazy contract",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Identity",
+                  "key"
+                ],
+                [
+                  "Reusable structure",
+                  "contentType"
+                ],
+                [
+                  "Position",
+                  "LazyListState"
+                ],
+                [
+                  "Inner edge spacing",
+                  "contentPadding"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Keys preserve rows and content types guide reuse",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every movable item should have a stable unique data key, especially when rows contain remembered state or animation. contentType tells the reuse system which item structures are compatible when headers, adverts, and results differ. Avoid zero-sized placeholders because initial measurement may compose too many before real dimensions arrive. Keep placeholder dimensions near final content. Feed immutable stable inputs to rows rather than copying or filtering a whole collection inside every item lambda."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LazyColumn(state = listState, contentPadding = PaddingValues(16.dp)) {\n    stickyHeader(key = \"filters\") { FilterHeader() }\n    items(notes, key = { it.id }, contentType = { \"note\" }) { NoteRow(it) }\n}",
+              "caption": "One lazy viewport mixes a stable header with keyed note rows."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Describe items, not views",
+              "text": "The lazy container decides which compositions are required for its viewport."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Scrolling needs one clear owner",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Do not place a vertical lazy list inside an unbounded vertical scroller by default. Put headings, controls, rows, and footers into one LazyColumn DSL, or deliberately bound and coordinate a nested child. Pagination needs explicit loading, error, retry, end, and duplicate-request rules; Paging Compose can own these mechanics. Programmatic scroll runs in a cancellable coroutine. Test empty lists, restored position, deletion above the viewport, long text, rapid data changes, and accessibility traversal."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Avoid same-axis unbounded nesting",
+              "text": "Two vertical scroll owners can receive infinite constraints or fight for gestures."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Lists and grids in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/lists",
+          "whyRead": "Covers lazy DSLs, keys, grids, headers, scrolling, and performance."
+        },
+        {
+          "title": "Lazily load a list",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/quick-guides/content/lazily-load-list",
+          "whyRead": "Shows paging-aware lazy collection integration."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the nested scroll error",
+      "language": "kotlin",
+      "code": "Column(Modifier.verticalScroll(rememberScrollState())) {\n    Text(\"Results\")\n    LazyColumn { items(notes) { NoteRow(it) } }\n}",
+      "walkthrough": [
+        "The outer scroller measures children with unbounded vertical height.",
+        "The inner lazy list also expects bounded viewport constraints and vertical gesture ownership.",
+        "Place heading and rows in one LazyColumn or deliberately bound the child."
+      ],
+      "expectedOutput": "One normal vertical viewport owns scrolling and restores its position."
+    },
+    "trap_check": [
+      {
+        "mistake": "Triggering another page on every recomposition near the end.",
+        "why": "Repeated observations can launch duplicate network or database work.",
+        "fix": "Use guarded load state or a paging abstraction."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create keyed catalogue content with sticky filters, multiple content types, restored position, and explicit loading, retry, and end states.",
+      "successLooksLike": "Rows preserve state after sorting. Only one guarded next-page request runs. Empty and error states remain accessible."
+    },
+    "recall": [
+      {
+        "prompt": "What does contentPadding control?",
+        "answer": "Spacing inside the scrolling content."
+      },
+      {
+        "prompt": "Why specify contentType?",
+        "answer": "To identify compatible reusable item structures."
+      },
+      {
+        "prompt": "Who prevents duplicate page loads?",
+        "answer": "The paging or state owner with explicit load state."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-10-04-lazy-lists-grids",
+  "challengeId": "challenge-level-03-week-10-04-lazy-lists-grids",
+  "revision": {
+    "objectives": [
+      "Build keyed heterogeneous lazy content.",
+      "Manage scroll restoration.",
+      "Model paging and nested scrolling safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/lists",
+    "https://developer.android.com/develop/ui/compose/quick-guides/content/lazily-load-list"
+  ],
+  "version": "0.5.0"
+}

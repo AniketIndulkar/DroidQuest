@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-13-04-edge-to-edge-window-insets",
+  "title": "Edge-to-edge and Window Insets Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-13-04-edge-to-edge-window-insets"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-13-04-edge-to-edge-window-insets-decision",
+      "prompt": "What should nested content do after parent padding already handles an inset?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Consume the handled inset",
+      "explanation": "Consumption communicates that descendants should only account for remaining safe area.",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets",
+      "options": [
+        "Consume the handled inset",
+        "Apply it twice",
+        "Ignore system UI entirely",
+        "Store it in ViewModel"
+      ]
+    },
+    {
+      "id": "q-level-03-week-13-04-edge-to-edge-window-insets-truth",
+      "prompt": "Edge-to-edge means controls should always sit underneath system bars.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Backgrounds can extend while critical and interactive content respects appropriate safe areas.",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets"
+    },
+    {
+      "id": "q-level-03-week-13-04-edge-to-edge-window-insets-recall",
+      "prompt": "Which inset changes with the software keyboard?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The IME inset",
+      "explanation": "IME-aware modifiers keep focused content clear as the keyboard animates.",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

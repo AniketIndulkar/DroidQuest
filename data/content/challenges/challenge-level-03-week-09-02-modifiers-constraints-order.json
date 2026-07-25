@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-09-02-modifiers-constraints-order",
+  "title": "Build a Modifier Order Lab",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-09-02-modifiers-constraints-order",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 40,
+  "prompt": "Create paired examples showing padding/background, clip/clickable, size/requiredSize, and offset differences, including semantic bounds.",
+  "successCriteria": [
+    "Each pair explains the wrapper order.",
+    "Touch and accessibility bounds are inspected.",
+    "The reusable sample accepts caller Modifier correctly."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ModifierCase(title: String, modifier: Modifier = Modifier, content: @Composable () -> Unit)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

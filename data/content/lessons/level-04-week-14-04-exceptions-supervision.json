@@ -1,0 +1,223 @@
+{
+  "id": "level-04-week-14-04-exceptions-supervision",
+  "title": "Exception Propagation and Supervision",
+  "categoryId": "level-04-async-data-networking",
+  "week": 14,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-14-03-cancellation-timeouts-cleanup"
+  ],
+  "tags": [
+    "coroutines",
+    "exceptions",
+    "supervision"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Coroutine failure rules differ for launch, async, normal jobs, and supervisors, determining whether siblings cancel and where errors are observed.",
+      "realWorldUse": "Parallel dashboard sections, independent cache refreshes, screen operations, and app-scoped jobs require deliberate failure isolation.",
+      "outcome": "Predict exception propagation, await Deferred failures, and introduce supervision only where sibling independence is a real requirement."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Failure follows the job tree",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In a regular coroutine hierarchy, a child failure other than cancellation cancels its parent and therefore sibling children. This fail-fast rule is desirable when children together form one result. The root owner handles the uncaught failure after children finish cleanup. CoroutineExceptionHandler observes otherwise uncaught exceptions at an appropriate root; it is not a try/catch replacement inside arbitrary child code and cannot recover a failed hierarchy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "suspend fun loadPanels(): Panels = supervisorScope {\n    val weather = async { runCatching { weatherSource.load() } }\n    val headlines = async { runCatching { newsSource.load() } }\n    Panels(weather.await(), headlines.await())\n}",
+              "caption": "Independent optional panels isolate failures and materialise each result explicitly."
+            },
+            {
+              "type": "table",
+              "title": "Failure policy",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Atomic child group",
+                  "Regular coroutineScope fail-fast"
+                ],
+                [
+                  "Independent child group",
+                  "supervisorScope with per-child handling"
+                ],
+                [
+                  "launch failure",
+                  "Propagates through parent"
+                ],
+                [
+                  "async failure",
+                  "Observed by await and parent relationship"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "launch and async expose errors differently",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "launch reports an uncaught exception through its parent hierarchy. async captures failure in Deferred and rethrows it when await is called, but the child still participates in its parent job. Forgetting to await loses the value contract and can delay observation. Catch exceptions around the operation whose product failure can be mapped meaningfully. Never catch Throwable indiscriminately because cancellation and serious errors require different treatment."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "suspend fun loadPanels(): Panels = supervisorScope {\n    val weather = async { runCatching { weatherSource.load() } }\n    val headlines = async { runCatching { newsSource.load() } }\n    Panels(weather.await(), headlines.await())\n}",
+              "caption": "Independent optional panels isolate failures and materialise each result explicitly."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Supervision is a product decision",
+              "text": "Use it only when sibling work remains useful after another sibling fails."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Supervision changes sibling cancellation, not error responsibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SupervisorJob and supervisorScope prevent one child failure from automatically cancelling siblings. This fits genuinely independent tasks such as separately loading optional dashboard panels. Each supervised child still needs an observer or await path; supervision does not make failures disappear. Do not supervise children that must produce an atomic combined result. Tests should fail each branch and assert which siblings, parent state, and user outcomes change."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A supervisor does not log errors",
+              "text": "Every failed child still requires an explicit observation and outcome path."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Coroutine exceptions handling",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/exception-handling.html",
+          "whyRead": "Defines launch, async, propagation, handlers, supervision, and cancellation."
+        },
+        {
+          "title": "Composing suspending functions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/composing-suspending-functions.html",
+          "whyRead": "Shows structured async and failure relationships."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove meaningless supervision",
+      "language": "kotlin",
+      "code": "supervisorScope {\n    val user = async { loadUser() }\n    val permissions = async { loadPermissions(user.await().id) }\n}",
+      "walkthrough": [
+        "Permissions depend on the user result and the pair forms one required outcome.",
+        "Allowing sibling independence adds no value and obscures fail-fast semantics.",
+        "Use sequential work or regular coroutineScope for this dependent operation."
+      ],
+      "expectedOutput": "User failure cancels the combined operation and produces one defined error."
+    },
+    "trap_check": [
+      {
+        "mistake": "Installing CoroutineExceptionHandler on a normal async child and never awaiting it.",
+        "why": "Deferred owns the value and exposes its failure through await.",
+        "fix": "Always await or otherwise explicitly observe Deferred."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Load three independent panels under supervision, one required identity call without supervision, and map each failure to a tested screen outcome.",
+      "successLooksLike": "Required failure cancels the operation. Optional panel failure leaves useful siblings available. Every Deferred result or failure is observed."
+    },
+    "recall": [
+      {
+        "prompt": "What happens after child failure in a normal scope?",
+        "answer": "The parent and siblings are cancelled."
+      },
+      {
+        "prompt": "Where does async expose its failure?",
+        "answer": "When its Deferred is awaited."
+      },
+      {
+        "prompt": "What does supervisorScope change?",
+        "answer": "A child failure does not automatically cancel siblings."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-14-04-exceptions-supervision",
+  "challengeId": "challenge-level-04-week-14-04-exceptions-supervision",
+  "revision": {
+    "objectives": [
+      "Predict propagation through job trees.",
+      "Observe launch and async failures.",
+      "Apply supervision from independence requirements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/exception-handling.html",
+    "https://kotlinlang.org/docs/composing-suspending-functions.html"
+  ],
+  "version": "0.6.0"
+}

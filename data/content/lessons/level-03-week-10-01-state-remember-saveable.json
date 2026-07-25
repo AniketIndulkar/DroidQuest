@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-10-01-state-remember-saveable",
+  "title": "State, remember, and rememberSaveable",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 10,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-09-05-text-input-resources"
+  ],
+  "tags": [
+    "compose",
+    "state",
+    "restoration"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Compose redraws from state, so engineers must know which values are observable, who owns them, and how long each value should survive.",
+      "realWorldUse": "Expansion, selected tabs, form drafts, scroll position, and screen data all require different state owners and restoration guarantees.",
+      "outcome": "Choose snapshot state, remember, rememberSaveable, ViewModel, or persistent storage from the required lifetime."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Observable state drives UI",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose tracks reads of snapshot state during composition. When a MutableState value changes, scopes that observed it can be scheduled for recomposition. remember keeps an object across recompositions at the same composition identity, preventing reinitialisation when a parent reruns. It does not make an ordinary mutable collection observable: changing an ArrayList in place can leave the UI stale. Prefer immutable values published through observable holders, and derive display values from the smallest source of truth instead of maintaining synchronised copies."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "var expanded by remember { mutableStateOf(false) }\nvar draft by rememberSaveable { mutableStateOf(\"\") }\nOutlinedTextField(draft, { draft = it })",
+              "caption": "Expansion and a restorable draft intentionally use different lifetimes."
+            },
+            {
+              "type": "table",
+              "title": "State lifetime",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Recomposition",
+                  "remember"
+                ],
+                [
+                  "UI recreation",
+                  "rememberSaveable or SavedStateHandle"
+                ],
+                [
+                  "Screen logic",
+                  "ViewModel"
+                ],
+                [
+                  "Durable record",
+                  "Repository and local storage"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Remembering is not persistence",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "rememberSaveable adds a saved-instance-state boundary. Supported values survive activity or process recreation when Android restores the destination, while a Saver maps custom UI values to compact saveable primitives. It is not storage for bitmaps, repositories, or authoritative records. ViewModel owns screen or business state across configuration; SavedStateHandle keeps small reconstruction keys; a database or file owns durable user content. These lifetimes overlap deliberately but do not provide the same guarantee."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "var expanded by remember { mutableStateOf(false) }\nvar draft by rememberSaveable { mutableStateOf(\"\") }\nOutlinedTextField(draft, { draft = it })",
+              "caption": "Expansion and a restorable draft intentionally use different lifetimes."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Save the minimum",
+              "text": "Store a key or unfinished input and reconstruct derived or large content from its owner."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Choose lifetime before API",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Name the lifetime before the API: current composition, recreated destination, screen state holder, or durable domain data. Keep transient visual state near the component when no parent coordinates it. Save identifiers and unfinished user input, then reload large data from its source. Test recomposition, rotation, process recreation, navigation removal, and a fresh task separately because each destroys a different boundary. A reliable design can say exactly what survives each event and why."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "remember is not process persistence",
+              "text": "Leaving composition discards remembered values unless another restoration boundary owns them."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "State in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/state",
+          "whyRead": "Explains observable state, remember, conversion, and state hoisting."
+        },
+        {
+          "title": "Save UI state in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/state-saving",
+          "whyRead": "Compares rememberSaveable, SavedStateHandle, savers, and storage limits."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the invisible mutation",
+      "language": "kotlin",
+      "code": "val names = remember { mutableListOf<String>() }\nButton({ names.add(\"Ada\") }) { Text(\"Add\") }\nText(names.size.toString())",
+      "walkthrough": [
+        "The list object is remembered but ordinary in-place mutations are not snapshot state writes.",
+        "No observed State value changes, so the count is not guaranteed to recompose.",
+        "Publish an immutable list through State or use a snapshot-aware collection."
+      ],
+      "expectedOutput": "Every accepted add updates the count under the explicitly chosen restoration lifetime."
+    },
+    "trap_check": [
+      {
+        "mistake": "Saving large object graphs with rememberSaveable.",
+        "why": "Saved instance state is size-limited and intended for reconstruction data.",
+        "fix": "Save a stable identifier and reload the full content."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create transient expansion, a restorable draft, ViewModel screen state, and a persisted note, then document what survives each recreation event.",
+      "successLooksLike": "Each value has one named owner and lifetime. Saved state contains no large payload. Tests distinguish recomposition, rotation, and reload."
+    },
+    "recall": [
+      {
+        "prompt": "What does remember survive?",
+        "answer": "Recomposition at the same composition identity."
+      },
+      {
+        "prompt": "What does rememberSaveable add?",
+        "answer": "Saved-instance-state restoration for supported values."
+      },
+      {
+        "prompt": "Where does durable note data belong?",
+        "answer": "In a repository backed by persistent storage."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-10-01-state-remember-saveable",
+  "challengeId": "challenge-level-03-week-10-01-state-remember-saveable",
+  "revision": {
+    "objectives": [
+      "Explain snapshot state observation.",
+      "Select storage by required lifetime.",
+      "Save compact reconstruction values."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/state",
+    "https://developer.android.com/develop/ui/compose/state-saving"
+  ],
+  "version": "0.5.0"
+}

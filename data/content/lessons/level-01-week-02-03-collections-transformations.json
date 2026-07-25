@@ -1,0 +1,224 @@
+{
+  "id": "level-01-week-02-03-collections-transformations",
+  "title": "Collections and Transformation Pipelines",
+  "categoryId": "level-01-programming-foundations",
+  "week": 2,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-02-02-data-enum-sealed-models"
+  ],
+  "tags": [
+    "kotlin",
+    "collections",
+    "immutability",
+    "pipelines"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Collections let one operation describe how a group of values should be selected, transformed, grouped, or summarised.",
+      "realWorldUse": "Android applications transform database rows, network models, UI lists, settings, search results, and analytics events through collection operations.",
+      "outcome": "Choose List, Set, or Map, control mutability, and build readable eager transformation pipelines."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "collection-shapes",
+          "title": "Choose the shape from the question",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A List preserves order and permits duplicates. A Set represents membership with unique elements. A Map associates unique keys with values. Choose based on the domain question, not convenience: transaction history is ordered, selected tag IDs are unique, and expenses by ID form a lookup. Kotlin separates read-only interfaces from mutable interfaces. A val holding MutableList cannot be reassigned, but the list can still change. Expose the narrowest read-only view that callers need and keep mutation close to its owner."
+            },
+            {
+              "type": "table",
+              "title": "Collection choice",
+              "columns": [
+                "Question",
+                "Type"
+              ],
+              "rows": [
+                [
+                  "Does order and repetition matter?",
+                  "List<T>"
+                ],
+                [
+                  "Is membership unique?",
+                  "Set<T>"
+                ],
+                [
+                  "Do unique keys locate values?",
+                  "Map<K, V>"
+                ],
+                [
+                  "Must this owner add or remove?",
+                  "A Mutable variant kept private"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class ExpenseBook {\n    private val entries = mutableListOf<Expense>()\n    val expenses: List<Expense> get() = entries.toList()\n\n    fun add(expense: Expense) { entries += expense }\n}",
+              "caption": "Mutation stays private and callers receive a snapshot that they cannot modify through this API."
+            }
+          ]
+        },
+        {
+          "id": "operators",
+          "title": "Transform without changing the source",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Operations such as filter, map, sortedBy, distinctBy, groupBy, associateBy, and fold return results derived from the receiver. Name intermediate results when a long chain mixes several ideas. filter keeps elements satisfying a predicate; map changes each element; groupBy builds lists under a key; associateBy expects one value per key and later duplicates overwrite earlier ones. Select the operation whose output shape matches the next step."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val travelTotalsByDay = expenses\n    .filter { it.category == ExpenseCategory.TRAVEL }\n    .groupBy { it.day }\n    .mapValues { (_, daily) -> daily.sumOf(Expense::amount) }\n    .toSortedMap()",
+              "caption": "The pipeline selects travel items, groups them, reduces each group, then orders the keyed result."
+            },
+            {
+              "type": "flow",
+              "title": "Read a collection chain",
+              "steps": [
+                {
+                  "id": "source",
+                  "label": "Source",
+                  "detail": "Identify element type and mutability."
+                },
+                {
+                  "id": "select",
+                  "label": "Select",
+                  "detail": "Filter only values that qualify."
+                },
+                {
+                  "id": "shape",
+                  "label": "Transform",
+                  "detail": "Map, group, or associate into a new shape."
+                },
+                {
+                  "id": "reduce",
+                  "label": "Reduce",
+                  "detail": "Summarise when one result is required."
+                },
+                {
+                  "id": "consume",
+                  "label": "Consume",
+                  "detail": "Present or return the final type."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eager-costs",
+          "title": "Understand allocation and failure choices",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Standard collection chains are eager: each intermediate operator commonly creates a new collection. For ordinary screen-sized data this clarity is often the right tradeoff. For large pipelines, Sequence may avoid intermediate collections but adds its own overhead and should be measured. Functions such as first and single throw when their assumptions fail, while firstOrNull and singleOrNull represent uncertainty. Use throwing variants only when absence proves an internal invariant is broken, not when empty data is expected."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun largestExpense(expenses: List<Expense>): Expense? =\n    expenses.maxByOrNull(Expense::amount)\n\nfun totalByCategory(expenses: List<Expense>): Map<ExpenseCategory, Double> =\n    expenses.groupBy(Expense::category)\n        .mapValues { (_, values) -> values.sumOf(Expense::amount) }",
+              "caption": "Nullable and keyed results communicate the possible empty input and output shape."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Clarity before cleverness",
+              "text": "Prefer a readable eager pipeline first. Change representation only after data size and measurement reveal a real problem."
+            },
+            {
+              "type": "paragraph",
+              "text": "When two operations produce the same result, prefer the one whose name communicates the domain step and whose intermediate values remain easy to inspect during debugging."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Collections overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/collections-overview.html",
+          "whyRead": "Introduces List, Set, Map, read-only and mutable interfaces, hierarchy, equality, and variance."
+        },
+        {
+          "title": "Collection operations overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/collection-operations.html",
+          "whyRead": "Maps the standard selection, transformation, grouping, ordering, aggregation, and retrieval operations."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace a grouped total",
+      "language": "kotlin",
+      "code": "data class Expense(val category: String, val amount: Double)\nfun main() {\n    val expenses = listOf(\n        Expense(\"Food\", 5.0),\n        Expense(\"Travel\", 8.0),\n        Expense(\"Food\", 3.0),\n    )\n    val totals = expenses.groupBy { it.category }\n        .mapValues { (_, items) -> items.sumOf { it.amount } }\n    println(totals)\n}",
+      "walkthrough": [
+        "groupBy produces a Map<String, List<Expense>>.",
+        "mapValues keeps each key and transforms its list into a Double total.",
+        "Linked insertion order makes the printed keys follow their first appearance in this example."
+      ],
+      "expectedOutput": "{Food=8.0, Travel=8.0}"
+    },
+    "trap_check": [
+      {
+        "mistake": "Returning a private MutableList through a List-typed property without copying.",
+        "why": "The underlying object may still be mutated through another retained mutable reference.",
+        "fix": "Return an immutable snapshot or use an immutable collection implementation."
+      },
+      {
+        "mistake": "Calling single when zero values are a normal outcome.",
+        "why": "The function throws for empty and multi-element inputs.",
+        "fix": "Use singleOrNull or model the expected cardinality explicitly."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Transform a list of expenses into totals by category, highest expense, unique categories, and a sorted list of positive records.",
+      "successLooksLike": "Every requested output uses a collection operation whose result type fits the requirement. The source list is not mutated. Empty input is handled without an unexpected exception."
+    },
+    "recall": [
+      {
+        "prompt": "Which collection represents unique membership?",
+        "answer": "Set represents a group whose elements are unique."
+      },
+      {
+        "prompt": "What output does groupBy produce?",
+        "answer": "A map from each key to the list of elements sharing that key."
+      },
+      {
+        "prompt": "When should Sequence be introduced?",
+        "answer": "When measured workload characteristics justify changing a clear eager pipeline."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-02-03-collections-transformations",
+  "challengeId": "challenge-level-01-week-02-03-collections-transformations",
+  "revision": {
+    "objectives": [
+      "Choose List, Set, or Map from domain semantics.",
+      "Keep collection mutation local and expose read-only results.",
+      "Construct and explain typed transformation pipelines."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/collections-overview.html",
+    "https://kotlinlang.org/docs/collection-operations.html"
+  ],
+  "version": "0.3.0"
+}

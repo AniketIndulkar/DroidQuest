@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-03-week-09-03-row-column-box-layout",
+  "title": "Row, Column, Box, and Responsive Layout Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-03-row-column-box-layout"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-09-03-row-column-box-layout-layout-match",
+      "prompt": "Match the relationship to the primitive.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "horizontal": "Row",
+        "vertical": "Column",
+        "overlay": "Box"
+      },
+      "explanation": "The primitives directly express horizontal, vertical, and stacked relationships.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout"
+    },
+    {
+      "id": "q-level-03-week-09-03-row-column-box-layout-weight",
+      "prompt": "What does Modifier.weight allocate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Remaining main-axis space",
+      "explanation": "Row or Column distributes remaining room among weighted children.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout",
+      "options": [
+        "Remaining main-axis space",
+        "A fixed pixel size",
+        "Database memory",
+        "Only drawing colour"
+      ]
+    },
+    {
+      "id": "q-level-03-week-09-03-row-column-box-layout-responsive-state",
+      "prompt": "Responsive layout branches should create independent copies of screen state.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Shared state belongs above the branch so structural changes preserve continuity.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

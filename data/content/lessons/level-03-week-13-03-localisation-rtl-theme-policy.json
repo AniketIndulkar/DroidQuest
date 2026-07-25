@@ -1,0 +1,231 @@
+{
+  "id": "level-03-week-13-03-localisation-rtl-theme-policy",
+  "title": "Localisation, RTL, Dark Theme, and Dynamic Colour",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 13,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-13-02-focus-keyboard-scalable-content"
+  ],
+  "tags": [
+    "compose",
+    "localisation",
+    "theming"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Production UI must separate stable identity from translated display content and preserve meaning, direction, contrast, and branding under configuration changes.",
+      "realWorldUse": "Strings, plurals, dates, currency, icons, layouts, light/dark schemes, and system-derived colours change across users and devices.",
+      "outcome": "Use resource-backed language and locale formatting, mirror directional layout correctly, and apply semantic theme roles with verified contrast."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Localisation changes grammar and geometry",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Place app-authored user-visible text in resources and use plurals for quantity grammar. Translations can reorder placeholders, expand substantially, and require locale-aware number, date, currency, and collation rules. User data and server content are not automatically resource strings. Avoid concatenating sentence fragments because word order and grammar differ. Pseudo-locales reveal hard-coded text, expansion, and bidirectional problems early. State and analytics should use stable IDs rather than translated labels."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Text(pluralStringResource(R.plurals.items_in_basket, count, count))\nRow(Modifier.padding(start = 16.dp, end = 8.dp)) {\n    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))\n}",
+              "caption": "Plural grammar and logical direction adapt without changing stable business identity."
+            },
+            {
+              "type": "table",
+              "title": "Configuration contract",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "App text",
+                  "Resource with complete translatable message"
+                ],
+                [
+                  "Quantity",
+                  "Plural resource and locale formatting"
+                ],
+                [
+                  "Horizontal geometry",
+                  "Use start and end"
+                ],
+                [
+                  "Colour",
+                  "Use semantic theme role"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "RTL mirrors direction, not every symbol",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose resolves start and end from LocalLayoutDirection. Use start/end padding, placeRelative, auto-mirrored navigation icons, and logical alignment. Not every image mirrors: logos, clocks, media controls, numbers, and real-world maps may retain direction. Mixed-direction user text needs platform bidi handling rather than manual character reversal. Test an actual RTL locale and keyboard, including focus order and edge gestures, because a mirrored screenshot alone does not prove the task works."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Text(pluralStringResource(R.plurals.items_in_basket, count, count))\nRow(Modifier.padding(start = 16.dp, end = 8.dp)) {\n    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))\n}",
+              "caption": "Plural grammar and logical direction adapt without changing stable business identity."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Translate complete meaning",
+              "text": "Avoid fragments whose order, agreement, or punctuation is fixed by English code."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Themes expose semantic roles and contrast contracts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MaterialTheme semantic colour roles let components adapt across light, dark, high-contrast needs, and optional dynamic colour. Do not use raw white for text or assume a brand colour works on every generated surface. Define deterministic fallback schemes and treat dynamic colour as policy. Contrast includes disabled, selected, error, focus, and system-bar states. Theme changes should flow through composition without recreating domain state, while screenshots and accessibility checks verify representative combinations."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "RTL is not mirror every bitmap",
+              "text": "Mirror directional navigation and geometry while preserving symbols with intrinsic meaning."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Localize your app",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/resources/localization",
+          "whyRead": "Explains resources, default language, formatting, and locale testing."
+        },
+        {
+          "title": "Support different languages and cultures",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/basics/supporting-devices/languages",
+          "whyRead": "Covers locale-aware resources and layout direction."
+        },
+        {
+          "title": "Material 3 theming in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/designsystems/material3",
+          "whyRead": "Shows semantic colour, typography, dark scheme, and dynamic colour integration."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Replace an English fragment sentence",
+      "language": "kotlin",
+      "code": "Text(\"Basket has \" + count + \" items\")",
+      "walkthrough": [
+        "The word order and quantity grammar are fixed in code.",
+        "Translators cannot select singular or reorder the placeholder safely.",
+        "Use one plural resource containing the whole message and a numeric argument."
+      ],
+      "expectedOutput": "Zero, one, and many counts follow each locale grammar without code branches."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using translated title text as a navigation or analytics key.",
+        "why": "The value changes by locale and breaks stable identity.",
+        "fix": "Store a stable ID and resolve its display text at the UI boundary."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Localise basket, prices, dates, errors, and navigation; verify pseudo-locales, one RTL locale, light/dark schemes, and dynamic-colour fallback.",
+      "successLooksLike": "No app sentence is assembled from translated fragments. Directional controls and focus behave correctly in RTL. Theme roles pass contrast checks in representative states."
+    },
+    "recall": [
+      {
+        "prompt": "Why avoid sentence fragments?",
+        "answer": "Languages reorder and inflect complete meaning differently."
+      },
+      {
+        "prompt": "What should horizontal spacing use?",
+        "answer": "Logical start and end directions."
+      },
+      {
+        "prompt": "What should components read for colour?",
+        "answer": "Semantic Material theme roles."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-13-03-localisation-rtl-theme-policy",
+  "challengeId": "challenge-level-03-week-13-03-localisation-rtl-theme-policy",
+  "revision": {
+    "objectives": [
+      "Author translatable complete messages.",
+      "Verify meaningful RTL behaviour.",
+      "Design light, dark, and dynamic colour policy."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/topics/resources/localization",
+    "https://developer.android.com/training/basics/supporting-devices/languages",
+    "https://developer.android.com/develop/ui/compose/designsystems/material3"
+  ],
+  "version": "0.6.0"
+}

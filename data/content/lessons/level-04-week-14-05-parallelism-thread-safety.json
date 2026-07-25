@@ -1,0 +1,223 @@
+{
+  "id": "level-04-week-14-05-parallelism-thread-safety",
+  "title": "Concurrency, Parallelism, and Thread Safety",
+  "categoryId": "level-04-async-data-networking",
+  "week": 14,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-14-04-exceptions-supervision"
+  ],
+  "tags": [
+    "coroutines",
+    "concurrency",
+    "thread-safety"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Coroutines simplify asynchronous structure but do not remove races when multiple coroutines mutate shared state across suspension or threads.",
+      "realWorldUse": "Counters, caches, token refresh, queues, batched requests, and concurrent UI events all require atomic state transitions.",
+      "outcome": "Distinguish concurrency from parallelism and protect invariants with confinement, Mutex, atomic updates, or immutable messages."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Concurrent tasks may interleave without parallel threads",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Concurrency means tasks overlap in progress; parallelism means work executes simultaneously on multiple cores. Coroutines can interleave on one thread at suspension points and still violate assumptions about ordering. A read-modify-write such as count.value = count.value + 1 is not automatically atomic. Dispatchers may resume a coroutine on another pool thread, so thread-local reasoning is insufficient unless confinement is explicit."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "private val _state = MutableStateFlow(CacheState())\nfun markFresh(id: String) {\n    _state.update { current -> current.copy(freshIds = current.freshIds + id) }\n}",
+              "caption": "An atomic pure update publishes a new immutable state without a lost read-modify-write."
+            },
+            {
+              "type": "table",
+              "title": "Protection choice",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Single state value",
+                  "Atomic update"
+                ],
+                [
+                  "Suspending critical section",
+                  "Mutex"
+                ],
+                [
+                  "Complex workflow",
+                  "Single owner and messages"
+                ],
+                [
+                  "CPU throughput",
+                  "Bounded parallelism after measurement"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Shared mutation creates lost updates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Prefer immutable values and one owner that processes messages sequentially. MutableStateFlow.update performs an atomic transformation and may re-run its lambda, so the lambda must be free of side effects. Mutex.withLock protects a suspending critical section, although long I/O should normally happen outside the lock and only the state commit inside. JVM atomic types serve small non-suspending operations. A single-thread context is expensive and usually unnecessary; dispatcher limitation is not a substitute for modelling ownership."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "private val _state = MutableStateFlow(CacheState())\nfun markFresh(id: String) {\n    _state.update { current -> current.copy(freshIds = current.freshIds + id) }\n}",
+              "caption": "An atomic pure update publishes a new immutable state without a lost read-modify-write."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Coroutines do not make mutation safe",
+              "text": "Every shared invariant needs one owner or an appropriate atomic boundary."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Choose protection from the invariant and suspension needs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Define the invariant before selecting a primitive: one token refresh, monotonically increasing version, bounded queue, or consistent pair of fields. Locks can deadlock when acquired inconsistently or held across callbacks. Avoid exposing internal mutable collections after unlocking. Stress tests repeat concurrent operations and assert invariants, while deterministic schedulers explore interleaving but do not prove all multi-thread behaviour. Logging should include operation identity without leaking sensitive values."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not perform slow I/O under a broad lock",
+              "text": "It blocks unrelated work and raises deadlock and latency risk."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Shared mutable state and concurrency",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html",
+          "whyRead": "Explains races, atomics, confinement, Mutex, and actors."
+        },
+        {
+          "title": "Coroutine context and dispatchers",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html",
+          "whyRead": "Describes dispatch, threads, jobs, debugging, and context."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the lost StateFlow increment",
+      "language": "kotlin",
+      "code": "fun increment() {\n    counter.value = counter.value + 1\n}",
+      "walkthrough": [
+        "Two callers can read the same old value before either writes.",
+        "Both publish the same incremented value and one update is lost.",
+        "Use counter.update with a pure transformation or one serial owner."
+      ],
+      "expectedOutput": "A stress test with concurrent increments always reaches the expected total."
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming Dispatchers.Main eliminates every race.",
+        "why": "Re-entrant events and suspension can still interleave logical operations.",
+        "fix": "Model atomic transitions and ownership even under confinement."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a cache that deduplicates concurrent loads per article ID, publishes immutable state, and remains correct under cancellation and failure.",
+      "successLooksLike": "Concurrent callers share one in-flight load per ID. Failure removes stale in-flight state. Stress tests preserve every cache invariant."
+    },
+    "recall": [
+      {
+        "prompt": "What is concurrency?",
+        "answer": "Tasks overlapping in progress."
+      },
+      {
+        "prompt": "What is parallelism?",
+        "answer": "Tasks executing simultaneously."
+      },
+      {
+        "prompt": "What property must StateFlow.update lambda have?",
+        "answer": "It must be pure because it may run more than once."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-14-05-parallelism-thread-safety",
+  "challengeId": "challenge-level-04-week-14-05-parallelism-thread-safety",
+  "revision": {
+    "objectives": [
+      "Identify read-modify-write races.",
+      "Select protection by invariant.",
+      "Test concurrent state transitions."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html",
+    "https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html"
+  ],
+  "version": "0.6.0"
+}

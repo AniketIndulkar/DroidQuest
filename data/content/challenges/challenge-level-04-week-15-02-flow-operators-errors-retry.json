@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-15-02-flow-operators-errors-retry",
+  "title": "Build a Typed Refresh Pipeline",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-15-02-flow-operators-errors-retry",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Create a Flow that maps external models, emits loading, retries transient I/O with virtual-time backoff, uses cache fallback, and preserves cancellation.",
+  "successCriteria": [
+    "Retry policy has explicit classification and limit.",
+    "Mapping and collector failures are tested separately.",
+    "Exhaustion exposes a typed user outcome."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun refreshStream(): Flow<RefreshState>"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

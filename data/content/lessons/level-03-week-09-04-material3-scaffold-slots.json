@@ -1,0 +1,228 @@
+{
+  "id": "level-03-week-09-04-material3-scaffold-slots",
+  "title": "Material 3 Components, Scaffold, and Slots",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 9,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-09-03-row-column-box-layout"
+  ],
+  "tags": [
+    "compose",
+    "material3",
+    "scaffold",
+    "slots"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Material components encode interaction, semantics, theming, and layout contracts; slot APIs make them flexible without exposing dozens of styling switches.",
+      "realWorldUse": "Top app bars, navigation, buttons, cards, text fields, snackbars, sheets, and Scaffold form the production shell of Compose screens.",
+      "outcome": "Choose semantic Material components, handle Scaffold insets, and design a reusable slot-based component without overusing configuration flags."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Start from semantic components",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Material 3 components implement visual styling together with interaction, state, focus, semantics, touch targets, and theming defaults. Button communicates an action better than a clickable Box; Checkbox and Switch expose control roles and state; TextField coordinates input, labels, errors, keyboard actions, and accessibility. Choose the component matching user intent, then customise within its API. Enabled, selected, checked, expanded, and loading are state inputs owned by the caller. Content descriptions should describe icon actions when no visible label exists, while decorative icons generally use null so services do not announce duplicate information."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Scaffold(\n    topBar = { TopAppBar(title = { Text(\"Notes\") }) },\n    snackbarHost = { SnackbarHost(hostState) },\n    floatingActionButton = { FloatingActionButton(onClick = onAdd) { Icon(Icons.Default.Add, \"Add note\") } },\n) { innerPadding ->\n    NotesList(Modifier.padding(innerPadding))\n}",
+              "caption": "The scaffold measures chrome and the content explicitly consumes its inner padding."
+            },
+            {
+              "type": "table",
+              "title": "Component selection",
+              "columns": [
+                "Intent",
+                "Prefer"
+              ],
+              "rows": [
+                [
+                  "Primary action",
+                  "Button or FloatingActionButton"
+                ],
+                [
+                  "Binary setting",
+                  "Switch or Checkbox"
+                ],
+                [
+                  "Text entry",
+                  "TextField/OutlinedTextField"
+                ],
+                [
+                  "Temporary message",
+                  "Snackbar through SnackbarHost"
+                ],
+                [
+                  "Screen shell",
+                  "Scaffold with explicit slots"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Scaffold coordinates screen-level regions",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Scaffold provides slots for top bar, bottom bar, floating action button, snackbar host, and main content. It measures these regions and gives content PaddingValues representing occupied space and system considerations. The content must consume or apply relevant padding; ignoring it can draw interactive content underneath bars. Scaffold does not own navigation state, business state, or automatic edge-to-edge policy. Nested scaffolds can duplicate padding and snackbar hosts, so define shell ownership deliberately. SnackbarHostState is a UI state holder and suspending showSnackbar belongs in an event/effect path rather than the composable body."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun QuestCard(\n    title: @Composable () -> Unit,\n    modifier: Modifier = Modifier,\n    leading: @Composable (() -> Unit)? = null,\n    actions: @Composable RowScope.() -> Unit = {},\n) { /* enforce card layout while callers fill slots */ }",
+              "caption": "Named slots allow structured custom content without a matrix of flags."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Semantics come with the right abstraction",
+              "text": "Higher-level Material components provide interaction and accessibility behaviour that custom Boxes must recreate."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Slots compose behaviour instead of enumerating variants",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A slot API accepts composable content for a meaningful region, such as title, leadingIcon, actions, or supportingContent. Slots let callers supply arbitrary structured UI while the component owns layout and policy. Prefer required content first, modifier next, state and event parameters, then optional slots with safe defaults. Avoid boolean explosions like showIcon, redTitle, useSubtitle, compactButton; those encode combinations poorly. A component should expose the decisions its callers legitimately own while retaining internal invariants. Preview slot combinations and confirm accessibility reading order and minimum touch areas."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production work on material 3 components, scaffold, and slots should begin with an observable requirement rather than a preferred API. Exercise the normal path, empty and error states, recreation, long content, large font scale, and rapid repeated input where they apply. Keep ownership visible in function signatures, make cancellation and failure behaviour deliberate, and record any assumption that crosses a lifecycle or platform boundary. Use previews for visual state, focused unit tests for pure transformations, Compose UI tests for semantics and interaction, and device traces or inspection tools only when runtime evidence is required. The goal is not merely code that renders once; it is behaviour another engineer can explain, test, change, and recover after the operating system or user changes the conditions."
+            },
+            {
+              "type": "flow",
+              "title": "A reliable implementation loop",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "Define inputs",
+                  "detail": "Name the state, constraints, and user outcome."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Build the smallest semantic UI tree."
+                },
+                {
+                  "id": "interact",
+                  "label": "Exercise",
+                  "detail": "Test events, state changes, and configuration."
+                },
+                {
+                  "id": "inspect",
+                  "label": "Inspect",
+                  "detail": "Use previews, tests, and tooling to find incorrect assumptions."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Improve the measured problem without hiding ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not ignore Scaffold padding",
+              "text": "Bars and system areas can overlap content and make controls unreachable."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Material components and layouts",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/components",
+          "whyRead": "Surveys Material 3 components, Scaffold regions, app bars, buttons, navigation, and common patterns."
+        },
+        {
+          "title": "Compose layout basics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/basics",
+          "whyRead": "Explains slot-based layouts and why composable content lambdas create flexible APIs."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the overlapped list",
+      "language": "kotlin",
+      "code": "Scaffold(topBar = { TopAppBar(...) }) {\n    LazyColumn { items(notes) { NoteRow(it) } }\n}",
+      "walkthrough": [
+        "The Scaffold content lambda receives inner padding.",
+        "The list ignores it and begins under the top app bar.",
+        "Apply contentPadding or Modifier.padding with the supplied values, accounting for intended inset ownership."
+      ],
+      "expectedOutput": "The first row must remain visible and reachable beneath the app bar."
+    },
+    "trap_check": [
+      {
+        "mistake": "Building every control from clickable Box.",
+        "why": "Semantics, focus, state, touch feedback, and accessibility must be recreated.",
+        "fix": "Start with the semantic Material component."
+      },
+      {
+        "mistake": "Adding a boolean for every visual variant.",
+        "why": "Combinations grow and the API hides meaningful structure.",
+        "fix": "Use focused variants or composable slots."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a Notes screen shell with app bar, snackbar, FAB, correctly padded list, and a reusable note card with leading and action slots.",
+      "successLooksLike": "Content never hides under chrome. Actions use semantic Material components. The card API avoids boolean configuration combinations."
+    },
+    "recall": [
+      {
+        "prompt": "Who owns Material component state?",
+        "answer": "The caller supplies state and handles events."
+      },
+      {
+        "prompt": "What does Scaffold content receive?",
+        "answer": "PaddingValues for space occupied by scaffold regions."
+      },
+      {
+        "prompt": "What does a slot API provide?",
+        "answer": "A named composable region callers can fill with structured UI."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-09-04-material3-scaffold-slots",
+  "challengeId": "challenge-level-03-week-09-04-material3-scaffold-slots",
+  "revision": {
+    "objectives": [
+      "Select Material components by semantics.",
+      "Apply Scaffold content padding correctly.",
+      "Design focused slot-based component APIs."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/components",
+    "https://developer.android.com/develop/ui/compose/layouts/basics"
+  ],
+  "version": "0.5.0"
+}

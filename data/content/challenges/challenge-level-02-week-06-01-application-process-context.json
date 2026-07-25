@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-06-01-application-process-context",
+  "title": "Remove a Context Leak",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-06-01-application-process-context",
+  "difficulty": "beginner",
+  "estimatedMinutes": 40,
+  "prompt": "Refactor a Notes singleton that retains MainActivity into scoped dependencies and demonstrate restoration after process recreation.",
+  "successCriteria": [
+    "No long-lived object retains an activity.",
+    "Durable notes reconstruct from storage rather than memory globals.",
+    "A cold deep-link entry works without launcher-first setup."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: No long-lived object retains an activity.",
+    "Use lifecycle or boundary evidence to prove: Durable notes reconstruct from storage rather than memory globals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NoteRepository(/* inject only required capabilities */)\n// Replace the global Activity reference and document ownership."
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: No long-lived object retains an activity.",
+    "Implement the smallest design that guarantees: Durable notes reconstruct from storage rather than memory globals.",
+    "Implement the smallest design that guarantees: A cold deep-link entry works without launcher-first setup."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that no long-lived object retains an activity.",
+    "Run a focused check demonstrating that durable notes reconstruct from storage rather than memory globals.",
+    "Run a focused check demonstrating that a cold deep-link entry works without launcher-first setup."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

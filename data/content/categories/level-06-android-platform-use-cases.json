@@ -1,0 +1,40 @@
+{
+  "id": "level-06-android-platform-use-cases",
+  "title": "Level 6: Android Platform Use Cases",
+  "order": 6,
+  "description": "Implement real device features end to end and learn to choose the correct Android API from lifecycle, privacy, reliability, and user-expectation constraints.",
+  "difficulty": "intermediate",
+  "status": "planned",
+  "weekRange": {
+    "start": 23,
+    "end": 26
+  },
+  "unlockPrerequisites": [
+    "level-05-production-architecture"
+  ],
+  "tags": [
+    "platform-apis",
+    "media",
+    "location",
+    "devices"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-06-preview",
+  "plannedTopics": [
+    "Notifications, widgets, shortcuts, and sharing",
+    "Camera, media, location, maps, BLE, and NFC",
+    "Biometrics, credentials, files, WebView, and app links",
+    "Platform API decision exercises"
+  ],
+  "project": {
+    "title": "Travel Companion",
+    "summary": "Combine offline itineraries, location, image capture, notifications, background synchronization, and a home-screen widget."
+  },
+  "theme": {
+    "color": "#B84A62",
+    "icon": "devices",
+    "mapMood": "A device lab linking user-visible capabilities to responsible API choices."
+  },
+  "version": "0.2.0"
+}

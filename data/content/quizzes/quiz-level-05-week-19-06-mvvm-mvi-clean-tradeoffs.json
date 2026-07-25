@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+  "title": "MVVM, MVI, Clean Architecture, and Proportionate Design Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-06-mvvm-mvi-clean-tradeoffs-decision",
+      "prompt": "Which approach best demonstrates sound mvvm, mvi, clean architecture, and proportionate design?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Compare two architectures for a simple settings screen and a regulated payment flow, justify their different ceremony, and define evidence that would trigger reevaluation.",
+        "Adding interactors, gateways, mappers, and base classes solely because an architecture diagram contains them.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Compare two architectures for a simple settings screen and a regulated payment flow, justify their different ceremony, and define evidence that would trigger reevaluation.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+    },
+    {
+      "id": "q-level-05-week-19-06-mvvm-mvi-clean-tradeoffs-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+    },
+    {
+      "id": "q-level-05-week-19-06-mvvm-mvi-clean-tradeoffs-recall",
+      "prompt": "What evidence should accompany the mvvm, mvi, clean architecture, and proportionate design decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

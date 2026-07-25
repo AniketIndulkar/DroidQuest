@@ -1,0 +1,227 @@
+{
+  "id": "level-03-week-12-03-canvas-custom-drawing",
+  "title": "Canvas and Custom Drawing",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 12,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-02-custom-layout-measure-placement"
+  ],
+  "tags": [
+    "compose",
+    "canvas",
+    "graphics"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Custom drawing produces specialised visuals efficiently, but pixels, layout size, density, state reads, and accessibility remain separate responsibilities.",
+      "realWorldUse": "Charts, progress rings, diagrams, highlights, lesson graphs, and decorative effects often need drawing beyond standard components.",
+      "outcome": "Draw with the Canvas coordinate system, cache expensive drawing inputs, and pair visuals with semantics and testable data."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "DrawScope provides size and coordinates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Canvas is a composable wrapper around a drawing modifier and provides DrawScope. Its origin is top-left, x grows right, y grows down, and available size comes from layout. Drawing APIs work in pixels, so convert dp through Density when a physical-independent size is required. Paths, lines, arcs, text measured through appropriate APIs, transforms, clipping, and blend modes can build rich visuals. Keep the underlying chart or progress model separate from DrawScope so geometry can be unit tested."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Canvas(Modifier.size(120.dp).semantics { contentDescription = \"Progress 75 percent\" }) {\n    drawArc(color = Color.Gray, startAngle = -90f, sweepAngle = 360f, useCenter = false)\n    drawArc(color = Color.Green, startAngle = -90f, sweepAngle = 270f, useCenter = false)\n}",
+              "caption": "The drawing uses assigned bounds while semantics supplies equivalent meaning."
+            },
+            {
+              "type": "table",
+              "title": "Drawing choice",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Behind child content",
+                  "drawBehind"
+                ],
+                [
+                  "Control child draw order",
+                  "drawWithContent"
+                ],
+                [
+                  "Cache paths or brushes",
+                  "drawWithCache"
+                ],
+                [
+                  "Standalone drawing surface",
+                  "Canvas"
+                ],
+                [
+                  "Accessible meaning",
+                  "Semantics and text alternative"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Drawing modifiers choose reuse and layering",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "drawBehind renders behind content, drawWithContent can control whether and where child content is drawn, and drawWithCache prepares objects that can be reused until size or observed inputs change. Caching helps paths, brushes, or calculations that are expensive to allocate, not every trivial colour read. State read inside drawing can invalidate only the draw phase, avoiding recomposition when structure is unchanged. Avoid constructing large Paint, Path, or shader data for every frame without measuring."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Canvas(Modifier.size(120.dp).semantics { contentDescription = \"Progress 75 percent\" }) {\n    drawArc(color = Color.Gray, startAngle = -90f, sweepAngle = 360f, useCenter = false)\n    drawArc(color = Color.Green, startAngle = -90f, sweepAngle = 270f, useCenter = false)\n}",
+              "caption": "The drawing uses assigned bounds while semantics supplies equivalent meaning."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Geometry and meaning are separate",
+              "text": "Test the data model independently and provide semantics for what pixels communicate."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Pixels do not create semantics",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A drawing occupies the layout bounds assigned by modifiers; it does not choose screen size by itself. Clip and touch behaviour may differ from drawn pixels, so verify bounds. Canvas output has no automatic accessibility meaning or child hit targets. Add semantics describing the information, provide an equivalent textual summary for charts, and use real semantic components for interactive controls. Test multiple densities, RTL when direction matters, zero and maximum values, and colour contrast."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Canvas has no automatic accessibility tree",
+              "text": "A meaningful chart needs an equivalent description and interactive controls need semantic components."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Graphics in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/graphics/draw/overview",
+          "whyRead": "Introduces Canvas, DrawScope, modifiers, coordinates, transforms, and caching."
+        },
+        {
+          "title": "Compose accessibility semantics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/accessibility/semantics",
+          "whyRead": "Explains how semantics communicate meaning and actions beyond pixels."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Add meaning to the chart",
+      "language": "kotlin",
+      "code": "Canvas(Modifier.fillMaxWidth().height(200.dp)) {\n    drawPath(chartPath, Color.Blue)\n}",
+      "walkthrough": [
+        "The path may visually encode important values.",
+        "Assistive technologies receive no label, summary, or action from pixels alone.",
+        "Add semantics and an equivalent textual representation derived from the chart model."
+      ],
+      "expectedOutput": "Visual and non-visual users can obtain the chart result and available actions."
+    },
+    "trap_check": [
+      {
+        "mistake": "Rebuilding an expensive Path during every draw without evidence.",
+        "why": "Repeated allocation can consume frame time for unchanged geometry.",
+        "fix": "Use drawWithCache or precomputed geometry keyed to size and data."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a cached progress or weekly XP chart with testable geometry, zero and maximum states, responsive sizing, and an equivalent semantic summary.",
+      "successLooksLike": "Geometry logic is tested separately. Expensive paths are reused appropriately. Semantics convey the same key result as pixels."
+    },
+    "recall": [
+      {
+        "prompt": "Where is DrawScope origin?",
+        "answer": "At the top-left of the assigned drawing bounds."
+      },
+      {
+        "prompt": "What can drawWithCache retain?",
+        "answer": "Expensive drawing objects until observed inputs or size change."
+      },
+      {
+        "prompt": "Does Canvas create semantics automatically?",
+        "answer": "No, meaning and actions must be supplied."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-12-03-canvas-custom-drawing",
+  "challengeId": "challenge-level-03-week-12-03-canvas-custom-drawing",
+  "revision": {
+    "objectives": [
+      "Use DrawScope coordinates and density.",
+      "Select a drawing modifier and cache policy.",
+      "Provide accessible equivalent meaning."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/graphics/draw/overview",
+    "https://developer.android.com/develop/ui/compose/accessibility/semantics"
+  ],
+  "version": "0.5.0"
+}

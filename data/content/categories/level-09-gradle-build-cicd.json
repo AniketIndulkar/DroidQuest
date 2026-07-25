@@ -1,0 +1,39 @@
+{
+  "id": "level-09-gradle-build-cicd",
+  "title": "Level 9: Gradle, Build Engineering, and CI/CD",
+  "order": 9,
+  "description": "Engineer scalable, testable and secure Android builds using Gradle internals, convention plugins, caching, variant APIs, signing, and automated release pipelines.",
+  "difficulty": "advanced",
+  "status": "planned",
+  "weekRange": {
+    "start": 35,
+    "end": 39
+  },
+  "unlockPrerequisites": [
+    "level-08-android-security-engineering"
+  ],
+  "tags": [
+    "gradle",
+    "build-engineering",
+    "ci-cd"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-09-preview",
+  "plannedTopics": [
+    "Gradle lifecycle, task graph, and lazy configuration",
+    "Convention plugins, included builds, and TestKit",
+    "Build performance, caches, KSP, and dependency analysis",
+    "Signing, bundles, shrinking, release tracks, and CI security"
+  ],
+  "project": {
+    "title": "Convention Plugin Build",
+    "summary": "Create tested application, library, Compose, testing, coverage, and static-analysis conventions for a scalable Android build."
+  },
+  "theme": {
+    "color": "#3F6B3B",
+    "icon": "build",
+    "mapMood": "A build pipeline where inputs, outputs, caches, and releases are traceable."
+  },
+  "version": "0.2.0"
+}

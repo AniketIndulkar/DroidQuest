@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-11-04-derived-state-snapshot-flow",
+  "title": "Build Scroll Threshold Signals",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-11-04-derived-state-snapshot-flow",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Implement a jump-to-top control and one analytics transition using derivedStateOf and snapshotFlow without recording every scroll update.",
+  "successCriteria": [
+    "UI threshold changes only at the boundary.",
+    "Analytics records one transition per crossing.",
+    "Collection cancels with the list state owner."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ScrollSignals(listState: LazyListState, analytics: Analytics)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

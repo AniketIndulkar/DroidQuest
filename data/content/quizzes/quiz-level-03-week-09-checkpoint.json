@@ -1,0 +1,136 @@
+{
+  "id": "quiz-level-03-week-09-checkpoint",
+  "title": "Week 9 Compose Checkpoint",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-01-compose-mental-model",
+    "level-03-week-09-02-modifiers-constraints-order",
+    "level-03-week-09-03-row-column-box-layout",
+    "level-03-week-09-04-material3-scaffold-slots",
+    "level-03-week-09-05-text-input-resources"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-09-checkpoint-01",
+      "prompt": "What should change when a Compose title needs new text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Update the title state passed to Text",
+      "explanation": "Compose reruns the relevant description with the new state and updates the UI tree.",
+      "lessonId": "level-03-week-09-01-compose-mental-model",
+      "options": [
+        "Update the title state passed to Text",
+        "Find and mutate a TextView",
+        "Recreate the process",
+        "Edit the APK"
+      ]
+    },
+    {
+      "id": "q-week-09-checkpoint-02",
+      "prompt": "Order the main first-frame phases.",
+      "type": "order_steps",
+      "difficulty": "intermediate",
+      "answer": [
+        "composition",
+        "layout",
+        "drawing"
+      ],
+      "explanation": "Composition describes nodes, layout assigns geometry, and drawing renders pixels.",
+      "lessonId": "level-03-week-09-01-compose-mental-model"
+    },
+    {
+      "id": "q-week-09-checkpoint-03",
+      "prompt": "Which chain includes outer padding in the clickable target?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "clickable().padding()",
+      "explanation": "clickable wraps the following padding and content, expanding its semantic hit region.",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order",
+      "options": [
+        "clickable().padding()",
+        "padding().clickable()",
+        "background only",
+        "No modifier can"
+      ]
+    },
+    {
+      "id": "q-week-09-checkpoint-04",
+      "prompt": "Order the layout contract.",
+      "type": "order_steps",
+      "difficulty": "intermediate",
+      "answer": [
+        "parent sends constraints",
+        "child chooses allowed size",
+        "child reports size",
+        "parent places child"
+      ],
+      "explanation": "Constraints travel down and measured geometry travels back up before placement.",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order"
+    },
+    {
+      "id": "q-week-09-checkpoint-05",
+      "prompt": "Match the relationship to the primitive.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "horizontal": "Row",
+        "vertical": "Column",
+        "overlay": "Box"
+      },
+      "explanation": "The primitives directly express horizontal, vertical, and stacked relationships.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout"
+    },
+    {
+      "id": "q-week-09-checkpoint-06",
+      "prompt": "What does Modifier.weight allocate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Remaining main-axis space",
+      "explanation": "Row or Column distributes remaining room among weighted children.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout",
+      "options": [
+        "Remaining main-axis space",
+        "A fixed pixel size",
+        "Database memory",
+        "Only drawing colour"
+      ]
+    },
+    {
+      "id": "q-week-09-checkpoint-07",
+      "prompt": "What must Scaffold main content normally do with innerPadding?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Apply or consume it according to inset ownership",
+      "explanation": "The padding represents measured screen chrome that could overlap content.",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots",
+      "options": [
+        "Apply or consume it according to inset ownership",
+        "Discard it always",
+        "Store it in database",
+        "Convert it to XP"
+      ]
+    },
+    {
+      "id": "q-week-09-checkpoint-08",
+      "prompt": "Match intent to Material component.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "binarySetting": "Switch",
+        "textEntry": "TextField",
+        "temporaryMessage": "Snackbar",
+        "screenShell": "Scaffold"
+      },
+      "explanation": "Semantic components encode expected behaviour and accessibility.",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

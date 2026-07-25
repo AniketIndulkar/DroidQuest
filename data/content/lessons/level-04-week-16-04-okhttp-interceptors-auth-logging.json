@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-16-04-okhttp-interceptors-auth-logging",
+  "title": "OkHttp Interceptors, Authentication, and Safe Logging",
+  "categoryId": "level-04-async-data-networking",
+  "week": 16,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-16-03-retrofit-data-source-repository"
+  ],
+  "tags": [
+    "networking",
+    "okhttp",
+    "interceptors"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "OkHttp centralises transport connections and cross-cutting request policy, but interceptor chains must proceed exactly once and protect secrets.",
+      "realWorldUse": "Headers, correlation IDs, caching, authentication, redacted diagnostics, and controlled client variants apply across many Retrofit endpoints.",
+      "outcome": "Distinguish application and network interceptors, add headers safely, avoid blocking refresh traps, and redact all credential-bearing data."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "One shared client owns transport resources",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "OkHttpClient owns connection pools, threads, DNS, TLS configuration, cache, timeouts, and interceptors and should normally be shared. Derive configured variants with newBuilder when policy differs while reusing resources. Application interceptors run once for the logical call and can rewrite requests or responses; network interceptors observe network exchanges including redirects and can access connection details. Each interceptor must call chain.proceed exactly once unless it intentionally short-circuits with a valid response."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class HeaderInterceptor(private val token: () -> String?) : Interceptor {\n    override fun intercept(chain: Interceptor.Chain): Response {\n        val request = chain.request().newBuilder().apply {\n            token()?.let { header(\"Authorization\", \"Bearer \" + it) }\n        }.build()\n        return chain.proceed(request)\n    }\n}",
+              "caption": "The interceptor preserves the request, adds a current credential, and proceeds once."
+            },
+            {
+              "type": "table",
+              "title": "Client responsibility",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Connection and thread pools",
+                  "Shared OkHttpClient"
+                ],
+                [
+                  "Logical call policy",
+                  "Application interceptor"
+                ],
+                [
+                  "Wire exchange observation",
+                  "Network interceptor"
+                ],
+                [
+                  "401 challenge",
+                  "Authenticator with refresh coordination"
+                ],
+                [
+                  "Diagnostics",
+                  "Redacted metadata only"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Interceptors form an ordered request-response chain",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Add stable headers by creating a new request and preserve existing body and method. Interceptor order matters: correlation before logging changes what diagnostics see, authentication before transport adds credentials, and caching headers interact with server policy. Avoid performing unrelated database or long blocking work on OkHttp dispatcher threads. An Authenticator responds to authentication challenges, but refresh design must prevent recursive refresh calls and concurrent refresh storms; Week 17 will implement single-flight token refresh fully."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class HeaderInterceptor(private val token: () -> String?) : Interceptor {\n    override fun intercept(chain: Interceptor.Chain): Response {\n        val request = chain.request().newBuilder().apply {\n            token()?.let { header(\"Authorization\", \"Bearer \" + it) }\n        }.build()\n        return chain.proceed(request)\n    }\n}",
+              "caption": "The interceptor preserves the request, adds a current credential, and proceeds once."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Interceptors are ordered policy",
+              "text": "Every added header, retry, log, and cache decision affects the next chain element."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Authentication and logging cross security boundaries",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Network logs can expose Authorization, Cookie, Set-Cookie, query parameters, bodies, personal data, and server error details. Debug builds still process real accounts, so configure explicit header redaction and omit bodies by default. Production telemetry should record coarse outcome, timing, endpoint template, request ID, and retry count without secrets. Certificate pinning is an operational commitment requiring backup pins and rotation and should not be added as a decorative security switch."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Never log tokens or bodies by default",
+              "text": "Debug output, crash reports, and CI artifacts frequently escape their intended audience."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OkHttp interceptors",
+          "publisher": "Square OkHttp",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/features/interceptors/",
+          "whyRead": "Explains application versus network interceptors and chain behaviour."
+        },
+        {
+          "title": "OkHttp HTTPS",
+          "publisher": "Square OkHttp",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/features/https/",
+          "whyRead": "Covers TLS defaults, certificates, pinning risks, and operational cautions."
+        },
+        {
+          "title": "Network security configuration",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-config",
+          "whyRead": "Provides Android trust anchors, cleartext, debug overrides, and certificate policy."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Stop leaking credentials in logs",
+      "language": "kotlin",
+      "code": "val logging = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }",
+      "walkthrough": [
+        "BODY logging can include tokens, cookies, personal fields, and server diagnostics.",
+        "Debug builds and captured logs can still reach shared devices or CI artifacts.",
+        "Redact sensitive headers and default to metadata-only logging with controlled local opt-in."
+      ],
+      "expectedOutput": "Diagnostics identify endpoint template, timing, and outcome without recoverable credentials or personal payload."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling chain.proceed twice to retry every failure.",
+        "why": "Non-idempotent bodies can repeat and responses or connections may leak.",
+        "fix": "Centralise classified retries with explicit repeatability and close prior responses."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Configure one OkHttp client with correlation, authentication header, cache policy, safe logging, and tests that assert chain order and secret redaction.",
+      "successLooksLike": "Interceptors proceed correctly and preserve requests. No credential or body appears in captured logs. Client resources are shared across API calls."
+    },
+    "recall": [
+      {
+        "prompt": "How many shared clients are normally needed?",
+        "answer": "One shared configured OkHttpClient, with derived variants when justified."
+      },
+      {
+        "prompt": "What must an interceptor normally call?",
+        "answer": "chain.proceed exactly once."
+      },
+      {
+        "prompt": "What should production networking logs contain?",
+        "answer": "Redacted coarse metadata, timing, and outcome."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-16-04-okhttp-interceptors-auth-logging",
+  "challengeId": "challenge-level-04-week-16-04-okhttp-interceptors-auth-logging",
+  "revision": {
+    "objectives": [
+      "Configure shared transport ownership.",
+      "Write correct ordered interceptors.",
+      "Design redacted diagnostics."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/okhttp/features/interceptors/",
+    "https://square.github.io/okhttp/features/https/",
+    "https://developer.android.com/privacy-and-security/security-config"
+  ],
+  "version": "0.6.0"
+}

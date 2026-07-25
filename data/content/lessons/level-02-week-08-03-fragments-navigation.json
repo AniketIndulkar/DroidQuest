@@ -1,0 +1,224 @@
+{
+  "id": "level-02-week-08-03-fragments-navigation",
+  "title": "Fragments, View Lifecycle, and Navigation",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 8,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-08-02-constraintlayout-viewbinding"
+  ],
+  "tags": [
+    "fragments",
+    "navigation",
+    "lifecycle",
+    "saved-state"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Fragments remain central to many View-based and hybrid apps, but their object and view lifecycles must be treated as separate boundaries.",
+      "realWorldUse": "A FragmentManager adds, removes, replaces, saves, and restores fragments while Navigation can coordinate destinations, arguments, Back, and deep links.",
+      "outcome": "Trace fragment and view lifecycles, use child/parent managers correctly, and navigate with stable arguments rather than fragment instances."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "two-lifecycles",
+          "title": "A fragment can exist without its view",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Fragment is a controller-like object hosted by an activity or another fragment. Its view hierarchy is created in onCreateView and becomes usable through onViewCreated, then is destroyed in onDestroyView even when the fragment remains on the back stack. The fragment lifecycle and viewLifecycleOwner therefore differ. UI observation, binding, adapters tied to views, and view effects must use the view lifecycle. Fragment constructors should remain empty because the system recreates instances; pass stable arguments through a Bundle or navigation arguments and load real data from a repository."
+            },
+            {
+              "type": "flow",
+              "title": "Fragment view lifetime",
+              "steps": [
+                {
+                  "id": "attach",
+                  "label": "Attach/create fragment",
+                  "detail": "Fragment object joins its manager."
+                },
+                {
+                  "id": "create-view",
+                  "label": "Create view",
+                  "detail": "Inflate hierarchy and binding."
+                },
+                {
+                  "id": "view-start",
+                  "label": "View STARTED",
+                  "detail": "Collect and render visible UI."
+                },
+                {
+                  "id": "destroy-view",
+                  "label": "Destroy view",
+                  "detail": "Release binding, adapters, and view callbacks."
+                },
+                {
+                  "id": "fragment-end",
+                  "label": "Destroy fragment",
+                  "detail": "Object leaves its manager permanently."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "viewLifecycleOwner.lifecycleScope.launch {\n    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {\n        viewModel.state.collect(::render)\n    }\n}",
+              "caption": "Collection follows the fragment view, not the longer-lived fragment object."
+            }
+          ]
+        },
+        {
+          "id": "manager",
+          "title": "FragmentManager owns transactions and restoration",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An activity supportFragmentManager owns its top-level fragments; a fragment childFragmentManager owns nested fragments. parentFragmentManager addresses the manager containing the current fragment. Transactions add, replace, remove, show, hide, and optionally add operations to the back stack. commit is asynchronous and state loss after state saving is a real correctness risk, not an annoyance to bypass with commitAllowingStateLoss. Let FragmentManager restore its fragments after recreation rather than creating duplicates unconditionally. Use FragmentContainerView as a modern host and set a primary navigation fragment when nested Back delegation requires it."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "parentFragmentManager.commit {\n    replace<NoteFragment>(R.id.container, args = bundleOf(\"noteId\" to id))\n    setReorderingAllowed(true)\n    addToBackStack(\"note:$id\")\n}",
+              "caption": "The manager records one replace operation and a named history entry with a stable argument."
+            },
+            {
+              "type": "table",
+              "title": "Manager choice",
+              "columns": [
+                "Need",
+                "Manager"
+              ],
+              "rows": [
+                [
+                  "Top-level fragment from activity",
+                  "supportFragmentManager"
+                ],
+                [
+                  "Sibling transaction from fragment",
+                  "parentFragmentManager"
+                ],
+                [
+                  "Nested child screen",
+                  "childFragmentManager"
+                ],
+                [
+                  "View collection owner",
+                  "viewLifecycleOwner, not a manager"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "navigation",
+          "title": "Navigation models destinations and reconstructible arguments",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Jetpack Navigation can define a graph, NavHost, controller, destinations, actions, arguments, deep links, and Back handling for fragment apps. Navigation state should carry compact route inputs such as noteId, never a database entity or Fragment reference. Safe Args or typed route approaches reduce string-key mismatches where available. The destination ViewModel can read arguments and repository data, while saved state restores small transient inputs. Navigation is not domain storage and should not perform authorisation merely because a route exists. Test rotation, process recreation, deep-link entry, Up, Back, and repeated taps that might navigate twice."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "findNavController().navigate(\n    R.id.action_notes_to_note,\n    bundleOf(\"noteId\" to selected.id),\n)",
+              "caption": "The destination receives one reconstruction key and obtains current note data independently."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not navigate after state is saved",
+              "text": "Lifecycle-aware event handling prevents stale callbacks from issuing transactions when the view is no longer active."
+            },
+            {
+              "type": "paragraph",
+              "text": "Fragment results and saved-state APIs can communicate small outcomes between destinations without retaining sibling references. Keep manager transactions at the navigation boundary, make event handling idempotent, and ensure restored destinations can rebuild from arguments even when the original sender no longer exists."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Fragment lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/fragments/lifecycle",
+          "whyRead": "Explains fragment and view lifecycle states, callbacks, managers, and maximum lifecycle."
+        },
+        {
+          "title": "Fragments and the Navigation component",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/navigation/use-graph/navigate",
+          "whyRead": "Shows NavController navigation, actions, arguments, options, and destination handling."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Diagnose duplicate fragments",
+      "language": "text",
+      "code": "override fun onCreate(state: Bundle?) {\n    super.onCreate(state)\n    supportFragmentManager.commit { add(R.id.host, NotesFragment()) }\n}",
+      "walkthrough": [
+        "FragmentManager automatically restores the existing fragment after recreation.",
+        "The code adds another instance regardless of saved state.",
+        "Initial manual addition must be conditional or delegated to a NavHost/FragmentContainerView setup."
+      ],
+      "expectedOutput": "Avoid duplicate construction and let the manager restore its owned state."
+    },
+    "trap_check": [
+      {
+        "mistake": "Observing UI state with the Fragment lifecycle.",
+        "why": "The fragment may remain while its view is destroyed.",
+        "fix": "Use viewLifecycleOwner for all view-bound observation."
+      },
+      {
+        "mistake": "Passing complete Note objects as navigation state.",
+        "why": "They become stale, large, and difficult to restore.",
+        "fix": "Pass a stable note ID and load from the repository."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create list and note-editor fragments with Navigation, view-lifecycle-safe binding, ID-only arguments, and correct restoration after rotation and process recreation.",
+      "successLooksLike": "No view reference survives onDestroyView. Back and deep-link routes reconstruct from note ID. FragmentManager restoration produces no duplicate fragments."
+    },
+    "recall": [
+      {
+        "prompt": "Which lifecycle owns binding?",
+        "answer": "The fragment view lifecycle ending at onDestroyView."
+      },
+      {
+        "prompt": "Which manager owns nested fragments?",
+        "answer": "The hosting fragment childFragmentManager."
+      },
+      {
+        "prompt": "What belongs in navigation arguments?",
+        "answer": "Small stable values needed to identify or reconstruct the destination."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-08-03-fragments-navigation",
+  "challengeId": "challenge-level-02-week-08-03-fragments-navigation",
+  "revision": {
+    "objectives": [
+      "Separate fragment and view ownership.",
+      "Use the correct FragmentManager and restoration behaviour.",
+      "Navigate with stable reconstructible arguments."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/fragments/lifecycle",
+    "https://developer.android.com/guide/navigation/use-graph/navigate"
+  ],
+  "version": "0.4.0"
+}

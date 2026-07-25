@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-08-05-view-compose-interoperability",
+  "title": "Embed a Legacy Editor in Compose",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-05-view-compose-interoperability",
+  "difficulty": "beginner",
+  "estimatedMinutes": 55,
+  "prompt": "Host an XML note editor inside a Compose screen with AndroidViewBinding, one ViewModel state source, correct listeners, dark/RTL/rotation tests, and no feedback loop.",
+  "successCriteria": [
+    "Factory/inflation and update responsibilities are separate.",
+    "Both toolkits render one shared immutable state.",
+    "Lifecycle and restoration behaviour are verified."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Factory/inflation and update responsibilities are separate.",
+    "Use lifecycle or boundary evidence to prove: Both toolkits render one shared immutable state."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "AndroidViewBinding(ItemLegacyEditorBinding::inflate) {\n    // Render state and emit events without duplicate ownership.\n}"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Factory/inflation and update responsibilities are separate.",
+    "Implement the smallest design that guarantees: Both toolkits render one shared immutable state.",
+    "Implement the smallest design that guarantees: Lifecycle and restoration behaviour are verified."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that factory/inflation and update responsibilities are separate.",
+    "Run a focused check demonstrating that both toolkits render one shared immutable state.",
+    "Run a focused check demonstrating that lifecycle and restoration behaviour are verified."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

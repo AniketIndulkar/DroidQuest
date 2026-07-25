@@ -1,0 +1,223 @@
+{
+  "id": "level-01-week-02-02-data-enum-sealed-models",
+  "title": "Data Classes, Enums, and Sealed Models",
+  "categoryId": "level-01-programming-foundations",
+  "week": 2,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-02-01-classes-objects-composition"
+  ],
+  "tags": [
+    "kotlin",
+    "data-classes",
+    "enums",
+    "sealed-types"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Kotlin provides specialised types for value records, fixed labels, and closed alternatives; choosing the right one makes invalid states harder to express.",
+      "realWorldUse": "Compose UI state, repository results, navigation destinations, and user actions frequently use immutable data classes and sealed hierarchies.",
+      "outcome": "Choose data, enum, and sealed types based on identity and alternatives, then handle closed states exhaustively."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "data-values",
+          "title": "Data classes model values",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A data class is suited to records whose meaning comes primarily from their property values. The compiler provides value-based equals, hashCode, toString, component functions, and copy. Prefer val properties so a state transition creates a new value instead of mutating shared state. copy is shallow: nested mutable objects are still shared unless they are also replaced or designed immutably. Data classes do not validate automatically; constructor and factory rules still matter."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class ExpenseDraft(\n    val category: String = \"\",\n    val amountText: String = \"\",\n    val note: String = \"\",\n)\n\nval initial = ExpenseDraft()\nval edited = initial.copy(category = \"Travel\")",
+              "caption": "copy expresses one immutable state change while preserving the untouched properties."
+            },
+            {
+              "type": "table",
+              "title": "Value or identity?",
+              "columns": [
+                "Question",
+                "Likely model"
+              ],
+              "rows": [
+                [
+                  "Are two instances equal when their fields match?",
+                  "Data class"
+                ],
+                [
+                  "Does one long-lived object own changing behaviour?",
+                  "Regular class"
+                ],
+                [
+                  "Is there exactly one named instance?",
+                  "Object declaration"
+                ],
+                [
+                  "Is this a fixed named option?",
+                  "Enum entry"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "enum-fixed-options",
+          "title": "Enums represent fixed named constants",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use an enum when each alternative is a singleton of the same simple concept, such as an expense category or sort direction. Enum entries may have properties and functions, but large amounts of entry-specific behaviour can become difficult to scan. Persisting enum ordinal values is fragile because reordering entries changes their numbers. Prefer a stable explicit code when an enum crosses storage or network boundaries, and define how unknown future values are handled."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "enum class ExpenseCategory(val storageCode: String) {\n    FOOD(\"food\"),\n    TRAVEL(\"travel\"),\n    EQUIPMENT(\"equipment\"),\n}\n\nfun ExpenseCategory.displayName(): String =\n    name.lowercase().replaceFirstChar(Char::uppercase)",
+              "caption": "A stable storage code is separate from declaration order and presentation text."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Boundary stability",
+              "text": "Names, ordinals, and display labels can change. Persist an intentional stable representation and parse unknown input safely."
+            }
+          ]
+        },
+        {
+          "id": "sealed-alternatives",
+          "title": "Sealed types model closed alternatives with different data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A sealed class or interface limits direct alternatives to a known set, letting when check exhaustiveness. Unlike enum entries, each alternative can carry different data. A load result may be Loading, Success with expenses, or Failure with an explanation. The closed hierarchy documents every state the consumer must consider. Do not use a sealed type for an ecosystem intended to accept third-party implementations; the restriction is valuable only when the set should be controlled."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "sealed interface SaveResult {\n    data class Saved(val expense: Expense) : SaveResult\n    data class Rejected(val reason: String) : SaveResult\n}\n\nfun message(result: SaveResult): String = when (result) {\n    is SaveResult.Saved -> \"Saved ${result.expense.category}\"\n    is SaveResult.Rejected -> result.reason\n}",
+              "caption": "Every result carries appropriate data and when covers the complete closed set without else."
+            },
+            {
+              "type": "flow",
+              "title": "Model selection",
+              "steps": [
+                {
+                  "id": "same-fields",
+                  "label": "Value record?",
+                  "detail": "Use a data class when properties define equality."
+                },
+                {
+                  "id": "fixed",
+                  "label": "Fixed constants?",
+                  "detail": "Use an enum for simple singleton options."
+                },
+                {
+                  "id": "different",
+                  "label": "Different payloads?",
+                  "detail": "Use a sealed hierarchy for closed alternatives."
+                },
+                {
+                  "id": "open",
+                  "label": "Open extension?",
+                  "detail": "Use an interface when external implementations are valid."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Data classes",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/data-classes.html",
+          "whyRead": "Covers generated members, copy behaviour, destructuring, and the constraints placed on data-class constructors."
+        },
+        {
+          "title": "Sealed classes and interfaces",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/sealed-classes.html",
+          "whyRead": "Explains controlled hierarchies, exhaustive when expressions, inheritance restrictions, and practical state modelling."
+        },
+        {
+          "title": "Enum classes",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/enum-classes.html",
+          "whyRead": "Provides the official reference for enum entries, properties, functions, iteration, and interface implementation."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Render a closed save result",
+      "language": "kotlin",
+      "code": "data class Expense(val category: String, val amount: Double)\nsealed interface SaveResult {\n    data class Saved(val value: Expense) : SaveResult\n    data class Rejected(val problems: List<String>) : SaveResult\n}\nfun describe(result: SaveResult) = when (result) {\n    is SaveResult.Saved -> \"Saved £${result.value.amount}\"\n    is SaveResult.Rejected -> result.problems.joinToString()\n}\nfun main() { println(describe(SaveResult.Rejected(listOf(\"Amount required\")))) }",
+      "walkthrough": [
+        "Expense is a value record with generated equality.",
+        "Each SaveResult alternative carries data suited to that outcome.",
+        "when is exhaustive because every direct sealed alternative is handled."
+      ],
+      "expectedOutput": "Amount required"
+    },
+    "trap_check": [
+      {
+        "mistake": "Using a data class with publicly mutable nested collections.",
+        "why": "copy can share the same mutable collection, so changes leak between supposedly independent values.",
+        "fix": "Expose read-only immutable data or replace nested values during a transition."
+      },
+      {
+        "mistake": "Persisting an enum ordinal as permanent data.",
+        "why": "Reordering or inserting entries changes ordinals and corrupts meaning.",
+        "fix": "Persist a stable explicit code and parse it deliberately."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create an immutable draft, a category enum with stable codes, and a sealed validation result that lists every failure or carries a valid Expense.",
+      "successLooksLike": "Draft updates use copy rather than public mutation. Category persistence does not depend on enum ordinal. Validation result handling is exhaustive without a catch-all else."
+    },
+    "recall": [
+      {
+        "prompt": "What does data-class copy not guarantee?",
+        "answer": "It does not deep-copy nested mutable objects."
+      },
+      {
+        "prompt": "When is an enum preferable to a sealed type?",
+        "answer": "When alternatives are simple fixed singleton constants with the same shape."
+      },
+      {
+        "prompt": "Why can when omit else for a sealed hierarchy?",
+        "answer": "The compiler knows the controlled set of direct alternatives and can verify coverage."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-02-02-data-enum-sealed-models",
+  "challengeId": "challenge-level-01-week-02-02-data-enum-sealed-models",
+  "revision": {
+    "objectives": [
+      "Use data classes for immutable value-oriented records.",
+      "Represent stable simple options with explicit enum codes.",
+      "Model closed outcomes with exhaustive sealed hierarchies."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/data-classes.html",
+    "https://kotlinlang.org/docs/sealed-classes.html",
+    "https://kotlinlang.org/docs/enum-classes.html"
+  ],
+  "version": "0.3.0"
+}

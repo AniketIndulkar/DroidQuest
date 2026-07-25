@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-04-async-data-networking",
+  "title": "Offline Data Engineer",
+  "description": "Awarded for mastering coroutines, Flow, resilient networking, persistence, synchronization, background work, and the offline-first capstone.",
+  "categoryId": "level-04-async-data-networking",
+  "icon": "offline-data-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-04-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 800,
+  "rarity": "epic",
+  "version": "0.7.0"
+}

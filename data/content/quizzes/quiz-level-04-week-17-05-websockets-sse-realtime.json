@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-05-websockets-sse-realtime",
+  "title": "WebSockets, Server-Sent Events, and Realtime State Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-05-websockets-sse-realtime"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-05-websockets-sse-realtime-decision",
+      "prompt": "Which protocol naturally fits one-way server event streaming?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Server-Sent Events",
+      "explanation": "SSE is an HTTP server-to-client event stream with event identity and retry concepts.",
+      "lessonId": "level-04-week-17-05-websockets-sse-realtime",
+      "options": [
+        "Server-Sent Events",
+        "Multipart upload",
+        "SQLite transaction",
+        "DataStore edit"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-05-websockets-sse-realtime-truth",
+      "prompt": "A live WebSocket should be treated as durable authoritative storage.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Connections drop and replay; authoritative state must be reconciled elsewhere.",
+      "lessonId": "level-04-week-17-05-websockets-sse-realtime"
+    },
+    {
+      "id": "q-level-04-week-17-05-websockets-sse-realtime-recall",
+      "prompt": "How should a callbackFlow release its listener?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Inside awaitClose",
+      "explanation": "Collector cancellation then performs symmetrical cleanup.",
+      "lessonId": "level-04-week-17-05-websockets-sse-realtime"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-06-coroutine-testing-virtual-time",
+  "title": "Testing Coroutines with Virtual Time Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-06-coroutine-testing-virtual-time"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-06-coroutine-testing-virtual-time-decision",
+      "prompt": "How should two injected TestDispatchers be created in runTest?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "With the same testScheduler",
+      "explanation": "One scheduler makes all queued tasks respond to the same virtual clock.",
+      "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time",
+      "options": [
+        "With the same testScheduler",
+        "With unrelated default schedulers",
+        "As real IO dispatchers",
+        "Inside GlobalScope"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-06-coroutine-testing-virtual-time-truth",
+      "prompt": "advanceUntilIdle is always required before any assertion.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Intermediate states often require observing work before it is fully drained.",
+      "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time"
+    },
+    {
+      "id": "q-level-04-week-14-06-coroutine-testing-virtual-time-recall",
+      "prompt": "Which builder should coroutine tests use?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "runTest",
+      "explanation": "It manages structured children, failures, and virtual time.",
+      "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

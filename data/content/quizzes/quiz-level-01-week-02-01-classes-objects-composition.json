@@ -1,0 +1,61 @@
+{
+  "id": "quiz-level-01-week-02-01-classes-objects-composition",
+  "title": "Classes, Objects, Interfaces, and Composition Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-02-01-classes-objects-composition"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-02-01-constructor-rule",
+      "prompt": "Where should a rule required for every Expense instance normally be enforced?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "At construction inside the model",
+      "explanation": "Protecting the invariant during construction prevents invalid instances from travelling through the program.",
+      "lessonId": "level-01-week-02-01-classes-objects-composition",
+      "options": [
+        "At construction inside the model",
+        "Only in console output",
+        "Only in one caller",
+        "In a comment"
+      ]
+    },
+    {
+      "id": "q-week-02-01-interface-facts",
+      "prompt": "Select the sound reasons to introduce an interface.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "External dependency boundary",
+        "Multiple meaningful implementations",
+        "Focused test seam"
+      ],
+      "explanation": "Interfaces model capabilities and variation; creating one mechanically for every class adds needless abstraction.",
+      "lessonId": "level-01-week-02-01-classes-objects-composition",
+      "options": [
+        "External dependency boundary",
+        "Multiple meaningful implementations",
+        "Every class must have one",
+        "Focused test seam"
+      ]
+    },
+    {
+      "id": "q-week-02-01-composition-answer",
+      "prompt": "In one sentence, explain composition.",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "An object receives or owns focused collaborators and delegates parts of its work to them",
+      "explanation": "Composition assembles behaviour from explicit collaborators without claiming an inheritance relationship.",
+      "lessonId": "level-01-week-02-01-classes-objects-composition"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

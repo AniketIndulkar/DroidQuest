@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-11-05-viewmodel-lifecycle-collection",
+  "title": "ViewModel and Lifecycle-aware Collection Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-05-viewmodel-lifecycle-collection"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-11-05-viewmodel-lifecycle-collection-decision",
+      "prompt": "Which API is recommended for collecting Flow in Android Compose UI?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "collectAsStateWithLifecycle",
+      "explanation": "It converts Flow to Compose State while respecting Android lifecycle activity.",
+      "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection",
+      "options": [
+        "collectAsStateWithLifecycle",
+        "runBlocking in composition",
+        "GlobalScope",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-level-03-week-11-05-viewmodel-lifecycle-collection-truth",
+      "prompt": "A ViewModel should retain the current Activity for navigation.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It can outlive that Activity instance and should expose state or intent instead.",
+      "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection"
+    },
+    {
+      "id": "q-level-03-week-11-05-viewmodel-lifecycle-collection-recall",
+      "prompt": "What should a ViewModel expose publicly?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Immutable screen state",
+      "explanation": "The owner retains mutation authority and callers observe one coherent contract.",
+      "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

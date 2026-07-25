@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-05-04-manifest-resources-identity",
+  "title": "Manifest, Resources, and Application Identity Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-04-manifest-resources-identity"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-05-04-installed-id",
+      "prompt": "Which value identifies an installed application to Android?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "applicationId",
+      "explanation": "The selected variant application ID becomes the package-manager identity.",
+      "lessonId": "level-02-week-05-04-manifest-resources-identity",
+      "options": [
+        "applicationId",
+        "Kotlin function name",
+        "Resource filename only",
+        "Gradle task description"
+      ]
+    },
+    {
+      "id": "q-week-05-04-manifest-match",
+      "prompt": "Match each manifest concept to its purpose.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "exported": "external component reachability",
+        "usesPermission": "request protected capability",
+        "intentFilter": "accepted intent patterns",
+        "usesFeature": "device compatibility feature"
+      },
+      "explanation": "Each declaration contributes a different system-visible contract.",
+      "lessonId": "level-02-week-05-04-manifest-resources-identity"
+    },
+    {
+      "id": "q-week-05-04-default-resource",
+      "prompt": "Every qualified resource should normally have a compatible default resource.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "A default lets configurations without the specific qualifier resolve the resource safely.",
+      "lessonId": "level-02-week-05-04-manifest-resources-identity"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

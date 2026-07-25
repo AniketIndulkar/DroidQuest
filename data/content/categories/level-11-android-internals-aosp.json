@@ -1,0 +1,40 @@
+{
+  "id": "level-11-android-internals-aosp",
+  "title": "Level 11: Android Internals and AOSP",
+  "order": 11,
+  "description": "Explain Android beneath the application layer by tracing processes, Binder, system services, rendering, threads, ART, memory pressure, power rules, and diagnostics.",
+  "difficulty": "expert",
+  "status": "planned",
+  "weekRange": {
+    "start": 44,
+    "end": 47
+  },
+  "unlockPrerequisites": [
+    "level-10-performance-reliability-observability"
+  ],
+  "tags": [
+    "android-internals",
+    "aosp",
+    "binder",
+    "rendering"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-11-preview",
+  "plannedTopics": [
+    "Processes, Zygote, Binder, and system services",
+    "Application launch and window creation",
+    "Rendering, VSync, SurfaceFlinger, and BufferQueue",
+    "ART, DEX, memory, power, ADB, dumpsys, and Perfetto"
+  ],
+  "project": {
+    "title": "End-to-End Interaction Trace",
+    "summary": "Trace a screen tap through input dispatch, application state, rendering, SurfaceFlinger, and the physical display."
+  },
+  "theme": {
+    "color": "#4D516D",
+    "icon": "memory",
+    "mapMood": "A systems map connecting framework calls to processes, queues, surfaces, and runtime state."
+  },
+  "version": "0.2.0"
+}

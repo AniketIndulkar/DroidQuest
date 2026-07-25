@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-12-01-stability-skipping-performance",
+  "title": "Stability, Skipping, and Performance Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-12-01-stability-skipping-performance"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-12-01-stability-skipping-performance-decision",
+      "prompt": "What is unsafe about annotating mutable Cart as Stable?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Changes may not notify Compose",
+      "explanation": "A false stability promise can let the runtime skip UI that needed an update.",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance",
+      "options": [
+        "Changes may not notify Compose",
+        "It makes text blue",
+        "It disables Kotlin",
+        "It stores too much saved state"
+      ]
+    },
+    {
+      "id": "q-level-03-week-12-01-stability-skipping-performance-truth",
+      "prompt": "Recomposition count by itself proves a user-visible performance problem.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Cost, phase, frequency, build, and observed user impact must be measured together.",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance"
+    },
+    {
+      "id": "q-level-03-week-12-01-stability-skipping-performance-recall",
+      "prompt": "Which build should performance testing resemble?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A release build",
+      "explanation": "Release-like optimisation and tooling conditions represent shipped behaviour more closely.",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

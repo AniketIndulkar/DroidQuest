@@ -1,0 +1,227 @@
+{
+  "id": "level-04-week-18-04-source-of-truth-cache-ttl",
+  "title": "Single Source of Truth, Cache Freshness, and TTL",
+  "categoryId": "level-04-async-data-networking",
+  "week": 18,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-18-03-datastore-and-file-storage"
+  ],
+  "tags": [
+    "offline-first",
+    "cache",
+    "repository"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A repository must define which source is authoritative, when data is stale, and how refresh changes local state without making the UI wait for the network.",
+      "realWorldUse": "News feeds and article details should open immediately from durable local data, refresh safely, and retain useful content during remote failure.",
+      "outcome": "Drive reads from Room, store freshness metadata, refresh transactionally, and distinguish absent, stale, refreshing, and failed states."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Local durable data drives offline-first reads",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In an offline-first repository, the UI observes a local data source such as Room. A remote refresh never returns a separate competing list directly to presentation; it validates and writes results into the local source of truth, whose Flow updates the UI. This gives one ordering and identity path during online, offline, and configuration changes. Network-only fields still require a deliberate representation or ephemeral state rather than silently bypassing the database."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun observeFeed(): Flow<Feed> = dao.observeFeed().map(::toDomain)\n\nsuspend fun refresh() {\n    val response = remote.fetch(etag = metadata.etag())\n    database.withTransaction {\n        dao.replaceServerArticles(response.items.map(::toEntity))\n        metadata.markValidated(response.etag, clock.now())\n    }\n}",
+              "caption": "Reads remain local while remote data and freshness commit together."
+            },
+            {
+              "type": "table",
+              "title": "Cache state",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Available fresh rows",
+                  "Show immediately"
+                ],
+                [
+                  "Available stale rows",
+                  "Show with refresh state"
+                ],
+                [
+                  "No local rows",
+                  "Loading or explicit failure"
+                ],
+                [
+                  "304 validation",
+                  "Update freshness metadata"
+                ],
+                [
+                  "Pending user mutation",
+                  "Never delete during server replacement"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Freshness is metadata and product policy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Freshness can use fetchedAt, validatedAt, ETag, TTL, version, or server expiry, and different data has different acceptable age. TTL is not a timer that deletes useful offline content. Model fresh, stale-but-usable, refreshing, absent, and refresh-failed separately. Inject Clock so tests control time. A 304 response updates validation metadata without replacing rows. Manual refresh may override age policy while background refresh respects metering and battery constraints."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun observeFeed(): Flow<Feed> = dao.observeFeed().map(::toDomain)\n\nsuspend fun refresh() {\n    val response = remote.fetch(etag = metadata.etag())\n    database.withTransaction {\n        dao.replaceServerArticles(response.items.map(::toEntity))\n        metadata.markValidated(response.etag, clock.now())\n    }\n}",
+              "caption": "Reads remain local while remote data and freshness commit together."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Stale can still be valuable",
+              "text": "Freshness controls refresh policy, not automatic removal of offline usefulness."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Refresh writes through the source of truth",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Fetch outside the transaction, validate and map, then transactionally replace the appropriate scope and update freshness. Full replacement must not delete locally owned bookmarks or pending optimistic changes; separate server-owned and user-owned columns or merge explicitly. Concurrent refresh should deduplicate or compare generation so an older response cannot overwrite a newer result. Cache size and eviction protect storage but preserve pinned and pending records."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not publish remote lists beside database Flow",
+              "text": "Two sources create flicker, ordering races, and ambiguous authority."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Offline-first data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+          "whyRead": "Defines local-first reads, source of truth, network reconciliation, queues, and sync."
+        },
+        {
+          "title": "Android data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer",
+          "whyRead": "Explains repository source policy, caching, operation lifetimes, and errors."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove the competing network state",
+      "language": "kotlin",
+      "code": "val local = dao.observeAll()\nval remote = MutableStateFlow<List<Article>>(emptyList())\nfun refresh() { remote.value = api.fetch() }",
+      "walkthrough": [
+        "Presentation can observe two lists with different identity and freshness.",
+        "Remote success bypasses persistence and disappears offline or after process death.",
+        "Write validated remote data into Room and expose only the Room-backed stream."
+      ],
+      "expectedOutput": "One ordered feed updates after the transactional refresh and remains available offline."
+    },
+    "trap_check": [
+      {
+        "mistake": "Deleting all cached rows when TTL expires.",
+        "why": "Users lose useful offline content during a network failure.",
+        "fix": "Mark stale, refresh opportunistically, and evict only under explicit storage policy."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Expose Room-only feed reads with ETag and TTL metadata, deduplicated refresh, 304 handling, stale content, cache eviction, and preserved bookmarks.",
+      "successLooksLike": "Presentation has one source of truth. Older refresh cannot overwrite newer state. Stale and failed refresh states retain usable local content."
+    },
+    "recall": [
+      {
+        "prompt": "What should offline-first UI observe?",
+        "answer": "The local durable source of truth."
+      },
+      {
+        "prompt": "Does TTL mean delete immediately?",
+        "answer": "No, it indicates freshness policy."
+      },
+      {
+        "prompt": "Where should refresh results go?",
+        "answer": "Into the local source of truth transactionally."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-18-04-source-of-truth-cache-ttl",
+  "challengeId": "challenge-level-04-week-18-04-source-of-truth-cache-ttl",
+  "revision": {
+    "objectives": [
+      "Define one read authority.",
+      "Model freshness and stale usability.",
+      "Merge refresh without losing local intent."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture/data-layer/offline-first",
+    "https://developer.android.com/topic/architecture/data-layer"
+  ],
+  "version": "0.7.0"
+}

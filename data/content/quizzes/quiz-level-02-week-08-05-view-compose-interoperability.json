@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-02-week-08-05-view-compose-interoperability",
+  "title": "View and Compose Interoperability Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-05-view-compose-interoperability"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-08-05-bridge-match",
+      "prompt": "Match the interoperability direction to its API.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "ComposeInViews": "ComposeView",
+        "ViewInCompose": "AndroidView",
+        "XMLBindingInCompose": "AndroidViewBinding"
+      },
+      "explanation": "Each bridge owns creation and lifecycle in a different host toolkit.",
+      "lessonId": "level-02-week-08-05-view-compose-interoperability"
+    },
+    {
+      "id": "q-week-08-05-factory-role",
+      "prompt": "What should AndroidView factory do?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Create the hosted View",
+      "explanation": "The update block applies later state while factory establishes the instance.",
+      "lessonId": "level-02-week-08-05-view-compose-interoperability",
+      "options": [
+        "Create the hosted View",
+        "Run on every recomposition to copy state",
+        "Persist domain data",
+        "Navigate the task stack"
+      ]
+    },
+    {
+      "id": "q-week-08-05-duplicate-state",
+      "prompt": "Compose and Views should keep independent mutable copies of the same domain state.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "One source of truth prevents divergent events and restoration.",
+      "lessonId": "level-02-week-08-05-view-compose-interoperability"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

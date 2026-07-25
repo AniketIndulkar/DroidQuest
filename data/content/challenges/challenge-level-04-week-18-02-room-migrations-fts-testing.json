@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-02-room-migrations-fts-testing",
+  "title": "Evolve and Search the News Schema",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-02-room-migrations-fts-testing",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Add summaries, authors, indices, and FTS across two schema versions with exported schemas and tests from every supported version containing real bookmarks and queued writes.",
+  "successCriteria": [
+    "All user-owned rows survive upgrade.",
+    "FTS results handle documented language cases.",
+    "No unsupported path silently deletes data."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val MIGRATION_1_2: Migration = object : Migration(1, 2) { override fun migrate(db: SupportSQLiteDatabase) { } }"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

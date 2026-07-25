@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-03-week-12-compose",
+  "title": "Week 12 Compose Pathfinder",
+  "description": "Complete the Week 12 Compose checkpoint and demonstrate the associated UI engineering skills.",
+  "categoryId": "level-03-jetpack-compose",
+  "icon": "layers",
+  "rarity": "uncommon",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-03-week-12-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 300,
+  "version": "0.5.0"
+}

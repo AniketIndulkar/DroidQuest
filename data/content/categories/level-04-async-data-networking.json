@@ -1,0 +1,73 @@
+{
+  "id": "level-04-async-data-networking",
+  "title": "Level 4: Asynchronous Programming, Data, and Networking",
+  "order": 4,
+  "description": "Coordinate coroutines and Flow with robust network boundaries, local persistence, caching, synchronization, and explicit offline-first conflict policies.",
+  "difficulty": "intermediate",
+  "status": "complete",
+  "weekRange": {
+    "start": 14,
+    "end": 18
+  },
+  "unlockPrerequisites": [
+    "level-03-jetpack-compose"
+  ],
+  "tags": [
+    "coroutines",
+    "networking",
+    "room",
+    "offline-first"
+  ],
+  "estimatedLearningMinutes": 310,
+  "lessonIds": [
+    "level-04-week-14-01-suspend-main-safety-dispatchers",
+    "level-04-week-14-02-scopes-builders-structured-concurrency",
+    "level-04-week-14-03-cancellation-timeouts-cleanup",
+    "level-04-week-14-04-exceptions-supervision",
+    "level-04-week-14-05-parallelism-thread-safety",
+    "level-04-week-14-06-coroutine-testing-virtual-time",
+    "level-04-week-15-01-cold-flow-context-collection",
+    "level-04-week-15-02-flow-operators-errors-retry",
+    "level-04-week-15-03-combine-latest-flattening",
+    "level-04-week-15-04-buffer-conflate-backpressure",
+    "level-04-week-15-05-stateflow-sharedflow-events",
+    "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+    "level-04-week-16-01-http-contracts-status-headers",
+    "level-04-week-16-02-dto-kotlin-serialization",
+    "level-04-week-16-03-retrofit-data-source-repository",
+    "level-04-week-16-04-okhttp-interceptors-auth-logging",
+    "level-04-week-16-05-network-failures-timeouts-retries",
+    "level-04-week-16-06-mockwebserver-network-integration-tests",
+    "level-04-week-17-01-oauth-tokens-session-security",
+    "level-04-week-17-02-single-flight-token-refresh",
+    "level-04-week-17-03-paging3-cursors-loadstates",
+    "level-04-week-17-04-multipart-upload-progress",
+    "level-04-week-17-05-websockets-sse-realtime",
+    "level-04-week-17-06-connectivity-policy-network-capabilities",
+    "level-04-week-18-01-room-entities-daos-relations-transactions",
+    "level-04-week-18-02-room-migrations-fts-testing",
+    "level-04-week-18-03-datastore-and-file-storage",
+    "level-04-week-18-04-source-of-truth-cache-ttl",
+    "level-04-week-18-05-offline-writes-sync-conflicts",
+    "level-04-week-18-06-workmanager-durable-sync",
+    "level-04-week-18-07-offline-first-news-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-04-week-14-01-suspend-main-safety-dispatchers",
+  "plannedTopics": [
+    "Coroutines, structured ownership, cancellation, supervision, thread safety, and deterministic virtual-time testing",
+    "Cold and hot Flow, transformation, combination, backpressure, sharing, lifecycle-aware collection, and stream testing",
+    "HTTP, serialization, Retrofit, OkHttp, authentication, pagination, uploads, realtime delivery, typed failure, and controlled integration testing",
+    "Room, migrations, DataStore, files, caching, source-of-truth design, offline synchronization, WorkManager, and capstone delivery"
+  ],
+  "project": {
+    "title": "Offline-First News Reader",
+    "summary": "Create a news reader that remains useful offline, synchronizes saved articles, paginates safely, and recovers from failed work."
+  },
+  "theme": {
+    "color": "#007C83",
+    "icon": "sync",
+    "mapMood": "Data routes moving safely between durable local stores and unreliable networks."
+  },
+  "version": "0.7.0",
+  "checkpointQuizId": "quiz-level-04-checkpoint"
+}

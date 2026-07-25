@@ -1,0 +1,232 @@
+{
+  "id": "level-02-week-07-03-component-selection-services",
+  "title": "Android Components and Service Boundaries",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 7,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-07-02-runtime-permissions"
+  ],
+  "tags": [
+    "components",
+    "services",
+    "foreground-services",
+    "background-work"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android components are system entry points with different lifecycle and visibility contracts; choosing by habit leads to restricted, wasteful, or unsafe work.",
+      "realWorldUse": "Activities host UI, services support ongoing work, receivers handle brief broadcasts, and providers expose structured data across process boundaries.",
+      "outcome": "Choose a component from the job contract, explain service threading and foreground obligations, and prefer task-specific background APIs when suitable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "components",
+          "title": "Components are entry points, not architecture layers",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An Activity presents an interactive UI. A Service has no UI and can represent started or bound ongoing work. A BroadcastReceiver handles a short delivered event. A ContentProvider offers a URI-based structured data interface, often across applications. The Application instance is process setup rather than one of the four primary externally activated component types. Components are created by the system and declared or registered under platform rules. Domain models and repositories should not become component subclasses merely to gain Context. Select a component only when the system needs that entry/lifecycle contract."
+            },
+            {
+              "type": "table",
+              "title": "Component contract",
+              "columns": [
+                "Component",
+                "Primary contract"
+              ],
+              "rows": [
+                [
+                  "Activity",
+                  "User-visible interactive screen host"
+                ],
+                [
+                  "Service",
+                  "Ongoing or client-bound operation without UI"
+                ],
+                [
+                  "BroadcastReceiver",
+                  "Brief response to a broadcast event"
+                ],
+                [
+                  "ContentProvider",
+                  "URI-based structured data access"
+                ],
+                [
+                  "Application",
+                  "Process-wide initialisation hook"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<application>\n    <activity android:name=\".MainActivity\" />\n    <service android:name=\".AudioNoteService\" android:exported=\"false\" />\n    <receiver android:name=\".BootReceiver\" android:exported=\"false\" />\n</application>",
+              "caption": "The manifest lets Android discover component classes and their exposure contract."
+            }
+          ]
+        },
+        {
+          "id": "service",
+          "title": "A Service does not provide a worker thread",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A started service receives start requests and remains until stopped or the system applies lifecycle rules. A bound service exposes a client interface while bindings exist. Both run on the application main thread by default, so blocking work still needs asynchronous execution. Background execution limits make an ordinary background service inappropriate for most deferred work. WorkManager is generally better for guaranteed deferrable work; media, navigation, active device communication, or another user-noticeable ongoing task may justify a foreground service. Match the API to urgency, user visibility, duration, and interruption semantics."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class AudioNoteService : Service() {\n    override fun onStartCommand(intent: Intent?, flags: Int, id: Int): Int {\n        // Start non-blocking playback coordination; do not block main thread.\n        return START_NOT_STICKY\n    }\n    override fun onBind(intent: Intent?) = null\n}",
+              "caption": "The service callback coordinates work but does not turn the main thread into a background thread."
+            },
+            {
+              "type": "flow",
+              "title": "Background API choice",
+              "steps": [
+                {
+                  "id": "visible",
+                  "label": "User-noticeable now?",
+                  "detail": "Consider a correctly typed foreground service."
+                },
+                {
+                  "id": "deferrable",
+                  "label": "Deferrable guaranteed work?",
+                  "detail": "Use WorkManager."
+                },
+                {
+                  "id": "exact",
+                  "label": "Exact user alarm?",
+                  "detail": "Evaluate alarm APIs and policy."
+                },
+                {
+                  "id": "short",
+                  "label": "Brief event handling?",
+                  "detail": "Receiver may schedule suitable work."
+                },
+                {
+                  "id": "special",
+                  "label": "Task-specific API?",
+                  "detail": "Prefer platform-specialised APIs when available."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "foreground",
+          "title": "Foreground services require continuous user awareness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A foreground service performs an ongoing operation noticeable to the user and displays a notification. It must declare appropriate service types and permissions, promote itself promptly after a permitted start, and stop when the user-visible work ends. Modern Android restricts starting foreground services from the background, with narrow exemptions. While-in-use permissions can further constrain camera, microphone, or location service starts. A foreground service is not a loophole for unrestricted background execution or a way to make a process immortal. Design interruption, notification actions, restart policy, and persisted recovery data explicitly."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "ContextCompat.startForegroundService(context, intent)\n// In the service, promptly:\nstartForeground(NOTIFICATION_ID, ongoingNotification)",
+              "caption": "Starting and promotion are separate obligations, and current platform restrictions determine whether the start is permitted."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "User-visible means genuinely noticeable",
+              "text": "If the work does not deserve an ongoing notification, a foreground service is probably the wrong API."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Application fundamentals",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/fundamentals",
+          "whyRead": "Introduces component roles, activation, manifests, intents, process hosting, and lifecycle ownership."
+        },
+        {
+          "title": "Services overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/services",
+          "whyRead": "Explains started, bound, and foreground services, main-thread execution, lifecycle, and alternatives."
+        },
+        {
+          "title": "Foreground services overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/services/fgs",
+          "whyRead": "Current requirements for service types, notifications, start restrictions, timeouts, and stopping."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Choose an API for note backup",
+      "language": "text",
+      "code": "Requirement: upload local notes eventually when network is available; user need not watch; retry across app restart.",
+      "walkthrough": [
+        "The work is deferrable rather than continuously user-noticeable.",
+        "It needs constraints, retry, and durable scheduling.",
+        "A foreground service notification would misrepresent background maintenance."
+      ],
+      "expectedOutput": "Use WorkManager rather than a plain or foreground service."
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming Service means background thread.",
+        "why": "Service callbacks run on the application main thread by default.",
+        "fix": "Use asynchronous work and choose an API that matches the job contract."
+      },
+      {
+        "mistake": "Using a foreground service for silent maintenance.",
+        "why": "It violates the user-noticeable contract and encounters platform restrictions.",
+        "fix": "Use WorkManager or a task-specific background API."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Classify audio-note playback, local backup, a short boot event, and cross-app note query into appropriate components or APIs with lifecycle and failure reasoning.",
+      "successLooksLike": "Every choice names urgency, visibility, duration, and retry needs. No Service is assumed to provide a worker thread. Foreground service choices include notification and stop behaviour."
+    },
+    "recall": [
+      {
+        "prompt": "What is a Service missing by design?",
+        "answer": "A user interface and an automatic worker thread."
+      },
+      {
+        "prompt": "When is a foreground service appropriate?",
+        "answer": "For ongoing work genuinely noticeable to the user and permitted by platform rules."
+      },
+      {
+        "prompt": "What suits deferrable guaranteed work?",
+        "answer": "WorkManager normally models constraints, retry, and durable scheduling."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-07-03-component-selection-services",
+  "challengeId": "challenge-level-02-week-07-03-component-selection-services",
+  "revision": {
+    "objectives": [
+      "Select Android components by system contract.",
+      "Explain started/bound service lifecycle and threading.",
+      "Reserve foreground services for permitted user-visible work."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/components/fundamentals",
+    "https://developer.android.com/develop/background-work/services",
+    "https://developer.android.com/develop/background-work/services/fgs"
+  ],
+  "version": "0.4.0"
+}

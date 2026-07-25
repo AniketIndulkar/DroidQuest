@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-01-suspend-main-safety-dispatchers",
+  "title": "Suspend Functions, Main Safety, and Dispatchers Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-01-suspend-main-safety-dispatchers"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-01-suspend-main-safety-dispatchers-decision",
+      "prompt": "What makes a blocking file read main-safe?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "withContext on an injected IO dispatcher",
+      "explanation": "The blocking operation is moved from Main while its owner keeps the API contract simple.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers",
+      "options": [
+        "withContext on an injected IO dispatcher",
+        "Adding suspend only",
+        "Calling it twice",
+        "Using a global variable"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-01-suspend-main-safety-dispatchers-truth",
+      "prompt": "Every suspend function automatically runs on Dispatchers.IO.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Suspend functions inherit coroutine context unless implementation changes it.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers"
+    },
+    {
+      "id": "q-level-04-week-14-01-suspend-main-safety-dispatchers-recall",
+      "prompt": "Which dispatcher fits CPU-heavy transformation?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Dispatchers.Default",
+      "explanation": "Default is designed for CPU-intensive work rather than blocking I/O.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

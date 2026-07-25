@@ -1,0 +1,67 @@
+{
+  "id": "quiz-level-02-week-08-06-notes-app-capstone",
+  "title": "Capstone: Lifecycle-Safe Personal Notes App Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-06-notes-app-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-08-06-cold-entry",
+      "prompt": "What must a cold app link assume?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "No application process or in-memory state exists",
+      "explanation": "Android can create the process directly for the externally addressed component.",
+      "lessonId": "level-02-week-08-06-notes-app-capstone",
+      "options": [
+        "No application process or in-memory state exists",
+        "The launcher always ran first",
+        "The Activity singleton contains the note",
+        "Permissions are permanently granted"
+      ]
+    },
+    {
+      "id": "q-week-08-06-capstone-order",
+      "prompt": "Order the cold note-link path.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "validate URI and ID",
+        "establish destination",
+        "restore/create ViewModel",
+        "load note from repository",
+        "render shared state"
+      ],
+      "explanation": "External input is validated before navigation and durable data reconstructs the screen.",
+      "lessonId": "level-02-week-08-06-notes-app-capstone"
+    },
+    {
+      "id": "q-week-08-06-capstone-evidence",
+      "prompt": "Select required capstone evidence.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "Rotation continuity",
+        "Process-death restoration",
+        "Permission denial alternative"
+      ],
+      "explanation": "Robustness requires transition and failure evidence, not one happy path.",
+      "lessonId": "level-02-week-08-06-notes-app-capstone",
+      "options": [
+        "Rotation continuity",
+        "Process-death restoration",
+        "Permission denial alternative",
+        "Only one successful launcher screenshot"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

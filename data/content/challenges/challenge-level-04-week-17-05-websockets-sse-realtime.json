@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-17-05-websockets-sse-realtime",
+  "title": "Build a Resumable Live Headlines Stream",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-17-05-websockets-sse-realtime",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Implement a callbackFlow-backed SSE or WebSocket client with states, authentication, bounded buffering, heartbeat, resume IDs, deduplication, snapshot recovery, and cancellation.",
+  "successCriteria": [
+    "Owner cancellation releases the connection.",
+    "Reconnect uses capped jitter and stops on permanent failure.",
+    "Duplicate and missing sequence cases reconcile correctly."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class LiveHeadlineClient(/* transport, snapshot source, clock */)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

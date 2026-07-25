@@ -1,0 +1,228 @@
+{
+  "id": "level-01-week-04-05-http-rest-json",
+  "title": "HTTP, REST, and JSON Boundaries",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-04-data-structures-complexity"
+  ],
+  "tags": [
+    "http",
+    "rest",
+    "json",
+    "networking"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Mobile applications exchange messages with remote systems, and correctness depends on understanding the protocol and treating external data as untrusted.",
+      "realWorldUse": "Retrofit, OkHttp, web APIs, authentication, caching, retries, and offline synchronisation all build on HTTP requests, responses, and serialised payloads.",
+      "outcome": "Describe an HTTP exchange, choose methods and interpret status families, distinguish resource design from transport, and validate JSON into domain models."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "exchange",
+          "title": "HTTP is a request-response protocol",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An HTTP client sends a request containing a method, target URI, headers, and sometimes a body. A server returns a status code, headers, and sometimes a body. The method expresses intended semantics: GET retrieves a representation, POST commonly submits or creates, PUT replaces at a known target, PATCH applies a partial modification, and DELETE requests removal. Safe methods should not request state change; idempotent methods can be repeated with the same intended effect, though logging and timestamps may still differ. HTTPS protects the connection in transit but does not make response data truthful or application logic authorised."
+            },
+            {
+              "type": "code",
+              "language": "http",
+              "code": "GET /v1/expenses?month=2026-07 HTTP/1.1\nHost: api.example.test\nAccept: application/json\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{\"items\":[{\"id\":\"e7\",\"amount\":12.5}]}",
+              "caption": "The request target includes a path and query; headers negotiate JSON; the response status and media type describe the returned representation."
+            },
+            {
+              "type": "flow",
+              "title": "HTTP exchange",
+              "steps": [
+                {
+                  "id": "build",
+                  "label": "Build request",
+                  "detail": "Choose method, URI, headers, and optional body."
+                },
+                {
+                  "id": "send",
+                  "label": "Send",
+                  "detail": "Transport bytes over a connection, normally protected by TLS."
+                },
+                {
+                  "id": "handle",
+                  "label": "Handle response",
+                  "detail": "Interpret status, headers, and body together."
+                },
+                {
+                  "id": "map",
+                  "label": "Map result",
+                  "detail": "Validate transport data into an application outcome."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "semantics",
+          "title": "Status and REST conventions shape behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Status codes are grouped by first digit: 2xx reports successful handling, 3xx redirects, 4xx reports a request-side problem, and 5xx reports a server-side failure. The exact code matters: 201 can include the location of a created resource, 204 has no response body, 401 concerns authentication, 403 authorisation, 404 absence, and 429 rate limiting. A REST-style API models addressable resources and uses HTTP semantics consistently, but REST is an architectural style rather than a synonym for JSON. Retry policy depends on method idempotency, failure stage, server guidance, and business operation; blindly retrying a payment-like POST can duplicate side effects."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "when (response.code) {\n    in 200..299 -> decodeSuccess(response)\n    401 -> ApiResult.AuthenticationRequired\n    404 -> ApiResult.NotFound\n    429 -> ApiResult.RetryLater(response.retryAfter)\n    in 500..599 -> ApiResult.ServerFailure(response.code)\n    else -> ApiResult.Unexpected(response.code)\n}",
+              "caption": "Transport outcomes become explicit application results rather than one undifferentiated exception."
+            },
+            {
+              "type": "table",
+              "title": "Status families",
+              "columns": [
+                "Family",
+                "Meaning",
+                "Client question"
+              ],
+              "rows": [
+                [
+                  "2xx",
+                  "Request handled successfully",
+                  "Is a body expected for this exact code?"
+                ],
+                [
+                  "3xx",
+                  "Further redirection action",
+                  "Should the client follow or cache it?"
+                ],
+                [
+                  "4xx",
+                  "Request cannot be fulfilled as sent",
+                  "Must identity, input, or rate handling change?"
+                ],
+                [
+                  "5xx",
+                  "Server failed to fulfil a valid request",
+                  "Is a bounded retry safe and useful?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "json-boundary",
+          "title": "JSON is syntax, not a trusted domain model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "JSON represents objects, arrays, strings, numbers, booleans, and null. It does not carry Kotlin types, dates, decimal money semantics, sealed variants, or validation rules. A transport data transfer object should mirror the remote contract, including optional or unknown fields. Mapping then validates required values, parses units and dates, rejects impossible states, and produces a domain model. Keep transport concerns such as snake_case names and nullable legacy fields out of core business types. Parsers should tolerate explicitly supported evolution while failing visibly on corrupt required data. Log enough context to diagnose a mapping failure, but never log credentials or sensitive payloads."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Serializable\ndata class ExpenseDto(val id: String?, val amountMinor: Long?)\n\nfun ExpenseDto.toDomain(): Expense {\n    val safeId = id?.takeIf { it.isNotBlank() } ?: error(\"Missing id\")\n    val minor = requireNotNull(amountMinor) { \"Missing amount\" }\n    require(minor >= 0) { \"Negative amount\" }\n    return Expense(ExpenseId(safeId), Money(minor))\n}",
+              "caption": "The DTO accepts transport uncertainty; the mapper creates a validated domain value or an explicit failure."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not use Double for exact currency",
+              "text": "JSON numbers have no currency semantics. Prefer an agreed integer minor-unit or decimal representation and validate its range."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Overview of HTTP",
+          "publisher": "MDN Web Docs",
+          "resourceType": "guide",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+          "whyRead": "Explains clients, servers, requests, responses, intermediaries, connections, and the stateless protocol model."
+        },
+        {
+          "title": "HTTP request methods",
+          "publisher": "MDN Web Docs",
+          "resourceType": "guide",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+          "whyRead": "Summarises method semantics including safety, idempotency, and cacheability."
+        },
+        {
+          "title": "Kotlin serialization",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/serialization.html",
+          "whyRead": "Introduces typed serialisation setup, JSON encoding and decoding, and custom serialisers in Kotlin."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Map transport data safely",
+      "language": "kotlin",
+      "code": "data class ExpenseDto(val id: String?, val amountMinor: Long?)\ndata class Expense(val id: String, val amountMinor: Long)\nfun ExpenseDto.toDomainOrNull(): Expense? {\n    val safeId = id?.trim()?.takeIf { it.isNotEmpty() } ?: return null\n    val safeAmount = amountMinor?.takeIf { it >= 0 } ?: return null\n    return Expense(safeId, safeAmount)\n}",
+      "walkthrough": [
+        "The DTO mirrors uncertain external values.",
+        "Validation and normalisation happen at one mapping boundary.",
+        "The domain Expense is created only when both invariants hold."
+      ],
+      "expectedOutput": "ExpenseDto(\" e7 \", 1250) maps to Expense(\"e7\", 1250); invalid input maps to null."
+    },
+    "trap_check": [
+      {
+        "mistake": "Retrying every failed POST automatically.",
+        "why": "The first attempt may have succeeded remotely, so another request can duplicate a side effect.",
+        "fix": "Use idempotency keys or operation-specific reconciliation and retry policy."
+      },
+      {
+        "mistake": "Deserialising external JSON directly into a permissive domain model.",
+        "why": "Transport nullability and naming leak inward and invalid states survive longer.",
+        "fix": "Use a DTO and explicit validation mapper at the boundary."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design request, DTO, domain, and result types for loading expenses, including status handling and validation for missing IDs and negative amounts.",
+      "successLooksLike": "HTTP outcomes remain distinct from domain values. External JSON cannot create an invalid Expense. Retry guidance distinguishes idempotent reads from unsafe duplicate creation."
+    },
+    "recall": [
+      {
+        "prompt": "What are the four main parts of an HTTP request?",
+        "answer": "Method, target URI, headers, and an optional body."
+      },
+      {
+        "prompt": "Does REST require JSON?",
+        "answer": "No. REST is an architectural style and representations can use different media types."
+      },
+      {
+        "prompt": "Why separate DTO and domain model?",
+        "answer": "To contain transport shape and validate untrusted data before domain use."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-05-http-rest-json",
+  "challengeId": "challenge-level-01-week-04-05-http-rest-json",
+  "revision": {
+    "objectives": [
+      "Describe HTTP request, response, method, header, body, and status.",
+      "Use method and status semantics when designing retry and result handling.",
+      "Map JSON transport data into validated domain values."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+    "https://kotlinlang.org/docs/serialization.html"
+  ],
+  "version": "0.3.0"
+}

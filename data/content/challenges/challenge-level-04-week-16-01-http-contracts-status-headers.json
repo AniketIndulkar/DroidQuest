@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-16-01-http-contracts-status-headers",
+  "title": "Specify a News API Contract",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-16-01-http-contracts-status-headers",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Write and test the HTTP contract for article listing, conditional refresh, article lookup, bookmarking, conflict, rate limit, and typed error responses.",
+  "successCriteria": [
+    "Every method and status has explicit body semantics.",
+    "Cache validators and sensitive-header policy are defined.",
+    "Retry safety is documented per operation."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface NewsHttpContract { /* methods, status, headers, representations */ }"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

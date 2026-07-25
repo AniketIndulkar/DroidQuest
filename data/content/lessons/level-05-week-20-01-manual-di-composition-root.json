@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-20-01-manual-di-composition-root",
+  "title": "Manual Dependency Injection and the Composition Root",
+  "categoryId": "level-05-production-architecture",
+  "week": 20,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+  ],
+  "tags": [
+    "dependency-injection",
+    "manual-di",
+    "testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes manual dependency injection and the composition root a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency injection means a class receives collaborators rather than constructing or locating them globally. Constructor injection makes requirements visible, prevents half-created objects, and lets tests pass fakes. Begin manually so the object graph is understandable: create long-lived infrastructure once, build repositories from it, then build feature state holders. The place that assembles the graph is the composition root, usually close to Application and Android entry points."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class AppContainer(config: AppConfig) {\n  private val db = BankingDatabase.create(config.context)\n  val accounts: AccountsRepository = OfflineAccountsRepository(db.accounts())\n  fun paymentFactory() = PaymentFlowFactory(accounts)\n}",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A container can own objects whose lifetime exceeds a single call, but lifetime must be explicit. ApplicationContainer may own database, HTTP client, and repositories. A logged-in subcontainer can own account-scoped state and be discarded on logout. A feature container can survive a multi-screen flow. Avoid storing Activity in an application container. Factories accept runtime values and create shorter-lived objects without hiding dependencies."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Composition root",
+                  "Assembles the complete object graph"
+                ],
+                [
+                  "Container",
+                  "Owns instances for a declared lifetime"
+                ],
+                [
+                  "Factory",
+                  "Combines graph and runtime values"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Manual DI becomes verbose as graphs and variants grow, which is useful evidence for automation. Before migrating, draw the graph and locate cycles, duplicate instances, and unclear ownership. A service locator looks convenient but lets any class request anything at runtime, hiding requirements and coupling tests to global state. Injection keeps construction at the edge and ordinary classes unaware of the container."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Dependency injection in Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection",
+          "whyRead": "Introduces injection, containers, service-locator trade-offs, and test seams."
+        },
+        {
+          "title": "Manual dependency injection",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/manual",
+          "whyRead": "Builds an object graph manually before automation is introduced."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Manual Dependency Injection and the Composition Root boundary",
+      "language": "kotlin",
+      "code": "class AppContainer(config: AppConfig) {\n  private val db = BankingDatabase.create(config.context)\n  val accounts: AccountsRepository = OfflineAccountsRepository(db.accounts())\n  fun paymentFactory() = PaymentFlowFactory(accounts)\n}",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a manual application, signed-in, and payment-flow container; prove instance lifetime, account switch disposal, and direct unit construction with fakes.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should manual dependency injection and the composition root solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-20-01-manual-di-composition-root",
+  "challengeId": "challenge-level-05-week-20-01-manual-di-composition-root",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Manual Dependency Injection and the Composition Root.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/dependency-injection",
+    "https://developer.android.com/training/dependency-injection/manual"
+  ],
+  "version": "0.8.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-09-05-text-input-resources",
+  "title": "Build a Localised Note Form",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-09-05-text-input-resources",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Create title/body inputs with saved state, validation, keyboard actions, plural character feedback, and correct icon/image semantics.",
+  "successCriteria": [
+    "Fields remain controlled across recreation.",
+    "All application text comes from resources and handles large fonts.",
+    "Validation does not rely on keyboard type."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun NoteForm(state: NoteFormState, onEvent: (NoteFormEvent) -> Unit)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

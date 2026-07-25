@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "title": "Apply DI Testing, Dagger Diagnostics, and Framework Trade-offs",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Test one ViewModel by direct construction and one navigation flow with a replaced Hilt binding; document when Hilt, Dagger, or Koin would be justified.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@TestInstallIn(\n  components = [SingletonComponent::class],\n  replaces = [AccountsDataModule::class]\n)\n@Module object FakeAccountsModule { /* deterministic fake */ }"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

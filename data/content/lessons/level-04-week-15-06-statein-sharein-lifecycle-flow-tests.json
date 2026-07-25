@@ -1,0 +1,236 @@
+{
+  "id": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "title": "stateIn, shareIn, Lifecycle, and Flow Tests",
+  "categoryId": "level-04-async-data-networking",
+  "week": 15,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-15-05-stateflow-sharedflow-events"
+  ],
+  "tags": [
+    "flow",
+    "statein",
+    "sharein",
+    "testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Sharing operators bind one cold upstream execution to a scope and start policy, while lifecycle and tests must account for subscriber-driven activation.",
+      "realWorldUse": "Repository streams, expensive transformations, ViewModel UiState, and multiple UI collectors often need shared work without leaking forever.",
+      "outcome": "Choose stateIn or shareIn, configure SharingStarted, collect with lifecycle awareness, and test emissions and cancellation deterministically."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Sharing converts execution and requires an owner",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "stateIn converts Flow to StateFlow and requires a scope, SharingStarted policy, and initial value for its immediately readable state. shareIn returns SharedFlow and accepts replay. Both launch an upstream collection in the supplied scope, so that scope defines maximum lifetime and handles upstream failures. Apply catch or retry before sharing when those errors should be materialised; otherwise failure terminates the sharing coroutine while subscribers remain unaware."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val uiState = repository.articles\n    .map(::toUiState)\n    .stateIn(\n        scope = viewModelScope,\n        started = SharingStarted.WhileSubscribed(5_000),\n        initialValue = NewsUiState.Loading\n    )",
+              "caption": "The screen has immediate state while subscriber presence controls expensive upstream work."
+            },
+            {
+              "type": "table",
+              "title": "Sharing decision",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Need current value",
+                  "stateIn"
+                ],
+                [
+                  "Need broadcast and replay count",
+                  "shareIn"
+                ],
+                [
+                  "Always active resource",
+                  "Eagerly only when justified"
+                ],
+                [
+                  "Visibility-driven source",
+                  "WhileSubscribed"
+                ],
+                [
+                  "Android UI",
+                  "Lifecycle-aware collection"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Start policy controls upstream subscription",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SharingStarted.Eagerly starts immediately, Lazily starts with the first subscriber and then remains active, and WhileSubscribed starts and stops according to subscriber count, optionally delaying stop and replay expiration. ViewModel UiState commonly uses WhileSubscribed with a short stop timeout to survive brief configuration gaps without permanent background collection. Select policy from resource cost and freshness, not a copied constant. Android UI uses collectAsStateWithLifecycle or repeatOnLifecycle to make subscriber activity reflect visibility."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val uiState = repository.articles\n    .map(::toUiState)\n    .stateIn(\n        scope = viewModelScope,\n        started = SharingStarted.WhileSubscribed(5_000),\n        initialValue = NewsUiState.Loading\n    )",
+              "caption": "The screen has immediate state while subscriber presence controls expensive upstream work."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Sharing owns an upstream job",
+              "text": "Scope, start policy, replay, and failure handling are all part of its contract."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Tests need an active collector and controlled scheduler",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A test of lazily or WhileSubscribed shared state may need a background collector or the upstream never starts. Use runTest and one scheduler, start collection in backgroundScope, then advance controlled tasks and assert values. Cancel the collector and test stop timeout where it is part of resource policy. Turbine can simplify Flow assertions, but manual collection remains useful for understanding. Avoid depending on real delays or live databases in unit tests."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A StateFlow value assertion may not start upstream",
+              "text": "WhileSubscribed pipelines need an active collector during the test."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Kotlin Flow sharing",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coroutines-flow.html",
+          "whyRead": "Explains hot conversion, shareIn, stateIn, and start policies."
+        },
+        {
+          "title": "shareIn API",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/share-in.html",
+          "whyRead": "Defines scope, replay, buffering, start strategies, and upstream failure."
+        },
+        {
+          "title": "StateFlow and SharedFlow",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/flow/stateflow-and-sharedflow",
+          "whyRead": "Covers lifecycle collection and test considerations on Android."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Start the shared pipeline in the test",
+      "language": "kotlin",
+      "code": "val state = source.stateIn(scope, SharingStarted.WhileSubscribed(), 0)\nsource.emit(5)\nassertEquals(5, state.value)",
+      "walkthrough": [
+        "WhileSubscribed has no subscriber, so upstream collection may not start.",
+        "Reading value alone does not increment subscription count.",
+        "Launch a collector in backgroundScope, then emit and advance the shared scheduler."
+      ],
+      "expectedOutput": "The test deterministically observes emission and can also verify stop behaviour."
+    },
+    "trap_check": [
+      {
+        "mistake": "Sharing an upstream Flow in an application scope by default.",
+        "why": "Expensive work may remain active for the whole process without consumers.",
+        "fix": "Choose the narrowest owner and start policy that meets freshness requirements."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Expose repository updates as ViewModel StateFlow with a justified start timeout, lifecycle-aware UI collection, and tests for start, stop, replay, and upstream failure.",
+      "successLooksLike": "Only one upstream collection serves multiple subscribers. Collection stops under documented policy. Tests use an active collector and one scheduler."
+    },
+    "recall": [
+      {
+        "prompt": "What extra value does stateIn require?",
+        "answer": "An initial current value."
+      },
+      {
+        "prompt": "What does WhileSubscribed follow?",
+        "answer": "The presence and timing of subscribers."
+      },
+      {
+        "prompt": "Where should catch usually appear for shared upstream errors?",
+        "answer": "Before stateIn or shareIn."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "challengeId": "challenge-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "revision": {
+    "objectives": [
+      "Configure sharing lifetime and replay.",
+      "Collect with Android lifecycle.",
+      "Test subscriber-controlled startup."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/coroutines-flow.html",
+    "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/share-in.html",
+    "https://developer.android.com/kotlin/flow/stateflow-and-sharedflow"
+  ],
+  "version": "0.6.0"
+}

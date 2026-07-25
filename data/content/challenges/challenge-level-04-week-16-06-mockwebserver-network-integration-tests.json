@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-16-06-mockwebserver-network-integration-tests",
+  "title": "Build a Hermetic News Client Suite",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-16-06-mockwebserver-network-integration-tests",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Test the Week 16 news client end to end through MockWebServer for success, conditional request, empty body, typed errors, malformed JSON, timeout, retry, cancellation, and log redaction.",
+  "successCriteria": [
+    "No test reaches the public internet.",
+    "Recorded requests verify path, query, and safe headers.",
+    "Adverse responses map to exact typed outcomes."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class RemoteNewsSourceTest { private val server = MockWebServer() }"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-15-04-buffer-conflate-backpressure",
+  "title": "Design Three Pressure Policies",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-15-04-buffer-conflate-backpressure",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Implement and test separate pipelines for progress state, audit events, and cancellable previews with explicit capacity, loss, and latency rules.",
+  "successCriteria": [
+    "No required event is silently discarded.",
+    "State-like updates favour current value.",
+    "Tests prove exact slow-collector behaviour."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun <T> pressurePolicy(kind: StreamKind, source: Flow<T>): Flow<T>"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

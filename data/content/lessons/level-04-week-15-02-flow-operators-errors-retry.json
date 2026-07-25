@@ -1,0 +1,227 @@
+{
+  "id": "level-04-week-15-02-flow-operators-errors-retry",
+  "title": "Flow Operators, Errors, and Retry",
+  "categoryId": "level-04-async-data-networking",
+  "week": 15,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-15-01-cold-flow-context-collection"
+  ],
+  "tags": [
+    "flow",
+    "operators",
+    "retry"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Flow operators express transformation, side effects, startup, completion, error recovery, and selective retry in a readable pipeline.",
+      "realWorldUse": "Repositories map entities, validate remote data, expose loading, recover from transient failures, and log boundaries without nesting collectors.",
+      "outcome": "Choose map, transform, onEach, catch, retryWhen, and onCompletion while keeping error ownership and cancellation correct."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Operators transform or observe distinct concerns",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "map converts one input to one output, filter retains selected values, and transform can emit zero or several outputs. onEach performs an action while preserving values but should not hide durable side effects in a replayed pipeline. onStart can emit loading or initialise collection; onCompletion observes normal, failed, or cancelled completion but does not replace catch. Prefer named mapping functions at external boundaries so entity, network DTO, and domain model changes remain independently testable."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "source.observe()\n    .map(::toDomain)\n    .retryWhen { cause, attempt ->\n        if (cause is IOException && attempt < 3) { delay(backoff(attempt)); true } else false\n    }\n    .catch { cause -> emit(cachedFallback(cause)) }",
+              "caption": "Only classified transient I/O retries, then a documented fallback handles exhaustion."
+            },
+            {
+              "type": "table",
+              "title": "Operator intent",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "One-to-one transformation",
+                  "map"
+                ],
+                [
+                  "Zero or many outputs",
+                  "transform"
+                ],
+                [
+                  "Upstream recovery",
+                  "catch"
+                ],
+                [
+                  "Conditional resubscription",
+                  "retryWhen"
+                ],
+                [
+                  "Completion observation",
+                  "onCompletion"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "catch handles only upstream failures",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "catch sees exceptions thrown upstream of its position and can emit a fallback or map a known failure. It does not catch a collector exception downstream. Cancellation should continue through rather than become domain failure. Place catch after the operations whose failures share a recovery policy. A local database observation may emit stale data after a refresh error, while a strict financial stream may need to fail; fallback is a product contract, not a generic Flow recipe."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "source.observe()\n    .map(::toDomain)\n    .retryWhen { cause, attempt ->\n        if (cause is IOException && attempt < 3) { delay(backoff(attempt)); true } else false\n    }\n    .catch { cause -> emit(cachedFallback(cause)) }",
+              "caption": "Only classified transient I/O retries, then a documented fallback handles exhaustion."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Retry repeats upstream",
+              "text": "Every source side effect must be safe to repeat under the chosen policy."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Retry requires classification, limits, and backoff",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "retry and retryWhen resubscribe to upstream, which repeats its side effects. Retry only transient failures, set a maximum, add bounded exponential backoff and jitter where many clients could synchronize, and respect cancellation. Authentication, validation, most client errors, and non-idempotent writes usually need different handling. Expose exhaustion as a typed outcome and test exact attempt count and virtual time. Connectivity restoration is a signal to reconsider queued work, not permission for an infinite hot retry loop."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Never retry all Throwables forever",
+              "text": "Permanent errors, cancellation, and non-idempotent work demand different outcomes."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Kotlin Flow",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coroutines-flow.html",
+          "whyRead": "Covers transformations, exceptions, completion, and cancellation."
+        },
+        {
+          "title": "retryWhen API",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/retry-when.html",
+          "whyRead": "Defines retry attempt numbering, predicate behaviour, and transparency."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Stop retrying authentication failures",
+      "language": "kotlin",
+      "code": "apiFlow.retryWhen { _, _ ->\n    delay(1000)\n    true\n}",
+      "walkthrough": [
+        "Every exception resubscribes forever with a fixed delay.",
+        "Cancellation, malformed responses, and unauthorized requests are not useful retries.",
+        "Classify transient failures, cap attempts, back off, and expose exhaustion."
+      ],
+      "expectedOutput": "Only retryable errors repeat, with deterministic maximum attempts and final typed failure."
+    },
+    "trap_check": [
+      {
+        "mistake": "Putting catch before a mapping operator that can fail.",
+        "why": "The later mapping exception is downstream and bypasses that catch.",
+        "fix": "Place catch after all upstream work sharing the recovery policy."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a Flow that maps external models, emits loading, retries transient I/O with virtual-time backoff, uses cache fallback, and preserves cancellation.",
+      "successLooksLike": "Retry policy has explicit classification and limit. Mapping and collector failures are tested separately. Exhaustion exposes a typed user outcome."
+    },
+    "recall": [
+      {
+        "prompt": "What failures can catch observe?",
+        "answer": "Exceptions from operators upstream of it."
+      },
+      {
+        "prompt": "What does retry do?",
+        "answer": "Resubscribes and repeats the upstream pipeline."
+      },
+      {
+        "prompt": "What must backoff still respect?",
+        "answer": "Coroutine cancellation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-15-02-flow-operators-errors-retry",
+  "challengeId": "challenge-level-04-week-15-02-flow-operators-errors-retry",
+  "revision": {
+    "objectives": [
+      "Compose operators by intent.",
+      "Place error boundaries correctly.",
+      "Implement bounded classified retry."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/coroutines-flow.html",
+    "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/retry-when.html"
+  ],
+  "version": "0.6.0"
+}

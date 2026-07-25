@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-13-02-focus-keyboard-scalable-content",
+  "title": "Focus, Keyboard Navigation, and Scalable Content Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-13-02-focus-keyboard-scalable-content"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-13-02-focus-keyboard-scalable-content-decision",
+      "prompt": "What is the best first fix for clipped large text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Allow reflow and adaptive sizing",
+      "explanation": "The interface must honour user scaling and adjust its structure to available space.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content",
+      "options": [
+        "Allow reflow and adaptive sizing",
+        "Disable font scaling",
+        "Use smaller fixed text",
+        "Hide the label"
+      ]
+    },
+    {
+      "id": "q-level-03-week-13-02-focus-keyboard-scalable-content-truth",
+      "prompt": "A root key handler should consume every keyboard event.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Controls and text input require expected key behaviour; only owned shortcuts should be consumed.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content"
+    },
+    {
+      "id": "q-level-03-week-13-02-focus-keyboard-scalable-content-recall",
+      "prompt": "When should programmatic focus be requested?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "After a defined user or lifecycle event",
+      "explanation": "Repeated requests during composition steal focus and break navigation.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

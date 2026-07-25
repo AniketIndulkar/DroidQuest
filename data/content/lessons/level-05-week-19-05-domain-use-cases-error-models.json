@@ -1,0 +1,218 @@
+{
+  "id": "level-05-week-19-05-domain-use-cases-error-models",
+  "title": "Use Cases, Business Rules, and Error Models",
+  "categoryId": "level-05-production-architecture",
+  "week": 19,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-19-04-repositories-source-of-truth-mappers"
+  ],
+  "tags": [
+    "architecture",
+    "domain-layer",
+    "errors"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes use cases, business rules, and error models a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Android domain layer is optional. Introduce a use case when business logic is reused by multiple state holders, combines repositories, or makes a ViewModel difficult to understand. A use case should represent one discoverable action, remain stateless, and use an invoke operator only when that improves readability. A class that forwards one repository call without policy adds navigation cost but no protection. Simplicity is an architectural feature."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "sealed interface TransferOutcome {\n  data class Accepted(val receipt: Receipt) : TransferOutcome\n  data class Rejected(val reason: Rejection) : TransferOutcome\n}\n\nclass SendPayment(private val payments: PaymentsRepository)",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Business failures deserve domain language. InsufficientFunds, DailyLimitExceeded, and RecipientBlocked let UI choose helpful recovery without parsing HTTP codes or exception messages. Infrastructure details are translated at the boundary that understands them. Do not flatten every failure into Result failure if callers need typed alternatives, and do not create a universal error hierarchy that couples unrelated features. Separate expected outcomes from programmer bugs and cancellation, which usually must propagate."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Expected failure",
+                  "Typed product outcome callers handle"
+                ],
+                [
+                  "Programmer error",
+                  "Defect that should surface"
+                ],
+                [
+                  "Cancellation",
+                  "Control signal that should propagate"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A transfer use case can load policy, validate a command, invoke the repository, and return a receipt or expected rejection. Its tests should express rules in product language with fake repositories. Mapping belongs where knowledge exists: DTO to data model near data, business combinations in the domain operation, and display strings in UI. Measure the layer by reduced duplication and clearer tests, not by the number of UseCase files."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Creating a use case for every repository method even when no reusable rule or orchestration exists."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Domain layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/domain-layer",
+          "whyRead": "Explains when focused use cases justify an optional domain layer."
+        },
+        {
+          "title": "Recommendations for Android architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/recommendations",
+          "whyRead": "Provides current recommendations and the conditions under which optional layers add value."
+        },
+        {
+          "title": "Data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer",
+          "whyRead": "Covers repositories, data sources, exposed models, and operation lifetimes."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Use Cases, Business Rules, and Error Models boundary",
+      "language": "kotlin",
+      "code": "sealed interface TransferOutcome {\n  data class Accepted(val receipt: Receipt) : TransferOutcome\n  data class Rejected(val reason: Rejection) : TransferOutcome\n}\n\nclass SendPayment(private val payments: PaymentsRepository)",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Creating a use case for every repository method even when no reusable rule or orchestration exists.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement and test a SendPayment use case with reusable validation, typed expected rejections, cancellation propagation, and no Android UI or transport types.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should use cases, business rules, and error models solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-19-05-domain-use-cases-error-models",
+  "challengeId": "challenge-level-05-week-19-05-domain-use-cases-error-models",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Use Cases, Business Rules, and Error Models.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture/domain-layer",
+    "https://developer.android.com/topic/architecture/recommendations",
+    "https://developer.android.com/topic/architecture/data-layer"
+  ],
+  "version": "0.8.0"
+}

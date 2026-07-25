@@ -1,0 +1,348 @@
+{
+  "id": "quiz-level-02-checkpoint",
+  "title": "Level 2 Android Platform Fundamentals Boss",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-01-studio-sdk-emulator",
+    "level-02-week-05-02-projects-modules-source-sets",
+    "level-02-week-05-03-gradle-agp-build-flow",
+    "level-02-week-05-04-manifest-resources-identity",
+    "level-02-week-05-05-sdk-levels-variants-packaging",
+    "level-02-week-06-01-application-process-context",
+    "level-02-week-06-02-activity-lifecycle",
+    "level-02-week-06-03-configuration-changes",
+    "level-02-week-06-04-saved-state-process-death",
+    "level-02-week-06-05-resources-qualifiers-localisation",
+    "level-02-week-07-01-intents-activity-results",
+    "level-02-week-07-02-runtime-permissions",
+    "level-02-week-07-03-component-selection-services",
+    "level-02-week-07-04-broadcasts-providers-pending-intents",
+    "level-02-week-07-05-tasks-back-stack-app-links",
+    "level-02-week-08-01-xml-view-hierarchies",
+    "level-02-week-08-02-constraintlayout-viewbinding",
+    "level-02-week-08-03-fragments-navigation",
+    "level-02-week-08-04-recyclerview-lists",
+    "level-02-week-08-05-view-compose-interoperability",
+    "level-02-week-08-06-notes-app-capstone"
+  ],
+  "kind": "level_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-02-boss-01",
+      "prompt": "What is an Android Virtual Device?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A saved emulator hardware and system-image configuration",
+      "explanation": "An AVD defines the virtual device that the emulator process boots.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator",
+      "options": [
+        "A saved emulator hardware and system-image configuration",
+        "The final Play Store bundle",
+        "A Kotlin compiler plugin",
+        "A Git branch"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-02",
+      "prompt": "Which module type produces an installable Android application?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Application module",
+      "explanation": "The Android application plugin packages the installable artifact and application identity.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets",
+      "options": [
+        "Application module",
+        "Pure Kotlin library only",
+        "Documentation module",
+        "Version catalog"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-03",
+      "prompt": "What is the main purpose of the Gradle wrapper?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Run the project-declared Gradle distribution",
+      "explanation": "Checked-in wrapper configuration gives local and CI builds the intended Gradle version.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow",
+      "options": [
+        "Run the project-declared Gradle distribution",
+        "Replace the Android SDK",
+        "Create emulator hardware",
+        "Store app user data"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-04",
+      "prompt": "Which value identifies an installed application to Android?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "applicationId",
+      "explanation": "The selected variant application ID becomes the package-manager identity.",
+      "lessonId": "level-02-week-05-04-manifest-resources-identity",
+      "options": [
+        "applicationId",
+        "Kotlin function name",
+        "Resource filename only",
+        "Gradle task description"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-05",
+      "prompt": "Match each SDK setting to its contract.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "minSdk": "oldest installable API",
+        "compileSdk": "compile-time API symbols",
+        "targetSdk": "tested platform behaviour contract"
+      },
+      "explanation": "The three values govern different compatibility boundaries.",
+      "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging"
+    },
+    {
+      "id": "q-level-02-boss-06",
+      "prompt": "Which state survives system process death reliably?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Data committed to persistent local storage",
+      "explanation": "In-memory objects disappear with the process, while committed storage can reconstruct them.",
+      "lessonId": "level-02-week-06-01-application-process-context",
+      "options": [
+        "Data committed to persistent local storage",
+        "A singleton property",
+        "An Application field",
+        "A companion-object list"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-07",
+      "prompt": "At which lifecycle state is an activity visible but not necessarily interactive?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "STARTED",
+      "explanation": "An activity can be visible while paused, especially in multi-window or partial coverage.",
+      "lessonId": "level-02-week-06-02-activity-lifecycle",
+      "options": [
+        "STARTED",
+        "DESTROYED",
+        "INITIALIZED only",
+        "No lifecycle state"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-08",
+      "prompt": "Which event does a normal ViewModel survive?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Activity recreation for configuration change",
+      "explanation": "The ViewModelStore retains it for the replacement owner instance, but not after process death.",
+      "lessonId": "level-02-week-06-03-configuration-changes",
+      "options": [
+        "Activity recreation for configuration change",
+        "Application uninstall",
+        "All process death automatically",
+        "Clear app data"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-09",
+      "prompt": "Which value is best suited to SavedStateHandle?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Selected note ID",
+      "explanation": "A stable small key can reconstruct complex data from durable storage.",
+      "lessonId": "level-02-week-06-04-saved-state-process-death",
+      "options": [
+        "Selected note ID",
+        "Thousands of note bodies",
+        "A bitmap byte array",
+        "An Activity instance"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-10",
+      "prompt": "Which directory normally contains Spanish string alternatives?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "values-es",
+      "explanation": "The locale qualifier is appended to the values resource directory.",
+      "lessonId": "level-02-week-06-05-resources-qualifiers-localisation",
+      "options": [
+        "values-es",
+        "drawable-night",
+        "src/spanish",
+        "values-xhdpi"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-11",
+      "prompt": "Which intent should normally start a known internal activity?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Explicit intent",
+      "explanation": "Naming the internal destination avoids unintended resolution and documents ownership.",
+      "lessonId": "level-02-week-07-01-intents-activity-results",
+      "options": [
+        "Explicit intent",
+        "Broad implicit intent",
+        "Broadcast only",
+        "PendingIntent only"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-12",
+      "prompt": "When is the best time to request an optional camera permission?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "When the user starts the camera-dependent feature",
+      "explanation": "Context helps the user understand the concrete benefit and preserves unrelated usage.",
+      "lessonId": "level-02-week-07-02-runtime-permissions",
+      "options": [
+        "When the user starts the camera-dependent feature",
+        "Every app launch",
+        "Before explaining the feature",
+        "After the app exits"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-13",
+      "prompt": "Match each component to its primary contract.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "Activity": "interactive UI",
+        "Service": "ongoing or bound operation",
+        "BroadcastReceiver": "brief broadcast handling",
+        "ContentProvider": "URI data interface"
+      },
+      "explanation": "Android activates each component under a different system contract.",
+      "lessonId": "level-02-week-07-03-component-selection-services"
+    },
+    {
+      "id": "q-level-02-boss-14",
+      "prompt": "What should a receiver do with long retryable work?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Schedule it with an appropriate durable API",
+      "explanation": "Receiver delivery is brief and process importance can fall after onReceive returns.",
+      "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents",
+      "options": [
+        "Schedule it with an appropriate durable API",
+        "Block inside onReceive",
+        "Keep a static thread forever",
+        "Start an implicit service"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-15",
+      "prompt": "What does system Back normally do to the current destination?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Removes it from navigation history",
+      "explanation": "Back traverses the user’s current navigation history.",
+      "lessonId": "level-02-week-07-05-tasks-back-stack-app-links",
+      "options": [
+        "Removes it from navigation history",
+        "Force-stops the package",
+        "Clears persistent notes",
+        "Always creates a new task"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-16",
+      "prompt": "What does layout inflation create?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A hierarchy of View objects",
+      "explanation": "The inflater parses XML and instantiates configured View and ViewGroup classes.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies",
+      "options": [
+        "A hierarchy of View objects",
+        "An APK signature",
+        "A database transaction",
+        "A Gradle wrapper"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-17",
+      "prompt": "What does 0dp usually mean for a constrained dimension?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Match constraints",
+      "explanation": "Opposing constraints can determine the child size.",
+      "lessonId": "level-02-week-08-02-constraintlayout-viewbinding",
+      "options": [
+        "Match constraints",
+        "Always invisible",
+        "Zero pixels permanently",
+        "Use screen density"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-18",
+      "prompt": "Which owner should scope collection that updates fragment views?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "viewLifecycleOwner",
+      "explanation": "The collection should stop when the view hierarchy is destroyed.",
+      "lessonId": "level-02-week-08-03-fragments-navigation",
+      "options": [
+        "viewLifecycleOwner",
+        "Application forever",
+        "A static singleton",
+        "The repository"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-19",
+      "prompt": "What is the ViewHolder responsible for?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Retaining references for one reusable item view",
+      "explanation": "The adapter creates and rebinds holders as rows enter the visible region.",
+      "lessonId": "level-02-week-08-04-recyclerview-lists",
+      "options": [
+        "Retaining references for one reusable item view",
+        "Persisting the database",
+        "Owning the Activity task",
+        "Signing the APK"
+      ]
+    },
+    {
+      "id": "q-level-02-boss-20",
+      "prompt": "Match the interoperability direction to its API.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "ComposeInViews": "ComposeView",
+        "ViewInCompose": "AndroidView",
+        "XMLBindingInCompose": "AndroidViewBinding"
+      },
+      "explanation": "Each bridge owns creation and lifecycle in a different host toolkit.",
+      "lessonId": "level-02-week-08-05-view-compose-interoperability"
+    },
+    {
+      "id": "q-level-02-boss-21",
+      "prompt": "What must a cold app link assume?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "No application process or in-memory state exists",
+      "explanation": "Android can create the process directly for the externally addressed component.",
+      "lessonId": "level-02-week-08-06-notes-app-capstone",
+      "options": [
+        "No application process or in-memory state exists",
+        "The launcher always ran first",
+        "The Activity singleton contains the note",
+        "Permissions are permanently granted"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 600,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

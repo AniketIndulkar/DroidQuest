@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-15-05-stateflow-sharedflow-events",
+  "title": "Model State and Signals Explicitly",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-15-05-stateflow-sharedflow-events",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Design a news screen with durable UiState, a best-effort scroll signal, and an acknowledged critical result, then test recreation and multiple collectors.",
+  "successCriteria": [
+    "Every stream documents replay and loss.",
+    "Critical outcomes survive absent collectors.",
+    "External code cannot mutate owner state."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NewsViewModel { private val _uiState = MutableStateFlow(NewsUiState()) }"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-04-source-of-truth-cache-ttl",
+  "title": "Build a Local-first Feed Repository",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Expose Room-only feed reads with ETag and TTL metadata, deduplicated refresh, 304 handling, stale content, cache eviction, and preserved bookmarks.",
+  "successCriteria": [
+    "Presentation has one source of truth.",
+    "Older refresh cannot overwrite newer state.",
+    "Stale and failed refresh states retain usable local content."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class OfflineFirstNewsRepository(private val db: NewsDatabase, private val remote: NewsRemoteSource, private val clock: Clock)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

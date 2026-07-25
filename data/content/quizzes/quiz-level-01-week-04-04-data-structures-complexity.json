@@ -1,0 +1,66 @@
+{
+  "id": "quiz-level-01-week-04-04-data-structures-complexity",
+  "title": "Data Structures and Practical Complexity Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-04-data-structures-complexity"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-04-structure-match",
+      "prompt": "Match each requirement to the most direct structure.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "ordered duplicates": "List",
+        "unique membership": "Set",
+        "lookup by identifier": "Map",
+        "first waiting item": "Queue"
+      },
+      "explanation": "Each structure makes a different invariant or access pattern direct.",
+      "lessonId": "level-01-week-04-04-data-structures-complexity"
+    },
+    {
+      "id": "q-week-04-04-complexity-scan",
+      "prompt": "A single pass through every item has which growth class?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "O(n)",
+      "explanation": "The operation count grows proportionally with the number of items.",
+      "lessonId": "level-01-week-04-04-data-structures-complexity",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n²)"
+      ]
+    },
+    {
+      "id": "q-week-04-04-index-tradeoff",
+      "prompt": "Select costs commonly introduced by building a map index.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "Construction time",
+        "Additional memory",
+        "Update consistency"
+      ],
+      "explanation": "An index accelerates later lookup but must be built, stored, and kept consistent.",
+      "lessonId": "level-01-week-04-04-data-structures-complexity",
+      "options": [
+        "Construction time",
+        "Additional memory",
+        "Update consistency",
+        "Guaranteed zero complexity"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

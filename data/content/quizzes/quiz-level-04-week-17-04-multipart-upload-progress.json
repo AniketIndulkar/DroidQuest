@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-04-multipart-upload-progress",
+  "title": "Multipart Uploads and Progress Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-04-multipart-upload-progress"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-04-multipart-upload-progress-decision",
+      "prompt": "How should a large content URI be uploaded?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "As a streaming RequestBody",
+      "explanation": "Streaming keeps memory bounded and works with provider-backed content.",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress",
+      "options": [
+        "As a streaming RequestBody",
+        "By guessing a filesystem path",
+        "By loading all bytes into memory",
+        "By logging its content"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-04-multipart-upload-progress-truth",
+      "prompt": "A retried upload is safe even if every attempt creates a new server ID.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A lost response can create duplicates without stable idempotent identity.",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress"
+    },
+    {
+      "id": "q-level-04-week-17-04-multipart-upload-progress-recall",
+      "prompt": "What owns access to a content URI?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The ContentResolver permission contract",
+      "explanation": "Providers grant capability-based access rather than a universal path.",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

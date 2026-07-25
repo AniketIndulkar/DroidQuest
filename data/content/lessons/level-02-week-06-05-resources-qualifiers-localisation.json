@@ -1,0 +1,227 @@
+{
+  "id": "level-02-week-06-05-resources-qualifiers-localisation",
+  "title": "Resource Qualifiers, Localisation, and Configuration",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 6,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-06-04-saved-state-process-death"
+  ],
+  "tags": [
+    "resources",
+    "qualifiers",
+    "localisation",
+    "configuration"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "One application must present correct content and layouts across languages, directions, densities, themes, and changing window configurations.",
+      "realWorldUse": "Android resource selection supplies translated strings, plural rules, night colours, density assets, and alternate layouts without branching throughout application logic.",
+      "outcome": "Design default and qualified resources, format translatable text safely, and diagnose how Android selects the best matching resource."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "qualifiers",
+          "title": "Qualified directories describe alternative configurations",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A resource directory name combines a type with ordered qualifiers, such as values-es for Spanish, values-night for night mode, drawable-xhdpi for density, or layout-land for landscape. Android chooses the best match for the current Configuration. Qualifier order is defined by the platform; inventing an order creates an invalid directory. Alternatives share the same resource name and type so code requests one stable ID. Defaults in unqualified directories are essential because no alternative can cover every device. Prefer responsive layouts over separate orientation layouts when the content can adapt from available width."
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "res/values/strings.xml\nres/values-es/strings.xml\nres/values-night/colors.xml\nres/drawable-xhdpi/note_icon.png\nres/layout-sw600dp/note_list.xml",
+              "caption": "Each directory contributes alternatives chosen by locale, night mode, density, or smallest width."
+            },
+            {
+              "type": "flow",
+              "title": "Select a resource",
+              "steps": [
+                {
+                  "id": "request",
+                  "label": "Request",
+                  "detail": "Code refers to one resource ID."
+                },
+                {
+                  "id": "filter",
+                  "label": "Filter",
+                  "detail": "Remove alternatives incompatible with the device."
+                },
+                {
+                  "id": "rank",
+                  "label": "Rank",
+                  "detail": "Apply Android qualifier precedence and closest matches."
+                },
+                {
+                  "id": "return",
+                  "label": "Return",
+                  "detail": "Load the winning alternative or default."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "strings",
+          "title": "Translate complete messages with context",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Put user-visible text in string resources and give translators complete messages with descriptive names and comments where meaning is ambiguous. Use formatting placeholders so languages can reorder values. Use plurals for quantity-dependent grammar; adding “s” in code only works for a narrow English case. Avoid concatenating fragments such as greeting + name + punctuation, because word order and spacing differ. Do not localise protocol keys, analytics identifiers, filenames, or developer-only constants merely because they are strings. Verify long translations, non-Latin scripts, right-to-left layout, and large font scale on the actual screen."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<plurals name=\"note_count\">\n    <item quantity=\"one\">%d note</item>\n    <item quantity=\"other\">%d notes</item>\n</plurals>\n\nval label = resources.getQuantityString(R.plurals.note_count, count, count)",
+              "caption": "Android selects the grammar category for the locale and substitutes the count into a complete message."
+            },
+            {
+              "type": "table",
+              "title": "Text decision",
+              "columns": [
+                "Value",
+                "Resource approach"
+              ],
+              "rows": [
+                [
+                  "Screen title",
+                  "string resource"
+                ],
+                [
+                  "Quantity sentence",
+                  "plural resource"
+                ],
+                [
+                  "Formatted user message",
+                  "string with positional arguments"
+                ],
+                [
+                  "JSON field name",
+                  "stable code constant"
+                ],
+                [
+                  "User note content",
+                  "stored user data, never app translation"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "configuration-use",
+          "title": "Read configuration sparingly and prefer resource selection",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Most UI differences should be expressed through resources or adaptive layout rather than code that checks orientation or locale. When code genuinely needs configuration, use the current UI Context because its resources reflect the current display and overrides. A cached string from an old activity can become stale after locale or theme recreation. Do not store resolved resource strings as durable identifiers; store a stable enum or key and resolve presentation each time. Test pseudo-locales to expose hard-coded text and expansion, RTL developer options for direction assumptions, and font scales that force wrapping. Accessibility and localisation defects often reveal rigid layout design."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "enum class NoteKind { PERSONAL, WORK }\n\n@StringRes\nfun NoteKind.labelRes(): Int = when (this) {\n    NoteKind.PERSONAL -> R.string.kind_personal\n    NoteKind.WORK -> R.string.kind_work\n}",
+              "caption": "The domain stores a stable kind while the current UI resolves its translated label."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not persist translated labels",
+              "text": "A stored “Work” string becomes stale when locale changes and cannot reliably identify the underlying category."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "App resources overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/resources/providing-resources",
+          "whyRead": "Documents resource types, qualifier syntax, selection precedence, and default-resource requirements."
+        },
+        {
+          "title": "Localize your app",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/resources/localization",
+          "whyRead": "Explains string resources, default language, locale alternatives, testing, and translation workflow."
+        },
+        {
+          "title": "Support different languages and cultures",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/basics/supporting-devices/languages",
+          "whyRead": "Provides practical localisation examples including layout direction and locale-sensitive resources."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Predict a resource result",
+      "language": "text",
+      "code": "Available:\nvalues/strings.xml -> title=\"Notes\"\nvalues-es/strings.xml -> title=\"Notas\"\nvalues-night/colors.xml -> surface=#101010\nDevice: Spanish locale, night mode",
+      "walkthrough": [
+        "The string request matches the Spanish values alternative.",
+        "The colour request matches the night alternative.",
+        "Any resource not covered by those directories falls back to its unqualified default."
+      ],
+      "expectedOutput": "title resolves to “Notas” and surface resolves to #101010."
+    },
+    "trap_check": [
+      {
+        "mistake": "Building a sentence by concatenating translated fragments.",
+        "why": "Other languages may require different word order, agreement, and spacing.",
+        "fix": "Translate the complete message with positional placeholders."
+      },
+      {
+        "mistake": "Persisting a resolved translated label as domain identity.",
+        "why": "Locale changes make it stale and labels are not stable identifiers.",
+        "fix": "Persist a key or enum and resolve the label from current resources."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create default and second-locale resources for titles, formatted dates, and note counts, plus night colours and a test checklist for RTL, pseudo-locale, and large font scale.",
+      "successLooksLike": "Every alternative has a valid default. Quantities and formatted messages remain complete translation units. Stable note categories are stored independently of translated labels."
+    },
+    "recall": [
+      {
+        "prompt": "Why are default resources required?",
+        "answer": "They provide a compatible value when no qualified alternative matches."
+      },
+      {
+        "prompt": "When should plurals be used?",
+        "answer": "When grammar or wording depends on a numeric quantity."
+      },
+      {
+        "prompt": "Why use current UI Context for resources?",
+        "answer": "It reflects the current locale, theme, and display configuration."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-06-05-resources-qualifiers-localisation",
+  "challengeId": "challenge-level-02-week-06-05-resources-qualifiers-localisation",
+  "revision": {
+    "objectives": [
+      "Predict Android qualified-resource selection.",
+      "Create translator-safe complete and plural messages.",
+      "Separate stable domain identity from current presentation resources."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/topics/resources/providing-resources",
+    "https://developer.android.com/guide/topics/resources/localization",
+    "https://developer.android.com/training/basics/supporting-devices/languages"
+  ],
+  "version": "0.4.0"
+}

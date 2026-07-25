@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-04-01-terminal-files-processes",
+  "title": "Build a Safe Project Inspector",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-04-01-terminal-files-processes",
+  "difficulty": "beginner",
+  "estimatedMinutes": 35,
+  "prompt": "Write a small shell checklist or script that confirms it is inside the DroidQuest data directory, reports relevant JSON file counts, and runs content validation without modifying files.",
+  "successCriteria": [
+    "The working directory is checked before relative paths are used.",
+    "A failed validation produces a non-zero final status.",
+    "The script performs no destructive operation."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: The working directory is checked before relative paths are used.",
+    "Use an executable example or focused check to verify: A failed validation produces a non-zero final status."
+  ],
+  "starterCode": {
+    "language": "shell",
+    "code": "#!/usr/bin/env sh\n# Check context, count content, and run validation safely."
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: The working directory is checked before relative paths are used.",
+    "Implement and explain how the solution ensures: A failed validation produces a non-zero final status.",
+    "Implement and explain how the solution ensures: The script performs no destructive operation."
+  ],
+  "verification": [
+    "Run a focused check proving that the working directory is checked before relative paths are used.",
+    "Run a focused check proving that a failed validation produces a non-zero final status.",
+    "Run a focused check proving that the script performs no destructive operation."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

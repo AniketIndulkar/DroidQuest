@@ -1,0 +1,227 @@
+{
+  "id": "level-04-week-17-06-connectivity-policy-network-capabilities",
+  "title": "Connectivity Signals and Network Policy",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-05-websockets-sse-realtime"
+  ],
+  "tags": [
+    "networking",
+    "connectivity",
+    "capabilities"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android connectivity callbacks describe current network capabilities but cannot guarantee that a particular server request will succeed.",
+      "realWorldUse": "Offline banners, deferred synchronization, metered transfer policy, roaming, VPNs, and connection changes need hints without blocking useful local behaviour.",
+      "outcome": "Observe validated capabilities, separate connectivity hints from operation results, and design metered and restored-connection policies."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A network object and its capabilities change over time",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "ConnectivityManager reports available Network instances and NetworkCapabilities such as internet capability, validation, metering, transport, and bandwidth estimates. Register a callback under a defined process or repository scope and unregister it symmetrically. Networks can change, lose capabilities, or coexist through VPN and cellular handover. Do not infer security, speed, or server access solely from Wi-Fi versus cellular transport."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val canAttemptInternet = callbackFlow {\n    val callback = object : ConnectivityManager.NetworkCallback() {\n        override fun onCapabilitiesChanged(network: Network, caps: NetworkCapabilities) {\n            trySend(caps.hasCapability(NET_CAPABILITY_VALIDATED))\n        }\n    }\n    manager.registerDefaultNetworkCallback(callback)\n    awaitClose { manager.unregisterNetworkCallback(callback) }\n}.distinctUntilChanged()",
+              "caption": "The Flow exposes a changing hint with balanced callback ownership, not a promise that the API works."
+            },
+            {
+              "type": "table",
+              "title": "Signal meaning",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "INTERNET capability",
+                  "Network is configured for internet"
+                ],
+                [
+                  "VALIDATED capability",
+                  "System validation recently succeeded"
+                ],
+                [
+                  "Target API request",
+                  "Actual operation evidence"
+                ],
+                [
+                  "Large optional transfer",
+                  "Consider metered constraint"
+                ],
+                [
+                  "Restoration",
+                  "Trigger unique queued sync review"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Connectivity is a hint, not reachability proof",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "NET_CAPABILITY_INTERNET means configured for internet, while VALIDATED indicates the system has recently validated general connectivity; neither guarantees DNS, TLS, authentication, or the target service. A request result is the strongest evidence for that operation. Connectivity state can improve UX by labeling likely offline status or triggering review of a durable queue, but it should not prevent reading local data or disable a user retry permanently. Avoid bespoke reachability pings that waste battery and disagree with real requests."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val canAttemptInternet = callbackFlow {\n    val callback = object : ConnectivityManager.NetworkCallback() {\n        override fun onCapabilitiesChanged(network: Network, caps: NetworkCapabilities) {\n            trySend(caps.hasCapability(NET_CAPABILITY_VALIDATED))\n        }\n    }\n    manager.registerDefaultNetworkCallback(callback)\n    awaitClose { manager.unregisterNetworkCallback(callback) }\n}.distinctUntilChanged()",
+              "caption": "The Flow exposes a changing hint with balanced callback ownership, not a promise that the API works."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Connectivity cannot promise success",
+              "text": "Always handle DNS, TLS, timeout, status, and parsing failure at the request."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Local-first behaviour reduces dependence on prediction",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Metered and roaming policy belongs to the feature: text sync may proceed while a large media prefetch waits for unmetered connectivity. WorkManager constraints defer durable work efficiently, and workers must still handle network failure because constraints can change during execution. On restoration, enqueue unique synchronization rather than launching one refresh per callback. Test capability loss, rapid handover, captive portal, VPN, app restart, and a server failure while the device remains validated."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not gate all features behind an offline Boolean",
+              "text": "Local data and manual retry remain useful even when capability signals are stale."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Read network state",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/connectivity/network-ops/reading-network-state",
+          "whyRead": "Explains callbacks, NetworkCapabilities, validation, metering, and changing networks."
+        },
+        {
+          "title": "Background data transfer options",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/data-transfer-options",
+          "whyRead": "Relates network constraints, persistent work, and user-initiated transfers."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove the false reachability guarantee",
+      "language": "kotlin",
+      "code": "if (isConnected) api.refresh() else showPermanentOfflineError()",
+      "walkthrough": [
+        "The Boolean may be stale and cannot prove target service availability.",
+        "The branch blocks local content and user retry based on a prediction.",
+        "Show local state, attempt appropriate operations, and map actual failures while using connectivity as a hint."
+      ],
+      "expectedOutput": "The screen remains useful offline and refresh outcome reflects the real request."
+    },
+    "trap_check": [
+      {
+        "mistake": "Starting a new full sync for every callback invocation.",
+        "why": "Handover and capability changes create overlapping duplicate work.",
+        "fix": "Coalesce through one repository trigger or unique WorkManager request."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Expose validated and metered hints, keep local reading available, coalesce restoration sync, defer large media, and test handover and false-positive connectivity.",
+      "successLooksLike": "No capability is treated as guaranteed API reachability. Callbacks are registered and removed with one owner. Repeated restoration creates only one sync request."
+    },
+    "recall": [
+      {
+        "prompt": "Does VALIDATED guarantee one API is reachable?",
+        "answer": "No, it is only general system validation."
+      },
+      {
+        "prompt": "What proves a specific operation result?",
+        "answer": "The attempted API request."
+      },
+      {
+        "prompt": "What should happen after restoration?",
+        "answer": "Review or enqueue one unique durable synchronization."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-06-connectivity-policy-network-capabilities",
+  "challengeId": "challenge-level-04-week-17-06-connectivity-policy-network-capabilities",
+  "revision": {
+    "objectives": [
+      "Interpret NetworkCapabilities cautiously.",
+      "Use connectivity as policy input.",
+      "Prevent duplicate restoration work."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/connectivity/network-ops/reading-network-state",
+    "https://developer.android.com/develop/background-work/background-tasks/data-transfer-options"
+  ],
+  "version": "0.7.0"
+}

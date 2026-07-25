@@ -1,0 +1,57 @@
+{
+  "id": "quiz-level-02-week-06-02-activity-lifecycle",
+  "title": "Activity Lifecycle and Lifecycle-Aware Work Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-06-02-activity-lifecycle"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-06-02-visible-state",
+      "prompt": "At which lifecycle state is an activity visible but not necessarily interactive?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "STARTED",
+      "explanation": "An activity can be visible while paused, especially in multi-window or partial coverage.",
+      "lessonId": "level-02-week-06-02-activity-lifecycle",
+      "options": [
+        "STARTED",
+        "DESTROYED",
+        "INITIALIZED only",
+        "No lifecycle state"
+      ]
+    },
+    {
+      "id": "q-week-06-02-launch-order",
+      "prompt": "Order the key callbacks when Activity A launches opaque Activity B.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "A onPause",
+        "B onCreate",
+        "B onStart",
+        "B onResume",
+        "A onStop"
+      ],
+      "explanation": "The outgoing activity pauses before the incoming activity creates and resumes, then stops if fully covered.",
+      "lessonId": "level-02-week-06-02-activity-lifecycle"
+    },
+    {
+      "id": "q-week-06-02-destroy-guarantee",
+      "prompt": "onDestroy is guaranteed before the system kills an application process.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Process termination can occur without component cleanup callbacks.",
+      "lessonId": "level-02-week-06-02-activity-lifecycle"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

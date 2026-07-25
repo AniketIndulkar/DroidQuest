@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "title": "DI Testing, Dagger Diagnostics, and Framework Trade-offs Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-05-di-testing-dagger-koin-tradeoffs-decision",
+      "prompt": "Which approach best demonstrates sound di testing, dagger diagnostics, and framework trade-offs?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Test one ViewModel by direct construction and one navigation flow with a replaced Hilt binding; document when Hilt, Dagger, or Koin would be justified.",
+        "Booting a Hilt application for every small unit test and asserting framework wiring instead of business behaviour.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Test one ViewModel by direct construction and one navigation flow with a replaced Hilt binding; document when Hilt, Dagger, or Koin would be justified.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+    },
+    {
+      "id": "q-level-05-week-20-05-di-testing-dagger-koin-tradeoffs-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+    },
+    {
+      "id": "q-level-05-week-20-05-di-testing-dagger-koin-tradeoffs-recall",
+      "prompt": "What evidence should accompany the di testing, dagger diagnostics, and framework trade-offs decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

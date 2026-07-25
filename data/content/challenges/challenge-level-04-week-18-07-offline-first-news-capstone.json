@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-07-offline-first-news-capstone",
+  "title": "Deliver the Offline-First News Reader",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-07-offline-first-news-capstone",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 180,
+  "prompt": "Build the full Level 4 news slice with Room source of truth, cursor paging, ETag refresh, DataStore settings, secure session refresh, bookmark outbox, WorkManager sync, conflicts, migrations, and layered tests.",
+  "successCriteria": [
+    "Previously synchronized articles and bookmarks work offline.",
+    "Process death and duplicate delivery lose no accepted intent.",
+    "Paging, authentication, migrations, retries, and eventual convergence have deterministic evidence."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NewsApplicationGraph { /* database, stores, network, repositories, scheduler */ }"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

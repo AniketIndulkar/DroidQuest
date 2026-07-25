@@ -1,0 +1,40 @@
+{
+  "id": "challenge-level-01-week-04-06-expense-manager-capstone",
+  "title": "Build the Level 1 Expense Manager",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-04-06-expense-manager-capstone",
+  "difficulty": "beginner",
+  "estimatedMinutes": 180,
+  "prompt": "Build the complete Kotlin command-line expense manager described in this lesson, including validated domain models, repository boundary, explicit results, totals, tests, documentation, and focused Git history.",
+  "successCriteria": [
+    "All must-have acceptance examples pass.",
+    "The domain has no console, JSON, or filesystem dependency.",
+    "Tests cover valid, empty, duplicate, and invalid cases.",
+    "A README explains running, testing, design decisions, and optional extensions."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: All must-have acceptance examples pass.",
+    "Use an executable example or focused check to verify: The domain has no console, JSON, or filesystem dependency."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface AddExpenseResult\ninterface ExpenseRepository {\n    fun all(): List<Expense>\n    fun add(expense: Expense): AddExpenseResult\n}\nclass ExpenseBook(private val repository: ExpenseRepository) { /* use cases */ }"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: All must-have acceptance examples pass.",
+    "Implement and explain how the solution ensures: The domain has no console, JSON, or filesystem dependency.",
+    "Implement and explain how the solution ensures: Tests cover valid, empty, duplicate, and invalid cases.",
+    "Implement and explain how the solution ensures: A README explains running, testing, design decisions, and optional extensions."
+  ],
+  "verification": [
+    "Run a focused check proving that all must-have acceptance examples pass.",
+    "Run a focused check proving that the domain has no console, JSON, or filesystem dependency.",
+    "Run a focused check proving that tests cover valid, empty, duplicate, and invalid cases.",
+    "Run a focused check proving that a README explains running, testing, design decisions, and optional extensions."
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

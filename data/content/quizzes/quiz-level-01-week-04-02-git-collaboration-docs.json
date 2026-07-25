@@ -1,0 +1,61 @@
+{
+  "id": "quiz-level-01-week-04-02-git-collaboration-docs",
+  "title": "Git, Pull Requests, and Useful Documentation Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-02-git-collaboration-docs"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-02-staging-purpose",
+      "prompt": "What does the Git staging area select?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "The exact next commit contents",
+      "explanation": "Staging is an explicit boundary between working-tree changes and the snapshot about to be committed.",
+      "lessonId": "level-01-week-04-02-git-collaboration-docs",
+      "options": [
+        "The exact next commit contents",
+        "Every repository on GitHub",
+        "Only ignored files",
+        "The current terminal theme"
+      ]
+    },
+    {
+      "id": "q-week-04-02-pr-sections",
+      "prompt": "Select information a useful pull request description should contain.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "Problem and approach",
+        "Verification evidence",
+        "Risks or review notes"
+      ],
+      "explanation": "A reviewer needs intent, evidence, and risk to evaluate the change efficiently.",
+      "lessonId": "level-01-week-04-02-git-collaboration-docs",
+      "options": [
+        "Problem and approach",
+        "Verification evidence",
+        "Risks or review notes",
+        "An unrelated tutorial"
+      ]
+    },
+    {
+      "id": "q-week-04-02-branch-fact",
+      "prompt": "A Git branch is primarily a movable name pointing to a commit.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "Branches are lightweight references that advance as new commits are recorded.",
+      "lessonId": "level-01-week-04-02-git-collaboration-docs"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

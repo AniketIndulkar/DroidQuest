@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-01-week-02-04-lambdas-extensions-scope",
+  "title": "Lambdas, Higher-Order Functions, and Extensions Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-02-04-lambdas-extensions-scope"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-02-04-function-type",
+      "prompt": "Which type represents a rule that accepts an Expense and returns true or false?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "(Expense) -> Boolean",
+      "explanation": "Kotlin function types put parameter types before the arrow and the result type after it.",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope",
+      "options": [
+        "(Expense) -> Boolean",
+        "Expense -> Unit",
+        "Boolean(Expense)",
+        "() -> Expense"
+      ]
+    },
+    {
+      "id": "q-week-02-04-extension-fact",
+      "prompt": "An extension function can override a class member polymorphically.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Members take precedence and extensions use static resolution from the declared receiver type.",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope"
+    },
+    {
+      "id": "q-week-02-04-scope-match",
+      "prompt": "Match the common scope function to its result.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "apply": "receiver",
+        "also": "receiver",
+        "let": "block result",
+        "run": "block result"
+      },
+      "explanation": "Receiver-returning and block-result functions serve different chaining intentions.",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

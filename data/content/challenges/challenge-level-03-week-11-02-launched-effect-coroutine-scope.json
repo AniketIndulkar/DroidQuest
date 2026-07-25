@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-11-02-launched-effect-coroutine-scope",
+  "title": "Build a Cancellable Search Experience",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Create a route that changes query identity, scrolls on result replacement, and shows event-driven retry snackbars without duplicate or stale work.",
+  "successCriteria": [
+    "Key changes cancel outdated UI work.",
+    "Snackbar launches only from an event.",
+    "Business search remains owned by the ViewModel."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun SearchRoute(state: SearchUiState, onRetry: () -> Unit)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

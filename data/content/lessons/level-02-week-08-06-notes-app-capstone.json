@@ -1,0 +1,241 @@
+{
+  "id": "level-02-week-08-06-notes-app-capstone",
+  "title": "Capstone: Lifecycle-Safe Personal Notes App",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 8,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-08-05-view-compose-interoperability"
+  ],
+  "tags": [
+    "capstone",
+    "notes",
+    "lifecycle",
+    "hybrid-ui"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "The Level 2 capstone combines system entry, lifecycle, restoration, permissions, links, and hybrid UI into one coherent Android application.",
+      "realWorldUse": "The architecture mirrors a real local-first app that must remain correct through rotation, process death, external entry, denial, and gradual UI migration.",
+      "outcome": "Plan and deliver a multi-screen Notes app with explicit platform contracts and repeatable evidence for every required lifecycle scenario."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "scope",
+          "title": "Write acceptance scenarios around platform events",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The app lists notes, opens and edits one note, persists changes locally, imports optional content through a permission-minimising system contract, and opens https://notes.example/note/{id}. One screen is XML/View-based inside the otherwise Compose application. Define outcomes for empty data, missing ID, malformed link, denied optional permission, rotation during editing, background process recreation, Back, and cold notification or link entry. Choose stable note IDs and never rely on launcher-first in-memory setup. Requirements describe observable continuity and failure, not only widgets."
+            },
+            {
+              "type": "table",
+              "title": "Capstone evidence",
+              "columns": [
+                "Requirement",
+                "Evidence"
+              ],
+              "rows": [
+                [
+                  "Multiple screens",
+                  "List/editor navigation plus Back expectations"
+                ],
+                [
+                  "Configuration change",
+                  "New host instance preserves screen state"
+                ],
+                [
+                  "Process death",
+                  "Saved keys reconstruct from local storage"
+                ],
+                [
+                  "Deep/App Link",
+                  "Cold and warm validated note route"
+                ],
+                [
+                  "Runtime permission",
+                  "Contextual request with denial alternative"
+                ],
+                [
+                  "XML in Compose",
+                  "Interop screen with one state owner"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "gherkin",
+              "code": "Given note n42 exists\nWhen the process is absent and https://notes.example/note/n42 opens\nThen the app validates the route, loads n42 locally, and Back follows the defined entry policy",
+              "caption": "The acceptance example joins external routing, cold process creation, validation, storage, and navigation."
+            }
+          ]
+        },
+        {
+          "id": "architecture",
+          "title": "Keep system adapters around a reusable core",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MainActivity hosts top-level Compose and receives external intents. Navigation carries note IDs. A NotesViewModel exposes immutable UI state and uses SavedStateHandle for small route/query reconstruction. NoteRepository owns durable local notes. A legacy editor View is hosted with AndroidViewBinding and renders the same state/events as Compose screens. An import launcher and permission flow are activity/fragment-owned adapters that report typed outcomes to the state holder. No Activity, View, binding, launcher, or Context enters the domain model. The manifest exposes only the verified app-link entry and required components."
+            },
+            {
+              "type": "flow",
+              "title": "Notes dependency flow",
+              "steps": [
+                {
+                  "id": "entry",
+                  "label": "System entry",
+                  "detail": "Launcher, app link, notification, or result."
+                },
+                {
+                  "id": "host",
+                  "label": "Activity/navigation",
+                  "detail": "Validate route and establish destination."
+                },
+                {
+                  "id": "state",
+                  "label": "ViewModel",
+                  "detail": "Own screen state, events, and saved keys."
+                },
+                {
+                  "id": "domain",
+                  "label": "Use cases/models",
+                  "detail": "Apply note rules without Android UI types."
+                },
+                {
+                  "id": "data",
+                  "label": "Repository",
+                  "detail": "Persist and load local-first notes."
+                },
+                {
+                  "id": "render",
+                  "label": "Compose/View UI",
+                  "detail": "Render one state and emit events."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class NoteRoute(val noteId: String)\nclass NoteViewModel(saved: SavedStateHandle, repository: NoteRepository) : ViewModel()\ninterface NoteRepository { fun observe(id: String): Flow<Note?>; suspend fun save(note: Note) }",
+              "caption": "Stable route input, state holder, and storage contract keep platform and data lifetimes explicit."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Test transitions, not only the happy screenshot",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Create a matrix for minimum and recent API devices, light/dark, locale/RTL, font scale, and narrow/wide windows. Exercise rotation with unsaved text, background process recreation from recents, cold and warm app links, missing notes, denial and revocation, RecyclerView updates if used, and XML/Compose focus handoff. Inspect merged manifest exposure and release variant identity. Run build, lint, unit and device checks, then review logs for secrets. Record limitations honestly. The project is complete when platform-owned transitions preserve or deliberately dismiss state according to written expectations—not when every optional feature has been added."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:assembleDebug\n./gradlew :app:testDebugUnitTest\n./gradlew :app:lintDebug\n./gradlew :app:connectedDebugAndroidTest",
+              "caption": "The verification command set covers packaging, local policy tests, static checks, and device-level platform behaviour."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Recreate from sources of truth",
+              "text": "A robust Android app does not fight lifecycle replacement; it reconstructs from saved keys, durable data, and explicit route inputs."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Guide to app architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture",
+          "whyRead": "Connects UI state holders, data layers, repositories, and lifecycle-aware collection for the capstone structure."
+        },
+        {
+          "title": "Save UI states",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/saving-states",
+          "whyRead": "Provides the restoration decision framework required by the capstone."
+        },
+        {
+          "title": "Interoperability APIs",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis",
+          "whyRead": "Supports the required XML screen inside the Compose-led application."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Review a fragile capstone design",
+      "language": "text",
+      "code": "object CurrentNote { var note: Note? = null }\nDeep link reads CurrentNote.note\nActivity onDestroy saves notes\nXML editor keeps its own body copy",
+      "walkthrough": [
+        "Cold links have no singleton note.",
+        "Critical save in onDestroy is not guaranteed.",
+        "The XML copy can diverge from Compose/ViewModel state."
+      ],
+      "expectedOutput": "Route by ID, load from repository, save at edits/use cases, and render one state source."
+    },
+    "trap_check": [
+      {
+        "mistake": "Building screens before writing lifecycle acceptance scenarios.",
+        "why": "Happy-path UI hides cold-entry, denial, restoration, and Back ambiguity.",
+        "fix": "Define observable platform-event outcomes first."
+      },
+      {
+        "mistake": "Adding optional features before required failure evidence passes.",
+        "why": "Scope grows while core state and entry contracts remain fragile.",
+        "fix": "Complete one vertical platform-safe slice at a time."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build the complete local-first Notes app with multiple screens, configuration and process restoration, a verified note app link, one contextual runtime permission, and an XML screen hosted inside Compose.",
+      "successLooksLike": "Required acceptance scenarios pass on minimum and recent APIs. Only stable IDs and small UI values enter navigation/saved state. Manifest exposure, permission degradation, Back, and cold entry are documented. The XML and Compose surfaces share one state/event model."
+    },
+    "recall": [
+      {
+        "prompt": "What should a deep link carry into navigation?",
+        "answer": "A validated stable note ID, not an in-memory Note object."
+      },
+      {
+        "prompt": "What bridges process death?",
+        "answer": "Small saved reconstruction values combined with persistent local data."
+      },
+      {
+        "prompt": "What proves the hybrid UI is coherent?",
+        "answer": "Both toolkits render one state owner and emit events through one contract."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-08-06-notes-app-capstone",
+  "challengeId": "challenge-level-02-week-08-06-notes-app-capstone",
+  "revision": {
+    "objectives": [
+      "Specify platform-event acceptance scenarios.",
+      "Compose Android adapters around a local-first state/data core.",
+      "Verify lifecycle, entry, permission, and interoperability paths."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture",
+    "https://developer.android.com/topic/libraries/architecture/saving-states",
+    "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis"
+  ],
+  "version": "0.4.0"
+}

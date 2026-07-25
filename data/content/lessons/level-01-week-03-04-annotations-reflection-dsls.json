@@ -1,0 +1,227 @@
+{
+  "id": "level-01-week-03-04-annotations-reflection-dsls",
+  "title": "Annotations, Reflection, and Type-Safe Builders",
+  "categoryId": "level-01-programming-foundations",
+  "week": 3,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-03-03-delegation-inline-value-classes"
+  ],
+  "tags": [
+    "kotlin",
+    "annotations",
+    "reflection",
+    "dsl"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Metadata and language-shaped builders can make frameworks expressive, but they move behaviour away from ordinary direct calls and require disciplined boundaries.",
+      "realWorldUse": "Android build tools, Room, dependency injection, serialization, Compose, tests, and navigation use annotations, generated code, reflection, or Kotlin DSL patterns.",
+      "outcome": "Explain annotation processing and reflection costs, then design a small receiver-based builder whose scope remains unambiguous."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "annotations",
+          "title": "Annotations attach machine-readable metadata",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An annotation records metadata on a declaration, type, expression, or generated JVM element. @Target states where it may appear and @Retention controls whether it exists only in source, in compiled output, or at runtime. Frameworks can process annotations during compilation to generate code or inspect runtime annotations through reflection. Use-site targets such as field:, get:, or param: matter when one Kotlin property produces several JVM elements."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Target(AnnotationTarget.CLASS)\n@Retention(AnnotationRetention.RUNTIME)\nannotation class ContentType(val name: String)\n\n@ContentType(\"expense\")\ndata class Expense(val amount: Double)",
+              "caption": "The annotation carries a stable metadata value and is retained for runtime inspection."
+            },
+            {
+              "type": "table",
+              "title": "Retention tradeoff",
+              "columns": [
+                "Retention",
+                "Available to",
+                "Typical use"
+              ],
+              "rows": [
+                [
+                  "SOURCE",
+                  "Source tools only",
+                  "Static analysis hints"
+                ],
+                [
+                  "BINARY",
+                  "Compiled artifact, not reflection",
+                  "Compiler and bytecode tooling"
+                ],
+                [
+                  "RUNTIME",
+                  "Runtime reflection",
+                  "Dynamic discovery when justified"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reflection-generation",
+          "title": "Prefer generated direct code when practical",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Reflection inspects declarations or invokes behaviour dynamically. It reduces compile-time knowledge, may need extra metadata, complicates shrinking, and is harder to trace than a direct call. Compile-time generation preserves typed, inspectable code and often reports errors earlier. Room and many dependency-injection tools generate implementations from annotations. Reflection remains valid for tools and genuinely dynamic systems; isolate it behind a small adapter and cache repeated discovery instead of spreading reflective lookup through domain code."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun contentName(type: kotlin.reflect.KClass<*>): String? =\n    type.annotations\n        .filterIsInstance<ContentType>()\n        .firstOrNull()\n        ?.name\n\nprintln(contentName(Expense::class))",
+              "caption": "A small reflection boundary reads one known annotation and returns ordinary nullable data."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Metadata needs a consumer",
+              "text": "An annotation alone changes nothing. Generated code, a compiler plugin, static analysis, or runtime logic must interpret it."
+            }
+          ]
+        },
+        {
+          "id": "builders",
+          "title": "DSLs use receivers to constrain vocabulary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A type-safe builder is usually a higher-order function with a receiver, such as ExpenseReportBuilder.() -> Unit. Inside the lambda, builder members can be called without repeating the receiver. The result should still be an ordinary validated model. DSL markers prevent accidental access to an outer receiver when builders nest. A DSL should make a repeated structure clearer; inventing language-like syntax for one simple constructor hides familiar Kotlin and raises the learning cost."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@DslMarker annotation class ExpenseDsl\n@ExpenseDsl class ReportBuilder {\n    private val items = mutableListOf<Expense>()\n    fun expense(category: String, amount: Double) {\n        items += Expense(category, amount)\n    }\n    fun build(): List<Expense> = items.toList()\n}\nfun report(block: ReportBuilder.() -> Unit): List<Expense> =\n    ReportBuilder().apply(block).build()",
+              "caption": "The receiver supplies a limited vocabulary and build returns an ordinary read-only result."
+            },
+            {
+              "type": "flow",
+              "title": "Builder execution",
+              "steps": [
+                {
+                  "id": "create",
+                  "label": "Create builder",
+                  "detail": "Allocate the temporary mutable construction scope."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute block",
+                  "detail": "Caller uses receiver members as vocabulary."
+                },
+                {
+                  "id": "validate",
+                  "label": "Validate",
+                  "detail": "Builder enforces structural and domain rules."
+                },
+                {
+                  "id": "build",
+                  "label": "Build value",
+                  "detail": "Return an ordinary immutable model."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Receiver scope deserves particular attention in nested builders. Without a DSL marker, an unqualified call may resolve to an outer receiver and modify the wrong object while still compiling. Mark related builder receivers, keep the vocabulary small, validate at build time, and return ordinary domain values so the special syntax remains confined to construction."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Annotations",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/annotations.html",
+          "whyRead": "The official guide to annotation declarations, targets, retention, use-site targets, and JVM mapping."
+        },
+        {
+          "title": "Reflection",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/reflection.html",
+          "whyRead": "Introduces class, callable, property, and function references and the kotlin-reflect runtime."
+        },
+        {
+          "title": "Type-safe builders",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/type-safe-builders.html",
+          "whyRead": "Builds a receiver-based DSL step by step and explains DSL markers for nested receiver scopes."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Build a small report DSL",
+      "language": "kotlin",
+      "code": "data class Expense(val category: String, val amount: Double)\nclass ReportBuilder {\n    private val values = mutableListOf<Expense>()\n    fun expense(category: String, amount: Double) { values += Expense(category, amount) }\n    fun build(): List<Expense> = values.toList()\n}\nfun report(block: ReportBuilder.() -> Unit) = ReportBuilder().apply(block).build()\nfun main() {\n    val values = report { expense(\"Food\", 6.0); expense(\"Travel\", 9.0) }\n    println(values.sumOf { it.amount })\n}",
+      "walkthrough": [
+        "report creates and owns the temporary builder.",
+        "The receiver lambda exposes expense as the local construction vocabulary.",
+        "build releases a read-only snapshot before the caller calculates the total."
+      ],
+      "expectedOutput": "15.0"
+    },
+    "trap_check": [
+      {
+        "mistake": "Expecting an annotation to execute behaviour by itself.",
+        "why": "Metadata has no effect until a tool or runtime consumer interprets it.",
+        "fix": "Identify and document the annotation consumer and lifecycle."
+      },
+      {
+        "mistake": "Creating a DSL for a single ordinary constructor.",
+        "why": "Novel syntax hides familiar code without reducing real repetition.",
+        "fix": "Use direct constructors until a repeated nested structure justifies a builder."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design a small receiver-based builder that validates expenses, prevents nested receiver confusion, and returns a read-only report.",
+      "successLooksLike": "The DSL marker constrains nested receiver scope. Invalid expenses cannot enter the built report. The returned model does not expose builder mutation."
+    },
+    "recall": [
+      {
+        "prompt": "What controls whether reflection can see an annotation?",
+        "answer": "Its retention must include runtime."
+      },
+      {
+        "prompt": "Why prefer generated direct code?",
+        "answer": "It preserves compile-time checks, traceability, and often lower runtime overhead."
+      },
+      {
+        "prompt": "What is the result of a good builder?",
+        "answer": "An ordinary validated model independent of the temporary DSL scope."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-03-04-annotations-reflection-dsls",
+  "challengeId": "challenge-level-01-week-03-04-annotations-reflection-dsls",
+  "revision": {
+    "objectives": [
+      "Describe annotation targets, retention, and consumers.",
+      "Contain reflection behind a focused dynamic boundary.",
+      "Build a receiver-based DSL that produces immutable domain data."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/annotations.html",
+    "https://kotlinlang.org/docs/reflection.html",
+    "https://kotlinlang.org/docs/type-safe-builders.html"
+  ],
+  "version": "0.3.0"
+}

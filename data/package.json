@@ -1,0 +1,20 @@
+{
+  "name": "@droidquest/content-data",
+  "version": "0.8.0",
+  "private": true,
+  "description": "Local-first curriculum and content tooling for DroidQuest.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-content.js",
+    "generate": "node scripts/generate-index.js && node scripts/generate-search-index.js && node scripts/generate-roadmap-graph.js && npm run review",
+    "review": "node scripts/generate-review-page.js",
+    "test:content": "npm run validate && node scripts/check-generated.js && npm run validate"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-02-04-lambdas-extensions-scope",
+  "title": "Create Reusable Expense Policies",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-02-04-lambdas-extensions-scope",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Add parsing and formatting extensions plus a higher-order report function that accepts different expense-selection policies.",
+  "successCriteria": [
+    "Function types make selection policy explicit.",
+    "Extensions remain focused and have narrow visibility.",
+    "The solution avoids nested scope-function chains."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: Function types make selection policy explicit.",
+    "Use an executable example or focused check to verify: Extensions remain focused and have narrow visibility."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun String.toPositiveAmountOrNull(): Double? = TODO()\nfun List<Expense>.totalWhere(rule: (Expense) -> Boolean): Double = TODO()"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: Function types make selection policy explicit.",
+    "Implement and explain how the solution ensures: Extensions remain focused and have narrow visibility.",
+    "Implement and explain how the solution ensures: The solution avoids nested scope-function chains."
+  ],
+  "verification": [
+    "Run a focused check proving that function types make selection policy explicit.",
+    "Run a focused check proving that extensions remain focused and have narrow visibility.",
+    "Run a focused check proving that the solution avoids nested scope-function chains."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

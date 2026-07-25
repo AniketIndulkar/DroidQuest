@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-02-week-08-hybrid-ui-builder",
+  "title": "Hybrid UI Builder",
+  "description": "Awarded for maintaining View-based UI and bridging it coherently with Compose state and lifecycle.",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "icon": "hybrid-ui-builder-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-02-week-08-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 250,
+  "rarity": "rare",
+  "version": "0.4.0"
+}

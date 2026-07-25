@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-04-exceptions-supervision",
+  "title": "Exception Propagation and Supervision Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-04-exceptions-supervision"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-04-exceptions-supervision-decision",
+      "prompt": "When is supervisorScope appropriate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Independent useful sibling tasks",
+      "explanation": "Supervision preserves siblings only when their outcomes remain valuable independently.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision",
+      "options": [
+        "Independent useful sibling tasks",
+        "One atomic transaction",
+        "A single sequential call",
+        "To ignore every error"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-04-exceptions-supervision-truth",
+      "prompt": "SupervisorJob automatically handles and logs every child exception.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It changes cancellation propagation; errors still require explicit handling.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision"
+    },
+    {
+      "id": "q-level-04-week-14-04-exceptions-supervision-recall",
+      "prompt": "How is an async result failure observed?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "By awaiting its Deferred",
+      "explanation": "await rethrows the stored exception to the consumer.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

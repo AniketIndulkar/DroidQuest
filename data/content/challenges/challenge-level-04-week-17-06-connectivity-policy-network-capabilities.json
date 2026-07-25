@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-17-06-connectivity-policy-network-capabilities",
+  "title": "Build Connectivity-aware News Policy",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-17-06-connectivity-policy-network-capabilities",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Expose validated and metered hints, keep local reading available, coalesce restoration sync, defer large media, and test handover and false-positive connectivity.",
+  "successCriteria": [
+    "No capability is treated as guaranteed API reachability.",
+    "Callbacks are registered and removed with one owner.",
+    "Repeated restoration creates only one sync request."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class ConnectivityPolicy(private val manager: ConnectivityManager, private val sync: SyncScheduler)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

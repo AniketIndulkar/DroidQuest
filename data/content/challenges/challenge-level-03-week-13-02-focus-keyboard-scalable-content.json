@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-13-02-focus-keyboard-scalable-content",
+  "title": "Build a Keyboard and Large-text Product Form",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Create a product-search and purchase form that completes with keyboard or D-pad and remains usable at large font and display scale.",
+  "successCriteria": [
+    "Traversal reaches controls in a logical order.",
+    "No important label clips at tested scales.",
+    "Touch, keyboard, and accessibility activation produce the same events."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ProductForm(state: ProductFormState, onEvent: (ProductFormEvent) -> Unit)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

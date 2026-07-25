@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-04-04-data-structures-complexity",
+  "title": "Design an Expense Index",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-04-04-data-structures-complexity",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Implement an expense collection that preserves display order, rejects duplicate IDs, supports typical constant-time lookup by ID, and documents the complexity of each public operation.",
+  "successCriteria": [
+    "Display order remains deterministic.",
+    "Duplicate identifiers produce an explicit failure.",
+    "Complexity claims name average or worst-case assumptions."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: Display order remains deterministic.",
+    "Use an executable example or focused check to verify: Duplicate identifiers produce an explicit failure."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class ExpenseIndex(expenses: List<Expense>) {\n    fun all(): List<Expense> = TODO()\n    fun find(id: ExpenseId): Expense? = TODO()\n}"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: Display order remains deterministic.",
+    "Implement and explain how the solution ensures: Duplicate identifiers produce an explicit failure.",
+    "Implement and explain how the solution ensures: Complexity claims name average or worst-case assumptions."
+  ],
+  "verification": [
+    "Run a focused check proving that display order remains deterministic.",
+    "Run a focused check proving that duplicate identifiers produce an explicit failure.",
+    "Run a focused check proving that complexity claims name average or worst-case assumptions."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

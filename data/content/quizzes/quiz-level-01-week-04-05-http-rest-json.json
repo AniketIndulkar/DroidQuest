@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-01-week-04-05-http-rest-json",
+  "title": "HTTP, REST, and JSON Boundaries Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-05-http-rest-json"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-05-method-match",
+      "prompt": "Match each HTTP method to its usual intent.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "GET": "retrieve a representation",
+        "POST": "submit or create subordinate work",
+        "PUT": "replace a known resource",
+        "DELETE": "request removal"
+      },
+      "explanation": "Methods communicate semantics used by clients, servers, caches, and retry logic.",
+      "lessonId": "level-01-week-04-05-http-rest-json"
+    },
+    {
+      "id": "q-week-04-05-status-family",
+      "prompt": "Which status family normally represents a server-side failure?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "5xx",
+      "explanation": "Five-hundred codes report that the server failed to fulfil the request.",
+      "lessonId": "level-01-week-04-05-http-rest-json",
+      "options": [
+        "5xx",
+        "2xx",
+        "3xx",
+        "4xx"
+      ]
+    },
+    {
+      "id": "q-week-04-05-json-fact",
+      "prompt": "A valid JSON document automatically satisfies your Kotlin domain invariants.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "JSON syntax says nothing about application rules such as required identifiers, valid ranges, or currency units.",
+      "lessonId": "level-01-week-04-05-http-rest-json"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

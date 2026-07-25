@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-02-flow-operators-errors-retry",
+  "title": "Flow Operators, Errors, and Retry Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-02-flow-operators-errors-retry"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-02-flow-operators-errors-retry-decision",
+      "prompt": "Which failures should retryWhen normally repeat?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Classified transient failures",
+      "explanation": "Retry must distinguish recoverable conditions and be bounded.",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry",
+      "options": [
+        "Classified transient failures",
+        "Every Throwable forever",
+        "Cancellation",
+        "Invalid credentials without refresh"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-02-flow-operators-errors-retry-truth",
+      "prompt": "catch handles exceptions thrown later by the collector.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "catch is transparent to failures downstream of its position.",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry"
+    },
+    {
+      "id": "q-level-04-week-15-02-flow-operators-errors-retry-recall",
+      "prompt": "What happens when Flow retries?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "It resubscribes to upstream",
+      "explanation": "The producer and upstream side effects execute again.",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-20-04-qualifiers-multibindings-assisted",
+  "title": "Qualifiers, Multibindings, and Assisted Factories Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-04-qualifiers-multibindings-assisted"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-04-qualifiers-multibindings-assisted-decision",
+      "prompt": "Which approach best demonstrates sound qualifiers, multibindings, and assisted factories?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Provide public and authenticated HTTP clients with qualifiers, build a map of payment validators, and create an assisted statement exporter for a runtime account ID.",
+        "Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Provide public and authenticated HTTP clients with qualifiers, build a map of payment validators, and create an assisted statement exporter for a runtime account ID.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted"
+    },
+    {
+      "id": "q-level-05-week-20-04-qualifiers-multibindings-assisted-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted"
+    },
+    {
+      "id": "q-level-05-week-20-04-qualifiers-multibindings-assisted-recall",
+      "prompt": "What evidence should accompany the qualifiers, multibindings, and assisted factories decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

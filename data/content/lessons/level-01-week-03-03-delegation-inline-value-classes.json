@@ -1,0 +1,224 @@
+{
+  "id": "level-01-week-03-03-delegation-inline-value-classes",
+  "title": "Delegation, Inline Functions, and Value Classes",
+  "categoryId": "level-01-programming-foundations",
+  "week": 3,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-03-02-generics-variance"
+  ],
+  "tags": [
+    "kotlin",
+    "delegation",
+    "inline",
+    "reified",
+    "value-classes"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "These features remove repetitive forwarding, control higher-order call overhead, and create lightweight domain distinctions when used with clear constraints.",
+      "realWorldUse": "Delegated properties support observable state and preferences, inline APIs power Kotlin DSLs, reified types simplify typed lookup, and value classes protect identifiers.",
+      "outcome": "Use delegation and specialised compiler features only when their semantics improve an API rather than merely shortening syntax."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "delegation",
+          "title": "Delegate an interface or property responsibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Class delegation forwards an interface implementation to a collaborator using by, preserving composition while removing mechanical forwarding methods. Property delegates move get and set behaviour into another object; lazy calculates once on first access, observable reports changes, and custom delegates can enforce storage policy. Delegation does not remove ownership decisions. The containing class must still choose lifecycle, thread safety, error behaviour, and whether the delegated capability should be visible."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface ExpenseStore { fun save(expense: Expense) }\nclass LoggingStore(\n    private val delegate: ExpenseStore,\n) : ExpenseStore by delegate {\n    override fun save(expense: Expense) {\n        println(\"Saving ${expense.category}\")\n        delegate.save(expense)\n    }\n}",
+              "caption": "Most behaviour delegates automatically while one operation is decorated deliberately."
+            },
+            {
+              "type": "table",
+              "title": "Delegation forms",
+              "columns": [
+                "Form",
+                "Purpose"
+              ],
+              "rows": [
+                [
+                  "Interface by object",
+                  "Forward a capability to a collaborator"
+                ],
+                [
+                  "val x by lazy",
+                  "Calculate once on first access"
+                ],
+                [
+                  "var x by observable",
+                  "Observe changes after assignment"
+                ],
+                [
+                  "Custom property delegate",
+                  "Centralise get and set policy"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inline-reified",
+          "title": "Inline selectively at higher-order boundaries",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The inline modifier asks the compiler to place a function body and eligible lambda bodies at call sites. This can avoid function-object allocation and enables non-local returns, but it may increase generated code size. Do not inline ordinary functions without a measured or semantic reason. A reified type parameter is available only on an inline function and makes the actual type usable for is checks, class tokens, or typed lookup despite normal erasure."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "inline fun <reified T> Any?.isType(): Boolean = this is T\n\ninline fun measure(label: String, block: () -> Unit) {\n    val started = System.nanoTime()\n    block()\n    println(\"$label took ${System.nanoTime() - started}ns\")\n}",
+              "caption": "Reification enables a type check; inline also avoids allocating the simple measured lambda at this call boundary."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Inlining has a cost",
+              "text": "Large or widely called inline functions duplicate bytecode. Use it for lambda semantics, reification, or verified hot-path benefit."
+            }
+          ]
+        },
+        {
+          "id": "value-classes",
+          "title": "Wrap one value to protect domain meaning",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A value class wraps one primary value and creates a distinct Kotlin type, often without allocating a wrapper in favourable runtime positions. ExpenseId and UserId may both contain String but should not be interchangeable. Validation can live in init, and focused functions can expose safe behaviour. Boxing can still occur when a value is nullable, generic, used through an interface, or otherwise requires object representation. Treat reduced allocation as an implementation opportunity, not an absolute guarantee."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@JvmInline\nvalue class ExpenseId(val value: String) {\n    init { require(value.isNotBlank()) }\n}\n\nfun loadExpense(id: ExpenseId) { /* typed lookup */ }\n// loadExpense(UserId(\"42\")) would not compile",
+              "caption": "A lightweight wrapper prevents identifiers with the same representation from being mixed accidentally."
+            },
+            {
+              "type": "flow",
+              "title": "Use a specialised feature",
+              "steps": [
+                {
+                  "id": "problem",
+                  "label": "Name problem",
+                  "detail": "Boilerplate, lambda semantics, type erasure, or domain confusion?"
+                },
+                {
+                  "id": "feature",
+                  "label": "Choose feature",
+                  "detail": "Delegation, inline/reified, or value class."
+                },
+                {
+                  "id": "semantics",
+                  "label": "Check semantics",
+                  "detail": "Understand ownership, code size, equality, and boxing."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Verify performance claims when they motivate the choice."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Delegation",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/delegation.html",
+          "whyRead": "Explains interface implementation delegation and how overridden members interact with the delegate."
+        },
+        {
+          "title": "Inline functions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/inline-functions.html",
+          "whyRead": "Covers inline, noinline, crossinline, non-local returns, reified parameters, and code-size cautions."
+        },
+        {
+          "title": "Inline value classes",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/inline-classes.html",
+          "whyRead": "Documents value-class representation, members, mangling, boxing, inheritance constraints, and Java interoperability."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Protect typed identifiers",
+      "language": "kotlin",
+      "code": "@JvmInline value class ExpenseId(val value: String)\ndata class Expense(val id: ExpenseId, val amount: Double)\ninline fun <reified T> describeType(value: Any): String =\n    if (value is T) \"matches\" else \"different\"\nfun main() {\n    val expense = Expense(ExpenseId(\"expense-7\"), 4.0)\n    println(expense.id.value)\n    println(describeType<Expense>(expense))\n}",
+      "walkthrough": [
+        "ExpenseId is distinct from an arbitrary String at compile time.",
+        "Its underlying value remains available deliberately through value.",
+        "The reified type parameter enables the runtime Expense check."
+      ],
+      "expectedOutput": "expense-7\nmatches"
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming a value class can never allocate.",
+        "why": "Nullable, generic, interface, and other representation boundaries may require boxing.",
+        "fix": "Treat allocation removal as conditional and measure relevant code."
+      },
+      {
+        "mistake": "Inlining a large ordinary function for perceived speed.",
+        "why": "Duplicated call-site bytecode can increase size without meaningful benefit.",
+        "fix": "Inline for reification, lambda control flow, or measured performance."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Introduce ExpenseId as a validated value class and wrap an ExpenseStore using class delegation to add focused logging.",
+      "successLooksLike": "ExpenseId cannot be confused with another String-based identifier. Unchanged store operations delegate automatically. The logging wrapper preserves the underlying failure behaviour."
+    },
+    "recall": [
+      {
+        "prompt": "What does class delegation remove?",
+        "answer": "Mechanical forwarding while composition and ownership remain explicit."
+      },
+      {
+        "prompt": "Why must reified functions be inline?",
+        "answer": "Inlining substitutes the actual type at the call site where it can be used."
+      },
+      {
+        "prompt": "What problem does ExpenseId solve?",
+        "answer": "It prevents values with the same primitive representation from being confused."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-03-03-delegation-inline-value-classes",
+  "challengeId": "challenge-level-01-week-03-03-delegation-inline-value-classes",
+  "revision": {
+    "objectives": [
+      "Delegate an interface while retaining deliberate overrides.",
+      "Explain the semantic and size tradeoffs of inline and reified APIs.",
+      "Use a value class to create a validated domain distinction."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/delegation.html",
+    "https://kotlinlang.org/docs/inline-functions.html",
+    "https://kotlinlang.org/docs/inline-classes.html"
+  ],
+  "version": "0.3.0"
+}

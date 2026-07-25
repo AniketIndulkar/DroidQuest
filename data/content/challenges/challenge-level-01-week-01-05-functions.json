@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-05-functions",
+  "title": "Extract Expense Functions",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-05-functions",
+  "difficulty": "beginner",
+  "estimatedMinutes": 30,
+  "prompt": "Refactor an expense script into separate functions for validation, total calculation, and summary formatting, leaving main to coordinate them.",
+  "successCriteria": [
+    "Every function has focused parameters and a clear return type.",
+    "Business functions return results rather than printing.",
+    "The main function reads as a short sequence of meaningful calls."
+  ],
+  "hints": [
+    "Use question-style naming for the Boolean validation function.",
+    "Keep println at the outer program boundary."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun main() {\n    val quantity = 3\n    val unitPrice = 2.5\n    val category = \"Food\"\n    // Replace inline work with focused functions.\n}"
+  },
+  "solutionOutline": [
+    "Write and call a calculation function.",
+    "Write and call a validation function.",
+    "Format the valid result in a separate function."
+  ],
+  "verification": [
+    "Call each function with a second example.",
+    "Explain each parameter and returned value without reading the body."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

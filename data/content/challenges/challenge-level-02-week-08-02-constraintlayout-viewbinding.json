@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-08-02-constraintlayout-viewbinding",
+  "title": "Refactor a Leaking Fragment Layout",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-02-constraintlayout-viewbinding",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Convert a nested note editor to ConstraintLayout and View Binding, then prove the binding is unavailable after onDestroyView.",
+  "successCriteria": [
+    "Both axes are fully constrained at narrow and wide sizes.",
+    "No findViewById or unsafe global view reference remains.",
+    "View lifecycle collection and binding cleanup are demonstrated."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Both axes are fully constrained at narrow and wide sizes.",
+    "Use lifecycle or boundary evidence to prove: No findViewById or unsafe global view reference remains."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "private var _binding: FragmentNoteBinding? = null\n// Inflate, render, and clear safely."
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Both axes are fully constrained at narrow and wide sizes.",
+    "Implement the smallest design that guarantees: No findViewById or unsafe global view reference remains.",
+    "Implement the smallest design that guarantees: View lifecycle collection and binding cleanup are demonstrated."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that both axes are fully constrained at narrow and wide sizes.",
+    "Run a focused check demonstrating that no findViewById or unsafe global view reference remains.",
+    "Run a focused check demonstrating that view lifecycle collection and binding cleanup are demonstrated."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

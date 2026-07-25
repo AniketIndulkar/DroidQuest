@@ -1,0 +1,223 @@
+{
+  "id": "level-04-week-15-01-cold-flow-context-collection",
+  "title": "Cold Flow, Context, and Collection",
+  "categoryId": "level-04-async-data-networking",
+  "week": 15,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-14-06-coroutine-testing-virtual-time"
+  ],
+  "tags": [
+    "flow",
+    "cold-streams",
+    "context"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Flow models asynchronous sequences with sequential, cancellable pipelines, and cold builders run their producer separately for each collector.",
+      "realWorldUse": "Database observations, search pipelines, progress updates, and repository streams need a clear producer, operator, collector, and execution context.",
+      "outcome": "Build a cold Flow, predict repeated collection, preserve exception transparency, and move upstream work with flowOn."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A cold Flow runs per collector",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Flow emits zero or more values over time. The flow builder is cold: its block does not run until collect and starts again for every collector. Intermediate operators such as map and filter describe a new cold pipeline and terminal operators such as collect, first, single, and toList execute it. This differs from a suspend function returning one value and from a hot stream that exists independently of collection. Repeating a cold network Flow for multiple collectors can duplicate requests unless sharing is a deliberate requirement."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun observeArticles(): Flow<List<Article>> = flow {\n    emit(database.readArticles())\n}.flowOn(ioDispatcher)\n\nviewModelScope.launch { observeArticles().collect { render(it) } }",
+              "caption": "The cold producer runs for this collector and upstream work moves without changing downstream context."
+            },
+            {
+              "type": "table",
+              "title": "Flow role",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Producer",
+                  "flow or data-source stream"
+                ],
+                [
+                  "Intermediate stage",
+                  "Returns another Flow"
+                ],
+                [
+                  "Terminal operation",
+                  "Starts and suspends collection"
+                ],
+                [
+                  "flowOn",
+                  "Changes only upstream context"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Pipelines are sequential unless operators add concurrency",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "By default, emission, intermediate operators, and collection execute sequentially in the collecting coroutine. A slow collector suspends upstream unless buffer or another concurrency operator introduces a channel boundary. Flow is context-preserving: the producer should not emit from an arbitrary withContext inside flow. flowOn changes the context of operators upstream of it while downstream collection remains in the collector context. Prefer main-safe data sources so UI collectors do not encode execution policy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun observeArticles(): Flow<List<Article>> = flow {\n    emit(database.readArticles())\n}.flowOn(ioDispatcher)\n\nviewModelScope.launch { observeArticles().collect { render(it) } }",
+              "caption": "The cold producer runs for this collector and upstream work moves without changing downstream context."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Cold means per collector",
+              "text": "Each terminal collection executes the upstream pipeline again."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Context and cancellation follow transparent rules",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Collection is suspending and cancellation propagates through cooperative operators and source APIs. A flow builder must obey exception transparency: it should not emit a fallback from a catch surrounding emit after downstream failure. Use catch for upstream exceptions and onCompletion for completion observation, while preserving cancellation. Define whether the source is finite, continuous, or may remain silent, and test repeated collectors to expose accidental duplicated side effects."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not emit from arbitrary context inside flow",
+              "text": "Use flowOn or a context-aware builder to preserve Flow invariants."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Kotlin Flow",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coroutines-flow.html",
+          "whyRead": "Introduces cold builders, operators, context, buffering, exceptions, and completion."
+        },
+        {
+          "title": "Flow on Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/flow",
+          "whyRead": "Connects Flow producers, data layers, collection, and Android lifecycles."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Fix the Flow context violation",
+      "language": "kotlin",
+      "code": "fun values() = flow {\n    withContext(Dispatchers.IO) { emit(loadBlocking()) }\n}",
+      "walkthrough": [
+        "The flow builder changes context around emit and violates context preservation.",
+        "Collector expectations and exception behaviour become unsafe.",
+        "Keep emission in the builder and apply flowOn to upstream, or make the source main-safe."
+      ],
+      "expectedOutput": "The pipeline collects from Main while blocking upstream work executes on injected IO."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using a cold Flow for one Retrofit call and collecting it in three UI places.",
+        "why": "Every collector can repeat the request and error path.",
+        "fix": "Expose a one-shot suspend API or deliberately share one upstream stream."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a cold article Flow with injected upstream dispatcher, transformation, cancellation, failure handling, and tests for two independent collectors.",
+      "successLooksLike": "Repeated collection behaviour is demonstrated. No flow builder emits from an invalid context. Cancellation and upstream failure remain distinct."
+    },
+    "recall": [
+      {
+        "prompt": "When does a cold flow builder run?",
+        "answer": "When each collector starts collection."
+      },
+      {
+        "prompt": "What starts a pipeline?",
+        "answer": "A terminal operator such as collect."
+      },
+      {
+        "prompt": "What does flowOn affect?",
+        "answer": "Only the upstream portion of the pipeline."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-15-01-cold-flow-context-collection",
+  "challengeId": "challenge-level-04-week-15-01-cold-flow-context-collection",
+  "revision": {
+    "objectives": [
+      "Differentiate one-shot and stream APIs.",
+      "Trace cold collection execution.",
+      "Apply context without invariant violations."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/coroutines-flow.html",
+    "https://developer.android.com/kotlin/flow"
+  ],
+  "version": "0.6.0"
+}

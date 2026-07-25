@@ -1,0 +1,232 @@
+{
+  "id": "level-02-week-08-05-view-compose-interoperability",
+  "title": "View and Compose Interoperability",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 8,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-08-04-recyclerview-lists"
+  ],
+  "tags": [
+    "compose",
+    "views",
+    "interop",
+    "migration"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Real apps migrate incrementally, so Compose and Views need explicit ownership of lifecycle, state, themes, testing, and disposal at each boundary.",
+      "realWorldUse": "ComposeView embeds Compose in activities, fragments, or rows; AndroidView and AndroidViewBinding host existing Views inside a composable hierarchy.",
+      "outcome": "Choose the correct bridge direction, hoist shared state above it, and set disposal/update behaviour that matches the host lifecycle."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "compose-in-views",
+          "title": "ComposeView adds a composition to a View hierarchy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A ComposeView is a View whose content is produced by a Compose composition. It can replace one XML region while the activity or fragment remains View-based. Set a ViewCompositionStrategy that disposes composition according to the host: fragment content should normally follow the view-tree lifecycle so the composition does not retain a destroyed fragment view. Provide theme, state, and events from a shared state holder rather than keeping duplicate widget state on each side. Stable IDs matter when several ComposeViews participate in saved state."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "binding.composeHost.apply {\n    setViewCompositionStrategy(\n        ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed\n    )\n    setContent { NotesTheme { NoteSummary(state, onEvent) } }\n}",
+              "caption": "The composition lifetime follows the fragment view tree and receives state/events as ordinary inputs."
+            },
+            {
+              "type": "table",
+              "title": "Compose in Views",
+              "columns": [
+                "Concern",
+                "Owner"
+              ],
+              "rows": [
+                [
+                  "Composition disposal",
+                  "ViewCompositionStrategy plus host lifecycle"
+                ],
+                [
+                  "Screen state",
+                  "Shared ViewModel/state holder"
+                ],
+                [
+                  "Theme",
+                  "Compose theme aligned with host design system"
+                ],
+                [
+                  "Saved state",
+                  "Stable view ID and saveable keys"
+                ],
+                [
+                  "Testing",
+                  "View and Compose test surfaces as appropriate"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "views-in-compose",
+          "title": "AndroidView hosts an existing View with create and update phases",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "AndroidView factory creates the View and should not be repeatedly recreated from changing state. The update block applies current Compose state whenever recomposition requires it. Avoid constructing the View outside factory with remember merely to work around ownership; use the API lifecycle. AndroidViewBinding inflates a binding and is convenient for complex existing XML or FragmentContainerView integrations. Listener callbacks should send events upward, while update renders the latest value without triggering feedback loops. Views with their own resource or cleanup lifecycle may need explicit release support."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "AndroidView(\n    factory = { context -> EditText(context) },\n    update = { view ->\n        if (view.text.toString() != body) view.setText(body)\n        view.isEnabled = enabled\n    },\n)",
+              "caption": "factory creates once for this node; update synchronises current state while avoiding needless text resets."
+            },
+            {
+              "type": "flow",
+              "title": "AndroidView lifecycle",
+              "steps": [
+                {
+                  "id": "factory",
+                  "label": "Factory",
+                  "detail": "Create and configure the View instance."
+                },
+                {
+                  "id": "attach",
+                  "label": "Attach",
+                  "detail": "Compose places it in the hierarchy."
+                },
+                {
+                  "id": "update",
+                  "label": "Update",
+                  "detail": "Apply latest state during recomposition."
+                },
+                {
+                  "id": "event",
+                  "label": "Event",
+                  "detail": "View listener sends intent upward."
+                },
+                {
+                  "id": "release",
+                  "label": "Release",
+                  "detail": "Boundary disposes resources when removed."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "migration",
+          "title": "Migrate slices, not architecture twice",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choose a screen or leaf component with a clear state/event contract. Keep one source of truth above the boundary, then render it in either toolkit. Align colour, typography, spacing, accessibility, window insets, focus, and test tags/content descriptions. Avoid nesting toolkits repeatedly because debugging ownership and measurement becomes harder. Existing Views can remain where a mature library or custom widget has value; migration is not automatically deletion. Profile boundary-heavy lists and test configuration recreation, process restoration, dark mode, RTL, keyboard focus, accessibility, and screenshot differences before expanding the migration."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class NoteEditorState(val title: String, val body: String)\nsealed interface NoteEditorEvent { data class BodyChanged(val value: String) : NoteEditorEvent }",
+              "caption": "A toolkit-neutral state/event contract lets XML, Compose, or a hybrid screen share application behaviour."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "One state owner across both toolkits",
+              "text": "Interop should bridge rendering technology, not create two competing models of the same screen."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Interoperability APIs",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis",
+          "whyRead": "The official hub for ComposeView, AndroidView, AndroidViewBinding, and migration boundaries."
+        },
+        {
+          "title": "Compose in Views",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis/compose-in-views",
+          "whyRead": "Explains ComposeView setup, disposal strategies, fragment use, multiple hosts, and state."
+        },
+        {
+          "title": "Views in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis/views-in-compose",
+          "whyRead": "Documents AndroidView factory/update/release and AndroidViewBinding usage."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find duplicate state ownership",
+      "language": "text",
+      "code": "XML EditText stores body text\nCompose preview stores remember { mutableStateOf(body) }\nViewModel stores body flow\nEach listener updates a different copy",
+      "walkthrough": [
+        "Three mutable owners can diverge after edits and recreation.",
+        "Interop is not the cause; duplicated state ownership is.",
+        "The ViewModel should own state while both renderers emit events and render current values."
+      ],
+      "expectedOutput": "Hoist one state/event contract and remove toolkit-local domain copies."
+    },
+    "trap_check": [
+      {
+        "mistake": "Keeping Compose and View copies of the same screen state.",
+        "why": "Updates and restoration diverge across the boundary.",
+        "fix": "Hoist one source of truth and pass state down/events up."
+      },
+      {
+        "mistake": "Ignoring composition disposal in a fragment view.",
+        "why": "The composition may outlive and retain the destroyed view tree.",
+        "fix": "Use a lifecycle-matched ViewCompositionStrategy."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Host an XML note editor inside a Compose screen with AndroidViewBinding, one ViewModel state source, correct listeners, dark/RTL/rotation tests, and no feedback loop.",
+      "successLooksLike": "Factory/inflation and update responsibilities are separate. Both toolkits render one shared immutable state. Lifecycle and restoration behaviour are verified."
+    },
+    "recall": [
+      {
+        "prompt": "What embeds Compose inside Views?",
+        "answer": "ComposeView hosts a composition as a View."
+      },
+      {
+        "prompt": "What embeds a View inside Compose?",
+        "answer": "AndroidView or AndroidViewBinding."
+      },
+      {
+        "prompt": "Where should shared screen state live?",
+        "answer": "Above the toolkit boundary in one state holder."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-08-05-view-compose-interoperability",
+  "challengeId": "challenge-level-02-week-08-05-view-compose-interoperability",
+  "revision": {
+    "objectives": [
+      "Embed Compose with correct disposal ownership.",
+      "Use AndroidView factory and update correctly.",
+      "Plan incremental migration around one state contract."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis",
+    "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis/compose-in-views",
+    "https://developer.android.com/develop/ui/compose/migrate/interoperability-apis/views-in-compose"
+  ],
+  "version": "0.4.0"
+}

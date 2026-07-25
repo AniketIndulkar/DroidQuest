@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-02-week-07-component-navigator",
+  "title": "Component Navigator",
+  "description": "Awarded for using Android component, permission, intent, IPC, task, and external-entry contracts safely.",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "icon": "component-navigator-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-02-week-07-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 250,
+  "rarity": "rare",
+  "version": "0.4.0"
+}

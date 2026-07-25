@@ -1,0 +1,1747 @@
+{
+  "id": "android-glossary",
+  "title": "DroidQuest Android Glossary",
+  "version": "0.8.0",
+  "entries": [
+    {
+      "id": "term-entry-point",
+      "term": "Entry Point",
+      "definition": "The function where a standalone program begins executing.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "program"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-01-first-program"
+      ]
+    },
+    {
+      "id": "term-compiler",
+      "term": "Compiler",
+      "definition": "Tooling that checks source code and translates valid Kotlin into executable instructions.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "tooling"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-01-first-program"
+      ]
+    },
+    {
+      "id": "term-expression",
+      "term": "Expression",
+      "definition": "A piece of code that evaluates to a value and can be combined with other expressions.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "expressions"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-03-expressions-decisions"
+      ]
+    },
+    {
+      "id": "term-variable",
+      "term": "Variable",
+      "definition": "A named reference to a value, declared with val or var in Kotlin.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "variables"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-02-values-types-strings"
+      ]
+    },
+    {
+      "id": "term-type-inference",
+      "term": "Type Inference",
+      "definition": "The compiler determining a declaration type from its assigned value and surrounding context.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "types"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-02-values-types-strings"
+      ]
+    },
+    {
+      "id": "term-string-template",
+      "term": "String Template",
+      "definition": "Kotlin syntax that evaluates a name or expression and inserts its value into text.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "strings"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-02-values-types-strings"
+      ]
+    },
+    {
+      "id": "term-boolean",
+      "term": "Boolean",
+      "definition": "A type with the two logical values true and false, commonly used for conditions.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "conditions"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-03-expressions-decisions"
+      ]
+    },
+    {
+      "id": "term-short-circuit",
+      "term": "Short-Circuit Evaluation",
+      "definition": "Skipping the right side of a logical expression when the left side already determines the result.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "booleans"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-03-expressions-decisions"
+      ]
+    },
+    {
+      "id": "term-range",
+      "term": "Range",
+      "definition": "An ordered progression between boundary values that can supply values to iteration.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "loops"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-04-loops-ranges"
+      ]
+    },
+    {
+      "id": "term-accumulator",
+      "term": "Accumulator",
+      "definition": "A variable that builds a result, such as a total or count, across repeated steps.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "iteration"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-04-loops-ranges"
+      ]
+    },
+    {
+      "id": "term-parameter",
+      "term": "Parameter",
+      "definition": "A named input declared as part of a function contract.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "functions"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-05-functions"
+      ]
+    },
+    {
+      "id": "term-argument",
+      "term": "Argument",
+      "definition": "A concrete value supplied to a parameter when calling a function.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "functions"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-05-functions"
+      ]
+    },
+    {
+      "id": "term-nullable-type",
+      "term": "Nullable Type",
+      "definition": "A Kotlin type marked with a question mark that permits both a value and null.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "null-safety"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-06-null-safety"
+      ]
+    },
+    {
+      "id": "term-safe-call",
+      "term": "Safe Call",
+      "definition": "The question-mark-dot operator that accesses a member only when its receiver is non-null.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "null-safety"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-06-null-safety"
+      ]
+    },
+    {
+      "id": "term-elvis-operator",
+      "term": "Elvis Operator",
+      "definition": "The question-mark-colon operator that supplies an alternative when its left expression is null.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "null-safety"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-06-null-safety"
+      ]
+    },
+    {
+      "id": "term-pipeline",
+      "term": "Processing Pipeline",
+      "definition": "An ordered set of stages that progressively transforms, validates, and presents information.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "programming",
+        "design"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-07-small-program-design"
+      ]
+    },
+    {
+      "id": "term-reproduction",
+      "term": "Reproduction",
+      "definition": "A small repeatable case that demonstrates the difference between expected and actual behaviour.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "debugging",
+        "evidence"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-01-07-small-program-design"
+      ]
+    },
+    {
+      "id": "term-composition",
+      "term": "Composition",
+      "definition": "Building a type by collaborating with contained objects instead of inheriting their implementation.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "design"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-02-01-classes-objects-composition"
+      ]
+    },
+    {
+      "id": "term-sealed-hierarchy",
+      "term": "Sealed Hierarchy",
+      "definition": "A closed family of permitted Kotlin subtypes that supports exhaustive handling of known variants.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "types"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-02-02-data-enum-sealed-models"
+      ]
+    },
+    {
+      "id": "term-collection-pipeline",
+      "term": "Collection Pipeline",
+      "definition": "A sequence of collection operations that transforms, filters, groups, or aggregates values in named stages.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "collections"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-02-03-collections-transformations"
+      ]
+    },
+    {
+      "id": "term-higher-order-function",
+      "term": "Higher-Order Function",
+      "definition": "A function that accepts another function as input, returns one, or performs both roles.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "functions"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-02-04-lambdas-extensions-scope"
+      ]
+    },
+    {
+      "id": "term-domain-result",
+      "term": "Domain Result",
+      "definition": "A typed value representing expected success and failure outcomes that application callers must handle.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "errors"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-01-exceptions-results"
+      ]
+    },
+    {
+      "id": "term-variance",
+      "term": "Variance",
+      "definition": "The rules describing how subtype relationships transfer through a generic producer, consumer, or invariant type.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "generics"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-02-generics-variance"
+      ]
+    },
+    {
+      "id": "term-delegation",
+      "term": "Delegation",
+      "definition": "Forwarding an interface or property responsibility to another object while retaining explicit ownership and policy.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "design"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-03-delegation-inline-value-classes"
+      ]
+    },
+    {
+      "id": "term-reified-type",
+      "term": "Reified Type Parameter",
+      "definition": "An inline function type parameter whose concrete call-site type remains usable inside the generated function body.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "generics"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-03-delegation-inline-value-classes"
+      ]
+    },
+    {
+      "id": "term-annotation-retention",
+      "term": "Annotation Retention",
+      "definition": "The declaration controlling whether annotation metadata survives in source, compiled output, or runtime reflection.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "metadata"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-04-annotations-reflection-dsls"
+      ]
+    },
+    {
+      "id": "term-platform-type",
+      "term": "Platform Type",
+      "definition": "A Java-origin value whose nullability Kotlin cannot determine and which should be validated at the boundary.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "kotlin",
+        "jvm"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-03-05-jvm-interop-memory"
+      ]
+    },
+    {
+      "id": "term-working-directory",
+      "term": "Working Directory",
+      "definition": "The directory from which a process resolves relative paths during its execution.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "tooling",
+        "terminal"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-01-terminal-files-processes"
+      ]
+    },
+    {
+      "id": "term-staging-area",
+      "term": "Staging Area",
+      "definition": "The Git index that selects the exact changes intended for the next commit snapshot.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "git",
+        "version-control"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-02-git-collaboration-docs"
+      ]
+    },
+    {
+      "id": "term-stack-trace",
+      "term": "Stack Trace",
+      "definition": "A report of an exception and the active call frames that led to the point where it was detected.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "debugging",
+        "errors"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-03-debugging-stack-traces"
+      ]
+    },
+    {
+      "id": "term-time-complexity",
+      "term": "Time Complexity",
+      "definition": "A model of how the number of dominant operations grows as the input size increases.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "algorithms",
+        "performance"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-04-data-structures-complexity"
+      ]
+    },
+    {
+      "id": "term-idempotent",
+      "term": "Idempotent",
+      "definition": "A request property meaning that repeating the same intended operation has the same intended effect as performing it once.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "http",
+        "networking"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-05-http-rest-json"
+      ]
+    },
+    {
+      "id": "term-data-transfer-object",
+      "term": "Data Transfer Object",
+      "definition": "A boundary model shaped for serialised transport data before validation and conversion into domain values.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "json",
+        "architecture"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-05-http-rest-json"
+      ]
+    },
+    {
+      "id": "term-vertical-slice",
+      "term": "Vertical Slice",
+      "definition": "One thin, end-to-end implementation of observable behaviour across the layers required to deliver it.",
+      "categoryId": "level-01-programming-foundations",
+      "tags": [
+        "design",
+        "delivery"
+      ],
+      "relatedLessonIds": [
+        "level-01-week-04-06-expense-manager-capstone"
+      ]
+    },
+    {
+      "id": "term-avd",
+      "term": "Android Virtual Device",
+      "definition": "A saved hardware and system-image configuration that an emulator process can boot.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "android-studio"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-05-01-studio-sdk-emulator"
+      ]
+    },
+    {
+      "id": "term-source-set",
+      "term": "Source Set",
+      "definition": "A named group of code, resources, manifests, or tests included in selected build variants.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "projects"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-05-02-projects-modules-source-sets"
+      ]
+    },
+    {
+      "id": "term-android-gradle-plugin",
+      "term": "Android Gradle Plugin",
+      "definition": "The Gradle plugin that adds Android variants, resources, manifests, dexing, packaging, and related tasks.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "gradle"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-05-03-gradle-agp-build-flow"
+      ]
+    },
+    {
+      "id": "term-merged-manifest",
+      "term": "Merged Manifest",
+      "definition": "The final manifest produced from application, variant, and library declarations for one build variant.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "manifest"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-05-04-manifest-resources-identity"
+      ]
+    },
+    {
+      "id": "term-target-sdk",
+      "term": "Target SDK",
+      "definition": "The platform behaviour level against which an application declares it has been tested.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "sdk-levels"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-05-05-sdk-levels-variants-packaging"
+      ]
+    },
+    {
+      "id": "term-application-context",
+      "term": "Application Context",
+      "definition": "A process-scoped Context suitable for justified long-lived non-UI access.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "application"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-06-01-application-process-context"
+      ]
+    },
+    {
+      "id": "term-activity-lifecycle",
+      "term": "Activity Lifecycle",
+      "definition": "The system-managed state transitions of one Android Activity instance.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "activity"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-06-02-activity-lifecycle"
+      ]
+    },
+    {
+      "id": "term-configuration-change",
+      "term": "Configuration Change",
+      "definition": "A device or window environment change that can recreate UI hosts and select new resources.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "configuration"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-06-03-configuration-changes"
+      ]
+    },
+    {
+      "id": "term-saved-state-handle",
+      "term": "SavedStateHandle",
+      "definition": "A ViewModel-facing store for small values needed to reconstruct UI after system process recreation.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "saved-state"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-06-04-saved-state-process-death"
+      ]
+    },
+    {
+      "id": "term-resource-qualifier",
+      "term": "Resource Qualifier",
+      "definition": "A directory suffix describing an alternative resource configuration such as locale, night mode, or width.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "resources"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-06-05-resources-qualifiers-localisation"
+      ]
+    },
+    {
+      "id": "term-intent",
+      "term": "Intent",
+      "definition": "A message describing a component operation, optional destination, data, type, extras, and flags.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "intents"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-07-01-intents-activity-results"
+      ]
+    },
+    {
+      "id": "term-runtime-permission",
+      "term": "Runtime Permission",
+      "definition": "A revocable user decision granting a dangerous protected capability while the app runs.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "permissions"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-07-02-runtime-permissions"
+      ]
+    },
+    {
+      "id": "term-foreground-service",
+      "term": "Foreground Service",
+      "definition": "A service for ongoing user-noticeable work that displays a notification and follows start restrictions.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "components"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-07-03-component-selection-services"
+      ]
+    },
+    {
+      "id": "term-pending-intent",
+      "term": "PendingIntent",
+      "definition": "A token delegating a predefined future operation with the creator application identity.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "broadcasts"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-07-04-broadcasts-providers-pending-intents"
+      ]
+    },
+    {
+      "id": "term-app-link",
+      "term": "Android App Link",
+      "definition": "A verified HTTP or HTTPS deep link associated with an application through Digital Asset Links.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "tasks"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-07-05-tasks-back-stack-app-links"
+      ]
+    },
+    {
+      "id": "term-view-inflation",
+      "term": "View Inflation",
+      "definition": "Parsing XML layout declarations to create a runtime View and ViewGroup object hierarchy.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "views"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-01-xml-view-hierarchies"
+      ]
+    },
+    {
+      "id": "term-view-binding",
+      "term": "View Binding",
+      "definition": "Generated typed references for the views declared in an Android XML layout.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "constraintlayout"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-02-constraintlayout-viewbinding"
+      ]
+    },
+    {
+      "id": "term-fragment-view-lifecycle",
+      "term": "Fragment View Lifecycle",
+      "definition": "The lifecycle of a Fragment view hierarchy, which can end before the Fragment object lifecycle.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "fragments"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-03-fragments-navigation"
+      ]
+    },
+    {
+      "id": "term-view-holder",
+      "term": "ViewHolder",
+      "definition": "A reusable holder of references for one RecyclerView item hierarchy.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "recyclerview"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-04-recyclerview-lists"
+      ]
+    },
+    {
+      "id": "term-compose-view",
+      "term": "ComposeView",
+      "definition": "A View that hosts a Jetpack Compose composition inside a retained View hierarchy.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "compose"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-05-view-compose-interoperability"
+      ]
+    },
+    {
+      "id": "term-state-reconstruction",
+      "term": "State Reconstruction",
+      "definition": "Rebuilding a screen from small saved keys, durable data, and explicit entry arguments after host or process recreation.",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "tags": [
+        "android",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-02-week-08-06-notes-app-capstone"
+      ]
+    },
+    {
+      "id": "term-compose-mental-model",
+      "term": "Thinking in Compose",
+      "definition": "A Jetpack Compose concept covering thinking in compose with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-09-01-compose-mental-model"
+      ]
+    },
+    {
+      "id": "term-modifiers-constraints-order",
+      "term": "Modifiers, Constraints, and Order",
+      "definition": "A Jetpack Compose concept covering modifiers, constraints, and order with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "modifiers"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-09-02-modifiers-constraints-order"
+      ]
+    },
+    {
+      "id": "term-row-column-box-layout",
+      "term": "Row, Column, Box, and Responsive Layout",
+      "definition": "A Jetpack Compose concept covering row, column, box, and responsive layout with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "row"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-09-03-row-column-box-layout"
+      ]
+    },
+    {
+      "id": "term-material3-scaffold-slots",
+      "term": "Material 3 Components, Scaffold, and Slots",
+      "definition": "A Jetpack Compose concept covering material 3 components, scaffold, and slots with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "material3"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-09-04-material3-scaffold-slots"
+      ]
+    },
+    {
+      "id": "term-text-input-resources",
+      "term": "Text, Input, Images, and Resources",
+      "definition": "A Jetpack Compose concept covering text, input, images, and resources with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "text"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-09-05-text-input-resources"
+      ]
+    },
+    {
+      "id": "term-state-remember-saveable",
+      "term": "State, remember, and rememberSaveable",
+      "definition": "A Jetpack Compose concept covering state, remember, and remembersaveable with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "state"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-10-01-state-remember-saveable"
+      ]
+    },
+    {
+      "id": "term-state-hoisting-udf",
+      "term": "State Hoisting and Unidirectional Data Flow",
+      "definition": "A Jetpack Compose concept covering state hoisting and unidirectional data flow with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "state"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-10-02-state-hoisting-udf"
+      ]
+    },
+    {
+      "id": "term-recomposition-snapshots-identity",
+      "term": "Recomposition, Snapshots, and Identity",
+      "definition": "A Jetpack Compose concept covering recomposition, snapshots, and identity with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "recomposition"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-10-03-recomposition-snapshots-identity"
+      ]
+    },
+    {
+      "id": "term-lazy-lists-grids",
+      "term": "Lazy Lists and Grids",
+      "definition": "A Jetpack Compose concept covering lazy lists and grids with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "lazy"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-10-04-lazy-lists-grids"
+      ]
+    },
+    {
+      "id": "term-navigation-compose-concepts",
+      "term": "Navigation Compose and Destination State",
+      "definition": "A Jetpack Compose concept covering navigation compose and destination state with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "navigation"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-10-05-navigation-compose-concepts"
+      ]
+    },
+    {
+      "id": "term-effect-fundamentals-keys",
+      "term": "Effect Fundamentals and Keys",
+      "definition": "A Jetpack Compose concept covering effect fundamentals and keys with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "effect"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-11-01-effect-fundamentals-keys"
+      ]
+    },
+    {
+      "id": "term-launched-effect-coroutine-scope",
+      "term": "LaunchedEffect and rememberCoroutineScope",
+      "definition": "A Jetpack Compose concept covering launchedeffect and remembercoroutinescope with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "launched"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-11-02-launched-effect-coroutine-scope"
+      ]
+    },
+    {
+      "id": "term-disposable-sideeffect-updatedstate",
+      "term": "DisposableEffect, SideEffect, and rememberUpdatedState",
+      "definition": "A Jetpack Compose concept covering disposableeffect, sideeffect, and rememberupdatedstate with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "disposable"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-11-03-disposable-sideeffect-updatedstate"
+      ]
+    },
+    {
+      "id": "term-derived-state-snapshot-flow",
+      "term": "derivedStateOf and snapshotFlow",
+      "definition": "A Jetpack Compose concept covering derivedstateof and snapshotflow with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "derived"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-11-04-derived-state-snapshot-flow"
+      ]
+    },
+    {
+      "id": "term-viewmodel-lifecycle-collection",
+      "term": "ViewModel and Lifecycle-aware Collection",
+      "definition": "A Jetpack Compose concept covering viewmodel and lifecycle-aware collection with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "viewmodel"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-11-05-viewmodel-lifecycle-collection"
+      ]
+    },
+    {
+      "id": "term-stability-skipping-performance",
+      "term": "Stability, Skipping, and Performance",
+      "definition": "A Jetpack Compose concept covering stability, skipping, and performance with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "stability"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-01-stability-skipping-performance"
+      ]
+    },
+    {
+      "id": "term-custom-layout-measure-placement",
+      "term": "Custom Layout: Measure and Placement",
+      "definition": "A Jetpack Compose concept covering custom layout: measure and placement with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "custom"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-02-custom-layout-measure-placement"
+      ]
+    },
+    {
+      "id": "term-canvas-custom-drawing",
+      "term": "Canvas and Custom Drawing",
+      "definition": "A Jetpack Compose concept covering canvas and custom drawing with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "canvas"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-03-canvas-custom-drawing"
+      ]
+    },
+    {
+      "id": "term-gestures-pointer-input",
+      "term": "Gestures, Pointer Input, and Interaction",
+      "definition": "A Jetpack Compose concept covering gestures, pointer input, and interaction with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "gestures"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-04-gestures-pointer-input"
+      ]
+    },
+    {
+      "id": "term-animation-nested-scroll",
+      "term": "Animation and Nested Scroll",
+      "definition": "A Jetpack Compose concept covering animation and nested scroll with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "animation"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-05-animation-nested-scroll"
+      ]
+    },
+    {
+      "id": "term-design-systems-compositionlocal",
+      "term": "Compose Design Systems and CompositionLocal",
+      "definition": "A Jetpack Compose concept covering compose design systems and compositionlocal with explicit state, lifecycle, rendering, and production-quality behaviour.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "design"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-12-06-design-systems-compositionlocal"
+      ]
+    },
+    {
+      "id": "term-accessibility-semantics-talkback",
+      "term": "Accessibility Semantics and TalkBack",
+      "definition": "A production Android concept covering accessibility semantics and talkback with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "accessibility"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-01-accessibility-semantics-talkback"
+      ]
+    },
+    {
+      "id": "term-focus-keyboard-scalable-content",
+      "term": "Focus, Keyboard Navigation, and Scalable Content",
+      "definition": "A production Android concept covering focus, keyboard navigation, and scalable content with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "focus"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-02-focus-keyboard-scalable-content"
+      ]
+    },
+    {
+      "id": "term-localisation-rtl-theme-policy",
+      "term": "Localisation, RTL, Dark Theme, and Dynamic Colour",
+      "definition": "A production Android concept covering localisation, rtl, dark theme, and dynamic colour with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "localisation"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-03-localisation-rtl-theme-policy"
+      ]
+    },
+    {
+      "id": "term-edge-to-edge-window-insets",
+      "term": "Edge-to-edge and Window Insets",
+      "definition": "A production Android concept covering edge-to-edge and window insets with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "edge"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-04-edge-to-edge-window-insets"
+      ]
+    },
+    {
+      "id": "term-adaptive-layout-navigation3",
+      "term": "Adaptive Layouts and Navigation 3 Concepts",
+      "definition": "A production Android concept covering adaptive layouts and navigation 3 concepts with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose",
+        "adaptive"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-05-adaptive-layout-navigation3"
+      ]
+    },
+    {
+      "id": "term-compose-testing-shopping-capstone",
+      "term": "Compose Testing and Adaptive Shopping Capstone",
+      "definition": "A production Android concept covering compose testing and adaptive shopping capstone with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-03-jetpack-compose",
+      "tags": [
+        "compose"
+      ],
+      "relatedLessonIds": [
+        "level-03-week-13-06-compose-testing-shopping-capstone"
+      ]
+    },
+    {
+      "id": "term-suspend-main-safety-dispatchers",
+      "term": "Suspend Functions, Main Safety, and Dispatchers",
+      "definition": "A production Android concept covering suspend functions, main safety, and dispatchers with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "suspend"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-01-suspend-main-safety-dispatchers"
+      ]
+    },
+    {
+      "id": "term-scopes-builders-structured-concurrency",
+      "term": "Scopes, Builders, and Structured Concurrency",
+      "definition": "A production Android concept covering scopes, builders, and structured concurrency with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "scopes"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-02-scopes-builders-structured-concurrency"
+      ]
+    },
+    {
+      "id": "term-cancellation-timeouts-cleanup",
+      "term": "Cancellation, Timeouts, and Cleanup",
+      "definition": "A production Android concept covering cancellation, timeouts, and cleanup with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "cancellation"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-03-cancellation-timeouts-cleanup"
+      ]
+    },
+    {
+      "id": "term-exceptions-supervision",
+      "term": "Exception Propagation and Supervision",
+      "definition": "A production Android concept covering exception propagation and supervision with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "exceptions"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-04-exceptions-supervision"
+      ]
+    },
+    {
+      "id": "term-parallelism-thread-safety",
+      "term": "Concurrency, Parallelism, and Thread Safety",
+      "definition": "A production Android concept covering concurrency, parallelism, and thread safety with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "parallelism"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-05-parallelism-thread-safety"
+      ]
+    },
+    {
+      "id": "term-coroutine-testing-virtual-time",
+      "term": "Testing Coroutines with Virtual Time",
+      "definition": "A production Android concept covering testing coroutines with virtual time with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "coroutine"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-14-06-coroutine-testing-virtual-time"
+      ]
+    },
+    {
+      "id": "term-cold-flow-context-collection",
+      "term": "Cold Flow, Context, and Collection",
+      "definition": "A production Android concept covering cold flow, context, and collection with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "cold"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-01-cold-flow-context-collection"
+      ]
+    },
+    {
+      "id": "term-flow-operators-errors-retry",
+      "term": "Flow Operators, Errors, and Retry",
+      "definition": "A production Android concept covering flow operators, errors, and retry with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "flow"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-02-flow-operators-errors-retry"
+      ]
+    },
+    {
+      "id": "term-combine-latest-flattening",
+      "term": "Combining and Flattening Flows",
+      "definition": "A production Android concept covering combining and flattening flows with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "combine"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-03-combine-latest-flattening"
+      ]
+    },
+    {
+      "id": "term-buffer-conflate-backpressure",
+      "term": "Buffering, Conflation, and Backpressure",
+      "definition": "A production Android concept covering buffering, conflation, and backpressure with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "buffer"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-04-buffer-conflate-backpressure"
+      ]
+    },
+    {
+      "id": "term-stateflow-sharedflow-events",
+      "term": "StateFlow, SharedFlow, and Events",
+      "definition": "A production Android concept covering stateflow, sharedflow, and events with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "stateflow"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-05-stateflow-sharedflow-events"
+      ]
+    },
+    {
+      "id": "term-statein-sharein-lifecycle-flow-tests",
+      "term": "stateIn, shareIn, Lifecycle, and Flow Tests",
+      "definition": "A production Android concept covering statein, sharein, lifecycle, and flow tests with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "statein"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+      ]
+    },
+    {
+      "id": "term-http-contracts-status-headers",
+      "term": "HTTP Contracts, Status, and Headers",
+      "definition": "A production Android concept covering http contracts, status, and headers with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "http"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-01-http-contracts-status-headers"
+      ]
+    },
+    {
+      "id": "term-dto-kotlin-serialization",
+      "term": "DTOs and Kotlin JSON Serialization",
+      "definition": "A production Android concept covering dtos and kotlin json serialization with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "dto"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-02-dto-kotlin-serialization"
+      ]
+    },
+    {
+      "id": "term-retrofit-data-source-repository",
+      "term": "Retrofit, Data Sources, and Repository Boundaries",
+      "definition": "A production Android concept covering retrofit, data sources, and repository boundaries with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "retrofit"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-03-retrofit-data-source-repository"
+      ]
+    },
+    {
+      "id": "term-okhttp-interceptors-auth-logging",
+      "term": "OkHttp Interceptors, Authentication, and Safe Logging",
+      "definition": "A production Android concept covering okhttp interceptors, authentication, and safe logging with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "okhttp"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-04-okhttp-interceptors-auth-logging"
+      ]
+    },
+    {
+      "id": "term-network-failures-timeouts-retries",
+      "term": "Network Failures, Timeouts, Retries, and Idempotency",
+      "definition": "A production Android concept covering network failures, timeouts, retries, and idempotency with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "network"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-05-network-failures-timeouts-retries"
+      ]
+    },
+    {
+      "id": "term-mockwebserver-network-integration-tests",
+      "term": "Network Integration Testing with MockWebServer",
+      "definition": "A production Android concept covering network integration testing with mockwebserver with explicit ownership, lifecycle, failure, and verification.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "mockwebserver"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-16-06-mockwebserver-network-integration-tests"
+      ]
+    },
+    {
+      "id": "term-oauth-tokens-session-security",
+      "term": "OAuth Tokens and Session Security",
+      "definition": "A reliable Android data concept covering oauth tokens and session security with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "oauth"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-01-oauth-tokens-session-security"
+      ]
+    },
+    {
+      "id": "term-single-flight-token-refresh",
+      "term": "Single-flight Token Refresh and Concurrent 401s",
+      "definition": "A reliable Android data concept covering single-flight token refresh and concurrent 401s with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "single"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-02-single-flight-token-refresh"
+      ]
+    },
+    {
+      "id": "term-paging3-cursors-loadstates",
+      "term": "Paging 3, Cursors, and Load States",
+      "definition": "A reliable Android data concept covering paging 3, cursors, and load states with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "paging3"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-03-paging3-cursors-loadstates"
+      ]
+    },
+    {
+      "id": "term-multipart-upload-progress",
+      "term": "Multipart Uploads and Progress",
+      "definition": "A reliable Android data concept covering multipart uploads and progress with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "multipart"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-04-multipart-upload-progress"
+      ]
+    },
+    {
+      "id": "term-websockets-sse-realtime",
+      "term": "WebSockets, Server-Sent Events, and Realtime State",
+      "definition": "A reliable Android data concept covering websockets, server-sent events, and realtime state with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "websockets"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-05-websockets-sse-realtime"
+      ]
+    },
+    {
+      "id": "term-connectivity-policy-network-capabilities",
+      "term": "Connectivity Signals and Network Policy",
+      "definition": "A reliable Android data concept covering connectivity signals and network policy with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "connectivity"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-17-06-connectivity-policy-network-capabilities"
+      ]
+    },
+    {
+      "id": "term-room-entities-daos-relations-transactions",
+      "term": "Room Entities, DAOs, Relationships, and Transactions",
+      "definition": "A reliable Android data concept covering room entities, daos, relationships, and transactions with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "room"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-01-room-entities-daos-relations-transactions"
+      ]
+    },
+    {
+      "id": "term-room-migrations-fts-testing",
+      "term": "Room Migrations, Full-text Search, and Database Testing",
+      "definition": "A reliable Android data concept covering room migrations, full-text search, and database testing with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "room"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-02-room-migrations-fts-testing"
+      ]
+    },
+    {
+      "id": "term-datastore-and-file-storage",
+      "term": "DataStore and App File Storage",
+      "definition": "A reliable Android data concept covering datastore and app file storage with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "datastore"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-03-datastore-and-file-storage"
+      ]
+    },
+    {
+      "id": "term-source-of-truth-cache-ttl",
+      "term": "Single Source of Truth, Cache Freshness, and TTL",
+      "definition": "A reliable Android data concept covering single source of truth, cache freshness, and ttl with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "source"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-04-source-of-truth-cache-ttl"
+      ]
+    },
+    {
+      "id": "term-offline-writes-sync-conflicts",
+      "term": "Offline Writes, Sync Queues, and Conflict Resolution",
+      "definition": "A reliable Android data concept covering offline writes, sync queues, and conflict resolution with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "offline"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-05-offline-writes-sync-conflicts"
+      ]
+    },
+    {
+      "id": "term-workmanager-durable-sync",
+      "term": "WorkManager for Durable Synchronization",
+      "definition": "A reliable Android data concept covering workmanager for durable synchronization with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "workmanager"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-06-workmanager-durable-sync"
+      ]
+    },
+    {
+      "id": "term-offline-first-news-capstone",
+      "term": "Capstone: Offline-First News Reader",
+      "definition": "A reliable Android data concept covering capstone: offline-first news reader with explicit authority, durability, failure, and recovery.",
+      "categoryId": "level-04-async-data-networking",
+      "tags": [
+        "data",
+        "offline"
+      ],
+      "relatedLessonIds": [
+        "level-04-week-18-07-offline-first-news-capstone"
+      ]
+    },
+    {
+      "id": "term-architecture-boundary",
+      "term": "Architecture Boundary",
+      "definition": "A responsibility and dependency contract that contains change and gives a decision one accountable owner.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "layers"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-01-layers-boundaries-dependency-direction"
+      ]
+    },
+    {
+      "id": "term-unidirectional-data-flow",
+      "term": "Unidirectional Data Flow",
+      "definition": "A pattern where state flows to consumers and events flow back toward the owner that applies changes.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "ui-state"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-02-immutable-ui-state-udf"
+      ]
+    },
+    {
+      "id": "term-state-holder",
+      "term": "State Holder",
+      "definition": "A class that owns state production and the logic appropriate to the lifetime of its UI scope.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "viewmodel"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-03-state-holders-events-ui-logic"
+      ]
+    },
+    {
+      "id": "term-repository-contract",
+      "term": "Repository Contract",
+      "definition": "The explicit data operations, observation semantics, errors, and lifetime guarantees offered to consumers.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "repository"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-04-repositories-source-of-truth-mappers"
+      ]
+    },
+    {
+      "id": "term-use-case",
+      "term": "Use Case",
+      "definition": "A focused, usually stateless class that encapsulates reusable or complex business behaviour.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "domain-layer"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-05-domain-use-cases-error-models"
+      ]
+    },
+    {
+      "id": "term-architecture-fitness",
+      "term": "Architecture Fitness",
+      "definition": "Observable evidence that a structure continues to protect the quality or delivery property it was chosen for.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "mvvm"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+      ]
+    },
+    {
+      "id": "term-composition-root",
+      "term": "Composition Root",
+      "definition": "The application boundary where concrete dependencies are selected and the object graph is assembled.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "dependency-injection",
+        "manual-di"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-20-01-manual-di-composition-root"
+      ]
+    },
+    {
+      "id": "term-binding-key",
+      "term": "Dependency Binding Key",
+      "definition": "The requested type plus any qualifier that uniquely identifies a value in a dependency graph.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "dependency-injection",
+        "hilt"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-20-02-hilt-graph-constructor-modules"
+      ]
+    },
+    {
+      "id": "term-dependency-scope",
+      "term": "Dependency Scope",
+      "definition": "A contract that reuses one binding instance within a particular component lifetime.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "dependency-injection",
+        "hilt"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-20-03-hilt-components-scopes-lifetimes"
+      ]
+    },
+    {
+      "id": "term-qualifier",
+      "term": "Qualifier",
+      "definition": "An annotation that adds semantic identity to an otherwise ambiguous dependency type.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "dependency-injection",
+        "qualifiers"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-20-04-qualifiers-multibindings-assisted"
+      ]
+    },
+    {
+      "id": "term-test-binding-replacement",
+      "term": "Test Binding Replacement",
+      "definition": "Substitution of a production graph binding with a deterministic test implementation at an integration boundary.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "dependency-injection",
+        "testing"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+      ]
+    },
+    {
+      "id": "term-module-cohesion",
+      "term": "Module Cohesion",
+      "definition": "The degree to which code inside one module serves a focused responsibility and changes for related reasons.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "modularization",
+        "cohesion"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-21-01-modularization-evidence-cohesion-coupling"
+      ]
+    },
+    {
+      "id": "term-feature-module",
+      "term": "Feature Module",
+      "definition": "A boundary that owns a cohesive screen or user flow and exposes only the contract needed for composition.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "modularization",
+        "feature-modules"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-21-02-app-feature-core-data-modules"
+      ]
+    },
+    {
+      "id": "term-dependency-graph",
+      "term": "Module Dependency Graph",
+      "definition": "The directed acyclic graph of Gradle modules and the compile-time visibility relationships between them.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "modularization",
+        "dependency-inversion"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-21-03-api-implementation-dependency-graphs"
+      ]
+    },
+    {
+      "id": "term-navigation-contract",
+      "term": "Navigation Contract",
+      "definition": "A stable feature boundary describing destination identity and minimal serializable arguments.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "modularization",
+        "navigation"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-21-04-cross-feature-navigation-resources"
+      ]
+    },
+    {
+      "id": "term-dynamic-feature",
+      "term": "Dynamic Feature",
+      "definition": "An Android feature module delivered at install time, conditionally, or on demand through Play.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "modularization",
+        "build-performance"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-21-05-build-performance-dynamic-library-modules"
+      ]
+    },
+    {
+      "id": "term-contract-test",
+      "term": "Contract Test",
+      "definition": "A reusable behavioural suite proving that implementations honour the same externally observable promise.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "testing"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-22-01-architecture-tests-contracts-fakes"
+      ]
+    },
+    {
+      "id": "term-architecture-decision-record",
+      "term": "Architecture Decision Record",
+      "definition": "A short versioned record of context, choice, consequences, and conditions for revisiting a structural decision.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "refactoring"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-22-02-architecture-decisions-incremental-refactoring"
+      ]
+    },
+    {
+      "id": "term-public-module-surface",
+      "term": "Public Module Surface",
+      "definition": "The smallest set of types and resources a module intentionally exposes to its consumers.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "modularization"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-22-03-banking-module-graph-contracts"
+      ]
+    },
+    {
+      "id": "term-unknown-outcome",
+      "term": "Unknown Outcome",
+      "definition": "A durable operation state where delivery may have occurred but authoritative completion has not yet been observed.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "payments"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-22-04-payment-consistency-security-boundaries"
+      ]
+    },
+    {
+      "id": "term-composition-evidence",
+      "term": "Composition Evidence",
+      "definition": "Tests and reports proving that independently owned modules form a correct application under real lifecycle and failure conditions.",
+      "categoryId": "level-05-production-architecture",
+      "tags": [
+        "architecture",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-05-week-22-05-multi-module-banking-capstone"
+      ]
+    }
+  ]
+}

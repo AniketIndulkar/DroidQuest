@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://droidquest.dev/schema/lesson.schema.json",
+  "title": "DroidQuest lesson",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "categoryId", "week", "difficulty", "prerequisites", "tags", "estimatedLearningMinutes", "revealStages", "quizId", "challengeId", "revision", "sourceRefs", "version"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 5 },
+    "categoryId": { "type": "string", "minLength": 3 },
+    "week": { "type": "integer", "minimum": 1, "maximum": 52 },
+    "difficulty": { "enum": ["beginner", "intermediate", "advanced", "expert"] },
+    "prerequisites": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "tags": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+    "estimatedLearningMinutes": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "revealStages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scout", "learn", "inspect", "trap_check", "challenge_intro", "recall"],
+      "properties": {
+        "scout": {
+          "type": "object", "additionalProperties": false,
+          "required": ["purpose", "realWorldUse", "outcome"],
+          "properties": {
+            "purpose": { "type": "string", "minLength": 40 },
+            "realWorldUse": { "type": "string", "minLength": 40 },
+            "outcome": { "type": "string", "minLength": 25 }
+          }
+        },
+        "learn": {
+          "type": "object", "additionalProperties": false,
+          "required": ["estimatedMinutes", "sections", "furtherReading"],
+          "properties": {
+            "estimatedMinutes": { "type": "integer", "minimum": 1, "maximum": 10 },
+            "sections": {
+              "type": "array", "minItems": 3,
+              "items": {
+                "type": "object", "additionalProperties": false,
+                "required": ["id", "title", "blocks"],
+                "properties": {
+                  "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                  "title": { "type": "string", "minLength": 3 },
+                  "blocks": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/contentBlock" } }
+                }
+              }
+            },
+            "furtherReading": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["title", "publisher", "resourceType", "url", "whyRead"],
+                "properties": {
+                  "title": { "type": "string", "minLength": 5 },
+                  "publisher": { "type": "string", "minLength": 3 },
+                  "resourceType": { "enum": ["official_docs", "codelab", "article", "guide"] },
+                  "url": { "type": "string", "format": "uri" },
+                  "whyRead": { "type": "string", "minLength": 25 }
+                }
+              }
+            }
+          }
+        },
+        "inspect": {
+          "type": "object", "additionalProperties": false,
+          "required": ["title", "language", "code", "walkthrough", "expectedOutput"],
+          "properties": {
+            "title": { "type": "string", "minLength": 5 },
+            "language": { "type": "string", "minLength": 2 },
+            "code": { "type": "string", "minLength": 20 },
+            "walkthrough": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 20 } },
+            "expectedOutput": { "type": "string", "minLength": 1 }
+          }
+        },
+        "trap_check": {
+          "type": "array", "minItems": 2,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["mistake", "why", "fix"],
+            "properties": {
+              "mistake": { "type": "string", "minLength": 15 },
+              "why": { "type": "string", "minLength": 20 },
+              "fix": { "type": "string", "minLength": 15 }
+            }
+          }
+        },
+        "challenge_intro": {
+          "type": "object", "additionalProperties": false,
+          "required": ["task", "successLooksLike"],
+          "properties": {
+            "task": { "type": "string", "minLength": 30 },
+            "successLooksLike": { "type": "string", "minLength": 25 }
+          }
+        },
+        "recall": {
+          "type": "array", "minItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["prompt", "answer"],
+            "properties": {
+              "prompt": { "type": "string", "minLength": 10 },
+              "answer": { "type": "string", "minLength": 10 }
+            }
+          }
+        }
+      }
+    },
+    "quizId": { "type": "string", "minLength": 3 },
+    "challengeId": { "type": "string", "minLength": 3 },
+    "revision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["objectives", "reviewIntervalsDays", "masteryThreshold", "xp", "starsAvailable"],
+      "properties": {
+        "objectives": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 15 } },
+        "reviewIntervalsDays": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "type": "integer", "minimum": 1 } },
+        "masteryThreshold": { "type": "number", "minimum": 0.5, "maximum": 1 },
+        "xp": { "type": "integer", "minimum": 1 },
+        "starsAvailable": { "type": "integer", "minimum": 1, "maximum": 5 }
+      }
+    },
+    "sourceRefs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "format": "uri" } },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  },
+  "definitions": {
+    "contentBlock": {
+      "oneOf": [
+        { "type": "object", "additionalProperties": false, "required": ["type", "text"], "properties": { "type": { "const": "paragraph" }, "text": { "type": "string", "minLength": 40 } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "language", "code", "caption"], "properties": { "type": { "const": "code" }, "language": { "type": "string", "minLength": 2 }, "code": { "type": "string", "minLength": 8 }, "caption": { "type": "string", "minLength": 15 } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "tone", "title", "text"], "properties": { "type": { "const": "callout" }, "tone": { "enum": ["note", "remember", "warning"] }, "title": { "type": "string", "minLength": 3 }, "text": { "type": "string", "minLength": 25 } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "title", "steps"], "properties": { "type": { "const": "flow" }, "title": { "type": "string", "minLength": 3 }, "steps": { "type": "array", "minItems": 2, "items": { "type": "object", "additionalProperties": false, "required": ["id", "label", "detail"], "properties": { "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }, "label": { "type": "string", "minLength": 2 }, "detail": { "type": "string", "minLength": 12 } } } } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "title", "columns", "rows"], "properties": { "type": { "const": "table" }, "title": { "type": "string", "minLength": 3 }, "columns": { "type": "array", "minItems": 2, "items": { "type": "string" } }, "rows": { "type": "array", "minItems": 1, "items": { "type": "array", "minItems": 2, "items": { "type": "string" } } } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "title", "items"], "properties": { "type": { "const": "list" }, "title": { "type": "string", "minLength": 3 }, "items": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 10 } } } }
+      ]
+    }
+  }
+}

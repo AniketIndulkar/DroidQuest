@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-02-week-06-01-application-process-context",
+  "title": "Application Process and Context Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-06-01-application-process-context"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-06-01-process-state",
+      "prompt": "Which state survives system process death reliably?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Data committed to persistent local storage",
+      "explanation": "In-memory objects disappear with the process, while committed storage can reconstruct them.",
+      "lessonId": "level-02-week-06-01-application-process-context",
+      "options": [
+        "Data committed to persistent local storage",
+        "A singleton property",
+        "An Application field",
+        "A companion-object list"
+      ]
+    },
+    {
+      "id": "q-week-06-01-context-match",
+      "prompt": "Match the need to the appropriate context choice.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "themedDialog": "activity Context",
+        "longLivedFileStore": "application Context",
+        "pureCalculation": "no Context dependency"
+      },
+      "explanation": "Context scope should match lifetime and UI-theme requirements.",
+      "lessonId": "level-02-week-06-01-application-process-context"
+    },
+    {
+      "id": "q-week-06-01-shutdown",
+      "prompt": "Android guarantees Application receives a final callback before process death.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "The system can terminate a background process without an application shutdown callback.",
+      "lessonId": "level-02-week-06-01-application-process-context"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-12-06-design-systems-compositionlocal",
+  "title": "Compose Design Systems and CompositionLocal Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-12-06-design-systems-compositionlocal"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-12-06-design-systems-compositionlocal-decision",
+      "prompt": "Which dependency is least appropriate for CompositionLocal?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "A feature repository",
+      "explanation": "Business dependencies should remain explicit or enter through a clear injection boundary.",
+      "lessonId": "level-03-week-12-06-design-systems-compositionlocal",
+      "options": [
+        "A feature repository",
+        "Theme spacing tokens",
+        "Content colour",
+        "Typography roles"
+      ]
+    },
+    {
+      "id": "q-level-03-week-12-06-design-systems-compositionlocal-truth",
+      "prompt": "Every one-off dimension should become a global design token.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Tokens should represent coherent repeated product decisions rather than arbitrary values.",
+      "lessonId": "level-03-week-12-06-design-systems-compositionlocal"
+    },
+    {
+      "id": "q-level-03-week-12-06-design-systems-compositionlocal-recall",
+      "prompt": "What does a slot API expose?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A named composable content region",
+      "explanation": "Callers can provide structured UI while the component preserves layout and behaviour.",
+      "lessonId": "level-03-week-12-06-design-systems-compositionlocal"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

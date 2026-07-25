@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://droidquest.dev/schema/category.schema.json",
+  "title": "DroidQuest curriculum level",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "order", "description", "difficulty", "status", "weekRange", "unlockPrerequisites", "tags", "estimatedLearningMinutes", "lessonIds", "plannedTopics", "project", "theme", "version"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 3 },
+    "order": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "description": { "type": "string", "minLength": 40 },
+    "difficulty": { "enum": ["beginner", "intermediate", "advanced", "expert"] },
+    "status": { "enum": ["planned", "in_progress", "complete"] },
+    "weekRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "integer", "minimum": 1, "maximum": 52 },
+        "end": { "type": "integer", "minimum": 1, "maximum": 52 }
+      }
+    },
+    "unlockPrerequisites": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "tags": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+    "estimatedLearningMinutes": { "type": "integer", "minimum": 0 },
+    "lessonIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "checkpointQuizId": { "type": "string", "minLength": 3 },
+    "roadmapStartNodeId": { "type": "string", "minLength": 3 },
+    "plannedTopics": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary"],
+      "properties": {
+        "title": { "type": "string", "minLength": 3 },
+        "summary": { "type": "string", "minLength": 30 }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["color", "icon", "mapMood"],
+      "properties": {
+        "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "icon": { "type": "string", "minLength": 2 },
+        "mapMood": { "type": "string", "minLength": 3 }
+      }
+    },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

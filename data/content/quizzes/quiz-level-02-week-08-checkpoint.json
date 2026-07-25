@@ -1,0 +1,103 @@
+{
+  "id": "quiz-level-02-week-08-checkpoint",
+  "title": "Week 8 Hybrid UI Checkpoint",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-01-xml-view-hierarchies",
+    "level-02-week-08-02-constraintlayout-viewbinding",
+    "level-02-week-08-03-fragments-navigation",
+    "level-02-week-08-04-recyclerview-lists",
+    "level-02-week-08-05-view-compose-interoperability",
+    "level-02-week-08-06-notes-app-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-08-checkpoint-01",
+      "prompt": "What does layout inflation create?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A hierarchy of View objects",
+      "explanation": "The inflater parses XML and instantiates configured View and ViewGroup classes.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies",
+      "options": [
+        "A hierarchy of View objects",
+        "An APK signature",
+        "A database transaction",
+        "A Gradle wrapper"
+      ]
+    },
+    {
+      "id": "q-week-08-checkpoint-02",
+      "prompt": "Order the core View traversal stages.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "measure",
+        "layout",
+        "draw"
+      ],
+      "explanation": "Sizes are resolved before bounds can be assigned and content rendered.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies"
+    },
+    {
+      "id": "q-week-08-checkpoint-03",
+      "prompt": "What does 0dp usually mean for a constrained dimension?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Match constraints",
+      "explanation": "Opposing constraints can determine the child size.",
+      "lessonId": "level-02-week-08-02-constraintlayout-viewbinding",
+      "options": [
+        "Match constraints",
+        "Always invisible",
+        "Zero pixels permanently",
+        "Use screen density"
+      ]
+    },
+    {
+      "id": "q-week-08-checkpoint-04",
+      "prompt": "View Binding automatically makes a retained Fragment binding lifecycle-safe.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "The owner must clear binding when the fragment view is destroyed.",
+      "lessonId": "level-02-week-08-02-constraintlayout-viewbinding"
+    },
+    {
+      "id": "q-week-08-checkpoint-05",
+      "prompt": "Which owner should scope collection that updates fragment views?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "viewLifecycleOwner",
+      "explanation": "The collection should stop when the view hierarchy is destroyed.",
+      "lessonId": "level-02-week-08-03-fragments-navigation",
+      "options": [
+        "viewLifecycleOwner",
+        "Application forever",
+        "A static singleton",
+        "The repository"
+      ]
+    },
+    {
+      "id": "q-week-08-checkpoint-06",
+      "prompt": "Match the fragment relationship to its manager.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "activityTopLevel": "supportFragmentManager",
+        "sibling": "parentFragmentManager",
+        "nestedChild": "childFragmentManager"
+      },
+      "explanation": "Manager selection follows hierarchy ownership.",
+      "lessonId": "level-02-week-08-03-fragments-navigation"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-12-01-stability-skipping-performance",
+  "title": "Profile and Repair a Slow Feed",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-12-01-stability-skipping-performance",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Create a reproducibly slow Compose feed, capture release-mode evidence, apply one stability or state-read fix, and record the before-and-after result.",
+  "successCriteria": [
+    "The scenario and device conditions are documented.",
+    "The fix targets evidence rather than a guess.",
+    "Correctness tests pass before and after."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun Feed(state: FeedUiState, modifier: Modifier = Modifier)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

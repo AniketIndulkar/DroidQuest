@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-20-03-hilt-components-scopes-lifetimes",
+  "title": "Hilt Components, Scopes, and Lifetimes",
+  "categoryId": "level-05-production-architecture",
+  "week": 20,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-20-02-hilt-graph-constructor-modules"
+  ],
+  "tags": [
+    "dependency-injection",
+    "hilt",
+    "scopes"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes hilt components, scopes, and lifetimes a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Hilt component is a generated container with a lifecycle and parent relationship. SingletonComponent lives with the application; ActivityRetainedComponent spans configuration changes; ViewModelComponent follows one ViewModel; ActivityComponent follows one Activity instance. A binding installed in a parent is visible to children, but a child binding cannot flow upward. Choose the narrowest component that can serve every consumer without holding a shorter-lived object."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@ViewModelScoped\nclass QuoteSession @Inject constructor(\n  private val clock: Clock\n)\n\n@HiltViewModel\nclass PaymentViewModel @Inject constructor(\n  private val quote: QuoteSession\n) : ViewModel()",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Bindings are unscoped by default, so the graph may create a new instance per request. Add a scope only when identity, mutable coordination, synchronization, or measured construction cost requires reuse. Singleton does not mean globally appropriate; it means one instance per SingletonComponent and therefore application lifetime. A scoped object and its binding must use matching components. Overscoping retains memory and account state longer than intended."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "SingletonComponent",
+                  "Application graph lifetime"
+                ],
+                [
+                  "ViewModelComponent",
+                  "One ViewModel graph lifetime"
+                ],
+                [
+                  "Unscoped",
+                  "New value may be created per request"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Map product lifetimes before annotations. Database and configured HTTP client are commonly application-lived. A screen coordinator may be ViewModel-scoped. A payment draft might belong to a navigation flow that Hilt built-ins do not model directly, suggesting explicit state ownership or a custom Dagger component rather than forcing global scope. Test recreation, parallel screens, logout, and process restart to verify that instance identity matches the design."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Marking every provider Singleton to silence duplicate construction without analysing ownership or memory lifetime."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Dependency injection with Hilt",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/hilt-android",
+          "whyRead": "Documents constructor injection, modules, generated components, scopes, and qualifiers."
+        },
+        {
+          "title": "Recommendations for Android architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/recommendations",
+          "whyRead": "Provides current recommendations and the conditions under which optional layers add value."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Hilt Components, Scopes, and Lifetimes boundary",
+      "language": "kotlin",
+      "code": "@ViewModelScoped\nclass QuoteSession @Inject constructor(\n  private val clock: Clock\n)\n\n@HiltViewModel\nclass PaymentViewModel @Inject constructor(\n  private val quote: QuoteSession\n) : ViewModel()",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Marking every provider Singleton to silence duplicate construction without analysing ownership or memory lifetime.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a lifetime table for banking dependencies, annotate only those requiring shared identity, and test configuration change, second screen instance, and logout behaviour.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should hilt components, scopes, and lifetimes solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-20-03-hilt-components-scopes-lifetimes",
+  "challengeId": "challenge-level-05-week-20-03-hilt-components-scopes-lifetimes",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Hilt Components, Scopes, and Lifetimes.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/dependency-injection/hilt-android",
+    "https://developer.android.com/topic/architecture/recommendations"
+  ],
+  "version": "0.8.0"
+}

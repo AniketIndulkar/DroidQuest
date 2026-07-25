@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-13-01-accessibility-semantics-talkback",
+  "title": "Audit a Shopping Journey with TalkBack",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-13-01-accessibility-semantics-talkback",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Make product browsing, variant selection, adding to basket, error recovery, and checkout summary operable and understandable through semantics and TalkBack.",
+  "successCriteria": [
+    "Every control has meaningful role, state, and action.",
+    "Focus order and announcements support the full task.",
+    "Automated checks and a manual TalkBack script both pass."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ProductCard(product: ProductUi, onAdd: () -> Unit, modifier: Modifier = Modifier)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

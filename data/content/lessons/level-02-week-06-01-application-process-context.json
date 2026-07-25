@@ -1,0 +1,252 @@
+{
+  "id": "level-02-week-06-01-application-process-context",
+  "title": "Application Process and Context",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 6,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-05-05-sdk-levels-variants-packaging"
+  ],
+  "tags": [
+    "application",
+    "process",
+    "context",
+    "lifecycle"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android owns application processes and supplies scoped environment objects; treating either as permanent creates leaks, lost state, and incorrect startup assumptions.",
+      "realWorldUse": "Components receive Context to access resources and system services, while the system may create or kill the hosting process according to user-visible importance.",
+      "outcome": "Explain process creation and death, distinguish Application from activity Context, and choose the narrowest lifecycle-safe context."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "process",
+          "title": "The system owns process lifetime",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android normally runs an application’s components in one Linux process and one runtime, but the process is an implementation container rather than durable application state. The system starts it when a component is needed and may kill it after the app moves to the background to reclaim memory. No callback is guaranteed at process termination. Static objects, singletons, and Application fields disappear with the process and are recreated with default values later. Persist durable user data when it changes, and store only small reconstruction keys in saved state. Design every entry point—launcher, notification, deep link, receiver—as capable of starting a fresh process."
+            },
+            {
+              "type": "flow",
+              "title": "Cold component entry",
+              "steps": [
+                {
+                  "id": "request",
+                  "label": "System request",
+                  "detail": "Launcher, intent, provider, or receiver needs the app."
+                },
+                {
+                  "id": "process",
+                  "label": "Create process",
+                  "detail": "Runtime and Application instance are created."
+                },
+                {
+                  "id": "component",
+                  "label": "Create component",
+                  "detail": "Requested activity, provider, service, or receiver starts."
+                },
+                {
+                  "id": "work",
+                  "label": "Run app",
+                  "detail": "Components move through independent lifecycles."
+                },
+                {
+                  "id": "kill",
+                  "label": "Possible process death",
+                  "detail": "Background process may end without a final callback."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Memory is not persistence",
+              "text": "A singleton can share values during one process lifetime but cannot restore them after system-initiated process death."
+            }
+          ]
+        },
+        {
+          "id": "application",
+          "title": "Application is process-scoped setup, not a global dumping ground",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The framework creates one Application instance per application process before most components. A custom subclass can initialise process-wide libraries that genuinely require early setup, but its onCreate must remain fast because it delays component startup. It is not the lifecycle of the installed app and receives no dependable final shutdown callback. Avoid placing mutable screen state, current activity references, or arbitrary service locators in Application. Prefer explicit dependency construction and repository ownership. Content providers can initialise even before Application.onCreate ordering assumptions become intuitive, so libraries should document startup behaviour rather than relying on accidental order."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class NotesApplication : Application() {\n    lateinit var repository: NoteRepository\n        private set\n\n    override fun onCreate() {\n        super.onCreate()\n        repository = FileNoteRepository(applicationContext)\n    }\n}",
+              "caption": "A small process-wide repository root can be justified, but user screen state does not belong in the Application object."
+            },
+            {
+              "type": "table",
+              "title": "Lifetime comparison",
+              "columns": [
+                "Owner",
+                "Approximate lifetime"
+              ],
+              "rows": [
+                [
+                  "Application instance",
+                  "Current process"
+                ],
+                [
+                  "Activity",
+                  "One UI host instance"
+                ],
+                [
+                  "ViewModel",
+                  "Its ViewModelStore owner, including configuration recreation"
+                ],
+                [
+                  "Saved state",
+                  "Small reconstruction data across system recreation"
+                ],
+                [
+                  "Local database/file",
+                  "Across process and device restart until cleared"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "context",
+          "title": "Context represents access with a scope and identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Context provides access to resources, system services, package operations, files, and component launching. An activity Context is tied to that activity and carries its themed UI environment; use it when creating UI, dialogs, or views that require the current theme. applicationContext is process-scoped and appropriate for long-lived non-UI collaborators that would otherwise retain an activity. A service is also a Context with its own component lifetime. Passing Context everywhere hides dependencies, so inject the specific capability when practical. Never store an activity Context in a singleton or long-lived repository because the old activity and its view tree can remain reachable after recreation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class NoteFileStore(context: Context) {\n    private val appContext = context.applicationContext\n    private val file = appContext.filesDir.resolve(\"notes.json\")\n}",
+              "caption": "The long-lived file store retains only the process-scoped application context, not a screen instance."
+            },
+            {
+              "type": "table",
+              "title": "Choose context",
+              "columns": [
+                "Need",
+                "Context"
+              ],
+              "rows": [
+                [
+                  "Inflate themed screen UI",
+                  "Current activity or themed context"
+                ],
+                [
+                  "Open app-private files in long-lived store",
+                  "Application context"
+                ],
+                [
+                  "Start operation from service",
+                  "Service context"
+                ],
+                [
+                  "Only format domain data",
+                  "No Context; inject data or formatter"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Processes and app lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/process-lifecycle",
+          "whyRead": "Explains process importance, system reclamation, and why components—not process globals—define app liveness."
+        },
+        {
+          "title": "Application fundamentals",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/fundamentals",
+          "whyRead": "Introduces application components, process entry, manifest declarations, and component activation."
+        },
+        {
+          "title": "Context API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/android/content/Context",
+          "whyRead": "Provides the authoritative contract for resources, services, storage, and application versus component access."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Diagnose a retained Activity",
+      "language": "text",
+      "code": "object NotesCache {\n    lateinit var context: Context\n}\n\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(state: Bundle?) {\n        super.onCreate(state)\n        NotesCache.context = this\n    }\n}",
+      "walkthrough": [
+        "The singleton outlives one MainActivity instance.",
+        "A configuration change creates a replacement activity.",
+        "The stored reference keeps the destroyed activity and its reachable UI objects from collection."
+      ],
+      "expectedOutput": "Store no Context, inject a focused dependency, or retain applicationContext only for a justified non-UI need."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using Application fields as durable storage.",
+        "why": "The process can die and recreate every field with its initial value.",
+        "fix": "Persist durable data and save small reconstruction keys."
+      },
+      {
+        "mistake": "Keeping an activity Context in a singleton.",
+        "why": "The singleton can retain a destroyed activity and its view hierarchy.",
+        "fix": "Use scoped ownership or application context for justified long-lived non-UI work."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Refactor a Notes singleton that retains MainActivity into scoped dependencies and demonstrate restoration after process recreation.",
+      "successLooksLike": "No long-lived object retains an activity. Durable notes reconstruct from storage rather than memory globals. A cold deep-link entry works without launcher-first setup."
+    },
+    "recall": [
+      {
+        "prompt": "Is Application lifetime the same as installation lifetime?",
+        "answer": "No, its instance exists only for the current application process."
+      },
+      {
+        "prompt": "When is an activity Context required?",
+        "answer": "For UI work that needs the current activity, window, or theme."
+      },
+      {
+        "prompt": "What must a deep link assume?",
+        "answer": "It may enter through a newly created process with no in-memory state."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-06-01-application-process-context",
+  "challengeId": "challenge-level-02-week-06-01-application-process-context",
+  "revision": {
+    "objectives": [
+      "Treat process death as a normal reconstruction boundary.",
+      "Keep custom Application startup small and process-scoped.",
+      "Select Context by lifecycle, theme, and required capability."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/components/activities/process-lifecycle",
+    "https://developer.android.com/guide/components/fundamentals",
+    "https://developer.android.com/reference/android/content/Context"
+  ],
+  "version": "0.4.0"
+}

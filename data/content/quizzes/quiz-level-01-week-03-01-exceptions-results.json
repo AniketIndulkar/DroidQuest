@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-01-week-03-01-exceptions-results",
+  "title": "Exceptions and Explicit Result Modelling Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-01-exceptions-results"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-03-01-catch-policy",
+      "prompt": "Where should an exception normally be caught?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Where recovery or translation policy exists",
+      "explanation": "A catch is valuable when the layer knows how to respond meaningfully.",
+      "lessonId": "level-01-week-03-01-exceptions-results",
+      "options": [
+        "Where recovery or translation policy exists",
+        "Immediately after every call",
+        "Only in main regardless of context",
+        "Inside every data class"
+      ]
+    },
+    {
+      "id": "q-week-03-01-broad-catch",
+      "prompt": "Catching Throwable is a safe default for user-facing recovery.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Throwable includes failures and control signals that ordinary recovery should not swallow.",
+      "lessonId": "level-01-week-03-01-exceptions-results"
+    },
+    {
+      "id": "q-week-03-01-result-benefit",
+      "prompt": "Why return a sealed domain result for expected outcomes?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "It exposes meaningful alternatives in the type and enables exhaustive handling",
+      "explanation": "Typed alternatives communicate product meaning more clearly than null or broad exceptions.",
+      "lessonId": "level-01-week-03-01-exceptions-results"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

@@ -1,0 +1,66 @@
+{
+  "id": "quiz-level-01-week-04-06-expense-manager-capstone",
+  "title": "Capstone: Kotlin Expense Manager Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-06-expense-manager-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-06-dependency-direction",
+      "prompt": "Which dependency direction best protects reusable domain rules?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Console and storage depend on domain contracts",
+      "explanation": "Outer technical adapters may depend inward, while core rules remain independent and reusable.",
+      "lessonId": "level-01-week-04-06-expense-manager-capstone",
+      "options": [
+        "Console and storage depend on domain contracts",
+        "Domain imports terminal and JSON directly",
+        "Every class depends on main",
+        "Tests define production APIs dynamically"
+      ]
+    },
+    {
+      "id": "q-week-04-06-delivery-order",
+      "prompt": "Order a reliable capstone delivery loop.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "write acceptance example",
+        "implement one vertical slice",
+        "run focused and manual checks",
+        "inspect diff and commit"
+      ],
+      "explanation": "The example defines success, the slice implements it, checks provide evidence, and the reviewed commit records the result.",
+      "lessonId": "level-01-week-04-06-expense-manager-capstone"
+    },
+    {
+      "id": "q-week-04-06-capstone-evidence",
+      "prompt": "Select evidence that the capstone core is complete.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "Acceptance examples pass",
+        "Invalid inputs have explicit outcomes",
+        "README commands match reality"
+      ],
+      "explanation": "Completion depends on verified behaviour and maintainability, not structural volume.",
+      "lessonId": "level-01-week-04-06-expense-manager-capstone",
+      "options": [
+        "Acceptance examples pass",
+        "Invalid inputs have explicit outcomes",
+        "README commands match reality",
+        "The project has the most classes possible"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-11-02-launched-effect-coroutine-scope",
+  "title": "LaunchedEffect and rememberCoroutineScope",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 11,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-11-01-effect-fundamentals-keys"
+  ],
+  "tags": [
+    "compose",
+    "coroutines",
+    "cancellation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Compose coroutine helpers attach asynchronous UI work to a composition scope, but their launch trigger and cancellation semantics differ.",
+      "realWorldUse": "Animations, snackbars, focus timing, scrolling, and lifecycle-bound collection often call suspending APIs from UI code.",
+      "outcome": "Use LaunchedEffect for lifecycle-triggered work and rememberCoroutineScope for event-triggered work, with cooperative cancellation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "LaunchedEffect follows composition and keys",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "LaunchedEffect launches a coroutine when it enters composition. Changing a key cancels the previous coroutine and launches a replacement; leaving composition cancels it. This fits lifecycle-triggered suspending work such as reacting to a destination ID, running an enter animation, or collecting a composition-specific stream. It is not the default home for business loading that should outlive a temporary UI branch. Put durable screen operations in a ViewModel scope and let Compose collect the resulting state."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LaunchedEffect(noteId) {\n    listState.scrollToItem(0)\n}\nval scope = rememberCoroutineScope()\nButton(onClick = { scope.launch { snackbar.showSnackbar(\"Saved\") } }) { Text(\"Save\") }",
+              "caption": "Lifecycle entry triggers scroll; a user event launches the snackbar."
+            },
+            {
+              "type": "table",
+              "title": "Coroutine choice",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Composition entry or key",
+                  "LaunchedEffect"
+                ],
+                [
+                  "Click invoking UI suspend API",
+                  "rememberCoroutineScope"
+                ],
+                [
+                  "Business operation",
+                  "ViewModel scope"
+                ],
+                [
+                  "Leaving UI",
+                  "Composition scope cancels"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "A remembered scope launches from events",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "rememberCoroutineScope returns a scope tied to the composition position but does not launch anything itself. Use it inside an event callback when a UI-owned state object exposes suspending operations, such as SnackbarHostState.showSnackbar, DrawerState.open, or LazyListState.animateScrollToItem. The event initiates the work; the remembered scope supplies cancellation when that UI leaves. Never call scope.launch directly during composition, and do not pass the scope into a repository as a substitute for proper owner lifecycle."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LaunchedEffect(noteId) {\n    listState.scrollToItem(0)\n}\nval scope = rememberCoroutineScope()\nButton(onClick = { scope.launch { snackbar.showSnackbar(\"Saved\") } }) { Text(\"Save\") }",
+              "caption": "Lifecycle entry triggers scroll; a user event launches the snackbar."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Trigger decides the API",
+              "text": "Lifecycle trigger uses LaunchedEffect; user event uses a remembered composition scope."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Cancellation is part of correctness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Cancellation must be cooperative. Suspending Compose and coroutine APIs normally respond correctly, but CPU loops or blocking calls can delay cancellation. A key change can happen rapidly, so old work must not publish a stale result after cancellation. Use finally only for required local cleanup and avoid converting CancellationException into an error state. Tests should cover replacement: trigger one key, change it before completion, and confirm only the current identity affects visible UI."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not swallow cancellation",
+              "text": "Treating CancellationException as failure can publish stale errors after valid replacement."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Side-effects in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/side-effects",
+          "whyRead": "Documents LaunchedEffect, rememberCoroutineScope, keys, and cancellation."
+        },
+        {
+          "title": "Kotlin coroutine cancellation",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/cancellation-and-timeouts.html",
+          "whyRead": "Explains cooperative cancellation and safe cleanup."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Stop launching during composition",
+      "language": "kotlin",
+      "code": "val scope = rememberCoroutineScope()\nscope.launch { snackbar.showSnackbar(\"Hello\") }",
+      "walkthrough": [
+        "The launch call occurs whenever the body executes.",
+        "Recomposition can create duplicate snackbar requests.",
+        "Launch from a click event, or use a keyed LaunchedEffect for lifecycle-triggered work."
+      ],
+      "expectedOutput": "Exactly one defined event creates one snackbar request while the screen is active."
+    },
+    "trap_check": [
+      {
+        "mistake": "Moving repository work into rememberCoroutineScope.",
+        "why": "Business work is cancelled merely because a UI composition leaves.",
+        "fix": "Use the lifecycle of the screen or data owner for business operations."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a route that changes query identity, scrolls on result replacement, and shows event-driven retry snackbars without duplicate or stale work.",
+      "successLooksLike": "Key changes cancel outdated UI work. Snackbar launches only from an event. Business search remains owned by the ViewModel."
+    },
+    "recall": [
+      {
+        "prompt": "When does LaunchedEffect start?",
+        "answer": "On composition entry and again after a key change."
+      },
+      {
+        "prompt": "When is rememberCoroutineScope useful?",
+        "answer": "Launching UI-owned suspending work from events."
+      },
+      {
+        "prompt": "What happens when composition leaves?",
+        "answer": "Its launched and remembered-scope coroutines are cancelled."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-11-02-launched-effect-coroutine-scope",
+  "challengeId": "challenge-level-03-week-11-02-launched-effect-coroutine-scope",
+  "revision": {
+    "objectives": [
+      "Select coroutine scope from trigger.",
+      "Predict key-based replacement.",
+      "Preserve cooperative cancellation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/side-effects",
+    "https://kotlinlang.org/docs/cancellation-and-timeouts.html"
+  ],
+  "version": "0.5.0"
+}

@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-18-06-workmanager-durable-sync",
+  "title": "WorkManager for Durable Synchronization",
+  "categoryId": "level-04-async-data-networking",
+  "week": 18,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-18-05-offline-writes-sync-conflicts"
+  ],
+  "tags": [
+    "workmanager",
+    "background-work",
+    "sync"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Synchronization expected to finish after navigation, process exit, or device restart needs persistent scheduling rather than an in-memory coroutine scope.",
+      "realWorldUse": "Outbox drain, periodic refresh, retryable uploads, and cache maintenance must respect constraints, Doze, cancellation, uniqueness, and backoff.",
+      "outcome": "Implement CoroutineWorker, select constraints and unique policy, return success/retry/failure correctly, and test stop and duplicate scheduling."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Persistent work is scheduled, not continuously running",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "WorkManager persists requests and reschedules eligible work across application and device restarts while respecting Android background limits. Use it for deferrable reliable work, not every suspend call and not exact wall-clock alarms. One-time work fits outbox drain; periodic work is inexact maintenance with a minimum interval. Expedited work is quota-limited and reserved for important short work. Long-running workers can use foreground execution but inherit foreground-service and job quota constraints."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class SyncWorker(context: Context, params: WorkerParameters, private val sync: SyncEngine) : CoroutineWorker(context, params) {\n    override suspend fun doWork(): Result = when (sync.drainOutbox()) {\n        SyncOutcome.Complete -> Result.success()\n        SyncOutcome.TransientFailure -> Result.retry()\n        SyncOutcome.PermanentFailure -> Result.failure()\n    }\n}",
+              "caption": "The worker delegates durable idempotent logic and maps typed outcomes to scheduler policy."
+            },
+            {
+              "type": "table",
+              "title": "Background choice",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Screen-bound async work",
+                  "ViewModel coroutine"
+                ],
+                [
+                  "Must survive process exit",
+                  "WorkManager"
+                ],
+                [
+                  "Exact user alarm",
+                  "Alarm API when justified"
+                ],
+                [
+                  "Duplicate sync trigger",
+                  "Unique work policy"
+                ],
+                [
+                  "Transient worker failure",
+                  "Result.retry with backoff"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "WorkRequest defines constraints and uniqueness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A WorkRequest defines constraints such as connected or unmetered network, battery not low, charging, delay, backoff, input data, tags, and unique name. Constraints may become false while running, so the worker can stop and later retry. Unique work with KEEP, REPLACE, APPEND, or APPEND_OR_REPLACE encodes duplicate scheduling policy. Pass compact IDs in Data, not article bodies or tokens; the worker reloads authoritative state and current session from repositories."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class SyncWorker(context: Context, params: WorkerParameters, private val sync: SyncEngine) : CoroutineWorker(context, params) {\n    override suspend fun doWork(): Result = when (sync.drainOutbox()) {\n        SyncOutcome.Complete -> Result.success()\n        SyncOutcome.TransientFailure -> Result.retry()\n        SyncOutcome.PermanentFailure -> Result.failure()\n    }\n}",
+              "caption": "The worker delegates durable idempotent logic and maps typed outcomes to scheduler policy."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "A worker may execute again",
+              "text": "Read durable state and make each unit idempotent before marking it complete."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Workers must be idempotent and cooperative",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "CoroutineWorker.doWork returns success for completed or no-op reconciliation, retry for transient failure under bounded WorkManager backoff, and failure for permanent invalid input. WorkManager can run a worker again after uncertain interruption, so each operation must be idempotent and checkpoint durable progress. Cooperate with isStopped and coroutine cancellation, close resources, and never catch cancellation as retry. Test worker logic, constraints, unique enqueue policy, retry count, logout, partial queue progress, and process recreation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not pass tokens or large objects in Work Data",
+              "text": "Workers should reload current authoritative state through repositories."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Task scheduling with WorkManager",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/persistent",
+          "whyRead": "Explains reliable work, constraints, persistence, retry, chaining, and API selection."
+        },
+        {
+          "title": "Define WorkRequests",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/persistent/getting-started/define-work",
+          "whyRead": "Covers constraints, delays, backoff, tags, and input."
+        },
+        {
+          "title": "Manage WorkManager work",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/persistent/how-to/manage-work",
+          "whyRead": "Explains unique work policies, observation, cancellation, and stopped workers."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Replace duplicate sync enqueue",
+      "language": "kotlin",
+      "code": "fun onConnectivityChanged() {\n    workManager.enqueue(OneTimeWorkRequestBuilder<SyncWorker>().build())\n}",
+      "walkthrough": [
+        "Capability callbacks can fire repeatedly and enqueue overlapping drains.",
+        "Workers race through the same outbox and waste network and battery.",
+        "Enqueue uniquely with the policy matching one coalesced sync drain."
+      ],
+      "expectedOutput": "Repeated triggers leave one active synchronization chain."
+    },
+    "trap_check": [
+      {
+        "mistake": "Returning retry for every permanent validation error.",
+        "why": "The worker loops forever on data that cannot succeed.",
+        "fix": "Classify permanent failure, reconcile its row, and return failure or success after handling."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Connect an idempotent outbox drain to unique WorkManager work with constraints, bounded retry, cancellation, progress checkpoints, logout handling, and WorkManager tests.",
+      "successLooksLike": "Repeated triggers create one active chain. Process interruption repeats no logical mutation. Transient and permanent outcomes schedule differently."
+    },
+    "recall": [
+      {
+        "prompt": "What work belongs in WorkManager?",
+        "answer": "Reliable work that should survive leaving the app or process."
+      },
+      {
+        "prompt": "What prevents duplicate scheduling?",
+        "answer": "Unique work with an explicit existing-work policy."
+      },
+      {
+        "prompt": "What should Work Data contain?",
+        "answer": "Small stable identifiers and scheduler inputs."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-18-06-workmanager-durable-sync",
+  "challengeId": "challenge-level-04-week-18-06-workmanager-durable-sync",
+  "revision": {
+    "objectives": [
+      "Select persistent work correctly.",
+      "Configure unique constraints and backoff.",
+      "Implement idempotent CoroutineWorker outcomes."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/background-work/background-tasks/persistent",
+    "https://developer.android.com/develop/background-work/background-tasks/persistent/getting-started/define-work",
+    "https://developer.android.com/develop/background-work/background-tasks/persistent/how-to/manage-work"
+  ],
+  "version": "0.7.0"
+}

@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-19-04-repositories-source-of-truth-mappers",
+  "title": "Repositories, Sources of Truth, and Mappers",
+  "categoryId": "level-05-production-architecture",
+  "week": 19,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-19-03-state-holders-events-ui-logic"
+  ],
+  "tags": [
+    "architecture",
+    "repository",
+    "mapping"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes repositories, sources of truth, and mappers a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A repository is an entry point to a coherent kind of application data, not a suffix placed on every class. It exposes operations and observable models while coordinating local, remote, and cached sources. Callers should not choose between a DAO and an API because that leaks consistency policy upward. For offline-capable data, Room commonly owns the read truth: network responses update the database and observers receive the result. A repository may also own operation lifetime beyond one screen."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface AccountsRepository {\n  fun observeAccounts(): Flow<List<Account>>\n  suspend fun refresh(): RefreshOutcome\n  suspend fun transfer(command: TransferCommand): TransferReceipt\n}",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Models should cross boundaries deliberately. Network DTOs reflect a server contract, database entities reflect storage and migration needs, and external models express what consumers may rely on. Mapping prevents a nullable wire field or Room annotation from spreading through the app. It also costs code and allocations, so do not clone identical models without a change boundary. Place each mapper beside the boundary it translates and test malformed, missing, future, and legacy values."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "DTO",
+                  "Remote transport contract"
+                ],
+                [
+                  "Entity",
+                  "Persistent storage contract"
+                ],
+                [
+                  "External model",
+                  "Stable consumer contract"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Repository APIs should reveal semantics: observeAccounts, refreshAccounts, and transfer are clearer than generic getData. State whether a call returns cached data, forces freshness, queues work, or waits for remote confirmation. Avoid repositories depending on each other in a cycle; combine independent data in a use case when the orchestration is genuinely reusable. Contract tests can run against fake and production implementations to verify ordering, errors, and state convergence without exposing implementation details."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Exposing DAO entities and Retrofit response wrappers directly to every ViewModel."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer",
+          "whyRead": "Covers repositories, data sources, exposed models, and operation lifetimes."
+        },
+        {
+          "title": "Guide to app architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture",
+          "whyRead": "Explains separation of concerns, single sources of truth, and directional data flow."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Repositories, Sources of Truth, and Mappers boundary",
+      "language": "kotlin",
+      "code": "interface AccountsRepository {\n  fun observeAccounts(): Flow<List<Account>>\n  suspend fun refresh(): RefreshOutcome\n  suspend fun transfer(command: TransferCommand): TransferReceipt\n}",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Exposing DAO entities and Retrofit response wrappers directly to every ViewModel.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design an accounts repository contract, map API and Room models to an external Account model, and write contract tests for stale reads, refresh, malformed data, and transfer failure.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should repositories, sources of truth, and mappers solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-19-04-repositories-source-of-truth-mappers",
+  "challengeId": "challenge-level-05-week-19-04-repositories-source-of-truth-mappers",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Repositories, Sources of Truth, and Mappers.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture/data-layer",
+    "https://developer.android.com/topic/architecture"
+  ],
+  "version": "0.8.0"
+}

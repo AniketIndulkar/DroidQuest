@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-16-02-dto-kotlin-serialization",
+  "title": "DTOs and Kotlin JSON Serialization",
+  "categoryId": "level-04-async-data-networking",
+  "week": 16,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-16-01-http-contracts-status-headers"
+  ],
+  "tags": [
+    "networking",
+    "serialization",
+    "dto"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "External JSON is an untrusted evolving representation and should not become the application domain model by convenience.",
+      "realWorldUse": "API responses add fields, omit optional values, use wire names, change malformed data, and encode timestamps or enums differently.",
+      "outcome": "Configure Json intentionally, design nullable/default DTO fields, map to validated domain models, and test schema evolution and malformed input."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "DTOs model the wire, domain models protect app meaning",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A data transfer object mirrors the external representation closely enough to decode it. A separate mapper validates required business fields, converts timestamps, handles unknown enum values, and constructs a domain model with application invariants. Sharing one class across network, database, and UI couples all three schemas. Null, missing, and explicit empty values have different meanings and must follow the server contract rather than Kotlin convenience."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Serializable\ndata class ArticleDto(\n    val id: String,\n    val title: String? = null,\n    @SerialName(\"published_at\") val publishedAt: String? = null\n)\n\nfun ArticleDto.toDomain(): Article = Article(ArticleId(id), title.orEmpty(), parseInstant(publishedAt))",
+              "caption": "The DTO accepts wire compatibility while the mapper constructs validated app meaning."
+            },
+            {
+              "type": "table",
+              "title": "Boundary responsibility",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "JSON shape",
+                  "DTO"
+                ],
+                [
+                  "Wire-name mapping",
+                  "SerialName"
+                ],
+                [
+                  "Business invariant",
+                  "Mapper and domain model"
+                ],
+                [
+                  "Added server field",
+                  "Reviewed ignoreUnknownKeys policy"
+                ],
+                [
+                  "Malformed representation",
+                  "Typed parse failure"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Generated serializers encode declared contracts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "kotlinx.serialization generates serializers for classes annotated Serializable. SerialName maps wire field names, defaults let compatible missing fields decode, contextual or custom serializers handle specialised values, and sealed polymorphism requires an explicit discriminator contract. SerializationException represents malformed or incompatible data; I/O failures arise elsewhere. Never silently coerce corrupted security- or money-related values. Keep wire enums forward-compatible by mapping unknown strings at a controlled boundary."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Serializable\ndata class ArticleDto(\n    val id: String,\n    val title: String? = null,\n    @SerialName(\"published_at\") val publishedAt: String? = null\n)\n\nfun ArticleDto.toDomain(): Article = Article(ArticleId(id), title.orEmpty(), parseInstant(publishedAt))",
+              "caption": "The DTO accepts wire compatibility while the mapper constructs validated app meaning."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "External data is untrusted",
+              "text": "Successful decoding is not proof that business invariants hold."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Json configuration is a compatibility policy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Json ignoreUnknownKeys supports servers adding fields without breaking old clients, while explicitNulls, coerceInputValues, naming strategy, and leniency alter other compatibility rules. Configure one reviewed network Json instance and test captured representative fixtures, absent optional fields, unknown fields and enum values, invalid timestamps, empty body, and large numbers. Do not assert raw property order. Redact fixtures containing user or token data before storing them."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not reuse DTOs as database and UI models",
+              "text": "Independent schema evolution becomes one tightly coupled breaking change."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Serialization overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/serialization.html",
+          "whyRead": "Introduces formats, generated serializers, supported types, and versioning."
+        },
+        {
+          "title": "JSON serialization",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/serialization-configure-json-serialization.html",
+          "whyRead": "Explains Json configuration, encoding, decoding, and compatibility options."
+        },
+        {
+          "title": "Customize serializable classes",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/serialization-customization-options.html",
+          "whyRead": "Covers defaults, names, exclusions, polymorphism, and custom behaviour."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Separate a dangerous shared model",
+      "language": "kotlin",
+      "code": "@Serializable\n@Entity\ndata class Article(\n    @PrimaryKey val id: String,\n    val title: String\n)",
+      "walkthrough": [
+        "One class now defines wire schema, database migration, and domain invariant.",
+        "A server nullable title or database change can break unrelated layers.",
+        "Create ArticleDto, ArticleEntity, and Article with explicit tested mappings."
+      ],
+      "expectedOutput": "Each schema evolves independently and invalid external data cannot enter the domain silently."
+    },
+    "trap_check": [
+      {
+        "mistake": "Enabling every lenient Json option to avoid crashes.",
+        "why": "Invalid or security-relevant data is silently changed into plausible values.",
+        "fix": "Choose compatibility flags individually and fail typed validation when meaning is unsafe."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create DTO, domain mapper, reviewed Json configuration, and fixture tests for missing, unknown, malformed, null, and forward-compatible article data.",
+      "successLooksLike": "Domain models never contain invalid identity or time. Compatibility options are documented individually. Fixtures contain no sensitive production data."
+    },
+    "recall": [
+      {
+        "prompt": "What does a DTO model?",
+        "answer": "The external wire representation."
+      },
+      {
+        "prompt": "Where are business invariants enforced?",
+        "answer": "In mapping to the domain model."
+      },
+      {
+        "prompt": "What does ignoreUnknownKeys permit?",
+        "answer": "Additional undeclared JSON object fields."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-16-02-dto-kotlin-serialization",
+  "challengeId": "challenge-level-04-week-16-02-dto-kotlin-serialization",
+  "revision": {
+    "objectives": [
+      "Design wire-specific DTOs.",
+      "Configure serialization compatibility.",
+      "Map and validate external data."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/serialization.html",
+    "https://kotlinlang.org/docs/serialization-configure-json-serialization.html",
+    "https://kotlinlang.org/docs/serialization-customization-options.html"
+  ],
+  "version": "0.6.0"
+}

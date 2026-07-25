@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-03-combine-latest-flattening",
+  "title": "Combining and Flattening Flows Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-03-combine-latest-flattening"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-03-combine-latest-flattening-decision",
+      "prompt": "Which operator fits live query plus current filters?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "combine",
+      "explanation": "Any source change recomputes from the latest values of all sources.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening",
+      "options": [
+        "combine",
+        "zip",
+        "first only",
+        "onCompletion"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-03-combine-latest-flattening-truth",
+      "prompt": "flatMapLatest is safe for every write that must complete.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A later outer value cancels previous inner work.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening"
+    },
+    {
+      "id": "q-level-04-week-15-03-combine-latest-flattening-recall",
+      "prompt": "Which flattening operator preserves inner order?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "flatMapConcat",
+      "explanation": "It waits for each inner flow to finish before starting the next.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

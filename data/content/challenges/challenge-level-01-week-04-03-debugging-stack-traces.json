@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-04-03-debugging-stack-traces",
+  "title": "Diagnose a Failing Import",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-04-03-debugging-stack-traces",
+  "difficulty": "beginner",
+  "estimatedMinutes": 40,
+  "prompt": "Given a small expense-import program and a repeatable exception, write a debugging record containing reproduction, stack-trace interpretation, one hypothesis, experiment, repair, and regression checks.",
+  "successCriteria": [
+    "The first wrong state is distinguished from the final symptom.",
+    "Only one hypothesis is tested in the experiment.",
+    "Verification includes the original failure and at least two nearby cases."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: The first wrong state is distinguished from the final symptom.",
+    "Use an executable example or focused check to verify: Only one hypothesis is tested in the experiment."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class DebugRecord(\n    val reproduction: String,\n    val hypothesis: String,\n    val evidence: String,\n    val verification: List<String>,\n)"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: The first wrong state is distinguished from the final symptom.",
+    "Implement and explain how the solution ensures: Only one hypothesis is tested in the experiment.",
+    "Implement and explain how the solution ensures: Verification includes the original failure and at least two nearby cases."
+  ],
+  "verification": [
+    "Run a focused check proving that the first wrong state is distinguished from the final symptom.",
+    "Run a focused check proving that only one hypothesis is tested in the experiment.",
+    "Run a focused check proving that verification includes the original failure and at least two nearby cases."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

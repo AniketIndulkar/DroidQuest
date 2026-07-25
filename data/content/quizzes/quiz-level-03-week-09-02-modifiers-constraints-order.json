@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-03-week-09-02-modifiers-constraints-order",
+  "title": "Modifiers, Constraints, and Order Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-02-modifiers-constraints-order"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-09-02-modifiers-constraints-order-click-area",
+      "prompt": "Which chain includes outer padding in the clickable target?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "clickable().padding()",
+      "explanation": "clickable wraps the following padding and content, expanding its semantic hit region.",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order",
+      "options": [
+        "clickable().padding()",
+        "padding().clickable()",
+        "background only",
+        "No modifier can"
+      ]
+    },
+    {
+      "id": "q-level-03-week-09-02-modifiers-constraints-order-constraint-flow",
+      "prompt": "Order the layout contract.",
+      "type": "order_steps",
+      "difficulty": "intermediate",
+      "answer": [
+        "parent sends constraints",
+        "child chooses allowed size",
+        "child reports size",
+        "parent places child"
+      ],
+      "explanation": "Constraints travel down and measured geometry travels back up before placement.",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order"
+    },
+    {
+      "id": "q-level-03-week-09-02-modifiers-constraints-order-weight-scope",
+      "prompt": "Modifier.weight is parent data interpreted by Row or Column scope.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": true,
+      "explanation": "Scoped parent data communicates how that specific parent should measure its child.",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

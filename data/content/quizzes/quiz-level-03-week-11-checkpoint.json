@@ -1,0 +1,118 @@
+{
+  "id": "quiz-level-03-week-11-checkpoint",
+  "title": "Week 11 Compose Checkpoint",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-01-effect-fundamentals-keys",
+    "level-03-week-11-02-launched-effect-coroutine-scope",
+    "level-03-week-11-03-disposable-sideeffect-updatedstate",
+    "level-03-week-11-04-derived-state-snapshot-flow",
+    "level-03-week-11-05-viewmodel-lifecycle-collection"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-11-checkpoint-01",
+      "prompt": "What should an effect key normally represent?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Identity whose change requires restart",
+      "explanation": "Keys connect resource or work identity to cancellation and relaunch.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys",
+      "options": [
+        "Identity whose change requires restart",
+        "A random value",
+        "Every local variable",
+        "A colour token"
+      ]
+    },
+    {
+      "id": "q-week-11-checkpoint-02",
+      "prompt": "LaunchedEffect(Unit) runs once for the whole application installation.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It runs once per entering composition instance and can run again after leaving and re-entering.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys"
+    },
+    {
+      "id": "q-week-11-checkpoint-03",
+      "prompt": "Which API suits showSnackbar from a button click?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "rememberCoroutineScope",
+      "explanation": "The user event launches a UI-owned suspending operation in a scope cancelled with that UI.",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope",
+      "options": [
+        "rememberCoroutineScope",
+        "Unconditional scope.launch in body",
+        "GlobalScope",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-week-11-checkpoint-04",
+      "prompt": "Changing a LaunchedEffect key cancels and replaces its coroutine.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": true,
+      "explanation": "Key identity defines when lifecycle-bound coroutine work restarts.",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope"
+    },
+    {
+      "id": "q-week-11-checkpoint-05",
+      "prompt": "Which API fits listener registration with cleanup?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "DisposableEffect",
+      "explanation": "It pairs keyed setup with mandatory cleanup when identity changes or composition leaves.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "options": [
+        "DisposableEffect",
+        "derivedStateOf",
+        "rememberSaveable",
+        "Canvas"
+      ]
+    },
+    {
+      "id": "q-week-11-checkpoint-06",
+      "prompt": "SideEffect runs even for an abandoned unsuccessful composition.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It publishes only after a successful composition is committed.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate"
+    },
+    {
+      "id": "q-week-11-checkpoint-07",
+      "prompt": "Which API supports Flow operators over a LazyListState read?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "snapshotFlow",
+      "explanation": "It records snapshot reads and emits their changed values to a Flow collector.",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow",
+      "options": [
+        "snapshotFlow",
+        "rememberSaveable",
+        "SideEffect",
+        "Modifier.weight"
+      ]
+    },
+    {
+      "id": "q-week-11-checkpoint-08",
+      "prompt": "derivedStateOf is useful for every inexpensive string concatenation.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It helps when the result changes less often than inputs, not as a default derived-value wrapper.",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

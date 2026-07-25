@@ -1,0 +1,62 @@
+{
+  "id": "level-05-production-architecture",
+  "title": "Level 5: Production Architecture",
+  "order": 5,
+  "description": "Structure growing Android applications with deliberate UI, data, and optional domain boundaries; unidirectional state, proportionate dependency injection, testable contracts, feature ownership, and evidence-based modularisation.",
+  "difficulty": "intermediate",
+  "status": "complete",
+  "weekRange": {
+    "start": 19,
+    "end": 22
+  },
+  "unlockPrerequisites": [
+    "level-04-async-data-networking"
+  ],
+  "tags": [
+    "architecture",
+    "dependency-injection",
+    "modularisation"
+  ],
+  "estimatedLearningMinutes": 210,
+  "lessonIds": [
+    "level-05-week-19-01-layers-boundaries-dependency-direction",
+    "level-05-week-19-02-immutable-ui-state-udf",
+    "level-05-week-19-03-state-holders-events-ui-logic",
+    "level-05-week-19-04-repositories-source-of-truth-mappers",
+    "level-05-week-19-05-domain-use-cases-error-models",
+    "level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+    "level-05-week-20-01-manual-di-composition-root",
+    "level-05-week-20-02-hilt-graph-constructor-modules",
+    "level-05-week-20-03-hilt-components-scopes-lifetimes",
+    "level-05-week-20-04-qualifiers-multibindings-assisted",
+    "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+    "level-05-week-21-01-modularization-evidence-cohesion-coupling",
+    "level-05-week-21-02-app-feature-core-data-modules",
+    "level-05-week-21-03-api-implementation-dependency-graphs",
+    "level-05-week-21-04-cross-feature-navigation-resources",
+    "level-05-week-21-05-build-performance-dynamic-library-modules",
+    "level-05-week-22-01-architecture-tests-contracts-fakes",
+    "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+    "level-05-week-22-03-banking-module-graph-contracts",
+    "level-05-week-22-04-payment-consistency-security-boundaries",
+    "level-05-week-22-05-multi-module-banking-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-05-week-19-01-layers-boundaries-dependency-direction",
+  "plannedTopics": [
+    "UI state, events, repositories, optional use cases, error models, and proportionate architecture patterns",
+    "Manual dependency injection, Hilt and Dagger graphs, scopes, qualifiers, multibindings, assisted factories, and test replacement",
+    "Feature, data, common, API, implementation, dynamic-feature, and library module boundaries",
+    "Architecture tests, decision records, incremental refactoring, payment consistency, and capstone composition"
+  ],
+  "project": {
+    "title": "Multi-Module Banking Demo",
+    "summary": "Design a banking demonstration with explicit module contracts, test seams, feature ownership, and controlled dependency direction."
+  },
+  "theme": {
+    "color": "#845400",
+    "icon": "account-tree",
+    "mapMood": "Layered structures where dependencies point in deliberate, inspectable directions."
+  },
+  "version": "0.8.0",
+  "checkpointQuizId": "quiz-level-05-checkpoint"
+}

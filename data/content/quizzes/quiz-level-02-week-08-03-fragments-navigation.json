@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-02-week-08-03-fragments-navigation",
+  "title": "Fragments, View Lifecycle, and Navigation Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-03-fragments-navigation"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-08-03-binding-owner",
+      "prompt": "Which owner should scope collection that updates fragment views?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "viewLifecycleOwner",
+      "explanation": "The collection should stop when the view hierarchy is destroyed.",
+      "lessonId": "level-02-week-08-03-fragments-navigation",
+      "options": [
+        "viewLifecycleOwner",
+        "Application forever",
+        "A static singleton",
+        "The repository"
+      ]
+    },
+    {
+      "id": "q-week-08-03-manager-match",
+      "prompt": "Match the fragment relationship to its manager.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "activityTopLevel": "supportFragmentManager",
+        "sibling": "parentFragmentManager",
+        "nestedChild": "childFragmentManager"
+      },
+      "explanation": "Manager selection follows hierarchy ownership.",
+      "lessonId": "level-02-week-08-03-fragments-navigation"
+    },
+    {
+      "id": "q-week-08-03-duplicate",
+      "prompt": "Manually adding a fragment on every onCreate is safe because FragmentManager never restores fragments.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "The manager restores its state and unconditional addition can duplicate destinations.",
+      "lessonId": "level-02-week-08-03-fragments-navigation"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

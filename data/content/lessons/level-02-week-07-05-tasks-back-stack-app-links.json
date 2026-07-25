@@ -1,0 +1,224 @@
+{
+  "id": "level-02-week-07-05-tasks-back-stack-app-links",
+  "title": "Tasks, Back Stack, Deep Links, and App Links",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 7,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-07-04-broadcasts-providers-pending-intents"
+  ],
+  "tags": [
+    "tasks",
+    "back-stack",
+    "deep-links",
+    "app-links"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Navigation must cooperate with Android task history and external entry so Back remains predictable and links reach valid destinations from a cold process.",
+      "realWorldUse": "Launcher starts, notifications, browser links, shares, recents, and multi-window can create or resume tasks with different entry histories.",
+      "outcome": "Explain task and back-stack behaviour, avoid casual launch-mode flags, and implement a verified HTTPS app link that reconstructs navigation safely."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "task-stack",
+          "title": "A task is a user journey represented by activity history",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A task groups activities in a back stack. Starting an activity normally pushes a new instance; Back removes the current destination and reveals the previous one, while Home leaves the task available in recents. Modern Compose applications often use one activity and maintain destinations inside it, but the system task still owns app-level entry and exit behaviour. The launcher activity is normally the task root. Never model durable domain data in the back stack: tasks can be removed, processes killed, and destinations recreated. Navigation state should contain stable route arguments, not complete note objects."
+            },
+            {
+              "type": "flow",
+              "title": "Basic task history",
+              "steps": [
+                {
+                  "id": "launch",
+                  "label": "Launcher",
+                  "detail": "System creates or resumes the app task."
+                },
+                {
+                  "id": "root",
+                  "label": "Root activity",
+                  "detail": "Hosts the initial destination."
+                },
+                {
+                  "id": "navigate",
+                  "label": "Navigate",
+                  "detail": "Destination history grows within activity/app."
+                },
+                {
+                  "id": "back",
+                  "label": "Back",
+                  "detail": "Current destination is removed."
+                },
+                {
+                  "id": "home",
+                  "label": "Home/recents",
+                  "detail": "Task remains resumable but process is not guaranteed."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "note/42 -> route argument noteId=\"42\"\nViewModel -> repository.load(\"42\")",
+              "caption": "History retains a stable key and reconstructs the full note from its source of truth."
+            }
+          ]
+        },
+        {
+          "id": "launch-modes",
+          "title": "Flags and launch modes change history contracts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "standard normally creates a new activity instance. singleTop can reuse the current top instance and deliver a new intent. Other launch modes and flags can reorder or clear task history and should be used only for a proven system interaction. A reused activity must handle the incoming intent in onNewIntent as well as initial creation. Casual use of CLEAR_TOP or NEW_TASK often fixes one demo path while breaking notification, recents, or multi-window behaviour. Define navigation outcomes for launcher, external link, notification, and existing-task entry before choosing flags."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "override fun onNewIntent(intent: Intent) {\n    super.onNewIntent(intent)\n    setIntent(intent)\n    handleExternalEntry(intent)\n}",
+              "caption": "A reused top activity receives new entry data through onNewIntent rather than onCreate."
+            },
+            {
+              "type": "table",
+              "title": "Entry tests",
+              "columns": [
+                "Entry",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "Launcher",
+                  "Open start destination or resume existing task?"
+                ],
+                [
+                  "Notification",
+                  "Open one note and preserve sensible Up/Back?"
+                ],
+                [
+                  "HTTPS link",
+                  "Validate URI then construct expected hierarchy"
+                ],
+                [
+                  "Share intent",
+                  "Create import flow without exposing private routes"
+                ],
+                [
+                  "Recents",
+                  "Restore task with process recreation if needed"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "links",
+          "title": "App Links are verified HTTPS deep links",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A deep link maps external data to an internal destination. An Android App Link uses an HTTP or HTTPS intent filter plus domain verification through Digital Asset Links, allowing verified web URLs to open directly in the associated app. The website hosts assetlinks.json binding package name and signing certificate fingerprint. Verification is deployment configuration, not input validation: the app must still constrain scheme, host, path, ID format, authentication, authorisation, and missing-note outcomes. Test debug and release signing identities, cold and warm process entry, logged-out state, malformed paths, and Back/Up behaviour."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<intent-filter android:autoVerify=\"true\">\n    <action android:name=\"android.intent.action.VIEW\" />\n    <category android:name=\"android.intent.category.DEFAULT\" />\n    <category android:name=\"android.intent.category.BROWSABLE\" />\n    <data android:scheme=\"https\" android:host=\"notes.example\" android:pathPrefix=\"/note/\" />\n</intent-filter>",
+              "caption": "The filter advertises a narrow HTTPS path; website association and runtime validation complete the contract."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A verified domain is not an authorised note",
+              "text": "Verification associates the website and app. User identity and record access still require application policy."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Tasks and the back stack",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/tasks-and-back-stack",
+          "whyRead": "The primary guide to tasks, Back, launch modes, flags, recents, and activity instances."
+        },
+        {
+          "title": "Add Android App Links",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links",
+          "whyRead": "Explains HTTPS filters, domain verification, Digital Asset Links, testing, and troubleshooting."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace a warm app-link entry",
+      "language": "text",
+      "code": "Task already open: Notes list -> Settings\nMainActivity uses singleTop but Settings is current top\nHTTPS note link starts MainActivity",
+      "walkthrough": [
+        "singleTop only reuses an activity already at the top.",
+        "MainActivity is below Settings, so a new instance may be created under normal semantics.",
+        "The desired hierarchy should be defined before applying flags that clear or reorder history."
+      ],
+      "expectedOutput": "Test the exact warm stack and choose navigation handling from product Back/Up expectations."
+    },
+    "trap_check": [
+      {
+        "mistake": "Adding task flags until one navigation demo looks right.",
+        "why": "Flags alter other entry paths, recents, multi-window, and activity reuse.",
+        "fix": "Specify every entry/back expectation and use the smallest necessary configuration."
+      },
+      {
+        "mistake": "Treating domain verification as note authorisation.",
+        "why": "A valid website association does not prove the user may read the requested note.",
+        "fix": "Validate route, identity, access, and record existence."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Define a verified HTTPS /note/{id} app link and a navigation policy for cold process, warm task, logged-out user, missing note, malformed ID, Back, and Up.",
+      "successLooksLike": "The filter and asset association are narrow and documented. All URI and access states have explicit outcomes. Only a stable ID enters navigation and full data reloads from storage."
+    },
+    "recall": [
+      {
+        "prompt": "What does Back normally do?",
+        "answer": "Removes the current destination and returns through user navigation history."
+      },
+      {
+        "prompt": "When is onNewIntent used?",
+        "answer": "When launch semantics reuse an existing activity instance for a new intent."
+      },
+      {
+        "prompt": "What verifies an Android App Link?",
+        "answer": "The HTTPS site Digital Asset Links association with package and signing identity."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-07-05-tasks-back-stack-app-links",
+  "challengeId": "challenge-level-02-week-07-05-tasks-back-stack-app-links",
+  "revision": {
+    "objectives": [
+      "Explain system task and destination history.",
+      "Evaluate launch modes against all entry paths.",
+      "Secure and test verified app-link routing."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/components/activities/tasks-and-back-stack",
+    "https://developer.android.com/training/app-links"
+  ],
+  "version": "0.4.0"
+}

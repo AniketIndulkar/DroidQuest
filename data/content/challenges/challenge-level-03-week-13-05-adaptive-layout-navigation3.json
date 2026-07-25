@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-13-05-adaptive-layout-navigation3",
+  "title": "Build an Adaptive Shopping Catalogue",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-13-05-adaptive-layout-navigation3",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Create compact and expanded product navigation with list-detail panes, retained selection, predictive back expectations, and a documented Navigation Compose versus Navigation 3 boundary.",
+  "successCriteria": [
+    "Selection and scroll state survive live resize.",
+    "Compact and expanded back behaviour is tested.",
+    "Feature content has no dependency on a navigation controller."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun AdaptiveShop(state: ShopUiState, onEvent: (ShopEvent) -> Unit)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-14-06-coroutine-testing-virtual-time",
+  "title": "Test Retry, Timeout, and Cancellation",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Write deterministic tests for a repository with loading state, exponential retry delays, operation timeout, child cancellation, and dispatcher switching.",
+  "successCriteria": [
+    "Every TestDispatcher shares one scheduler.",
+    "Intermediate states are asserted before completion.",
+    "Cancelled work never publishes a late result."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Test fun repositoryTiming() = runTest { /* virtual-time assertions */ }"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

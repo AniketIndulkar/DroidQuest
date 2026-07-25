@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-10-05-navigation-compose-concepts",
+  "title": "Navigation Compose and Destination State Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-10-05-navigation-compose-concepts"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-10-05-navigation-compose-concepts-decision",
+      "prompt": "What should a note detail route normally pass?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "noteId",
+      "explanation": "A compact stable ID lets the destination reconstruct current authoritative data.",
+      "lessonId": "level-03-week-10-05-navigation-compose-concepts",
+      "options": [
+        "noteId",
+        "Complete database object",
+        "Repository instance",
+        "Activity"
+      ]
+    },
+    {
+      "id": "q-level-03-week-10-05-navigation-compose-concepts-truth",
+      "prompt": "Calling navigate unconditionally during composition is safe.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Composition can repeat, so navigation needs an explicit event contract.",
+      "lessonId": "level-03-week-10-05-navigation-compose-concepts"
+    },
+    {
+      "id": "q-level-03-week-10-05-navigation-compose-concepts-recall",
+      "prompt": "Where is route data resolved?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "In the destination state owner",
+      "explanation": "The destination reads identity and loads current data through its repository.",
+      "lessonId": "level-03-week-10-05-navigation-compose-concepts"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

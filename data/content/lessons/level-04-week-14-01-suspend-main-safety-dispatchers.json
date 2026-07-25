@@ -1,0 +1,231 @@
+{
+  "id": "level-04-week-14-01-suspend-main-safety-dispatchers",
+  "title": "Suspend Functions, Main Safety, and Dispatchers",
+  "categoryId": "level-04-async-data-networking",
+  "week": 14,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-13-06-compose-testing-shopping-capstone"
+  ],
+  "tags": [
+    "coroutines",
+    "suspend",
+    "dispatchers"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Suspension expresses asynchronous waiting without blocking a thread, while dispatcher policy determines where blocking or CPU-heavy work actually executes.",
+      "realWorldUse": "Repositories, files, database calls, JSON parsing, and network clients must be safe when invoked from screen scopes on the main thread.",
+      "outcome": "Explain suspension versus threading, create main-safe suspend APIs, and inject execution policy for deterministic tests."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Suspending is not blocking and not a thread switch",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A suspend function may pause its coroutine and later resume without holding the underlying thread. The suspend modifier permits suspension points but does not automatically move work off Main. Calling a blocking file API inside suspend fun still blocks the current dispatcher. Coroutine code remains sequential by default, which makes a suspend API read like ordinary control flow. The caller chooses its lifecycle and cancellation; the implementation must document whether it returns one value, throws, or performs durable work."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class FileArticleSource(private val io: CoroutineDispatcher) {\n    suspend fun read(): List<Article> = withContext(io) {\n        blockingFileRead().map(::decodeArticle)\n    }\n}",
+              "caption": "The class owning the blocking call also owns the dispatcher switch that makes its API main-safe."
+            },
+            {
+              "type": "table",
+              "title": "Execution decision",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Quick UI state",
+                  "Main"
+                ],
+                [
+                  "CPU-heavy transformation",
+                  "Default"
+                ],
+                [
+                  "Blocking file or legacy I/O",
+                  "IO"
+                ],
+                [
+                  "Already-suspending library API",
+                  "Use its documented context policy"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "The implementing layer owns main safety",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android guidance makes suspend functions main-safe: callers should be able to invoke them from Main without knowing internal blocking details. The data source that uses a blocking API moves only that block with withContext(ioDispatcher). CPU-heavy parsing or transforms use an appropriate default dispatcher. Retrofit suspend calls and Room suspend APIs already manage their own execution and should not be wrapped reflexively. Inject dispatchers or contexts when code owns a switch so tests can share one scheduler."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class FileArticleSource(private val io: CoroutineDispatcher) {\n    suspend fun read(): List<Article> = withContext(io) {\n        blockingFileRead().map(::decodeArticle)\n    }\n}",
+              "caption": "The class owning the blocking call also owns the dispatcher switch that makes its API main-safe."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "suspend does not mean background",
+              "text": "Only a dispatcher switch or non-blocking implementation changes thread use."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Dispatchers express execution resources",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dispatchers.Main serves quick UI work, Default serves CPU-intensive work, and IO serves blocking I/O; they are shared pools, not labels for data layers. withContext changes context for a bounded operation while preserving structured return and exceptions. Avoid hopping repeatedly or launching solely to change thread. Verify main safety with a test dispatcher and StrictMode or traces for accidental blocking. Cancellation still depends on the underlying operation cooperating or exposing cancellation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not force callers to guess",
+              "text": "Main safety belongs in the class that knows which operation blocks."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Coroutines on Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/coroutines",
+          "whyRead": "Introduces suspend functions, scopes, dispatchers, and Android integration."
+        },
+        {
+          "title": "Coroutine best practices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/kotlin/coroutines/coroutines-best-practices",
+          "whyRead": "Explains main safety, injected dispatchers, and owner-controlled lifetimes."
+        },
+        {
+          "title": "Coroutine basics",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coroutines-basics.html",
+          "whyRead": "Defines suspension, builders, context, and structured coroutine concepts."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the blocking suspend function",
+      "language": "kotlin",
+      "code": "suspend fun loadFile(): String = File(\"large.json\").readText()",
+      "walkthrough": [
+        "The suspend modifier alone does not move readText from the caller dispatcher.",
+        "A Main caller can block rendering and input.",
+        "The file-owning source should execute the blocking read with an injected IO dispatcher."
+      ],
+      "expectedOutput": "The API is safe from Main and a test can replace its dispatcher."
+    },
+    "trap_check": [
+      {
+        "mistake": "Wrapping every Retrofit suspend call in withContext(IO).",
+        "why": "The client already performs asynchronous network work and the extra switch adds noise.",
+        "fix": "Follow the library contract and switch only for work your layer owns."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Wrap blocking file and CPU-heavy parsing operations behind one main-safe suspend API with injected dispatchers and deterministic tests.",
+      "successLooksLike": "Main callers never execute blocking I/O. Context switches occur only around owned work. Tests use replaceable dispatchers on one scheduler."
+    },
+    "recall": [
+      {
+        "prompt": "Does suspend imply a background thread?",
+        "answer": "No, suspension and dispatch are separate."
+      },
+      {
+        "prompt": "Who makes an API main-safe?",
+        "answer": "The layer that owns the blocking or CPU-heavy operation."
+      },
+      {
+        "prompt": "Why inject dispatchers?",
+        "answer": "To make execution policy replaceable and tests deterministic."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-14-01-suspend-main-safety-dispatchers",
+  "challengeId": "challenge-level-04-week-14-01-suspend-main-safety-dispatchers",
+  "revision": {
+    "objectives": [
+      "Separate suspension from dispatch.",
+      "Implement main-safe data APIs.",
+      "Select and inject execution resources."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/kotlin/coroutines",
+    "https://developer.android.com/kotlin/coroutines/coroutines-best-practices",
+    "https://kotlinlang.org/docs/coroutines-basics.html"
+  ],
+  "version": "0.6.0"
+}

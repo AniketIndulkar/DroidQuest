@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-03-cancellation-timeouts-cleanup",
+  "title": "Cancellation, Timeouts, and Cleanup Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-03-cancellation-timeouts-cleanup"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-03-cancellation-timeouts-cleanup-decision",
+      "prompt": "What should a broad catch do with CancellationException?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Rethrow it",
+      "explanation": "Cancellation is a structured control signal and must reach the parent.",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup",
+      "options": [
+        "Rethrow it",
+        "Show a generic network error",
+        "Retry forever",
+        "Persist it as user data"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-03-cancellation-timeouts-cleanup-truth",
+      "prompt": "Adding suspend to a CPU loop makes it cancellation-cooperative.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The loop must encounter a suspending call or explicit cancellation check.",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup"
+    },
+    {
+      "id": "q-level-04-week-14-03-cancellation-timeouts-cleanup-recall",
+      "prompt": "What does withTimeoutOrNull return on timeout?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "null",
+      "explanation": "It represents timeout without propagating TimeoutCancellationException to its caller.",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

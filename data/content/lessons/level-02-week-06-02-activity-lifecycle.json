@@ -1,0 +1,249 @@
+{
+  "id": "level-02-week-06-02-activity-lifecycle",
+  "title": "Activity Lifecycle and Lifecycle-Aware Work",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 6,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-06-01-application-process-context"
+  ],
+  "tags": [
+    "activity",
+    "lifecycle",
+    "callbacks",
+    "visibility"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Activities are system-managed UI hosts; correct work must follow visibility and interaction states rather than assumptions about one uninterrupted screen object.",
+      "realWorldUse": "Navigation, multi-window, dialogs, home, calls, rotation, and process pressure move activities through lifecycle transitions while resources need matching ownership.",
+      "outcome": "Trace lifecycle callbacks, place setup and release work by state, and use lifecycle-aware observers instead of callback-heavy business logic."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "states",
+          "title": "Callbacks report transitions through UI states",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The system calls onCreate when constructing an activity instance, onStart when it becomes visible, and onResume when it can interact in the foreground. Leaving reverses through onPause and onStop; onDestroy ends that instance because it is finishing or being recreated. onRestart precedes returning from stopped to started. These callbacks are not one linear script: partial coverage, multi-window, configuration change, navigation, and process death create different paths. Always call the superclass where required and keep callbacks fast. Record transitions during learning, but move durable policy into testable collaborators and lifecycle-aware components."
+            },
+            {
+              "type": "flow",
+              "title": "Common foreground path",
+              "steps": [
+                {
+                  "id": "create",
+                  "label": "onCreate",
+                  "detail": "Create instance and attach UI."
+                },
+                {
+                  "id": "start",
+                  "label": "onStart",
+                  "detail": "Activity becomes visible."
+                },
+                {
+                  "id": "resume",
+                  "label": "onResume",
+                  "detail": "Activity becomes interactive."
+                },
+                {
+                  "id": "pause",
+                  "label": "onPause",
+                  "detail": "Activity loses foreground interaction."
+                },
+                {
+                  "id": "stop",
+                  "label": "onStop",
+                  "detail": "Activity is no longer visible."
+                },
+                {
+                  "id": "destroy",
+                  "label": "onDestroy",
+                  "detail": "This activity instance ends."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "override fun onStart() {\n    super.onStart()\n    analytics.screenVisible(\"notes\")\n}\n\noverride fun onStop() {\n    analytics.screenHidden(\"notes\")\n    super.onStop()\n}",
+              "caption": "A visibility-scoped collaborator starts and stops at paired boundaries rather than living forever."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "title": "Acquire and release according to required visibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choose the narrowest state in which a resource is needed. Camera preview or fine location may belong only while resumed; a visible content subscription may run while started; one-time UI construction belongs in onCreate. Pair acquisition and release at matching boundaries so repeated transitions do not duplicate observers or leak handles. onPause should remain brief because another activity may be waiting to resume. onDestroy is not guaranteed after process death and is not a reliable place to persist critical user data. Save important edits when they change or at an earlier appropriate boundary. Component lifecycle is about resource ownership, not a substitute for application architecture."
+            },
+            {
+              "type": "table",
+              "title": "Work placement",
+              "columns": [
+                "Need",
+                "Likely boundary"
+              ],
+              "rows": [
+                [
+                  "Create screen host",
+                  "onCreate"
+                ],
+                [
+                  "Observe while visible",
+                  "STARTED lifecycle"
+                ],
+                [
+                  "Use exclusive foreground sensor",
+                  "RESUMED lifecycle"
+                ],
+                [
+                  "Stop visible-only subscription",
+                  "Leaving STARTED"
+                ],
+                [
+                  "Persist every critical edit",
+                  "At edit/use-case time, not only onDestroy"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Callbacks may repeat",
+              "text": "A start/stop or resume/pause pair can occur many times on one activity instance, so setup must be idempotent or paired."
+            }
+          ]
+        },
+        {
+          "id": "lifecycle-aware",
+          "title": "Observe lifecycle instead of manually forwarding it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "AndroidX Lifecycle exposes a LifecycleOwner and observable state. Lifecycle-aware collection can automatically start when the host reaches a state and cancel when it falls below it. This prevents updates targeting an invisible screen and reduces manual registration bookkeeping. In Compose, lifecycle-aware state collection and effects connect UI work to composition and host lifecycle; direct activity callback wiring is rarely the right place for composable business behaviour. A ViewModel outlives an activity instance during configuration recreation, but must not hold that activity or a view. Test lifecycle assumptions by moving the app to background, showing another activity, rotating, and returning—not only by launching once."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "lifecycleScope.launch {\n    repeatOnLifecycle(Lifecycle.State.STARTED) {\n        viewModel.uiState.collect { state -> render(state) }\n    }\n}",
+              "caption": "Collection runs while the owner is at least STARTED and is cancelled and restarted across visibility transitions."
+            },
+            {
+              "type": "flow",
+              "title": "Lifecycle-aware collection",
+              "steps": [
+                {
+                  "id": "start",
+                  "label": "Owner reaches STARTED",
+                  "detail": "Launch the collection block."
+                },
+                {
+                  "id": "collect",
+                  "label": "Collect state",
+                  "detail": "Render updates while visible."
+                },
+                {
+                  "id": "stop",
+                  "label": "Owner falls below STARTED",
+                  "detail": "Cancel child collection."
+                },
+                {
+                  "id": "restart",
+                  "label": "Owner starts again",
+                  "detail": "Create a fresh collection automatically."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "The activity lifecycle",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/activities/activity-lifecycle",
+          "whyRead": "The official callback, state, process-importance, recreation, and resource-management guide."
+        },
+        {
+          "title": "Handle lifecycles with lifecycle-aware components",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/lifecycle",
+          "whyRead": "Explains LifecycleOwner, observers, scopes, and moving lifecycle behaviour out of large callbacks."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace Activity A launching Activity B",
+      "language": "text",
+      "code": "A.onPause\nB.onCreate\nB.onStart\nB.onResume\nA.onStop",
+      "walkthrough": [
+        "A first loses foreground interaction.",
+        "B is created, becomes visible, and receives focus.",
+        "Only after B covers A completely does A become stopped."
+      ],
+      "expectedOutput": "Do not assume A reaches onStop before B reaches onResume."
+    },
+    "trap_check": [
+      {
+        "mistake": "Persisting critical edits only in onDestroy.",
+        "why": "The process can end without that callback and the user loses data.",
+        "fix": "Persist at the use-case boundary or another guaranteed earlier moment."
+      },
+      {
+        "mistake": "Registering a new observer in every onStart without removing or scoping it.",
+        "why": "Repeated starts can produce duplicated callbacks and retained work.",
+        "fix": "Use a lifecycle-aware API or pair registration and removal."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create an activity that records transitions and owns a visible-only observer through a lifecycle-aware API, then test launch, background, overlay, rotation, and return.",
+      "successLooksLike": "The trace distinguishes instance identity across recreation. The observer runs only while the screen is visible. No durable save depends solely on onDestroy."
+    },
+    "recall": [
+      {
+        "prompt": "What is the difference between started and resumed?",
+        "answer": "Started means visible; resumed means foreground and interactive."
+      },
+      {
+        "prompt": "Why keep onPause short?",
+        "answer": "The next foreground activity may be waiting for it to finish."
+      },
+      {
+        "prompt": "Does ViewModel permit holding a View?",
+        "answer": "No, it can outlive the activity instance and would retain destroyed UI."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-06-02-activity-lifecycle",
+  "challengeId": "challenge-level-02-week-06-02-activity-lifecycle",
+  "revision": {
+    "objectives": [
+      "Trace common and repeated activity transitions.",
+      "Match resource ownership to STARTED or RESUMED state.",
+      "Use lifecycle-aware observation to prevent invisible work."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/components/activities/activity-lifecycle",
+    "https://developer.android.com/topic/libraries/architecture/lifecycle"
+  ],
+  "version": "0.4.0"
+}

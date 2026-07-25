@@ -1,0 +1,233 @@
+{
+  "id": "level-01-week-04-02-git-collaboration-docs",
+  "title": "Git, Pull Requests, and Useful Documentation",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-01-terminal-files-processes"
+  ],
+  "tags": [
+    "git",
+    "github",
+    "collaboration",
+    "documentation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Version control creates a reviewable history of intent, while documentation and pull requests let a team understand why a change exists and whether it is safe to integrate.",
+      "realWorldUse": "Android applications combine source, Gradle configuration, resources, schemas, and tests; Git coordinates changes across all of them and CI checks proposed integrations.",
+      "outcome": "Create focused commits, reason about branches and merges, prepare a reviewable pull request, and write documentation that answers future maintainers’ real questions."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "snapshots",
+          "title": "Git records connected snapshots",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A repository stores project history. The working tree is what you currently see, the staging area selects the exact changes intended for the next commit, and a commit records a snapshot with metadata and parent links. Git content is not automatically saved merely because a file changed. Inspect status and the staged diff before committing so unrelated work is not captured. A strong commit represents one coherent reason, keeps the project usable where practical, and has a message that explains the outcome rather than narrating keystrokes. History becomes an engineering tool when another person can revert, compare, or diagnose it."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "git status\ngit diff\ngit add content/lessons/new-lesson.json\ngit diff --staged\ngit commit -m \"Add Week 4 terminal lesson\"",
+              "caption": "The working diff is inspected, one intended file is staged, and the exact staged snapshot is reviewed before commit."
+            },
+            {
+              "type": "table",
+              "title": "Git states",
+              "columns": [
+                "State",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "Working tree",
+                  "What differs from the checked-out commit?"
+                ],
+                [
+                  "Staging area",
+                  "What exactly will the next commit contain?"
+                ],
+                [
+                  "Commit",
+                  "What durable snapshot and intent are recorded?"
+                ],
+                [
+                  "Branch",
+                  "Which movable name points to the current line of work?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "branches-review",
+          "title": "A branch isolates a line of work; a pull request hosts review",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A branch is a movable reference to a commit, not a full copy of the project. New commits advance the current branch. Merging joins histories, and a conflict means Git cannot choose a correct combined result from text alone. Resolve conflicts by understanding both intents, then run the relevant checks. A pull request proposes integrating one branch and provides a durable conversation around the diff. Its description should state the problem, approach, evidence, risks, and any manual review required. Review code for correctness and maintainability, and review generated content or assets for semantic quality—not merely whether CI is green."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "git switch -c level-1-week-4\ngit log --oneline --decorate -5\ngit diff main...HEAD",
+              "caption": "The branch gives the work a name, and the three-dot diff shows changes introduced relative to the common base."
+            },
+            {
+              "type": "flow",
+              "title": "Collaborative change",
+              "steps": [
+                {
+                  "id": "branch",
+                  "label": "Create branch",
+                  "detail": "Name one focused outcome."
+                },
+                {
+                  "id": "commit",
+                  "label": "Commit",
+                  "detail": "Record coherent reviewed snapshots."
+                },
+                {
+                  "id": "push",
+                  "label": "Share branch",
+                  "detail": "Publish the proposed history."
+                },
+                {
+                  "id": "pr",
+                  "label": "Open pull request",
+                  "detail": "Explain intent, evidence, and risk."
+                },
+                {
+                  "id": "review",
+                  "label": "Review and revise",
+                  "detail": "Address findings and rerun checks."
+                },
+                {
+                  "id": "merge",
+                  "label": "Merge",
+                  "detail": "Integrate after required evidence passes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "documentation",
+          "title": "Document decisions and operating knowledge",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Good documentation serves a specific reader and task. A README should explain what the repository is, how to validate it, and where deeper guidance lives. An authoring guide records repeatable content rules. Comments should explain a surprising constraint or decision, not translate obvious syntax. A decision record captures context, alternatives, the chosen direction, and consequences when a design choice will matter later. Keep commands executable, examples current, and links stable. Documentation is part of the change: update it in the same pull request and review it against the actual behaviour. Old confident instructions are more dangerous than an honest gap."
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "## Validate content\n\n```sh\nnpm install\nnpm run test:content\n```\n\nThe command validates source JSON, regenerates indexes, and checks generated output.",
+              "caption": "This documentation names the task, gives reproducible commands, and explains the expected result."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Write for the next decision",
+              "text": "Document what a maintainer needs to operate or change the system, including constraints and verification—not a diary of implementation."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Pro Git: Git Basics",
+          "publisher": "Git project",
+          "resourceType": "official_docs",
+          "url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+          "whyRead": "Explains tracked states, diffs, staging, commits, removal, movement, and history in Git’s snapshot model."
+        },
+        {
+          "title": "About pull requests",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests",
+          "whyRead": "Describes pull requests as the place to propose, review, discuss, and integrate branch changes."
+        },
+        {
+          "title": "How to write and format different types of source code documentation",
+          "publisher": "Google for Developers",
+          "resourceType": "guide",
+          "url": "https://developers.google.com/tech-writing/one",
+          "whyRead": "Introduces audience-focused documentation, clear sentences, lists, and useful code examples."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Review a focused history",
+      "language": "kotlin",
+      "code": "git status\ngit diff --staged\ngit log --oneline --decorate -3",
+      "walkthrough": [
+        "status reveals untracked, modified, and staged paths.",
+        "The staged diff is the proposed commit, so it deserves review before recording.",
+        "The concise log shows commit boundaries and the branch pointer."
+      ],
+      "expectedOutput": "A reviewer should be able to connect each staged change to one stated outcome."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using git add . without reviewing unrelated changes.",
+        "why": "The commit may capture secrets, generated noise, or another unfinished task.",
+        "fix": "Stage exact paths and inspect git diff --staged before committing."
+      },
+      {
+        "mistake": "Writing a pull request description that only repeats its title.",
+        "why": "Reviewers lack context, risk assessment, and verification evidence.",
+        "fix": "Describe the problem, approach, tests, risks, and manual review needs."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a branch and a documentation-only commit that explains how to validate DroidQuest content, then draft a pull request description with purpose, evidence, and risks.",
+      "successLooksLike": "The staged diff contains only the intended documentation. The commit message states the resulting outcome. The pull request draft includes commands run and manual review notes."
+    },
+    "recall": [
+      {
+        "prompt": "What does the staging area represent?",
+        "answer": "The exact changes selected for the next commit."
+      },
+      {
+        "prompt": "What does a merge conflict mean?",
+        "answer": "Git needs a person to reconcile overlapping histories according to intended behaviour."
+      },
+      {
+        "prompt": "When should documentation change?",
+        "answer": "In the same change that alters the behaviour, workflow, or decision it documents."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-02-git-collaboration-docs",
+  "challengeId": "challenge-level-01-week-04-02-git-collaboration-docs",
+  "revision": {
+    "objectives": [
+      "Explain working tree, staging area, commit, and branch.",
+      "Prepare a pull request with reviewable intent and evidence.",
+      "Write task-oriented documentation that remains testable."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests",
+    "https://developers.google.com/tech-writing/one"
+  ],
+  "version": "0.3.0"
+}

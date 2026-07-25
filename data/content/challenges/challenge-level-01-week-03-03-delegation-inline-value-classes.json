@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-03-03-delegation-inline-value-classes",
+  "title": "Add Typed IDs and Store Logging",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-03-03-delegation-inline-value-classes",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Introduce ExpenseId as a validated value class and wrap an ExpenseStore using class delegation to add focused logging.",
+  "successCriteria": [
+    "ExpenseId cannot be confused with another String-based identifier.",
+    "Unchanged store operations delegate automatically.",
+    "The logging wrapper preserves the underlying failure behaviour."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: ExpenseId cannot be confused with another String-based identifier.",
+    "Use an executable example or focused check to verify: Unchanged store operations delegate automatically."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@JvmInline value class ExpenseId(val value: String)\nclass LoggingStore(/* delegate */) : ExpenseStore /* delegation */"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: ExpenseId cannot be confused with another String-based identifier.",
+    "Implement and explain how the solution ensures: Unchanged store operations delegate automatically.",
+    "Implement and explain how the solution ensures: The logging wrapper preserves the underlying failure behaviour."
+  ],
+  "verification": [
+    "Run a focused check proving that expenseId cannot be confused with another String-based identifier.",
+    "Run a focused check proving that unchanged store operations delegate automatically.",
+    "Run a focused check proving that the logging wrapper preserves the underlying failure behaviour."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

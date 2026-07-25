@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+  "title": "Architecture Decisions and Incremental Refactoring Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-22-02-architecture-decisions-incremental-refactoring"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-22-02-architecture-decisions-incremental-refactoring-decision",
+      "prompt": "Which approach best demonstrates sound architecture decisions and incremental refactoring?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Write an ADR for extracting payments, plan a branch-by-abstraction migration from a legacy repository, and add two fitness checks tied to explicit risks.",
+        "Starting a complete architecture rewrite with no releasable intermediate state or behavioural baseline.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Write an ADR for extracting payments, plan a branch-by-abstraction migration from a legacy repository, and add two fitness checks tied to explicit risks.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-22-02-architecture-decisions-incremental-refactoring"
+    },
+    {
+      "id": "q-level-05-week-22-02-architecture-decisions-incremental-refactoring-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-22-02-architecture-decisions-incremental-refactoring"
+    },
+    {
+      "id": "q-level-05-week-22-02-architecture-decisions-incremental-refactoring-recall",
+      "prompt": "What evidence should accompany the architecture decisions and incremental refactoring decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-22-02-architecture-decisions-incremental-refactoring"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

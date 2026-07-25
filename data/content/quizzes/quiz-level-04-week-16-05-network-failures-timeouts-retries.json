@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-05-network-failures-timeouts-retries",
+  "title": "Network Failures, Timeouts, Retries, and Idempotency Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-05-network-failures-timeouts-retries"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-05-network-failures-timeouts-retries-decision",
+      "prompt": "Which operation needs an explicit idempotency contract before automatic retry?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Creating a purchase with POST",
+      "explanation": "The first attempt may have succeeded remotely even when its response was lost.",
+      "lessonId": "level-04-week-16-05-network-failures-timeouts-retries",
+      "options": [
+        "Creating a purchase with POST",
+        "Reading a public GET resource",
+        "Formatting cached text",
+        "Rendering a local icon"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-05-network-failures-timeouts-retries-truth",
+      "prompt": "An HTTP 404 is the same as a DNS IOException.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "404 is a server response; DNS failure prevents completing the exchange.",
+      "lessonId": "level-04-week-16-05-network-failures-timeouts-retries"
+    },
+    {
+      "id": "q-level-04-week-16-05-network-failures-timeouts-retries-recall",
+      "prompt": "Why add jitter to backoff?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "To avoid synchronized retry storms",
+      "explanation": "Random variation spreads client load after a shared outage.",
+      "lessonId": "level-04-week-16-05-network-failures-timeouts-retries"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

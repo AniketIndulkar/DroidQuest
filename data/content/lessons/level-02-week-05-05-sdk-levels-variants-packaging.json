@@ -1,0 +1,248 @@
+{
+  "id": "level-02-week-05-05-sdk-levels-variants-packaging",
+  "title": "SDK Levels, Variants, APKs, and App Bundles",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 5,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-05-04-manifest-resources-identity"
+  ],
+  "tags": [
+    "sdk-levels",
+    "variants",
+    "apk",
+    "app-bundle"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Platform compatibility and packaging choices determine where an app installs, which behaviours Android applies, and what artifact reaches users.",
+      "realWorldUse": "Every release chooses minimum support, compile-time API access, target behaviour, build type, signing identity, and distribution artifact.",
+      "outcome": "Distinguish minSdk, compileSdk, and targetSdk; explain variant composition; and choose APK or AAB for testing and distribution."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "sdk-levels",
+          "title": "Three SDK levels answer three different questions",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "minSdk is the oldest Android API level on which the app is allowed to install. compileSdk selects the Android API definitions used to compile source and resources; raising it exposes newer symbols but does not by itself make them safe on older devices. targetSdk declares the platform level whose behavioural contract the app has tested against. Android may apply compatibility behaviour to apps targeting older levels, while stores impose target deadlines. A library’s minimum and compile requirements also constrain the app. Choose minSdk from product reach and maintenance evidence, keep compileSdk current enough for dependencies, and update targetSdk with explicit behaviour testing."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "android {\n    compileSdk = 36\n    defaultConfig {\n        minSdk = 26\n        targetSdk = 36\n    }\n}",
+              "caption": "The app compiles against API 36, opts into its target behaviour, and can install from API 26 when runtime calls remain compatible."
+            },
+            {
+              "type": "table",
+              "title": "SDK contracts",
+              "columns": [
+                "Setting",
+                "Controls"
+              ],
+              "rows": [
+                [
+                  "minSdk",
+                  "Oldest platform allowed to install the app"
+                ],
+                [
+                  "compileSdk",
+                  "API symbols available during compilation"
+                ],
+                [
+                  "targetSdk",
+                  "Platform behaviour contract the app claims to support"
+                ],
+                [
+                  "Device API",
+                  "Capabilities and behaviour of the running device"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "compatibility",
+          "title": "Newer APIs need a runtime availability strategy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compiling a call does not prove the running device implements it. When an API was introduced after minSdk, guard it with an API-level check, use an AndroidX compatibility API, or isolate it in a version-specific implementation. Resource qualifiers such as values-v31 can select platform-specific declarations, but defaults remain necessary. Avoid scattering SDK_INT branches across screens; centralise a capability behind a focused adapter and test both paths. targetSdk changes can alter permissions, background execution, storage, notifications, and component exposure even without source compilation errors. Read the official behaviour-changes guides and test realistic flows before raising it."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val channelSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O\nif (channelSupported) {\n    notificationManager.createNotificationChannel(channel)\n}",
+              "caption": "The runtime guard prevents an API introduced in 26 from executing on an older supported device."
+            },
+            {
+              "type": "flow",
+              "title": "Adopt a newer API",
+              "steps": [
+                {
+                  "id": "compile",
+                  "label": "Compile",
+                  "detail": "Use a compile SDK that defines the symbol."
+                },
+                {
+                  "id": "identify",
+                  "label": "Identify introduction",
+                  "detail": "Find the API level and behavioural constraints."
+                },
+                {
+                  "id": "strategy",
+                  "label": "Choose strategy",
+                  "detail": "Compatibility API, guard, alternative, or higher minSdk."
+                },
+                {
+                  "id": "test-old",
+                  "label": "Test old path",
+                  "detail": "Run on the minimum supported platform."
+                },
+                {
+                  "id": "test-new",
+                  "label": "Test new path",
+                  "detail": "Run with current target behaviour."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "variants-artifacts",
+          "title": "Variants select inputs; packaging creates signed artifacts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A build variant combines a build type with optional product flavours. Debug commonly enables debugging and uses a development signing key; release is optimised and must use controlled release signing. Flavours represent intentional product dimensions, not environments that could be runtime configuration. An APK is the installable package delivered to a device. An Android App Bundle is a publishing format containing compiled code and resources from which Google Play generates optimised APKs for device configurations; a device does not install the AAB directly. Signing establishes update identity: a future package must be signed according to the established key relationship. Protect release credentials and verify the exact variant and artifact before distribution."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:assembleDebug\n# -> app/build/outputs/apk/debug/app-debug.apk\n\n./gradlew :app:bundleRelease\n# -> app/build/outputs/bundle/release/app-release.aab",
+              "caption": "Assembly creates an installable debug APK; bundle creates the release publishing artifact."
+            },
+            {
+              "type": "table",
+              "title": "Artifact choice",
+              "columns": [
+                "Artifact",
+                "Primary use"
+              ],
+              "rows": [
+                [
+                  "Debug APK",
+                  "Direct local install and iteration"
+                ],
+                [
+                  "Release APK",
+                  "Direct signed distribution or targeted testing"
+                ],
+                [
+                  "AAB",
+                  "Store publishing input used to generate device APKs"
+                ],
+                [
+                  "AAR",
+                  "Reusable Android library, not an installable app"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Configure build variants",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/build-variants",
+          "whyRead": "Explains build types, product flavours, source-set merging, variant filtering, and signing configuration."
+        },
+        {
+          "title": "About Android App Bundles",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/app-bundle",
+          "whyRead": "Describes the publishing format and how stores generate optimised APK delivery."
+        },
+        {
+          "title": "Support different platform versions",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/basics/supporting-devices/platforms",
+          "whyRead": "Shows runtime API checks and compatibility approaches for a range of Android versions."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Decide whether a call is safe",
+      "language": "text",
+      "code": "Project: minSdk 26, compileSdk 36, targetSdk 36\nCall: API introduced in 31\nDevice: API 28\nNo AndroidX compatibility implementation",
+      "walkthrough": [
+        "compileSdk allows the source to compile.",
+        "The running API 28 device does not implement the API 31 method.",
+        "The call needs a runtime guard and an older-device alternative, or minSdk must rise."
+      ],
+      "expectedOutput": "Compilation succeeds, but an unguarded execution on API 28 can fail."
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming compileSdk controls installation eligibility.",
+        "why": "compileSdk only controls compile-time Android API definitions.",
+        "fix": "Use minSdk for installation range and guard newer runtime APIs."
+      },
+      {
+        "mistake": "Attempting to install an AAB directly with adb.",
+        "why": "A bundle is publishing input, not one device-ready APK.",
+        "fix": "Build an APK locally or use bundle tooling/store delivery to generate APKs."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Define a Notes app SDK policy, debug/release variants, emulator test matrix, artifact commands, and guarded use of one API newer than minSdk.",
+      "successLooksLike": "Each SDK setting has a separate evidence-based rationale. Both old and new runtime API paths are tested. Debug APK and release AAB outputs and signing responsibilities are documented."
+    },
+    "recall": [
+      {
+        "prompt": "What does targetSdk communicate?",
+        "answer": "The Android behaviour contract against which the app claims testing and compatibility."
+      },
+      {
+        "prompt": "What creates a build variant?",
+        "answer": "A build type combined with any selected product flavours."
+      },
+      {
+        "prompt": "Why is signing durable?",
+        "answer": "Android uses signing identity to trust updates to an installed application."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-05-05-sdk-levels-variants-packaging",
+  "challengeId": "challenge-level-02-week-05-05-sdk-levels-variants-packaging",
+  "revision": {
+    "objectives": [
+      "Explain all SDK-level contracts without conflating them.",
+      "Protect newer APIs across the supported platform range.",
+      "Choose and verify variants, APKs, AABs, and signing roles."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/build/build-variants",
+    "https://developer.android.com/guide/app-bundle",
+    "https://developer.android.com/training/basics/supporting-devices/platforms"
+  ],
+  "version": "0.4.0"
+}

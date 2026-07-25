@@ -1,0 +1,231 @@
+{
+  "id": "level-03-week-10-03-recomposition-snapshots-identity",
+  "title": "Recomposition, Snapshots, and Identity",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 10,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-10-02-state-hoisting-udf"
+  ],
+  "tags": [
+    "compose",
+    "recomposition",
+    "snapshots"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Correct and efficient Compose code depends on where snapshot values are read and how the runtime identifies movable work.",
+      "realWorldUse": "Dynamic lists, conditional content, expensive calculations, and rapidly changing state expose invalidation and identity mistakes.",
+      "outcome": "Trace invalidation, preserve item identity with keys, and use derived state only when it reduces meaningful changes."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Invalidation follows reads",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose snapshots present a consistent view of state and record reads during composition. A write invalidates scopes that observed that state; eligible calls can later be skipped when stable inputs remain equal. Reading frequently changing state high in a screen broadens the affected scope, whereas deferring a read to layout or drawing can avoid unnecessary composition. Correctness cannot rely on an exact execution count because the runtime may run, skip, cancel, or retry composable work."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LazyColumn {\n    items(notes, key = { it.id }) { note -> NoteEditor(note) }\n}",
+              "caption": "A stable domain ID keeps remembered row work associated with the same note."
+            },
+            {
+              "type": "table",
+              "title": "Runtime question",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Read",
+                  "Which scope observes it?"
+                ],
+                [
+                  "Write",
+                  "Which scopes invalidate?"
+                ],
+                [
+                  "Identity",
+                  "Does state follow the item?"
+                ],
+                [
+                  "Phase",
+                  "Can the read happen later?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Identity follows call position or keys",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Identity normally combines call site and execution position. Inserting at the start of a loop shifts positions and can attach remembered state or effects to different domain items. key(item.id), or a lazy item key, supplies stable identity so work follows the item across moves. Keys must be stable and unique among siblings; an index is not stable during reordering. Conditional branches leave composition when false, which cancels effects and discards ordinary remembered values in that branch."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LazyColumn {\n    items(notes, key = { it.id }) { note -> NoteEditor(note) }\n}",
+              "caption": "A stable domain ID keeps remembered row work associated with the same note."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Recomposition is expected",
+              "text": "Investigate expensive invalidated work and user impact, not a counter in isolation."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Optimise runtime evidence",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "derivedStateOf is valuable when its result changes less often than its input, such as turning continuously changing scroll position into a Boolean threshold. It is not a default wrapper for simple string combination. remember with keys can cache an expensive pure result while dependencies are equal, but measurement should justify it. Use recomposition inspection and traces only after reproducing a user-visible issue. Clear ownership, immutable inputs, stable keys, and narrow reads usually create the best baseline."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Index is not movable identity",
+              "text": "Insertions and sorting can attach state and effects to the wrong item."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Lifecycle of composables",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/lifecycle",
+          "whyRead": "Explains identity, keys, skipping, and composable lifecycle."
+        },
+        {
+          "title": "Compose phases",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/phases",
+          "whyRead": "Connects state reads to composition, layout, and drawing work."
+        },
+        {
+          "title": "Performance best practices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/performance/bestpractices",
+          "whyRead": "Covers keys, deferred reads, and derived state."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Repair unstable repeated calls",
+      "language": "kotlin",
+      "code": "Column { notes.forEach { note -> NoteEditor(note) } }",
+      "walkthrough": [
+        "Repeated calls use execution position when no key is supplied.",
+        "Inserting a note shifts following positions and their remembered editor state.",
+        "Wrap calls in key(note.id) or use keyed lazy items."
+      ],
+      "expectedOutput": "Draft state and effects stay attached to note IDs after sorting."
+    },
+    "trap_check": [
+      {
+        "mistake": "Wrapping every expression in derivedStateOf.",
+        "why": "The observer has overhead and often suppresses no changes.",
+        "fix": "Use it only when output changes meaningfully less often than input."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a reorderable note editor with per-row draft state and a jump-to-top threshold, demonstrating stable keys and narrow observation.",
+      "successLooksLike": "Drafts follow note IDs after sorting. Threshold state avoids per-pixel composition changes. Inspection explains the scopes that update."
+    },
+    "recall": [
+      {
+        "prompt": "What identifies repeated calls by default?",
+        "answer": "Call site plus execution position."
+      },
+      {
+        "prompt": "Why supply lazy keys?",
+        "answer": "To keep work attached to domain identity."
+      },
+      {
+        "prompt": "When does derivedStateOf help?",
+        "answer": "When derived output changes less often than inputs."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-10-03-recomposition-snapshots-identity",
+  "challengeId": "challenge-level-03-week-10-03-recomposition-snapshots-identity",
+  "revision": {
+    "objectives": [
+      "Trace snapshot invalidation.",
+      "Preserve identity through list edits.",
+      "Choose targeted recomposition optimisation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/lifecycle",
+    "https://developer.android.com/develop/ui/compose/phases",
+    "https://developer.android.com/develop/ui/compose/performance/bestpractices"
+  ],
+  "version": "0.5.0"
+}

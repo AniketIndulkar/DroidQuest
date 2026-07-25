@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://droidquest.dev/schema/badge.schema.json",
+  "title": "DroidQuest badge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "description", "categoryId", "icon", "criteria", "xp", "rarity", "version"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 3 },
+    "description": { "type": "string", "minLength": 20 },
+    "categoryId": { "type": "string" },
+    "icon": { "type": "string", "minLength": 2 },
+    "criteria": { "type": "object", "additionalProperties": false, "required": ["type", "targetId", "minimumScore"], "properties": { "type": { "enum": ["complete_checkpoint", "complete_category", "master_lessons"] }, "targetId": { "type": "string" }, "minimumScore": { "type": "number", "minimum": 0, "maximum": 1 } } },
+    "xp": { "type": "integer", "minimum": 1 },
+    "rarity": { "enum": ["common", "uncommon", "rare", "epic", "legendary"] },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

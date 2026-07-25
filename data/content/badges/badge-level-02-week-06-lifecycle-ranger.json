@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-02-week-06-lifecycle-ranger",
+  "title": "Lifecycle Ranger",
+  "description": "Awarded for preserving Android screen behaviour across lifecycle, configuration, process, and resource changes.",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "icon": "lifecycle-ranger-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-02-week-06-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 250,
+  "rarity": "rare",
+  "version": "0.4.0"
+}

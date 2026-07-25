@@ -1,0 +1,57 @@
+{
+  "id": "quiz-level-02-week-07-02-runtime-permissions",
+  "title": "Runtime Permissions and Graceful Degradation Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-02-runtime-permissions"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-07-02-best-time",
+      "prompt": "When is the best time to request an optional camera permission?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "When the user starts the camera-dependent feature",
+      "explanation": "Context helps the user understand the concrete benefit and preserves unrelated usage.",
+      "lessonId": "level-02-week-07-02-runtime-permissions",
+      "options": [
+        "When the user starts the camera-dependent feature",
+        "Every app launch",
+        "Before explaining the feature",
+        "After the app exits"
+      ]
+    },
+    {
+      "id": "q-week-07-02-permission-order",
+      "prompt": "Order a sound permission workflow.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "evaluate lower-access alternative",
+        "check current grant",
+        "explain in context if needed",
+        "launch system request",
+        "handle grant or degradation"
+      ],
+      "explanation": "Least privilege comes first, followed by a current check, contextual request, and explicit outcomes.",
+      "lessonId": "level-02-week-07-02-runtime-permissions"
+    },
+    {
+      "id": "q-week-07-02-grant-forever",
+      "prompt": "A runtime permission grant can be assumed to last for the installation lifetime.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "The user or system may revoke access and one-time grants expire.",
+      "lessonId": "level-02-week-07-02-runtime-permissions"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

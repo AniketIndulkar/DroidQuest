@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+  "title": "Apply MVVM, MVI, Clean Architecture, and Proportionate Design",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Compare two architectures for a simple settings screen and a regulated payment flow, justify their different ceremony, and define evidence that would trigger reevaluation.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class ArchitectureDecision(\n  val problem: String,\n  val forces: List<String>,\n  val choice: String,\n  val consequences: List<String>\n)"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

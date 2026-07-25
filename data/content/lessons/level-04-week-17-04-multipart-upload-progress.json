@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-17-04-multipart-upload-progress",
+  "title": "Multipart Uploads and Progress",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-03-paging3-cursors-loadstates"
+  ],
+  "tags": [
+    "networking",
+    "uploads",
+    "multipart"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "File uploads combine content ownership, streaming, metadata, progress, cancellation, retry safety, and persistent work requirements.",
+      "realWorldUse": "Profile images, article attachments, receipts, and media publishing should not load entire files into memory or duplicate remote objects.",
+      "outcome": "Stream a content URI, build multipart metadata, expose throttled progress, and choose foreground or persistent execution from user expectations."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A content URI is a capability, not a file path",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android pickers commonly return content URIs. Open them through ContentResolver and take persistable permission only when the contract supports it and future access is required. Do not convert a URI to a guessed filesystem path. Validate declared type and size but treat them as untrusted; the server must validate again. Stream RequestBody content through Okio rather than reading a large media file into a ByteArray, and close descriptors on success, failure, and cancellation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Multipart\n@POST(\"attachments\")\nsuspend fun upload(\n    @Part metadata: MultipartBody.Part,\n    @Part file: MultipartBody.Part,\n    @Header(\"Idempotency-Key\") operationId: String\n): UploadDto",
+              "caption": "Named parts and stable operation identity make the remote contract explicit."
+            },
+            {
+              "type": "table",
+              "title": "Upload boundary",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Source",
+                  "ContentResolver stream from URI"
+                ],
+                [
+                  "Memory",
+                  "Stream rather than whole-file byte array"
+                ],
+                [
+                  "Progress",
+                  "Sample byte counts"
+                ],
+                [
+                  "Retry",
+                  "Stable operation ID and server contract"
+                ],
+                [
+                  "Leaves screen",
+                  "Persist intent before durable scheduling"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Multipart separates metadata and streamed content",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "multipart/form-data carries separately named parts with content disposition and type. API and client must agree which part contains metadata and which contains binary content. Progress counts bytes written against a known length and should be sampled or conflated before updating UI to avoid an emission for every small write. Unknown length can show indeterminate progress. Cancellation must close the active call and stream, and errors must distinguish permission loss, local read, transport, server rejection, and processing."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Multipart\n@POST(\"attachments\")\nsuspend fun upload(\n    @Part metadata: MultipartBody.Part,\n    @Part file: MultipartBody.Part,\n    @Header(\"Idempotency-Key\") operationId: String\n): UploadDto",
+              "caption": "Named parts and stable operation identity make the remote contract explicit."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "URI access is a permission contract",
+              "text": "Future background work must retain valid access or copy content into app-owned storage."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Progress and retry need durable operation identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A short user-visible upload may live in a screen or app scope, while an upload that users expect to finish after leaving needs a durable queue and WorkManager or an appropriate user-initiated transfer mechanism. Retries require a stable upload or idempotency ID and a server resume or deduplication contract. Persist the source URI permission and operation state before enqueueing. Do not claim completion until server processing and local reconciliation succeed."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not guess real file paths from content URIs",
+              "text": "Providers need not expose filesystem paths and access can fail or leak."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Photo Picker",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/shared/photopicker",
+          "whyRead": "Explains safe user media selection and URI access."
+        },
+        {
+          "title": "Retrofit request body and multipart declarations",
+          "publisher": "Square",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/retrofit/declarations/",
+          "whyRead": "Documents body and multipart endpoint modelling."
+        },
+        {
+          "title": "Data transfer background options",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/data-transfer-options",
+          "whyRead": "Compares persistent and user-visible transfer choices."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove whole-file buffering",
+      "language": "kotlin",
+      "code": "val bytes = contentResolver.openInputStream(uri)!!.readBytes()\napi.upload(bytes.toRequestBody())",
+      "walkthrough": [
+        "A large or adversarial file is copied completely into heap memory.",
+        "The stream and permission failure paths are not safely managed.",
+        "Create a streaming RequestBody over ContentResolver and close resources cooperatively."
+      ],
+      "expectedOutput": "Large uploads use bounded memory and cancellation closes both network and content streams."
+    },
+    "trap_check": [
+      {
+        "mistake": "Retrying an upload with a new remote identity each time.",
+        "why": "A lost response can create duplicate server objects.",
+        "fix": "Persist one operation ID and use server deduplication or resumable protocol."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Stream a picked image with metadata, sampled progress, cancellation, persistent URI access, stable idempotency ID, and recoverable background scheduling.",
+      "successLooksLike": "Memory use is independent of file size. Cancellation closes every resource. Retry reconciles to one remote attachment."
+    },
+    "recall": [
+      {
+        "prompt": "How should content URI data be read?",
+        "answer": "Through ContentResolver."
+      },
+      {
+        "prompt": "What if total size is unknown?",
+        "answer": "Show indeterminate progress."
+      },
+      {
+        "prompt": "What makes upload retry safer?",
+        "answer": "Stable operation identity and server deduplication."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-04-multipart-upload-progress",
+  "challengeId": "challenge-level-04-week-17-04-multipart-upload-progress",
+  "revision": {
+    "objectives": [
+      "Stream provider content safely.",
+      "Model multipart and progress.",
+      "Choose durable upload lifetime."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/shared/photopicker",
+    "https://square.github.io/retrofit/declarations/",
+    "https://developer.android.com/develop/background-work/background-tasks/data-transfer-options"
+  ],
+  "version": "0.7.0"
+}

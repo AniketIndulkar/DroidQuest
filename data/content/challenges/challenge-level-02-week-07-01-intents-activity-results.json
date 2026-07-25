@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-07-01-intents-activity-results",
+  "title": "Add Safe Note Import and Sharing",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-07-01-intents-activity-results",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Implement text sharing and document import with an explicit contract, cancellation handling, URI validation, and recreation-safe launcher registration.",
+  "successCriteria": [
+    "No-handler and cancelled outcomes are safe.",
+    "The launcher is registered unconditionally.",
+    "Incoming content is validated before it becomes a Note."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: No-handler and cancelled outcomes are safe.",
+    "Use lifecycle or boundary evidence to prove: The launcher is registered unconditionally."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "private val openDocument = registerForActivityResult(\n    ActivityResultContracts.OpenDocument()\n) { uri -> /* validate and import */ }"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: No-handler and cancelled outcomes are safe.",
+    "Implement the smallest design that guarantees: The launcher is registered unconditionally.",
+    "Implement the smallest design that guarantees: Incoming content is validated before it becomes a Note."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that no-handler and cancelled outcomes are safe.",
+    "Run a focused check demonstrating that the launcher is registered unconditionally.",
+    "Run a focused check demonstrating that incoming content is validated before it becomes a Note."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

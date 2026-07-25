@@ -1,0 +1,104 @@
+{
+  "id": "quiz-level-02-week-07-checkpoint",
+  "title": "Week 7 System Components Checkpoint",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-01-intents-activity-results",
+    "level-02-week-07-02-runtime-permissions",
+    "level-02-week-07-03-component-selection-services",
+    "level-02-week-07-04-broadcasts-providers-pending-intents",
+    "level-02-week-07-05-tasks-back-stack-app-links"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-07-checkpoint-01",
+      "prompt": "Which intent should normally start a known internal activity?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Explicit intent",
+      "explanation": "Naming the internal destination avoids unintended resolution and documents ownership.",
+      "lessonId": "level-02-week-07-01-intents-activity-results",
+      "options": [
+        "Explicit intent",
+        "Broad implicit intent",
+        "Broadcast only",
+        "PendingIntent only"
+      ]
+    },
+    {
+      "id": "q-week-07-checkpoint-02",
+      "prompt": "Order the Activity Result flow.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "register launcher",
+        "receive user event",
+        "launch contract",
+        "handle typed result"
+      ],
+      "explanation": "Registration establishes stable routing before an event starts external work.",
+      "lessonId": "level-02-week-07-01-intents-activity-results"
+    },
+    {
+      "id": "q-week-07-checkpoint-03",
+      "prompt": "When is the best time to request an optional camera permission?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "When the user starts the camera-dependent feature",
+      "explanation": "Context helps the user understand the concrete benefit and preserves unrelated usage.",
+      "lessonId": "level-02-week-07-02-runtime-permissions",
+      "options": [
+        "When the user starts the camera-dependent feature",
+        "Every app launch",
+        "Before explaining the feature",
+        "After the app exits"
+      ]
+    },
+    {
+      "id": "q-week-07-checkpoint-04",
+      "prompt": "Order a sound permission workflow.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "evaluate lower-access alternative",
+        "check current grant",
+        "explain in context if needed",
+        "launch system request",
+        "handle grant or degradation"
+      ],
+      "explanation": "Least privilege comes first, followed by a current check, contextual request, and explicit outcomes.",
+      "lessonId": "level-02-week-07-02-runtime-permissions"
+    },
+    {
+      "id": "q-week-07-checkpoint-05",
+      "prompt": "Match each component to its primary contract.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "Activity": "interactive UI",
+        "Service": "ongoing or bound operation",
+        "BroadcastReceiver": "brief broadcast handling",
+        "ContentProvider": "URI data interface"
+      },
+      "explanation": "Android activates each component under a different system contract.",
+      "lessonId": "level-02-week-07-03-component-selection-services"
+    },
+    {
+      "id": "q-week-07-checkpoint-06",
+      "prompt": "A Service automatically executes callbacks on a worker thread.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "A service normally runs on the application main thread and must arrange non-blocking work.",
+      "lessonId": "level-02-week-07-03-component-selection-services"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

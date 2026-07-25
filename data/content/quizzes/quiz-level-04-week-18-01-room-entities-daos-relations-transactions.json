@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-01-room-entities-daos-relations-transactions",
+  "title": "Room Entities, DAOs, Relationships, and Transactions Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-01-room-entities-daos-relations-transactions"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-01-room-entities-daos-relations-transactions-decision",
+      "prompt": "Where should a network fetch occur relative to a Room transaction?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Before the local transaction",
+      "explanation": "Fetch externally, then atomically commit the resulting local changes.",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions",
+      "options": [
+        "Before the local transaction",
+        "Inside a long transaction",
+        "Inside an entity constructor",
+        "After deleting all data with no recovery"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-01-room-entities-daos-relations-transactions-truth",
+      "prompt": "Room entities should always be reused directly as network DTOs.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The schemas evolve independently and need explicit mapping.",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions"
+    },
+    {
+      "id": "q-level-04-week-18-01-room-entities-daos-relations-transactions-recall",
+      "prompt": "What re-emits a Room query Flow?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Committed changes to observed query tables",
+      "explanation": "Room invalidates relevant queries after database commits.",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

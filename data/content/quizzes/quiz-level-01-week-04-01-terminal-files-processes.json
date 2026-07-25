@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-01-week-04-01-terminal-files-processes",
+  "title": "Terminal, Files, and Running Programs Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-01-terminal-files-processes"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-01-relative-path",
+      "prompt": "From where is a relative path resolved?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "The process working directory",
+      "explanation": "Relative paths depend on the current working directory, so establishing context prevents wrong-target errors.",
+      "lessonId": "level-01-week-04-01-terminal-files-processes",
+      "options": [
+        "The process working directory",
+        "Always the filesystem root",
+        "The newest folder",
+        "The file extension"
+      ]
+    },
+    {
+      "id": "q-week-04-01-process-order",
+      "prompt": "Order the command lifecycle.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "parse command",
+        "start process",
+        "exchange streams",
+        "return exit status"
+      ],
+      "explanation": "The shell parses first, the operating system starts the process, streams carry data, and termination returns status.",
+      "lessonId": "level-01-week-04-01-terminal-files-processes"
+    },
+    {
+      "id": "q-week-04-01-exit-status",
+      "prompt": "A non-zero exit status normally indicates that the command did not complete successfully.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "Programs use status codes so scripts and people can distinguish success from failure independently of printed text.",
+      "lessonId": "level-01-week-04-01-terminal-files-processes"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

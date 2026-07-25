@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-10-02-state-hoisting-udf",
+  "title": "State Hoisting and Unidirectional Data Flow",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 10,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-10-01-state-remember-saveable"
+  ],
+  "tags": [
+    "compose",
+    "state-hoisting",
+    "udf"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A predictable screen needs one authoritative state path downward and explicit user events upward rather than hidden two-way mutation.",
+      "realWorldUse": "Forms, filters, dialogs, and coordinated controls become easier to test when ownership and permitted events are explicit.",
+      "outcome": "Split stateful and stateless composables, choose the lowest common owner, and model intent without leaking mutable state."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "State down and events up",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A stateless composable receives the value it renders and callbacks for permitted events. The value and onValueChange convention gives callers control while previews and tests can supply any state. Unidirectional data flow means the owner handles an event, applies validation or business work, and publishes a new immutable snapshot. A reusable component should not accept MutableState merely to write through somebody else. Callbacks express intent such as onSave or onQueryChanged, not internal implementation switches."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun SearchField(query: String, onQueryChange: (String) -> Unit) {\n    OutlinedTextField(query, onValueChange = onQueryChange)\n}",
+              "caption": "The leaf owns rendering but the caller owns the query and accepts edits."
+            },
+            {
+              "type": "table",
+              "title": "UDF boundary",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Render",
+                  "Immutable state flows down"
+                ],
+                [
+                  "Intent",
+                  "Callbacks flow up"
+                ],
+                [
+                  "Business rule",
+                  "State holder handles it"
+                ],
+                [
+                  "Result",
+                  "New snapshot is published"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Hoist only for coordination",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Hoist state at least to the lowest common ancestor of every legitimate reader and writer, and no higher without a reason. Tooltip expansion can stay local; a query shared by a toolbar and result list belongs above both; repository-backed screen state normally belongs in a ViewModel. Hoisting everything into an application singleton gives transient UI excessive lifetime, while two independent owners create races and inconsistent rendering. Separate UI element state, screen UI state, and durable domain data by responsibility."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun SearchField(query: String, onQueryChange: (String) -> Unit) {\n    OutlinedTextField(query, onValueChange = onQueryChange)\n}",
+              "caption": "The leaf owns rendering but the caller owns the query and accepts edits."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Hoist for coordination",
+              "text": "Place state only as high as its readers, writers, and required lifetime demand."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Route boundaries connect state holders",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A route composable obtains a state holder and collects its immutable UiState with lifecycle awareness. Stateless content receives plain state and event functions, so it remains previewable and independent of navigation or dependency injection. The state holder can combine repositories, validation, and saved reconstruction keys without exposing Compose types to the domain layer. Avoid copying a source Flow into an unrelated mutable field if mapping or combining the original stream can preserve one freshness and cancellation policy."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not leak MutableState",
+              "text": "It grants write authority and couples reusable content to a Compose implementation detail."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "State hoisting in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/state-hoisting",
+          "whyRead": "Explains hoisting rules, state holders, UI state, and business logic ownership."
+        },
+        {
+          "title": "Compose architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/architecture",
+          "whyRead": "Shows unidirectional data flow, state production, and event handling."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove the duplicate query owner",
+      "language": "kotlin",
+      "code": "var local by remember { mutableStateOf(vm.query) }\nOutlinedTextField(local, { local = it })\nResults(vm.results)",
+      "walkthrough": [
+        "The field updates a local query while results remain based on the ViewModel query.",
+        "Two values now represent one concept and can diverge after edits or restoration.",
+        "Route QueryChanged through one owner and render its published state."
+      ],
+      "expectedOutput": "The field and results advance through one authoritative event path."
+    },
+    "trap_check": [
+      {
+        "mistake": "Passing a ViewModel into every leaf composable.",
+        "why": "Leaves become difficult to preview, reuse, and test independently.",
+        "fix": "Connect the owner at a route and pass plain state plus callbacks."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Split a coupled search feature into a route, stateless content, immutable UiState, and explicit query, retry, and selection events.",
+      "successLooksLike": "Only one query source of truth remains. Leaf content has no ViewModel dependency. Previews can supply every screen state."
+    },
+    "recall": [
+      {
+        "prompt": "Which direction does state travel?",
+        "answer": "Down from its owner to rendering content."
+      },
+      {
+        "prompt": "Which direction do events travel?",
+        "answer": "Up from content to the state owner."
+      },
+      {
+        "prompt": "Where should shared sibling state live?",
+        "answer": "At their lowest common coordinating owner."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-10-02-state-hoisting-udf",
+  "challengeId": "challenge-level-03-week-10-02-state-hoisting-udf",
+  "revision": {
+    "objectives": [
+      "Design value and event component APIs.",
+      "Select the correct hoisting boundary.",
+      "Keep screen owners out of reusable leaves."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/state-hoisting",
+    "https://developer.android.com/develop/ui/compose/architecture"
+  ],
+  "version": "0.5.0"
+}

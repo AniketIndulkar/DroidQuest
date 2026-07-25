@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-01-week-01-07-small-program-design",
+  "title": "Designing a Small Program Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-07-small-program-design"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-07-pipeline-order",
+      "prompt": "Put the expense pipeline in a safe order.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "options": [
+        "Present",
+        "Validate",
+        "Parse",
+        "Normalise"
+      ],
+      "answer": [
+        "Normalise",
+        "Parse",
+        "Validate",
+        "Present"
+      ],
+      "explanation": "The pipeline gradually converts raw input into stronger validated information before presentation.",
+      "lessonId": "level-01-week-01-07-small-program-design"
+    },
+    {
+      "id": "q-week-01-07-debug-first-step",
+      "prompt": "What should you establish before changing code during debugging?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "A small reproducible example with expected and actual behaviour",
+      "explanation": "A reproducible difference provides evidence and a stable way to verify the fix.",
+      "lessonId": "level-01-week-01-07-small-program-design"
+    },
+    {
+      "id": "q-week-01-07-validation-bug",
+      "prompt": "Spot the design problem: val amount = raw.toDouble(); println(amount)",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "Untrusted text can throw and is not domain-validated",
+      "explanation": "Use safe parsing at the boundary, then validate the typed amount before presentation.",
+      "lessonId": "level-01-week-01-07-small-program-design"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

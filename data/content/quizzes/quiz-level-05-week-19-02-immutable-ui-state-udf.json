@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-19-02-immutable-ui-state-udf",
+  "title": "Immutable UI State and Unidirectional Data Flow Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-02-immutable-ui-state-udf"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-02-immutable-ui-state-udf-decision",
+      "prompt": "Which approach best demonstrates sound immutable ui state and unidirectional data flow?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Model a transfer form as immutable state, enumerate events and legal transitions, then test invalid input, submission, duplicate taps, failure, and successful recreation.",
+        "Representing loading, content, empty, and error with unrelated flags that can contradict each other.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Model a transfer form as immutable state, enumerate events and legal transitions, then test invalid input, submission, duplicate taps, failure, and successful recreation.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-19-02-immutable-ui-state-udf"
+    },
+    {
+      "id": "q-level-05-week-19-02-immutable-ui-state-udf-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-19-02-immutable-ui-state-udf"
+    },
+    {
+      "id": "q-level-05-week-19-02-immutable-ui-state-udf-recall",
+      "prompt": "What evidence should accompany the immutable ui state and unidirectional data flow decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-19-02-immutable-ui-state-udf"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

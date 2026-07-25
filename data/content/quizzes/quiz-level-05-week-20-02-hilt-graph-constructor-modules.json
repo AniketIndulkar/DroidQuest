@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-20-02-hilt-graph-constructor-modules",
+  "title": "Hilt Graphs, Constructor Injection, and Modules Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-02-hilt-graph-constructor-modules"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-02-hilt-graph-constructor-modules-decision",
+      "prompt": "Which approach best demonstrates sound hilt graphs, constructor injection, and modules?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Convert a manual accounts graph to Hilt using constructor injection, one Binds binding, and one Provides binding, then diagnose a deliberately missing dependency.",
+        "Writing Provides methods for every owned class instead of using constructor injection and readable requirements.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Convert a manual accounts graph to Hilt using constructor injection, one Binds binding, and one Provides binding, then diagnose a deliberately missing dependency.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-20-02-hilt-graph-constructor-modules"
+    },
+    {
+      "id": "q-level-05-week-20-02-hilt-graph-constructor-modules-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-20-02-hilt-graph-constructor-modules"
+    },
+    {
+      "id": "q-level-05-week-20-02-hilt-graph-constructor-modules-recall",
+      "prompt": "What evidence should accompany the hilt graphs, constructor injection, and modules decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-20-02-hilt-graph-constructor-modules"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

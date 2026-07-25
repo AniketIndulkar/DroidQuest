@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-07-03-component-selection-services",
+  "title": "Write a Background-Work Decision Record",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-07-03-component-selection-services",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Classify audio-note playback, local backup, a short boot event, and cross-app note query into appropriate components or APIs with lifecycle and failure reasoning.",
+  "successCriteria": [
+    "Every choice names urgency, visibility, duration, and retry needs.",
+    "No Service is assumed to provide a worker thread.",
+    "Foreground service choices include notification and stop behaviour."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Every choice names urgency, visibility, duration, and retry needs.",
+    "Use lifecycle or boundary evidence to prove: No Service is assumed to provide a worker thread."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "# Background decision record\n\n| Work | API/component | Why | Failure/restart policy |"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Every choice names urgency, visibility, duration, and retry needs.",
+    "Implement the smallest design that guarantees: No Service is assumed to provide a worker thread.",
+    "Implement the smallest design that guarantees: Foreground service choices include notification and stop behaviour."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that every choice names urgency, visibility, duration, and retry needs.",
+    "Run a focused check demonstrating that no Service is assumed to provide a worker thread.",
+    "Run a focused check demonstrating that foreground service choices include notification and stop behaviour."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

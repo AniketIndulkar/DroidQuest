@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-17-03-paging3-cursors-loadstates",
+  "title": "Paging 3, Cursors, and Load States",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-02-single-flight-token-refresh"
+  ],
+  "tags": [
+    "networking",
+    "paging3",
+    "pagination"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Pagination must preserve stable ordering, continuation keys, refresh semantics, and separate loading outcomes without duplicating or skipping items.",
+      "realWorldUse": "News feeds, product catalogues, search results, and history screens cannot load an unbounded server collection at once.",
+      "outcome": "Model cursor and page keys, implement PagingSource load and refresh keys, cache PagingData in the ViewModel, and render independent load states."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A page key is server continuation state",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Offset pagination is simple but can duplicate or skip records when insertions change positions. Cursor or keyset pagination anchors continuation to server-defined ordering and is usually more stable, but cursors are opaque and must not be fabricated or compared by the client. Every item still needs stable identity and deduplication policy. The API defines whether order is snapshot-consistent and what happens when filters change; a filter change creates a new paging generation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "override suspend fun load(params: LoadParams<String>): LoadResult<String, Article> = try {\n    val page = api.articles(cursor = params.key, limit = params.loadSize)\n    LoadResult.Page(data = page.items, prevKey = null, nextKey = page.nextCursor)\n} catch (error: IOException) { LoadResult.Error(error) }",
+              "caption": "The server cursor remains opaque and null nextCursor marks the terminal page."
+            },
+            {
+              "type": "table",
+              "title": "Paging state",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Initial or invalidated data",
+                  "refresh"
+                ],
+                [
+                  "More after visible content",
+                  "append"
+                ],
+                [
+                  "More before visible content",
+                  "prepend"
+                ],
+                [
+                  "No continuation cursor",
+                  "End reached"
+                ],
+                [
+                  "Configuration survival",
+                  "cachedIn ViewModel scope"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "PagingSource translates load requests into results",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "PagingSource.load receives LoadParams with key and requested size and returns Page or Error. prevKey, nextKey, itemsBefore, and itemsAfter follow backend capabilities. getRefreshKey uses PagingState and anchor position to choose a key near the visible content after invalidation. PagingSource instances are single-use generations and invalidate when their source changes. Pager exposes Flow<PagingData<T>>, and cachedIn(viewModelScope) lets presentation survive configuration without replaying all loads."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "override suspend fun load(params: LoadParams<String>): LoadResult<String, Article> = try {\n    val page = api.articles(cursor = params.key, limit = params.loadSize)\n    LoadResult.Page(data = page.items, prevKey = null, nextKey = page.nextCursor)\n} catch (error: IOException) { LoadResult.Error(error) }",
+              "caption": "The server cursor remains opaque and null nextCursor marks the terminal page."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Cursors are opaque server state",
+              "text": "Store and return them unchanged; never infer meaning from their string representation."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Refresh, append, and presentation have distinct states",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "CombinedLoadStates distinguishes refresh, prepend, and append plus source and mediator layers. Initial loading should not erase cached content, append failure should offer retry near the end, and empty means a successful refresh with no items rather than any failure. Compose collectAsLazyPagingItems bridges to lazy UI, but item keys and content types remain important. Tests cover initial page, next cursor, terminal page, refresh anchor, empty, malformed cursor, retry, invalidation, and rapid filter replacement."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not use empty list for every failure",
+              "text": "Empty, loading, append error, and refresh error require different UI and retry behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Paging 3 overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/paging/v3-overview",
+          "whyRead": "Explains Pager, PagingSource, PagingData, transformations, and layered paging."
+        },
+        {
+          "title": "Load and display paged data",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data",
+          "whyRead": "Covers load keys, refresh keys, errors, ViewModel caching, and presentation."
+        },
+        {
+          "title": "Test Paging implementations",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/paging/test",
+          "whyRead": "Provides PagingSource, transformations, and UI-facing test patterns."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Stop inventing the next cursor",
+      "language": "kotlin",
+      "code": "val next = (params.key?.toIntOrNull() ?: 0) + page.items.size",
+      "walkthrough": [
+        "The client treats an opaque server cursor as a numeric offset.",
+        "Server ordering and continuation semantics can change independently.",
+        "Return the exact nextCursor supplied by the response."
+      ],
+      "expectedOutput": "Pages continue without client-generated duplicates or gaps under the documented server contract."
+    },
+    "trap_check": [
+      {
+        "mistake": "Showing a full-screen error for append failure with existing items.",
+        "why": "Useful cached content disappears for a recoverable end-of-list problem.",
+        "fix": "Keep items visible and expose append retry at the list boundary."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement and test a cursor PagingSource with stable IDs, filter invalidation, refresh keys, append retry, empty state, and ViewModel caching.",
+      "successLooksLike": "Opaque cursors are never interpreted. Refresh and append failures render separately. Tests cover terminal, retry, and invalidation cases."
+    },
+    "recall": [
+      {
+        "prompt": "What does null nextKey mean?",
+        "answer": "No further page in that direction."
+      },
+      {
+        "prompt": "Where should PagingData be cached?",
+        "answer": "In the ViewModel scope with cachedIn."
+      },
+      {
+        "prompt": "What does refreshKey preserve?",
+        "answer": "A sensible load position near the current anchor."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-03-paging3-cursors-loadstates",
+  "challengeId": "challenge-level-04-week-17-03-paging3-cursors-loadstates",
+  "revision": {
+    "objectives": [
+      "Select stable pagination keys.",
+      "Implement PagingSource and refresh.",
+      "Render independent load states."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/libraries/architecture/paging/v3-overview",
+    "https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data",
+    "https://developer.android.com/topic/libraries/architecture/paging/test"
+  ],
+  "version": "0.7.0"
+}

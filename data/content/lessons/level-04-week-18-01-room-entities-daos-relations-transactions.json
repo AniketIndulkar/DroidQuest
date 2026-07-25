@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-18-01-room-entities-daos-relations-transactions",
+  "title": "Room Entities, DAOs, Relationships, and Transactions",
+  "categoryId": "level-04-async-data-networking",
+  "week": 18,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-06-connectivity-policy-network-capabilities"
+  ],
+  "tags": [
+    "room",
+    "database",
+    "transactions"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Room gives compile-time SQL verification and coroutine/Flow integration, while schema, keys, relationships, and transaction boundaries remain application design decisions.",
+      "realWorldUse": "Articles, authors, bookmarks, remote keys, queued mutations, and cache metadata require durable relational invariants and observable queries.",
+      "outcome": "Design normalised entities and indices, expose focused DAOs, query relationships, and keep multi-step invariants inside database transactions."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Entities define durable relational schema",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An Entity maps to a SQLite table with a stable primary key, columns, indices, and optional foreign keys. Database entities are persistence models, not network DTOs or domain UI models. Choose keys from durable identity rather than list position. Add indices for measured query and relationship needs, understanding write and storage cost. Foreign-key actions define what happens on parent update or deletion; Room does not allow object references between entities because database relationships are queried explicitly."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Entity(tableName = \"articles\", indices = [Index(\"publishedAt\")])\ndata class ArticleEntity(@PrimaryKey val id: String, val title: String, val publishedAt: Long)\n\n@Dao interface ArticleDao {\n    @Query(\"SELECT * FROM articles ORDER BY publishedAt DESC\") fun observeAll(): Flow<List<ArticleEntity>>\n    @Upsert suspend fun upsertAll(items: List<ArticleEntity>)\n}",
+              "caption": "A stable primary key, measured index, observable query, and upsert form a focused persistence boundary."
+            },
+            {
+              "type": "table",
+              "title": "Room component",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Table and constraints",
+                  "Entity"
+                ],
+                [
+                  "SQL operation boundary",
+                  "DAO"
+                ],
+                [
+                  "Many-table result",
+                  "Join, multimap, or relation model"
+                ],
+                [
+                  "Atomic statements",
+                  "Room transaction"
+                ],
+                [
+                  "UI source",
+                  "Repository-mapped DAO Flow"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "DAOs expose queries rather than tables",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A DAO groups focused SQL operations and Room validates queries against the schema. suspend fits one-shot insert, update, delete, or result; Flow observes query tables and re-emits after relevant invalidation. Returning an entity list exposes persistence schema, so repositories often map DAO models to domain. Relationships can use explicit joins, multimap results, or intermediate data classes with Embedded and Relation. Avoid N+1 repository loops when one SQL query can express the relationship."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Entity(tableName = \"articles\", indices = [Index(\"publishedAt\")])\ndata class ArticleEntity(@PrimaryKey val id: String, val title: String, val publishedAt: Long)\n\n@Dao interface ArticleDao {\n    @Query(\"SELECT * FROM articles ORDER BY publishedAt DESC\") fun observeAll(): Flow<List<ArticleEntity>>\n    @Upsert suspend fun upsertAll(items: List<ArticleEntity>)\n}",
+              "caption": "A stable primary key, measured index, observable query, and upsert form a focused persistence boundary."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Room validates SQL, not product meaning",
+              "text": "Keys, conflict rules, transaction scope, and domain mapping still require design."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Transactions protect invariants across statements",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "withTransaction or a Transaction DAO method makes a set of statements atomic. Use it when replacing a page with remote keys, applying a queued mutation and marking it complete, or reading a consistent multi-query relationship. Keep network calls outside the database transaction because long external waits hold resources and cannot roll back the server. Concurrent writers still require conflict strategy and unique constraints. Test rollback after an injected failure and verify flows publish only committed state."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Never hold a database transaction across network I/O",
+              "text": "The remote call cannot participate in SQLite rollback and prolongs locks."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Save data with Room",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room",
+          "whyRead": "Introduces Room databases, entities, DAOs, dependencies, and primary components."
+        },
+        {
+          "title": "Define data using Room entities",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/defining-data",
+          "whyRead": "Covers keys, columns, indices, ignored fields, and table definitions."
+        },
+        {
+          "title": "Room relationships",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/relationships",
+          "whyRead": "Explains joins, multimaps, relation data classes, and embedded models."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Move the network call outside transaction",
+      "language": "kotlin",
+      "code": "database.withTransaction {\n    val page = api.fetch()\n    dao.clear()\n    dao.insert(page)\n}",
+      "walkthrough": [
+        "The transaction remains open during an unpredictable remote operation.",
+        "SQLite resources and concurrent access are held while no local invariant changes.",
+        "Fetch first, then transactionally replace related local rows and keys."
+      ],
+      "expectedOutput": "Network delay holds no database transaction and local page replacement is still atomic."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using one Article class for DTO, Entity, domain, and UI.",
+        "why": "Wire and schema evolution become coupled to every layer.",
+        "fix": "Map explicit persistence entities at the repository boundary."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design article, author, bookmark, remote-key, and pending-mutation entities with DAOs, indices, relationships, atomic page replacement, and rollback tests.",
+      "successLooksLike": "Stable keys and uniqueness protect identity. No network call runs inside a transaction. Relationship and rollback behaviour is tested on Room."
+    },
+    "recall": [
+      {
+        "prompt": "What does an Entity define?",
+        "answer": "A durable table schema and constraints."
+      },
+      {
+        "prompt": "What does a DAO expose?",
+        "answer": "Validated queries and write operations."
+      },
+      {
+        "prompt": "What does a transaction guarantee?",
+        "answer": "All enclosed local statements commit or roll back together."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-18-01-room-entities-daos-relations-transactions",
+  "challengeId": "challenge-level-04-week-18-01-room-entities-daos-relations-transactions",
+  "revision": {
+    "objectives": [
+      "Model durable keys and indices.",
+      "Write focused observable DAOs.",
+      "Protect multi-statement invariants."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/room",
+    "https://developer.android.com/training/data-storage/room/defining-data",
+    "https://developer.android.com/training/data-storage/room/relationships"
+  ],
+  "version": "0.7.0"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-01-week-03-language-crafter",
+  "title": "Kotlin Language Crafter: Week 3",
+  "description": "Awarded for handling failures and advanced Kotlin/JVM boundaries with explicit types and justified language features.",
+  "categoryId": "level-01-programming-foundations",
+  "icon": "language-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-01-week-03-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 240,
+  "rarity": "rare",
+  "version": "0.3.0"
+}

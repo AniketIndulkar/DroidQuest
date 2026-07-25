@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-20-03-hilt-components-scopes-lifetimes",
+  "title": "Hilt Components, Scopes, and Lifetimes Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-03-hilt-components-scopes-lifetimes"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-03-hilt-components-scopes-lifetimes-decision",
+      "prompt": "Which approach best demonstrates sound hilt components, scopes, and lifetimes?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Create a lifetime table for banking dependencies, annotate only those requiring shared identity, and test configuration change, second screen instance, and logout behaviour.",
+        "Marking every provider Singleton to silence duplicate construction without analysing ownership or memory lifetime.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Create a lifetime table for banking dependencies, annotate only those requiring shared identity, and test configuration change, second screen instance, and logout behaviour.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-20-03-hilt-components-scopes-lifetimes"
+    },
+    {
+      "id": "q-level-05-week-20-03-hilt-components-scopes-lifetimes-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-20-03-hilt-components-scopes-lifetimes"
+    },
+    {
+      "id": "q-level-05-week-20-03-hilt-components-scopes-lifetimes-recall",
+      "prompt": "What evidence should accompany the hilt components, scopes, and lifetimes decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-20-03-hilt-components-scopes-lifetimes"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

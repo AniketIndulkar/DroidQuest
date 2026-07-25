@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-14-01-suspend-main-safety-dispatchers",
+  "title": "Make a Legacy Data Source Main-safe",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Wrap blocking file and CPU-heavy parsing operations behind one main-safe suspend API with injected dispatchers and deterministic tests.",
+  "successCriteria": [
+    "Main callers never execute blocking I/O.",
+    "Context switches occur only around owned work.",
+    "Tests use replaceable dispatchers on one scheduler."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class ArticleSource(private val io: CoroutineDispatcher, private val cpu: CoroutineDispatcher)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

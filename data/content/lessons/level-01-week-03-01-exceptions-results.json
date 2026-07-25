@@ -1,0 +1,224 @@
+{
+  "id": "level-01-week-03-01-exceptions-results",
+  "title": "Exceptions and Explicit Result Modelling",
+  "categoryId": "level-01-programming-foundations",
+  "week": 3,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-02-04-lambdas-extensions-scope"
+  ],
+  "tags": [
+    "kotlin",
+    "exceptions",
+    "result-models",
+    "failure"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Reliable programs distinguish expected unsuccessful outcomes from exceptional failures and preserve enough information for callers to respond.",
+      "realWorldUse": "Files, databases, networks, parsing, permissions, and platform APIs fail differently; repositories must translate those failures into useful application outcomes.",
+      "outcome": "Throw or catch at deliberate boundaries and model recoverable domain outcomes without losing cancellation or diagnostic causes."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "exception-semantics",
+          "title": "Exceptions interrupt normal control flow",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An exception reports that the current operation cannot finish normally. throw is an expression, and try can produce a value. Catch the most specific exception you can actually handle; a broad catch can hide programmer defects and make unrelated failures look identical. finally performs cleanup whether the operation succeeds or throws. Use require for invalid caller arguments, check for invalid object state, and error for an impossible branch, but do not use exceptions as routine branching for expected user input."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun readAmount(text: String): Double =\n    text.toDoubleOrNull()\n        ?: throw IllegalArgumentException(\"Amount must be numeric\")\n\nval amount = try {\n    readAmount(raw)\n} catch (error: IllegalArgumentException) {\n    return SaveOutcome.Invalid(error.message ?: \"Invalid amount\")\n}",
+              "caption": "The boundary translates one anticipated parsing exception into a domain outcome instead of swallowing every Throwable."
+            },
+            {
+              "type": "table",
+              "title": "Failure policy",
+              "columns": [
+                "Situation",
+                "Representation"
+              ],
+              "rows": [
+                [
+                  "Expected invalid input",
+                  "Validation or domain result"
+                ],
+                [
+                  "Broken caller precondition",
+                  "require and IllegalArgumentException"
+                ],
+                [
+                  "Broken internal state",
+                  "check and IllegalStateException"
+                ],
+                [
+                  "External operation failure",
+                  "Catch narrowly and translate or propagate"
+                ],
+                [
+                  "Cancellation",
+                  "Propagate; do not convert into generic failure"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "result-types",
+          "title": "Return expected alternatives explicitly",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A sealed result makes every expected outcome visible in the function type. Success can carry the saved expense, Invalid can carry field problems, and StorageFailure can retain a safe message plus a diagnostic cause for logging. The caller handles the hierarchy exhaustively. Kotlin Result is useful at some generic boundaries, but a domain-specific sealed type communicates more meaning and can represent multiple distinct failures without relying on exception classes as product language."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "sealed interface SaveOutcome {\n    data class Saved(val expense: Expense) : SaveOutcome\n    data class Invalid(val problems: List<String>) : SaveOutcome\n    data class StorageFailure(val cause: Throwable) : SaveOutcome\n}",
+              "caption": "The return type documents three expected paths and gives each path appropriate data."
+            },
+            {
+              "type": "flow",
+              "title": "Translate a failure",
+              "steps": [
+                {
+                  "id": "detect",
+                  "label": "Detect",
+                  "detail": "Identify the precise failing operation."
+                },
+                {
+                  "id": "classify",
+                  "label": "Classify",
+                  "detail": "Expected outcome or exceptional defect?"
+                },
+                {
+                  "id": "preserve",
+                  "label": "Preserve",
+                  "detail": "Keep safe user context and diagnostic cause."
+                },
+                {
+                  "id": "translate",
+                  "label": "Translate",
+                  "detail": "Return a domain result at the boundary."
+                },
+                {
+                  "id": "handle",
+                  "label": "Handle",
+                  "detail": "Let the caller respond exhaustively."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "boundaries",
+          "title": "Catch where policy exists",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A catch block should sit where the program knows what the failure means and what to do next. Low-level code may let an IOException propagate to a repository, which can map it to an offline or storage outcome. Logging and rethrowing at every layer duplicates noise. Never use catch (Throwable) for ordinary recovery because it includes serious runtime errors and cancellation-like control signals. Preserve the original cause when wrapping, and avoid exposing sensitive file paths or raw service messages directly to users."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun saveExpense(store: ExpenseStore, expense: Expense): SaveOutcome =\n    try {\n        store.save(expense)\n        SaveOutcome.Saved(expense)\n    } catch (error: java.io.IOException) {\n        SaveOutcome.StorageFailure(error)\n    }",
+              "caption": "The application boundary knows an I/O failure is an expected storage outcome and preserves its cause."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Recovery requires policy",
+              "text": "Catching is useful only when the current layer can translate, retry, compensate, clean up, or communicate the failure meaningfully."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Exceptions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/exceptions.html",
+          "whyRead": "The official reference for throw, try expressions, catch ordering, finally, checks, and exception creation."
+        },
+        {
+          "title": "Result",
+          "publisher": "Kotlin Standard Library",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/",
+          "whyRead": "Documents Kotlin Result operations and helps compare a generic success/failure container with domain-specific outcomes."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Translate storage failure",
+      "language": "kotlin",
+      "code": "sealed interface Outcome {\n    data object Saved : Outcome\n    data class Failed(val cause: Throwable) : Outcome\n}\nfun save(write: () -> Unit): Outcome = try {\n    write()\n    Outcome.Saved\n} catch (error: java.io.IOException) {\n    Outcome.Failed(error)\n}\nfun main() {\n    println(save { throw java.io.IOException(\"disk full\") } is Outcome.Failed)\n}",
+      "walkthrough": [
+        "The higher-order parameter isolates the fallible write operation.",
+        "Only IOException is translated; unrelated programming defects remain visible.",
+        "The diagnostic cause is retained inside the explicit failure outcome."
+      ],
+      "expectedOutput": "true"
+    },
+    "trap_check": [
+      {
+        "mistake": "Catching Exception and returning null for every failure.",
+        "why": "The caller cannot distinguish absence, invalid input, cancellation, or a broken invariant.",
+        "fix": "Catch narrowly and return an outcome that preserves useful meaning."
+      },
+      {
+        "mistake": "Logging and rethrowing at every layer.",
+        "why": "One failure creates duplicated logs without adding handling policy.",
+        "fix": "Log once at an observability boundary with relevant context."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Refactor an expense save function so validation, successful storage, and I/O failure are distinct explicit outcomes with preserved diagnostics.",
+      "successLooksLike": "Expected invalid data does not throw. Only the anticipated storage exception is translated. Every outcome is handled exhaustively by the caller."
+    },
+    "recall": [
+      {
+        "prompt": "When should a layer catch an exception?",
+        "answer": "When it has a policy to translate, recover, clean up, or communicate it."
+      },
+      {
+        "prompt": "Why use a sealed domain result?",
+        "answer": "It makes expected outcomes explicit and exhaustively handled."
+      },
+      {
+        "prompt": "What should wrapping an exception preserve?",
+        "answer": "The original cause and safe context needed for diagnosis."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-03-01-exceptions-results",
+  "challengeId": "challenge-level-01-week-03-01-exceptions-results",
+  "revision": {
+    "objectives": [
+      "Distinguish expected unsuccessful outcomes from exceptional failures.",
+      "Translate specific exceptions at a layer with recovery policy.",
+      "Model recoverable application outcomes with a sealed result."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/exceptions.html",
+    "https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/"
+  ],
+  "version": "0.3.0"
+}

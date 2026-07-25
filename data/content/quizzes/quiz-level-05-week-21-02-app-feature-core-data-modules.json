@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-21-02-app-feature-core-data-modules",
+  "title": "App, Feature, Core, and Data Modules Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-21-02-app-feature-core-data-modules"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-21-02-app-feature-core-data-modules-decision",
+      "prompt": "Which approach best demonstrates sound app, feature, core, and data modules?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Restructure a package-only banking slice into the minimum app, feature, data, model, design-system, and testing modules; justify every dependency edge.",
+        "Moving all shared-looking code into core-common until every module depends on an unowned dumping ground.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Restructure a package-only banking slice into the minimum app, feature, data, model, design-system, and testing modules; justify every dependency edge.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-21-02-app-feature-core-data-modules"
+    },
+    {
+      "id": "q-level-05-week-21-02-app-feature-core-data-modules-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-21-02-app-feature-core-data-modules"
+    },
+    {
+      "id": "q-level-05-week-21-02-app-feature-core-data-modules-recall",
+      "prompt": "What evidence should accompany the app, feature, core, and data modules decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-21-02-app-feature-core-data-modules"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

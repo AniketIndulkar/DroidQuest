@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-07-offline-first-news-capstone",
+  "title": "Capstone: Offline-First News Reader Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-07-offline-first-news-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-07-offline-first-news-capstone-decision",
+      "prompt": "What should RemoteMediator do with a network page?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Write it to Room for PagingSource to expose",
+      "explanation": "The database remains the single source of truth for paged UI.",
+      "lessonId": "level-04-week-18-07-offline-first-news-capstone",
+      "options": [
+        "Write it to Room for PagingSource to expose",
+        "Return a second list directly to UI",
+        "Store it only in a composable",
+        "Discard all local bookmarks"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-07-offline-first-news-capstone-truth",
+      "prompt": "Catching IOException around a request is sufficient to make an app offline-first.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Offline-first requires local reads, durable intent, synchronization, conflicts, and recovery.",
+      "lessonId": "level-04-week-18-07-offline-first-news-capstone"
+    },
+    {
+      "id": "q-level-04-week-18-07-offline-first-news-capstone-recall",
+      "prompt": "What is the capstone read authority?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The local Room database",
+      "explanation": "Remote data updates Room and the UI observes one durable source.",
+      "lessonId": "level-04-week-18-07-offline-first-news-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

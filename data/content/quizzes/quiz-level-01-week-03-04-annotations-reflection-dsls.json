@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-01-week-03-04-annotations-reflection-dsls",
+  "title": "Annotations, Reflection, and Type-Safe Builders Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-04-annotations-reflection-dsls"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-03-04-annotation-effect",
+      "prompt": "What makes an annotation affect program behaviour?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A tool or runtime consumer interprets it",
+      "explanation": "Annotations are metadata and require a processor, plugin, analyser, or runtime reader.",
+      "lessonId": "level-01-week-03-04-annotations-reflection-dsls",
+      "options": [
+        "A tool or runtime consumer interprets it",
+        "Its name begins with @",
+        "Every annotation runs automatically",
+        "Only a comment is required"
+      ]
+    },
+    {
+      "id": "q-week-03-04-retention-match",
+      "prompt": "Match retention to availability.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "SOURCE": "source tooling",
+        "BINARY": "compiled artifact",
+        "RUNTIME": "runtime reflection"
+      },
+      "explanation": "Retention declares how long annotation metadata remains available.",
+      "lessonId": "level-01-week-03-04-annotations-reflection-dsls"
+    },
+    {
+      "id": "q-week-03-04-builder-type",
+      "prompt": "What type commonly represents a Kotlin DSL builder block?",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "Builder.() -> Unit",
+      "explanation": "A function type with receiver makes builder members available as the block vocabulary.",
+      "lessonId": "level-01-week-03-04-annotations-reflection-dsls"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

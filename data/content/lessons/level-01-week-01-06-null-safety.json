@@ -1,0 +1,216 @@
+{
+  "id": "level-01-week-01-06-null-safety",
+  "title": "Null Safety and Uncertain Input",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-05-functions"
+  ],
+  "tags": [
+    "kotlin",
+    "null-safety",
+    "input-validation"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Real programs receive incomplete or invalid information, so absence must be modelled instead of ignored.",
+      "realWorldUse": "Android data can be missing from user input, saved state, databases, network responses, intents, and platform APIs.",
+      "outcome": "Represent optional values explicitly and handle them with checks, safe calls, Elvis defaults, and safe parsing."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "absence-in-the-type",
+          "title": "Make absence visible in the type",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Kotlin distinguishes a non-null type such as String from a nullable type such as String?. A non-null variable must refer to a String; a nullable variable may also contain null. This moves many absence errors from runtime into compiler feedback. Null should mean that a value is absent or not yet known. It should not be used interchangeably with an empty string, zero, or false because each of those values may have a legitimate domain meaning."
+            },
+            {
+              "type": "table",
+              "title": "Different states are different facts",
+              "columns": [
+                "Value",
+                "Possible meaning"
+              ],
+              "rows": [
+                [
+                  "null",
+                  "No value is available"
+                ],
+                [
+                  "\"\"",
+                  "A present but empty String"
+                ],
+                [
+                  "0",
+                  "A known numeric value of zero"
+                ],
+                [
+                  "false",
+                  "A known negative Boolean answer"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "After checking a stable nullable value against null, Kotlin can smart cast it inside the safe branch. The compiler permits normal String operations there because the condition proved the value is present. This reasoning works only when the compiler can guarantee the value cannot change between the check and its use."
+            }
+          ]
+        },
+        {
+          "id": "safe-call-and-elvis",
+          "title": "Transform or replace an absent value",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The safe-call operator ?. accesses a property or calls a function only when the receiver is non-null; otherwise the complete expression returns null. The Elvis operator ?: supplies an alternative when the expression on its left is null. Together they can express a short, safe transformation. Use a default only when it preserves the domain meaning. Silently replacing an absent price with zero may hide corrupted data, while displaying “Unknown” for an optional label may be appropriate."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val rawCategory: String? = \"  Travel  \"\nval category = rawCategory?.trim()?.takeIf { it.isNotEmpty() }\nval displayName = category ?: \"Uncategorised\"\n\nprintln(displayName)",
+              "caption": "Safe calls transform only a present value; Elvis supplies an explicit presentation fallback."
+            },
+            {
+              "type": "flow",
+              "title": "Handle a nullable value",
+              "steps": [
+                {
+                  "id": "receive",
+                  "label": "Receive",
+                  "detail": "Start with a value whose type permits null."
+                },
+                {
+                  "id": "check",
+                  "label": "Check or transform",
+                  "detail": "Use an explicit branch or safe call."
+                },
+                {
+                  "id": "decide",
+                  "label": "Decide absence policy",
+                  "detail": "Keep null, return early, report error, or use a valid default."
+                },
+                {
+                  "id": "continue",
+                  "label": "Continue safely",
+                  "detail": "Use a non-null result where required."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Avoid casual double-bang",
+              "text": "The !! operator asserts that a value is non-null and throws if the assertion is wrong. It removes compiler protection rather than solving absence."
+            }
+          ]
+        },
+        {
+          "id": "safe-parsing",
+          "title": "Treat external text as untrusted input",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "User input begins as text even when the screen asks for a number. Calling toDouble on invalid text throws an exception. The toDoubleOrNull function returns a nullable Double instead, allowing the program to choose a clear validation path. Parsing and domain validation are separate: “abc” cannot be parsed, while “-5” parses successfully but may still violate the rule that an expense must be positive."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun parsePositiveAmount(text: String): Double? {\n    val amount = text.trim().toDoubleOrNull()\n    return if (amount != null && amount > 0.0) amount else null\n}\n\nfun main() {\n    val amount = parsePositiveAmount(\" 12.50 \")\n    val message = if (amount == null) \"Enter a positive number\" else \"Accepted: £$amount\"\n    println(message)\n}",
+              "caption": "Parsing failure and domain rejection both become an explicit nullable result for this small program."
+            },
+            {
+              "type": "paragraph",
+              "text": "In larger applications, a single null may not explain why validation failed. Later lessons will introduce sealed result models that preserve specific error reasons. The first principle remains: translate uncertain external data at the boundary, then let the rest of the program work with stronger types and explicit outcomes."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Null safety",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/null-safety.html",
+          "whyRead": "The complete official guide to nullable types, smart casts, safe calls, Elvis expressions, and risky assertions."
+        },
+        {
+          "title": "Strings: conversion",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/strings.html#string-conversion",
+          "whyRead": "Shows parsing APIs and their OrNull alternatives for handling uncertain external text without avoidable exceptions."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Validate a possible amount",
+      "language": "kotlin",
+      "code": "fun amountMessage(raw: String?): String {\n    val amount = raw?.trim()?.toDoubleOrNull()\n    return when {\n        amount == null -> \"Enter a number\"\n        amount <= 0.0 -> \"Amount must be positive\"\n        else -> \"Accepted: £$amount\"\n    }\n}\n\nfun main() {\n    println(amountMessage(\"18.75\"))\n    println(amountMessage(\"free\"))\n}",
+      "walkthrough": [
+        "The parameter type admits that no text may be supplied.",
+        "A safe-call chain stops with null if the input is absent or cannot be parsed.",
+        "when distinguishes missing or invalid numeric text from a parsed non-positive value."
+      ],
+      "expectedOutput": "Accepted: £18.75\nEnter a number"
+    },
+    "trap_check": [
+      {
+        "mistake": "Using !! merely to silence a nullable-type compiler error.",
+        "why": "The assertion can move a detectable absence into a runtime NullPointerException.",
+        "fix": "Choose an explicit absence policy with a check, safe call, Elvis value, or early return."
+      },
+      {
+        "mistake": "Treating a parsed number as automatically valid domain data.",
+        "why": "Parsing proves only that the text has numeric form, not that the value satisfies business rules.",
+        "fix": "Validate range and domain rules after parsing."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write a function that accepts nullable amount text and returns either a usable positive value or a clear validation message.",
+      "successLooksLike": "Invalid input never throws, absence is handled deliberately, and the valid path works with a non-null number."
+    },
+    "recall": [
+      {
+        "prompt": "What does the question mark in String? mean?",
+        "answer": "The type permits either a String value or null."
+      },
+      {
+        "prompt": "What does a safe call do when its receiver is null?",
+        "answer": "It skips the access or call and returns null for the expression."
+      },
+      {
+        "prompt": "Why use toDoubleOrNull for external text?",
+        "answer": "It represents invalid numeric text as null instead of throwing an exception."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-06-null-safety",
+  "challengeId": "challenge-level-01-week-01-06-null-safety",
+  "revision": {
+    "objectives": [
+      "Distinguish nullable and non-null Kotlin types.",
+      "Select a deliberate policy for absent values.",
+      "Parse and validate uncertain external text without throwing."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/null-safety.html",
+    "https://kotlinlang.org/docs/strings.html"
+  ],
+  "version": "0.2.0"
+}

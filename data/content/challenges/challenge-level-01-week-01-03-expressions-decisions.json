@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-03-expressions-decisions",
+  "title": "Decide an Expense Status",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-03-expressions-decisions",
+  "difficulty": "beginner",
+  "estimatedMinutes": 25,
+  "prompt": "Given an amount, category, and receipt flag, calculate named Boolean facts and use when to produce Blocked, Receipt required, or Ready.",
+  "successCriteria": [
+    "Independent rules have descriptive Boolean names.",
+    "Invalid input is checked before broader approval rules.",
+    "Exactly one status is produced for every input combination."
+  ],
+  "hints": [
+    "Start with canSubmit and needsReceipt facts.",
+    "The first matching when branch wins."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun main() {\n    val amount = 32.0\n    val category = \"Travel\"\n    val hasReceipt = false\n\n    // Calculate facts and status.\n}"
+  },
+  "solutionOutline": [
+    "Define the validation and receipt facts.",
+    "Order the when branches from blocking to general.",
+    "Print the resulting status."
+  ],
+  "verification": [
+    "Try a negative amount, blank category, and missing receipt.",
+    "Record why each input reaches its branch."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-01-week-02-kotlin-modeller",
+  "title": "Kotlin Modeller: Week 2",
+  "description": "Awarded for modelling Kotlin objects and closed states, then transforming collections with deliberate higher-order APIs.",
+  "categoryId": "level-01-programming-foundations",
+  "icon": "model-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-01-week-02-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 220,
+  "rarity": "uncommon",
+  "version": "0.3.0"
+}

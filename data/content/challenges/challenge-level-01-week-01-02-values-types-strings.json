@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-02-values-types-strings",
+  "title": "Model an Expense",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-02-values-types-strings",
+  "difficulty": "beginner",
+  "estimatedMinutes": 20,
+  "prompt": "Represent a category, quantity, unit price, and approval limit with well-named Kotlin values. Calculate the total and print a readable summary using string templates.",
+  "successCriteria": [
+    "Declarations use suitable inferred or explicit types.",
+    "val is used unless reassignment is genuinely necessary.",
+    "The total is calculated once and reused in output."
+  ],
+  "hints": [
+    "A decimal price is normally a Double in this exercise.",
+    "Use ${expression} only when the template inserts more than one simple name."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun main() {\n    // Add the expense values and calculation.\n}"
+  },
+  "solutionOutline": [
+    "Choose domain names and suitable types.",
+    "Calculate quantity multiplied by unit price.",
+    "Present the values and total with templates."
+  ],
+  "verification": [
+    "Change quantity and confirm the total changes correctly.",
+    "Explain why each declaration is val or var."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

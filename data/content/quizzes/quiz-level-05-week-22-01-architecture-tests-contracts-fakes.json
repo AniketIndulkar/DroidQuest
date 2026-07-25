@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-22-01-architecture-tests-contracts-fakes",
+  "title": "Architecture Tests, Contracts, and Purposeful Fakes Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-22-01-architecture-tests-contracts-fakes"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-22-01-architecture-tests-contracts-fakes-decision",
+      "prompt": "Which approach best demonstrates sound architecture tests, contracts, and purposeful fakes?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Create a test matrix for the banking modules, implement one reusable repository contract suite, and add a forbidden-dependency architecture test.",
+        "Using mocks for every collaborator and asserting internal call order instead of user-visible or contract behaviour.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Create a test matrix for the banking modules, implement one reusable repository contract suite, and add a forbidden-dependency architecture test.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes"
+    },
+    {
+      "id": "q-level-05-week-22-01-architecture-tests-contracts-fakes-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes"
+    },
+    {
+      "id": "q-level-05-week-22-01-architecture-tests-contracts-fakes-recall",
+      "prompt": "What evidence should accompany the architecture tests, contracts, and purposeful fakes decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

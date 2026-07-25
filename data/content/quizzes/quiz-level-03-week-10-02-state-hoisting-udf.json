@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-10-02-state-hoisting-udf",
+  "title": "State Hoisting and Unidirectional Data Flow Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-10-02-state-hoisting-udf"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-10-02-state-hoisting-udf-decision",
+      "prompt": "Where should state read and changed by two siblings normally live?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Their lowest common owner",
+      "explanation": "One coordinating owner prevents duplicated and inconsistent state.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf",
+      "options": [
+        "Their lowest common owner",
+        "Inside both separately",
+        "A global variable",
+        "Inside a Canvas"
+      ]
+    },
+    {
+      "id": "q-level-03-week-10-02-state-hoisting-udf-truth",
+      "prompt": "Reusable leaf content should normally receive MutableState directly.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Plain values and intent callbacks provide a narrower and testable contract.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf"
+    },
+    {
+      "id": "q-level-03-week-10-02-state-hoisting-udf-recall",
+      "prompt": "What is the core UDF cycle?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "State down, events up",
+      "explanation": "The owner processes intent and publishes the next immutable state.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

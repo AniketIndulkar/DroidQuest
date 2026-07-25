@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-19-05-domain-use-cases-error-models",
+  "title": "Apply Use Cases, Business Rules, and Error Models",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-19-05-domain-use-cases-error-models",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Implement and test a SendPayment use case with reusable validation, typed expected rejections, cancellation propagation, and no Android UI or transport types.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface TransferOutcome {\n  data class Accepted(val receipt: Receipt) : TransferOutcome\n  data class Rejected(val reason: Rejection) : TransferOutcome\n}\n\nclass SendPayment(private val payments: PaymentsRepository)"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

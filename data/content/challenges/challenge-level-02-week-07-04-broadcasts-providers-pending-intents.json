@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-07-04-broadcasts-providers-pending-intents",
+  "title": "Build a Secure Note Notification Action",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Create a notification action that opens one note with an immutable PendingIntent, and document request identity, deep-link validation, and cold-process behaviour.",
+  "successCriteria": [
+    "Each note action resolves to the correct stable ID.",
+    "The PendingIntent is explicit and immutable.",
+    "Opening works when no application process exists."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Each note action resolves to the correct stable ID.",
+    "Use lifecycle or boundary evidence to prove: The PendingIntent is explicit and immutable."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun notePendingIntent(context: Context, noteId: String): PendingIntent = TODO()"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Each note action resolves to the correct stable ID.",
+    "Implement the smallest design that guarantees: The PendingIntent is explicit and immutable.",
+    "Implement the smallest design that guarantees: Opening works when no application process exists."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that each note action resolves to the correct stable ID.",
+    "Run a focused check demonstrating that the PendingIntent is explicit and immutable.",
+    "Run a focused check demonstrating that opening works when no application process exists."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

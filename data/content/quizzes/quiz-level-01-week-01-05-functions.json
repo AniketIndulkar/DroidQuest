@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-01-week-01-05-functions",
+  "title": "Functions as Reusable Decisions Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-05-functions"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-05-function-pairs",
+      "prompt": "Match each function term to its meaning.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "parameter": "Named input in a declaration",
+        "argument": "Value supplied by a caller",
+        "returnValue": "Result produced by a call"
+      },
+      "explanation": "Parameters define the contract, arguments supply actual inputs, and the return value is the call result.",
+      "lessonId": "level-01-week-01-05-functions"
+    },
+    {
+      "id": "q-week-01-05-pure-rule",
+      "prompt": "Which function design is easiest to reuse for a business rule?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "Return a Boolean result",
+        "Print inside the rule",
+        "Read console input inside the rule",
+        "Change a global variable"
+      ],
+      "answer": "Return a Boolean result",
+      "explanation": "Returning the fact separates the decision from input and presentation boundaries.",
+      "lessonId": "level-01-week-01-05-functions"
+    },
+    {
+      "id": "q-week-01-05-flag-bug",
+      "prompt": "What readability problem exists in formatExpense(value, true, false)?",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "The Boolean arguments do not reveal which parameters they control",
+      "explanation": "Named arguments or a clearer model make Boolean configuration understandable at the call site.",
+      "lessonId": "level-01-week-01-05-functions"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

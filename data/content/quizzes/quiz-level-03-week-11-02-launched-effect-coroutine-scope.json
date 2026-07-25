@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-11-02-launched-effect-coroutine-scope",
+  "title": "LaunchedEffect and rememberCoroutineScope Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-02-launched-effect-coroutine-scope"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-11-02-launched-effect-coroutine-scope-decision",
+      "prompt": "Which API suits showSnackbar from a button click?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "rememberCoroutineScope",
+      "explanation": "The user event launches a UI-owned suspending operation in a scope cancelled with that UI.",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope",
+      "options": [
+        "rememberCoroutineScope",
+        "Unconditional scope.launch in body",
+        "GlobalScope",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-level-03-week-11-02-launched-effect-coroutine-scope-truth",
+      "prompt": "Changing a LaunchedEffect key cancels and replaces its coroutine.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": true,
+      "explanation": "Key identity defines when lifecycle-bound coroutine work restarts.",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope"
+    },
+    {
+      "id": "q-level-03-week-11-02-launched-effect-coroutine-scope-recall",
+      "prompt": "Where should durable business loading run?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "In the screen or data owner scope",
+      "explanation": "Its lifetime should not depend on a temporary composition branch.",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

@@ -1,0 +1,232 @@
+{
+  "id": "level-01-week-04-06-expense-manager-capstone",
+  "title": "Capstone: Kotlin Expense Manager",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-05-http-rest-json"
+  ],
+  "tags": [
+    "kotlin",
+    "capstone",
+    "design",
+    "testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A capstone proves that isolated language features can be combined into a coherent, inspectable program with explicit requirements and verified behaviour.",
+      "realWorldUse": "The same domain models, repositories, result types, boundaries, tests, and version-control habits will later sit beneath an Android UI instead of a command-line adapter.",
+      "outcome": "Plan and build a command-line expense manager whose core domain is independent of input/output, validates data, reports failures explicitly, and is ready for tests and later Android reuse."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "requirements",
+          "title": "Turn a product idea into observable behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Begin with user-visible capabilities and acceptance examples, not classes. The first release can add an expense, list expenses, calculate totals by category, and reject invalid input. Specify money in integer minor units, require non-blank category and description, assign stable typed IDs, and define what an empty report means. Separate must-have behaviour from extensions such as file persistence or HTTP import. Each requirement should be demonstrable from inputs and outputs. This protects the project from feature drift and gives tests meaningful language. Constraints are part of the design: the Learn section may be short, but the challenge can take as long as the learner chooses."
+            },
+            {
+              "type": "code",
+              "language": "gherkin",
+              "code": "Feature: add an expense\nGiven an empty expense book\nWhen I add Food, \"Lunch\", 1250 minor units\nThen the book contains one expense\nAnd the total is 1250\n\nInvalid: blank category, blank description, or negative amount",
+              "caption": "Concrete examples define success and failure without choosing an implementation prematurely."
+            },
+            {
+              "type": "table",
+              "title": "Release scope",
+              "columns": [
+                "Must have",
+                "Optional extension"
+              ],
+              "rows": [
+                [
+                  "Validated Expense model",
+                  "Import JSON DTOs"
+                ],
+                [
+                  "Add and list expenses",
+                  "Persist to a local file"
+                ],
+                [
+                  "Total overall and by category",
+                  "Interactive menu loop"
+                ],
+                [
+                  "Explicit failures",
+                  "Formatted monthly report"
+                ],
+                [
+                  "Automated domain checks",
+                  "GitHub pull request"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "architecture",
+          "title": "Keep policy inside and I/O outside",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Organise the program around a small domain core. Expense and Money express valid values. ExpenseBook owns collection rules and calculations. ExpenseRepository describes storage without deciding whether data lives in memory or a file. Commands translate raw text into typed use cases, and a console adapter prints results. Dependencies point toward stable policy: the domain must not import terminal, JSON, or filesystem APIs. Use a sealed result for expected input and storage outcomes; reserve exceptions for violated programmer assumptions or truly exceptional lower-level failures. The design is successful when the same core could serve an Android screen later without rewriting totals and validation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface ExpenseRepository {\n    fun all(): List<Expense>\n    fun add(expense: Expense): AddExpenseResult\n}\n\nclass ExpenseBook(private val repository: ExpenseRepository) {\n    fun totalMinor(): Long = repository.all().sumOf { it.amount.minor }\n}",
+              "caption": "The use-case class depends on a domain-facing contract, while console and storage details remain replaceable adapters."
+            },
+            {
+              "type": "flow",
+              "title": "Dependency direction",
+              "steps": [
+                {
+                  "id": "console",
+                  "label": "Console adapter",
+                  "detail": "Parse arguments and render messages."
+                },
+                {
+                  "id": "usecase",
+                  "label": "ExpenseBook",
+                  "detail": "Coordinate application behaviour."
+                },
+                {
+                  "id": "domain",
+                  "label": "Expense, Money, result models",
+                  "detail": "Protect rules and calculations."
+                },
+                {
+                  "id": "port",
+                  "label": "Repository interface",
+                  "detail": "Describe storage needs."
+                },
+                {
+                  "id": "adapter",
+                  "label": "Memory or file repository",
+                  "detail": "Perform technical persistence."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Build in vertical slices and verify boundaries",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Implement one complete behaviour at a time: a valid expense value, adding through an in-memory repository, listing, totals, then invalid-input results. Commit each coherent slice after inspecting the diff and running checks. Tests should cover value invariants, duplicate IDs, empty totals, category grouping, and failure mapping. Manually run at least one happy path and one invalid path through the console because adapter wiring can fail even when domain tests pass. Record decisions and commands in the README. At completion, compare the implementation to the acceptance examples and remove accidental complexity. A capstone is not judged by the number of classes; it is judged by clear rules, reliable evidence, and readiness for change."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun main() {\n    val repository = InMemoryExpenseRepository()\n    val book = ExpenseBook(repository)\n    check(book.totalMinor() == 0L)\n    check(book.add(\"Food\", \"Lunch\", 1250) is AddExpenseResult.Added)\n    check(book.totalMinor() == 1250L)\n}",
+              "caption": "This smoke path proves the application pieces cooperate; focused unit tests should cover every rule and failure branch."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Finish with evidence",
+              "text": "A feature is complete when acceptance examples pass, invalid paths are handled, tests are repeatable, and documentation matches the real commands."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Coding conventions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coding-conventions.html",
+          "whyRead": "Provides naming, formatting, source organisation, and idiom guidance for a maintainable Kotlin project."
+        },
+        {
+          "title": "Test your app",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/test",
+          "whyRead": "Introduces testing goals, local and instrumented test locations, and the role of repeatable verification before later Android work."
+        },
+        {
+          "title": "Pro Git: Recording Changes",
+          "publisher": "Git project",
+          "resourceType": "official_docs",
+          "url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+          "whyRead": "Supports the capstone delivery workflow with status inspection, focused staging, diffs, commits, and history."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace one vertical slice",
+      "language": "kotlin",
+      "code": "@JvmInline value class ExpenseId(val value: String)\ndata class Money(val minor: Long) { init { require(minor >= 0) } }\ndata class Expense(val id: ExpenseId, val category: String, val amount: Money)\nclass ExpenseBook {\n    private val values = mutableListOf<Expense>()\n    fun add(expense: Expense) { require(values.none { it.id == expense.id }); values += expense }\n    fun total(): Long = values.sumOf { it.amount.minor }\n}",
+      "walkthrough": [
+        "Value types protect identifier and money meaning.",
+        "ExpenseBook owns the duplicate-ID invariant instead of leaving it to the UI.",
+        "The total calculation exposes no console or storage dependency."
+      ],
+      "expectedOutput": "After adding expenses of 1250 and 750 minor units, total returns 2000."
+    },
+    "trap_check": [
+      {
+        "mistake": "Starting with an interactive menu before defining domain rules.",
+        "why": "Input/output code grows around unclear behaviour and becomes hard to test.",
+        "fix": "Write acceptance examples and build the domain slice first."
+      },
+      {
+        "mistake": "Adding every optional feature before verifying the core.",
+        "why": "Scope expands while fundamental validation and calculations remain unreliable.",
+        "fix": "Complete must-have slices, then add one extension only after the core evidence passes."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build the complete Kotlin command-line expense manager described in this lesson, including validated domain models, repository boundary, explicit results, totals, tests, documentation, and focused Git history.",
+      "successLooksLike": "All must-have acceptance examples pass. The domain has no console, JSON, or filesystem dependency. Tests cover valid, empty, duplicate, and invalid cases. A README explains running, testing, design decisions, and optional extensions."
+    },
+    "recall": [
+      {
+        "prompt": "Why should the domain avoid terminal and filesystem APIs?",
+        "answer": "So rules remain testable, reusable, and independent of delivery technology."
+      },
+      {
+        "prompt": "What makes an acceptance example useful?",
+        "answer": "It specifies observable input, outcome, and invalid behaviour."
+      },
+      {
+        "prompt": "What evidence closes the capstone?",
+        "answer": "Passing focused tests, manual adapter checks, reviewed history, and current documentation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-06-expense-manager-capstone",
+  "challengeId": "challenge-level-01-week-04-06-expense-manager-capstone",
+  "revision": {
+    "objectives": [
+      "Translate a small product scope into acceptance examples.",
+      "Separate domain policy, use cases, ports, and technical adapters.",
+      "Deliver vertical slices with tests, focused commits, and documentation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/coding-conventions.html",
+    "https://developer.android.com/studio/test",
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+  ],
+  "version": "0.3.0"
+}

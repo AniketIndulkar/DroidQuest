@@ -1,0 +1,223 @@
+{
+  "id": "level-04-week-16-03-retrofit-data-source-repository",
+  "title": "Retrofit, Data Sources, and Repository Boundaries",
+  "categoryId": "level-04-async-data-networking",
+  "week": 16,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-16-02-dto-kotlin-serialization"
+  ],
+  "tags": [
+    "networking",
+    "retrofit",
+    "repository"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Retrofit describes HTTP endpoints, but architecture still needs a network data source, mapping boundary, repository policy, and caller-owned lifecycle.",
+      "realWorldUse": "News feeds, detail calls, search, and mutations require swappable clients and stable domain-facing APIs rather than Retrofit types throughout the app.",
+      "outcome": "Declare suspend endpoints, isolate Response and DTO handling, map to domain results, and keep repositories main-safe and testable."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Retrofit turns annotations into a client implementation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Retrofit interface declares method, relative path, query, path, header, and body parameters plus a converter for representations. suspend endpoints integrate with coroutine cancellation and do not need an extra IO switch for asynchronous HTTP. Returning a body type asks Retrofit to throw for non-success HTTP status; returning Response<T> exposes status, headers, and error body for explicit interpretation. Choose one approach consistently at the remote boundary and never expose retrofit2.Response to ViewModels."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface NewsService {\n    @GET(\"articles\") suspend fun articles(@Query(\"cursor\") cursor: String?): Response<ArticlePageDto>\n}\n\nclass RemoteNewsSource(private val service: NewsService) {\n    suspend fun fetch(cursor: String?): ArticlePage = service.articles(cursor).toArticlePageOrThrow()\n}",
+              "caption": "Retrofit details end at the source; callers receive mapped application data or typed failure."
+            },
+            {
+              "type": "table",
+              "title": "Network layer",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "HTTP declaration",
+                  "Retrofit service"
+                ],
+                [
+                  "Status, body, DTO interpretation",
+                  "Remote data source"
+                ],
+                [
+                  "Freshness and source policy",
+                  "Repository"
+                ],
+                [
+                  "Screen outcome",
+                  "ViewModel and UiState"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "The remote data source interprets transport and wire details",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The remote data source calls the service, decodes error details, validates DTOs, and returns domain data or a typed data-layer failure. It owns base URL environment, converter configuration, and transport client through injection. A repository combines remote and later local sources, defines cache and freshness policy, and exposes main-safe suspend or Flow APIs. Interfaces are useful at external-resource boundaries and tests can inject a fake data source without mocking Retrofit internals."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface NewsService {\n    @GET(\"articles\") suspend fun articles(@Query(\"cursor\") cursor: String?): Response<ArticlePageDto>\n}\n\nclass RemoteNewsSource(private val service: NewsService) {\n    suspend fun fetch(cursor: String?): ArticlePage = service.articles(cursor).toArticlePageOrThrow()\n}",
+              "caption": "Retrofit details end at the source; callers receive mapped application data or typed failure."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Retrofit is an adapter, not architecture",
+              "text": "Transport types should stop at the data-source boundary."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "The repository exposes app-oriented policy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Do not create a Retrofit instance per request; OkHttp connection pools and dispatchers are intended to be shared under application ownership. Avoid dynamic arbitrary URLs that bypass trusted base-host policy. Cancellation should cancel the underlying call. Loading and retry are usually caller or repository policy, not annotations. Integration tests use MockWebServer to verify real request paths, headers, bodies, converter behaviour, status mapping, and cancellation with deterministic queued responses."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not return Response or DTO to UI",
+              "text": "It leaks wire and client-library policy into presentation code."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Retrofit declarations",
+          "publisher": "Square Retrofit",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/retrofit/declarations/",
+          "whyRead": "Documents methods, parameters, bodies, converters, and suspend declarations."
+        },
+        {
+          "title": "Android data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer",
+          "whyRead": "Explains network data sources, repositories, main safety, errors, and test boundaries."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove Retrofit from the ViewModel",
+      "language": "kotlin",
+      "code": "class NewsViewModel(private val api: NewsService) {\n    fun load() = viewModelScope.launch { state.value = api.articles(null).body()!! }\n}",
+      "walkthrough": [
+        "The ViewModel interprets HTTP success, nullable body, DTO shape, and client exceptions.",
+        "Transport policy cannot be reused or tested independently from screen state.",
+        "Move status and DTO mapping into a remote source and repository contract."
+      ],
+      "expectedOutput": "The ViewModel handles a domain result without importing Retrofit or DTO types."
+    },
+    "trap_check": [
+      {
+        "mistake": "Building a new Retrofit and OkHttpClient for every call.",
+        "why": "Connection pooling, resource ownership, and consistent policy are lost.",
+        "fix": "Share configured application-scoped client instances."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Declare a Retrofit article API, implement status and DTO mapping in a remote source, wrap it in a repository, and verify requests through MockWebServer.",
+      "successLooksLike": "No Retrofit or DTO type reaches UI state. Client instances are shared and injected. Integration tests cover success, empty, error, malformed, and cancellation."
+    },
+    "recall": [
+      {
+        "prompt": "What does a Retrofit service describe?",
+        "answer": "HTTP endpoint and representation declarations."
+      },
+      {
+        "prompt": "Where should Response interpretation stop?",
+        "answer": "At the remote data-source boundary."
+      },
+      {
+        "prompt": "What does repository add?",
+        "answer": "Application source, cache, and freshness policy."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-16-03-retrofit-data-source-repository",
+  "challengeId": "challenge-level-04-week-16-03-retrofit-data-source-repository",
+  "revision": {
+    "objectives": [
+      "Declare correct suspend endpoints.",
+      "Isolate transport mapping.",
+      "Test real client integration with controlled server."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/retrofit/declarations/",
+    "https://developer.android.com/topic/architecture/data-layer"
+  ],
+  "version": "0.6.0"
+}

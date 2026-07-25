@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-03-week-09-01-compose-mental-model",
+  "title": "Thinking in Compose Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-01-compose-mental-model"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-09-01-compose-mental-model-declarative",
+      "prompt": "What should change when a Compose title needs new text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Update the title state passed to Text",
+      "explanation": "Compose reruns the relevant description with the new state and updates the UI tree.",
+      "lessonId": "level-03-week-09-01-compose-mental-model",
+      "options": [
+        "Update the title state passed to Text",
+        "Find and mutate a TextView",
+        "Recreate the process",
+        "Edit the APK"
+      ]
+    },
+    {
+      "id": "q-level-03-week-09-01-compose-mental-model-pipeline",
+      "prompt": "Order the main first-frame phases.",
+      "type": "order_steps",
+      "difficulty": "intermediate",
+      "answer": [
+        "composition",
+        "layout",
+        "drawing"
+      ],
+      "explanation": "Composition describes nodes, layout assigns geometry, and drawing renders pixels.",
+      "lessonId": "level-03-week-09-01-compose-mental-model"
+    },
+    {
+      "id": "q-level-03-week-09-01-compose-mental-model-body-side-effect",
+      "prompt": "A composable body is a safe place for an unconditional database write.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The body can execute repeatedly and must not own uncontrolled side effects.",
+      "lessonId": "level-03-week-09-01-compose-mental-model"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

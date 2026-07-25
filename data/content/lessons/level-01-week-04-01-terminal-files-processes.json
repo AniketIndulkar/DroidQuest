@@ -1,0 +1,219 @@
+{
+  "id": "level-01-week-04-01-terminal-files-processes",
+  "title": "Terminal, Files, and Running Programs",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-03-05-jvm-interop-memory"
+  ],
+  "tags": [
+    "tooling",
+    "terminal",
+    "files",
+    "processes"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "A developer must be able to locate a project, run a tool, interpret its result, and change files deliberately instead of treating the computer as a collection of opaque windows.",
+      "realWorldUse": "Gradle, adb, Git, emulators, build logs, and continuous integration all expose command-line interfaces even when Android Studio provides a graphical front end.",
+      "outcome": "Navigate paths, distinguish files from directories, run a command with arguments, and explain working directory, exit status, standard output, and standard error."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "filesystem",
+          "title": "A path locates an item in a directory tree",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A filesystem organises named files inside directories. An absolute path begins at the filesystem root and identifies one location independently of the current directory. A relative path begins from the process working directory. The dot segment means the current directory and two dots mean its parent. Before editing or deleting anything, print the working directory and list the target. Spaces are part of a name, so quote a path such as \"My Project\" rather than allowing the shell to split it into two arguments. File extensions are conventions that help tools and people; the file content remains the decisive evidence."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "pwd\nls\ncd \"My Project\"\nls src\n# ./gradlew refers to gradlew in the current directory",
+              "caption": "Each relative name is resolved from the shell working directory. Quoting preserves a path containing spaces as one argument."
+            },
+            {
+              "type": "table",
+              "title": "Path forms",
+              "columns": [
+                "Form",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "/projects/DroidQuest",
+                  "Absolute path from the root"
+                ],
+                [
+                  "data/content",
+                  "Relative path from the working directory"
+                ],
+                [
+                  ".",
+                  "Current directory"
+                ],
+                [
+                  "..",
+                  "Parent directory"
+                ],
+                [
+                  "./gradlew",
+                  "Executable named gradlew in the current directory"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "commands",
+          "title": "A command starts a process with arguments",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The shell parses a command line into a program name and ordered arguments. It then starts a process, an executing instance of that program. Environment variables provide inherited configuration, while command flags select behaviour for one invocation. Standard input supplies data, standard output carries normal results, and standard error carries diagnostics. These are streams, not promises about whether work succeeded. Read the program exit status as well: zero normally means success and a non-zero value identifies a failure category. Never paste an unfamiliar command into a terminal until you can identify its executable, arguments, targets, and side effects."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "node --version\nnpm run validate\necho $?  # exit status of the previous command in many shells",
+              "caption": "node and npm are executables; the remaining tokens are arguments. The final status communicates success separately from printed text."
+            },
+            {
+              "type": "flow",
+              "title": "Command lifecycle",
+              "steps": [
+                {
+                  "id": "parse",
+                  "label": "Parse",
+                  "detail": "Shell turns text into a program and arguments."
+                },
+                {
+                  "id": "start",
+                  "label": "Start process",
+                  "detail": "Operating system creates an executing process."
+                },
+                {
+                  "id": "streams",
+                  "label": "Exchange streams",
+                  "detail": "Process reads input and writes output or diagnostics."
+                },
+                {
+                  "id": "status",
+                  "label": "Exit",
+                  "detail": "Process returns a numeric status to its caller."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "safe-workflow",
+          "title": "Inspect, act narrowly, then verify",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Command-line confidence comes from a repeatable safety loop. Establish context with pwd, inspect names with a directory listing, and ask a tool for help before guessing flags. Prefer a read-only command first. Make the smallest intended change with an exact path, then rerun inspection or tests to verify the outcome. Tab completion reduces spelling mistakes and command history helps reproduce work, but both can repeat a dangerous target quickly. Recursive deletion, broad globs, administrator privileges, and commands downloaded from the internet deserve an explicit pause because they can affect far more than one file. A terminal is powerful because it is precise; supply that precision yourself."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "pwd\nfind content/lessons -name \"level-01-week-04-*.json\" -maxdepth 1\nnpm run test:content",
+              "caption": "The sequence establishes context, performs a read-only targeted inspection, and asks the project test to verify content."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Resolve the target first",
+              "text": "Do not run a destructive command against an unresolved variable, broad directory, or pattern you have not inspected."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Pro Git: The Command Line",
+          "publisher": "Git project",
+          "resourceType": "official_docs",
+          "url": "https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line",
+          "whyRead": "Explains why command-line tools remain a common, complete interface for development workflows."
+        },
+        {
+          "title": "Command Line Crash Course",
+          "publisher": "MDN Web Docs",
+          "resourceType": "guide",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+          "whyRead": "A practical introduction to navigation, files, commands, flags, and safe terminal habits."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace a process invocation",
+      "language": "shell",
+      "code": "fun main(args: Array<String>) {\n    println(\"argumentCount=${args.size}\")\n    args.forEachIndexed { index, value -> println(\"$index=$value\") }\n}",
+      "walkthrough": [
+        "The shell starts one program process.",
+        "Arguments arrive as an ordered array rather than one unparsed sentence.",
+        "The process writes normal results to standard output and returns when main completes."
+      ],
+      "expectedOutput": "Running with Food 12.50 prints argumentCount=2, then one indexed line per argument."
+    },
+    "trap_check": [
+      {
+        "mistake": "Running a command from the wrong working directory.",
+        "why": "Relative paths resolve somewhere different and may change or fail against the wrong files.",
+        "fix": "Print the working directory and inspect the exact target first."
+      },
+      {
+        "mistake": "Treating printed output as proof of success.",
+        "why": "A program can emit diagnostics and still return a failing status.",
+        "fix": "Read the exit status and verify the intended artifact or state."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write a small shell checklist or script that confirms it is inside the DroidQuest data directory, reports relevant JSON file counts, and runs content validation without modifying files.",
+      "successLooksLike": "The working directory is checked before relative paths are used. A failed validation produces a non-zero final status. The script performs no destructive operation."
+    },
+    "recall": [
+      {
+        "prompt": "How does a relative path get its starting point?",
+        "answer": "It is resolved from the current working directory of the process."
+      },
+      {
+        "prompt": "What is a process?",
+        "answer": "A running instance of a program with arguments, environment, streams, and an exit status."
+      },
+      {
+        "prompt": "What does exit status zero normally mean?",
+        "answer": "The command completed successfully according to its contract."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-01-terminal-files-processes",
+  "challengeId": "challenge-level-01-week-04-01-terminal-files-processes",
+  "revision": {
+    "objectives": [
+      "Resolve absolute and relative paths safely.",
+      "Explain command arguments, streams, environment, and exit status.",
+      "Use an inspect-act-verify terminal workflow."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+  ],
+  "version": "0.3.0"
+}

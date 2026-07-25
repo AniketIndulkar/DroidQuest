@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-08-03-fragments-navigation",
+  "title": "Build a Restorable Two-Fragment Flow",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-03-fragments-navigation",
+  "difficulty": "beginner",
+  "estimatedMinutes": 55,
+  "prompt": "Create list and note-editor fragments with Navigation, view-lifecycle-safe binding, ID-only arguments, and correct restoration after rotation and process recreation.",
+  "successCriteria": [
+    "No view reference survives onDestroyView.",
+    "Back and deep-link routes reconstruct from note ID.",
+    "FragmentManager restoration produces no duplicate fragments."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: No view reference survives onDestroyView.",
+    "Use lifecycle or boundary evidence to prove: Back and deep-link routes reconstruct from note ID."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NotesFragment : Fragment(R.layout.fragment_notes)\nclass NoteFragment : Fragment(R.layout.fragment_note)"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: No view reference survives onDestroyView.",
+    "Implement the smallest design that guarantees: Back and deep-link routes reconstruct from note ID.",
+    "Implement the smallest design that guarantees: FragmentManager restoration produces no duplicate fragments."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that no view reference survives onDestroyView.",
+    "Run a focused check demonstrating that back and deep-link routes reconstruct from note ID.",
+    "Run a focused check demonstrating that fragmentManager restoration produces no duplicate fragments."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

@@ -1,0 +1,228 @@
+{
+  "id": "level-03-week-09-02-modifiers-constraints-order",
+  "title": "Modifiers, Constraints, and Order",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 9,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-09-01-compose-mental-model"
+  ],
+  "tags": [
+    "compose",
+    "modifiers",
+    "constraints",
+    "layout"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Modifier chains define measurement, placement, drawing, semantics, focus, and input in order; changing the order can change both pixels and behaviour.",
+      "realWorldUse": "Every Compose component uses Modifier to participate in parent constraints, add space and styling, expose semantics, and handle interaction.",
+      "outcome": "Trace constraints through a modifier chain, distinguish parent data from general modifiers, and choose order deliberately."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Modifiers wrap behaviour in sequence",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Modifier is an ordered chain of elements applied to a layout node. Elements can alter constraints, report size, offset placement, draw backgrounds or borders, clip, add semantics, receive focus, or interpret input. Order matters because each element wraps what follows. background().padding() draws behind the original outer area and then gives content inner space, while padding().background() first creates outer space and draws only behind the smaller padded child. clickable before or after padding changes the touch target. Read a chain from left to right as nested wrappers and test semantics as well as appearance."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Box(\n    Modifier\n        .clickable(onClick = onOpen)\n        .padding(16.dp)\n        .background(MaterialTheme.colorScheme.surfaceVariant)\n        .padding(12.dp)\n) { Text(note.title) }",
+              "caption": "The outer click includes both padding areas; the background covers only the inner card region."
+            },
+            {
+              "type": "table",
+              "title": "Modifier-order questions",
+              "columns": [
+                "Element",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "padding",
+                  "Does it create outer or inner space here?"
+                ],
+                [
+                  "background",
+                  "Which wrapped size is painted?"
+                ],
+                [
+                  "clip",
+                  "Which drawing and indication are clipped?"
+                ],
+                [
+                  "clickable",
+                  "What is the semantic and touch target?"
+                ],
+                [
+                  "weight",
+                  "Which Row/Column parent consumes it?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Constraints travel down and sizes travel up",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose layout follows a constraint model: parents pass minimum and maximum width and height downward; children choose a size inside those constraints; parents place the reported size. size requests a preferred size but cannot violate incoming constraints, whereas requiredSize can coerce the child and the parent may centre the reported result. fillMaxWidth uses available maximum width; wrapContentSize affects placement within available space. weight is parent data understood only by RowScope or ColumnScope. An unbounded scroll axis changes what maximum constraints mean and can expose nested-scroll or infinite-size mistakes."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun NoteCard(note: Note, modifier: Modifier = Modifier) {\n    Card(modifier = modifier.fillMaxWidth()) { Text(note.title, Modifier.padding(16.dp)) }\n}",
+              "caption": "The caller modifier controls the card boundary while internal padding remains implementation detail."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Constraints are contracts",
+              "text": "A child requests space but must respond to the limits its parent actually provides."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Parent scope and reuse affect correctness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Accept modifier: Modifier = Modifier as the first optional parameter on reusable UI elements and apply it to the outermost appropriate node. Callers then control placement, test tags, semantics, and interaction without a bespoke parameter for every need. Do not reuse one Modifier instance with parent-specific elements outside its valid scope or append caller modifiers to an unexpected inner Text. Extract long stable chains when clarity improves, but avoid hiding dynamic semantics. Validate touch size, focus, clipping, ripple bounds, RTL placement, and large text because a visually plausible chain can still create an inaccessible interaction region."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production work on modifiers, constraints, and order should begin with an observable requirement rather than a preferred API. Exercise the normal path, empty and error states, recreation, long content, large font scale, and rapid repeated input where they apply. Keep ownership visible in function signatures, make cancellation and failure behaviour deliberate, and record any assumption that crosses a lifecycle or platform boundary. Use previews for visual state, focused unit tests for pure transformations, Compose UI tests for semantics and interaction, and device traces or inspection tools only when runtime evidence is required. The goal is not merely code that renders once; it is behaviour another engineer can explain, test, change, and recover after the operating system or user changes the conditions."
+            },
+            {
+              "type": "flow",
+              "title": "A reliable implementation loop",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "Define inputs",
+                  "detail": "Name the state, constraints, and user outcome."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Build the smallest semantic UI tree."
+                },
+                {
+                  "id": "interact",
+                  "label": "Exercise",
+                  "detail": "Test events, state changes, and configuration."
+                },
+                {
+                  "id": "inspect",
+                  "label": "Inspect",
+                  "detail": "Use previews, tests, and tooling to find incorrect assumptions."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Improve the measured problem without hiding ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Visual equality can hide semantic differences",
+              "text": "Modifier order can change hit testing, focus, accessibility bounds, and ripple clipping even when screenshots look similar."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Compose modifiers",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/modifiers",
+          "whyRead": "Covers sizing, offset, scope safety, extraction, parent data, and recommended modifier parameters."
+        },
+        {
+          "title": "Constraints and modifier order",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/constraints-modifiers",
+          "whyRead": "Provides a detailed constraint and wrapper model for predicting modifier-chain results."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Compare two touch targets",
+      "language": "kotlin",
+      "code": "Modifier.padding(16.dp).clickable { open() }\nModifier.clickable { open() }.padding(16.dp)",
+      "walkthrough": [
+        "In the first chain, padding sits outside clickable and is not part of the hit target.",
+        "In the second, clickable wraps padding and includes it in interaction semantics.",
+        "The correct choice depends on intended minimum touch area and visual indication."
+      ],
+      "expectedOutput": "Use accessibility tooling to verify the actual target rather than judging pixels alone."
+    },
+    "trap_check": [
+      {
+        "mistake": "Appending the caller modifier to an inner label.",
+        "why": "Callers cannot control the component outer placement or semantics.",
+        "fix": "Apply it once to the outermost meaningful node."
+      },
+      {
+        "mistake": "Using weight outside its RowScope or ColumnScope.",
+        "why": "Parent-data modifiers only have meaning to the matching parent layout.",
+        "fix": "Keep scoped modifiers within the receiver that supplies them."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create paired examples showing padding/background, clip/clickable, size/requiredSize, and offset differences, including semantic bounds.",
+      "successLooksLike": "Each pair explains the wrapper order. Touch and accessibility bounds are inspected. The reusable sample accepts caller Modifier correctly."
+    },
+    "recall": [
+      {
+        "prompt": "Which direction do constraints travel?",
+        "answer": "Parents pass constraints down to children."
+      },
+      {
+        "prompt": "Which direction do measured sizes travel?",
+        "answer": "Children report chosen sizes back up."
+      },
+      {
+        "prompt": "Why accept a Modifier parameter?",
+        "answer": "It gives callers standard placement, semantics, interaction, and test control."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-09-02-modifiers-constraints-order",
+  "challengeId": "challenge-level-03-week-09-02-modifiers-constraints-order",
+  "revision": {
+    "objectives": [
+      "Predict behaviour from modifier order.",
+      "Trace Compose constraint negotiation.",
+      "Design reusable modifier-aware components."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/modifiers",
+    "https://developer.android.com/develop/ui/compose/layouts/constraints-modifiers"
+  ],
+  "version": "0.5.0"
+}

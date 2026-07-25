@@ -1,0 +1,222 @@
+{
+  "id": "quiz-level-03-checkpoint",
+  "title": "Level 3 Jetpack Compose Boss",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-01-compose-mental-model",
+    "level-03-week-09-02-modifiers-constraints-order",
+    "level-03-week-09-03-row-column-box-layout",
+    "level-03-week-09-04-material3-scaffold-slots",
+    "level-03-week-09-05-text-input-resources",
+    "level-03-week-10-01-state-remember-saveable",
+    "level-03-week-10-02-state-hoisting-udf",
+    "level-03-week-10-03-recomposition-snapshots-identity",
+    "level-03-week-10-04-lazy-lists-grids",
+    "level-03-week-10-05-navigation-compose-concepts",
+    "level-03-week-11-01-effect-fundamentals-keys",
+    "level-03-week-11-02-launched-effect-coroutine-scope",
+    "level-03-week-11-03-disposable-sideeffect-updatedstate",
+    "level-03-week-11-04-derived-state-snapshot-flow",
+    "level-03-week-11-05-viewmodel-lifecycle-collection",
+    "level-03-week-12-01-stability-skipping-performance",
+    "level-03-week-12-02-custom-layout-measure-placement",
+    "level-03-week-12-03-canvas-custom-drawing",
+    "level-03-week-12-04-gestures-pointer-input",
+    "level-03-week-12-05-animation-nested-scroll",
+    "level-03-week-12-06-design-systems-compositionlocal",
+    "level-03-week-13-01-accessibility-semantics-talkback",
+    "level-03-week-13-02-focus-keyboard-scalable-content",
+    "level-03-week-13-03-localisation-rtl-theme-policy",
+    "level-03-week-13-04-edge-to-edge-window-insets",
+    "level-03-week-13-05-adaptive-layout-navigation3",
+    "level-03-week-13-06-compose-testing-shopping-capstone"
+  ],
+  "kind": "level_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-03-boss-01",
+      "prompt": "What should change when a Compose title needs new text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Update the title state passed to Text",
+      "explanation": "Compose reruns the relevant description with the new state and updates the UI tree.",
+      "lessonId": "level-03-week-09-01-compose-mental-model",
+      "options": [
+        "Update the title state passed to Text",
+        "Find and mutate a TextView",
+        "Recreate the process",
+        "Edit the APK"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-02",
+      "prompt": "Match the relationship to the primitive.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "horizontal": "Row",
+        "vertical": "Column",
+        "overlay": "Box"
+      },
+      "explanation": "The primitives directly express horizontal, vertical, and stacked relationships.",
+      "lessonId": "level-03-week-09-03-row-column-box-layout"
+    },
+    {
+      "id": "q-level-03-boss-03",
+      "prompt": "Why does value=\"\" with an empty onValueChange stay blank?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "No new value is stored and passed back",
+      "explanation": "Controlled input changes only when its state owner accepts and republishes the edit.",
+      "lessonId": "level-03-week-09-05-text-input-resources",
+      "options": [
+        "No new value is stored and passed back",
+        "TextField has no keyboard",
+        "Compose cannot display strings",
+        "Material disables typing"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-04",
+      "prompt": "Where should state read and changed by two siblings normally live?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Their lowest common owner",
+      "explanation": "One coordinating owner prevents duplicated and inconsistent state.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf",
+      "options": [
+        "Their lowest common owner",
+        "Inside both separately",
+        "A global variable",
+        "Inside a Canvas"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-05",
+      "prompt": "Which key suits reorderable note rows?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Stable note ID",
+      "explanation": "Domain identity preserves item state when positions change.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids",
+      "options": [
+        "Stable note ID",
+        "Current index",
+        "Random number",
+        "No key ever"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-06",
+      "prompt": "What should an effect key normally represent?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Identity whose change requires restart",
+      "explanation": "Keys connect resource or work identity to cancellation and relaunch.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys",
+      "options": [
+        "Identity whose change requires restart",
+        "A random value",
+        "Every local variable",
+        "A colour token"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-07",
+      "prompt": "Which API fits listener registration with cleanup?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "DisposableEffect",
+      "explanation": "It pairs keyed setup with mandatory cleanup when identity changes or composition leaves.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "options": [
+        "DisposableEffect",
+        "derivedStateOf",
+        "rememberSaveable",
+        "Canvas"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-08",
+      "prompt": "Which API is recommended for collecting Flow in Android Compose UI?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "collectAsStateWithLifecycle",
+      "explanation": "It converts Flow to Compose State while respecting Android lifecycle activity.",
+      "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection",
+      "options": [
+        "collectAsStateWithLifecycle",
+        "runBlocking in composition",
+        "GlobalScope",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-09",
+      "prompt": "Which placement API normally respects layout direction?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "placeRelative",
+      "explanation": "It interprets horizontal position relative to the current layout direction.",
+      "lessonId": "level-03-week-12-02-custom-layout-measure-placement",
+      "options": [
+        "placeRelative",
+        "placeAbsolute only",
+        "drawCircle",
+        "rememberSaveable"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-10",
+      "prompt": "What should implement an ordinary icon-only Save action?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "IconButton",
+      "explanation": "It supplies expected semantics, focus, feedback, and interaction behaviour.",
+      "lessonId": "level-03-week-12-04-gestures-pointer-input",
+      "options": [
+        "IconButton",
+        "Raw pointerInput only",
+        "Canvas path",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-11",
+      "prompt": "Which dependency is least appropriate for CompositionLocal?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "A feature repository",
+      "explanation": "Business dependencies should remain explicit or enter through a clear injection boundary.",
+      "lessonId": "level-03-week-12-06-design-systems-compositionlocal",
+      "options": [
+        "A feature repository",
+        "Theme spacing tokens",
+        "Content colour",
+        "Typography roles"
+      ]
+    },
+    {
+      "id": "q-level-03-boss-12",
+      "prompt": "What is the best first fix for clipped large text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Allow reflow and adaptive sizing",
+      "explanation": "The interface must honour user scaling and adjust its structure to available space.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content",
+      "options": [
+        "Allow reflow and adaptive sizing",
+        "Disable font scaling",
+        "Use smaller fixed text",
+        "Hide the label"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 700,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

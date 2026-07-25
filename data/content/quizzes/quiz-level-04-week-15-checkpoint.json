@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-04-week-15-checkpoint",
+  "title": "Week 15 Checkpoint",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-01-cold-flow-context-collection",
+    "level-04-week-15-02-flow-operators-errors-retry",
+    "level-04-week-15-03-combine-latest-flattening",
+    "level-04-week-15-04-buffer-conflate-backpressure",
+    "level-04-week-15-05-stateflow-sharedflow-events",
+    "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-15-checkpoint-01",
+      "prompt": "How many times does a cold flow producer run for two collectors?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Twice",
+      "explanation": "Each terminal collection starts an independent upstream execution.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection",
+      "options": [
+        "Twice",
+        "Never",
+        "Exactly once globally",
+        "Only after process death"
+      ]
+    },
+    {
+      "id": "q-week-15-checkpoint-02",
+      "prompt": "flowOn changes the downstream collector context.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It changes only the operators upstream of its position.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection"
+    },
+    {
+      "id": "q-week-15-checkpoint-03",
+      "prompt": "Which failures should retryWhen normally repeat?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Classified transient failures",
+      "explanation": "Retry must distinguish recoverable conditions and be bounded.",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry",
+      "options": [
+        "Classified transient failures",
+        "Every Throwable forever",
+        "Cancellation",
+        "Invalid credentials without refresh"
+      ]
+    },
+    {
+      "id": "q-week-15-checkpoint-04",
+      "prompt": "catch handles exceptions thrown later by the collector.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "catch is transparent to failures downstream of its position.",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry"
+    },
+    {
+      "id": "q-week-15-checkpoint-05",
+      "prompt": "Which operator fits live query plus current filters?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "combine",
+      "explanation": "Any source change recomputes from the latest values of all sources.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening",
+      "options": [
+        "combine",
+        "zip",
+        "first only",
+        "onCompletion"
+      ]
+    },
+    {
+      "id": "q-week-15-checkpoint-06",
+      "prompt": "flatMapLatest is safe for every write that must complete.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A later outer value cancels previous inner work.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening"
+    },
+    {
+      "id": "q-week-15-checkpoint-07",
+      "prompt": "Which stream may reasonably use conflate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Visual download progress",
+      "explanation": "Intermediate progress can be skipped when the newest value communicates current state.",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure",
+      "options": [
+        "Visual download progress",
+        "Payment commands",
+        "Audit log records",
+        "Database migrations"
+      ]
+    },
+    {
+      "id": "q-week-15-checkpoint-08",
+      "prompt": "Applying conflate to StateFlow adds a new effect.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "StateFlow already has latest-state conflation semantics.",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure"
+    }
+  ],
+  "rewards": {
+    "xp": 275,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

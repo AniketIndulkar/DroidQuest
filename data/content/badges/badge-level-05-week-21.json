@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-05-week-21",
+  "title": "Week 21 Module Pathfinder",
+  "description": "Awarded for completing the Week 21 production architecture checkpoint.",
+  "categoryId": "level-05-production-architecture",
+  "icon": "architecture-week-21",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-05-week-21-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 350,
+  "rarity": "rare",
+  "version": "0.8.0"
+}

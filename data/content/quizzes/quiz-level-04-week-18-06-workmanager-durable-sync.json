@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-06-workmanager-durable-sync",
+  "title": "WorkManager for Durable Synchronization Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-06-workmanager-durable-sync"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-06-workmanager-durable-sync-decision",
+      "prompt": "What should schedule one coalesced outbox drain?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Unique WorkManager work",
+      "explanation": "Persistent unique work survives process loss and prevents overlapping duplicate drains.",
+      "lessonId": "level-04-week-18-06-workmanager-durable-sync",
+      "options": [
+        "Unique WorkManager work",
+        "GlobalScope per callback",
+        "A composable SideEffect",
+        "An exact alarm every minute"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-06-workmanager-durable-sync-truth",
+      "prompt": "Meeting a network constraint guarantees the sync request succeeds.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Constraints can change and the target service, credentials, or payload can still fail.",
+      "lessonId": "level-04-week-18-06-workmanager-durable-sync"
+    },
+    {
+      "id": "q-level-04-week-18-06-workmanager-durable-sync-recall",
+      "prompt": "When should a worker return retry?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "For a classified transient failure",
+      "explanation": "Permanent errors need reconciliation rather than an infinite scheduler loop.",
+      "lessonId": "level-04-week-18-06-workmanager-durable-sync"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

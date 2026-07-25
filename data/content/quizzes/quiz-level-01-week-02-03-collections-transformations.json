@@ -1,0 +1,62 @@
+{
+  "id": "quiz-level-01-week-02-03-collections-transformations",
+  "title": "Collections and Transformation Pipelines Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-02-03-collections-transformations"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-02-03-collection-shape",
+      "prompt": "Which collection best represents unique selected category IDs?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Set<String>",
+      "explanation": "A Set directly models unique membership without implying meaningful duplicates.",
+      "lessonId": "level-01-week-02-03-collections-transformations",
+      "options": [
+        "Set<String>",
+        "List<String>",
+        "Map<String, String>",
+        "Array<String>"
+      ]
+    },
+    {
+      "id": "q-week-02-03-pipeline-order",
+      "prompt": "Put the pipeline operations in a sensible conceptual order.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "Source",
+        "Select",
+        "Transform",
+        "Reduce"
+      ],
+      "explanation": "Reading the element type through each stage makes a chain easier to reason about.",
+      "lessonId": "level-01-week-02-03-collections-transformations",
+      "options": [
+        "Reduce",
+        "Source",
+        "Transform",
+        "Select"
+      ]
+    },
+    {
+      "id": "q-week-02-03-group-output",
+      "prompt": "What does listOf(\"a\", \"bb\", \"c\").groupBy { it.length }.keys contain?",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": "[1, 2]",
+      "explanation": "The strings are grouped under their length, with keys appearing in first-seen order.",
+      "lessonId": "level-01-week-02-03-collections-transformations"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

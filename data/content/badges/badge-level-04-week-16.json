@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-04-week-16",
+  "title": "Week 16 Pathfinder",
+  "description": "Awarded for completing the Week 16 checkpoint and its production engineering objectives.",
+  "categoryId": "level-04-async-data-networking",
+  "icon": "pathfinder-16",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-04-week-16-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 300,
+  "rarity": "rare",
+  "version": "0.6.0"
+}

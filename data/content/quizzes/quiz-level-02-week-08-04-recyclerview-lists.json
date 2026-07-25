@@ -1,0 +1,54 @@
+{
+  "id": "quiz-level-02-week-08-04-recyclerview-lists",
+  "title": "RecyclerView and Efficient View Lists Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-04-recyclerview-lists"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-08-04-holder-role",
+      "prompt": "What is the ViewHolder responsible for?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Retaining references for one reusable item view",
+      "explanation": "The adapter creates and rebinds holders as rows enter the visible region.",
+      "lessonId": "level-02-week-08-04-recyclerview-lists",
+      "options": [
+        "Retaining references for one reusable item view",
+        "Persisting the database",
+        "Owning the Activity task",
+        "Signing the APK"
+      ]
+    },
+    {
+      "id": "q-week-08-04-diff-match",
+      "prompt": "Match DiffUtil checks to their question.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "areItemsTheSame": "same logical record",
+        "areContentsTheSame": "same displayed value"
+      },
+      "explanation": "Stable identity and content equality drive different update decisions.",
+      "lessonId": "level-02-week-08-04-recyclerview-lists"
+    },
+    {
+      "id": "q-week-08-04-recycle-bug",
+      "prompt": "A property changed conditionally during binding can be left untouched in the opposite branch.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Every reused holder property must be reset to the current item value.",
+      "lessonId": "level-02-week-08-04-recyclerview-lists"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

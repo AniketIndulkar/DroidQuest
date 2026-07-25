@@ -1,0 +1,235 @@
+{
+  "id": "level-03-week-12-04-gestures-pointer-input",
+  "title": "Gestures, Pointer Input, and Interaction",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 12,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-03-canvas-custom-drawing"
+  ],
+  "tags": [
+    "compose",
+    "gestures",
+    "pointer-input"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "High-level interaction modifiers provide semantics and expected behaviour, while custom pointer handling must coordinate consumption, cancellation, and accessibility.",
+      "realWorldUse": "Tap, long press, drag, transform, swipe, and custom chart interactions require the correct abstraction level.",
+      "outcome": "Prefer semantic components, select a gesture detector, key pointerInput correctly, and model gesture state without conflicts."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Begin with the highest semantic abstraction",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Button, IconButton, clickable, toggleable, selectable, and scrollable encode more than raw touch: semantics, focus, keyboard input, indications, and accessibility actions. Prefer the component or modifier matching user intent. combinedClickable supports related tap and long-click behaviour. draggable and transformable handle specialised continuous interactions. Use pointerInput only when higher-level APIs cannot express the gesture because raw handling requires rebuilding semantics, focus alternatives, and interaction feedback."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Modifier.pointerInput(onDragFinished) {\n    detectDragGestures(\n        onDragEnd = { onDragFinished(offset) },\n        onDragCancel = { offset = Offset.Zero },\n        onDrag = { change, amount -> change.consume(); offset += amount }\n    )\n}",
+              "caption": "The detector consumes owned movement and defines both completion and cancellation."
+            },
+            {
+              "type": "table",
+              "title": "Input abstraction",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Action control",
+                  "Button or clickable"
+                ],
+                [
+                  "Binary state",
+                  "toggleable or semantic component"
+                ],
+                [
+                  "Standard drag",
+                  "draggable"
+                ],
+                [
+                  "Transform gesture",
+                  "transformable"
+                ],
+                [
+                  "Truly custom gesture",
+                  "pointerInput plus semantics"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Pointer input is a cancellable coroutine",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "pointerInput launches a coroutine for a modifier node. Its keys define when input handling is cancelled and restarted, so include detector identity or values that truly change the gesture policy. awaitPointerEventScope receives events through passes, and gesture detectors such as detectTapGestures or detectDragGestures manage common recognition. Top-level detectors are often blocking loops, so place independent detectors in separate pointerInput modifiers. Handle cancellation and use velocity or touch slop APIs rather than inventing device-specific constants."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Modifier.pointerInput(onDragFinished) {\n    detectDragGestures(\n        onDragEnd = { onDragFinished(offset) },\n        onDragCancel = { offset = Offset.Zero },\n        onDrag = { change, amount -> change.consume(); offset += amount }\n    )\n}",
+              "caption": "The detector consumes owned movement and defines both completion and cancellation."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Start at the highest level",
+              "text": "Semantic interaction APIs include behaviour that raw pointer events do not provide."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Gesture arbitration needs one policy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Nested handlers compete and cooperate through event consumption. A child can consume movement while parents observe remaining changes; nested scrolling separately coordinates scroll deltas and flings. Define who owns each gesture, what cancels it, and how mouse, stylus, keyboard, and accessibility users perform the same action. Keep transient drag offset in observable UI state and commit durable reorder or value changes through an event. Test multi-touch, interrupted gestures, edge coordinates, RTL direction, and minimum touch targets."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Touch is not the only input",
+              "text": "Every custom gesture needs keyboard, focus, and accessibility alternatives where the action matters."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Pointer input in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/pointer-input",
+          "whyRead": "Maps component, modifier, and raw pointer abstraction levels."
+        },
+        {
+          "title": "Understand gestures",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/understand-gestures",
+          "whyRead": "Explains event dispatch, consumption, detectors, and testing."
+        },
+        {
+          "title": "Handle user interactions",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/user-interactions/handling-interactions",
+          "whyRead": "Covers InteractionSource, indications, and component interaction state."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Replace a raw tap box",
+      "language": "kotlin",
+      "code": "Box(Modifier.pointerInput(Unit) { detectTapGestures { save() } }) {\n    Icon(Icons.Default.Save, null)\n}",
+      "walkthrough": [
+        "Raw tap detection provides no button role, label, focus action, or standard indication.",
+        "Keyboard and accessibility users cannot discover an equivalent Save action.",
+        "Use IconButton with an action description unless custom gesture semantics are required."
+      ],
+      "expectedOutput": "Save is operable and announced across touch, keyboard, and accessibility input."
+    },
+    "trap_check": [
+      {
+        "mistake": "Putting two blocking detectors sequentially in one pointerInput block.",
+        "why": "The first detector loop prevents the second from running.",
+        "fix": "Use a combined detector or separate pointerInput modifier nodes."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a drag reorder handle with cancellation, stable item identity, haptic or visual feedback, and equivalent keyboard and accessibility actions.",
+      "successLooksLike": "Drag state resets on cancellation. Rows retain stable IDs after movement. Non-touch users can move items."
+    },
+    "recall": [
+      {
+        "prompt": "Why prefer Button over raw tap detection?",
+        "answer": "It supplies semantics, focus, feedback, and expected interaction."
+      },
+      {
+        "prompt": "What do pointerInput keys control?",
+        "answer": "Cancellation and restart of the input coroutine."
+      },
+      {
+        "prompt": "What should drag cancellation do?",
+        "answer": "Return transient gesture state to a defined safe state."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-12-04-gestures-pointer-input",
+  "challengeId": "challenge-level-03-week-12-04-gestures-pointer-input",
+  "revision": {
+    "objectives": [
+      "Choose an interaction abstraction.",
+      "Implement cancellable custom gestures.",
+      "Provide non-touch equivalents."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/touch-input/pointer-input",
+    "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/understand-gestures",
+    "https://developer.android.com/develop/ui/compose/touch-input/user-interactions/handling-interactions"
+  ],
+  "version": "0.5.0"
+}

@@ -1,0 +1,221 @@
+{
+  "id": "level-01-week-01-01-first-program",
+  "title": "How a Kotlin Program Works",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [],
+  "tags": [
+    "kotlin",
+    "main-function",
+    "output"
+  ],
+  "estimatedLearningMinutes": 8,
+  "revealStages": {
+    "scout": {
+      "purpose": "Programming starts with learning how written instructions become observable behaviour. This mental model makes every later Kotlin feature easier to place.",
+      "realWorldUse": "Android applications are larger programs, but the same path remains: source code is checked, translated, run, and observed through output or UI behaviour.",
+      "outcome": "Read, run, and explain a small Kotlin program from its entry point to its output."
+    },
+    "learn": {
+      "estimatedMinutes": 8,
+      "sections": [
+        {
+          "id": "source-code-and-behaviour",
+          "title": "Source code becomes behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A program is an ordered set of instructions written in a programming language. Kotlin source files normally end in .kt. You write human-readable declarations and expressions; Kotlin tooling checks that they follow the language rules and translates them into instructions a runtime can execute. A syntax error means the text is not valid Kotlin. A logic error means the program runs but does the wrong thing. Learning to separate those two failure classes will save time throughout the course."
+            },
+            {
+              "type": "flow",
+              "title": "From source file to result",
+              "steps": [
+                {
+                  "id": "write",
+                  "label": "Write",
+                  "detail": "Create or edit Kotlin source code."
+                },
+                {
+                  "id": "check",
+                  "label": "Check",
+                  "detail": "The compiler checks syntax and types."
+                },
+                {
+                  "id": "compile",
+                  "label": "Compile",
+                  "detail": "Valid code becomes executable JVM bytecode."
+                },
+                {
+                  "id": "run",
+                  "label": "Run",
+                  "detail": "The runtime begins at the entry point."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Output reveals what the program did."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Compiler as guide",
+              "text": "A compiler error is precise evidence that a rule was broken. Read the first error before changing code at random."
+            }
+          ]
+        },
+        {
+          "id": "entry-point",
+          "title": "The entry point and function body",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A standalone Kotlin program begins in a function named main. The fun keyword declares a function, main is its name, parentheses hold its parameters, and braces contain its body. Execution proceeds through the body from top to bottom unless another construct changes the flow. Blank lines and indentation help people read the program; braces and other syntax tell the compiler how it is structured."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun main() {\n    println(\"Welcome to DroidQuest\")\n    println(\"Week 1 begins\")\n}",
+              "caption": "Execution enters main and performs each println call in order."
+            },
+            {
+              "type": "paragraph",
+              "text": "The code calls println twice. Calling a function means asking a named piece of behaviour to run. Each call receives text between parentheses. Kotlin string literals use double quotes. println writes its value and then starts a new line, so the two messages appear on separate lines. A statement performs an action; an expression produces a value. Kotlin uses expressions extensively, and later lessons will combine produced values into decisions and calculations."
+            }
+          ]
+        },
+        {
+          "id": "reading-and-changing",
+          "title": "Read, predict, change, run",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A reliable learning loop is predict, run, compare, and explain. First read the program and write down the output you expect. Run it only after committing to a prediction. If the result differs, locate the first instruction where your mental model diverged. Then make one small change and repeat. This is more effective than copying a large example because every run tests a specific belief about the language."
+            },
+            {
+              "type": "table",
+              "title": "Useful first-program symbols",
+              "columns": [
+                "Symbol",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "fun",
+                  "Declares a function."
+                ],
+                [
+                  "main",
+                  "Names the starting function for this program."
+                ],
+                [
+                  "{ }",
+                  "Groups the function body."
+                ],
+                [
+                  "( )",
+                  "Supplies arguments to a function call."
+                ],
+                [
+                  "\"text\"",
+                  "Creates a String literal."
+                ],
+                [
+                  "//",
+                  "Starts a comment that the runtime ignores."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Comments explain intent to future readers and begin with two forward slashes for a single line. They should clarify why a choice exists, not repeat an obvious instruction. When code changes, stale comments become misleading, so keep the code simple and comments purposeful. For now, use comments to record a prediction or label an experiment, then verify that comments do not affect program output."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Your first program in Kotlin",
+          "publisher": "Android Developers",
+          "resourceType": "codelab",
+          "url": "https://developer.android.com/codelabs/basic-android-kotlin-compose-first-program",
+          "whyRead": "A guided browser exercise for running, changing, and troubleshooting the same entry-point and output concepts."
+        },
+        {
+          "title": "Kotlin tour: Hello world",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/kotlin-tour-hello-world.html",
+          "whyRead": "A concise official recap of main, println, functions, and the structure of a first Kotlin program."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace a three-line greeting",
+      "language": "kotlin",
+      "code": "fun main() {\n    println(\"Hello\")\n    // This line is ignored by the runtime.\n    println(\"Android learner\")\n    print(\"Ready\")\n}",
+      "walkthrough": [
+        "Execution begins inside the body of main.",
+        "The first println writes Hello and moves to a new line; the comment produces no output.",
+        "The second println adds another line, while print writes Ready without adding a final line break."
+      ],
+      "expectedOutput": "Hello\nAndroid learner\nReady"
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing text without surrounding double quotes.",
+        "why": "Kotlin treats an unquoted word as an identifier and looks for a declaration with that name.",
+        "fix": "Use a string literal such as println(\"Ready\")."
+      },
+      {
+        "mistake": "Changing several lines before running the program again.",
+        "why": "When output changes, you cannot tell which edit caused the result or introduced the error.",
+        "fix": "Make one deliberate change, predict its effect, then run."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a Kotlin program that prints a three-line learner profile and includes one useful comment.",
+      "successLooksLike": "The output order matches the source, all text is quoted, and the comment explains intent without appearing in the output."
+    },
+    "recall": [
+      {
+        "prompt": "Where does a standalone Kotlin program begin?",
+        "answer": "Execution begins in the function named main."
+      },
+      {
+        "prompt": "What is the difference between syntax and logic errors?",
+        "answer": "Syntax errors break language rules; logic errors run but produce unintended behaviour."
+      },
+      {
+        "prompt": "Why predict output before running code?",
+        "answer": "The comparison exposes where your mental model differs from actual execution."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-01-first-program",
+  "challengeId": "challenge-level-01-week-01-01-first-program",
+  "revision": {
+    "objectives": [
+      "Identify the entry point and body of a Kotlin program.",
+      "Predict the order and formatting of simple console output.",
+      "Distinguish compiler feedback from incorrect program logic."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/basic-syntax.html",
+    "https://kotlinlang.org/docs/kotlin-tour-hello-world.html"
+  ],
+  "version": "0.2.0"
+}

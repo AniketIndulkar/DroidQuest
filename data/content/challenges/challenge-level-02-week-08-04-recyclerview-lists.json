@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-08-04-recyclerview-lists",
+  "title": "Build a Correct Notes List",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-04-recyclerview-lists",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Implement a ListAdapter notes screen with View Binding, immutable rows, stable ID diffing, pinned state, clicks, empty state, and rapid-update tests.",
+  "successCriteria": [
+    "Recycled rows never show stale pinned or selected state.",
+    "Clicks always report the current stable note ID.",
+    "Diff callbacks distinguish identity from content correctly."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Recycled rows never show stale pinned or selected state.",
+    "Use lifecycle or boundary evidence to prove: Clicks always report the current stable note ID."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NotesAdapter(\n    private val onClick: (String) -> Unit,\n) : ListAdapter<NoteRow, NoteHolder>(NoteDiff)"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Recycled rows never show stale pinned or selected state.",
+    "Implement the smallest design that guarantees: Clicks always report the current stable note ID.",
+    "Implement the smallest design that guarantees: Diff callbacks distinguish identity from content correctly."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that recycled rows never show stale pinned or selected state.",
+    "Run a focused check demonstrating that clicks always report the current stable note ID.",
+    "Run a focused check demonstrating that diff callbacks distinguish identity from content correctly."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

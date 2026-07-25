@@ -1,0 +1,38 @@
+{
+  "id": "challenge-level-01-week-01-07-small-program-design",
+  "title": "Week 1 Expense Entry",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-07-small-program-design",
+  "difficulty": "beginner",
+  "estimatedMinutes": 60,
+  "prompt": "Build the Week 1 command-line expense entry: normalise and parse amount text, validate amount and category, calculate a summary, and present a clear success or failure result.",
+  "successCriteria": [
+    "The program has explicit examples for every required failure path.",
+    "Parsing, validation, and formatting are separate focused functions.",
+    "Invalid external text cannot crash the program.",
+    "A manual trace documents data at every pipeline stage."
+  ],
+  "hints": [
+    "Write input-output examples before completing the functions.",
+    "Keep raw String handling near the boundary and typed logic inside."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun parseAmount(raw: String): Double? = TODO()\nfun isValidExpense(amount: Double, category: String): Boolean = TODO()\nfun summary(amount: Double, category: String): String = TODO()\n\nfun main() {\n    val rawAmount = \"12.50\"\n    val category = \"Travel\"\n    // Coordinate the complete pipeline.\n}"
+  },
+  "solutionOutline": [
+    "Define successful and failing examples.",
+    "Implement parsing, validation, and presentation contracts.",
+    "Coordinate explicit failure branches in main.",
+    "Trace and refine the program with one change at a time."
+  ],
+  "verification": [
+    "Run positive, zero, negative, non-numeric, and blank-category examples.",
+    "Predict each result before running and explain any mismatch."
+  ],
+  "rewards": {
+    "xp": 180,
+    "stars": 5
+  },
+  "version": "0.2.0"
+}

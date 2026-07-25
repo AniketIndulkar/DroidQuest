@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-05-stateflow-sharedflow-events",
+  "title": "StateFlow, SharedFlow, and Events Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-05-stateflow-sharedflow-events"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-05-stateflow-sharedflow-events-decision",
+      "prompt": "Which type best exposes complete current screen state?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "StateFlow",
+      "explanation": "It always provides a current conflated state snapshot to collectors.",
+      "lessonId": "level-04-week-15-05-stateflow-sharedflow-events",
+      "options": [
+        "StateFlow",
+        "SharedFlow with no replay",
+        "A raw callback list",
+        "GlobalScope"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-05-stateflow-sharedflow-events-truth",
+      "prompt": "SharedFlow with replay zero durably retains events while nobody collects.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Such emissions can be lost when no subscriber is active.",
+      "lessonId": "level-04-week-15-05-stateflow-sharedflow-events"
+    },
+    {
+      "id": "q-level-04-week-15-05-stateflow-sharedflow-events-recall",
+      "prompt": "How should MutableStateFlow be exposed?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "As read-only StateFlow",
+      "explanation": "The owner preserves mutation authority and invariants.",
+      "lessonId": "level-04-week-15-05-stateflow-sharedflow-events"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

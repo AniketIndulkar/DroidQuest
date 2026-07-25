@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-09-03-row-column-box-layout",
+  "title": "Build a Responsive Note Row and Pane",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-09-03-row-column-box-layout",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 50,
+  "prompt": "Create a note row that survives long text and a compact/expanded list-detail layout sharing one selection state.",
+  "successCriteria": [
+    "Row actions retain accessible touch size.",
+    "Large fonts and RTL remain usable.",
+    "Changing available width does not reset selection."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun NotesPane(state: NotesUiState, modifier: Modifier = Modifier)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

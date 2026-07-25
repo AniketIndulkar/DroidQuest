@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-02-single-flight-token-refresh",
+  "title": "Single-flight Token Refresh and Concurrent 401s Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-02-single-flight-token-refresh"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-02-single-flight-token-refresh-decision",
+      "prompt": "What should twenty concurrent 401s for one token generation trigger?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "One shared refresh",
+      "explanation": "Single-flight prevents refresh storms and rotating-token races.",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh",
+      "options": [
+        "One shared refresh",
+        "Twenty independent refreshes",
+        "Infinite request replay",
+        "Immediate app reinstall"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-02-single-flight-token-refresh-truth",
+      "prompt": "Every HTTP 401 should be retried forever after refreshing.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Refresh and replay are bounded and only appropriate for a stale refreshable credential.",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh"
+    },
+    {
+      "id": "q-level-04-week-17-02-single-flight-token-refresh-recall",
+      "prompt": "Why use token generation?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "To detect that another caller already refreshed",
+      "explanation": "Waiters can reuse newer state instead of starting redundant work.",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

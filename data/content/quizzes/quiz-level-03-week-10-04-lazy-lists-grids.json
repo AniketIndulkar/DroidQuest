@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-10-04-lazy-lists-grids",
+  "title": "Lazy Lists and Grids Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-10-04-lazy-lists-grids"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-10-04-lazy-lists-grids-decision",
+      "prompt": "Which key suits reorderable note rows?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Stable note ID",
+      "explanation": "Domain identity preserves item state when positions change.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids",
+      "options": [
+        "Stable note ID",
+        "Current index",
+        "Random number",
+        "No key ever"
+      ]
+    },
+    {
+      "id": "q-level-03-week-10-04-lazy-lists-grids-truth",
+      "prompt": "An unbounded vertical LazyColumn inside verticalScroll is a safe default.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Same-axis scrolling can create infinite constraints and competing gesture ownership.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids"
+    },
+    {
+      "id": "q-level-03-week-10-04-lazy-lists-grids-recall",
+      "prompt": "What owns lazy list position?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "LazyListState",
+      "explanation": "The state object exposes layout position and scroll operations.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

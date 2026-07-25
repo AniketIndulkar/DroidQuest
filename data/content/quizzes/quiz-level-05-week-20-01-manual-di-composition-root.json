@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-20-01-manual-di-composition-root",
+  "title": "Manual Dependency Injection and the Composition Root Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-01-manual-di-composition-root"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-01-manual-di-composition-root-decision",
+      "prompt": "Which approach best demonstrates sound manual dependency injection and the composition root?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Build a manual application, signed-in, and payment-flow container; prove instance lifetime, account switch disposal, and direct unit construction with fakes.",
+        "Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Build a manual application, signed-in, and payment-flow container; prove instance lifetime, account switch disposal, and direct unit construction with fakes.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root"
+    },
+    {
+      "id": "q-level-05-week-20-01-manual-di-composition-root-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root"
+    },
+    {
+      "id": "q-level-05-week-20-01-manual-di-composition-root-recall",
+      "prompt": "What evidence should accompany the manual dependency injection and the composition root decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

@@ -1,0 +1,109 @@
+{
+  "id": "quiz-level-02-week-05-checkpoint",
+  "title": "Week 5 Android Build Foundations Checkpoint",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-01-studio-sdk-emulator",
+    "level-02-week-05-02-projects-modules-source-sets",
+    "level-02-week-05-03-gradle-agp-build-flow",
+    "level-02-week-05-04-manifest-resources-identity",
+    "level-02-week-05-05-sdk-levels-variants-packaging"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-05-checkpoint-01",
+      "prompt": "What is an Android Virtual Device?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A saved emulator hardware and system-image configuration",
+      "explanation": "An AVD defines the virtual device that the emulator process boots.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator",
+      "options": [
+        "A saved emulator hardware and system-image configuration",
+        "The final Play Store bundle",
+        "A Kotlin compiler plugin",
+        "A Git branch"
+      ]
+    },
+    {
+      "id": "q-week-05-checkpoint-02",
+      "prompt": "Order the boundaries in a normal run.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "compile and package",
+        "connect to device",
+        "install APK",
+        "launch activity"
+      ],
+      "explanation": "The app must be built before it can be installed and launched on a connected target.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator"
+    },
+    {
+      "id": "q-week-05-checkpoint-03",
+      "prompt": "Which module type produces an installable Android application?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Application module",
+      "explanation": "The Android application plugin packages the installable artifact and application identity.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets",
+      "options": [
+        "Application module",
+        "Pure Kotlin library only",
+        "Documentation module",
+        "Version catalog"
+      ]
+    },
+    {
+      "id": "q-week-05-checkpoint-04",
+      "prompt": "Match each source set to its role.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "main": "shared production sources",
+        "test": "local JVM tests",
+        "androidTest": "device tests",
+        "debug": "debug build-type overlay"
+      },
+      "explanation": "Source-set names determine which variant or test compilation receives their files.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets"
+    },
+    {
+      "id": "q-week-05-checkpoint-05",
+      "prompt": "What is the main purpose of the Gradle wrapper?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Run the project-declared Gradle distribution",
+      "explanation": "Checked-in wrapper configuration gives local and CI builds the intended Gradle version.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow",
+      "options": [
+        "Run the project-declared Gradle distribution",
+        "Replace the Android SDK",
+        "Create emulator hardware",
+        "Store app user data"
+      ]
+    },
+    {
+      "id": "q-week-05-checkpoint-06",
+      "prompt": "Order the broad Gradle build phases.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "initialise build",
+        "configure projects and tasks",
+        "resolve required inputs",
+        "execute task graph"
+      ],
+      "explanation": "Gradle discovers the build, configures its model, resolves requested inputs, and then executes required tasks.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

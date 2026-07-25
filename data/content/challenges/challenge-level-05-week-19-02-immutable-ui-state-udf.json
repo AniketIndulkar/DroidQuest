@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-19-02-immutable-ui-state-udf",
+  "title": "Apply Immutable UI State and Unidirectional Data Flow",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-19-02-immutable-ui-state-udf",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Model a transfer form as immutable state, enumerate events and legal transitions, then test invalid input, submission, duplicate taps, failure, and successful recreation.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class TransferUiState(\n  val form: TransferForm,\n  val status: SubmitStatus\n)\n\nfun reduce(state: TransferUiState, event: TransferEvent): TransferUiState =\n  when (event) { /* pure transitions */ }"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

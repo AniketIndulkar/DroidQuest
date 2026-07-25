@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-03-jetpack-compose",
+  "title": "Jetpack Compose Level Complete",
+  "description": "Awarded for mastering declarative state, effects, adaptive accessible UI, testing, performance, and the shopping capstone.",
+  "categoryId": "level-03-jetpack-compose",
+  "icon": "compose-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-03-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 700,
+  "rarity": "epic",
+  "version": "0.6.0"
+}

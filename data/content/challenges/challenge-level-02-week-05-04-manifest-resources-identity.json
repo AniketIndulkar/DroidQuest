@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-05-04-manifest-resources-identity",
+  "title": "Audit a Merged Manifest",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-05-04-manifest-resources-identity",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Create a manifest-and-resources audit for a Notes app with one launcher activity, a debug application ID suffix, default strings, and one locale alternative.",
+  "successCriteria": [
+    "Every exported component has a documented reason.",
+    "Namespace and both variant application IDs are recorded.",
+    "All alternative string resources have defaults with compatible formatting arguments."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Every exported component has a documented reason.",
+    "Use lifecycle or boundary evidence to prove: Namespace and both variant application IDs are recorded."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "<manifest>\n    <application>\n        <!-- Declare the launcher safely. -->\n    </application>\n</manifest>"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Every exported component has a documented reason.",
+    "Implement the smallest design that guarantees: Namespace and both variant application IDs are recorded.",
+    "Implement the smallest design that guarantees: All alternative string resources have defaults with compatible formatting arguments."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that every exported component has a documented reason.",
+    "Run a focused check demonstrating that namespace and both variant application IDs are recorded.",
+    "Run a focused check demonstrating that all alternative string resources have defaults with compatible formatting arguments."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

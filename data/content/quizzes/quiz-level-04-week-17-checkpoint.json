@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-04-week-17-checkpoint",
+  "title": "Week 17 Checkpoint",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-01-oauth-tokens-session-security",
+    "level-04-week-17-02-single-flight-token-refresh",
+    "level-04-week-17-03-paging3-cursors-loadstates",
+    "level-04-week-17-04-multipart-upload-progress",
+    "level-04-week-17-05-websockets-sse-realtime",
+    "level-04-week-17-06-connectivity-policy-network-capabilities"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-17-checkpoint-01",
+      "prompt": "What should a native Android OAuth client use instead of an embedded secret?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Authorization Code with PKCE",
+      "explanation": "PKCE binds the authorization response without pretending the installed client can hide a secret.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security",
+      "options": [
+        "Authorization Code with PKCE",
+        "A hard-coded password",
+        "A logged refresh token",
+        "HTTP without TLS"
+      ]
+    },
+    {
+      "id": "q-week-17-checkpoint-02",
+      "prompt": "An ID token should automatically be used as an API bearer token.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "ID tokens describe authentication to a client, while access tokens target resource authorization.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security"
+    },
+    {
+      "id": "q-week-17-checkpoint-03",
+      "prompt": "What should twenty concurrent 401s for one token generation trigger?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "One shared refresh",
+      "explanation": "Single-flight prevents refresh storms and rotating-token races.",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh",
+      "options": [
+        "One shared refresh",
+        "Twenty independent refreshes",
+        "Infinite request replay",
+        "Immediate app reinstall"
+      ]
+    },
+    {
+      "id": "q-week-17-checkpoint-04",
+      "prompt": "Every HTTP 401 should be retried forever after refreshing.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Refresh and replay are bounded and only appropriate for a stale refreshable credential.",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh"
+    },
+    {
+      "id": "q-week-17-checkpoint-05",
+      "prompt": "How should an opaque next cursor be handled?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Returned unchanged to the next request",
+      "explanation": "Only the server defines cursor continuation meaning.",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates",
+      "options": [
+        "Returned unchanged to the next request",
+        "Converted to a list index",
+        "Sorted alphabetically",
+        "Decoded as a timestamp without contract"
+      ]
+    },
+    {
+      "id": "q-week-17-checkpoint-06",
+      "prompt": "Append failure should always replace existing content with a blank full-screen error.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Existing items remain useful while an append-specific retry is shown.",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates"
+    },
+    {
+      "id": "q-week-17-checkpoint-07",
+      "prompt": "How should a large content URI be uploaded?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "As a streaming RequestBody",
+      "explanation": "Streaming keeps memory bounded and works with provider-backed content.",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress",
+      "options": [
+        "As a streaming RequestBody",
+        "By guessing a filesystem path",
+        "By loading all bytes into memory",
+        "By logging its content"
+      ]
+    },
+    {
+      "id": "q-week-17-checkpoint-08",
+      "prompt": "A retried upload is safe even if every attempt creates a new server ID.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A lost response can create duplicates without stable idempotent identity.",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress"
+    }
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

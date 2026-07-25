@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-08-01-xml-view-hierarchies",
+  "title": "Build an Adaptive XML Note Editor",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-01-xml-view-hierarchies",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Create an accessible XML editor that adapts to long text, RTL, large fonts, portrait, landscape, and a narrow multi-window size.",
+  "successCriteria": [
+    "The hierarchy has a reason for every container.",
+    "All controls expose labels and usable touch/focus behaviour.",
+    "No user-visible string or dimension is hard-coded in Kotlin."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: The hierarchy has a reason for every container.",
+    "Use lifecycle or boundary evidence to prove: All controls expose labels and usable touch/focus behaviour."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "<androidx.constraintlayout.widget.ConstraintLayout>\n    <!-- Title, body, and save action -->\n</androidx.constraintlayout.widget.ConstraintLayout>"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: The hierarchy has a reason for every container.",
+    "Implement the smallest design that guarantees: All controls expose labels and usable touch/focus behaviour.",
+    "Implement the smallest design that guarantees: No user-visible string or dimension is hard-coded in Kotlin."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that the hierarchy has a reason for every container.",
+    "Run a focused check demonstrating that all controls expose labels and usable touch/focus behaviour.",
+    "Run a focused check demonstrating that no user-visible string or dimension is hard-coded in Kotlin."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

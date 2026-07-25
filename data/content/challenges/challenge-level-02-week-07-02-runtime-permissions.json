@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-07-02-runtime-permissions",
+  "title": "Design an Optional Voice-Note Permission Flow",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-07-02-runtime-permissions",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Design and implement a microphone feature that requests only on user action, supports denial and revocation, and leaves text notes fully usable.",
+  "successCriteria": [
+    "Every permission state has visible product behaviour.",
+    "A denial never loops or blocks note editing.",
+    "Tests cover revocation while the app is backgrounded."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Every permission state has visible product behaviour.",
+    "Use lifecycle or boundary evidence to prove: A denial never loops or blocks note editing."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface MicrophoneAccessUi\n// Model available, explanation, denied, and settings-assisted states."
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Every permission state has visible product behaviour.",
+    "Implement the smallest design that guarantees: A denial never loops or blocks note editing.",
+    "Implement the smallest design that guarantees: Tests cover revocation while the app is backgrounded."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that every permission state has visible product behaviour.",
+    "Run a focused check demonstrating that a denial never loops or blocks note editing.",
+    "Run a focused check demonstrating that tests cover revocation while the app is backgrounded."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

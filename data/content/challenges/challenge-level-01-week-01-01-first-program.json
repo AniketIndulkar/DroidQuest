@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-01-first-program",
+  "title": "Print a Learner Profile",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-01-first-program",
+  "difficulty": "beginner",
+  "estimatedMinutes": 15,
+  "prompt": "Write a standalone Kotlin program that prints your name, learning goal, and current week on separate lines, with one comment explaining why the program exists.",
+  "successCriteria": [
+    "Execution starts in main and the source compiles.",
+    "The three output lines appear in the intended order.",
+    "One comment explains intent and produces no output."
+  ],
+  "hints": [
+    "Begin with fun main() and place calls inside its braces.",
+    "Use println for each line and surround text with double quotes."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun main() {\n    // Explain the purpose here.\n    TODO(\"Print the learner profile\")\n}"
+  },
+  "solutionOutline": [
+    "Declare main as the entry point.",
+    "Use three println calls with meaningful text.",
+    "Run once after predicting the exact output."
+  ],
+  "verification": [
+    "Compare every output line with your prediction.",
+    "Remove one quote temporarily and read the compiler error before restoring it."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

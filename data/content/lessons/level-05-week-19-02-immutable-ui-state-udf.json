@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-19-02-immutable-ui-state-udf",
+  "title": "Immutable UI State and Unidirectional Data Flow",
+  "categoryId": "level-05-production-architecture",
+  "week": 19,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-19-01-layers-boundaries-dependency-direction"
+  ],
+  "tags": [
+    "architecture",
+    "ui-state",
+    "udf"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes immutable ui state and unidirectional data flow a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "UI state is an immutable snapshot containing everything a screen needs to render now. It is output, not a bag of commands. A state holder combines repository streams, saved inputs, and user intent into that snapshot. The UI reads state and emits events in the opposite direction. This unidirectional loop makes mutation traceable: a user action enters one boundary, policy changes authoritative data, and a new state snapshot returns to the renderer."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class TransferUiState(\n  val form: TransferForm,\n  val status: SubmitStatus\n)\n\nfun reduce(state: TransferUiState, event: TransferEvent): TransferUiState =\n  when (event) { /* pure transitions */ }",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Model meaningful combinations rather than independent Booleans. Three flags such as loading, error, and empty can express contradictory states. A sealed screen state can make impossible combinations unrepresentable, while a data class works well when content remains visible during refresh. Decide whether stale content, validation errors, and pending writes can coexist. The model should match product behaviour, not a fashionable type shape. Expose immutable StateFlow and update private mutable state atomically."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "State",
+                  "Always exists and is rendered"
+                ],
+                [
+                  "Event",
+                  "Happens and may change state"
+                ],
+                [
+                  "Reducer",
+                  "Applies a deterministic transition"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A reducer is useful when many events transform one state, but it must not become a dumping ground for I/O. Keep a reducer pure where possible: current state plus event yields a new state or a declared effect request. Repository changes can then feed back as state. Test sequences, not implementation calls: loading to content, edit to validation, retry to recovery. UDF succeeds when the same inputs reproduce the same visible outcome after recreation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Representing loading, content, empty, and error with unrelated flags that can contradict each other."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "UI layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/ui-layer",
+          "whyRead": "Defines UI elements, state holders, UI state, UDF, and ownership of UI logic."
+        },
+        {
+          "title": "UI state production",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/ui-layer/state-production",
+          "whyRead": "Explains state production as inputs, state holders, and renderable output."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Immutable UI State and Unidirectional Data Flow boundary",
+      "language": "kotlin",
+      "code": "data class TransferUiState(\n  val form: TransferForm,\n  val status: SubmitStatus\n)\n\nfun reduce(state: TransferUiState, event: TransferEvent): TransferUiState =\n  when (event) { /* pure transitions */ }",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Representing loading, content, empty, and error with unrelated flags that can contradict each other.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Model a transfer form as immutable state, enumerate events and legal transitions, then test invalid input, submission, duplicate taps, failure, and successful recreation.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should immutable ui state and unidirectional data flow solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-19-02-immutable-ui-state-udf",
+  "challengeId": "challenge-level-05-week-19-02-immutable-ui-state-udf",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Immutable UI State and Unidirectional Data Flow.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture/ui-layer",
+    "https://developer.android.com/topic/architecture/ui-layer/state-production"
+  ],
+  "version": "0.8.0"
+}

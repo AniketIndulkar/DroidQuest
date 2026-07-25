@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-03-datastore-and-file-storage",
+  "title": "DataStore and App File Storage Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-03-datastore-and-file-storage"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-03-datastore-and-file-storage-decision",
+      "prompt": "Where should a relational article catalogue be stored?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Room",
+      "explanation": "Relational queries, indices, partial updates, and integrity need a database.",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage",
+      "options": [
+        "Room",
+        "One Preferences DataStore string",
+        "A cache filename list",
+        "A Compose remember block"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-03-datastore-and-file-storage-truth",
+      "prompt": "Cache files are suitable as the only copy of user-created data.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Cache storage is reclaimable and contains only reconstructable bytes.",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage"
+    },
+    {
+      "id": "q-level-04-week-18-03-datastore-and-file-storage-recall",
+      "prompt": "What must a DataStore update transformation avoid?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "External side effects",
+      "explanation": "The atomic transform may be evaluated again and should remain pure.",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

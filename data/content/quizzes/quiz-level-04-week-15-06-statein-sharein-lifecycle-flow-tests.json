@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "title": "stateIn, shareIn, Lifecycle, and Flow Tests Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-06-statein-sharein-lifecycle-flow-tests-decision",
+      "prompt": "Why might a WhileSubscribed stateIn test stay at its initial value?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "No collector started upstream",
+      "explanation": "The start strategy activates upstream only while at least one subscriber exists.",
+      "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+      "options": [
+        "No collector started upstream",
+        "StateFlow cannot emit",
+        "runTest blocks all code",
+        "The value is always cached on disk"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-06-statein-sharein-lifecycle-flow-tests-truth",
+      "prompt": "shareIn automatically materialises every upstream exception to subscribers.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Upstream failure terminates the sharing coroutine unless handled before sharing.",
+      "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+    },
+    {
+      "id": "q-level-04-week-15-06-statein-sharein-lifecycle-flow-tests-recall",
+      "prompt": "What owns the sharing coroutine lifetime?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The scope passed to stateIn or shareIn",
+      "explanation": "Cancellation of that scope stops the shared upstream job.",
+      "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

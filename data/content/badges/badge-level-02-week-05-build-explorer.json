@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-02-week-05-build-explorer",
+  "title": "Android Build Explorer",
+  "description": "Awarded for explaining and operating the Android toolchain, build, compatibility, variants, and packaging boundaries.",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "icon": "build-explorer-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-02-week-05-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 250,
+  "rarity": "uncommon",
+  "version": "0.4.0"
+}

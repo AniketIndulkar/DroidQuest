@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-19-01-layers-boundaries-dependency-direction",
+  "title": "Layers, Boundaries, and Dependency Direction Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-01-layers-boundaries-dependency-direction"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-01-layers-boundaries-dependency-direction-decision",
+      "prompt": "Which approach best demonstrates sound layers, boundaries, and dependency direction?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Draw the dependency map for a banking accounts feature, assign every state mutation and error translation to one owner, and remove any boundary that has no testable purpose.",
+        "Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Draw the dependency map for a banking accounts feature, assign every state mutation and error translation to one owner, and remove any boundary that has no testable purpose.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction"
+    },
+    {
+      "id": "q-level-05-week-19-01-layers-boundaries-dependency-direction-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction"
+    },
+    {
+      "id": "q-level-05-week-19-01-layers-boundaries-dependency-direction-recall",
+      "prompt": "What evidence should accompany the layers, boundaries, and dependency direction decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

@@ -1,0 +1,231 @@
+{
+  "id": "level-03-week-13-01-accessibility-semantics-talkback",
+  "title": "Accessibility Semantics and TalkBack",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 13,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-06-design-systems-compositionlocal"
+  ],
+  "tags": [
+    "compose",
+    "accessibility",
+    "semantics"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A visual composition needs an equivalent semantic structure so people using TalkBack, Switch Access, voice control, or tests can understand and operate it.",
+      "realWorldUse": "Cards, custom controls, charts, lists, headings, errors, and changing status all require meaningful roles, state, actions, and traversal.",
+      "outcome": "Inspect the semantics tree, prefer semantic components, merge related content deliberately, and validate a task manually with TalkBack."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Semantics describe meaning beside pixels",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose produces a semantics tree beside the visual composition. Material and foundation controls populate properties such as role, state, text, and actions, while Modifier.semantics can add meaning for custom content. A content description should communicate information unavailable in adjacent text, not narrate decoration. stateDescription describes a current state, heading supports structural navigation, liveRegion can announce important asynchronous changes, and collection metadata supplies position context. Begin with Button, Checkbox, Slider, and other semantic APIs before recreating behaviour from Box and pointer input."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Modifier.semantics {\n    heading()\n    stateDescription = if (inStock) \"In stock\" else \"Out of stock\"\n}\nIconButton(onClick = onAdd) { Icon(Icons.Default.Add, \"Add to basket\") }",
+              "caption": "Structure, current state, and an icon-only action become available beyond pixels."
+            },
+            {
+              "type": "table",
+              "title": "Semantic decision",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Standard control",
+                  "Prefer its built-in role and actions"
+                ],
+                [
+                  "Decorative image",
+                  "Use no content description"
+                ],
+                [
+                  "Custom gesture",
+                  "Provide an equivalent custom action"
+                ],
+                [
+                  "Grouped card",
+                  "Merge only when it forms one coherent target"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Merging and actions change the accessible unit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "mergeDescendants can turn a card containing text and an action into one coherent focus target, but nested clickable children may resist merging because they expose their own actions. clearAndSetSemantics replaces descendant meaning and can accidentally erase useful labels or actions. Custom accessibility actions let a complex gesture such as swipe-to-dismiss offer an equivalent menu action. Traversal should normally follow logical composition order; override it only when visual placement creates a genuinely confusing sequence. Semantics must describe the state users can act on now."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Modifier.semantics {\n    heading()\n    stateDescription = if (inStock) \"In stock\" else \"Out of stock\"\n}\nIconButton(onClick = onAdd) { Icon(Icons.Default.Add, \"Add to basket\") }",
+              "caption": "Structure, current state, and an icon-only action become available beyond pixels."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Semantics are product behaviour",
+              "text": "Labels, actions, state, and traversal are part of the feature contract, not optional metadata."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Automation complements human assistive-technology testing",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose UI tests query the same semantics tree, which makes clear semantics useful for both accessibility and robust tests. Automated accessibility checks can detect missing labels, small targets, contrast, and traversal issues, but they cannot judge whether wording, workflow, announcements, or focus movement makes sense. Complete core tasks using TalkBack and another relevant service, with the screen unseen when possible. Test loading-to-content transitions, validation errors, dialogs, list position, and custom controls rather than auditing only the landing screen."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not clear descendants casually",
+              "text": "clearAndSetSemantics removes existing meaning and can hide interactive children."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Accessibility in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/accessibility",
+          "whyRead": "Connects semantics, scalable content, traversal, inspection, and testing."
+        },
+        {
+          "title": "Compose semantics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/accessibility/semantics",
+          "whyRead": "Explains the semantics tree, properties, merging, actions, and collection information."
+        },
+        {
+          "title": "Accessibility in Compose codelab",
+          "publisher": "Android Developers",
+          "resourceType": "codelab",
+          "url": "https://developer.android.com/codelabs/jetpack-compose-accessibility",
+          "whyRead": "Provides a guided TalkBack and semantics audit."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Repair the unlabeled custom control",
+      "language": "kotlin",
+      "code": "Box(Modifier.size(40.dp).clickable { add() }) {\n    Icon(Icons.Default.Add, contentDescription = null)\n}",
+      "walkthrough": [
+        "The Box exposes click behaviour without the semantic identity of an Add action.",
+        "The icon is marked decorative, leaving no spoken label.",
+        "Use IconButton with an Add to basket description and verify target size."
+      ],
+      "expectedOutput": "TalkBack announces one actionable Add to basket control and activates it."
+    },
+    "trap_check": [
+      {
+        "mistake": "Adding content descriptions to every decorative icon.",
+        "why": "Duplicate announcements create noise and obscure the useful control label.",
+        "fix": "Use null for decoration and label the semantic action or meaningful image."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Make product browsing, variant selection, adding to basket, error recovery, and checkout summary operable and understandable through semantics and TalkBack.",
+      "successLooksLike": "Every control has meaningful role, state, and action. Focus order and announcements support the full task. Automated checks and a manual TalkBack script both pass."
+    },
+    "recall": [
+      {
+        "prompt": "What tree do accessibility services consume?",
+        "answer": "The Compose semantics tree."
+      },
+      {
+        "prompt": "When should descendants merge?",
+        "answer": "When they form one coherent accessible focus target."
+      },
+      {
+        "prompt": "What must custom gestures provide?",
+        "answer": "An equivalent semantic action."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-13-01-accessibility-semantics-talkback",
+  "challengeId": "challenge-level-03-week-13-01-accessibility-semantics-talkback",
+  "revision": {
+    "objectives": [
+      "Model roles, state, labels, and actions.",
+      "Inspect merged and unmerged semantics.",
+      "Complete a flow with TalkBack."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/accessibility",
+    "https://developer.android.com/develop/ui/compose/accessibility/semantics",
+    "https://developer.android.com/codelabs/jetpack-compose-accessibility"
+  ],
+  "version": "0.6.0"
+}

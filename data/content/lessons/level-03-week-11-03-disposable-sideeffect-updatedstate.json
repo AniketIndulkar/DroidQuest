@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "title": "DisposableEffect, SideEffect, and rememberUpdatedState",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 11,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-11-02-launched-effect-coroutine-scope"
+  ],
+  "tags": [
+    "compose",
+    "disposableeffect",
+    "interop"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Listeners and non-Compose integrations need balanced registration, post-composition publication, and current callbacks without accidental restarts.",
+      "realWorldUse": "Lifecycle observers, broadcast listeners, analytics properties, maps, and legacy view bridges require precise synchronisation.",
+      "outcome": "Register and dispose resources symmetrically, publish successful composition state, and keep callbacks fresh across long-lived effects."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "DisposableEffect owns a resource lifetime",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "DisposableEffect runs setup when it enters composition or its keys change and requires onDispose cleanup. It is appropriate for add and remove listener pairs, observers, or other resources that are not represented by a suspending coroutine. The resource identity belongs in the key. Cleanup must unregister exactly the instance created during setup and remain safe if disposal happens quickly. If no cleanup is required, another effect or an event is probably a clearer match."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val currentOnStop by rememberUpdatedState(onStop)\nDisposableEffect(lifecycleOwner) {\n    val observer = LifecycleEventObserver { _, event -> if (event == ON_STOP) currentOnStop() }\n    lifecycleOwner.lifecycle.addObserver(observer)\n    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }\n}",
+              "caption": "Observer identity follows the owner while its callback stays current."
+            },
+            {
+              "type": "table",
+              "title": "Interop effect",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Listener plus cleanup",
+                  "DisposableEffect"
+                ],
+                [
+                  "Publish committed state",
+                  "SideEffect"
+                ],
+                [
+                  "Latest callback, no restart",
+                  "rememberUpdatedState"
+                ],
+                [
+                  "Suspending lifecycle work",
+                  "LaunchedEffect"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "SideEffect publishes after success",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SideEffect runs after every successful recomposition and can publish current Compose state to an object that is not snapshot-aware, such as updating analytics user properties. It has no coroutine and no cleanup. Use it only when every successful state publication is intended; expensive or one-time operations do not belong there. Because failed or abandoned composition does not execute the SideEffect, the external object sees values that correspond to a committed UI description."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val currentOnStop by rememberUpdatedState(onStop)\nDisposableEffect(lifecycleOwner) {\n    val observer = LifecycleEventObserver { _, event -> if (event == ON_STOP) currentOnStop() }\n    lifecycleOwner.lifecycle.addObserver(observer)\n    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }\n}",
+              "caption": "Observer identity follows the owner while its callback stays current."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Separate identity from freshness",
+              "text": "Keys restart the resource; rememberUpdatedState updates a value used by that resource."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "rememberUpdatedState separates callback freshness from identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "rememberUpdatedState retains the latest value while keeping a stable State reference for a long-lived effect. A timeout effect keyed by Unit can call the newest onTimeout callback without cancelling and restarting its delay whenever a parent creates a new lambda. It does not make stale data problems disappear: decide deliberately that the value should update without changing the resource lifetime. Combine it with DisposableEffect for current observer callbacks or with LaunchedEffect for current completion behaviour."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Cleanup must be symmetrical",
+              "text": "Leaked or double-registered observers cause duplicate events and retain dead UI."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Side-effects in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/side-effects",
+          "whyRead": "Explains DisposableEffect, SideEffect, rememberUpdatedState, and correct keys."
+        },
+        {
+          "title": "Compose and other libraries",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/libraries",
+          "whyRead": "Shows integration boundaries between Compose and lifecycle-aware Android libraries."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the leaked observer",
+      "language": "kotlin",
+      "code": "DisposableEffect(owner) {\n    owner.lifecycle.addObserver(observer)\n    onDispose { }\n}",
+      "walkthrough": [
+        "The observer is registered when the effect enters.",
+        "Disposal performs no matching unregister operation.",
+        "Remove the exact observer instance in onDispose."
+      ],
+      "expectedOutput": "One observer exists while the owner is composed and none remains afterward."
+    },
+    "trap_check": [
+      {
+        "mistake": "Keying a timeout effect with a frequently recreated callback.",
+        "why": "The delay restarts even though only completion behaviour changed.",
+        "fix": "Keep the lifetime key stable and read the current callback with rememberUpdatedState."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Integrate a lifecycle observer and analytics property publisher while proving one registration, balanced cleanup, and latest callback behaviour.",
+      "successLooksLike": "Observer count returns to zero on disposal. Analytics receives only committed state. Callback changes do not restart the observer resource."
+    },
+    "recall": [
+      {
+        "prompt": "What must DisposableEffect provide?",
+        "answer": "An onDispose cleanup block."
+      },
+      {
+        "prompt": "When does SideEffect run?",
+        "answer": "After each successful recomposition."
+      },
+      {
+        "prompt": "What does rememberUpdatedState avoid?",
+        "answer": "Restarting an effect solely to refresh a captured value."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "challengeId": "challenge-level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "revision": {
+    "objectives": [
+      "Balance resource setup and disposal.",
+      "Publish committed state to interop objects.",
+      "Separate callback freshness from effect lifetime."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/side-effects",
+    "https://developer.android.com/develop/ui/compose/libraries"
+  ],
+  "version": "0.5.0"
+}

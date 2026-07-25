@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-05-01-studio-sdk-emulator",
+  "title": "Create a Toolchain Evidence Report",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-05-01-studio-sdk-emulator",
+  "difficulty": "beginner",
+  "estimatedMinutes": 40,
+  "prompt": "Create a reproducible environment report for one emulator and demonstrate separate build, connection, installation, and launch checks.",
+  "successCriteria": [
+    "Every relevant tool and platform version is recorded.",
+    "The emulator configuration includes API level and system-image type.",
+    "Each command is labelled with the boundary it verifies."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Every relevant tool and platform version is recorded.",
+    "Use lifecycle or boundary evidence to prove: The emulator configuration includes API level and system-image type."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "# Toolchain report\n\n## Versions\n## Device configuration\n## Boundary checks\n## First actionable failure"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Every relevant tool and platform version is recorded.",
+    "Implement the smallest design that guarantees: The emulator configuration includes API level and system-image type.",
+    "Implement the smallest design that guarantees: Each command is labelled with the boundary it verifies."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that every relevant tool and platform version is recorded.",
+    "Run a focused check demonstrating that the emulator configuration includes API level and system-image type.",
+    "Run a focused check demonstrating that each command is labelled with the boundary it verifies."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

@@ -1,0 +1,232 @@
+{
+  "id": "level-01-week-03-05-jvm-interop-memory",
+  "title": "JVM Interoperability, References, and Allocation",
+  "categoryId": "level-01-programming-foundations",
+  "week": 3,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-03-04-annotations-reflection-dsls"
+  ],
+  "tags": [
+    "kotlin",
+    "jvm",
+    "java-interop",
+    "memory"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Kotlin Android programs execute on ART using JVM-oriented bytecode and regularly cross Java APIs, so source-level convenience must be connected to runtime representation.",
+      "realWorldUse": "Platform APIs and many libraries expose Java signatures; performance diagnosis requires recognising boxing, object reachability, allocation, and platform nullability.",
+      "outcome": "Handle Java platform types defensively and reason about references, equality, boxing, allocation, and garbage-collection reachability."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "interop",
+          "title": "Java boundaries weaken some Kotlin guarantees",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Java declarations without recognised nullability metadata appear as platform types, displayed informally as T!. Kotlin lets the caller treat a platform value as nullable or non-null, so an incorrect assumption can still cause a runtime null failure. Convert platform data at the boundary into an explicit Kotlin type, validate it, and avoid letting uncertain platform types spread. Java void maps to Unit, checked exceptions are not enforced by Kotlin, and mapped collection types require attention to mutability."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun safeName(javaUser: JavaUser): String {\n    val name: String? = javaUser.name\n    return name?.trim()?.takeIf(String::isNotEmpty) ?: \"Unknown\"\n}",
+              "caption": "An explicit nullable type restores visible null handling at the Java boundary."
+            },
+            {
+              "type": "table",
+              "title": "Interop boundary",
+              "columns": [
+                "Java feature",
+                "Kotlin view"
+              ],
+              "rows": [
+                [
+                  "Unannotated reference",
+                  "Platform type with uncertain nullability"
+                ],
+                [
+                  "void return",
+                  "Unit"
+                ],
+                [
+                  "Primitive int",
+                  "Int with runtime primitive representation when possible"
+                ],
+                [
+                  "Getter/setter pair",
+                  "Property syntax"
+                ],
+                [
+                  "Checked exception",
+                  "May propagate without a required catch declaration"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "references-equality",
+          "title": "Variables hold values or references according to representation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Objects are reached through references; assigning one ordinary object variable to another usually makes both names refer to the same instance. Structural equality with == calls equals, while referential equality with === asks whether references identify the same object. Data classes provide value-based structural equality. Mutation through one alias is visible through another, which is why immutable values and defensive collection boundaries reduce surprising shared state."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Draft(val category: String)\nval first = Draft(\"Food\")\nval second = first.copy()\nprintln(first == second)  // equal values\nprintln(first === second) // different instances",
+              "caption": "Structural and referential equality answer different questions even when data matches."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Reachability, not scope alone",
+              "text": "Garbage collection can reclaim an object after no live root can reach it; leaving a lexical block is not the complete rule."
+            }
+          ]
+        },
+        {
+          "id": "allocation-boxing",
+          "title": "Source syntax does not guarantee runtime shape",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Kotlin number values often use JVM primitive representations, but generics and nullable primitives may require boxed objects. Lambdas that capture variables can allocate function objects unless inlining removes them. Collection transformations may allocate intermediate collections, and object creation inside frequently repeated UI or data work can create garbage-collection pressure. This does not justify premature micro-optimisation. First choose clear types, then use profilers and benchmarks to locate allocations that affect latency, memory, or battery."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val direct: Int = 7             // often primitive\nval nullable: Int? = 7          // may require boxing\nval generic: List<Int> = listOf(7) // elements use boxed representation\n\nval factor = 2\nval scale: (Int) -> Int = { it * factor } // captures factor",
+              "caption": "Equivalent-looking source values may require different runtime representations at generic, nullable, or captured boundaries."
+            },
+            {
+              "type": "flow",
+              "title": "Investigate allocation",
+              "steps": [
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Find a measurable memory or latency symptom."
+                },
+                {
+                  "id": "profile",
+                  "label": "Profile",
+                  "detail": "Locate allocation sites and retained objects."
+                },
+                {
+                  "id": "explain",
+                  "label": "Explain",
+                  "detail": "Connect source constructs to runtime representation."
+                },
+                {
+                  "id": "change",
+                  "label": "Change",
+                  "detail": "Apply the smallest clear optimisation."
+                },
+                {
+                  "id": "measure",
+                  "label": "Measure again",
+                  "detail": "Confirm improvement and guard against regression."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Calling Java from Kotlin",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/java-interop.html",
+          "whyRead": "Covers platform types, nullability annotations, mapped types, Java methods, properties, exceptions, and reflection."
+        },
+        {
+          "title": "Equality",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/equality.html",
+          "whyRead": "Clarifies structural equality, referential equality, floating-point cases, and generated data-class behaviour."
+        },
+        {
+          "title": "Numbers",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/numbers.html",
+          "whyRead": "Explains numeric types, conversions, JVM boxing, caching, equality implications, and literal rules."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Compare equality and aliasing",
+      "language": "kotlin",
+      "code": "data class Expense(var amount: Double)\nfun main() {\n    val original = Expense(5.0)\n    val alias = original\n    val copy = original.copy()\n    alias.amount = 9.0\n    println(original.amount)\n    println(original === alias)\n    println(original === copy)\n}",
+      "walkthrough": [
+        "alias and original refer to the same mutable object.",
+        "Changing through alias is visible through original.",
+        "copy begins with equal data but is a different instance."
+      ],
+      "expectedOutput": "9.0\ntrue\nfalse"
+    },
+    "trap_check": [
+      {
+        "mistake": "Trusting an unannotated Java String as definitely non-null.",
+        "why": "A platform type may contain null despite convenient Kotlin syntax.",
+        "fix": "Assign an explicit nullable type and validate at the boundary."
+      },
+      {
+        "mistake": "Optimising allocations from intuition alone.",
+        "why": "The change may add complexity without affecting the real bottleneck.",
+        "fix": "Profile representative work, change one cause, and measure again."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write a Kotlin adapter around a hypothetical Java expense record with platform strings and boxed numbers, producing a validated immutable Kotlin model.",
+      "successLooksLike": "Platform values do not escape the adapter. Nullability and conversion failures become explicit outcomes. No non-null assertion is used for uncertain Java data."
+    },
+    "recall": [
+      {
+        "prompt": "What is a platform type?",
+        "answer": "A Java-origin type whose nullability Kotlin cannot determine safely."
+      },
+      {
+        "prompt": "How do == and === differ?",
+        "answer": "== checks structural equality and === checks reference identity."
+      },
+      {
+        "prompt": "When can Int require boxing?",
+        "answer": "At nullable, generic, interface, and other object-representation boundaries."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-03-05-jvm-interop-memory",
+  "challengeId": "challenge-level-01-week-03-05-jvm-interop-memory",
+  "revision": {
+    "objectives": [
+      "Translate Java platform types into explicit safe Kotlin types.",
+      "Distinguish value equality from reference identity and aliasing.",
+      "Connect common Kotlin constructs to conditional JVM allocation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/java-interop.html",
+    "https://kotlinlang.org/docs/equality.html",
+    "https://kotlinlang.org/docs/numbers.html"
+  ],
+  "version": "0.3.0"
+}

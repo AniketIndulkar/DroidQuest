@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-09-01-compose-mental-model",
+  "title": "Thinking in Compose",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 9,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-02-week-08-06-notes-app-capstone"
+  ],
+  "tags": [
+    "compose",
+    "fundamentals",
+    "composition"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Compose replaces imperative widget mutation with functions that describe UI from current state, changing how rendering, ownership, and debugging are reasoned about.",
+      "realWorldUse": "Every modern Android Compose screen is produced through composition, layout, and drawing while state changes schedule selective recomposition.",
+      "outcome": "Explain composition and recomposition, write a side-effect-free composable, and use Preview as design evidence rather than runtime proof."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "UI is a function of state",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A composable function describes what the UI should be for its current parameters. It does not return a View and should not search for widgets to mutate. During initial composition, Compose executes composable calls and records a UI tree. When observed state changes, recomposition re-executes the scopes that read that state and updates only the necessary tree nodes. Layout then measures and places nodes, and drawing produces pixels. This declarative loop means the state is the source of truth: to change a title, update title state and let Text receive the new value instead of holding a Text reference and assigning into it."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun NoteHeader(title: String, onBack: () -> Unit) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, null) }\n        Text(title, style = MaterialTheme.typography.titleLarge)\n    }\n}",
+              "caption": "The composable receives display state and an event callback; it owns no mutable widget reference."
+            },
+            {
+              "type": "table",
+              "title": "Compose pipeline",
+              "columns": [
+                "Phase",
+                "Responsibility"
+              ],
+              "rows": [
+                [
+                  "Composition",
+                  "Execute composables and record UI structure"
+                ],
+                [
+                  "Layout",
+                  "Measure and place nodes under constraints"
+                ],
+                [
+                  "Drawing",
+                  "Render content into pixels"
+                ],
+                [
+                  "Recomposition",
+                  "Update affected composition from changed observed state"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Composition remembers structure and identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose tracks call location and optional keys to preserve identity across recomposition. Conditional branches can add or remove groups; items that move need stable keys when their call position alone cannot identify them. remember stores a value in the current composition position, but it is not a general cache or persistence layer. A @Preview function renders selected parameters inside Android Studio and is excellent for states such as loading, empty, long text, dark theme, or large font. Preview does not execute the full application lifecycle, navigation, device services, or every runtime configuration, so it complements rather than replaces device tests."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Preview\n@Composable\nprivate fun NoteHeaderPreview() {\n    NotesTheme { NoteHeader(\"A long preview title\", onBack = {}) }\n}",
+              "caption": "A deterministic preview supplies all inputs without depending on app globals."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Describe, do not mutate",
+              "text": "The UI tree follows state; events request state changes and effects perform lifecycle-bound work."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Composable code must tolerate repeated execution",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The runtime may recompose often, in a different order, or skip an eligible composable. Therefore the body should be idempotent: given the same inputs it describes the same UI and does not perform network calls, database writes, analytics, navigation, or mutable global updates. Event lambdas are the boundary for user intent, and effect APIs handle work tied to composition lifecycle. Keep composables small enough to name their inputs and responsibility, but do not extract every Row merely to reduce line count. Use Layout Inspector and recomposition evidence only after reproducing a real correctness or performance concern."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production work on thinking in compose should begin with an observable requirement rather than a preferred API. Exercise the normal path, empty and error states, recreation, long content, large font scale, and rapid repeated input where they apply. Keep ownership visible in function signatures, make cancellation and failure behaviour deliberate, and record any assumption that crosses a lifecycle or platform boundary. Use previews for visual state, focused unit tests for pure transformations, Compose UI tests for semantics and interaction, and device traces or inspection tools only when runtime evidence is required. The goal is not merely code that renders once; it is behaviour another engineer can explain, test, change, and recover after the operating system or user changes the conditions."
+            },
+            {
+              "type": "flow",
+              "title": "A reliable implementation loop",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "Define inputs",
+                  "detail": "Name the state, constraints, and user outcome."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Build the smallest semantic UI tree."
+                },
+                {
+                  "id": "interact",
+                  "label": "Exercise",
+                  "detail": "Test events, state changes, and configuration."
+                },
+                {
+                  "id": "inspect",
+                  "label": "Inspect",
+                  "detail": "Use previews, tests, and tooling to find incorrect assumptions."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Improve the measured problem without hiding ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Preview is not integration testing",
+              "text": "A preview does not prove navigation, lifecycle, services, performance, or device-specific behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Thinking in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/mental-model",
+          "whyRead": "Explains declarative UI, recomposition, idempotence, side effects, and parallel execution assumptions."
+        },
+        {
+          "title": "Lifecycle of composables",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/lifecycle",
+          "whyRead": "Details composition identity, keys, skipping, stability, and how instances enter and leave the tree."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the composition side effect",
+      "language": "kotlin",
+      "code": "@Composable fun NoteScreen(repo: Repo) {\n    repo.markOpened()\n    Text(\"Note\")\n}",
+      "walkthrough": [
+        "The write runs whenever the composable executes, not once per visible screen.",
+        "Recomposition frequency is an implementation decision and can duplicate the event.",
+        "Move the action to a user event or an appropriately keyed effect with explicit semantics."
+      ],
+      "expectedOutput": "Rendering the same state must not increment “opened” repeatedly."
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing analytics directly in a composable body.",
+        "why": "Recomposition can repeat, skip, or reorder the execution.",
+        "fix": "Use an event boundary or a correctly keyed effect."
+      },
+      {
+        "mistake": "Treating Preview success as runtime proof.",
+        "why": "Preview omits full lifecycle and integration boundaries.",
+        "fix": "Verify on devices and with focused UI/integration tests."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build previews and a runtime screen for loading, empty, populated, long-title, and error note states using one stateless content composable.",
+      "successLooksLike": "Every visual state is supplied through parameters. No preview or composable body mutates a repository. Runtime events are callbacks and remain testable."
+    },
+    "recall": [
+      {
+        "prompt": "What creates the initial Composition?",
+        "answer": "The first execution of composable functions for that UI tree."
+      },
+      {
+        "prompt": "What causes recomposition?",
+        "answer": "A changed observable state value read by a composition scope."
+      },
+      {
+        "prompt": "What property should a composable body have?",
+        "answer": "It should be idempotent and free of uncontrolled side effects."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-09-01-compose-mental-model",
+  "challengeId": "challenge-level-03-week-09-01-compose-mental-model",
+  "revision": {
+    "objectives": [
+      "Describe the composition-layout-draw pipeline.",
+      "Write state-driven composables with event outputs.",
+      "Separate previews from runtime verification."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/mental-model",
+    "https://developer.android.com/develop/ui/compose/lifecycle"
+  ],
+  "version": "0.5.0"
+}

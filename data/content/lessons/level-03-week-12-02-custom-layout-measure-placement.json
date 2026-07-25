@@ -1,0 +1,227 @@
+{
+  "id": "level-03-week-12-02-custom-layout-measure-placement",
+  "title": "Custom Layout: Measure and Placement",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 12,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-01-stability-skipping-performance"
+  ],
+  "tags": [
+    "compose",
+    "custom-layout",
+    "measurement"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Custom layouts are necessary when standard primitives cannot express a measurement or placement relationship, but Compose permits only one measurement pass per child.",
+      "realWorldUse": "Tags, badges, staggered arrangements, specialised controls, and coordinated child geometry may need a custom MeasurePolicy.",
+      "outcome": "Implement a one-pass layout, obey incoming constraints, place children with RTL awareness, and expose correct semantics."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Measure children under parent constraints",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Layout composable receives child measurables and a measure block. Each child is measured exactly once with chosen Constraints and returns a Placeable. The parent computes a width and height within its own incoming limits, calls layout, and places each child. Unlike some legacy systems, arbitrary multiple measurement is not allowed. Custom measurement should solve a real relationship that Row, Column, Box, FlowRow, or constraint-aware standard APIs cannot express more clearly."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Layout(content = content) { measurables, constraints ->\n    val placeables = measurables.map { it.measure(constraints.copy(minWidth = 0)) }\n    val width = constraints.constrainWidth(placeables.sumOf { it.width })\n    val height = constraints.constrainHeight(placeables.maxOfOrNull { it.height } ?: 0)\n    layout(width, height) { var x = 0; placeables.forEach { it.placeRelative(x, 0); x += it.width } }\n}",
+              "caption": "Children are measured once, parent size is constrained, and placement respects layout direction."
+            },
+            {
+              "type": "table",
+              "title": "Layout pass",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Input",
+                  "Parent supplies constraints"
+                ],
+                [
+                  "Measure",
+                  "Each child exactly once"
+                ],
+                [
+                  "Report",
+                  "Parent chooses allowed size"
+                ],
+                [
+                  "Place",
+                  "Position each Placeable"
+                ],
+                [
+                  "Semantics",
+                  "Verify logical interaction order"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Choose and report an allowed size",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Constraints contain minimum and maximum dimensions. Constrain calculated width and height before reporting them, and decide what happens when content exceeds available space: wrap, clip, scroll, reduce, or choose another structure. Placeable dimensions may reflect coerced results if a child violated constraints. Use placeRelative for start and end behaviour that mirrors in RTL; absolute place has specialised uses. Density conversions belong inside the measure scope and should not repeatedly round values in ways that accumulate drift."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Layout(content = content) { measurables, constraints ->\n    val placeables = measurables.map { it.measure(constraints.copy(minWidth = 0)) }\n    val width = constraints.constrainWidth(placeables.sumOf { it.width })\n    val height = constraints.constrainHeight(placeables.maxOfOrNull { it.height } ?: 0)\n    layout(width, height) { var x = 0; placeables.forEach { it.placeRelative(x, 0); x += it.width } }\n}",
+              "caption": "Children are measured once, parent size is constrained, and placement respects layout direction."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Constraints are non-negotiable",
+              "text": "A custom layout still reports a size allowed by its parent contract."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Place once with direction and overflow in mind",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measurement and placement run in the layout phase, so reading rapidly changing placement state there can sometimes avoid recomposition. Keep measure code deterministic and allocation-conscious because it may run frequently. A visual arrangement does not automatically provide semantics: preserve a logical composition and traversal order, expose control roles, and test touch bounds. Intrinsic measurements add extra queries and should be implemented only if a real parent requires them."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not remeasure children",
+              "text": "Compose enforces one measurement pass and custom logic should calculate from that result."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Custom layouts",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/custom",
+          "whyRead": "Explains Layout, Measurable, Placeable, constraints, and placement."
+        },
+        {
+          "title": "Compose layout basics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/basics",
+          "whyRead": "Provides the standard layout model and primitives to prefer first."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Constrain the reported width",
+      "language": "kotlin",
+      "code": "val width = placeables.sumOf { it.width }\nlayout(width, height) { /* place */ }",
+      "walkthrough": [
+        "Summed child width can exceed the maximum received from the parent.",
+        "A parent must report dimensions within incoming constraints.",
+        "Use constrainWidth and define wrapping, clipping, or overflow behaviour."
+      ],
+      "expectedOutput": "The custom component remains within constraints at compact and expanded widths."
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing a custom Layout where FlowRow already matches the relationship.",
+        "why": "Custom measurement increases maintenance, testing, and accessibility work.",
+        "fix": "Prefer a standard primitive until a requirement proves it insufficient."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a one-pass wrapping chip layout that obeys compact constraints, mirrors placement in RTL, and preserves logical semantics and touch targets.",
+      "successLooksLike": "Every child is measured once. Reported size obeys constraints. RTL and accessibility traversal are verified."
+    },
+    "recall": [
+      {
+        "prompt": "How often may a child be measured?",
+        "answer": "Exactly once in a measurement pass."
+      },
+      {
+        "prompt": "What does placeRelative respect?",
+        "answer": "Current left-to-right or right-to-left layout direction."
+      },
+      {
+        "prompt": "What size may a parent report?",
+        "answer": "A size inside its incoming constraints."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-12-02-custom-layout-measure-placement",
+  "challengeId": "challenge-level-03-week-12-02-custom-layout-measure-placement",
+  "revision": {
+    "objectives": [
+      "Implement one-pass measurement.",
+      "Constrain parent size and overflow.",
+      "Place with RTL-aware semantics."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/layouts/custom",
+    "https://developer.android.com/develop/ui/compose/layouts/basics"
+  ],
+  "version": "0.5.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-02-room-migrations-fts-testing",
+  "title": "Room Migrations, Full-text Search, and Database Testing Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-02-room-migrations-fts-testing"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-02-room-migrations-fts-testing-decision",
+      "prompt": "Which data must not use destructive fallback?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Pending offline bookmark writes",
+      "explanation": "They may be the only durable record of an action not yet synchronized.",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing",
+      "options": [
+        "Pending offline bookmark writes",
+        "A proven rebuildable thumbnail cache",
+        "Temporary derived rows with no user intent",
+        "Test-only disposable data"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-02-room-migrations-fts-testing-truth",
+      "prompt": "A successful fresh database test proves migrations are correct.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Upgrade paths execute different SQL over existing values and constraints.",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing"
+    },
+    {
+      "id": "q-level-04-week-18-02-room-migrations-fts-testing-recall",
+      "prompt": "What tool helps test Room migrations?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "MigrationTestHelper",
+      "explanation": "It creates historical schemas, runs migrations, and validates the result.",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

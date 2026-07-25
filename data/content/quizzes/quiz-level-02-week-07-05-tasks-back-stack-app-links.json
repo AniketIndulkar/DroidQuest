@@ -1,0 +1,57 @@
+{
+  "id": "quiz-level-02-week-07-05-tasks-back-stack-app-links",
+  "title": "Tasks, Back Stack, Deep Links, and App Links Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-05-tasks-back-stack-app-links"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-07-05-back-effect",
+      "prompt": "What does system Back normally do to the current destination?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Removes it from navigation history",
+      "explanation": "Back traverses the user’s current navigation history.",
+      "lessonId": "level-02-week-07-05-tasks-back-stack-app-links",
+      "options": [
+        "Removes it from navigation history",
+        "Force-stops the package",
+        "Clears persistent notes",
+        "Always creates a new task"
+      ]
+    },
+    {
+      "id": "q-week-07-05-link-order",
+      "prompt": "Order an app-link handling path.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "system verifies association and resolves app",
+        "app validates URI",
+        "app checks identity and access",
+        "app loads note by stable ID",
+        "navigation renders destination"
+      ],
+      "explanation": "Association enables routing, while application validation and authorisation still precede data display.",
+      "lessonId": "level-02-week-07-05-tasks-back-stack-app-links"
+    },
+    {
+      "id": "q-week-07-05-verification-auth",
+      "prompt": "A verified App Link proves the current user may access every linked record.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Website association and record-level authorisation are separate contracts.",
+      "lessonId": "level-02-week-07-05-tasks-back-stack-app-links"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

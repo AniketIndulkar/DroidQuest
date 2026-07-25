@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-13-03-localisation-rtl-theme-policy",
+  "title": "Localisation, RTL, Dark Theme, and Dynamic Colour Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-13-03-localisation-rtl-theme-policy"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-13-03-localisation-rtl-theme-policy-decision",
+      "prompt": "What should identify a category internally?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Stable category ID",
+      "explanation": "Identity must remain unchanged across locale and presentation changes.",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy",
+      "options": [
+        "Stable category ID",
+        "Translated category title",
+        "Current currency string",
+        "Screen position"
+      ]
+    },
+    {
+      "id": "q-level-03-week-13-03-localisation-rtl-theme-policy-truth",
+      "prompt": "Every image should be mirrored in RTL.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Only direction-dependent content should mirror; many symbols and real-world images retain direction.",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy"
+    },
+    {
+      "id": "q-level-03-week-13-03-localisation-rtl-theme-policy-recall",
+      "prompt": "How should quantity messages be represented?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "With plural resources",
+      "explanation": "The locale selects the correct grammar while code supplies the quantity.",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

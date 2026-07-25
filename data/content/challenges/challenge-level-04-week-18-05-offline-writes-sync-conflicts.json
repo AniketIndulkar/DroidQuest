@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-05-offline-writes-sync-conflicts",
+  "title": "Build an Offline Bookmark Outbox",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-05-offline-writes-sync-conflicts",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Implement optimistic bookmark state, durable outbox, idempotent sync, coalescing, authentication pause, conflict versions, rejection recovery, and two-device convergence tests.",
+  "successCriteria": [
+    "Process death never loses accepted intent.",
+    "Duplicate delivery has one logical effect.",
+    "Every conflict and permanent rejection has a visible resolution."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class BookmarkOutboxRepository(private val db: NewsDatabase, private val remote: BookmarkRemote)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

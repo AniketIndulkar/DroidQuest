@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-01-week-01-03-expressions-decisions",
+  "title": "Expressions, Booleans, and Decisions Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-03-expressions-decisions"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-03-and-condition",
+      "prompt": "Which operator requires both Boolean operands to be true?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "&&",
+        "||",
+        "!",
+        "=="
+      ],
+      "answer": "&&",
+      "explanation": "Logical AND, written &&, is true only when both operands are true.",
+      "lessonId": "level-01-week-01-03-expressions-decisions"
+    },
+    {
+      "id": "q-week-01-03-branch-output",
+      "prompt": "What is printed?\nval amount = 60\nprintln(if (amount <= 50) \"A\" else \"B\")",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": "B",
+      "explanation": "The condition is false, so the else branch produces B.",
+      "lessonId": "level-01-week-01-03-expressions-decisions"
+    },
+    {
+      "id": "q-week-01-03-assignment-bug",
+      "prompt": "Spot the incorrect operator in this equality check: if (status = \"Ready\")",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "= should be ==",
+      "explanation": "A single equals sign is assignment syntax; equality comparison uses ==.",
+      "lessonId": "level-01-week-01-03-expressions-decisions"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

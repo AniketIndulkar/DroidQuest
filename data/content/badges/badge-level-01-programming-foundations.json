@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-01-programming-foundations",
+  "title": "Programming Foundations Complete",
+  "description": "Awarded for mastering Level 1 Kotlin, engineering fundamentals, boundary design, debugging, and capstone architecture.",
+  "categoryId": "level-01-programming-foundations",
+  "icon": "foundations-boss-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-01-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 500,
+  "rarity": "epic",
+  "version": "0.3.0"
+}

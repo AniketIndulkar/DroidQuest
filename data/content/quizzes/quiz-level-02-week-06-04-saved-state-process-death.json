@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-06-04-saved-state-process-death",
+  "title": "Saved State and Process-Death Restoration Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-06-04-saved-state-process-death"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-06-04-saved-choice",
+      "prompt": "Which value is best suited to SavedStateHandle?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Selected note ID",
+      "explanation": "A stable small key can reconstruct complex data from durable storage.",
+      "lessonId": "level-02-week-06-04-saved-state-process-death",
+      "options": [
+        "Selected note ID",
+        "Thousands of note bodies",
+        "A bitmap byte array",
+        "An Activity instance"
+      ]
+    },
+    {
+      "id": "q-week-06-04-restore-order",
+      "prompt": "Order a process-death restoration path.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "restore small note ID",
+        "create state holder",
+        "load note from repository",
+        "render reconstructed state"
+      ],
+      "explanation": "Saved state supplies minimal input and persistence supplies the durable model.",
+      "lessonId": "level-02-week-06-04-saved-state-process-death"
+    },
+    {
+      "id": "q-week-06-04-rotation-test",
+      "prompt": "Rotation alone proves that SavedStateHandle survives actual process death.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Rotation generally retains the process and ViewModel, so process recreation needs its own test.",
+      "lessonId": "level-02-week-06-04-saved-state-process-death"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

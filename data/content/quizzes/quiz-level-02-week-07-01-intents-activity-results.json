@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-07-01-intents-activity-results",
+  "title": "Intents and Activity Result Contracts Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-01-intents-activity-results"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-07-01-intent-choice",
+      "prompt": "Which intent should normally start a known internal activity?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Explicit intent",
+      "explanation": "Naming the internal destination avoids unintended resolution and documents ownership.",
+      "lessonId": "level-02-week-07-01-intents-activity-results",
+      "options": [
+        "Explicit intent",
+        "Broad implicit intent",
+        "Broadcast only",
+        "PendingIntent only"
+      ]
+    },
+    {
+      "id": "q-week-07-01-result-order",
+      "prompt": "Order the Activity Result flow.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "register launcher",
+        "receive user event",
+        "launch contract",
+        "handle typed result"
+      ],
+      "explanation": "Registration establishes stable routing before an event starts external work.",
+      "lessonId": "level-02-week-07-01-intents-activity-results"
+    },
+    {
+      "id": "q-week-07-01-filter-security",
+      "prompt": "A matching intent filter authenticates and authorises the caller.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Filter matching is routing and all external data still requires validation and policy checks.",
+      "lessonId": "level-02-week-07-01-intents-activity-results"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

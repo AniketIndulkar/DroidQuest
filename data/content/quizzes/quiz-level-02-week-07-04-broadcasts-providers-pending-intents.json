@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-02-week-07-04-broadcasts-providers-pending-intents",
+  "title": "Broadcasts, Content Providers, and PendingIntent Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-04-broadcasts-providers-pending-intents"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-07-04-receiver-work",
+      "prompt": "What should a receiver do with long retryable work?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Schedule it with an appropriate durable API",
+      "explanation": "Receiver delivery is brief and process importance can fall after onReceive returns.",
+      "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents",
+      "options": [
+        "Schedule it with an appropriate durable API",
+        "Block inside onReceive",
+        "Keep a static thread forever",
+        "Start an implicit service"
+      ]
+    },
+    {
+      "id": "q-week-07-04-boundary-match",
+      "prompt": "Match each API to its boundary.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "BroadcastReceiver": "event delivery",
+        "ContentProvider": "URI structured data",
+        "PendingIntent": "delegated future operation"
+      },
+      "explanation": "The APIs cross boundaries for distinct purposes and carry different security obligations.",
+      "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents"
+    },
+    {
+      "id": "q-week-07-04-pending-mutability",
+      "prompt": "FLAG_IMMUTABLE should be the default when no fill-in mutation is required.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "Immutability prevents another party from changing the delegated operation.",
+      "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

@@ -1,0 +1,3405 @@
+{
+  "id": "main-roadmap",
+  "title": "DroidQuest Beginner-to-Expert Roadmap",
+  "version": "0.8.0",
+  "nodes": [
+    {
+      "id": "node-level-01-week-01-01-first-program",
+      "categoryId": "level-01-programming-foundations",
+      "title": "How a Kotlin Program Works",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-01-week-01-01-first-program",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 8,
+      "unlockPrerequisites": [],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-02-values-types-strings",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Values, Variables, Types, and Strings",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-02-values-types-strings",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-01-first-program"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-03-expressions-decisions",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Expressions, Booleans, and Decisions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-03-expressions-decisions",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-02-values-types-strings"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-04-loops-ranges",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Repeating Work with Loops and Ranges",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-04-loops-ranges",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-03-expressions-decisions"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-05-functions",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Functions as Reusable Decisions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-05-functions",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-04-loops-ranges"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-06-null-safety",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Null Safety and Uncertain Input",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-06-null-safety",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-05-functions"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-07-small-program-design",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Designing a Small Program",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-01-07-small-program-design",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-06-null-safety"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-01-checkpoint",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Week 1 Kotlin Foundations Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-01-week-01-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-07-small-program-design"
+      ],
+      "rewards": {
+        "xp": 200,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-01-week-02-01-classes-objects-composition",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Classes, Objects, Interfaces, and Composition",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-02-01-classes-objects-composition",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-01-checkpoint"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-02-02-data-enum-sealed-models",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Data Classes, Enums, and Sealed Models",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-02-01-classes-objects-composition"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-02-03-collections-transformations",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Collections and Transformation Pipelines",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-02-03-collections-transformations",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-02-02-data-enum-sealed-models"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-02-04-lambdas-extensions-scope",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Lambdas, Higher-Order Functions, and Extensions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-02-03-collections-transformations"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-02-checkpoint",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Week 2 Kotlin Modelling Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-01-week-02-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-01-week-02-04-lambdas-extensions-scope"
+      ],
+      "rewards": {
+        "xp": 240,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-01-week-03-01-exceptions-results",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Exceptions and Explicit Result Modelling",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-03-01-exceptions-results",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-02-checkpoint"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-03-02-generics-variance",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Generics, Variance, and Type-Safe Reuse",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-03-02-generics-variance",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-01-exceptions-results"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-03-03-delegation-inline-value-classes",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Delegation, Inline Functions, and Value Classes",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-03-03-delegation-inline-value-classes",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-02-generics-variance"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-03-04-annotations-reflection-dsls",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Annotations, Reflection, and Type-Safe Builders",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-03-04-annotations-reflection-dsls",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-03-delegation-inline-value-classes"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-03-05-jvm-interop-memory",
+      "categoryId": "level-01-programming-foundations",
+      "title": "JVM Interoperability, References, and Allocation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-04-annotations-reflection-dsls"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-03-checkpoint",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Week 3 Advanced Kotlin Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-01-week-03-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-05-jvm-interop-memory"
+      ],
+      "rewards": {
+        "xp": 240,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-01-week-04-01-terminal-files-processes",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Terminal, Files, and Running Programs",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-01-terminal-files-processes",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-03-checkpoint"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-04-02-git-collaboration-docs",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Git, Pull Requests, and Useful Documentation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-02-git-collaboration-docs",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-01-terminal-files-processes"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-04-03-debugging-stack-traces",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Debugging with Evidence",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-03-debugging-stack-traces",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-02-git-collaboration-docs"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-04-04-data-structures-complexity",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Data Structures and Practical Complexity",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-04-data-structures-complexity",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-03-debugging-stack-traces"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-04-05-http-rest-json",
+      "categoryId": "level-01-programming-foundations",
+      "title": "HTTP, REST, and JSON Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-05-http-rest-json",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-04-data-structures-complexity"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-week-04-06-expense-manager-capstone",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Capstone: Kotlin Expense Manager",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-01-week-04-06-expense-manager-capstone",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-05-http-rest-json"
+      ],
+      "rewards": {
+        "xp": 20,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-01-boss",
+      "categoryId": "level-01-programming-foundations",
+      "title": "Level 1 Programming Foundations Boss",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-01-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-01-week-04-06-expense-manager-capstone"
+      ],
+      "rewards": {
+        "xp": 500,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-02-week-05-01-studio-sdk-emulator",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Android Studio, SDKs, and Virtual Devices",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-01-boss"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-05-02-projects-modules-source-sets",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Projects, Modules, and Source Sets",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-01-studio-sdk-emulator"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-05-03-gradle-agp-build-flow",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Gradle, the Wrapper, and Android Build Flow",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-02-projects-modules-source-sets"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-05-04-manifest-resources-identity",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Manifest, Resources, and Application Identity",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-05-04-manifest-resources-identity",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-03-gradle-agp-build-flow"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-05-05-sdk-levels-variants-packaging",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "SDK Levels, Variants, APKs, and App Bundles",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-04-manifest-resources-identity"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-05-checkpoint",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Week 5 Android Build Foundations Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-02-week-05-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-05-sdk-levels-variants-packaging"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-02-week-06-01-application-process-context",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Application Process and Context",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-06-01-application-process-context",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-05-checkpoint"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-06-02-activity-lifecycle",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Activity Lifecycle and Lifecycle-Aware Work",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-06-02-activity-lifecycle",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-01-application-process-context"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-06-03-configuration-changes",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Configuration Changes and Activity Recreation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-06-03-configuration-changes",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-02-activity-lifecycle"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-06-04-saved-state-process-death",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Saved State and Process-Death Restoration",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-06-04-saved-state-process-death",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-03-configuration-changes"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-06-05-resources-qualifiers-localisation",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Resource Qualifiers, Localisation, and Configuration",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-06-05-resources-qualifiers-localisation",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-04-saved-state-process-death"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-06-checkpoint",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Week 6 Lifecycle and State Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-02-week-06-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-05-resources-qualifiers-localisation"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-02-week-07-01-intents-activity-results",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Intents and Activity Result Contracts",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-07-01-intents-activity-results",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-06-checkpoint"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-07-02-runtime-permissions",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Runtime Permissions and Graceful Degradation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-07-02-runtime-permissions",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-01-intents-activity-results"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-07-03-component-selection-services",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Android Components and Service Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-07-03-component-selection-services",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-02-runtime-permissions"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-07-04-broadcasts-providers-pending-intents",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Broadcasts, Content Providers, and PendingIntent",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-07-04-broadcasts-providers-pending-intents",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-03-component-selection-services"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-07-05-tasks-back-stack-app-links",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Tasks, Back Stack, Deep Links, and App Links",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-07-05-tasks-back-stack-app-links",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-04-broadcasts-providers-pending-intents"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-07-checkpoint",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Week 7 System Components Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-02-week-07-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-05-tasks-back-stack-app-links"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-02-week-08-01-xml-view-hierarchies",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "XML Layouts and View Hierarchies",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-07-checkpoint"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-02-constraintlayout-viewbinding",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "ConstraintLayout and View Binding",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-02-constraintlayout-viewbinding",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-01-xml-view-hierarchies"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-03-fragments-navigation",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Fragments, View Lifecycle, and Navigation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-03-fragments-navigation",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-02-constraintlayout-viewbinding"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-04-recyclerview-lists",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "RecyclerView and Efficient View Lists",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-04-recyclerview-lists",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-03-fragments-navigation"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-05-view-compose-interoperability",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "View and Compose Interoperability",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-05-view-compose-interoperability",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-04-recyclerview-lists"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-06-notes-app-capstone",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Capstone: Lifecycle-Safe Personal Notes App",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-02-week-08-06-notes-app-capstone",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-05-view-compose-interoperability"
+      ],
+      "rewards": {
+        "xp": 25,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-02-week-08-checkpoint",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Week 8 Hybrid UI Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-02-week-08-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-06-notes-app-capstone"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-02-boss",
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Level 2 Android Platform Fundamentals Boss",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-02-checkpoint",
+      "difficulty": "beginner",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-02-week-08-checkpoint"
+      ],
+      "rewards": {
+        "xp": 600,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-06-preview",
+      "categoryId": "level-06-android-platform-use-cases",
+      "title": "Level 6: Android Platform Use Cases",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-boss"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-07-preview",
+      "categoryId": "level-07-testing-quality-engineering",
+      "title": "Level 7: Testing and Quality Engineering",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-06-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-08-preview",
+      "categoryId": "level-08-android-security-engineering",
+      "title": "Level 8: Android Security Engineering",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-07-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-09-preview",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Level 9: Gradle, Build Engineering, and CI/CD",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-08-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-10-preview",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Level 10: Performance, Reliability, and Observability",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-09-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-11-preview",
+      "categoryId": "level-11-android-internals-aosp",
+      "title": "Level 11: Android Internals and AOSP",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-10-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-12-preview",
+      "categoryId": "level-12-advanced-specialisations",
+      "title": "Level 12: Advanced Specialisations",
+      "type": "level_preview",
+      "status": "planned",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-11-preview"
+      ],
+      "rewards": {
+        "xp": 0,
+        "stars": 0
+      }
+    },
+    {
+      "id": "node-level-03-week-09-01-compose-mental-model",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Thinking in Compose",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-03-week-09-01-compose-mental-model",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-02-boss"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-09-02-modifiers-constraints-order",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Modifiers, Constraints, and Order",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-09-02-modifiers-constraints-order",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-01-compose-mental-model"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-09-03-row-column-box-layout",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Row, Column, Box, and Responsive Layout",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-09-03-row-column-box-layout",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-02-modifiers-constraints-order"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-09-04-material3-scaffold-slots",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Material 3 Components, Scaffold, and Slots",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-03-row-column-box-layout"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-09-05-text-input-resources",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Text, Input, Images, and Resources",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-09-05-text-input-resources",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 9,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-04-material3-scaffold-slots"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-09-checkpoint",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Week 9 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-03-week-09-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-05-text-input-resources"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-03-week-10-01-state-remember-saveable",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "State, remember, and rememberSaveable",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-10-01-state-remember-saveable",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-09-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-10-02-state-hoisting-udf",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "State Hoisting and Unidirectional Data Flow",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-01-state-remember-saveable"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-10-03-recomposition-snapshots-identity",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Recomposition, Snapshots, and Identity",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-10-03-recomposition-snapshots-identity",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-02-state-hoisting-udf"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-10-04-lazy-lists-grids",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Lazy Lists and Grids",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-03-recomposition-snapshots-identity"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-10-05-navigation-compose-concepts",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Navigation Compose and Destination State",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-10-05-navigation-compose-concepts",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-04-lazy-lists-grids"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-10-checkpoint",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Week 10 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-03-week-10-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-05-navigation-compose-concepts"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-03-week-11-01-effect-fundamentals-keys",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Effect Fundamentals and Keys",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-10-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-11-02-launched-effect-coroutine-scope",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "LaunchedEffect and rememberCoroutineScope",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-11-02-launched-effect-coroutine-scope",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-01-effect-fundamentals-keys"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "DisposableEffect, SideEffect, and rememberUpdatedState",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-02-launched-effect-coroutine-scope"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-11-04-derived-state-snapshot-flow",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "derivedStateOf and snapshotFlow",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-11-04-derived-state-snapshot-flow",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-03-disposable-sideeffect-updatedstate"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-11-05-viewmodel-lifecycle-collection",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "ViewModel and Lifecycle-aware Collection",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-04-derived-state-snapshot-flow"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-11-checkpoint",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Week 11 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-03-week-11-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-05-viewmodel-lifecycle-collection"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-03-week-12-01-stability-skipping-performance",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Stability, Skipping, and Performance",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-11-checkpoint"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-02-custom-layout-measure-placement",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Custom Layout: Measure and Placement",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-02-custom-layout-measure-placement",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-01-stability-skipping-performance"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-03-canvas-custom-drawing",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Canvas and Custom Drawing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-02-custom-layout-measure-placement"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-04-gestures-pointer-input",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Gestures, Pointer Input, and Interaction",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-04-gestures-pointer-input",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-03-canvas-custom-drawing"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-05-animation-nested-scroll",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Animation and Nested Scroll",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-05-animation-nested-scroll",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-04-gestures-pointer-input"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-06-design-systems-compositionlocal",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Compose Design Systems and CompositionLocal",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-12-06-design-systems-compositionlocal",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-05-animation-nested-scroll"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-12-checkpoint",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Week 12 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-03-week-12-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-06-design-systems-compositionlocal"
+      ],
+      "rewards": {
+        "xp": 250,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-03-week-13-01-accessibility-semantics-talkback",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Accessibility Semantics and TalkBack",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-01-accessibility-semantics-talkback",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-12-checkpoint"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-02-focus-keyboard-scalable-content",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Focus, Keyboard Navigation, and Scalable Content",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-01-accessibility-semantics-talkback"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-03-localisation-rtl-theme-policy",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Localisation, RTL, Dark Theme, and Dynamic Colour",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-02-focus-keyboard-scalable-content"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-04-edge-to-edge-window-insets",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Edge-to-edge and Window Insets",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-03-localisation-rtl-theme-policy"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-05-adaptive-layout-navigation3",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Adaptive Layouts and Navigation 3 Concepts",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-05-adaptive-layout-navigation3",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-04-edge-to-edge-window-insets"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-06-compose-testing-shopping-capstone",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Compose Testing and Adaptive Shopping Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-03-week-13-06-compose-testing-shopping-capstone",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-05-adaptive-layout-navigation3"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-03-week-13-checkpoint",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Week 13 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-03-week-13-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-06-compose-testing-shopping-capstone"
+      ],
+      "rewards": {
+        "xp": 275,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-03-boss",
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Level 3 Jetpack Compose Boss",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-03-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-03-week-13-checkpoint"
+      ],
+      "rewards": {
+        "xp": 700,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-week-14-01-suspend-main-safety-dispatchers",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Suspend Functions, Main Safety, and Dispatchers",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-03-boss"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-02-scopes-builders-structured-concurrency",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Scopes, Builders, and Structured Concurrency",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-01-suspend-main-safety-dispatchers"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-03-cancellation-timeouts-cleanup",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Cancellation, Timeouts, and Cleanup",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-02-scopes-builders-structured-concurrency"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-04-exceptions-supervision",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Exception Propagation and Supervision",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-14-04-exceptions-supervision",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-03-cancellation-timeouts-cleanup"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-05-parallelism-thread-safety",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Concurrency, Parallelism, and Thread Safety",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-14-05-parallelism-thread-safety",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-04-exceptions-supervision"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-06-coroutine-testing-virtual-time",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Testing Coroutines with Virtual Time",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-05-parallelism-thread-safety"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-14-checkpoint",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Week 14 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-04-week-14-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-06-coroutine-testing-virtual-time"
+      ],
+      "rewards": {
+        "xp": 275,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-week-15-01-cold-flow-context-collection",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Cold Flow, Context, and Collection",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-14-checkpoint"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-02-flow-operators-errors-retry",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Flow Operators, Errors, and Retry",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-02-flow-operators-errors-retry",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-01-cold-flow-context-collection"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-03-combine-latest-flattening",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Combining and Flattening Flows",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-02-flow-operators-errors-retry"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-04-buffer-conflate-backpressure",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Buffering, Conflation, and Backpressure",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-03-combine-latest-flattening"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-05-stateflow-sharedflow-events",
+      "categoryId": "level-04-async-data-networking",
+      "title": "StateFlow, SharedFlow, and Events",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-05-stateflow-sharedflow-events",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-04-buffer-conflate-backpressure"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+      "categoryId": "level-04-async-data-networking",
+      "title": "stateIn, shareIn, Lifecycle, and Flow Tests",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-05-stateflow-sharedflow-events"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-15-checkpoint",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Week 15 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-04-week-15-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+      ],
+      "rewards": {
+        "xp": 275,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-week-16-01-http-contracts-status-headers",
+      "categoryId": "level-04-async-data-networking",
+      "title": "HTTP Contracts, Status, and Headers",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-15-checkpoint"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-02-dto-kotlin-serialization",
+      "categoryId": "level-04-async-data-networking",
+      "title": "DTOs and Kotlin JSON Serialization",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-01-http-contracts-status-headers"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-03-retrofit-data-source-repository",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Retrofit, Data Sources, and Repository Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-02-dto-kotlin-serialization"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "categoryId": "level-04-async-data-networking",
+      "title": "OkHttp Interceptors, Authentication, and Safe Logging",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-03-retrofit-data-source-repository"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-05-network-failures-timeouts-retries",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Network Failures, Timeouts, Retries, and Idempotency",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-05-network-failures-timeouts-retries",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-04-okhttp-interceptors-auth-logging"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-06-mockwebserver-network-integration-tests",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Network Integration Testing with MockWebServer",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-16-06-mockwebserver-network-integration-tests",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-05-network-failures-timeouts-retries"
+      ],
+      "rewards": {
+        "xp": 110,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-16-checkpoint",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Week 16 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-04-week-16-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-06-mockwebserver-network-integration-tests"
+      ],
+      "rewards": {
+        "xp": 275,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-week-17-01-oauth-tokens-session-security",
+      "categoryId": "level-04-async-data-networking",
+      "title": "OAuth Tokens and Session Security",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-16-checkpoint"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-02-single-flight-token-refresh",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Single-flight Token Refresh and Concurrent 401s",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-02-single-flight-token-refresh",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-01-oauth-tokens-session-security"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-03-paging3-cursors-loadstates",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Paging 3, Cursors, and Load States",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-02-single-flight-token-refresh"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-04-multipart-upload-progress",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Multipart Uploads and Progress",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-04-multipart-upload-progress",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-03-paging3-cursors-loadstates"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-05-websockets-sse-realtime",
+      "categoryId": "level-04-async-data-networking",
+      "title": "WebSockets, Server-Sent Events, and Realtime State",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-05-websockets-sse-realtime",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-04-multipart-upload-progress"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-06-connectivity-policy-network-capabilities",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Connectivity Signals and Network Policy",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-17-06-connectivity-policy-network-capabilities",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-05-websockets-sse-realtime"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-17-checkpoint",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Week 17 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-04-week-17-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-06-connectivity-policy-network-capabilities"
+      ],
+      "rewards": {
+        "xp": 300,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-week-18-01-room-entities-daos-relations-transactions",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Room Entities, DAOs, Relationships, and Transactions",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-17-checkpoint"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-02-room-migrations-fts-testing",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Room Migrations, Full-text Search, and Database Testing",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-01-room-entities-daos-relations-transactions"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-03-datastore-and-file-storage",
+      "categoryId": "level-04-async-data-networking",
+      "title": "DataStore and App File Storage",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-02-room-migrations-fts-testing"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-04-source-of-truth-cache-ttl",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Single Source of Truth, Cache Freshness, and TTL",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-03-datastore-and-file-storage"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-05-offline-writes-sync-conflicts",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Offline Writes, Sync Queues, and Conflict Resolution",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-05-offline-writes-sync-conflicts",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-04-source-of-truth-cache-ttl"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-06-workmanager-durable-sync",
+      "categoryId": "level-04-async-data-networking",
+      "title": "WorkManager for Durable Synchronization",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-06-workmanager-durable-sync",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-05-offline-writes-sync-conflicts"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-07-offline-first-news-capstone",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Capstone: Offline-First News Reader",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-04-week-18-07-offline-first-news-capstone",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-06-workmanager-durable-sync"
+      ],
+      "rewards": {
+        "xp": 115,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-04-week-18-checkpoint",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Week 18 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-04-week-18-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-07-offline-first-news-capstone"
+      ],
+      "rewards": {
+        "xp": 300,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-04-boss",
+      "categoryId": "level-04-async-data-networking",
+      "title": "Level 4 Async Data and Networking Boss",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-04-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-04-week-18-checkpoint"
+      ],
+      "rewards": {
+        "xp": 800,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-05-week-19-01-layers-boundaries-dependency-direction",
+      "categoryId": "level-05-production-architecture",
+      "title": "Layers, Boundaries, and Dependency Direction",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-04-boss"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-02-immutable-ui-state-udf",
+      "categoryId": "level-05-production-architecture",
+      "title": "Immutable UI State and Unidirectional Data Flow",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-19-02-immutable-ui-state-udf",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-01-layers-boundaries-dependency-direction"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-03-state-holders-events-ui-logic",
+      "categoryId": "level-05-production-architecture",
+      "title": "State Holders, Events, and UI Logic",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-19-03-state-holders-events-ui-logic",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-02-immutable-ui-state-udf"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-04-repositories-source-of-truth-mappers",
+      "categoryId": "level-05-production-architecture",
+      "title": "Repositories, Sources of Truth, and Mappers",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-03-state-holders-events-ui-logic"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-05-domain-use-cases-error-models",
+      "categoryId": "level-05-production-architecture",
+      "title": "Use Cases, Business Rules, and Error Models",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-19-05-domain-use-cases-error-models",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-04-repositories-source-of-truth-mappers"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+      "categoryId": "level-05-production-architecture",
+      "title": "MVVM, MVI, Clean Architecture, and Proportionate Design",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-05-domain-use-cases-error-models"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-19-checkpoint",
+      "categoryId": "level-05-production-architecture",
+      "title": "Week 19 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-05-week-19-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+      ],
+      "rewards": {
+        "xp": 175,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-05-week-20-01-manual-di-composition-root",
+      "categoryId": "level-05-production-architecture",
+      "title": "Manual Dependency Injection and the Composition Root",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-19-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-20-02-hilt-graph-constructor-modules",
+      "categoryId": "level-05-production-architecture",
+      "title": "Hilt Graphs, Constructor Injection, and Modules",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-20-02-hilt-graph-constructor-modules",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-01-manual-di-composition-root"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-20-03-hilt-components-scopes-lifetimes",
+      "categoryId": "level-05-production-architecture",
+      "title": "Hilt Components, Scopes, and Lifetimes",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-20-03-hilt-components-scopes-lifetimes",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-02-hilt-graph-constructor-modules"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-20-04-qualifiers-multibindings-assisted",
+      "categoryId": "level-05-production-architecture",
+      "title": "Qualifiers, Multibindings, and Assisted Factories",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-03-hilt-components-scopes-lifetimes"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+      "categoryId": "level-05-production-architecture",
+      "title": "DI Testing, Dagger Diagnostics, and Framework Trade-offs",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-04-qualifiers-multibindings-assisted"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-20-checkpoint",
+      "categoryId": "level-05-production-architecture",
+      "title": "Week 20 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-05-week-20-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+      ],
+      "rewards": {
+        "xp": 175,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-05-week-21-01-modularization-evidence-cohesion-coupling",
+      "categoryId": "level-05-production-architecture",
+      "title": "Modularisation Evidence, Cohesion, and Coupling",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-21-01-modularization-evidence-cohesion-coupling",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-20-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-21-02-app-feature-core-data-modules",
+      "categoryId": "level-05-production-architecture",
+      "title": "App, Feature, Core, and Data Modules",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-21-02-app-feature-core-data-modules",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-01-modularization-evidence-cohesion-coupling"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-21-03-api-implementation-dependency-graphs",
+      "categoryId": "level-05-production-architecture",
+      "title": "API/Implementation Modules and Acyclic Dependency Graphs",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-21-03-api-implementation-dependency-graphs",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-02-app-feature-core-data-modules"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-21-04-cross-feature-navigation-resources",
+      "categoryId": "level-05-production-architecture",
+      "title": "Cross-Feature Navigation and Resource Encapsulation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-21-04-cross-feature-navigation-resources",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-03-api-implementation-dependency-graphs"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-21-05-build-performance-dynamic-library-modules",
+      "categoryId": "level-05-production-architecture",
+      "title": "Build Performance, Dynamic Features, and Library Modules",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-21-05-build-performance-dynamic-library-modules",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-04-cross-feature-navigation-resources"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-21-checkpoint",
+      "categoryId": "level-05-production-architecture",
+      "title": "Week 21 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-05-week-21-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-05-build-performance-dynamic-library-modules"
+      ],
+      "rewards": {
+        "xp": 175,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-05-week-22-01-architecture-tests-contracts-fakes",
+      "categoryId": "level-05-production-architecture",
+      "title": "Architecture Tests, Contracts, and Purposeful Fakes",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-21-checkpoint"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+      "categoryId": "level-05-production-architecture",
+      "title": "Architecture Decisions and Incremental Refactoring",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-01-architecture-tests-contracts-fakes"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-22-03-banking-module-graph-contracts",
+      "categoryId": "level-05-production-architecture",
+      "title": "Designing the Banking Module Graph",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-22-03-banking-module-graph-contracts",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-02-architecture-decisions-incremental-refactoring"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-22-04-payment-consistency-security-boundaries",
+      "categoryId": "level-05-production-architecture",
+      "title": "Payment Consistency and Security Boundaries",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-22-04-payment-consistency-security-boundaries",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-03-banking-module-graph-contracts"
+      ],
+      "rewards": {
+        "xp": 65,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-05-week-22-05-multi-module-banking-capstone",
+      "categoryId": "level-05-production-architecture",
+      "title": "Capstone: Multi-Module Banking Demo",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-05-week-22-05-multi-module-banking-capstone",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-04-payment-consistency-security-boundaries"
+      ],
+      "rewards": {
+        "xp": 100,
+        "stars": 5
+      }
+    },
+    {
+      "id": "node-level-05-week-22-checkpoint",
+      "categoryId": "level-05-production-architecture",
+      "title": "Week 22 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-05-week-22-checkpoint",
+      "difficulty": "intermediate",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-05-multi-module-banking-capstone"
+      ],
+      "rewards": {
+        "xp": 175,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-05-boss",
+      "categoryId": "level-05-production-architecture",
+      "title": "Level 5 Boss: Production Architecture Review",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-05-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-05-week-22-checkpoint"
+      ],
+      "rewards": {
+        "xp": 450,
+        "stars": 5
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "node-level-01-week-01-01-first-program",
+      "to": "node-level-01-week-01-02-values-types-strings",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-02-values-types-strings",
+      "to": "node-level-01-week-01-03-expressions-decisions",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-03-expressions-decisions",
+      "to": "node-level-01-week-01-04-loops-ranges",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-04-loops-ranges",
+      "to": "node-level-01-week-01-05-functions",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-05-functions",
+      "to": "node-level-01-week-01-06-null-safety",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-06-null-safety",
+      "to": "node-level-01-week-01-07-small-program-design",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-07-small-program-design",
+      "to": "node-level-01-week-01-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-01-checkpoint",
+      "to": "node-level-01-week-02-01-classes-objects-composition",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-02-01-classes-objects-composition",
+      "to": "node-level-01-week-02-02-data-enum-sealed-models",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-02-02-data-enum-sealed-models",
+      "to": "node-level-01-week-02-03-collections-transformations",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-02-03-collections-transformations",
+      "to": "node-level-01-week-02-04-lambdas-extensions-scope",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-02-04-lambdas-extensions-scope",
+      "to": "node-level-01-week-02-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-02-checkpoint",
+      "to": "node-level-01-week-03-01-exceptions-results",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-01-exceptions-results",
+      "to": "node-level-01-week-03-02-generics-variance",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-02-generics-variance",
+      "to": "node-level-01-week-03-03-delegation-inline-value-classes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-03-delegation-inline-value-classes",
+      "to": "node-level-01-week-03-04-annotations-reflection-dsls",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-04-annotations-reflection-dsls",
+      "to": "node-level-01-week-03-05-jvm-interop-memory",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-05-jvm-interop-memory",
+      "to": "node-level-01-week-03-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-03-checkpoint",
+      "to": "node-level-01-week-04-01-terminal-files-processes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-01-terminal-files-processes",
+      "to": "node-level-01-week-04-02-git-collaboration-docs",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-02-git-collaboration-docs",
+      "to": "node-level-01-week-04-03-debugging-stack-traces",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-03-debugging-stack-traces",
+      "to": "node-level-01-week-04-04-data-structures-complexity",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-04-data-structures-complexity",
+      "to": "node-level-01-week-04-05-http-rest-json",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-05-http-rest-json",
+      "to": "node-level-01-week-04-06-expense-manager-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-week-04-06-expense-manager-capstone",
+      "to": "node-level-01-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-01-boss",
+      "to": "node-level-02-week-05-01-studio-sdk-emulator",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-01-studio-sdk-emulator",
+      "to": "node-level-02-week-05-02-projects-modules-source-sets",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-02-projects-modules-source-sets",
+      "to": "node-level-02-week-05-03-gradle-agp-build-flow",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-03-gradle-agp-build-flow",
+      "to": "node-level-02-week-05-04-manifest-resources-identity",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-04-manifest-resources-identity",
+      "to": "node-level-02-week-05-05-sdk-levels-variants-packaging",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-05-sdk-levels-variants-packaging",
+      "to": "node-level-02-week-05-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-05-checkpoint",
+      "to": "node-level-02-week-06-01-application-process-context",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-01-application-process-context",
+      "to": "node-level-02-week-06-02-activity-lifecycle",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-02-activity-lifecycle",
+      "to": "node-level-02-week-06-03-configuration-changes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-03-configuration-changes",
+      "to": "node-level-02-week-06-04-saved-state-process-death",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-04-saved-state-process-death",
+      "to": "node-level-02-week-06-05-resources-qualifiers-localisation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-05-resources-qualifiers-localisation",
+      "to": "node-level-02-week-06-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-06-checkpoint",
+      "to": "node-level-02-week-07-01-intents-activity-results",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-01-intents-activity-results",
+      "to": "node-level-02-week-07-02-runtime-permissions",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-02-runtime-permissions",
+      "to": "node-level-02-week-07-03-component-selection-services",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-03-component-selection-services",
+      "to": "node-level-02-week-07-04-broadcasts-providers-pending-intents",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-04-broadcasts-providers-pending-intents",
+      "to": "node-level-02-week-07-05-tasks-back-stack-app-links",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-05-tasks-back-stack-app-links",
+      "to": "node-level-02-week-07-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-07-checkpoint",
+      "to": "node-level-02-week-08-01-xml-view-hierarchies",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-01-xml-view-hierarchies",
+      "to": "node-level-02-week-08-02-constraintlayout-viewbinding",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-02-constraintlayout-viewbinding",
+      "to": "node-level-02-week-08-03-fragments-navigation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-03-fragments-navigation",
+      "to": "node-level-02-week-08-04-recyclerview-lists",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-04-recyclerview-lists",
+      "to": "node-level-02-week-08-05-view-compose-interoperability",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-05-view-compose-interoperability",
+      "to": "node-level-02-week-08-06-notes-app-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-06-notes-app-capstone",
+      "to": "node-level-02-week-08-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-02-week-08-checkpoint",
+      "to": "node-level-02-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-06-preview",
+      "to": "node-level-07-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-07-preview",
+      "to": "node-level-08-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-08-preview",
+      "to": "node-level-09-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-09-preview",
+      "to": "node-level-10-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-10-preview",
+      "to": "node-level-11-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-11-preview",
+      "to": "node-level-12-preview",
+      "kind": "planned_sequence"
+    },
+    {
+      "from": "node-level-02-boss",
+      "to": "node-level-03-week-09-01-compose-mental-model",
+      "kind": "level_unlock"
+    },
+    {
+      "from": "node-level-03-week-09-01-compose-mental-model",
+      "to": "node-level-03-week-09-02-modifiers-constraints-order",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-09-02-modifiers-constraints-order",
+      "to": "node-level-03-week-09-03-row-column-box-layout",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-09-03-row-column-box-layout",
+      "to": "node-level-03-week-09-04-material3-scaffold-slots",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-09-04-material3-scaffold-slots",
+      "to": "node-level-03-week-09-05-text-input-resources",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-09-05-text-input-resources",
+      "to": "node-level-03-week-09-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-09-checkpoint",
+      "to": "node-level-03-week-10-01-state-remember-saveable",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-01-state-remember-saveable",
+      "to": "node-level-03-week-10-02-state-hoisting-udf",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-02-state-hoisting-udf",
+      "to": "node-level-03-week-10-03-recomposition-snapshots-identity",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-03-recomposition-snapshots-identity",
+      "to": "node-level-03-week-10-04-lazy-lists-grids",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-04-lazy-lists-grids",
+      "to": "node-level-03-week-10-05-navigation-compose-concepts",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-05-navigation-compose-concepts",
+      "to": "node-level-03-week-10-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-10-checkpoint",
+      "to": "node-level-03-week-11-01-effect-fundamentals-keys",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-01-effect-fundamentals-keys",
+      "to": "node-level-03-week-11-02-launched-effect-coroutine-scope",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-02-launched-effect-coroutine-scope",
+      "to": "node-level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "to": "node-level-03-week-11-04-derived-state-snapshot-flow",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-04-derived-state-snapshot-flow",
+      "to": "node-level-03-week-11-05-viewmodel-lifecycle-collection",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-05-viewmodel-lifecycle-collection",
+      "to": "node-level-03-week-11-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-11-checkpoint",
+      "to": "node-level-03-week-12-01-stability-skipping-performance",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-01-stability-skipping-performance",
+      "to": "node-level-03-week-12-02-custom-layout-measure-placement",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-02-custom-layout-measure-placement",
+      "to": "node-level-03-week-12-03-canvas-custom-drawing",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-03-canvas-custom-drawing",
+      "to": "node-level-03-week-12-04-gestures-pointer-input",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-04-gestures-pointer-input",
+      "to": "node-level-03-week-12-05-animation-nested-scroll",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-05-animation-nested-scroll",
+      "to": "node-level-03-week-12-06-design-systems-compositionlocal",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-06-design-systems-compositionlocal",
+      "to": "node-level-03-week-12-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-12-checkpoint",
+      "to": "node-level-03-week-13-01-accessibility-semantics-talkback",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-01-accessibility-semantics-talkback",
+      "to": "node-level-03-week-13-02-focus-keyboard-scalable-content",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-02-focus-keyboard-scalable-content",
+      "to": "node-level-03-week-13-03-localisation-rtl-theme-policy",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-03-localisation-rtl-theme-policy",
+      "to": "node-level-03-week-13-04-edge-to-edge-window-insets",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-04-edge-to-edge-window-insets",
+      "to": "node-level-03-week-13-05-adaptive-layout-navigation3",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-05-adaptive-layout-navigation3",
+      "to": "node-level-03-week-13-06-compose-testing-shopping-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-06-compose-testing-shopping-capstone",
+      "to": "node-level-03-week-13-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-week-13-checkpoint",
+      "to": "node-level-03-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-03-boss",
+      "to": "node-level-04-week-14-01-suspend-main-safety-dispatchers",
+      "kind": "level_unlock"
+    },
+    {
+      "from": "node-level-04-week-14-01-suspend-main-safety-dispatchers",
+      "to": "node-level-04-week-14-02-scopes-builders-structured-concurrency",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-02-scopes-builders-structured-concurrency",
+      "to": "node-level-04-week-14-03-cancellation-timeouts-cleanup",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-03-cancellation-timeouts-cleanup",
+      "to": "node-level-04-week-14-04-exceptions-supervision",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-04-exceptions-supervision",
+      "to": "node-level-04-week-14-05-parallelism-thread-safety",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-05-parallelism-thread-safety",
+      "to": "node-level-04-week-14-06-coroutine-testing-virtual-time",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-06-coroutine-testing-virtual-time",
+      "to": "node-level-04-week-14-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-14-checkpoint",
+      "to": "node-level-04-week-15-01-cold-flow-context-collection",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-01-cold-flow-context-collection",
+      "to": "node-level-04-week-15-02-flow-operators-errors-retry",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-02-flow-operators-errors-retry",
+      "to": "node-level-04-week-15-03-combine-latest-flattening",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-03-combine-latest-flattening",
+      "to": "node-level-04-week-15-04-buffer-conflate-backpressure",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-04-buffer-conflate-backpressure",
+      "to": "node-level-04-week-15-05-stateflow-sharedflow-events",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-05-stateflow-sharedflow-events",
+      "to": "node-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+      "to": "node-level-04-week-15-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-15-checkpoint",
+      "to": "node-level-04-week-16-01-http-contracts-status-headers",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-01-http-contracts-status-headers",
+      "to": "node-level-04-week-16-02-dto-kotlin-serialization",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-02-dto-kotlin-serialization",
+      "to": "node-level-04-week-16-03-retrofit-data-source-repository",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-03-retrofit-data-source-repository",
+      "to": "node-level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "to": "node-level-04-week-16-05-network-failures-timeouts-retries",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-05-network-failures-timeouts-retries",
+      "to": "node-level-04-week-16-06-mockwebserver-network-integration-tests",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-06-mockwebserver-network-integration-tests",
+      "to": "node-level-04-week-16-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-16-checkpoint",
+      "to": "node-level-04-week-17-01-oauth-tokens-session-security",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-01-oauth-tokens-session-security",
+      "to": "node-level-04-week-17-02-single-flight-token-refresh",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-02-single-flight-token-refresh",
+      "to": "node-level-04-week-17-03-paging3-cursors-loadstates",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-03-paging3-cursors-loadstates",
+      "to": "node-level-04-week-17-04-multipart-upload-progress",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-04-multipart-upload-progress",
+      "to": "node-level-04-week-17-05-websockets-sse-realtime",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-05-websockets-sse-realtime",
+      "to": "node-level-04-week-17-06-connectivity-policy-network-capabilities",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-06-connectivity-policy-network-capabilities",
+      "to": "node-level-04-week-17-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-17-checkpoint",
+      "to": "node-level-04-week-18-01-room-entities-daos-relations-transactions",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-01-room-entities-daos-relations-transactions",
+      "to": "node-level-04-week-18-02-room-migrations-fts-testing",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-02-room-migrations-fts-testing",
+      "to": "node-level-04-week-18-03-datastore-and-file-storage",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-03-datastore-and-file-storage",
+      "to": "node-level-04-week-18-04-source-of-truth-cache-ttl",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-04-source-of-truth-cache-ttl",
+      "to": "node-level-04-week-18-05-offline-writes-sync-conflicts",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-05-offline-writes-sync-conflicts",
+      "to": "node-level-04-week-18-06-workmanager-durable-sync",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-06-workmanager-durable-sync",
+      "to": "node-level-04-week-18-07-offline-first-news-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-07-offline-first-news-capstone",
+      "to": "node-level-04-week-18-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-week-18-checkpoint",
+      "to": "node-level-04-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-04-boss",
+      "to": "node-level-05-week-19-01-layers-boundaries-dependency-direction",
+      "kind": "level_unlock"
+    },
+    {
+      "from": "node-level-05-week-19-01-layers-boundaries-dependency-direction",
+      "to": "node-level-05-week-19-02-immutable-ui-state-udf",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-02-immutable-ui-state-udf",
+      "to": "node-level-05-week-19-03-state-holders-events-ui-logic",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-03-state-holders-events-ui-logic",
+      "to": "node-level-05-week-19-04-repositories-source-of-truth-mappers",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-04-repositories-source-of-truth-mappers",
+      "to": "node-level-05-week-19-05-domain-use-cases-error-models",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-05-domain-use-cases-error-models",
+      "to": "node-level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+      "to": "node-level-05-week-19-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-19-checkpoint",
+      "to": "node-level-05-week-20-01-manual-di-composition-root",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-01-manual-di-composition-root",
+      "to": "node-level-05-week-20-02-hilt-graph-constructor-modules",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-02-hilt-graph-constructor-modules",
+      "to": "node-level-05-week-20-03-hilt-components-scopes-lifetimes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-03-hilt-components-scopes-lifetimes",
+      "to": "node-level-05-week-20-04-qualifiers-multibindings-assisted",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-04-qualifiers-multibindings-assisted",
+      "to": "node-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+      "to": "node-level-05-week-20-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-20-checkpoint",
+      "to": "node-level-05-week-21-01-modularization-evidence-cohesion-coupling",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-01-modularization-evidence-cohesion-coupling",
+      "to": "node-level-05-week-21-02-app-feature-core-data-modules",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-02-app-feature-core-data-modules",
+      "to": "node-level-05-week-21-03-api-implementation-dependency-graphs",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-03-api-implementation-dependency-graphs",
+      "to": "node-level-05-week-21-04-cross-feature-navigation-resources",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-04-cross-feature-navigation-resources",
+      "to": "node-level-05-week-21-05-build-performance-dynamic-library-modules",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-05-build-performance-dynamic-library-modules",
+      "to": "node-level-05-week-21-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-21-checkpoint",
+      "to": "node-level-05-week-22-01-architecture-tests-contracts-fakes",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-01-architecture-tests-contracts-fakes",
+      "to": "node-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+      "to": "node-level-05-week-22-03-banking-module-graph-contracts",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-03-banking-module-graph-contracts",
+      "to": "node-level-05-week-22-04-payment-consistency-security-boundaries",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-04-payment-consistency-security-boundaries",
+      "to": "node-level-05-week-22-05-multi-module-banking-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-05-multi-module-banking-capstone",
+      "to": "node-level-05-week-22-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-week-22-checkpoint",
+      "to": "node-level-05-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-05-boss",
+      "to": "node-level-06-preview",
+      "kind": "level_unlock"
+    }
+  ]
+}

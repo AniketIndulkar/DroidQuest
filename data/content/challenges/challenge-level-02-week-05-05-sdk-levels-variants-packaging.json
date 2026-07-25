@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-05-05-sdk-levels-variants-packaging",
+  "title": "Design a Compatibility and Release Matrix",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging",
+  "difficulty": "beginner",
+  "estimatedMinutes": 55,
+  "prompt": "Define a Notes app SDK policy, debug/release variants, emulator test matrix, artifact commands, and guarded use of one API newer than minSdk.",
+  "successCriteria": [
+    "Each SDK setting has a separate evidence-based rationale.",
+    "Both old and new runtime API paths are tested.",
+    "Debug APK and release AAB outputs and signing responsibilities are documented."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Each SDK setting has a separate evidence-based rationale.",
+    "Use lifecycle or boundary evidence to prove: Both old and new runtime API paths are tested."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "android {\n    compileSdk = TODO()\n    defaultConfig { minSdk = TODO(); targetSdk = TODO() }\n    buildTypes { /* debug and release */ }\n}"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Each SDK setting has a separate evidence-based rationale.",
+    "Implement the smallest design that guarantees: Both old and new runtime API paths are tested.",
+    "Implement the smallest design that guarantees: Debug APK and release AAB outputs and signing responsibilities are documented."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that each SDK setting has a separate evidence-based rationale.",
+    "Run a focused check demonstrating that both old and new runtime API paths are tested.",
+    "Run a focused check demonstrating that debug APK and release AAB outputs and signing responsibilities are documented."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

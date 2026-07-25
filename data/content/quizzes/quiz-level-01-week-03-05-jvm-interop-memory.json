@@ -1,0 +1,61 @@
+{
+  "id": "quiz-level-01-week-03-05-jvm-interop-memory",
+  "title": "JVM Interoperability, References, and Allocation Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-05-jvm-interop-memory"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-03-05-platform-type",
+      "prompt": "What should you do with an unannotated Java String at a Kotlin boundary?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Assign explicit nullability and validate it",
+      "explanation": "Explicit boundary translation restores Kotlin null-safety reasoning.",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory",
+      "options": [
+        "Assign explicit nullability and validate it",
+        "Always use !!",
+        "Assume Java never returns null",
+        "Convert it to Any"
+      ]
+    },
+    {
+      "id": "q-week-03-05-equality-output",
+      "prompt": "For val b = a, what does a === b normally report for an ordinary object?",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": "true",
+      "explanation": "Both variables refer to the same object after direct reference assignment.",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory"
+    },
+    {
+      "id": "q-week-03-05-boxing-facts",
+      "prompt": "Select contexts that may require boxing an Int.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "answer": [
+        "Int?",
+        "List<Int>",
+        "Generic T"
+      ],
+      "explanation": "Nullable and generic representations often require an object wrapper, while a direct local Int can use a primitive representation.",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory",
+      "options": [
+        "Int?",
+        "List<Int>",
+        "Generic T",
+        "Every local Int always"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

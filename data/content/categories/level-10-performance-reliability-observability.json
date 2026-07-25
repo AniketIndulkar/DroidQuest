@@ -1,0 +1,39 @@
+{
+  "id": "level-10-performance-reliability-observability",
+  "title": "Level 10: Performance, Reliability, and Observability",
+  "order": 10,
+  "description": "Measure and improve startup, rendering, memory, battery, size, crashes, ANRs, operational resilience, logging, analytics, and release health.",
+  "difficulty": "advanced",
+  "status": "planned",
+  "weekRange": {
+    "start": 40,
+    "end": 43
+  },
+  "unlockPrerequisites": [
+    "level-09-gradle-build-cicd"
+  ],
+  "tags": [
+    "performance",
+    "reliability",
+    "observability"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-10-preview",
+  "plannedTopics": [
+    "Profilers, Perfetto, memory, jank, and battery",
+    "Startup, Baseline Profiles, and Macrobenchmark",
+    "ANRs, crashes, retry storms, feature flags, and rollback",
+    "Structured logging, metrics, dashboards, and release health"
+  ],
+  "project": {
+    "title": "Performance Investigation",
+    "summary": "Measure an intentionally slow application, fix verified bottlenecks, add profiles, and prevent regressions in CI."
+  },
+  "theme": {
+    "color": "#9B4D00",
+    "icon": "speed",
+    "mapMood": "Measured paths from user action to frames, resources, failures, and operational signals."
+  },
+  "version": "0.2.0"
+}

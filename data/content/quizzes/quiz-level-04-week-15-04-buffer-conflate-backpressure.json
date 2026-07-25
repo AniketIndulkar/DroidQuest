@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-04-buffer-conflate-backpressure",
+  "title": "Buffering, Conflation, and Backpressure Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-04-buffer-conflate-backpressure"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-04-buffer-conflate-backpressure-decision",
+      "prompt": "Which stream may reasonably use conflate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Visual download progress",
+      "explanation": "Intermediate progress can be skipped when the newest value communicates current state.",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure",
+      "options": [
+        "Visual download progress",
+        "Payment commands",
+        "Audit log records",
+        "Database migrations"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-04-buffer-conflate-backpressure-truth",
+      "prompt": "Applying conflate to StateFlow adds a new effect.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "StateFlow already has latest-state conflation semantics.",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure"
+    },
+    {
+      "id": "q-level-04-week-15-04-buffer-conflate-backpressure-recall",
+      "prompt": "What is the danger of an unlimited buffer?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Unbounded memory and latency growth",
+      "explanation": "A sustained mismatch accumulates queued values indefinitely.",
+      "lessonId": "level-04-week-15-04-buffer-conflate-backpressure"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

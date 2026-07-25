@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "title": "Bridge a Lifecycle Observer Safely",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Integrate a lifecycle observer and analytics property publisher while proving one registration, balanced cleanup, and latest callback behaviour.",
+  "successCriteria": [
+    "Observer count returns to zero on disposal.",
+    "Analytics receives only committed state.",
+    "Callback changes do not restart the observer resource."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun LifecycleBridge(owner: LifecycleOwner, onStop: () -> Unit)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

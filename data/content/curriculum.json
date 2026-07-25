@@ -1,0 +1,410 @@
+{
+  "id": "droidquest-curriculum",
+  "title": "DroidQuest: Beginner to Android Platform Expert",
+  "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
+  "version": "0.8.0",
+  "contentRevision": 8,
+  "releasedAt": "2026-07-25",
+  "defaultLocale": "en-GB",
+  "supportedLocales": [
+    "en-GB"
+  ],
+  "plannedWeeks": 52,
+  "targetHoursPerWeek": {
+    "minimum": 8,
+    "maximum": 10
+  },
+  "learnerProfile": {
+    "programmingExperienceRequired": false,
+    "assumedSkills": [
+      "Basic computer use",
+      "Basic arithmetic"
+    ]
+  },
+  "lessonTimePolicy": {
+    "maximumLearnMinutes": 10,
+    "excludes": [
+      "quiz",
+      "recall",
+      "challenge"
+    ],
+    "note": "Learning time covers the authored Learn stage only. Assessment and practice time varies by learner."
+  },
+  "categoryIds": [
+    "level-01-programming-foundations",
+    "level-02-android-platform-fundamentals",
+    "level-03-jetpack-compose",
+    "level-04-async-data-networking",
+    "level-05-production-architecture",
+    "level-06-android-platform-use-cases",
+    "level-07-testing-quality-engineering",
+    "level-08-android-security-engineering",
+    "level-09-gradle-build-cicd",
+    "level-10-performance-reliability-observability",
+    "level-11-android-internals-aosp",
+    "level-12-advanced-specialisations"
+  ],
+  "roadmapId": "main-roadmap",
+  "glossaryIds": [
+    "android-glossary"
+  ],
+  "authoredWeeks": [
+    {
+      "id": "week-01",
+      "number": 1,
+      "categoryId": "level-01-programming-foundations",
+      "title": "Kotlin: From First Instruction to Small Program",
+      "status": "available",
+      "lessonIds": [
+        "level-01-week-01-01-first-program",
+        "level-01-week-01-02-values-types-strings",
+        "level-01-week-01-03-expressions-decisions",
+        "level-01-week-01-04-loops-ranges",
+        "level-01-week-01-05-functions",
+        "level-01-week-01-06-null-safety",
+        "level-01-week-01-07-small-program-design"
+      ],
+      "checkpointQuizId": "quiz-level-01-week-01-checkpoint"
+    },
+    {
+      "id": "week-02",
+      "number": 2,
+      "categoryId": "level-01-programming-foundations",
+      "title": "Kotlin Models and Transformations",
+      "status": "available",
+      "lessonIds": [
+        "level-01-week-02-01-classes-objects-composition",
+        "level-01-week-02-02-data-enum-sealed-models",
+        "level-01-week-02-03-collections-transformations",
+        "level-01-week-02-04-lambdas-extensions-scope"
+      ],
+      "checkpointQuizId": "quiz-level-01-week-02-checkpoint"
+    },
+    {
+      "id": "week-03",
+      "number": 3,
+      "categoryId": "level-01-programming-foundations",
+      "title": "Advanced Kotlin and JVM Foundations",
+      "status": "available",
+      "lessonIds": [
+        "level-01-week-03-01-exceptions-results",
+        "level-01-week-03-02-generics-variance",
+        "level-01-week-03-03-delegation-inline-value-classes",
+        "level-01-week-03-04-annotations-reflection-dsls",
+        "level-01-week-03-05-jvm-interop-memory"
+      ],
+      "checkpointQuizId": "quiz-level-01-week-03-checkpoint"
+    },
+    {
+      "id": "week-04",
+      "number": 4,
+      "categoryId": "level-01-programming-foundations",
+      "title": "Software Engineering Essentials and Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-01-week-04-01-terminal-files-processes",
+        "level-01-week-04-02-git-collaboration-docs",
+        "level-01-week-04-03-debugging-stack-traces",
+        "level-01-week-04-04-data-structures-complexity",
+        "level-01-week-04-05-http-rest-json",
+        "level-01-week-04-06-expense-manager-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-01-checkpoint"
+    },
+    {
+      "id": "week-05",
+      "number": 5,
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Android Toolchain and Build System",
+      "status": "available",
+      "lessonIds": [
+        "level-02-week-05-01-studio-sdk-emulator",
+        "level-02-week-05-02-projects-modules-source-sets",
+        "level-02-week-05-03-gradle-agp-build-flow",
+        "level-02-week-05-04-manifest-resources-identity",
+        "level-02-week-05-05-sdk-levels-variants-packaging"
+      ],
+      "checkpointQuizId": "quiz-level-02-week-05-checkpoint"
+    },
+    {
+      "id": "week-06",
+      "number": 6,
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Lifecycle, State, and Configuration",
+      "status": "available",
+      "lessonIds": [
+        "level-02-week-06-01-application-process-context",
+        "level-02-week-06-02-activity-lifecycle",
+        "level-02-week-06-03-configuration-changes",
+        "level-02-week-06-04-saved-state-process-death",
+        "level-02-week-06-05-resources-qualifiers-localisation"
+      ],
+      "checkpointQuizId": "quiz-level-02-week-06-checkpoint"
+    },
+    {
+      "id": "week-07",
+      "number": 7,
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Components and System Entry",
+      "status": "available",
+      "lessonIds": [
+        "level-02-week-07-01-intents-activity-results",
+        "level-02-week-07-02-runtime-permissions",
+        "level-02-week-07-03-component-selection-services",
+        "level-02-week-07-04-broadcasts-providers-pending-intents",
+        "level-02-week-07-05-tasks-back-stack-app-links"
+      ],
+      "checkpointQuizId": "quiz-level-02-week-07-checkpoint"
+    },
+    {
+      "id": "week-08",
+      "number": 8,
+      "categoryId": "level-02-android-platform-fundamentals",
+      "title": "Views, Interoperability, and Notes Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-02-week-08-01-xml-view-hierarchies",
+        "level-02-week-08-02-constraintlayout-viewbinding",
+        "level-02-week-08-03-fragments-navigation",
+        "level-02-week-08-04-recyclerview-lists",
+        "level-02-week-08-05-view-compose-interoperability",
+        "level-02-week-08-06-notes-app-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-02-week-08-checkpoint"
+    },
+    {
+      "id": "week-09",
+      "number": 9,
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Compose Mental Model and UI Building Blocks",
+      "status": "available",
+      "lessonIds": [
+        "level-03-week-09-01-compose-mental-model",
+        "level-03-week-09-02-modifiers-constraints-order",
+        "level-03-week-09-03-row-column-box-layout",
+        "level-03-week-09-04-material3-scaffold-slots",
+        "level-03-week-09-05-text-input-resources"
+      ],
+      "checkpointQuizId": "quiz-level-03-week-09-checkpoint"
+    },
+    {
+      "id": "week-10",
+      "number": 10,
+      "categoryId": "level-03-jetpack-compose",
+      "title": "State, Collections, and Navigation",
+      "status": "available",
+      "lessonIds": [
+        "level-03-week-10-01-state-remember-saveable",
+        "level-03-week-10-02-state-hoisting-udf",
+        "level-03-week-10-03-recomposition-snapshots-identity",
+        "level-03-week-10-04-lazy-lists-grids",
+        "level-03-week-10-05-navigation-compose-concepts"
+      ],
+      "checkpointQuizId": "quiz-level-03-week-10-checkpoint"
+    },
+    {
+      "id": "week-11",
+      "number": 11,
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Effects and Lifecycle-aware State",
+      "status": "available",
+      "lessonIds": [
+        "level-03-week-11-01-effect-fundamentals-keys",
+        "level-03-week-11-02-launched-effect-coroutine-scope",
+        "level-03-week-11-03-disposable-sideeffect-updatedstate",
+        "level-03-week-11-04-derived-state-snapshot-flow",
+        "level-03-week-11-05-viewmodel-lifecycle-collection"
+      ],
+      "checkpointQuizId": "quiz-level-03-week-11-checkpoint"
+    },
+    {
+      "id": "week-12",
+      "number": 12,
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Advanced Compose Rendering and Performance",
+      "status": "available",
+      "lessonIds": [
+        "level-03-week-12-01-stability-skipping-performance",
+        "level-03-week-12-02-custom-layout-measure-placement",
+        "level-03-week-12-03-canvas-custom-drawing",
+        "level-03-week-12-04-gestures-pointer-input",
+        "level-03-week-12-05-animation-nested-scroll",
+        "level-03-week-12-06-design-systems-compositionlocal"
+      ],
+      "checkpointQuizId": "quiz-level-03-week-12-checkpoint"
+    },
+    {
+      "id": "week-13",
+      "number": 13,
+      "categoryId": "level-03-jetpack-compose",
+      "title": "Production-ready Accessible and Adaptive Compose",
+      "status": "available",
+      "lessonIds": [
+        "level-03-week-13-01-accessibility-semantics-talkback",
+        "level-03-week-13-02-focus-keyboard-scalable-content",
+        "level-03-week-13-03-localisation-rtl-theme-policy",
+        "level-03-week-13-04-edge-to-edge-window-insets",
+        "level-03-week-13-05-adaptive-layout-navigation3",
+        "level-03-week-13-06-compose-testing-shopping-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-03-week-13-checkpoint"
+    },
+    {
+      "id": "week-14",
+      "number": 14,
+      "categoryId": "level-04-async-data-networking",
+      "title": "Coroutines and Structured Concurrency",
+      "status": "available",
+      "lessonIds": [
+        "level-04-week-14-01-suspend-main-safety-dispatchers",
+        "level-04-week-14-02-scopes-builders-structured-concurrency",
+        "level-04-week-14-03-cancellation-timeouts-cleanup",
+        "level-04-week-14-04-exceptions-supervision",
+        "level-04-week-14-05-parallelism-thread-safety",
+        "level-04-week-14-06-coroutine-testing-virtual-time"
+      ],
+      "checkpointQuizId": "quiz-level-04-week-14-checkpoint"
+    },
+    {
+      "id": "week-15",
+      "number": 15,
+      "categoryId": "level-04-async-data-networking",
+      "title": "Flow, StateFlow, and Shared Streams",
+      "status": "available",
+      "lessonIds": [
+        "level-04-week-15-01-cold-flow-context-collection",
+        "level-04-week-15-02-flow-operators-errors-retry",
+        "level-04-week-15-03-combine-latest-flattening",
+        "level-04-week-15-04-buffer-conflate-backpressure",
+        "level-04-week-15-05-stateflow-sharedflow-events",
+        "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+      ],
+      "checkpointQuizId": "quiz-level-04-week-15-checkpoint"
+    },
+    {
+      "id": "week-16",
+      "number": 16,
+      "categoryId": "level-04-async-data-networking",
+      "title": "HTTP, Serialization, Retrofit, and Resilient Networking",
+      "status": "available",
+      "lessonIds": [
+        "level-04-week-16-01-http-contracts-status-headers",
+        "level-04-week-16-02-dto-kotlin-serialization",
+        "level-04-week-16-03-retrofit-data-source-repository",
+        "level-04-week-16-04-okhttp-interceptors-auth-logging",
+        "level-04-week-16-05-network-failures-timeouts-retries",
+        "level-04-week-16-06-mockwebserver-network-integration-tests"
+      ],
+      "checkpointQuizId": "quiz-level-04-week-16-checkpoint"
+    },
+    {
+      "id": "week-17",
+      "number": 17,
+      "categoryId": "level-04-async-data-networking",
+      "title": "Authentication, Pagination, and Advanced Network Delivery",
+      "status": "available",
+      "lessonIds": [
+        "level-04-week-17-01-oauth-tokens-session-security",
+        "level-04-week-17-02-single-flight-token-refresh",
+        "level-04-week-17-03-paging3-cursors-loadstates",
+        "level-04-week-17-04-multipart-upload-progress",
+        "level-04-week-17-05-websockets-sse-realtime",
+        "level-04-week-17-06-connectivity-policy-network-capabilities"
+      ],
+      "checkpointQuizId": "quiz-level-04-week-17-checkpoint"
+    },
+    {
+      "id": "week-18",
+      "number": 18,
+      "categoryId": "level-04-async-data-networking",
+      "title": "Persistence, Offline-first Synchronization, and News Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-04-week-18-01-room-entities-daos-relations-transactions",
+        "level-04-week-18-02-room-migrations-fts-testing",
+        "level-04-week-18-03-datastore-and-file-storage",
+        "level-04-week-18-04-source-of-truth-cache-ttl",
+        "level-04-week-18-05-offline-writes-sync-conflicts",
+        "level-04-week-18-06-workmanager-durable-sync",
+        "level-04-week-18-07-offline-first-news-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-04-week-18-checkpoint"
+    },
+    {
+      "id": "week-19",
+      "number": 19,
+      "categoryId": "level-05-production-architecture",
+      "title": "Architecture Boundaries, State, and Data Contracts",
+      "status": "available",
+      "lessonIds": [
+        "level-05-week-19-01-layers-boundaries-dependency-direction",
+        "level-05-week-19-02-immutable-ui-state-udf",
+        "level-05-week-19-03-state-holders-events-ui-logic",
+        "level-05-week-19-04-repositories-source-of-truth-mappers",
+        "level-05-week-19-05-domain-use-cases-error-models",
+        "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+      ],
+      "checkpointQuizId": "quiz-level-05-week-19-checkpoint"
+    },
+    {
+      "id": "week-20",
+      "number": 20,
+      "categoryId": "level-05-production-architecture",
+      "title": "Dependency Injection from Manual Graphs to Hilt",
+      "status": "available",
+      "lessonIds": [
+        "level-05-week-20-01-manual-di-composition-root",
+        "level-05-week-20-02-hilt-graph-constructor-modules",
+        "level-05-week-20-03-hilt-components-scopes-lifetimes",
+        "level-05-week-20-04-qualifiers-multibindings-assisted",
+        "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+      ],
+      "checkpointQuizId": "quiz-level-05-week-20-checkpoint"
+    },
+    {
+      "id": "week-21",
+      "number": 21,
+      "categoryId": "level-05-production-architecture",
+      "title": "Modularisation and Dependency Graphs",
+      "status": "available",
+      "lessonIds": [
+        "level-05-week-21-01-modularization-evidence-cohesion-coupling",
+        "level-05-week-21-02-app-feature-core-data-modules",
+        "level-05-week-21-03-api-implementation-dependency-graphs",
+        "level-05-week-21-04-cross-feature-navigation-resources",
+        "level-05-week-21-05-build-performance-dynamic-library-modules"
+      ],
+      "checkpointQuizId": "quiz-level-05-week-21-checkpoint"
+    },
+    {
+      "id": "week-22",
+      "number": 22,
+      "categoryId": "level-05-production-architecture",
+      "title": "Architecture Evolution and Banking Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-05-week-22-01-architecture-tests-contracts-fakes",
+        "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+        "level-05-week-22-03-banking-module-graph-contracts",
+        "level-05-week-22-04-payment-consistency-security-boundaries",
+        "level-05-week-22-05-multi-module-banking-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-05-week-22-checkpoint"
+    }
+  ],
+  "specialisationPolicy": {
+    "selectionRequired": false,
+    "tracksAreIndependent": true,
+    "message": "Learners may complete any or all Level 12 specialisations."
+  },
+  "contentPolicy": {
+    "delivery": "bundled-json",
+    "sourceOfTruth": "git",
+    "normalUsageRequiresNetwork": false,
+    "optionalNetworkFeatures": [
+      "ai-assistance",
+      "github-sync"
+    ]
+  },
+  "minimumAppContentApi": 2
+}

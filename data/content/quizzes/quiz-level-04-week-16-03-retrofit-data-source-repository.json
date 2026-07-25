@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-03-retrofit-data-source-repository",
+  "title": "Retrofit, Data Sources, and Repository Boundaries Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-03-retrofit-data-source-repository"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-03-retrofit-data-source-repository-decision",
+      "prompt": "Which layer should interpret retrofit2.Response?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Remote data source",
+      "explanation": "Transport status, headers, and bodies belong at the network boundary.",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository",
+      "options": [
+        "Remote data source",
+        "Composable card",
+        "Navigation graph",
+        "Glossary renderer"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-03-retrofit-data-source-repository-truth",
+      "prompt": "A Retrofit suspend endpoint must always be wrapped in withContext(IO).",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Retrofit performs asynchronous network work and integrates with coroutine cancellation.",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository"
+    },
+    {
+      "id": "q-level-04-week-16-03-retrofit-data-source-repository-recall",
+      "prompt": "What should the ViewModel receive?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Domain data or typed application failure",
+      "explanation": "Transport and DTO details remain behind the data layer.",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

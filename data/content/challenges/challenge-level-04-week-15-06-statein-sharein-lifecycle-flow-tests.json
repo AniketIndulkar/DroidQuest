@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "title": "Share a Repository Stream Correctly",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Expose repository updates as ViewModel StateFlow with a justified start timeout, lifecycle-aware UI collection, and tests for start, stop, replay, and upstream failure.",
+  "successCriteria": [
+    "Only one upstream collection serves multiple subscribers.",
+    "Collection stops under documented policy.",
+    "Tests use an active collector and one scheduler."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val uiState: StateFlow<NewsUiState> = repository.articles.stateIn(/* policy */)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,61 @@
+{
+  "id": "quiz-level-01-week-01-02-values-types-strings",
+  "title": "Values, Variables, Types, and Strings Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-02-values-types-strings"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-02-read-only",
+      "prompt": "Which keyword declares a read-only reference?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "val",
+        "var",
+        "fun",
+        "type"
+      ],
+      "answer": "val",
+      "explanation": "val prevents the reference from being assigned a different value after initialisation.",
+      "lessonId": "level-01-week-01-02-values-types-strings"
+    },
+    {
+      "id": "q-week-01-02-type-values",
+      "prompt": "Select every correctly matched value and inferred type.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "options": [
+        "3 -> Int",
+        "3.5 -> Double",
+        "true -> Boolean",
+        "\"A\" -> Char"
+      ],
+      "answer": [
+        "3 -> Int",
+        "3.5 -> Double",
+        "true -> Boolean"
+      ],
+      "explanation": "Double quotes create a String; a Char literal uses single quotes.",
+      "lessonId": "level-01-week-01-02-values-types-strings"
+    },
+    {
+      "id": "q-week-01-02-template-blank",
+      "prompt": "Complete the template so it inserts the expression quantity * price: \"Total: ___\"",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "${quantity * price}",
+      "explanation": "A compound expression in a string template is wrapped in braces after the dollar sign.",
+      "lessonId": "level-01-week-01-02-values-types-strings"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

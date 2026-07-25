@@ -1,0 +1,235 @@
+{
+  "id": "level-03-week-12-05-animation-nested-scroll",
+  "title": "Animation and Nested Scroll",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 12,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-04-gestures-pointer-input"
+  ],
+  "tags": [
+    "compose",
+    "animation",
+    "nested-scroll"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Motion should communicate state change while scroll coordination distributes deltas and velocity predictably between nested participants.",
+      "realWorldUse": "Visibility, size transitions, item placement, collapsing chrome, pull effects, and coordinated toolbars appear throughout modern apps.",
+      "outcome": "Choose the smallest animation API, preserve interruption continuity, and explain nested scroll pre, child, and post consumption."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Animate state, not arbitrary timers",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "animateContentSize handles layout-size changes, AnimatedVisibility manages enter and exit, Crossfade switches simple content, animateAsState animates one value, and updateTransition coordinates several values from the same target state. Animatable provides lower-level suspending control and interruption. Select the highest API that matches the state transition. Stable lazy keys are essential for item placement animation. Motion should explain continuity or hierarchy, not delay access to content."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val alpha by animateFloatAsState(if (visible) 1f else 0f, label = \"content-alpha\")\nBox(Modifier.graphicsLayer { this.alpha = alpha })\n\nval connection = remember { object : NestedScrollConnection { /* consume toolbar range only */ } }",
+              "caption": "A state target drives motion while nested scroll owns only its declared toolbar range."
+            },
+            {
+              "type": "table",
+              "title": "Motion and scroll",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Single value",
+                  "animateAsState"
+                ],
+                [
+                  "Visibility lifecycle",
+                  "AnimatedVisibility"
+                ],
+                [
+                  "Several linked values",
+                  "updateTransition"
+                ],
+                [
+                  "Imperative interruptible motion",
+                  "Animatable"
+                ],
+                [
+                  "Parent-child deltas",
+                  "nestedScroll connection"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Interruption and motion policy are requirements",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Animations must handle a new target arriving before the previous transition completes. Compose animation state normally preserves current value and velocity where possible; custom coroutine logic must not snap through stale endpoints. Respect reduced-motion and accessibility expectations, keep semantics tied to logical state, and avoid animating layout when a draw or graphics-layer transformation meets the goal more cheaply. Test end state directly and use a controlled test clock for intermediate frames."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val alpha by animateFloatAsState(if (visible) 1f else 0f, label = \"content-alpha\")\nBox(Modifier.graphicsLayer { this.alpha = alpha })\n\nval connection = remember { object : NestedScrollConnection { /* consume toolbar range only */ } }",
+              "caption": "A state target drives motion while nested scroll owns only its declared toolbar range."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "State is the animation target",
+              "text": "Motion follows logical transitions and must remain correct when interrupted."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Nested scroll is delta negotiation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Nested scrolling passes input deltas through pre-scroll, child consumption, and post-scroll, with analogous fling stages. A NestedScrollConnection can consume some available movement before or after a child to collapse an app bar or coordinate effects. Return only the delta actually consumed and maintain sign conventions. nestedScroll participates in coordination but does not make a component scrollable by itself. Avoid consuming everything at the parent unless children intentionally must not move."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Consume only what moved",
+              "text": "Over-consuming nested-scroll deltas starves the child and produces stuck or unnatural scrolling."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Compose animation overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/animation/introduction",
+          "whyRead": "Introduces animation API selection and state-driven motion."
+        },
+        {
+          "title": "Nested scroll modifiers",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/scroll",
+          "whyRead": "Explains scrollable containers and nested-scroll coordination."
+        },
+        {
+          "title": "Nested scroll system",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/scroll#nested-scrolling",
+          "whyRead": "Details pre-scroll, post-scroll, fling, and custom connections."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Fix the scroll-consuming parent",
+      "language": "kotlin",
+      "code": "override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset = available",
+      "walkthrough": [
+        "The parent reports consuming every available delta.",
+        "The child receives nothing and cannot perform its normal scroll.",
+        "Clamp toolbar movement and return only the offset actually applied."
+      ],
+      "expectedOutput": "The toolbar consumes within its range and remaining delta reaches the list."
+    },
+    "trap_check": [
+      {
+        "mistake": "Starting unrelated delay coroutines to approximate a state transition.",
+        "why": "Overlapping targets race and cancellation can leave stale visual state.",
+        "fix": "Use a state-driven transition or Animatable with explicit interruption."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create an interruptible animated header that consumes nested scroll only within its collapse range and remains correct under rapid direction changes.",
+      "successLooksLike": "Child scrolling receives unconsumed deltas. Animation reaches current logical state after interruption. Reduced-motion behaviour remains usable."
+    },
+    "recall": [
+      {
+        "prompt": "Which API coordinates several values from one state?",
+        "answer": "updateTransition."
+      },
+      {
+        "prompt": "Does nestedScroll make content scrollable?",
+        "answer": "No, it only joins the coordination chain."
+      },
+      {
+        "prompt": "What should a connection return?",
+        "answer": "Only the delta or velocity it actually consumed."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-12-05-animation-nested-scroll",
+  "challengeId": "challenge-level-03-week-12-05-animation-nested-scroll",
+  "revision": {
+    "objectives": [
+      "Select animation API by state shape.",
+      "Test interrupted and reduced motion.",
+      "Implement bounded nested-scroll consumption."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/animation/introduction",
+    "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/scroll",
+    "https://developer.android.com/develop/ui/compose/touch-input/pointer-input/scroll#nested-scrolling"
+  ],
+  "version": "0.5.0"
+}

@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-03-week-12-checkpoint",
+  "title": "Week 12 Compose Checkpoint",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-12-01-stability-skipping-performance",
+    "level-03-week-12-02-custom-layout-measure-placement",
+    "level-03-week-12-03-canvas-custom-drawing",
+    "level-03-week-12-04-gestures-pointer-input",
+    "level-03-week-12-05-animation-nested-scroll",
+    "level-03-week-12-06-design-systems-compositionlocal"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-12-checkpoint-01",
+      "prompt": "What is unsafe about annotating mutable Cart as Stable?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Changes may not notify Compose",
+      "explanation": "A false stability promise can let the runtime skip UI that needed an update.",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance",
+      "options": [
+        "Changes may not notify Compose",
+        "It makes text blue",
+        "It disables Kotlin",
+        "It stores too much saved state"
+      ]
+    },
+    {
+      "id": "q-week-12-checkpoint-02",
+      "prompt": "Recomposition count by itself proves a user-visible performance problem.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Cost, phase, frequency, build, and observed user impact must be measured together.",
+      "lessonId": "level-03-week-12-01-stability-skipping-performance"
+    },
+    {
+      "id": "q-week-12-checkpoint-03",
+      "prompt": "Which placement API normally respects layout direction?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "placeRelative",
+      "explanation": "It interprets horizontal position relative to the current layout direction.",
+      "lessonId": "level-03-week-12-02-custom-layout-measure-placement",
+      "options": [
+        "placeRelative",
+        "placeAbsolute only",
+        "drawCircle",
+        "rememberSaveable"
+      ]
+    },
+    {
+      "id": "q-week-12-checkpoint-04",
+      "prompt": "A custom layout can freely measure each child several times.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Compose custom layout measurement permits each child once per pass.",
+      "lessonId": "level-03-week-12-02-custom-layout-measure-placement"
+    },
+    {
+      "id": "q-week-12-checkpoint-05",
+      "prompt": "Which modifier prepares reusable drawing objects?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "drawWithCache",
+      "explanation": "It rebuilds cached drawing data when relevant inputs or size change.",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing",
+      "options": [
+        "drawWithCache",
+        "verticalScroll",
+        "rememberSaveable only",
+        "navigation"
+      ]
+    },
+    {
+      "id": "q-week-12-checkpoint-06",
+      "prompt": "Canvas paths automatically expose chart values to accessibility services.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Drawn pixels need explicit semantics and equivalent content.",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing"
+    },
+    {
+      "id": "q-week-12-checkpoint-07",
+      "prompt": "What should implement an ordinary icon-only Save action?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "IconButton",
+      "explanation": "It supplies expected semantics, focus, feedback, and interaction behaviour.",
+      "lessonId": "level-03-week-12-04-gestures-pointer-input",
+      "options": [
+        "IconButton",
+        "Raw pointerInput only",
+        "Canvas path",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-week-12-checkpoint-08",
+      "prompt": "Independent blocking gesture detectors can simply run one after another in one pointerInput block.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Detector loops block; independent detectors need composition or separate modifier nodes.",
+      "lessonId": "level-03-week-12-04-gestures-pointer-input"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

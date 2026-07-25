@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-11-04-derived-state-snapshot-flow",
+  "title": "derivedStateOf and snapshotFlow",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 11,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-11-03-disposable-sideeffect-updatedstate"
+  ],
+  "tags": [
+    "compose",
+    "derivedstateof",
+    "flow"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Frequently changing Compose state sometimes needs a coarser UI value or a Flow bridge without making every intermediate change expensive.",
+      "realWorldUse": "Scroll thresholds, analytics transitions, visibility signals, and snapshot-backed controls need deliberate observation.",
+      "outcome": "Use derivedStateOf for lower-frequency UI results and snapshotFlow for cancellable Flow processing of snapshot reads."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Derived state suppresses unchanged results",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "derivedStateOf observes snapshot reads made inside its calculation and exposes a State whose consumers update when the calculated result changes. It is useful when inputs change more frequently than the UI-relevant output, such as whether a list has moved beyond its first item. It is not automatically useful for fullName assembled from two strings because the result changes whenever either input changes and the additional observer only adds complexity. Remember the derived object when its calculation should persist."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val showTop by remember { derivedStateOf { listState.firstVisibleItemIndex > 0 } }\nLaunchedEffect(listState) {\n    snapshotFlow { listState.firstVisibleItemIndex }\n        .map { it > 0 }.distinctUntilChanged()\n        .filter { it }.collect { analytics.passedFirstItem() }\n}",
+              "caption": "UI reads a threshold State while analytics consumes threshold transitions as Flow."
+            },
+            {
+              "type": "table",
+              "title": "Observation choice",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Every change renders",
+                  "Direct State read"
+                ],
+                [
+                  "Coarser UI result",
+                  "derivedStateOf"
+                ],
+                [
+                  "Flow operators or collection",
+                  "snapshotFlow"
+                ],
+                [
+                  "Historical event stream",
+                  "Owner-managed events"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "snapshotFlow bridges snapshots to Flow",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "snapshotFlow executes its block when collected, records snapshot reads, and emits when a read value changes to a value unequal to the previous emission. It lets Flow operators debounce, filter, transform, or collect Compose state inside a coroutine. Collection must live in an appropriate lifecycle scope, commonly LaunchedEffect keyed to the observed state holder. The block should be read-only; mutating the same snapshot state inside it can create feedback and violates the separation between observation and events."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val showTop by remember { derivedStateOf { listState.firstVisibleItemIndex > 0 } }\nLaunchedEffect(listState) {\n    snapshotFlow { listState.firstVisibleItemIndex }\n        .map { it > 0 }.distinctUntilChanged()\n        .filter { it }.collect { analytics.passedFirstItem() }\n}",
+              "caption": "UI reads a threshold State while analytics consumes threshold transitions as Flow."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "State is not an event log",
+              "text": "snapshotFlow observes current snapshot values and equality can suppress intermediates."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Choose output frequency deliberately",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Select the abstraction from the consumer. Composition needing a threshold uses derivedStateOf. A coroutine needing transitions, timing, or analytics uses snapshotFlow with Flow operators. Directly reading state is clearest when each change matters. Consider event semantics carefully: state represents the latest value, not an audit log, so rapid intermediate states may be conflated. Analytics should record a meaningful transition once and must not depend on a collector that restarts with unrelated keys."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Keep snapshotFlow read-only",
+              "text": "Writing observed state inside its block risks feedback and invalid snapshot behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Side-effects in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/side-effects",
+          "whyRead": "Documents derivedStateOf, snapshotFlow, and appropriate examples."
+        },
+        {
+          "title": "Compose phases",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/phases",
+          "whyRead": "Explains how the location of state reads determines invalidated work."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove unnecessary derived state",
+      "language": "kotlin",
+      "code": "val fullName by remember { derivedStateOf { firstName + \" \" + lastName } }",
+      "walkthrough": [
+        "The result changes whenever either source string changes.",
+        "No high-frequency input is reduced to a lower-frequency output.",
+        "Compute the inexpensive string directly unless measurement demonstrates a different need."
+      ],
+      "expectedOutput": "Simple display derivation remains readable without an unnecessary observer."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating snapshotFlow as a guaranteed record of every state assignment.",
+        "why": "State equality and scheduling may suppress or conflate intermediate values.",
+        "fix": "Model durable events in an owner-managed stream when every event matters."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement a jump-to-top control and one analytics transition using derivedStateOf and snapshotFlow without recording every scroll update.",
+      "successLooksLike": "UI threshold changes only at the boundary. Analytics records one transition per crossing. Collection cancels with the list state owner."
+    },
+    "recall": [
+      {
+        "prompt": "When does derivedStateOf help?",
+        "answer": "When output changes less often than observed inputs."
+      },
+      {
+        "prompt": "What does snapshotFlow produce?",
+        "answer": "A Flow from values read from Compose snapshot state."
+      },
+      {
+        "prompt": "Where should snapshotFlow be collected?",
+        "answer": "In a lifecycle-appropriate coroutine such as keyed LaunchedEffect."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-11-04-derived-state-snapshot-flow",
+  "challengeId": "challenge-level-03-week-11-04-derived-state-snapshot-flow",
+  "revision": {
+    "objectives": [
+      "Reduce high-frequency UI observation.",
+      "Bridge snapshot reads into Flow.",
+      "Distinguish state observation from event history."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/side-effects",
+    "https://developer.android.com/develop/ui/compose/phases"
+  ],
+  "version": "0.5.0"
+}

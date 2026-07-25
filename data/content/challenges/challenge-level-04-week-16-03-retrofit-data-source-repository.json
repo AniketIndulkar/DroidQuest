@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-16-03-retrofit-data-source-repository",
+  "title": "Build a Swappable News Remote Source",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-16-03-retrofit-data-source-repository",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Declare a Retrofit article API, implement status and DTO mapping in a remote source, wrap it in a repository, and verify requests through MockWebServer.",
+  "successCriteria": [
+    "No Retrofit or DTO type reaches UI state.",
+    "Client instances are shared and injected.",
+    "Integration tests cover success, empty, error, malformed, and cancellation."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface NewsService { @GET(\"articles\") suspend fun articles(): Response<ArticlePageDto> }"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

@@ -1,0 +1,223 @@
+{
+  "id": "level-01-week-01-03-expressions-decisions",
+  "title": "Expressions, Booleans, and Decisions",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-02-values-types-strings"
+  ],
+  "tags": [
+    "kotlin",
+    "expressions",
+    "booleans",
+    "conditions"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Programs need to calculate facts and select behaviour from those facts instead of following one fixed path.",
+      "realWorldUse": "Android applications decide whether buttons are enabled, which screen state to show, and whether input is valid using Boolean expressions and branches.",
+      "outcome": "Build Boolean conditions and use if and when expressions to produce deliberate results."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "expressions-produce-values",
+          "title": "Expressions produce values",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An expression is code that evaluates to a value. The literal 5, the calculation quantity * price, and the comparison total <= budget are all expressions. Operators combine values: arithmetic operators calculate numbers, comparison operators produce Boolean results, and logical operators combine Boolean results. Parentheses make grouping explicit and should be used when the intended order is not immediately obvious."
+            },
+            {
+              "type": "table",
+              "title": "Operator groups",
+              "columns": [
+                "Purpose",
+                "Operators",
+                "Result"
+              ],
+              "rows": [
+                [
+                  "Arithmetic",
+                  "+  -  *  /  %",
+                  "A numeric value"
+                ],
+                [
+                  "Comparison",
+                  "==  !=  <  <=  >  >=",
+                  "A Boolean value"
+                ],
+                [
+                  "Logical",
+                  "&&  ||  !",
+                  "A Boolean value"
+                ],
+                [
+                  "Grouping",
+                  "(expression)",
+                  "The grouped expression result"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Use == to ask whether values are equal. A single = assigns a value and has a different purpose. The remainder operator % is useful for recurring patterns such as even-number checks. Integer division uses integer rules: 5 / 2 evaluates to 2, not 2.5. If a fractional result matters, at least one operand must have a suitable decimal type."
+            }
+          ]
+        },
+        {
+          "id": "boolean-questions",
+          "title": "Write conditions as questions",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A Boolean is either true or false. Useful Boolean names often read like questions: isValid, hasBudget, or canSubmit. Logical AND, written &&, requires both sides to be true. Logical OR, written ||, requires at least one side. Logical NOT, written !, reverses a Boolean. These operators short-circuit: && skips its right side when the left is false, while || skips its right side when the left is true."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val amount = 24.0\nval hasDescription = true\nval withinLimit = amount <= 50.0\nval canSave = amount > 0.0 && hasDescription && withinLimit\n\nprintln(\"Can save: $canSave\")",
+              "caption": "Each named Boolean explains one part of the final save decision."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Name intermediate facts",
+              "text": "Several small, named Boolean expressions are usually easier to inspect than one long condition containing every rule."
+            }
+          ]
+        },
+        {
+          "id": "if-and-when",
+          "title": "Choose a result with if or when",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Kotlin if is an expression, so it can directly produce a value. Both branches must produce compatible results when assigned. Use if for a two-way choice or a small condition. Use when when one subject or rule set has several meaningful outcomes. A when used as a value must cover every possible case, commonly with an else branch until the alternatives are represented by a closed type."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val amount = 72.0\nval label = if (amount <= 50.0) \"Within budget\" else \"Review required\"\n\nval band = when {\n    amount <= 0.0 -> \"Invalid\"\n    amount < 25.0 -> \"Small\"\n    amount <= 100.0 -> \"Standard\"\n    else -> \"Large\"\n}\n\nprintln(\"$label: $band\")",
+              "caption": "if produces a two-way label; when checks ordered rules and uses the first matching branch."
+            },
+            {
+              "type": "flow",
+              "title": "Decision evaluation",
+              "steps": [
+                {
+                  "id": "facts",
+                  "label": "Calculate facts",
+                  "detail": "Produce Boolean values from the current data."
+                },
+                {
+                  "id": "select",
+                  "label": "Select branch",
+                  "detail": "Evaluate conditions in their written order."
+                },
+                {
+                  "id": "result",
+                  "label": "Produce result",
+                  "detail": "The chosen branch returns its value."
+                },
+                {
+                  "id": "continue",
+                  "label": "Continue",
+                  "detail": "Later code uses the selected value."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Branch order matters when conditions overlap. In the amount band example, a negative number also satisfies amount < 25.0, so the invalid case must appear first. Conditions should partition the domain intentionally. When rules become difficult to describe in one sentence, extract them into named values or functions rather than adding deeper nesting."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Conditions and loops",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/control-flow.html",
+          "whyRead": "The official reference for if and when expressions, branch forms, conditions, and Kotlin control-flow behaviour."
+        },
+        {
+          "title": "Booleans",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/booleans.html",
+          "whyRead": "Deepens the lesson with truth values, comparison results, logical operations, precedence, and short-circuit evaluation."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Classify a purchase",
+      "language": "kotlin",
+      "code": "fun main() {\n    val amount = 48.0\n    val category = \"Travel\"\n    val needsReceipt = amount >= 25.0\n    val canSubmit = amount > 0.0 && category.isNotBlank()\n\n    val status = when {\n        !canSubmit -> \"Blocked\"\n        needsReceipt -> \"Receipt required\"\n        else -> \"Ready\"\n    }\n\n    println(status)\n}",
+      "walkthrough": [
+        "Two named Booleans capture independent business facts about the purchase.",
+        "when tests the blocking rule before the receipt rule, so invalid data cannot be marked ready.",
+        "The amount and non-blank category make canSubmit true; the amount also requires a receipt."
+      ],
+      "expectedOutput": "Receipt required"
+    },
+    "trap_check": [
+      {
+        "mistake": "Using = when you intend to compare two values.",
+        "why": "Assignment and equality are different operations; Kotlin equality uses two equals signs.",
+        "fix": "Use == or != for equality questions."
+      },
+      {
+        "mistake": "Placing a broad when condition before a narrower case.",
+        "why": "The first matching branch wins, so later special cases may never run.",
+        "fix": "Order exceptional and narrow rules before broader rules."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create an expense approval decision using amount, category, and receipt information.",
+      "successLooksLike": "Named Boolean facts make the rules readable, invalid input is handled first, and if or when produces one clear status."
+    },
+    "recall": [
+      {
+        "prompt": "What value does a comparison expression produce?",
+        "answer": "A comparison expression produces a Boolean value."
+      },
+      {
+        "prompt": "Why does when branch order matter?",
+        "answer": "Evaluation stops at the first matching branch."
+      },
+      {
+        "prompt": "What is short-circuit evaluation?",
+        "answer": "A logical operator skips an unnecessary right-hand expression once its result is known."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-03-expressions-decisions",
+  "challengeId": "challenge-level-01-week-01-03-expressions-decisions",
+  "revision": {
+    "objectives": [
+      "Combine arithmetic, comparison, and logical expressions correctly.",
+      "Name Boolean facts that communicate business rules.",
+      "Use if and when expressions with deliberate branch order."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/booleans.html",
+    "https://kotlinlang.org/docs/control-flow.html",
+    "https://kotlinlang.org/docs/basic-syntax.html"
+  ],
+  "version": "0.2.0"
+}

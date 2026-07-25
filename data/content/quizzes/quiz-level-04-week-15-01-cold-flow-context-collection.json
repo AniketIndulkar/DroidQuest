@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-15-01-cold-flow-context-collection",
+  "title": "Cold Flow, Context, and Collection Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-15-01-cold-flow-context-collection"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-15-01-cold-flow-context-collection-decision",
+      "prompt": "How many times does a cold flow producer run for two collectors?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Twice",
+      "explanation": "Each terminal collection starts an independent upstream execution.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection",
+      "options": [
+        "Twice",
+        "Never",
+        "Exactly once globally",
+        "Only after process death"
+      ]
+    },
+    {
+      "id": "q-level-04-week-15-01-cold-flow-context-collection-truth",
+      "prompt": "flowOn changes the downstream collector context.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It changes only the operators upstream of its position.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection"
+    },
+    {
+      "id": "q-level-04-week-15-01-cold-flow-context-collection-recall",
+      "prompt": "What starts a cold Flow?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A terminal collection operation",
+      "explanation": "Intermediate operators remain declarative until a terminal operator executes the pipeline.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

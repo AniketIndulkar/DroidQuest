@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-01-week-01-04-loops-ranges",
+  "title": "Repeating Work with Loops and Ranges Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-04-loops-ranges"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-04-open-range",
+      "prompt": "Which range produces 0, 1, and 2 but not 3?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "0..<3",
+        "0..3",
+        "1..3",
+        "3 downTo 0"
+      ],
+      "answer": "0..<3",
+      "explanation": "The ..< operator creates an open upper bound.",
+      "lessonId": "level-01-week-01-04-loops-ranges"
+    },
+    {
+      "id": "q-week-01-04-sum-output",
+      "prompt": "What is total after this loop?\nvar total = 0\nfor (n in 1..3) total += n",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": 6,
+      "explanation": "The closed range visits 1, 2, and 3, which sum to 6.",
+      "lessonId": "level-01-week-01-04-loops-ranges"
+    },
+    {
+      "id": "q-week-01-04-while-blank",
+      "prompt": "Complete the update so this loop terminates: var n = 0; while (n < 3) { ___ }",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "n += 1",
+      "explanation": "The loop state must move toward making n < 3 false.",
+      "lessonId": "level-01-week-01-04-loops-ranges"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

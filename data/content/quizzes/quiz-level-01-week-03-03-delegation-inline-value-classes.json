@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-01-week-03-03-delegation-inline-value-classes",
+  "title": "Delegation, Inline Functions, and Value Classes Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-03-delegation-inline-value-classes"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-03-03-reified-requirement",
+      "prompt": "Where can a reified type parameter be declared?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "On an inline function",
+      "explanation": "Inlining substitutes the actual call-site type needed for reified operations.",
+      "lessonId": "level-01-week-03-03-delegation-inline-value-classes",
+      "options": [
+        "On an inline function",
+        "On any property",
+        "Only on data classes",
+        "Only in Java"
+      ]
+    },
+    {
+      "id": "q-week-03-03-value-boxing",
+      "prompt": "A Kotlin value class is guaranteed never to be boxed.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Several runtime positions require wrapper representation.",
+      "lessonId": "level-01-week-03-03-delegation-inline-value-classes"
+    },
+    {
+      "id": "q-week-03-03-delegation-benefit",
+      "prompt": "What does interface delegation primarily remove?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "Repetitive forwarding methods to a composed implementation",
+      "explanation": "The class still owns policy but can forward the unchanged contract mechanically.",
+      "lessonId": "level-01-week-03-03-delegation-inline-value-classes"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

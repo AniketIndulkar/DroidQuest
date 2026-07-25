@@ -1,0 +1,223 @@
+{
+  "id": "level-02-week-08-01-xml-view-hierarchies",
+  "title": "XML Layouts and View Hierarchies",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 8,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-07-05-tasks-back-stack-app-links"
+  ],
+  "tags": [
+    "views",
+    "xml",
+    "layouts",
+    "ui"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Many production apps and libraries still use Views, so Android expertise requires reading and maintaining their retained UI hierarchy.",
+      "realWorldUse": "Activities and fragments inflate XML into View/ViewGroup trees that measure, lay out, draw, receive input, expose accessibility, and hold widget state.",
+      "outcome": "Read an XML layout, explain inflation and the measure-layout-draw pipeline, and keep hierarchies shallow and accessible."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "hierarchy",
+          "title": "Views draw or interact; ViewGroups arrange children",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A View occupies a rectangular region, can draw content, receive input, and expose accessibility information. A ViewGroup is a View that owns and positions children. XML is a declarative serialisation of that object tree: element names identify classes, attributes provide layout or view properties, and resource references connect configuration-aware values. Inflation parses XML and creates objects using a Context; it does not display them until attached to a window hierarchy. Parent-specific LayoutParams interpret attributes such as margins or constraints, so moving a child between parent types changes which layout attributes are meaningful."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\" android:layout_height=\"match_parent\"\n    android:orientation=\"vertical\">\n    <TextView android:id=\"@+id/title\" android:layout_width=\"match_parent\" android:layout_height=\"wrap_content\" />\n    <EditText android:id=\"@+id/body\" android:layout_width=\"match_parent\" android:layout_height=\"0dp\" android:layout_weight=\"1\" />\n</LinearLayout>",
+              "caption": "Inflation creates a vertical container with two child views and parent-owned layout parameters."
+            },
+            {
+              "type": "table",
+              "title": "XML concepts",
+              "columns": [
+                "Syntax",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "Element",
+                  "View or ViewGroup class"
+                ],
+                [
+                  "@+id/name",
+                  "Declare a resource ID"
+                ],
+                [
+                  "@string/name",
+                  "Reference compiled resource"
+                ],
+                [
+                  "layout_width/height",
+                  "Parent layout contract"
+                ],
+                [
+                  "tools:*",
+                  "Design-time metadata not packaged as runtime behaviour"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pipeline",
+          "title": "Measurement, layout, and drawing convert a tree into pixels",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "During measure, parents negotiate size constraints and children report measured dimensions. During layout, each parent assigns child bounds. During draw, backgrounds, content, and children render in order. A requestLayout can trigger measurement/layout again, while invalidate requests redraw. Deep or repeatedly weighted hierarchies may increase traversal work; correctness and readability come first, then profiling identifies expensive layouts. Avoid performing disk, database, or network work during traversal or drawing. Custom views must respect MeasureSpec, padding, state, accessibility, and invalidation contracts rather than assuming fixed screen size."
+            },
+            {
+              "type": "flow",
+              "title": "View frame",
+              "steps": [
+                {
+                  "id": "measure",
+                  "label": "Measure",
+                  "detail": "Resolve desired sizes under parent constraints."
+                },
+                {
+                  "id": "layout",
+                  "label": "Layout",
+                  "detail": "Assign final child positions and bounds."
+                },
+                {
+                  "id": "draw",
+                  "label": "Draw",
+                  "detail": "Render backgrounds, content, and child views."
+                },
+                {
+                  "id": "input",
+                  "label": "Input/state",
+                  "detail": "Events may update state and request another pass."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "view.doOnLayout { laidOut ->\n    log(\"size=${laidOut.width}x${laidOut.height}\")\n}",
+              "caption": "The callback observes dimensions only after a layout pass has established them."
+            }
+          ]
+        },
+        {
+          "id": "quality",
+          "title": "A correct layout adapts and communicates semantics",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use wrap_content, match_parent, constraints, and resources according to content rather than copying fixed pixel values. Density-independent dimensions describe physical layout size, while scalable pixels respect user font scale. Touch targets, focus order, labels, state descriptions, and contrast are part of the UI contract. An icon-only button needs a meaningful content description unless it is decorative. Test small and large windows, long translated text, RTL, dark theme, keyboard input, and large fonts. The View tree inspector and Layout Inspector reveal actual bounds and nesting when XML intent differs from runtime result."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<ImageButton\n    android:layout_width=\"48dp\" android:layout_height=\"48dp\"\n    android:contentDescription=\"@string/save_note\"\n    android:src=\"@drawable/ic_save\" />",
+              "caption": "The target has a minimum usable size and exposes the action meaning to accessibility services."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not encode text in images",
+              "text": "Text resources can localise, scale, and expose semantics; bitmap text cannot adapt reliably."
+            },
+            {
+              "type": "paragraph",
+              "text": "When an XML result is surprising, inspect the runtime parent, LayoutParams class, measured bounds, visibility, and resolved resources before changing arbitrary dimensions."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Layouts in views",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/views/layout/declaring-layout",
+          "whyRead": "Explains XML, View/ViewGroup hierarchy, attributes, IDs, and inflation."
+        },
+        {
+          "title": "How Android draws views",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/views/layout/how-android-draws",
+          "whyRead": "Covers measurement, layout, drawing traversal, MeasureSpec, and custom layout responsibilities."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find an avoidable nesting cost",
+      "language": "text",
+      "code": "ConstraintLayout\n  LinearLayout vertical\n    FrameLayout\n      TextView\n    FrameLayout\n      EditText",
+      "walkthrough": [
+        "Several containers have only one child and may add traversal without expressing a needed contract.",
+        "ConstraintLayout can position the title and body directly.",
+        "The refactor must preserve semantics, focus, resizing, and large-text behaviour."
+      ],
+      "expectedOutput": "Flatten only after understanding layout responsibilities and verify with Layout Inspector."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating XML as pixels rather than an object tree.",
+        "why": "Inflation, parent LayoutParams, lifecycle, and traversal behaviour become mysterious.",
+        "fix": "Trace the resulting View/ViewGroup objects and their parent contracts."
+      },
+      {
+        "mistake": "Using fixed dimensions to make one screenshot match.",
+        "why": "Other fonts, translations, and windows clip or waste space.",
+        "fix": "Use adaptive constraints and test configuration variation."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create an accessible XML editor that adapts to long text, RTL, large fonts, portrait, landscape, and a narrow multi-window size.",
+      "successLooksLike": "The hierarchy has a reason for every container. All controls expose labels and usable touch/focus behaviour. No user-visible string or dimension is hard-coded in Kotlin."
+    },
+    "recall": [
+      {
+        "prompt": "What does inflation do?",
+        "answer": "Parses XML and creates the corresponding View object hierarchy."
+      },
+      {
+        "prompt": "What are the three main traversal stages?",
+        "answer": "Measure determines sizes, layout assigns bounds, and draw renders pixels."
+      },
+      {
+        "prompt": "Why use sp for text?",
+        "answer": "It respects user font-scale preferences."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-08-01-xml-view-hierarchies",
+  "challengeId": "challenge-level-02-week-08-01-xml-view-hierarchies",
+  "revision": {
+    "objectives": [
+      "Translate XML into a runtime View hierarchy.",
+      "Explain measure, layout, and draw responsibilities.",
+      "Design adaptive accessible retained UI."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/views/layout/declaring-layout",
+    "https://developer.android.com/develop/ui/views/layout/how-android-draws"
+  ],
+  "version": "0.4.0"
+}

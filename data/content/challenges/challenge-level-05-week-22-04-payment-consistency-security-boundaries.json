@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-22-04-payment-consistency-security-boundaries",
+  "title": "Apply Payment Consistency and Security Boundaries",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-22-04-payment-consistency-security-boundaries",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Implement the payment state machine and module boundaries, then prove duplicate, timeout, process-death, rejection, and eventual-confirmation scenarios with a fake gateway.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "sealed interface PaymentStatus {\n  data object Draft : PaymentStatus\n  data class Pending(val commandId: CommandId) : PaymentStatus\n  data class Accepted(val receiptId: ReceiptId) : PaymentStatus\n  data class Rejected(val reason: Rejection) : PaymentStatus\n}"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

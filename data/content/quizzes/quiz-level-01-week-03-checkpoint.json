@@ -1,0 +1,91 @@
+{
+  "id": "quiz-level-01-week-03-checkpoint",
+  "title": "Week 3 Advanced Kotlin Checkpoint",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-03-01-exceptions-results",
+    "level-01-week-03-02-generics-variance",
+    "level-01-week-03-03-delegation-inline-value-classes",
+    "level-01-week-03-04-annotations-reflection-dsls",
+    "level-01-week-03-05-jvm-interop-memory"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.78,
+  "questions": [
+    {
+      "id": "q-week-03-checkpoint-result",
+      "prompt": "Which outcome should normally be represented by a typed domain result?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A user-entered amount fails validation",
+      "explanation": "An expected business outcome should be explicit data so callers must handle it without using exception control flow.",
+      "lessonId": "level-01-week-03-01-exceptions-results",
+      "options": [
+        "A user-entered amount fails validation",
+        "A violated impossible internal invariant",
+        "The process runs out of memory",
+        "A compiler syntax error"
+      ]
+    },
+    {
+      "id": "q-week-03-checkpoint-variance",
+      "prompt": "Match the generic role to its safe declaration.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "producer": "out T",
+        "consumer": "in T",
+        "producerAndConsumer": "invariant T"
+      },
+      "explanation": "Values leaving an API allow covariance, values entering allow contravariance, and bidirectional use requires invariance.",
+      "lessonId": "level-01-week-03-02-generics-variance"
+    },
+    {
+      "id": "q-week-03-checkpoint-reified",
+      "prompt": "Why can a reified type parameter be used in an is check?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "The inline call substitutes the concrete type at the call site",
+      "explanation": "Normal JVM generics are erased, while an inline reified function can place the actual type into generated call-site code.",
+      "lessonId": "level-01-week-03-03-delegation-inline-value-classes"
+    },
+    {
+      "id": "q-week-03-checkpoint-metadata",
+      "prompt": "Order the lifecycle of compile-time annotation-driven generation.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "compiler reads annotated declarations",
+        "processor validates metadata",
+        "processor generates typed source",
+        "generated source is compiled and called"
+      ],
+      "explanation": "Metadata only changes behaviour when a processor consumes it and creates code that participates in compilation.",
+      "lessonId": "level-01-week-03-04-annotations-reflection-dsls"
+    },
+    {
+      "id": "q-week-03-checkpoint-equality",
+      "prompt": "What does === test for ordinary Kotlin objects?",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "reference identity",
+      "explanation": "Referential equality asks whether two references designate the same object, unlike structural equality with ==.",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory"
+    },
+    {
+      "id": "q-week-03-checkpoint-platform",
+      "prompt": "Spot the boundary bug: val name: String = javaUser.name; return name.length",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "The unannotated Java platform value may be null but is forced into a non-null Kotlin type",
+      "explanation": "Platform nullability is uncertain, so the adapter should assign String?, validate it, and return an explicit safe value or outcome.",
+      "lessonId": "level-01-week-03-05-jvm-interop-memory"
+    }
+  ],
+  "rewards": {
+    "xp": 240,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-07-03-component-selection-services",
+  "title": "Android Components and Service Boundaries Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-07-03-component-selection-services"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-07-03-component-match",
+      "prompt": "Match each component to its primary contract.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "Activity": "interactive UI",
+        "Service": "ongoing or bound operation",
+        "BroadcastReceiver": "brief broadcast handling",
+        "ContentProvider": "URI data interface"
+      },
+      "explanation": "Android activates each component under a different system contract.",
+      "lessonId": "level-02-week-07-03-component-selection-services"
+    },
+    {
+      "id": "q-week-07-03-service-thread",
+      "prompt": "A Service automatically executes callbacks on a worker thread.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "A service normally runs on the application main thread and must arrange non-blocking work.",
+      "lessonId": "level-02-week-07-03-component-selection-services"
+    },
+    {
+      "id": "q-week-07-03-backup-choice",
+      "prompt": "Which API best fits deferrable retryable note backup?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "WorkManager",
+      "explanation": "The job needs constraints, persistence, and retry without continuous user visibility.",
+      "lessonId": "level-02-week-07-03-component-selection-services",
+      "options": [
+        "WorkManager",
+        "A forever foreground service",
+        "Activity onDestroy",
+        "Static singleton"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

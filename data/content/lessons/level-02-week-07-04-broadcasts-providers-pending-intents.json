@@ -1,0 +1,232 @@
+{
+  "id": "level-02-week-07-04-broadcasts-providers-pending-intents",
+  "title": "Broadcasts, Content Providers, and PendingIntent",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 7,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-07-03-component-selection-services"
+  ],
+  "tags": [
+    "broadcasts",
+    "content-providers",
+    "pending-intent",
+    "ipc"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "These APIs cross component or application boundaries, so identity, exposure, lifetime, mutability, and data validation become part of correctness.",
+      "realWorldUse": "Apps observe selected system events, expose or consume URI data, and let notifications or other processes trigger a future operation with the app’s authority.",
+      "outcome": "Keep receiver work brief, use providers and content URIs deliberately, and construct explicit immutable PendingIntents with stable identity."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "broadcasts",
+          "title": "A receiver handles delivery briefly",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Broadcasts are intent messages delivered by the system or apps. A context-registered receiver exists only while registered; a manifest receiver can be an entry point under current platform restrictions. onReceive runs on the main thread and must return quickly. goAsync extends bookkeeping briefly but is not a general long-running execution facility; schedule appropriate work when durability is required. Many implicit manifest broadcasts are restricted to protect battery. Exported receivers and custom broadcasts need permissions or explicit package targeting when sensitive data or actions are involved."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val receiver = object : BroadcastReceiver() {\n    override fun onReceive(context: Context, intent: Intent) {\n        if (intent.action == Intent.ACTION_LOCALE_CHANGED) refreshSignal.tryEmit(Unit)\n    }\n}\ncontext.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)",
+              "caption": "The dynamic receiver has explicit exposure and performs only a brief in-process signal."
+            },
+            {
+              "type": "table",
+              "title": "Receiver boundary",
+              "columns": [
+                "Question",
+                "Decision"
+              ],
+              "rows": [
+                [
+                  "How registered?",
+                  "Context lifetime or manifest entry"
+                ],
+                [
+                  "Who may send?",
+                  "Export flag, package, or permission"
+                ],
+                [
+                  "How long is work?",
+                  "Brief onReceive or schedule durable work"
+                ],
+                [
+                  "What data arrives?",
+                  "Validate action, extras, and URI"
+                ],
+                [
+                  "Is broadcast necessary?",
+                  "Prefer direct in-app event for one-process communication"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "providers",
+          "title": "ContentProvider exposes data through content URIs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A ContentProvider maps content:// authorities and paths to query, insert, update, delete, and type operations. ContentResolver is the client API. Providers are valuable for structured cross-app sharing, document and media integrations, and framework-owned datasets; an internal repository does not need a provider merely to access a database. Define stable column and URI contracts, enforce permissions, validate selection and input, and avoid leaking private files. FileProvider grants temporary content URI access to selected files and is safer than exposing filesystem paths."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val projection = arrayOf(NoteColumns.ID, NoteColumns.TITLE)\ncontentResolver.query(noteUri, projection, null, null, null)?.use { cursor ->\n    while (cursor.moveToNext()) { /* map validated columns */ }\n}",
+              "caption": "The client requests only required columns and closes the Cursor through use."
+            },
+            {
+              "type": "flow",
+              "title": "Provider request",
+              "steps": [
+                {
+                  "id": "uri",
+                  "label": "Parse URI",
+                  "detail": "Authority and path identify contract."
+                },
+                {
+                  "id": "authorise",
+                  "label": "Authorise",
+                  "detail": "Export, permissions, and grants constrain caller."
+                },
+                {
+                  "id": "validate",
+                  "label": "Validate input",
+                  "detail": "Projection, values, and selection follow schema."
+                },
+                {
+                  "id": "operate",
+                  "label": "Access data",
+                  "detail": "Provider delegates to storage off blocking paths."
+                },
+                {
+                  "id": "return",
+                  "label": "Return contract",
+                  "detail": "Cursor, URI, count, or typed error."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pending",
+          "title": "PendingIntent delegates a future operation with creator identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A PendingIntent wraps an Intent so another process—such as System UI through a notification—can perform the predefined operation later as if the creating app initiated it. Its identity depends on operation type, request code, selected intent fields, and flags; extras alone do not reliably create distinct identities. Prefer an explicit destination and FLAG_IMMUTABLE unless the receiving system API genuinely must fill allowed fields. Reusing an equivalent PendingIntent can update or cancel earlier operations, so stable request-code policy matters. Never wrap a broad implicit intent that grants unintended capability."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val openNote = PendingIntent.getActivity(\n    context, noteId.hashCode(),\n    Intent(context, MainActivity::class.java).setData(noteUri),\n    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,\n)",
+              "caption": "An explicit destination and data URI define note-specific identity while immutable prevents outside mutation."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "PendingIntent is delegated authority",
+              "text": "Treat its target, mutability, request code, and lifetime as a security-sensitive public contract."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Broadcasts overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/background-work/background-tasks/broadcasts",
+          "whyRead": "Documents receiver registration, delivery, restrictions, security, and brief work requirements."
+        },
+        {
+          "title": "Content provider basics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/providers/content-provider-basics",
+          "whyRead": "Explains content URIs, resolver operations, cursors, contracts, permissions, and provider use cases."
+        },
+        {
+          "title": "PendingIntent API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/android/app/PendingIntent",
+          "whyRead": "Authoritative identity, mutability, flags, creator authority, update, and cancellation semantics."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Spot the notification action risk",
+      "language": "text",
+      "code": "PendingIntent.getActivity(\n    context, 0,\n    Intent(Intent.ACTION_VIEW),\n    PendingIntent.FLAG_MUTABLE\n)",
+      "walkthrough": [
+        "The intent is implicit and does not constrain a destination or data.",
+        "The PendingIntent is mutable without a stated need.",
+        "Request code zero reused broadly can collapse distinct actions."
+      ],
+      "expectedOutput": "Use an explicit activity, note-specific identity, required data, and FLAG_IMMUTABLE."
+    },
+    "trap_check": [
+      {
+        "mistake": "Doing database or network work directly in onReceive.",
+        "why": "The main-thread callback has a brief lifetime and the process can lose importance after return.",
+        "fix": "Perform a small handoff to an appropriate durable work API."
+      },
+      {
+        "mistake": "Making every PendingIntent mutable.",
+        "why": "Another party may alter delegated operation fields and expand authority.",
+        "fix": "Use immutable by default and narrowly justify fill-in fields."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a notification action that opens one note with an immutable PendingIntent, and document request identity, deep-link validation, and cold-process behaviour.",
+      "successLooksLike": "Each note action resolves to the correct stable ID. The PendingIntent is explicit and immutable. Opening works when no application process exists."
+    },
+    "recall": [
+      {
+        "prompt": "How long should onReceive work remain?",
+        "answer": "Brief enough to complete within the receiver delivery window."
+      },
+      {
+        "prompt": "When does internal data need a ContentProvider?",
+        "answer": "Only when a URI/framework or cross-application data contract requires it."
+      },
+      {
+        "prompt": "What does PendingIntent delegate?",
+        "answer": "A predefined future operation executed with the creator application identity."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-07-04-broadcasts-providers-pending-intents",
+  "challengeId": "challenge-level-02-week-07-04-broadcasts-providers-pending-intents",
+  "revision": {
+    "objectives": [
+      "Secure receiver registration and brief handling.",
+      "Model a deliberate content URI contract.",
+      "Create explicit immutable PendingIntents with stable identity."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/background-work/background-tasks/broadcasts",
+    "https://developer.android.com/guide/topics/providers/content-provider-basics",
+    "https://developer.android.com/reference/android/app/PendingIntent"
+  ],
+  "version": "0.4.0"
+}

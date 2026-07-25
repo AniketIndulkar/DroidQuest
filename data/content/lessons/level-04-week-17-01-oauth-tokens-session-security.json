@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-17-01-oauth-tokens-session-security",
+  "title": "OAuth Tokens and Session Security",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-16-06-mockwebserver-network-integration-tests"
+  ],
+  "tags": [
+    "networking",
+    "authentication",
+    "oauth"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Authentication clients handle short-lived bearer credentials and durable session state across an untrusted network and interruptible application process.",
+      "realWorldUse": "Signed-in APIs need authorization-code exchange, access and refresh tokens, expiry, logout, account switching, and secret-safe diagnostics.",
+      "outcome": "Separate authentication from authorization, model token lifetime, minimise stored secrets, and define logout and reauthentication boundaries."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Tokens are delegated credentials with scope and lifetime",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Authentication establishes identity; authorization determines permitted actions. OAuth access tokens are bearer credentials sent only over TLS to the intended resource server, with limited scope and lifetime. Refresh tokens obtain new access tokens and deserve stronger protection because they live longer. Expiry should come from protocol metadata with cautious clock handling, not from decoding undocumented token internals. Never use an ID token as an API access token merely because both resemble JWT strings."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Session(\n    val accountId: AccountId,\n    val accessToken: Secret,\n    val expiresAt: Instant,\n    val refreshToken: Secret?\n)\n\ninterface SessionRepository {\n    val state: StateFlow<SessionState>\n    suspend fun logout()\n}",
+              "caption": "One owner exposes session state while raw secrets stay behind its boundary."
+            },
+            {
+              "type": "table",
+              "title": "Credential policy",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Access token",
+                  "Short lived and narrow scope"
+                ],
+                [
+                  "Refresh token",
+                  "Long lived and tightly protected"
+                ],
+                [
+                  "Mobile client secret",
+                  "Never treated as secret"
+                ],
+                [
+                  "Authorization flow",
+                  "Browser plus PKCE"
+                ],
+                [
+                  "Diagnostics",
+                  "Redact every credential"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Public mobile clients cannot keep embedded secrets",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An installed Android application is a public client: anything embedded in the APK can be extracted, so it cannot protect a client secret. Authorization Code with PKCE binds the authorization response to the initiating app without a static secret. Browser-based authorization preserves password and multifactor handling at the identity provider. Redirect URI, state, nonce where applicable, issuer, audience, and TLS validation are security contracts. Custom tabs are preferable to collecting credentials in a WebView."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Session(\n    val accountId: AccountId,\n    val accessToken: Secret,\n    val expiresAt: Instant,\n    val refreshToken: Secret?\n)\n\ninterface SessionRepository {\n    val state: StateFlow<SessionState>\n    suspend fun logout()\n}",
+              "caption": "One owner exposes session state while raw secrets stay behind its boundary."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "An APK cannot hide a client secret",
+              "text": "Public-client security relies on PKCE, redirect validation, TLS, limited tokens, and server policy."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Session state needs one controlled owner",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A single session repository owns current account identity, token metadata, refresh credential persistence, and logout. Access tokens may remain in memory when practical; durable credentials use platform-appropriate private storage and a threat model, with Android Keystore protecting cryptographic keys rather than arbitrary application blobs directly. Logout clears local credentials and account-scoped caches under an explicit policy, then emits unauthenticated state. Every log, crash report, test fixture, and backup path must redact tokens."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Never log Authorization or token payloads",
+              "text": "Bearer credentials grant access to whoever obtains them."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OAuth 2.0 Security Best Current Practice",
+          "publisher": "IETF",
+          "resourceType": "official_docs",
+          "url": "https://www.rfc-editor.org/rfc/rfc9700",
+          "whyRead": "Provides current threat mitigations for authorization flows, tokens, redirects, and public clients."
+        },
+        {
+          "title": "Android Keystore system",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/keystore",
+          "whyRead": "Explains non-exportable cryptographic keys and their security properties."
+        },
+        {
+          "title": "Credential Manager overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/identity/sign-in/credential-manager",
+          "whyRead": "Distinguishes Android sign-in credential UX from application API-session ownership."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove the embedded client secret",
+      "language": "kotlin",
+      "code": "const val CLIENT_SECRET = \"production-secret-in-apk\"\napi.exchangeCode(code, CLIENT_SECRET)",
+      "walkthrough": [
+        "Application packages and runtime memory can be inspected by an attacker.",
+        "The identity provider cannot rely on this value to distinguish a legitimate mobile client.",
+        "Register a public client and use Authorization Code with PKCE and validated redirect state."
+      ],
+      "expectedOutput": "Code exchange succeeds without any static secret bundled in the application."
+    },
+    "trap_check": [
+      {
+        "mistake": "Persisting access and refresh tokens in ordinary logs or backups.",
+        "why": "Long-lived bearer material can escape device-private ownership.",
+        "fix": "Redact all outputs and explicitly control private persistence and backup policy."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Specify a PKCE sign-in, session model, credential persistence boundary, account switch, expiry, redacted diagnostics, and complete logout path.",
+      "successLooksLike": "No static secret is bundled in the app. Raw tokens never leave the session boundary or logs. Logout produces one tested unauthenticated state and cache policy."
+    },
+    "recall": [
+      {
+        "prompt": "What does an access token authorize?",
+        "answer": "A scoped request to a resource server."
+      },
+      {
+        "prompt": "Can an APK protect a client secret?",
+        "answer": "No, installed applications are public clients."
+      },
+      {
+        "prompt": "What protects authorization code exchange?",
+        "answer": "PKCE plus redirect and state validation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-01-oauth-tokens-session-security",
+  "challengeId": "challenge-level-04-week-17-01-oauth-tokens-session-security",
+  "revision": {
+    "objectives": [
+      "Model access and refresh lifetime.",
+      "Explain PKCE for public clients.",
+      "Design one secure session owner."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://www.rfc-editor.org/rfc/rfc9700",
+    "https://developer.android.com/privacy-and-security/keystore",
+    "https://developer.android.com/identity/sign-in/credential-manager"
+  ],
+  "version": "0.7.0"
+}

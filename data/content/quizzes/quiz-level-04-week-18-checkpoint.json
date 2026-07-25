@@ -1,0 +1,120 @@
+{
+  "id": "quiz-level-04-week-18-checkpoint",
+  "title": "Week 18 Checkpoint",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-01-room-entities-daos-relations-transactions",
+    "level-04-week-18-02-room-migrations-fts-testing",
+    "level-04-week-18-03-datastore-and-file-storage",
+    "level-04-week-18-04-source-of-truth-cache-ttl",
+    "level-04-week-18-05-offline-writes-sync-conflicts",
+    "level-04-week-18-06-workmanager-durable-sync",
+    "level-04-week-18-07-offline-first-news-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-18-checkpoint-01",
+      "prompt": "Where should a network fetch occur relative to a Room transaction?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Before the local transaction",
+      "explanation": "Fetch externally, then atomically commit the resulting local changes.",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions",
+      "options": [
+        "Before the local transaction",
+        "Inside a long transaction",
+        "Inside an entity constructor",
+        "After deleting all data with no recovery"
+      ]
+    },
+    {
+      "id": "q-week-18-checkpoint-02",
+      "prompt": "Room entities should always be reused directly as network DTOs.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The schemas evolve independently and need explicit mapping.",
+      "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions"
+    },
+    {
+      "id": "q-week-18-checkpoint-03",
+      "prompt": "Which data must not use destructive fallback?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Pending offline bookmark writes",
+      "explanation": "They may be the only durable record of an action not yet synchronized.",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing",
+      "options": [
+        "Pending offline bookmark writes",
+        "A proven rebuildable thumbnail cache",
+        "Temporary derived rows with no user intent",
+        "Test-only disposable data"
+      ]
+    },
+    {
+      "id": "q-week-18-checkpoint-04",
+      "prompt": "A successful fresh database test proves migrations are correct.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Upgrade paths execute different SQL over existing values and constraints.",
+      "lessonId": "level-04-week-18-02-room-migrations-fts-testing"
+    },
+    {
+      "id": "q-week-18-checkpoint-05",
+      "prompt": "Where should a relational article catalogue be stored?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Room",
+      "explanation": "Relational queries, indices, partial updates, and integrity need a database.",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage",
+      "options": [
+        "Room",
+        "One Preferences DataStore string",
+        "A cache filename list",
+        "A Compose remember block"
+      ]
+    },
+    {
+      "id": "q-week-18-checkpoint-06",
+      "prompt": "Cache files are suitable as the only copy of user-created data.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Cache storage is reclaimable and contains only reconstructable bytes.",
+      "lessonId": "level-04-week-18-03-datastore-and-file-storage"
+    },
+    {
+      "id": "q-week-18-checkpoint-07",
+      "prompt": "What should the UI read after a successful remote refresh?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "The updated Room source of truth",
+      "explanation": "One local authority keeps online and offline identity and ordering coherent.",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl",
+      "options": [
+        "The updated Room source of truth",
+        "A second network-only list",
+        "The raw Retrofit Response",
+        "A global mutable cache"
+      ]
+    },
+    {
+      "id": "q-week-18-checkpoint-08",
+      "prompt": "Expired TTL means cached content must be deleted before attempting refresh.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Stale content may remain useful offline while refresh is attempted.",
+      "lessonId": "level-04-week-18-04-source-of-truth-cache-ttl"
+    }
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

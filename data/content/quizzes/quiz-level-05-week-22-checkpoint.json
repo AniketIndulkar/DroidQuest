@@ -1,0 +1,105 @@
+{
+  "id": "quiz-level-05-week-22-checkpoint",
+  "title": "Week 22: Architecture Evolution and Banking Capstone Checkpoint",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-22-01-architecture-tests-contracts-fakes",
+    "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+    "level-05-week-22-03-banking-module-graph-contracts",
+    "level-05-week-22-04-payment-consistency-security-boundaries",
+    "level-05-week-22-05-multi-module-banking-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-05-week-22-1",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes",
+      "prompt": "Which two checks matter before applying Architecture Tests, Contracts, and Purposeful Fakes?",
+      "type": "multiple_choice",
+      "options": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement",
+        "Maximise wrapper count",
+        "Hide dependencies globally"
+      ],
+      "answer": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement"
+      ]
+    },
+    {
+      "id": "q-level-05-week-22-2",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+      "prompt": "Order the architecture feedback loop.",
+      "type": "order_steps",
+      "options": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ],
+      "answer": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ]
+    },
+    {
+      "id": "q-level-05-week-22-3",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-22-03-banking-module-graph-contracts",
+      "prompt": "Match each architecture concern to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "State contract",
+        "Dependency direction",
+        "Build claim"
+      ],
+      "answer": {
+        "State contract": "State-sequence test",
+        "Dependency direction": "Module graph rule",
+        "Build claim": "Repeated measured scenario"
+      }
+    },
+    {
+      "id": "q-level-05-week-22-4",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-22-04-payment-consistency-security-boundaries",
+      "prompt": "Spot the architectural defect: Turning a network timeout into PaymentFailed and allowing a new command without reconciling the first one.",
+      "type": "spot_bug",
+      "answer": "Turning a network timeout into PaymentFailed and allowing a new command without reconciling the first one.",
+      "acceptedAnswers": [
+        "The choice adds coupling or hides ownership without evidence."
+      ]
+    },
+    {
+      "id": "q-level-05-week-22-5",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-22-05-multi-module-banking-capstone",
+      "prompt": "Complete the rule: an abstraction should protect a named responsibility, risk, change seam, or ____ property.",
+      "type": "fill_blank",
+      "answer": "measured",
+      "acceptedAnswers": [
+        "measured",
+        "measurable"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

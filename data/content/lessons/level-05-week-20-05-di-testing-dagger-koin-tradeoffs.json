@@ -1,0 +1,218 @@
+{
+  "id": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "title": "DI Testing, Dagger Diagnostics, and Framework Trade-offs",
+  "categoryId": "level-05-production-architecture",
+  "week": 20,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-20-04-qualifiers-multibindings-assisted"
+  ],
+  "tags": [
+    "dependency-injection",
+    "testing",
+    "dagger"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes di testing, dagger diagnostics, and framework trade-offs a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Unit tests for constructor-injected classes do not need Hilt. Construct the subject directly with purposeful fakes so failures remain local and fast. Use the Hilt test application and replacement mechanisms when an integration or UI test needs Android-created entry points. TestInstallIn replaces a production module for a test source set, while UninstallModules is more flexible but can increase generated components and build cost. Select the smallest test scope that proves the contract."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@TestInstallIn(\n  components = [SingletonComponent::class],\n  replaces = [AccountsDataModule::class]\n)\n@Module object FakeAccountsModule { /* deterministic fake */ }",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dagger compilation messages describe graph problems in terms of keys and dependency paths. Start at the missing, duplicate, or scoped binding, find the requesting constructor, and trace toward the component. Do not fix a missing binding by moving everything into the app module. Cycles often reveal confused ownership. Hilt is the recommended Android default; direct Dagger remains relevant for specialised components and dynamic features."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Unit test",
+                  "Direct constructors with focused fakes"
+                ],
+                [
+                  "Integration test",
+                  "Generated graph with selected replacement"
+                ],
+                [
+                  "Framework decision",
+                  "Safety, cost, lifecycle, and team evidence"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Koin provides a Kotlin runtime container and can reduce annotation processing ceremony, but errors may move from compilation to runtime and lifecycle semantics still require design. Compare tools on graph safety, build impact, startup, debugging, team familiarity, multiplatform needs, and test replacement. A framework cannot repair service-locator-shaped code or unclear ownership. Preserve constructor-visible dependencies so the graph remains portable."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Booting a Hilt application for every small unit test and asserting framework wiring instead of business behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Hilt testing guide",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/hilt-testing",
+          "whyRead": "Shows direct construction for unit tests and binding replacement for integration tests."
+        },
+        {
+          "title": "Using Dagger in Android apps",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/dagger-android",
+          "whyRead": "Explains the generated graph beneath Hilt and compile-time binding diagnostics."
+        },
+        {
+          "title": "Koin Android setup",
+          "publisher": "Koin",
+          "resourceType": "guide",
+          "url": "https://insert-koin.io/docs/setup/koin",
+          "whyRead": "Provides a secondary comparison with a runtime Kotlin dependency container."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the DI Testing, Dagger Diagnostics, and Framework Trade-offs boundary",
+      "language": "kotlin",
+      "code": "@TestInstallIn(\n  components = [SingletonComponent::class],\n  replaces = [AccountsDataModule::class]\n)\n@Module object FakeAccountsModule { /* deterministic fake */ }",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Booting a Hilt application for every small unit test and asserting framework wiring instead of business behaviour.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Test one ViewModel by direct construction and one navigation flow with a replaced Hilt binding; document when Hilt, Dagger, or Koin would be justified.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should di testing, dagger diagnostics, and framework trade-offs solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "challengeId": "challenge-level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in DI Testing, Dagger Diagnostics, and Framework Trade-offs.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/dependency-injection/hilt-testing",
+    "https://developer.android.com/training/dependency-injection/dagger-android",
+    "https://insert-koin.io/docs/setup/koin"
+  ],
+  "version": "0.8.0"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-03-week-09-04-material3-scaffold-slots",
+  "title": "Material 3 Components, Scaffold, and Slots Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-04-material3-scaffold-slots"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-09-04-material3-scaffold-slots-scaffold-padding",
+      "prompt": "What must Scaffold main content normally do with innerPadding?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Apply or consume it according to inset ownership",
+      "explanation": "The padding represents measured screen chrome that could overlap content.",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots",
+      "options": [
+        "Apply or consume it according to inset ownership",
+        "Discard it always",
+        "Store it in database",
+        "Convert it to XP"
+      ]
+    },
+    {
+      "id": "q-level-03-week-09-04-material3-scaffold-slots-component-match",
+      "prompt": "Match intent to Material component.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "binarySetting": "Switch",
+        "textEntry": "TextField",
+        "temporaryMessage": "Snackbar",
+        "screenShell": "Scaffold"
+      },
+      "explanation": "Semantic components encode expected behaviour and accessibility.",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots"
+    },
+    {
+      "id": "q-level-03-week-09-04-material3-scaffold-slots-slot-benefit",
+      "prompt": "Slots allow callers to supply structured composable content.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": true,
+      "explanation": "A slot preserves component layout policy while enabling flexible child UI.",
+      "lessonId": "level-03-week-09-04-material3-scaffold-slots"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

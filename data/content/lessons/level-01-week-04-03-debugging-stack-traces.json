@@ -1,0 +1,224 @@
+{
+  "id": "level-01-week-04-03-debugging-stack-traces",
+  "title": "Debugging with Evidence",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-02-git-collaboration-docs"
+  ],
+  "tags": [
+    "debugging",
+    "stack-traces",
+    "breakpoints",
+    "tooling"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Debugging is the disciplined reduction of uncertainty: reproduce a failure, gather evidence, test a specific explanation, and verify the smallest repair.",
+      "realWorldUse": "Android failures surface through compiler diagnostics, Logcat, exceptions, stack traces, breakpoints, inspectors, and device-specific state.",
+      "outcome": "Read a stack trace, choose useful breakpoints and observations, distinguish symptoms from causes, and verify a fix with a regression check."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "hypothesis",
+          "title": "Reproduce before explaining",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A bug report describes an observed mismatch between expected and actual behaviour. Begin by making that mismatch reproducible with precise inputs, environment, and steps. Reduce the failing case until irrelevant variables disappear. Then state a falsifiable hypothesis: “the parser accepts a blank amount because trim occurs after validation” is testable; “the app is broken” is not. Change one relevant variable or add one focused observation. Random edits destroy information because success no longer identifies which assumption was wrong. If reproduction is intermittent, record timing, device, build, data, and logs instead of pretending the uncertainty does not exist."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun parseAmount(raw: String): Double {\n    require(raw.isNotBlank()) { \"Amount is blank\" }\n    return raw.trim().toDouble()\n}\n\nfun main() {\n    println(parseAmount(\"   \"))\n}",
+              "caption": "The smallest failing input isolates blank validation from UI, persistence, and networking concerns."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence loop",
+              "steps": [
+                {
+                  "id": "reproduce",
+                  "label": "Reproduce",
+                  "detail": "Capture expected result, actual result, input, and environment."
+                },
+                {
+                  "id": "localise",
+                  "label": "Localise",
+                  "detail": "Reduce the failing path and identify the first wrong state."
+                },
+                {
+                  "id": "hypothesis",
+                  "label": "Hypothesise",
+                  "detail": "State one explanation that evidence can disprove."
+                },
+                {
+                  "id": "experiment",
+                  "label": "Experiment",
+                  "detail": "Observe or change one relevant condition."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Run the reproduction and broader regression checks."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stack",
+          "title": "Read a stack trace from the exception outward",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An exception report names the exception type, its message, and stack frames describing active calls. In a typical JVM trace, the first frame beneath the exception is where that exception was thrown; following frames show callers moving outward. Start with the first frame belonging to your code, then inspect inputs and earlier state. A caused-by section records a wrapped underlying exception and may contain the actionable origin. Line numbers refer to a particular build, so use matching source. The deepest frame is not automatically the root cause: invalid data may have been created much earlier and only detected at the throw site."
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "Exception in thread \"main\" java.lang.IllegalArgumentException: Amount is blank\n    at ExpenseParser.parseAmount(ExpenseParser.kt:8)\n    at ExpenseImporter.importLine(ExpenseImporter.kt:21)\n    at MainKt.main(Main.kt:5)",
+              "caption": "Read from parseAmount, where failure was detected, outward through importLine to the entry point."
+            },
+            {
+              "type": "table",
+              "title": "Trace evidence",
+              "columns": [
+                "Part",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "Exception type",
+                  "What failure category was reported?"
+                ],
+                [
+                  "Message",
+                  "What detail did the throwing code provide?"
+                ],
+                [
+                  "Top relevant frame",
+                  "Where was the failure detected in our code?"
+                ],
+                [
+                  "Caller frames",
+                  "Which path supplied this state?"
+                ],
+                [
+                  "Caused by",
+                  "Was another exception wrapped underneath?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "title": "Observe state without changing the question",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A breakpoint pauses execution before or after a chosen line so a debugger can inspect variables, evaluate limited expressions, and step through calls. Place it near the first wrong state, not merely at application startup. Step over executes a line without entering called functions, step into follows a relevant call, and step out completes the current function. Logging is better for timing-sensitive or remote failures, but logs need stable context and must not expose credentials or private user data. After repair, encode the original reproduction as a test when possible. A fix is not verified because the exception disappeared once; expected behaviour and nearby cases must still hold."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun parseAmount(raw: String): Result<Double> = runCatching {\n    val normalised = raw.trim() // inspect raw and normalised here\n    require(normalised.isNotEmpty()) { \"Amount is blank\" }\n    normalised.toDouble()\n}",
+              "caption": "A breakpoint after normalisation reveals whether the state first becomes wrong before validation."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Debugger evaluation can have side effects",
+              "text": "Avoid calling mutating functions from the debugger; an observation that changes state can hide the original failure."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Debug your app",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug",
+          "whyRead": "Covers debuggable builds, breakpoints, stepping, watches, variable inspection, and Android Studio debugger controls."
+        },
+        {
+          "title": "Analyze a stack trace",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/debug/stacktraces",
+          "whyRead": "Shows how stack traces identify exceptions, frames, source locations, and obfuscated release code."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Localise an invalid amount",
+      "language": "kotlin",
+      "code": "fun average(values: List<Double>): Double = values.sum() / values.size\nfun main() {\n    val values = emptyList<Double>()\n    println(average(values))\n}",
+      "walkthrough": [
+        "Reproduction fixes the relevant input as an empty list.",
+        "A breakpoint inside average reveals size is zero before division.",
+        "The domain question is whether empty input should be rejected or represented explicitly—not how to hide the printed result."
+      ],
+      "expectedOutput": "The program prints NaN; a verified repair must define and test empty-list behaviour."
+    },
+    "trap_check": [
+      {
+        "mistake": "Editing several suspected lines before reproducing.",
+        "why": "Any changed behaviour is impossible to attribute and new defects may be introduced.",
+        "fix": "Create a minimal reproduction and test one hypothesis at a time."
+      },
+      {
+        "mistake": "Stopping when the visible exception disappears.",
+        "why": "The symptom may be hidden while invalid state still exists or another case regresses.",
+        "fix": "Verify expected output and add the original reproduction as a regression test."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Given a small expense-import program and a repeatable exception, write a debugging record containing reproduction, stack-trace interpretation, one hypothesis, experiment, repair, and regression checks.",
+      "successLooksLike": "The first wrong state is distinguished from the final symptom. Only one hypothesis is tested in the experiment. Verification includes the original failure and at least two nearby cases."
+    },
+    "recall": [
+      {
+        "prompt": "Where do you begin reading a JVM stack trace?",
+        "answer": "At the exception and first relevant application frame, then outward through callers and causes."
+      },
+      {
+        "prompt": "What makes a debugging hypothesis useful?",
+        "answer": "It predicts evidence that can confirm or disprove one explanation."
+      },
+      {
+        "prompt": "Why add a regression test?",
+        "answer": "It proves the original failure is repaired and guards against its return."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-03-debugging-stack-traces",
+  "challengeId": "challenge-level-01-week-04-03-debugging-stack-traces",
+  "revision": {
+    "objectives": [
+      "Use a reproducible evidence loop instead of random edits.",
+      "Read exception, frame, caller, and cause information.",
+      "Choose observations and regression checks that verify a repair."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/debug",
+    "https://developer.android.com/studio/debug/stacktraces"
+  ],
+  "version": "0.3.0"
+}

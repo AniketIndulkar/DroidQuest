@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-05-03-gradle-agp-build-flow",
+  "title": "Gradle, the Wrapper, and Android Build Flow Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-03-gradle-agp-build-flow"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-05-03-wrapper-role",
+      "prompt": "What is the main purpose of the Gradle wrapper?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Run the project-declared Gradle distribution",
+      "explanation": "Checked-in wrapper configuration gives local and CI builds the intended Gradle version.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow",
+      "options": [
+        "Run the project-declared Gradle distribution",
+        "Replace the Android SDK",
+        "Create emulator hardware",
+        "Store app user data"
+      ]
+    },
+    {
+      "id": "q-week-05-03-build-order",
+      "prompt": "Order the broad Gradle build phases.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "initialise build",
+        "configure projects and tasks",
+        "resolve required inputs",
+        "execute task graph"
+      ],
+      "explanation": "Gradle discovers the build, configures its model, resolves requested inputs, and then executes required tasks.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow"
+    },
+    {
+      "id": "q-week-05-03-dynamic-version",
+      "prompt": "A dependency version written as 1.+ improves reproducible builds.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Dynamic versions can resolve a different artifact without any source change.",
+      "lessonId": "level-02-week-05-03-gradle-agp-build-flow"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

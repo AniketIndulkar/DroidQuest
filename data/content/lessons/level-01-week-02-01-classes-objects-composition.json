@@ -1,0 +1,224 @@
+{
+  "id": "level-01-week-02-01-classes-objects-composition",
+  "title": "Classes, Objects, Interfaces, and Composition",
+  "categoryId": "level-01-programming-foundations",
+  "week": 2,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-07-small-program-design"
+  ],
+  "tags": [
+    "kotlin",
+    "classes",
+    "interfaces",
+    "composition"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Classes let a program place related state and behaviour behind a meaningful type instead of passing unrelated values everywhere.",
+      "realWorldUse": "Android code uses classes for screen state holders, repositories, data sources, workers, services, and adapters to platform APIs.",
+      "outcome": "Design a small class with protected invariants, an interface contract, and collaboration through composition."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "objects-and-constructors",
+          "title": "Objects combine state and behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A class describes a family of objects. Its constructor receives the information required to create a valid instance, properties retain relevant state, and member functions expose behaviour. Put a rule inside the type when every caller must obey it. An Expense class should not require each screen or report to remember independently that an amount must be positive. Keep constructor inputs small and meaningful; an object that needs unrelated services, flags, and data often has more than one responsibility."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class Expense(\n    val category: String,\n    val amount: Double,\n) {\n    init {\n        require(category.isNotBlank())\n        require(amount > 0.0)\n    }\n\n    fun summary(): String = \"$category: £$amount\"\n}",
+              "caption": "The constructor captures required state, init protects invariants, and summary exposes behaviour on valid objects."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Valid from construction",
+              "text": "Prefer preventing invalid objects at creation over allowing them and asking every later operation to check again."
+            }
+          ]
+        },
+        {
+          "id": "interfaces-and-substitution",
+          "title": "Interfaces describe capabilities",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An interface defines a contract without choosing one concrete implementation. Callers depend on the capability they need, such as ExpenseStore.save, rather than a specific file or database. An implementing class promises to honour the contract. Interfaces are valuable at real variation boundaries, external systems, and test seams. Creating an interface for every class adds names without adding flexibility, so begin with concrete code and extract the boundary when there is a clear reason."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface ExpenseStore {\n    fun save(expense: Expense)\n}\n\nclass InMemoryExpenseStore : ExpenseStore {\n    private val items = mutableListOf<Expense>()\n\n    override fun save(expense: Expense) {\n        items += expense\n    }\n}",
+              "caption": "The store contract hides where expenses are retained while the in-memory implementation owns its mutable list."
+            },
+            {
+              "type": "table",
+              "title": "Choose the construct",
+              "columns": [
+                "Need",
+                "Construct"
+              ],
+              "rows": [
+                [
+                  "Create valid state with behaviour",
+                  "Class"
+                ],
+                [
+                  "Represent one shared instance",
+                  "Object declaration"
+                ],
+                [
+                  "Describe a replaceable capability",
+                  "Interface"
+                ],
+                [
+                  "Add a specialised is-a relationship",
+                  "Inheritance, used deliberately"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composition",
+          "title": "Compose collaborators instead of building deep hierarchies",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Composition gives an object another object that performs a required role. ExpenseService can receive an ExpenseStore and coordinate validation or saving without inheriting store behaviour. This keeps the relationship explicit and replaceable. Inheritance is appropriate when the subtype truly satisfies the parent contract and callers can use either safely. It is not a general code-reuse tool. Android framework types sometimes require inheritance, but application-level behaviour usually remains easier to change when assembled from focused collaborators."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class ExpenseService(\n    private val store: ExpenseStore,\n) {\n    fun record(category: String, amount: Double): Expense {\n        val expense = Expense(category, amount)\n        store.save(expense)\n        return expense\n    }\n}",
+              "caption": "ExpenseService delegates storage through an injected capability and owns only the record workflow."
+            },
+            {
+              "type": "flow",
+              "title": "A composed request",
+              "steps": [
+                {
+                  "id": "caller",
+                  "label": "Caller",
+                  "detail": "Supplies raw record information."
+                },
+                {
+                  "id": "service",
+                  "label": "Service",
+                  "detail": "Coordinates the use case."
+                },
+                {
+                  "id": "model",
+                  "label": "Model",
+                  "detail": "Protects expense invariants."
+                },
+                {
+                  "id": "store",
+                  "label": "Store",
+                  "detail": "Persists through its contract."
+                },
+                {
+                  "id": "result",
+                  "label": "Result",
+                  "detail": "Returns the valid recorded expense."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Composition also makes testing more direct: pass a small fake collaborator, invoke the use case, and inspect the recorded interaction without constructing a framework hierarchy."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Classes",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/classes.html",
+          "whyRead": "The official guide to constructors, properties, initialisation, members, inheritance, and class design syntax."
+        },
+        {
+          "title": "Interfaces",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/interfaces.html",
+          "whyRead": "Explains interface declarations, implementations, default members, and resolving inherited contract conflicts."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace a composed recording flow",
+      "language": "kotlin",
+      "code": "interface ExpenseStore { fun save(expense: Expense) }\nclass ConsoleStore : ExpenseStore {\n    override fun save(expense: Expense) = println(\"Saved ${expense.category}\")\n}\ndata class Expense(val category: String, val amount: Double)\nclass Recorder(private val store: ExpenseStore) {\n    fun record(category: String, amount: Double) {\n        require(amount > 0.0)\n        store.save(Expense(category, amount))\n    }\n}\nfun main() { Recorder(ConsoleStore()).record(\"Food\", 8.5) }",
+      "walkthrough": [
+        "ConsoleStore fulfils the ExpenseStore capability.",
+        "Recorder receives the abstraction through its constructor instead of creating storage internally.",
+        "The valid request becomes an Expense and is delegated to the supplied store."
+      ],
+      "expectedOutput": "Saved Food"
+    },
+    "trap_check": [
+      {
+        "mistake": "Adding inheritance only to reuse a helper function.",
+        "why": "The subtype relationship becomes misleading and couples unrelated responsibilities.",
+        "fix": "Extract a collaborator or extension when there is no genuine is-a contract."
+      },
+      {
+        "mistake": "Leaving required properties mutable and publicly writable.",
+        "why": "Any caller can break the object invariant after construction.",
+        "fix": "Prefer val and expose focused methods for legitimate state changes."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build Expense, ExpenseStore, InMemoryExpenseStore, and ExpenseRecorder so invalid expenses cannot be created and storage can be replaced.",
+      "successLooksLike": "Expense construction rejects blank categories and non-positive amounts. Recorder depends on ExpenseStore rather than a concrete list. The in-memory implementation does not expose its mutable collection."
+    },
+    "recall": [
+      {
+        "prompt": "What should a constructor guarantee?",
+        "answer": "It should gather required inputs and create an object whose invariants hold."
+      },
+      {
+        "prompt": "When does an interface earn its place?",
+        "answer": "At a meaningful capability, variation boundary, external dependency, or test seam."
+      },
+      {
+        "prompt": "What does composition make explicit?",
+        "answer": "Which focused collaborators an object uses to perform its responsibility."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-02-01-classes-objects-composition",
+  "challengeId": "challenge-level-01-week-02-01-classes-objects-composition",
+  "revision": {
+    "objectives": [
+      "Create objects that protect their construction invariants.",
+      "Define an interface around a meaningful replaceable capability.",
+      "Use constructor composition to assemble focused behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/classes.html",
+    "https://kotlinlang.org/docs/interfaces.html"
+  ],
+  "version": "0.3.0"
+}

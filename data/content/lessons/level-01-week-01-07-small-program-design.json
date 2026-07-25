@@ -1,0 +1,233 @@
+{
+  "id": "level-01-week-01-07-small-program-design",
+  "title": "Designing a Small Program",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-06-null-safety"
+  ],
+  "tags": [
+    "kotlin",
+    "problem-solving",
+    "debugging",
+    "expense-manager"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Knowing syntax is not enough; developers must turn a vague request into small, verifiable program responsibilities.",
+      "realWorldUse": "Every Android feature begins as requirements that must be translated into inputs, rules, state changes, outputs, and failure behaviour.",
+      "outcome": "Decompose and trace a small expense program, then diagnose errors using evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "requirements-to-data",
+          "title": "Translate prose into program facts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Begin with one observable requirement: “Accept an expense amount and category, reject invalid data, and print an approved summary.” Underline the nouns to find data and the verbs to find behaviour. Amount and category become inputs. Accept, reject, and print become decisions or actions. Write examples before code: a positive amount and non-blank category should succeed; invalid numeric text, zero, negative amounts, and blank categories should fail. Examples make vague words such as valid concrete."
+            },
+            {
+              "type": "flow",
+              "title": "From requirement to program",
+              "steps": [
+                {
+                  "id": "requirement",
+                  "label": "Requirement",
+                  "detail": "State one observable user outcome."
+                },
+                {
+                  "id": "examples",
+                  "label": "Examples",
+                  "detail": "List successful and failing cases."
+                },
+                {
+                  "id": "data",
+                  "label": "Data",
+                  "detail": "Choose names and types for required information."
+                },
+                {
+                  "id": "rules",
+                  "label": "Rules",
+                  "detail": "Express validation and calculation decisions."
+                },
+                {
+                  "id": "output",
+                  "label": "Output",
+                  "detail": "Present one result at the boundary."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Run examples and compare actual results."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Do not begin by creating many abstractions. A small program can use a few functions and basic types. Extract a function when it names a business rule, removes meaningful duplication, or lets you reason about one responsibility in isolation. Keep input and output near the program boundary so inner calculations are deterministic: the same arguments should produce the same result."
+            }
+          ]
+        },
+        {
+          "id": "pipeline",
+          "title": "Build a validation and transformation pipeline",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A useful processing pipeline receives raw information, normalises it, parses it, validates domain rules, calculates derived values, and presents a result. Each stage should strengthen what is known. After parsing, the program has a number instead of arbitrary text. After validation, it has an amount permitted by the business rule. When a stage fails, stop or return an explicit failure rather than allowing invalid data to travel deeper."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun parseAmount(raw: String): Double? = raw.trim().toDoubleOrNull()\n\nfun isValidExpense(amount: Double, category: String): Boolean =\n    amount > 0.0 && category.isNotBlank()\n\nfun summary(amount: Double, category: String): String =\n    \"$category: £$amount\"",
+              "caption": "Three small functions separate boundary parsing, domain validation, and presentation."
+            },
+            {
+              "type": "table",
+              "title": "Pipeline responsibility",
+              "columns": [
+                "Stage",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "Normalise",
+                  "Can harmless formatting be removed?"
+                ],
+                [
+                  "Parse",
+                  "Can raw text become the required type?"
+                ],
+                [
+                  "Validate",
+                  "Does the typed value satisfy domain rules?"
+                ],
+                [
+                  "Transform",
+                  "What result must be calculated?"
+                ],
+                [
+                  "Present",
+                  "How should the outcome be communicated?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "debug-with-evidence",
+          "title": "Debug the first broken assumption",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Debugging is the process of finding where actual behaviour first diverges from expected behaviour. Reproduce the problem with the smallest known input. Read the first compiler error or capture the exact output. Trace values at function boundaries. Change one thing and rerun the same example. If the program compiles but gives the wrong result, inspect assumptions about type, operator order, branch order, loop boundaries, and state updates before rewriting the whole solution."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun main() {\n    val rawAmount = \"12.50\"\n    val category = \"Food\"\n    val amount = parseAmount(rawAmount)\n\n    val message = when {\n        amount == null -> \"Amount is not a number\"\n        !isValidExpense(amount, category) -> \"Expense is invalid\"\n        else -> summary(amount, category)\n    }\n\n    println(message)\n}",
+              "caption": "main coordinates the pipeline and handles failure before calling functions that require a valid amount."
+            },
+            {
+              "type": "paragraph",
+              "text": "A trace is temporary evidence, not the final design. Printing intermediate values can help in this console program; later Android work will use breakpoints, structured logs, tests, and profilers. After fixing the cause, remove noisy diagnostics and record the enduring rule as a clear name, validation branch, or automated test. The goal is not merely to make one example pass, but to improve the program’s explanation of its own behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Kotlin coding conventions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/coding-conventions.html",
+          "whyRead": "Connects small-program design to readable naming, formatting, immutability preferences, and idiomatic Kotlin structure."
+        },
+        {
+          "title": "Introduction to programming in Kotlin",
+          "publisher": "Android Developers",
+          "resourceType": "guide",
+          "url": "https://developer.android.com/courses/pathways/android-basics-compose-unit-1-pathway-1",
+          "whyRead": "Collects the official first-program, variables, functions, practice, and checkpoint material into one reinforcement pathway."
+        },
+        {
+          "title": "Basic syntax overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/basic-syntax.html",
+          "whyRead": "A compact reference to revisit while assembling the Week 1 concepts into one complete console program."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Trace the complete expense path",
+      "language": "kotlin",
+      "code": "fun parseAmount(raw: String): Double? = raw.trim().toDoubleOrNull()\nfun isValidExpense(amount: Double, category: String) = amount > 0.0 && category.isNotBlank()\nfun summary(amount: Double, category: String) = \"$category: £$amount\"\n\nfun main() {\n    val rawAmount = \"9.75\"\n    val category = \"Travel\"\n    val amount = parseAmount(rawAmount)\n\n    if (amount == null) {\n        println(\"Enter a number\")\n    } else if (!isValidExpense(amount, category)) {\n        println(\"Invalid expense\")\n    } else {\n        println(summary(amount, category))\n    }\n}",
+      "walkthrough": [
+        "Raw text is converted at the boundary and represented as nullable when conversion may fail.",
+        "The null branch returns a user-facing failure path before validation receives a Double.",
+        "Valid typed data flows through the business rule and then into presentation."
+      ],
+      "expectedOutput": "Travel: £9.75"
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing code before defining successful and failing examples.",
+        "why": "Words such as valid or correct remain ambiguous, so the implementation has no precise target.",
+        "fix": "List observable input-output examples before choosing functions."
+      },
+      {
+        "mistake": "Changing several functions while debugging one failing input.",
+        "why": "Multiple edits destroy the evidence needed to identify which assumption was wrong.",
+        "fix": "Reproduce, trace the first divergence, and make one focused change."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Complete the Week 1 expense-entry program with parsing, validation, summary output, and at least five manually traced examples.",
+      "successLooksLike": "Valid input succeeds, invalid input never throws, functions have focused contracts, and the trace identifies each pipeline stage."
+    },
+    "recall": [
+      {
+        "prompt": "How do nouns and verbs help decompose a requirement?",
+        "answer": "Nouns suggest data; verbs suggest decisions, transformations, or actions."
+      },
+      {
+        "prompt": "What should each pipeline stage accomplish?",
+        "answer": "It should strengthen what the program knows or return an explicit failure."
+      },
+      {
+        "prompt": "Where should debugging begin?",
+        "answer": "At the first point where actual behaviour differs from a reproducible expectation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-07-small-program-design",
+  "challengeId": "challenge-level-01-week-01-07-small-program-design",
+  "revision": {
+    "objectives": [
+      "Translate a small requirement into data, rules, and observable examples.",
+      "Arrange parsing, validation, transformation, and presentation as a safe pipeline.",
+      "Debug by tracing the first broken assumption and changing one cause at a time."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/courses/android-basics-compose/course",
+    "https://kotlinlang.org/docs/basic-syntax.html",
+    "https://kotlinlang.org/docs/coding-conventions.html"
+  ],
+  "version": "0.2.0"
+}

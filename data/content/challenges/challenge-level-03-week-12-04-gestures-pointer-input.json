@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-12-04-gestures-pointer-input",
+  "title": "Build an Accessible Reorder Handle",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-12-04-gestures-pointer-input",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Create a drag reorder handle with cancellation, stable item identity, haptic or visual feedback, and equivalent keyboard and accessibility actions.",
+  "successCriteria": [
+    "Drag state resets on cancellation.",
+    "Rows retain stable IDs after movement.",
+    "Non-touch users can move items."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ReorderHandle(onMove: (Direction) -> Unit, modifier: Modifier = Modifier)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

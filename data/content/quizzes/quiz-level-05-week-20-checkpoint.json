@@ -1,0 +1,105 @@
+{
+  "id": "quiz-level-05-week-20-checkpoint",
+  "title": "Week 20: Dependency Injection from Manual Graphs to Hilt Checkpoint",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-20-01-manual-di-composition-root",
+    "level-05-week-20-02-hilt-graph-constructor-modules",
+    "level-05-week-20-03-hilt-components-scopes-lifetimes",
+    "level-05-week-20-04-qualifiers-multibindings-assisted",
+    "level-05-week-20-05-di-testing-dagger-koin-tradeoffs"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-05-week-20-1",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root",
+      "prompt": "Which two checks matter before applying Manual Dependency Injection and the Composition Root?",
+      "type": "multiple_choice",
+      "options": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement",
+        "Maximise wrapper count",
+        "Hide dependencies globally"
+      ],
+      "answer": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement"
+      ]
+    },
+    {
+      "id": "q-level-05-week-20-2",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-20-02-hilt-graph-constructor-modules",
+      "prompt": "Order the architecture feedback loop.",
+      "type": "order_steps",
+      "options": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ],
+      "answer": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ]
+    },
+    {
+      "id": "q-level-05-week-20-3",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-20-03-hilt-components-scopes-lifetimes",
+      "prompt": "Match each architecture concern to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "State contract",
+        "Dependency direction",
+        "Build claim"
+      ],
+      "answer": {
+        "State contract": "State-sequence test",
+        "Dependency direction": "Module graph rule",
+        "Build claim": "Repeated measured scenario"
+      }
+    },
+    {
+      "id": "q-level-05-week-20-4",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted",
+      "prompt": "Spot the architectural defect: Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context.",
+      "type": "spot_bug",
+      "answer": "Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context.",
+      "acceptedAnswers": [
+        "The choice adds coupling or hides ownership without evidence."
+      ]
+    },
+    {
+      "id": "q-level-05-week-20-5",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+      "prompt": "Complete the rule: an abstraction should protect a named responsibility, risk, change seam, or ____ property.",
+      "type": "fill_blank",
+      "answer": "measured",
+      "acceptedAnswers": [
+        "measured",
+        "measurable"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

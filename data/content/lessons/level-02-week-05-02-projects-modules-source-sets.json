@@ -1,0 +1,225 @@
+{
+  "id": "level-02-week-05-02-projects-modules-source-sets",
+  "title": "Projects, Modules, and Source Sets",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 5,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-05-01-studio-sdk-emulator"
+  ],
+  "tags": [
+    "projects",
+    "modules",
+    "source-sets",
+    "structure"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Project structure determines build boundaries, dependency direction, variant overlays, and where every source or test belongs.",
+      "realWorldUse": "Production Android repositories often contain application, Android library, pure Kotlin, test-fixture, benchmark, and feature modules with multiple source sets.",
+      "outcome": "Read the real filesystem structure, distinguish a project from a module, and predict which source-set files enter a selected variant."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "project-module",
+          "title": "A project coordinates modules; a module produces an artifact",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An Android Studio project is the whole workspace opened together. Its settings file names included modules and repository-wide plugin or dependency configuration may live near the root. A module is an independently configured build unit such as :app or :core:model. An application module packages an installable app and owns an application ID. An Android library produces an AAR containing Android code, resources, and a manifest contribution. A pure Kotlin/JVM module produces JVM code without Android resources. Modularisation can enforce ownership and improve build isolation, but every boundary adds configuration and dependency cost; split around cohesive responsibilities rather than creating a module for every class."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "rootProject.name = \"Notes\"\ninclude(\":app\")\ninclude(\":core:model\")\ninclude(\":feature:notes\")",
+              "caption": "settings.gradle.kts defines the module graph included in this build."
+            },
+            {
+              "type": "table",
+              "title": "Module outputs",
+              "columns": [
+                "Module kind",
+                "Typical output",
+                "Android resources"
+              ],
+              "rows": [
+                [
+                  "Application",
+                  "APK/AAB application artifact",
+                  "Yes"
+                ],
+                [
+                  "Android library",
+                  "AAR library artifact",
+                  "Yes"
+                ],
+                [
+                  "Kotlin/JVM library",
+                  "JAR/JVM classes",
+                  "No"
+                ],
+                [
+                  "Benchmark or test module",
+                  "Test/measurement artifact",
+                  "Purpose-specific"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-sets",
+          "title": "Source sets contribute code and resources by variant",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Inside an Android module, src/main contains common production code, resources, and the main manifest. src/test contains local JVM tests; src/androidTest contains tests compiled for a device. Build-type and flavour source sets such as src/debug or src/demo can overlay main. For a demoDebug build, Gradle combines main, demo, debug, and variant-specific sources according to precedence rules. Duplicate Kotlin classes in overlapping sets cause conflicts, while resources and manifests are merged under defined rules. Put behaviour into the narrowest correct source set: debug-only menus should not leak into release, and reusable production code should not live under a test directory."
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "app/src/main/kotlin/.../MainActivity.kt\napp/src/main/res/values/strings.xml\napp/src/debug/res/values/strings.xml\napp/src/test/kotlin/.../ParserTest.kt\napp/src/androidTest/kotlin/.../LaunchTest.kt",
+              "caption": "The filesystem exposes the source-set contract that Android Studio’s Android view may group visually."
+            },
+            {
+              "type": "flow",
+              "title": "demoDebug composition",
+              "steps": [
+                {
+                  "id": "main",
+                  "label": "main",
+                  "detail": "Shared production code and resources."
+                },
+                {
+                  "id": "flavor",
+                  "label": "demo",
+                  "detail": "Demo product customisation."
+                },
+                {
+                  "id": "build-type",
+                  "label": "debug",
+                  "detail": "Debug-only tooling and values."
+                },
+                {
+                  "id": "variant",
+                  "label": "demoDebug",
+                  "detail": "Most specific optional overrides."
+                },
+                {
+                  "id": "merge",
+                  "label": "Merged variant",
+                  "detail": "Compilation and packaging use the resolved result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dependencies",
+          "title": "The module graph should point toward stable responsibilities",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A module declares dependencies it needs to compile or run. The app can depend on feature modules; features can depend on stable model or utility modules. Circular dependencies are rejected because neither module can be built first. API dependencies expose selected transitive types to consumers, whereas implementation dependencies keep internals behind the module boundary and reduce accidental coupling. Inspect the graph before adding a dependency: if two features need each other, extract a smaller shared contract or move coordination upward. Android Studio’s grouped view is convenient, but use the Project view and Gradle files when diagnosing the actual disk path or dependency edge."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "dependencies {\n    implementation(project(\":core:model\"))\n    implementation(project(\":feature:notes\"))\n}",
+              "caption": "The app assembles inward-facing modules while their internal dependency choices remain independently configured."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Modules are architectural boundaries",
+              "text": "A large number of tiny modules can slow configuration and navigation without improving ownership or dependency direction."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Projects overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/projects",
+          "whyRead": "Explains Android Studio’s Android and Project views, module folders, manifests, source sets, resources, and tests."
+        },
+        {
+          "title": "Modularization patterns",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/modularization/patterns",
+          "whyRead": "Shows common module responsibilities, dependency direction, and tradeoffs in real Android projects."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Resolve a debug resource",
+      "language": "text",
+      "code": "src/main/res/values/strings.xml: app_name = \"Notes\"\nsrc/debug/res/values/strings.xml: app_name = \"Notes Debug\"\nselected variant: debug",
+      "walkthrough": [
+        "Both main and debug resources contribute to the debug variant.",
+        "The more specific debug value overlays the main value with the same resource name.",
+        "A release variant would not include src/debug and would keep Notes."
+      ],
+      "expectedOutput": "The debug application label resolves to “Notes Debug”."
+    },
+    "trap_check": [
+      {
+        "mistake": "Assuming Android Studio’s Android view mirrors disk folders.",
+        "why": "The view groups manifests, sources, and qualified resources for convenience.",
+        "fix": "Switch to Project view when reasoning about real paths and source sets."
+      },
+      {
+        "mistake": "Adding a module solely because a package contains several files.",
+        "why": "The new boundary adds build and dependency cost without independent ownership.",
+        "fix": "Create modules around cohesive capabilities and enforceable dependency direction."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design a three-module Notes project and document module outputs, source-set locations, and every allowed dependency edge.",
+      "successLooksLike": "The dependency graph is acyclic. Local and device tests are placed in correct source sets. Each module boundary has a stated ownership reason."
+    },
+    "recall": [
+      {
+        "prompt": "What does settings.gradle.kts control?",
+        "answer": "It identifies the project and included build modules."
+      },
+      {
+        "prompt": "Which source set contains device tests?",
+        "answer": "The androidTest source set contains tests compiled to run on an Android device."
+      },
+      {
+        "prompt": "Why prefer implementation dependencies?",
+        "answer": "They keep internal dependencies from becoming unnecessary consumer API."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-05-02-projects-modules-source-sets",
+  "challengeId": "challenge-level-02-week-05-02-projects-modules-source-sets",
+  "revision": {
+    "objectives": [
+      "Differentiate project and module responsibilities.",
+      "Predict variant inputs from source-set paths.",
+      "Design an acyclic module dependency direction."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/projects",
+    "https://developer.android.com/topic/modularization/patterns"
+  ],
+  "version": "0.4.0"
+}

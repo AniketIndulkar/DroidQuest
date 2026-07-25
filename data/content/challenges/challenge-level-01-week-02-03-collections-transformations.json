@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-02-03-collections-transformations",
+  "title": "Build an Expense Report Pipeline",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-02-03-collections-transformations",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Transform a list of expenses into totals by category, highest expense, unique categories, and a sorted list of positive records.",
+  "successCriteria": [
+    "Every requested output uses a collection operation whose result type fits the requirement.",
+    "The source list is not mutated.",
+    "Empty input is handled without an unexpected exception."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: Every requested output uses a collection operation whose result type fits the requirement.",
+    "Use an executable example or focused check to verify: The source list is not mutated."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class Expense(val category: String, val amount: Double)\n\nfun report(expenses: List<Expense>) {\n    // Produce the four requested results.\n}"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: Every requested output uses a collection operation whose result type fits the requirement.",
+    "Implement and explain how the solution ensures: The source list is not mutated.",
+    "Implement and explain how the solution ensures: Empty input is handled without an unexpected exception."
+  ],
+  "verification": [
+    "Run a focused check proving that every requested output uses a collection operation whose result type fits the requirement.",
+    "Run a focused check proving that the source list is not mutated.",
+    "Run a focused check proving that empty input is handled without an unexpected exception."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

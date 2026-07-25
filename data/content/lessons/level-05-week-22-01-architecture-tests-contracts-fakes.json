@@ -1,0 +1,218 @@
+{
+  "id": "level-05-week-22-01-architecture-tests-contracts-fakes",
+  "title": "Architecture Tests, Contracts, and Purposeful Fakes",
+  "categoryId": "level-05-production-architecture",
+  "week": 22,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-21-05-build-performance-dynamic-library-modules"
+  ],
+  "tags": [
+    "architecture",
+    "testing",
+    "contracts"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes architecture tests, contracts, and purposeful fakes a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test architecture at the boundary where a promise matters. ViewModel tests verify state sequences from events and repository outputs. Repository tests verify mapping, source-of-truth behaviour, and operation semantics. Use-case tests express business rules. Module or static-analysis tests reject forbidden dependency edges. UI tests cover critical rendered states and flows. A pyramid count is less useful than fast, deterministic evidence for the highest risks."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface AccountsContract {\n  fun subject(): AccountsRepository\n  @Test fun transferAppearsOnceAfterRetry() { /* shared behaviour */ }\n}\n\nclass FakeAccountsContract : AccountsContract\nclass RoomAccountsContract : AccountsContract",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Prefer fakes with small working behaviour when tests need stateful collaboration. A fake repository can expose Flow, record commands, and simulate expected outcomes without duplicating Room or HTTP. Mocks help when an interaction itself is the contract, but call-count assertions often bind tests to refactoring. Share a fake through core testing only when it represents a stable contract; feature-specific fixtures should remain with their owner."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Unit",
+                  "One state holder or business rule"
+                ],
+                [
+                  "Contract",
+                  "Same promise across implementations"
+                ],
+                [
+                  "Hermetic flow",
+                  "Composed app with controlled external boundaries"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Contract tests run the same behavioural suite against multiple implementations, such as in-memory and Room-backed repositories. Define semantics first: ordering, duplicate handling, cancellation, errors, and eventual observation. Hermetic end-to-end tests replace remote systems while retaining real module composition. Avoid testing Hilt or Flow itself. Mutation, failure injection, and process recreation reveal whether the architecture supports change and recovery as designed."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Using mocks for every collaborator and asserting internal call order instead of user-visible or contract behaviour."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Use test doubles in Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/test-doubles",
+          "whyRead": "Distinguishes fakes, mocks, stubs, and architecture that permits replacement."
+        },
+        {
+          "title": "What to test in Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/what-to-test",
+          "whyRead": "Prioritises ViewModel, repository, domain, screen, and critical-flow behaviour."
+        },
+        {
+          "title": "Recommendations for Android architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/recommendations",
+          "whyRead": "Provides current recommendations and the conditions under which optional layers add value."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Architecture Tests, Contracts, and Purposeful Fakes boundary",
+      "language": "kotlin",
+      "code": "interface AccountsContract {\n  fun subject(): AccountsRepository\n  @Test fun transferAppearsOnceAfterRetry() { /* shared behaviour */ }\n}\n\nclass FakeAccountsContract : AccountsContract\nclass RoomAccountsContract : AccountsContract",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using mocks for every collaborator and asserting internal call order instead of user-visible or contract behaviour.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a test matrix for the banking modules, implement one reusable repository contract suite, and add a forbidden-dependency architecture test.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should architecture tests, contracts, and purposeful fakes solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-22-01-architecture-tests-contracts-fakes",
+  "challengeId": "challenge-level-05-week-22-01-architecture-tests-contracts-fakes",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Architecture Tests, Contracts, and Purposeful Fakes.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/testing/fundamentals/test-doubles",
+    "https://developer.android.com/training/testing/fundamentals/what-to-test",
+    "https://developer.android.com/topic/architecture/recommendations"
+  ],
+  "version": "0.8.0"
+}

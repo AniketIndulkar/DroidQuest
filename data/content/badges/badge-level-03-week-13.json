@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-03-week-13",
+  "title": "Week 13 Pathfinder",
+  "description": "Awarded for completing the Week 13 checkpoint and its production engineering objectives.",
+  "categoryId": "level-03-jetpack-compose",
+  "icon": "pathfinder-13",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-03-week-13-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 300,
+  "rarity": "rare",
+  "version": "0.6.0"
+}

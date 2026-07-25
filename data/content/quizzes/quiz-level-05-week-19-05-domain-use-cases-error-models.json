@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-19-05-domain-use-cases-error-models",
+  "title": "Use Cases, Business Rules, and Error Models Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-05-domain-use-cases-error-models"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-05-domain-use-cases-error-models-decision",
+      "prompt": "Which approach best demonstrates sound use cases, business rules, and error models?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Implement and test a SendPayment use case with reusable validation, typed expected rejections, cancellation propagation, and no Android UI or transport types.",
+        "Creating a use case for every repository method even when no reusable rule or orchestration exists.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Implement and test a SendPayment use case with reusable validation, typed expected rejections, cancellation propagation, and no Android UI or transport types.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-19-05-domain-use-cases-error-models"
+    },
+    {
+      "id": "q-level-05-week-19-05-domain-use-cases-error-models-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-19-05-domain-use-cases-error-models"
+    },
+    {
+      "id": "q-level-05-week-19-05-domain-use-cases-error-models-recall",
+      "prompt": "What evidence should accompany the use cases, business rules, and error models decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-19-05-domain-use-cases-error-models"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

@@ -1,0 +1,231 @@
+{
+  "id": "level-03-week-13-04-edge-to-edge-window-insets",
+  "title": "Edge-to-edge and Window Insets",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 13,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-13-03-localisation-rtl-theme-policy"
+  ],
+  "tags": [
+    "compose",
+    "edge-to-edge",
+    "insets"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Modern Android windows draw behind system bars, keyboards, cutouts, and taskbars, so content must deliberately consume changing safe areas.",
+      "realWorldUse": "App bars, bottom actions, scrolling content, modal surfaces, and text fields must remain visible and interactive across system UI configurations.",
+      "outcome": "Enable edge-to-edge, assign inset ownership, consume padding once, and keep input and scrolling synchronized with IME changes."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "The app window extends behind system UI",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Edge-to-edge lets content draw beneath status, navigation, caption, and other system bars. On newer target levels it is enforced, while enableEdgeToEdge provides consistent setup on earlier versions. Drawing behind a bar is not the same as placing controls beneath it. Backgrounds may extend through the window while text, touch targets, and critical imagery respect safe drawing, tappable element, display cutout, or waterfall areas according to their purpose."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "enableEdgeToEdge()\nScaffold { inner ->\n    LazyColumn(\n        contentPadding = inner,\n        modifier = Modifier.consumeWindowInsets(inner).imePadding()\n    ) { /* products */ }\n}",
+              "caption": "Scaffold space is consumed once and the list also follows the animated keyboard inset."
+            },
+            {
+              "type": "table",
+              "title": "Inset ownership",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Draw background",
+                  "May extend behind bars"
+                ],
+                [
+                  "Interactive content",
+                  "Respect applicable safe or tappable inset"
+                ],
+                [
+                  "Nested padding",
+                  "Consume already handled space"
+                ],
+                [
+                  "Keyboard",
+                  "Use IME-aware layout modifiers"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Insets are dynamic layout data with consumption",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose WindowInsets values change as bars, the IME, posture, and window mode change. Padding and size modifiers apply values during layout and participate in inset consumption so nested content does not add the same safe area twice. Scaffold supplies content padding for its bars, but the screen must still decide how that relates to system insets. consumeWindowInsets records space already handled. Prefer inset modifiers over reading raw values in composition because layout-phase updates stay synchronized with animations."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "enableEdgeToEdge()\nScaffold { inner ->\n    LazyColumn(\n        contentPadding = inner,\n        modifier = Modifier.consumeWindowInsets(inner).imePadding()\n    ) { /* products */ }\n}",
+              "caption": "Scaffold space is consumed once and the list also follows the animated keyboard inset."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Insets are moving constraints",
+              "text": "System UI and the keyboard can change while the screen remains alive."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Each screen assigns safe-area ownership",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Assign one owner for top, bottom, and IME space in each hierarchy. A lazy list may use contentPadding so items scroll clear of bars; a fixed checkout action can use navigationBarsPadding; a form may combine imePadding with BringIntoView behaviour. Test gesture and three-button navigation, open and closed keyboard, landscape, cutout, split screen, and resizable desktop windows. Scrims and icon appearance must preserve contrast over changing content."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not pad every layer",
+              "text": "Applying the same inset at parent and child produces double spacing and inconsistent animation."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Set up edge-to-edge",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/system/setup-e2e",
+          "whyRead": "Explains enabling edge-to-edge and system-bar contrast policy."
+        },
+        {
+          "title": "Set up window insets",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/system/insets-ui",
+          "whyRead": "Covers inset types, padding, size modifiers, consumption, and Compose phases."
+        },
+        {
+          "title": "Insets in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "guide",
+          "url": "https://developer.android.com/develop/ui/compose/quick-guides/content/video/insets-in-compose",
+          "whyRead": "Provides a concise visual explanation of changing system and IME insets."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove double bottom padding",
+      "language": "kotlin",
+      "code": "Scaffold { inner ->\n    Column(Modifier.padding(inner).navigationBarsPadding()) {\n        BottomActions(Modifier.navigationBarsPadding())\n    }\n}",
+      "walkthrough": [
+        "Scaffold padding and two navigation-bar modifiers may represent the same occupied region.",
+        "The hierarchy adds bottom space multiple times.",
+        "Choose the owner, consume its padding, and apply any remaining inset exactly where needed."
+      ],
+      "expectedOutput": "Actions clear system navigation without duplicate gaps in either navigation mode."
+    },
+    "trap_check": [
+      {
+        "mistake": "Reading IME inset as a number during composition for manual animation.",
+        "why": "The value can lag the layout phase and desynchronise from platform animation.",
+        "fix": "Use built-in inset padding or size modifiers where possible."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a scrolling checkout with app bar, fixed action, focused fields, and animated keyboard behaviour across gesture and three-button navigation.",
+      "successLooksLike": "No inset is applied twice. Focused fields and actions remain reachable with IME open. System-bar icons retain contrast over all backgrounds."
+    },
+    "recall": [
+      {
+        "prompt": "What does edge-to-edge permit?",
+        "answer": "Drawing application content behind system bars."
+      },
+      {
+        "prompt": "What prevents duplicate inset use?",
+        "answer": "Explicit ownership and inset consumption."
+      },
+      {
+        "prompt": "Where do inset modifiers apply updates?",
+        "answer": "During the layout phase."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-13-04-edge-to-edge-window-insets",
+  "challengeId": "challenge-level-03-week-13-04-edge-to-edge-window-insets",
+  "revision": {
+    "objectives": [
+      "Configure edge-to-edge correctly.",
+      "Assign and consume insets once.",
+      "Verify IME and navigation modes."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/system/setup-e2e",
+    "https://developer.android.com/develop/ui/compose/system/insets-ui",
+    "https://developer.android.com/develop/ui/compose/quick-guides/content/video/insets-in-compose"
+  ],
+  "version": "0.6.0"
+}

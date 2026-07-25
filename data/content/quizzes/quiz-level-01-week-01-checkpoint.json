@@ -1,0 +1,136 @@
+{
+  "id": "quiz-level-01-week-01-checkpoint",
+  "title": "Week 1 Kotlin Foundations Checkpoint",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-01-first-program",
+    "level-01-week-01-02-values-types-strings",
+    "level-01-week-01-03-expressions-decisions",
+    "level-01-week-01-04-loops-ranges",
+    "level-01-week-01-05-functions",
+    "level-01-week-01-06-null-safety",
+    "level-01-week-01-07-small-program-design"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.78,
+  "questions": [
+    {
+      "id": "q-week-01-checkpoint-entry",
+      "prompt": "Which declaration identifies the starting function of a standalone Kotlin program?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "fun main()",
+        "val main",
+        "class main",
+        "println(main)"
+      ],
+      "answer": "fun main()",
+      "explanation": "The runtime enters the function named main.",
+      "lessonId": "level-01-week-01-01-first-program"
+    },
+    {
+      "id": "q-week-01-checkpoint-values",
+      "prompt": "Select the declarations that avoid unnecessary reassignment.",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "options": [
+        "val category = \"Food\"",
+        "val limit = 50.0",
+        "var total = calculateTotal()",
+        "var attempt = 0 when attempt will increase"
+      ],
+      "answer": [
+        "val category = \"Food\"",
+        "val limit = 50.0",
+        "var attempt = 0 when attempt will increase"
+      ],
+      "explanation": "Stable values use val; a counter that is deliberately reassigned uses var.",
+      "lessonId": "level-01-week-01-02-values-types-strings"
+    },
+    {
+      "id": "q-week-01-checkpoint-nullable",
+      "prompt": "A value of type Double? is guaranteed to contain a Double.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "The nullable type may contain either a Double or null.",
+      "lessonId": "level-01-week-01-06-null-safety"
+    },
+    {
+      "id": "q-week-01-checkpoint-template",
+      "prompt": "Fill the blank to insert total plus tax into a String: \"Due: ___\"",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "${total + tax}",
+      "explanation": "A compound template expression uses a dollar sign followed by braces.",
+      "lessonId": "level-01-week-01-02-values-types-strings"
+    },
+    {
+      "id": "q-week-01-checkpoint-pipeline",
+      "prompt": "Order the stages from uncertain input to display.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "options": [
+        "Validate",
+        "Present",
+        "Parse",
+        "Normalise"
+      ],
+      "answer": [
+        "Normalise",
+        "Parse",
+        "Validate",
+        "Present"
+      ],
+      "explanation": "Each stage strengthens or communicates the data in a deliberate order.",
+      "lessonId": "level-01-week-01-07-small-program-design"
+    },
+    {
+      "id": "q-week-01-checkpoint-function-match",
+      "prompt": "Match each function property to its role.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "parameter": "Declares an input",
+        "returnType": "Promises a result type",
+        "argument": "Supplies a call value"
+      },
+      "explanation": "The declaration defines parameters and a return type; the call supplies arguments.",
+      "lessonId": "level-01-week-01-05-functions"
+    },
+    {
+      "id": "q-week-01-checkpoint-output",
+      "prompt": "What is printed?\nvar total = 0\nfor (n in 1..<4) total += n\nprintln(total)",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": 6,
+      "explanation": "The open-ended range contains 1, 2, and 3, which sum to 6.",
+      "lessonId": "level-01-week-01-04-loops-ranges"
+    },
+    {
+      "id": "q-week-01-checkpoint-bug",
+      "prompt": "Spot the bug: for (index in 0..items.size) println(items[index])",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "The range includes items.size, which is not a valid index",
+      "explanation": "Use items directly, items.indices, or 0..<items.size to avoid the extra index.",
+      "lessonId": "level-01-week-01-04-loops-ranges"
+    },
+    {
+      "id": "q-week-01-checkpoint-debug",
+      "prompt": "In one sentence, describe the first action in evidence-based debugging.",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "Reproduce a small case and state the expected and actual behaviour",
+      "explanation": "A stable reproduction defines the mismatch and lets the same case verify the eventual fix.",
+      "lessonId": "level-01-week-01-07-small-program-design"
+    }
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.2.0"
+}

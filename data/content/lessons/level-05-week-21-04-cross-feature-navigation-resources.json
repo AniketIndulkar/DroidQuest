@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-21-04-cross-feature-navigation-resources",
+  "title": "Cross-Feature Navigation and Resource Encapsulation",
+  "categoryId": "level-05-production-architecture",
+  "week": 21,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-21-03-api-implementation-dependency-graphs"
+  ],
+  "tags": [
+    "modularization",
+    "navigation",
+    "resources"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes cross-feature navigation and resource encapsulation a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Feature modules should not navigate by importing another feature implementation. Define destination contracts using stable route types or small navigation APIs that the app-level navigator composes. Pass identifiers rather than large mutable objects; the destination loads authoritative data from its repository. Deep links can provide an external contract, but internal navigation still needs ownership, validation, and back-stack policy."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface PaymentsNavigator {\n  fun destination(accountId: AccountId): NavKey\n}\n\n@Serializable data class PaymentKey(val accountId: String) : NavKey",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Resources are part of a module API when other modules reference them. Keep feature strings, drawables, and implementation themes private where tooling permits. A shared design system may expose semantic components and tokens, but it should not absorb feature copy. Resource names need prefixes in large projects to reduce collisions and improve ownership. Avoid using resource IDs as domain data because they vary by build and localisation."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Route contract",
+                  "Stable destination identity and arguments"
+                ],
+                [
+                  "App navigator",
+                  "Composes feature destinations"
+                ],
+                [
+                  "Feature resources",
+                  "Private copy and assets by default"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Cross-feature results should be state changes or explicit contracts rather than callbacks retained between modules. A payment feature can return a receipt ID or update the repository, letting the accounts screen observe authoritative state. Test deep links, missing IDs, process recreation, alternate app modules, and unavailable optional features. The app module owns the root graph and can substitute feature implementations without making peers depend on one another."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Importing PaymentScreen and its internal Room entity directly from the accounts feature."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Common modularization patterns",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/modularization/patterns",
+          "whyRead": "Describes app, feature, data, common, API, and implementation module patterns."
+        },
+        {
+          "title": "Navigate with feature modules",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/navigation/integrations/feature-modules",
+          "whyRead": "Shows navigation contracts and on-demand feature integration."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Cross-Feature Navigation and Resource Encapsulation boundary",
+      "language": "kotlin",
+      "code": "interface PaymentsNavigator {\n  fun destination(accountId: AccountId): NavKey\n}\n\n@Serializable data class PaymentKey(val accountId: String) : NavKey",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Importing PaymentScreen and its internal Room entity directly from the accounts feature.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Define route contracts between accounts, payments, and settings without feature implementation dependencies; test deep links and process recreation using identifiers only.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should cross-feature navigation and resource encapsulation solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-21-04-cross-feature-navigation-resources",
+  "challengeId": "challenge-level-05-week-21-04-cross-feature-navigation-resources",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Cross-Feature Navigation and Resource Encapsulation.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/modularization/patterns",
+    "https://developer.android.com/guide/navigation/integrations/feature-modules"
+  ],
+  "version": "0.8.0"
+}

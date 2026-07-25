@@ -1,0 +1,244 @@
+{
+  "id": "level-01-week-04-04-data-structures-complexity",
+  "title": "Data Structures and Practical Complexity",
+  "categoryId": "level-01-programming-foundations",
+  "week": 4,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-03-debugging-stack-traces"
+  ],
+  "tags": [
+    "data-structures",
+    "complexity",
+    "collections",
+    "algorithms"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Choosing a representation determines which operations are simple, which invariants are visible, and how work grows as data becomes larger.",
+      "realWorldUse": "UI lists, caches, indexes, deduplication, navigation stacks, queues, and database adapters all depend on deliberate collection and algorithm choices.",
+      "outcome": "Select lists, sets, maps, stacks, and queues by required operations, then compare constant, linear, and logarithmic growth without premature optimisation."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "operations",
+          "title": "Choose for operations and invariants",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A data structure is an organisation of values together with supported operations. A List preserves order and permits duplicates; indexed access is direct, while searching for an unknown value generally scans elements. A Set represents uniqueness and answers membership efficiently in typical hash-based implementations. A Map associates unique keys with values and is useful when lookup begins with an identifier. A stack removes the most recently added item, while a queue removes the earliest waiting item. The best choice follows the domain invariant and dominant operations, not habit. If order matters and duplicates are meaningful, a set would destroy information even if membership is fast."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val ordered = listOf(\"Food\", \"Travel\", \"Food\")\nval unique = ordered.toSet()\nval byId = expenses.associateBy { it.id }\n\nval found = byId[ExpenseId(\"expense-7\")]",
+              "caption": "Each transformation changes the contract: ordered retains repetition, unique removes it, and byId enables key-based lookup."
+            },
+            {
+              "type": "table",
+              "title": "Structure selection",
+              "columns": [
+                "Structure",
+                "Preserves order",
+                "Duplicates",
+                "Typical strength"
+              ],
+              "rows": [
+                [
+                  "List",
+                  "Yes",
+                  "Yes",
+                  "Iteration and indexed sequence"
+                ],
+                [
+                  "Set",
+                  "Implementation-dependent",
+                  "No",
+                  "Membership and uniqueness"
+                ],
+                [
+                  "Map",
+                  "Implementation-dependent",
+                  "Keys no",
+                  "Lookup by key"
+                ],
+                [
+                  "Stack / deque",
+                  "Access order",
+                  "Yes",
+                  "Last-in-first-out work"
+                ],
+                [
+                  "Queue / deque",
+                  "Access order",
+                  "Yes",
+                  "First-in-first-out work"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "growth",
+          "title": "Complexity describes growth, not stopwatch time",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Time complexity compares how operation counts grow with input size n. Constant O(1) work does not grow with n in the model; linear O(n) work grows proportionally; logarithmic O(log n) repeatedly reduces the remaining search space; quadratic O(n²) often compares many pairs. Big-O omits hardware, constants, allocation, and small-input effects, so it predicts scalability rather than exact duration. A hash-map lookup is typically constant average time but can degrade with collisions. Binary search is logarithmic only when data is sorted and supports efficient indexed access. Always state the operation, assumptions, and data size instead of labelling an entire feature “fast.”"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun containsDuplicate(values: List<String>): Boolean {\n    val seen = mutableSetOf<String>()\n    for (value in values) {\n        if (!seen.add(value)) return true\n    }\n    return false\n}",
+              "caption": "One pass performs typical constant-time set insertions, giving expected O(n) time and O(n) additional space."
+            },
+            {
+              "type": "flow",
+              "title": "Growth comparison",
+              "steps": [
+                {
+                  "id": "constant",
+                  "label": "O(1)",
+                  "detail": "Direct map lookup by known key under typical hashing."
+                },
+                {
+                  "id": "log",
+                  "label": "O(log n)",
+                  "detail": "Binary search halves sorted search space."
+                },
+                {
+                  "id": "linear",
+                  "label": "O(n)",
+                  "detail": "Scan every expense once."
+                },
+                {
+                  "id": "nlogn",
+                  "label": "O(n log n)",
+                  "detail": "Typical comparison sorting."
+                },
+                {
+                  "id": "quadratic",
+                  "label": "O(n²)",
+                  "detail": "Compare every item with many others."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tradeoffs",
+          "title": "Improve representation before clever loops",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Performance choices trade time, memory, ordering, and implementation complexity. Building a map costs linear time and extra space but pays off when many later lookups use the key. For one lookup in a tiny list, a scan may be clearer. Maintain invariants at the boundary: duplicate IDs should be rejected when building an index rather than silently overwritten unless replacement is the policy. Kotlin collection chains are expressive, but repeated filters or nested searches can hide multiple passes. Measure representative workloads after choosing the simplest correct structure. Optimisation should preserve readability and include a benchmark or test that explains why the complexity is justified."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun indexById(expenses: List<Expense>): Map<ExpenseId, Expense> {\n    require(expenses.map { it.id }.toSet().size == expenses.size) {\n        \"Duplicate expense id\"\n    }\n    return expenses.associateBy { it.id }\n}",
+              "caption": "The function makes unique keys an explicit precondition before constructing the fast lookup representation."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Space is part of the cost",
+              "text": "A faster lookup structure often stores an additional index. Include memory, construction, update, and correctness costs in the decision."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Collections overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/collections-overview.html",
+          "whyRead": "Defines Kotlin list, set, and map contracts along with read-only and mutable collection interfaces."
+        },
+        {
+          "title": "Collection operations overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/collection-operations.html",
+          "whyRead": "Surveys transformations, filtering, grouping, ordering, aggregation, and other operations whose passes and allocations should be understood."
+        },
+        {
+          "title": "Algorithms, Part I",
+          "publisher": "Princeton University",
+          "resourceType": "guide",
+          "url": "https://www.coursera.org/learn/algorithms-part1",
+          "whyRead": "Offers deeper optional study of union-find, stacks, queues, sorting, searching, trees, and hash tables."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Replace repeated scans with an index",
+      "language": "kotlin",
+      "code": "data class Expense(val id: String, val amount: Double)\nfun main() {\n    val expenses = listOf(Expense(\"a\", 3.0), Expense(\"b\", 5.0))\n    val byId = expenses.associateBy { it.id }\n    println(byId[\"b\"]?.amount)\n}",
+      "walkthrough": [
+        "associateBy scans the list once to construct a map.",
+        "The resulting key lookup is typically constant average time.",
+        "Duplicate IDs would overwrite earlier values, so production code must decide and enforce that policy."
+      ],
+      "expectedOutput": "5.0"
+    },
+    "trap_check": [
+      {
+        "mistake": "Choosing a Set when duplicate order carries meaning.",
+        "why": "The representation silently discards information required by the domain.",
+        "fix": "Write the invariants first, then select the structure that preserves them."
+      },
+      {
+        "mistake": "Calling an algorithm O(1) because it was fast in one test.",
+        "why": "Elapsed time at one size does not describe how work grows.",
+        "fix": "Count dominant operations, state assumptions, and measure representative sizes."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement an expense collection that preserves display order, rejects duplicate IDs, supports typical constant-time lookup by ID, and documents the complexity of each public operation.",
+      "successLooksLike": "Display order remains deterministic. Duplicate identifiers produce an explicit failure. Complexity claims name average or worst-case assumptions."
+    },
+    "recall": [
+      {
+        "prompt": "When is a Map a natural choice?",
+        "answer": "When callers know a unique key and need repeated lookup of its associated value."
+      },
+      {
+        "prompt": "What does O(n) communicate?",
+        "answer": "The modelled work grows proportionally with input size."
+      },
+      {
+        "prompt": "Why might building an index be wasteful?",
+        "answer": "It costs time and memory that one small lookup may not repay."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-04-04-data-structures-complexity",
+  "challengeId": "challenge-level-01-week-04-04-data-structures-complexity",
+  "revision": {
+    "objectives": [
+      "Select collection structures from domain invariants and operations.",
+      "Compare common complexity growth classes with stated assumptions.",
+      "Evaluate time-space-readability tradeoffs using representative evidence."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/collections-overview.html",
+    "https://kotlinlang.org/docs/collection-operations.html",
+    "https://www.coursera.org/learn/algorithms-part1"
+  ],
+  "version": "0.3.0"
+}

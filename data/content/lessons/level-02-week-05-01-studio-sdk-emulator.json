@@ -1,0 +1,232 @@
+{
+  "id": "level-02-week-05-01-studio-sdk-emulator",
+  "title": "Android Studio, SDKs, and Virtual Devices",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 5,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-04-06-expense-manager-capstone"
+  ],
+  "tags": [
+    "android-studio",
+    "sdk",
+    "emulator",
+    "tooling"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android development depends on a coordinated toolchain; understanding each part turns setup failures into diagnosable configuration problems.",
+      "realWorldUse": "Android Studio edits and inspects projects, SDK packages provide platform and build tools, and virtual or physical devices run the resulting application.",
+      "outcome": "Identify the IDE, JDK, SDK, emulator, system image, and adb roles, then create a reproducible device-and-toolchain diagnosis."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "toolchain",
+          "title": "The toolchain is several cooperating programs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android Studio is the development environment, not the Android platform itself. It coordinates editing, Gradle builds, device management, debugging, profiling, and inspection. The bundled or selected JDK runs Gradle and Kotlin/Java build tools. The Android SDK directory contains platform definitions, command-line tools, build tools, emulator binaries, and other packages installed for particular API levels. A project records required versions, while SDK Manager supplies those packages locally. Keeping these responsibilities separate helps explain why updating the IDE does not automatically change an app target or why a project can open even when a required SDK package is missing."
+            },
+            {
+              "type": "table",
+              "title": "Toolchain responsibilities",
+              "columns": [
+                "Part",
+                "Responsibility"
+              ],
+              "rows": [
+                [
+                  "Android Studio",
+                  "IDE, project integration, inspectors, and device controls"
+                ],
+                [
+                  "JDK",
+                  "Runs JVM-based build tooling"
+                ],
+                [
+                  "Android SDK",
+                  "Platform APIs and Android command-line/build tools"
+                ],
+                [
+                  "Gradle wrapper",
+                  "Selects the project build-system version"
+                ],
+                [
+                  "adb",
+                  "Communicates with devices and emulators"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "java -version\n./gradlew --version\nadb version\nadb devices",
+              "caption": "These commands reveal the runtime, Gradle environment, adb version, and connected targets instead of guessing from the UI."
+            }
+          ]
+        },
+        {
+          "id": "virtual-device",
+          "title": "An emulator runs a configured Android device image",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An Android Virtual Device, or AVD, is configuration: hardware profile, system image, storage, graphics, and optional snapshots. The emulator process boots that configuration. Choose a system image deliberately—its API level determines platform behaviour, while Google APIs or Play images include different services. Test the minimum supported API and a recent target-relevant API, not only one convenient image. Device density, screen size, locale, dark mode, rotation, and memory can expose different defects. A snapshot speeds startup but can preserve confusing state; cold boot or wipe data is a useful controlled experiment when installation or startup behaviour becomes inconsistent."
+            },
+            {
+              "type": "flow",
+              "title": "Run on a virtual device",
+              "steps": [
+                {
+                  "id": "install",
+                  "label": "Install package",
+                  "detail": "SDK Manager downloads a compatible system image."
+                },
+                {
+                  "id": "define",
+                  "label": "Create AVD",
+                  "detail": "Choose hardware and platform configuration."
+                },
+                {
+                  "id": "boot",
+                  "label": "Boot emulator",
+                  "detail": "A process starts or restores the virtual device."
+                },
+                {
+                  "id": "install-app",
+                  "label": "Install app",
+                  "detail": "adb transfers an APK to the selected device."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Logcat, debugger, and inspectors connect to that process."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "An emulator is a real platform environment",
+              "text": "It follows Android lifecycle, permission, storage, and process rules even though its hardware is virtualised."
+            }
+          ]
+        },
+        {
+          "id": "diagnosis",
+          "title": "Record versions and isolate one boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A useful setup report includes operating system, Android Studio version, JDK version, Gradle and Android Gradle Plugin versions, SDK path, requested platform, device image, and the first actionable error. Confirm that adb lists exactly the intended target and that the device is authorised. Separate build failures from installation failures and runtime crashes: a compiler error occurs before an APK exists; an install error comes from device/package compatibility or state; a crash happens after launch and belongs in Logcat. Avoid deleting all caches as a first response because it discards evidence and downloads without identifying the broken boundary. Reproduce with one known project and one known device."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:assembleDebug\nadb devices -l\nadb install -r app/build/outputs/apk/debug/app-debug.apk\nadb shell am start -n com.example.notes/.MainActivity",
+              "caption": "Each command tests a distinct boundary: build, connectivity, installation, and component launch."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not confuse API levels",
+              "text": "The emulator API level describes the running device; compileSdk and targetSdk are separate project choices examined later."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Install Android Studio",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/install",
+          "whyRead": "Covers supported systems, installation steps, setup wizard, and required SDK components."
+        },
+        {
+          "title": "Create and manage virtual devices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/run/managing-avds",
+          "whyRead": "Explains AVD hardware profiles, system images, storage, snapshots, and device configuration."
+        },
+        {
+          "title": "Android Debug Bridge",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/tools/adb",
+          "whyRead": "Documents device discovery, shell access, installation, forwarding, and adb’s client-server model."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Classify a failed run",
+      "language": "text",
+      "code": "Build: FAILED at compileDebugKotlin\nInstall: no APK attempted\nDevice: emulator-5554 device\nFirst error: Unresolved reference: NoteScreen",
+      "walkthrough": [
+        "Gradle reached Kotlin compilation, so SDK/device connectivity is not the current failure.",
+        "No APK was produced and installation never began.",
+        "The first compiler diagnostic points to project source or dependencies, not an emulator reset."
+      ],
+      "expectedOutput": "Fix the unresolved symbol, rebuild, and only then diagnose installation or launch."
+    },
+    "trap_check": [
+      {
+        "mistake": "Updating every tool at once during a setup failure.",
+        "why": "The changed environment removes the ability to identify which compatibility boundary failed.",
+        "fix": "Record versions and change one tool or package at a time."
+      },
+      {
+        "mistake": "Testing only one recent emulator configuration.",
+        "why": "Minimum-API, locale, density, memory, and platform-behaviour differences remain invisible.",
+        "fix": "Maintain a small deliberate device matrix including minimum and recent APIs."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a reproducible environment report for one emulator and demonstrate separate build, connection, installation, and launch checks.",
+      "successLooksLike": "Every relevant tool and platform version is recorded. The emulator configuration includes API level and system-image type. Each command is labelled with the boundary it verifies."
+    },
+    "recall": [
+      {
+        "prompt": "What does an AVD store?",
+        "answer": "A reusable virtual hardware and Android system-image configuration."
+      },
+      {
+        "prompt": "What role does adb perform?",
+        "answer": "It connects development tools to emulator or physical-device services."
+      },
+      {
+        "prompt": "How do build and install failures differ?",
+        "answer": "A build failure prevents an APK; an install failure occurs while transferring or registering one on a device."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-05-01-studio-sdk-emulator",
+  "challengeId": "challenge-level-02-week-05-01-studio-sdk-emulator",
+  "revision": {
+    "objectives": [
+      "Explain each major Android toolchain responsibility.",
+      "Configure a virtual device for a deliberate test case.",
+      "Localise failures across build, connection, installation, and launch."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/install",
+    "https://developer.android.com/studio/run/managing-avds",
+    "https://developer.android.com/tools/adb"
+  ],
+  "version": "0.4.0"
+}

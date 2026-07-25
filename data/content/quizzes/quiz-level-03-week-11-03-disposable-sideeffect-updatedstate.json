@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-11-03-disposable-sideeffect-updatedstate",
+  "title": "DisposableEffect, SideEffect, and rememberUpdatedState Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-03-disposable-sideeffect-updatedstate"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-11-03-disposable-sideeffect-updatedstate-decision",
+      "prompt": "Which API fits listener registration with cleanup?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "DisposableEffect",
+      "explanation": "It pairs keyed setup with mandatory cleanup when identity changes or composition leaves.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate",
+      "options": [
+        "DisposableEffect",
+        "derivedStateOf",
+        "rememberSaveable",
+        "Canvas"
+      ]
+    },
+    {
+      "id": "q-level-03-week-11-03-disposable-sideeffect-updatedstate-truth",
+      "prompt": "SideEffect runs even for an abandoned unsuccessful composition.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It publishes only after a successful composition is committed.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate"
+    },
+    {
+      "id": "q-level-03-week-11-03-disposable-sideeffect-updatedstate-recall",
+      "prompt": "What keeps a callback current without restart?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "rememberUpdatedState",
+      "explanation": "The effect reads the latest value from a stable remembered State holder.",
+      "lessonId": "level-03-week-11-03-disposable-sideeffect-updatedstate"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

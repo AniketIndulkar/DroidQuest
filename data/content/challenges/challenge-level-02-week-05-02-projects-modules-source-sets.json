@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-05-02-projects-modules-source-sets",
+  "title": "Map a Multi-Module Notes Project",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-05-02-projects-modules-source-sets",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Design a three-module Notes project and document module outputs, source-set locations, and every allowed dependency edge.",
+  "successCriteria": [
+    "The dependency graph is acyclic.",
+    "Local and device tests are placed in correct source sets.",
+    "Each module boundary has a stated ownership reason."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: The dependency graph is acyclic.",
+    "Use lifecycle or boundary evidence to prove: Local and device tests are placed in correct source sets."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "include(\":app\", \":core:model\", \":feature:notes\")\n// Draw and justify the dependency edges."
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: The dependency graph is acyclic.",
+    "Implement the smallest design that guarantees: Local and device tests are placed in correct source sets.",
+    "Implement the smallest design that guarantees: Each module boundary has a stated ownership reason."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that the dependency graph is acyclic.",
+    "Run a focused check demonstrating that local and device tests are placed in correct source sets.",
+    "Run a focused check demonstrating that each module boundary has a stated ownership reason."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

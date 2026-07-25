@@ -1,0 +1,118 @@
+{
+  "id": "quiz-level-03-week-10-checkpoint",
+  "title": "Week 10 Compose Checkpoint",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-10-01-state-remember-saveable",
+    "level-03-week-10-02-state-hoisting-udf",
+    "level-03-week-10-03-recomposition-snapshots-identity",
+    "level-03-week-10-04-lazy-lists-grids",
+    "level-03-week-10-05-navigation-compose-concepts"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-10-checkpoint-01",
+      "prompt": "Which API suits a small text draft that should survive recreation?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "rememberSaveable",
+      "explanation": "A saveable draft can be stored in instance state and reconstructed with the destination.",
+      "lessonId": "level-03-week-10-01-state-remember-saveable",
+      "options": [
+        "rememberSaveable",
+        "A local val",
+        "Canvas",
+        "Modifier.drawBehind"
+      ]
+    },
+    {
+      "id": "q-week-10-checkpoint-02",
+      "prompt": "remember is durable storage after process death.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "remember lasts only while its composition identity remains alive.",
+      "lessonId": "level-03-week-10-01-state-remember-saveable"
+    },
+    {
+      "id": "q-week-10-checkpoint-03",
+      "prompt": "Where should state read and changed by two siblings normally live?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Their lowest common owner",
+      "explanation": "One coordinating owner prevents duplicated and inconsistent state.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf",
+      "options": [
+        "Their lowest common owner",
+        "Inside both separately",
+        "A global variable",
+        "Inside a Canvas"
+      ]
+    },
+    {
+      "id": "q-week-10-checkpoint-04",
+      "prompt": "Reusable leaf content should normally receive MutableState directly.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Plain values and intent callbacks provide a narrower and testable contract.",
+      "lessonId": "level-03-week-10-02-state-hoisting-udf"
+    },
+    {
+      "id": "q-week-10-checkpoint-05",
+      "prompt": "Which key preserves a note row after sorting?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "note.id",
+      "explanation": "A stable unique domain ID follows the same item across positions.",
+      "lessonId": "level-03-week-10-03-recomposition-snapshots-identity",
+      "options": [
+        "note.id",
+        "current index",
+        "random value each frame",
+        "title length"
+      ]
+    },
+    {
+      "id": "q-week-10-checkpoint-06",
+      "prompt": "Correctness may depend on a composable running exactly once.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Execution count is not a semantic guarantee of the Compose runtime.",
+      "lessonId": "level-03-week-10-03-recomposition-snapshots-identity"
+    },
+    {
+      "id": "q-week-10-checkpoint-07",
+      "prompt": "Which key suits reorderable note rows?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Stable note ID",
+      "explanation": "Domain identity preserves item state when positions change.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids",
+      "options": [
+        "Stable note ID",
+        "Current index",
+        "Random number",
+        "No key ever"
+      ]
+    },
+    {
+      "id": "q-week-10-checkpoint-08",
+      "prompt": "An unbounded vertical LazyColumn inside verticalScroll is a safe default.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Same-axis scrolling can create infinite constraints and competing gesture ownership.",
+      "lessonId": "level-03-week-10-04-lazy-lists-grids"
+    }
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-02-dto-kotlin-serialization",
+  "title": "DTOs and Kotlin JSON Serialization Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-02-dto-kotlin-serialization"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-02-dto-kotlin-serialization-decision",
+      "prompt": "Where should an invalid published timestamp be handled?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "At the DTO-to-domain mapping boundary",
+      "explanation": "The boundary converts untrusted representation into validated application meaning.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization",
+      "options": [
+        "At the DTO-to-domain mapping boundary",
+        "Inside a Text composable",
+        "By database auto-increment",
+        "By ignoring every error"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-02-dto-kotlin-serialization-truth",
+      "prompt": "One model should always represent network, database, domain, and UI.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Separate models allow independent schemas and invariants to evolve safely.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization"
+    },
+    {
+      "id": "q-level-04-week-16-02-dto-kotlin-serialization-recall",
+      "prompt": "What does SerialName configure?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The serialized wire field name",
+      "explanation": "Kotlin property naming can differ from the external representation.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

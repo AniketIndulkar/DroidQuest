@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-05-checkpoint",
+  "title": "Level 5 Boss: Production Architecture Review",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-01-layers-boundaries-dependency-direction",
+    "level-05-week-19-02-immutable-ui-state-udf",
+    "level-05-week-19-03-state-holders-events-ui-logic",
+    "level-05-week-19-04-repositories-source-of-truth-mappers",
+    "level-05-week-19-05-domain-use-cases-error-models",
+    "level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
+    "level-05-week-20-01-manual-di-composition-root",
+    "level-05-week-20-02-hilt-graph-constructor-modules",
+    "level-05-week-20-03-hilt-components-scopes-lifetimes",
+    "level-05-week-20-04-qualifiers-multibindings-assisted",
+    "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
+    "level-05-week-21-01-modularization-evidence-cohesion-coupling",
+    "level-05-week-21-02-app-feature-core-data-modules",
+    "level-05-week-21-03-api-implementation-dependency-graphs",
+    "level-05-week-21-04-cross-feature-navigation-resources",
+    "level-05-week-21-05-build-performance-dynamic-library-modules",
+    "level-05-week-22-01-architecture-tests-contracts-fakes",
+    "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+    "level-05-week-22-03-banking-module-graph-contracts",
+    "level-05-week-22-04-payment-consistency-security-boundaries",
+    "level-05-week-22-05-multi-module-banking-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-05-boss-1",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Name the violated ownership or dependency contract, replace it with the smallest justified boundary, and prove the result with a focused test or measurement.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction"
+    },
+    {
+      "id": "q-level-05-boss-2",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Exposing DAO entities and Retrofit response wrappers directly to every ViewModel.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Design an accounts repository contract, map API and Room models to an external Account model, and write contract tests for stale reads, refresh, malformed data, and transfer failure.",
+        "Add more generic layers",
+        "Move everything into the app module",
+        "Adopt global service lookup"
+      ],
+      "answer": "Design an accounts repository contract, map API and Room models to an external Account model, and write contract tests for stale reads, refresh, malformed data, and transfer failure.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers"
+    },
+    {
+      "id": "q-level-05-boss-3",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Name the violated ownership or dependency contract, replace it with the smallest justified boundary, and prove the result with a focused test or measurement.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-20-01-manual-di-composition-root"
+    },
+    {
+      "id": "q-level-05-boss-4",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Provide public and authenticated HTTP clients with qualifiers, build a map of payment validators, and create an assisted statement exporter for a runtime account ID.",
+        "Add more generic layers",
+        "Move everything into the app module",
+        "Adopt global service lookup"
+      ],
+      "answer": "Provide public and authenticated HTTP clients with qualifiers, build a map of payment validators, and create an assisted statement exporter for a runtime account ID.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-20-04-qualifiers-multibindings-assisted"
+    },
+    {
+      "id": "q-level-05-boss-5",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Moving all shared-looking code into core-common until every module depends on an unowned dumping ground.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Name the violated ownership or dependency contract, replace it with the smallest justified boundary, and prove the result with a focused test or measurement.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-21-02-app-feature-core-data-modules"
+    },
+    {
+      "id": "q-level-05-boss-6",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Claiming modularisation improved build speed after comparing one clean build on different machine conditions.",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Measure an incremental build scenario, assess whether statements should be a normal or dynamic feature, and define the public surface of a reusable banking SDK module.",
+        "Add more generic layers",
+        "Move everything into the app module",
+        "Adopt global service lookup"
+      ],
+      "answer": "Measure an incremental build scenario, assess whether statements should be a normal or dynamic feature, and define the public surface of a reusable banking SDK module.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-21-05-build-performance-dynamic-library-modules"
+    },
+    {
+      "id": "q-level-05-boss-7",
+      "prompt": "During an architecture review, what is the strongest response to this concern: Creating the suggested module tree verbatim without checking team ownership, variants, reuse, or build measurements.",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Name the violated ownership or dependency contract, replace it with the smallest justified boundary, and prove the result with a focused test or measurement.",
+      "explanation": "Level 5 mastery connects structural choices to product behaviour, lifecycle, dependency direction, test replacement, and measured cost.",
+      "lessonId": "level-05-week-22-03-banking-module-graph-contracts"
+    }
+  ],
+  "rewards": {
+    "xp": 450,
+    "stars": 5
+  },
+  "version": "0.8.0"
+}

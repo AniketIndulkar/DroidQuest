@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-11-01-effect-fundamentals-keys",
+  "title": "Effect Fundamentals and Keys",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 11,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-10-05-navigation-compose-concepts"
+  ],
+  "tags": [
+    "compose",
+    "effects",
+    "lifecycle"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Composable bodies describe UI and may rerun, while non-UI work needs an API whose start, restart, and cleanup follow a deliberate lifecycle.",
+      "realWorldUse": "Analytics, subscriptions, coroutines, focus requests, snackbars, and bridges to non-Compose systems all require controlled effects.",
+      "outcome": "Decide whether work is an event, derived value, or composition effect and select keys that express its true lifetime."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Effects escape declarative rendering",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An effect is work that changes something outside the current UI description: starting a coroutine, registering a listener, publishing analytics, or updating a non-Compose object. Running that work directly in a composable body is unsafe because recomposition frequency and order are not business guarantees. First ask whether the operation belongs in the state holder or a user event callback. Use an effect API only when the work genuinely needs to be synchronised with a composable entering, changing within, or leaving composition."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LaunchedEffect(userId) {\n    analytics.recordProfileVisible(userId)\n}",
+              "caption": "The effect lifetime follows the visible user identity rather than every recomposition."
+            },
+            {
+              "type": "table",
+              "title": "Classify the work",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Pure display calculation",
+                  "Compute or derive state"
+                ],
+                [
+                  "User-initiated save",
+                  "Event to state owner"
+                ],
+                [
+                  "Composition coroutine",
+                  "LaunchedEffect"
+                ],
+                [
+                  "Listener with cleanup",
+                  "DisposableEffect"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Keys define effect identity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Effect keys identify the inputs whose change must cancel or dispose the old work and start new work. A constant key such as Unit means the effect should live for that composition instance, not that it runs once for the application. Too few keys leave work subscribed to stale identity; too many keys repeatedly restart expensive work. Read variables used inside the effect and decide whether each should restart the work, be observed through snapshotFlow, or be accessed as the latest value through rememberUpdatedState."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LaunchedEffect(userId) {\n    analytics.recordProfileVisible(userId)\n}",
+              "caption": "The effect lifetime follows the visible user identity rather than every recomposition."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Keys are lifecycle declarations",
+              "text": "Every captured value must intentionally restart, stream updates, or expose its latest value."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Many apparent effects are ordinary state logic",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Not every calculation from state is an effect. Filtering a list, formatting a label, or determining whether a button is enabled is pure derived state. Navigation and repository mutation usually follow explicit events handled by an owner. Effects are the narrow bridge for lifecycle synchronisation that cannot be represented as returned UI or ordinary state transformation. During review, state the effect lifetime in a sentence: start when this key enters, restart when these identities change, cancel or clean up when it leaves."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Unit is not application once",
+              "text": "A constant-key effect runs for each composition instance and can run again after re-entry."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Side-effects in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/side-effects",
+          "whyRead": "Defines effect APIs, keys, lifecycle, and common patterns."
+        },
+        {
+          "title": "Thinking in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/mental-model",
+          "whyRead": "Explains why composables must remain idempotent and side-effect free."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Move the request out of composition",
+      "language": "kotlin",
+      "code": "@Composable fun Profile(repo: Repo) {\n    repo.refresh()\n    Text(\"Profile\")\n}",
+      "walkthrough": [
+        "The refresh call executes whenever this composition scope runs.",
+        "Rendering frequency can duplicate work and has no cancellation contract.",
+        "Move refresh to the state owner or a correctly keyed lifecycle effect."
+      ],
+      "expectedOutput": "Refreshing occurs under one documented event or destination-lifecycle rule."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using every captured variable as a key without considering semantics.",
+        "why": "Incidental changes restart work even when its resource identity is unchanged.",
+        "fix": "Classify each capture as restart identity, streamed value, or latest callback."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Refactor a profile screen so refresh, analytics, formatting, navigation, and a listener each use the correct state, event, or effect boundary.",
+      "successLooksLike": "No external work runs in a composable body. Each effect documents restart and cleanup. Pure calculations remain pure and testable."
+    },
+    "recall": [
+      {
+        "prompt": "What belongs in a composable body?",
+        "answer": "Idempotent UI description from current inputs."
+      },
+      {
+        "prompt": "What do effect keys declare?",
+        "answer": "The identity and restart lifetime of the work."
+      },
+      {
+        "prompt": "Is a formatted label an effect?",
+        "answer": "No, it is a pure value derived from state."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-11-01-effect-fundamentals-keys",
+  "challengeId": "challenge-level-03-week-11-01-effect-fundamentals-keys",
+  "revision": {
+    "objectives": [
+      "Classify work as state, event, or effect.",
+      "Choose keys from resource identity.",
+      "Explain entry, restart, and cancellation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/side-effects",
+    "https://developer.android.com/develop/ui/compose/mental-model"
+  ],
+  "version": "0.5.0"
+}

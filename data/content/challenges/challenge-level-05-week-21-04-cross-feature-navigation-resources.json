@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-21-04-cross-feature-navigation-resources",
+  "title": "Apply Cross-Feature Navigation and Resource Encapsulation",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-21-04-cross-feature-navigation-resources",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Define route contracts between accounts, payments, and settings without feature implementation dependencies; test deep links and process recreation using identifiers only.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface PaymentsNavigator {\n  fun destination(accountId: AccountId): NavKey\n}\n\n@Serializable data class PaymentKey(val accountId: String) : NavKey"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

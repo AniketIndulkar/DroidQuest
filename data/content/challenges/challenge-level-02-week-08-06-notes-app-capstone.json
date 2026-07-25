@@ -1,0 +1,40 @@
+{
+  "id": "challenge-level-02-week-08-06-notes-app-capstone",
+  "title": "Build the Level 2 Personal Notes App",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-08-06-notes-app-capstone",
+  "difficulty": "beginner",
+  "estimatedMinutes": 180,
+  "prompt": "Build the complete local-first Notes app with multiple screens, configuration and process restoration, a verified note app link, one contextual runtime permission, and an XML screen hosted inside Compose.",
+  "successCriteria": [
+    "Required acceptance scenarios pass on minimum and recent APIs.",
+    "Only stable IDs and small UI values enter navigation/saved state.",
+    "Manifest exposure, permission degradation, Back, and cold entry are documented.",
+    "The XML and Compose surfaces share one state/event model."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Required acceptance scenarios pass on minimum and recent APIs.",
+    "Use lifecycle or boundary evidence to prove: Only stable IDs and small UI values enter navigation/saved state."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class MainActivity : ComponentActivity()\nclass NotesViewModel(saved: SavedStateHandle, repository: NoteRepository) : ViewModel()\n// Implement platform adapters around a local-first core."
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Required acceptance scenarios pass on minimum and recent APIs.",
+    "Implement the smallest design that guarantees: Only stable IDs and small UI values enter navigation/saved state.",
+    "Implement the smallest design that guarantees: Manifest exposure, permission degradation, Back, and cold entry are documented.",
+    "Implement the smallest design that guarantees: The XML and Compose surfaces share one state/event model."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that required acceptance scenarios pass on minimum and recent APIs.",
+    "Run a focused check demonstrating that only stable IDs and small UI values enter navigation/saved state.",
+    "Run a focused check demonstrating that manifest exposure, permission degradation, Back, and cold entry are documented.",
+    "Run a focused check demonstrating that the XML and Compose surfaces share one state/event model."
+  ],
+  "rewards": {
+    "xp": 350,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

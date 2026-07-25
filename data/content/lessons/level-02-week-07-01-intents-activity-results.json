@@ -1,0 +1,228 @@
+{
+  "id": "level-02-week-07-01-intents-activity-results",
+  "title": "Intents and Activity Result Contracts",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 7,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-06-05-resources-qualifiers-localisation"
+  ],
+  "tags": [
+    "intents",
+    "activity-results",
+    "uri",
+    "contracts"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Intents let independently managed components request actions, while typed result contracts preserve a callback across activity recreation.",
+      "realWorldUse": "Apps open known screens, share text, pick documents, capture media, and receive user-selected results through system-mediated component boundaries.",
+      "outcome": "Construct explicit and implicit intents safely, validate incoming data, and register Activity Result launchers unconditionally."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "intent-model",
+          "title": "An Intent describes an action and optional target data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An explicit intent names the exact component and is the normal choice inside one app. An implicit intent describes an action, data URI, MIME type, and categories so Android can resolve a capable exported component. Extras carry small values but are not a durable object graph or security boundary. Before launching an implicit intent, handle the possibility that no compatible activity exists. Before consuming any incoming intent, treat its action, URI, MIME type, flags, and extras as untrusted input. Keep internal components unexported unless a real external contract requires reachability."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val intent = Intent(Intent.ACTION_SEND).apply {\n    type = \"text/plain\"\n    putExtra(Intent.EXTRA_TEXT, noteText)\n}\nstartActivity(Intent.createChooser(intent, getString(R.string.share_note)))",
+              "caption": "The implicit request describes share semantics and lets the user choose a compatible handler."
+            },
+            {
+              "type": "table",
+              "title": "Intent fields",
+              "columns": [
+                "Field",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "Component",
+                  "Exact explicit destination"
+                ],
+                [
+                  "Action",
+                  "Requested operation"
+                ],
+                [
+                  "Data URI",
+                  "Resource being acted upon"
+                ],
+                [
+                  "MIME type",
+                  "Representation type"
+                ],
+                [
+                  "Extras",
+                  "Small auxiliary values"
+                ],
+                [
+                  "Flags",
+                  "Launch or grant behaviour"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "filters",
+          "title": "Intent filters advertise external capabilities",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A manifest intent filter lists accepted actions, categories, and data patterns. It does not validate business rules, authorise the caller, or guarantee that every incoming combination is meaningful. The DEFAULT category is needed for many implicit starts; BROWSABLE permits browser-origin navigation. A broad filter can expose a screen to hostile or malformed input, so keep patterns narrow and validate again in code. Package visibility rules may affect queries for other apps, but directly starting an implicit intent can still use normal resolution. Use a chooser when user selection is part of the product experience."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val uri = intent.data\nval noteId = uri?.takeIf { it.scheme == \"https\" && it.host == \"notes.example\" }\n    ?.pathSegments?.takeIf { it.size == 2 && it[0] == \"note\" }?.get(1)\n    ?: return showInvalidLink()",
+              "caption": "The destination validates every URI assumption before deriving a note identifier."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Filter matching is only routing",
+              "text": "A matched intent still requires authentication, authorisation, parsing, and domain validation."
+            }
+          ]
+        },
+        {
+          "id": "results",
+          "title": "Register result callbacks before launching",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Activity Result APIs separate registration, launch, and typed result handling. Register launchers unconditionally during each activity or fragment creation so Android can reconnect a pending result after recreation or process pressure. Launch only in response to an event. Built-in contracts cover permissions, content selection, document creation, and other common actions; custom contracts define typed input and output for reusable boundaries. A returned URI may carry temporary permission grants, and cancellation is an ordinary outcome. Do not rely on the order in which several launchers are registered changing across recreation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "private val openDocument = registerForActivityResult(\n    ActivityResultContracts.OpenDocument(),\n) { uri: Uri? ->\n    uri?.let(viewModel::importNote)\n}\n\nfun chooseNoteFile() = openDocument.launch(arrayOf(\"text/plain\"))",
+              "caption": "Registration is stable during creation; a later event launches the system picker and nullable result handles cancellation."
+            },
+            {
+              "type": "flow",
+              "title": "Result contract",
+              "steps": [
+                {
+                  "id": "register",
+                  "label": "Register",
+                  "detail": "Install callback every creation."
+                },
+                {
+                  "id": "event",
+                  "label": "User event",
+                  "detail": "A deliberate action requests external work."
+                },
+                {
+                  "id": "launch",
+                  "label": "Launch",
+                  "detail": "Contract converts typed input to intent."
+                },
+                {
+                  "id": "recreate",
+                  "label": "Possible recreation",
+                  "detail": "Registry retains pending routing."
+                },
+                {
+                  "id": "result",
+                  "label": "Deliver result",
+                  "detail": "Contract parses typed output or cancellation."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Intents and intent filters",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/components/intents-filters",
+          "whyRead": "The primary reference for explicit/implicit intents, resolution, filters, data, extras, and security."
+        },
+        {
+          "title": "Get a result from an activity",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/basics/intents/result",
+          "whyRead": "Explains Activity Result registration, contracts, launchers, recreation, and custom results."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Review a late launcher registration",
+      "language": "text",
+      "code": "fun onImportClicked() {\n    val launcher = registerForActivityResult(OpenDocument()) { uri -> import(uri) }\n    launcher.launch(arrayOf(\"text/plain\"))\n}",
+      "walkthrough": [
+        "Registration occurs only after the click instead of during component creation.",
+        "A recreation cannot reliably restore the same registry mapping.",
+        "The launcher should be a stable property registered unconditionally, while the click only launches it."
+      ],
+      "expectedOutput": "Move registration to activity/fragment creation and keep cancellation explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Trusting an intent because its filter matched.",
+        "why": "Filters route patterns but do not authenticate or validate data.",
+        "fix": "Validate caller-relevant data and domain rules at the destination."
+      },
+      {
+        "mistake": "Registering a result launcher only inside a click callback.",
+        "why": "Pending result routing cannot reconnect consistently after recreation.",
+        "fix": "Register unconditionally and launch later from the event."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement text sharing and document import with an explicit contract, cancellation handling, URI validation, and recreation-safe launcher registration.",
+      "successLooksLike": "No-handler and cancelled outcomes are safe. The launcher is registered unconditionally. Incoming content is validated before it becomes a Note."
+    },
+    "recall": [
+      {
+        "prompt": "When should an intent be explicit?",
+        "answer": "When the exact destination component is known, especially inside one app."
+      },
+      {
+        "prompt": "What does a filter prove?",
+        "answer": "Only that an intent pattern matched declared routing metadata."
+      },
+      {
+        "prompt": "Why register result launchers on every creation?",
+        "answer": "The registry must reconnect pending results after component recreation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-07-01-intents-activity-results",
+  "challengeId": "challenge-level-02-week-07-01-intents-activity-results",
+  "revision": {
+    "objectives": [
+      "Choose explicit or implicit intent semantics.",
+      "Validate incoming actions, URIs, and extras.",
+      "Use typed Activity Result contracts across recreation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/components/intents-filters",
+    "https://developer.android.com/training/basics/intents/result"
+  ],
+  "version": "0.4.0"
+}

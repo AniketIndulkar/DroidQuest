@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-22-01-architecture-tests-contracts-fakes",
+  "title": "Apply Architecture Tests, Contracts, and Purposeful Fakes",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-22-01-architecture-tests-contracts-fakes",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 45,
+  "prompt": "Create a test matrix for the banking modules, implement one reusable repository contract suite, and add a forbidden-dependency architecture test.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface AccountsContract {\n  fun subject(): AccountsRepository\n  @Test fun transferAppearsOnceAfterRetry() { /* shared behaviour */ }\n}\n\nclass FakeAccountsContract : AccountsContract\nclass RoomAccountsContract : AccountsContract"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

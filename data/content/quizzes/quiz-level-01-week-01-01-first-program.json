@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-01-week-01-01-first-program",
+  "title": "How a Kotlin Program Works Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-01-first-program"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-01-entry-point",
+      "prompt": "Which function is the entry point of this standalone Kotlin program?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "options": [
+        "start",
+        "main",
+        "run",
+        "println"
+      ],
+      "answer": "main",
+      "explanation": "A standalone Kotlin program begins execution in the function named main.",
+      "lessonId": "level-01-week-01-01-first-program"
+    },
+    {
+      "id": "q-week-01-01-comment-output",
+      "prompt": "A line beginning with // produces visible console output.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "A single-line comment is ignored by the compiler as executable behaviour.",
+      "lessonId": "level-01-week-01-01-first-program"
+    },
+    {
+      "id": "q-week-01-01-output-order",
+      "prompt": "What does this code print?\nprintln(\"A\")\nprint(\"B\")",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": "A\nB",
+      "explanation": "println adds a line break after A, then print writes B on the next line.",
+      "lessonId": "level-01-week-01-01-first-program"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

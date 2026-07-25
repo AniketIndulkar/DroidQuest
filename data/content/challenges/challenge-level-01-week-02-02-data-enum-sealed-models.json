@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-02-02-data-enum-sealed-models",
+  "title": "Model Expense Entry State",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-02-02-data-enum-sealed-models",
+  "difficulty": "beginner",
+  "estimatedMinutes": 35,
+  "prompt": "Create an immutable draft, a category enum with stable codes, and a sealed validation result that lists every failure or carries a valid Expense.",
+  "successCriteria": [
+    "Draft updates use copy rather than public mutation.",
+    "Category persistence does not depend on enum ordinal.",
+    "Validation result handling is exhaustive without a catch-all else."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: Draft updates use copy rather than public mutation.",
+    "Use an executable example or focused check to verify: Category persistence does not depend on enum ordinal."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class ExpenseDraft(/* fields */)\nenum class ExpenseCategory(/* stable code */) { /* entries */ }\nsealed interface ValidationResult { /* alternatives */ }"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: Draft updates use copy rather than public mutation.",
+    "Implement and explain how the solution ensures: Category persistence does not depend on enum ordinal.",
+    "Implement and explain how the solution ensures: Validation result handling is exhaustive without a catch-all else."
+  ],
+  "verification": [
+    "Run a focused check proving that draft updates use copy rather than public mutation.",
+    "Run a focused check proving that category persistence does not depend on enum ordinal.",
+    "Run a focused check proving that validation result handling is exhaustive without a catch-all else."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

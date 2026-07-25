@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-18-05-offline-writes-sync-conflicts",
+  "title": "Offline Writes, Sync Queues, and Conflict Resolution Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-18-05-offline-writes-sync-conflicts"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-18-05-offline-writes-sync-conflicts-decision",
+      "prompt": "What must happen before showing an offline bookmark as accepted?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Commit desired state and outbox atomically",
+      "explanation": "The intent then survives process death and can be synchronized later.",
+      "lessonId": "level-04-week-18-05-offline-writes-sync-conflicts",
+      "options": [
+        "Commit desired state and outbox atomically",
+        "Start an unowned coroutine only",
+        "Wait forever for connectivity",
+        "Change only a composable variable"
+      ]
+    },
+    {
+      "id": "q-level-04-week-18-05-offline-writes-sync-conflicts-truth",
+      "prompt": "Device wall-clock last-write-wins is always a safe conflict policy.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Clock skew and domain semantics can discard valid edits.",
+      "lessonId": "level-04-week-18-05-offline-writes-sync-conflicts"
+    },
+    {
+      "id": "q-level-04-week-18-05-offline-writes-sync-conflicts-recall",
+      "prompt": "Why is synchronization designed for at-least-once delivery?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Retries can repeat an operation after uncertain outcomes",
+      "explanation": "Stable operation identity allows client and server deduplication.",
+      "lessonId": "level-04-week-18-05-offline-writes-sync-conflicts"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

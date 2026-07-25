@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-05-01-studio-sdk-emulator",
+  "title": "Android Studio, SDKs, and Virtual Devices Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-01-studio-sdk-emulator"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-05-01-avd-meaning",
+      "prompt": "What is an Android Virtual Device?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A saved emulator hardware and system-image configuration",
+      "explanation": "An AVD defines the virtual device that the emulator process boots.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator",
+      "options": [
+        "A saved emulator hardware and system-image configuration",
+        "The final Play Store bundle",
+        "A Kotlin compiler plugin",
+        "A Git branch"
+      ]
+    },
+    {
+      "id": "q-week-05-01-boundary-order",
+      "prompt": "Order the boundaries in a normal run.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "compile and package",
+        "connect to device",
+        "install APK",
+        "launch activity"
+      ],
+      "explanation": "The app must be built before it can be installed and launched on a connected target.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator"
+    },
+    {
+      "id": "q-week-05-01-adb-purpose",
+      "prompt": "adb is used to communicate with Android devices and emulators.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "Android Debug Bridge provides the host-to-device connection used by installation, shell, logs, and debugging tools.",
+      "lessonId": "level-02-week-05-01-studio-sdk-emulator"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

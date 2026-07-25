@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-04-okhttp-interceptors-auth-logging",
+  "title": "OkHttp Interceptors, Authentication, and Safe Logging Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-04-okhttp-interceptors-auth-logging"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-04-okhttp-interceptors-auth-logging-decision",
+      "prompt": "What should a normal interceptor do with chain.proceed?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Call it exactly once",
+      "explanation": "The chain expects one downstream exchange unless a valid short-circuit or carefully designed retry applies.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "options": [
+        "Call it exactly once",
+        "Call it until success",
+        "Never call it",
+        "Call it after logging tokens"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-04-okhttp-interceptors-auth-logging-truth",
+      "prompt": "BODY logging is safe whenever BuildConfig.DEBUG is true.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Debug builds can contain real sensitive data and logs can escape.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging"
+    },
+    {
+      "id": "q-level-04-week-16-04-okhttp-interceptors-auth-logging-recall",
+      "prompt": "Why share OkHttpClient?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "To reuse connections, threads, cache, and policy",
+      "explanation": "Per-call clients waste resources and fragment transport behaviour.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

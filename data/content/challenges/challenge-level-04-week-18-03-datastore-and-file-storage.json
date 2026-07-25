@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-03-datastore-and-file-storage",
+  "title": "Build Settings and Export Storage",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-03-datastore-and-file-storage",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Implement typed sync settings, corruption handling, one-time migration, cached thumbnails, and atomic user-selected article export with tested interruption.",
+  "successCriteria": [
+    "One DataStore instance owns its file.",
+    "Cache and durable file lifetimes are distinct.",
+    "Interrupted export never replaces a valid file with partial data."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class SettingsRepository(private val store: DataStore<Settings>)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

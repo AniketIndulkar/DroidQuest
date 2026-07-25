@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-06-null-safety",
+  "title": "Parse Uncertain Amounts",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-06-null-safety",
+  "difficulty": "beginner",
+  "estimatedMinutes": 25,
+  "prompt": "Create a function that accepts nullable text, safely parses a positive amount, and returns null when the input is absent, non-numeric, zero, or negative.",
+  "successCriteria": [
+    "No not-null assertion or throwing numeric conversion is used.",
+    "Parsing and positive-value validation are both performed.",
+    "The caller handles success and absence explicitly."
+  ],
+  "hints": [
+    "A safe-call chain can trim and parse present text.",
+    "Validate the parsed Double before returning it."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun parsePositiveAmount(raw: String?): Double? {\n    TODO(\"Return a positive amount or null\")\n}"
+  },
+  "solutionOutline": [
+    "Safely normalise and parse the nullable input.",
+    "Reject null and non-positive results.",
+    "Call the function with valid and invalid examples."
+  ],
+  "verification": [
+    "Try null, blank, text, zero, negative, and positive values.",
+    "Confirm that none of the invalid examples throws."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

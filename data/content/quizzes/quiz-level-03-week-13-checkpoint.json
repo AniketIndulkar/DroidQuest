@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-03-week-13-checkpoint",
+  "title": "Week 13 Checkpoint",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-13-01-accessibility-semantics-talkback",
+    "level-03-week-13-02-focus-keyboard-scalable-content",
+    "level-03-week-13-03-localisation-rtl-theme-policy",
+    "level-03-week-13-04-edge-to-edge-window-insets",
+    "level-03-week-13-05-adaptive-layout-navigation3",
+    "level-03-week-13-06-compose-testing-shopping-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-13-checkpoint-01",
+      "prompt": "What should implement an ordinary icon-only Add action?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "IconButton with an action description",
+      "explanation": "The semantic component provides role, click action, focus, touch behaviour, and a spoken label.",
+      "lessonId": "level-03-week-13-01-accessibility-semantics-talkback",
+      "options": [
+        "IconButton with an action description",
+        "A raw Canvas only",
+        "A decorative Icon with null label",
+        "SideEffect"
+      ]
+    },
+    {
+      "id": "q-week-13-checkpoint-02",
+      "prompt": "Automated accessibility checks replace manual TalkBack testing.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Automation finds classes of defects but cannot judge complete task usability and wording.",
+      "lessonId": "level-03-week-13-01-accessibility-semantics-talkback"
+    },
+    {
+      "id": "q-week-13-checkpoint-03",
+      "prompt": "What is the best first fix for clipped large text?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Allow reflow and adaptive sizing",
+      "explanation": "The interface must honour user scaling and adjust its structure to available space.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content",
+      "options": [
+        "Allow reflow and adaptive sizing",
+        "Disable font scaling",
+        "Use smaller fixed text",
+        "Hide the label"
+      ]
+    },
+    {
+      "id": "q-week-13-checkpoint-04",
+      "prompt": "A root key handler should consume every keyboard event.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Controls and text input require expected key behaviour; only owned shortcuts should be consumed.",
+      "lessonId": "level-03-week-13-02-focus-keyboard-scalable-content"
+    },
+    {
+      "id": "q-week-13-checkpoint-05",
+      "prompt": "What should identify a category internally?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Stable category ID",
+      "explanation": "Identity must remain unchanged across locale and presentation changes.",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy",
+      "options": [
+        "Stable category ID",
+        "Translated category title",
+        "Current currency string",
+        "Screen position"
+      ]
+    },
+    {
+      "id": "q-week-13-checkpoint-06",
+      "prompt": "Every image should be mirrored in RTL.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Only direction-dependent content should mirror; many symbols and real-world images retain direction.",
+      "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy"
+    },
+    {
+      "id": "q-week-13-checkpoint-07",
+      "prompt": "What should nested content do after parent padding already handles an inset?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Consume the handled inset",
+      "explanation": "Consumption communicates that descendants should only account for remaining safe area.",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets",
+      "options": [
+        "Consume the handled inset",
+        "Apply it twice",
+        "Ignore system UI entirely",
+        "Store it in ViewModel"
+      ]
+    },
+    {
+      "id": "q-week-13-checkpoint-08",
+      "prompt": "Edge-to-edge means controls should always sit underneath system bars.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Backgrounds can extend while critical and interactive content respects appropriate safe areas.",
+      "lessonId": "level-03-week-13-04-edge-to-edge-window-insets"
+    }
+  ],
+  "rewards": {
+    "xp": 275,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

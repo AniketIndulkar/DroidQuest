@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-06-connectivity-policy-network-capabilities",
+  "title": "Connectivity Signals and Network Policy Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-06-connectivity-policy-network-capabilities"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-06-connectivity-policy-network-capabilities-decision",
+      "prompt": "What is the strongest evidence that an API operation works?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "The operation response itself",
+      "explanation": "Capabilities cannot guarantee DNS, TLS, credentials, or target service health.",
+      "lessonId": "level-04-week-17-06-connectivity-policy-network-capabilities",
+      "options": [
+        "The operation response itself",
+        "Wi-Fi transport name",
+        "A cached Boolean",
+        "Battery percentage"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-06-connectivity-policy-network-capabilities-truth",
+      "prompt": "A WorkManager network constraint removes the need to handle network errors.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Constraints can change and target operations can still fail.",
+      "lessonId": "level-04-week-17-06-connectivity-policy-network-capabilities"
+    },
+    {
+      "id": "q-level-04-week-17-06-connectivity-policy-network-capabilities-recall",
+      "prompt": "How should restored connectivity trigger sync?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "As unique coalesced durable work",
+      "explanation": "Capability callbacks can repeat and should not create overlapping synchronization.",
+      "lessonId": "level-04-week-17-06-connectivity-policy-network-capabilities"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-05-03-gradle-agp-build-flow",
+  "title": "Trace an Android Build",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-05-03-gradle-agp-build-flow",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Run one debug assembly and produce an annotated trace of wrapper version, requested task, prerequisite task categories, dependency classpath, output artifact, and one simulated failure.",
+  "successCriteria": [
+    "The wrapper and AGP roles are distinguished.",
+    "The artifact path and selected variant are exact.",
+    "The failure analysis identifies the first actionable task diagnostic."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: The wrapper and AGP roles are distinguished.",
+    "Use lifecycle or boundary evidence to prove: The artifact path and selected variant are exact."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "./gradlew --version\n./gradlew :app:assembleDebug --dry-run\n./gradlew :app:dependencies --configuration debugRuntimeClasspath"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: The wrapper and AGP roles are distinguished.",
+    "Implement the smallest design that guarantees: The artifact path and selected variant are exact.",
+    "Implement the smallest design that guarantees: The failure analysis identifies the first actionable task diagnostic."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that the wrapper and AGP roles are distinguished.",
+    "Run a focused check demonstrating that the artifact path and selected variant are exact.",
+    "Run a focused check demonstrating that the failure analysis identifies the first actionable task diagnostic."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

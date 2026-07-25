@@ -1,0 +1,227 @@
+{
+  "id": "level-04-week-17-02-single-flight-token-refresh",
+  "title": "Single-flight Token Refresh and Concurrent 401s",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-01-oauth-tokens-session-security"
+  ],
+  "tags": [
+    "networking",
+    "authentication",
+    "concurrency"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "When many calls discover an expired token together, the client must perform one refresh, replay only safe requests, and terminate the session consistently on failure.",
+      "realWorldUse": "Feed, profile, notifications, and background sync commonly issue concurrent authenticated calls that can all receive 401.",
+      "outcome": "Coordinate refresh under one owner, distinguish stale-token 401 from authorization failure, and prevent loops, duplicate refresh, and unsafe replay."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A 401 does not always mean perform refresh",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A request may proactively refresh when trustworthy expiry metadata shows the access token is near expiry, while a reactive path handles a 401 challenge. Not every 401 is refreshable: invalid scope, revoked account, wrong audience, or a request already attempted with the newest token should fail. Compare the failed request token generation with current session generation before refreshing. Authentication policy belongs in one client or session boundary rather than each repository."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "suspend fun freshToken(failedGeneration: Long): Token = mutex.withLock {\n    session.current.takeIf { it.generation > failedGeneration }?.token\n        ?: authApi.refresh(session.current.refreshToken).also(session::replaceAtomically).token\n}",
+              "caption": "The lock rechecks generation so concurrent callers reuse one completed refresh."
+            },
+            {
+              "type": "table",
+              "title": "Refresh state machine",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "401 with older token",
+                  "Reuse current newer token"
+                ],
+                [
+                  "First expired generation",
+                  "Start one refresh"
+                ],
+                [
+                  "Concurrent same generation",
+                  "Await shared outcome"
+                ],
+                [
+                  "Invalid refresh",
+                  "Clear session once"
+                ],
+                [
+                  "Replayed request",
+                  "One bounded safe attempt"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Single-flight shares one refresh outcome",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Single-flight means the first caller starts refresh and concurrent callers await the same Deferred or mutex-protected result. Do not hold a Mutex while recursively making a refresh call through the same authenticator chain; use a refresh client that cannot trigger itself. Persist new token state atomically before releasing waiters. If another caller already advanced the generation, reuse it. Refresh-token expiry or invalid grant clears session once and unblocks every waiter with the same unauthenticated outcome."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "suspend fun freshToken(failedGeneration: Long): Token = mutex.withLock {\n    session.current.takeIf { it.generation > failedGeneration }?.token\n        ?: authApi.refresh(session.current.refreshToken).also(session::replaceAtomically).token\n}",
+              "caption": "The lock rechecks generation so concurrent callers reuse one completed refresh."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Refresh is shared state transition",
+              "text": "Coordinate token generation, persistence, waiters, and logout as one invariant."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Request replay needs limits and repeatability",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Replay a challenged request at most once under a new token and only when its body is repeatable or the operation has idempotency protection. Close prior responses before retrying. Bound refresh timeout and propagate cancellation of individual callers without necessarily cancelling a refresh shared by other live callers, which requires deliberate ownership. Tests should send many simultaneous 401 responses and assert one refresh call, one published generation, bounded replays, and one logout on terminal failure."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not refresh through the same recursive authenticator",
+              "text": "It can deadlock or loop when the refresh endpoint itself is challenged."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OkHttp authentication",
+          "publisher": "Square",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/recipes/#handling-authentication-kt-java",
+          "whyRead": "Shows Authenticator challenge handling and bounded follow-up requests."
+        },
+        {
+          "title": "OAuth 2.0 Security Best Current Practice",
+          "publisher": "IETF",
+          "resourceType": "official_docs",
+          "url": "https://www.rfc-editor.org/rfc/rfc9700",
+          "whyRead": "Covers refresh-token protection, rotation, replay, and revocation guidance."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Stop the refresh stampede",
+      "language": "kotlin",
+      "code": "if (response.code == 401) {\n    val token = authApi.refresh(store.refreshToken)\n    return request.withToken(token)\n}",
+      "walkthrough": [
+        "Every concurrent 401 independently calls the refresh endpoint.",
+        "Rotating refresh tokens can invalidate siblings and publish older state last.",
+        "Coordinate one refresh per token generation and make all callers await its result."
+      ],
+      "expectedOutput": "Twenty simultaneous challenged calls cause one refresh and bounded safe request replays."
+    },
+    "trap_check": [
+      {
+        "mistake": "Retrying the same 401 indefinitely after refresh.",
+        "why": "Wrong scope or revoked access becomes an authentication loop.",
+        "fix": "Track prior response and token generation, then fail or log out after one valid refresh attempt."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a session refresh coordinator and OkHttp authentication path that handles expiry, concurrent 401s, rotation, one replay, cancellation, and terminal logout.",
+      "successLooksLike": "Concurrent challenges cause exactly one refresh. Refresh cannot recursively authenticate itself. Terminal failure logs out once and releases all waiters."
+    },
+    "recall": [
+      {
+        "prompt": "What does single-flight guarantee?",
+        "answer": "One shared refresh for concurrent callers."
+      },
+      {
+        "prompt": "Why compare token generation?",
+        "answer": "Another caller may already have refreshed successfully."
+      },
+      {
+        "prompt": "When should session clear?",
+        "answer": "When refresh is terminally invalid or expired."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-02-single-flight-token-refresh",
+  "challengeId": "challenge-level-04-week-17-02-single-flight-token-refresh",
+  "revision": {
+    "objectives": [
+      "Design one refresh state machine.",
+      "Coordinate concurrent challenged calls.",
+      "Bound replay and logout behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/okhttp/recipes/#handling-authentication-kt-java",
+    "https://www.rfc-editor.org/rfc/rfc9700"
+  ],
+  "version": "0.7.0"
+}

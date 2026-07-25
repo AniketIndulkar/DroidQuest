@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-12-02-custom-layout-measure-placement",
+  "title": "Build a Semantic Chip Flow",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-12-02-custom-layout-measure-placement",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Create a one-pass wrapping chip layout that obeys compact constraints, mirrors placement in RTL, and preserves logical semantics and touch targets.",
+  "successCriteria": [
+    "Every child is measured once.",
+    "Reported size obeys constraints.",
+    "RTL and accessibility traversal are verified."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ChipFlow(modifier: Modifier = Modifier, content: @Composable () -> Unit)"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

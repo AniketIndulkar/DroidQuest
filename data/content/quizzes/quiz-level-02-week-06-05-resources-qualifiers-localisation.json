@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-06-05-resources-qualifiers-localisation",
+  "title": "Resource Qualifiers, Localisation, and Configuration Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-06-05-resources-qualifiers-localisation"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-06-05-qualifier-result",
+      "prompt": "Which directory normally contains Spanish string alternatives?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "values-es",
+      "explanation": "The locale qualifier is appended to the values resource directory.",
+      "lessonId": "level-02-week-06-05-resources-qualifiers-localisation",
+      "options": [
+        "values-es",
+        "drawable-night",
+        "src/spanish",
+        "values-xhdpi"
+      ]
+    },
+    {
+      "id": "q-week-06-05-resource-match",
+      "prompt": "Match content to its correct treatment.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "screenTitle": "string resource",
+        "noteCount": "plural resource",
+        "jsonKey": "code constant",
+        "userNote": "stored user data"
+      },
+      "explanation": "Only application-owned presentation text is localised through app resources.",
+      "lessonId": "level-02-week-06-05-resources-qualifiers-localisation"
+    },
+    {
+      "id": "q-week-06-05-concatenate",
+      "prompt": "Concatenating separately translated sentence fragments is safe for every language.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Languages differ in ordering, agreement, spacing, and grammar, so translators need complete messages.",
+      "lessonId": "level-02-week-06-05-resources-qualifiers-localisation"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

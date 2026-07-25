@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-03-02-generics-variance",
+  "title": "Create Typed Import Sources",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-03-02-generics-variance",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Design generic Source and Sink APIs for importing expenses, with variance that allows specialised producers and broad consumers safely.",
+  "successCriteria": [
+    "No unchecked cast is required.",
+    "Producer and consumer directions match their declarations.",
+    "A specialised Expense source can copy into a sink that accepts Any."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: No unchecked cast is required.",
+    "Use an executable example or focused check to verify: Producer and consumer directions match their declarations."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface Source<T> { fun load(): T }\ninterface Sink<T> { fun save(value: T) }\n// Add safe variance and a copy function."
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: No unchecked cast is required.",
+    "Implement and explain how the solution ensures: Producer and consumer directions match their declarations.",
+    "Implement and explain how the solution ensures: A specialised Expense source can copy into a sink that accepts Any."
+  ],
+  "verification": [
+    "Run a focused check proving that no unchecked cast is required.",
+    "Run a focused check proving that producer and consumer directions match their declarations.",
+    "Run a focused check proving that a specialised Expense source can copy into a sink that accepts Any."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

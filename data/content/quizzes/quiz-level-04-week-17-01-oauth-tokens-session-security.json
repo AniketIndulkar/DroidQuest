@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-01-oauth-tokens-session-security",
+  "title": "OAuth Tokens and Session Security Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-01-oauth-tokens-session-security"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-01-oauth-tokens-session-security-decision",
+      "prompt": "What should a native Android OAuth client use instead of an embedded secret?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Authorization Code with PKCE",
+      "explanation": "PKCE binds the authorization response without pretending the installed client can hide a secret.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security",
+      "options": [
+        "Authorization Code with PKCE",
+        "A hard-coded password",
+        "A logged refresh token",
+        "HTTP without TLS"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-01-oauth-tokens-session-security-truth",
+      "prompt": "An ID token should automatically be used as an API bearer token.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "ID tokens describe authentication to a client, while access tokens target resource authorization.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security"
+    },
+    {
+      "id": "q-level-04-week-17-01-oauth-tokens-session-security-recall",
+      "prompt": "Which token normally deserves strongest durable protection?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The refresh token",
+      "explanation": "Its longer lifetime can mint replacement access tokens.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

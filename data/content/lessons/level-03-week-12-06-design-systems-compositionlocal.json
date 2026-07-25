@@ -1,0 +1,235 @@
+{
+  "id": "level-03-week-12-06-design-systems-compositionlocal",
+  "title": "Compose Design Systems and CompositionLocal",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 12,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-12-05-animation-nested-scroll"
+  ],
+  "tags": [
+    "compose",
+    "design-system",
+    "compositionlocal"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A design system turns tokens, themes, semantic components, and slot contracts into consistent product behaviour without hiding ordinary dependencies.",
+      "realWorldUse": "Multi-screen applications need shared colour, typography, shape, spacing, component variants, and accessible interaction policy.",
+      "outcome": "Create theme tokens and slot-based components, use CompositionLocal for truly tree-scoped concerns, and enforce the system with previews and tests."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Tokens express product decisions",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MaterialTheme supplies colour scheme, typography, and shapes through the composition tree. A product theme can map brand and semantic roles to light and dark values while keeping components expressed as onSurface, error, primary, and similar roles rather than raw colours. Add custom tokens such as spacing or elevations only when they represent a coherent repeated decision. Dynamic colour is a policy choice and must preserve contrast, identity, and fallback resources. Avoid treating every one-off dimension as a global token."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val LocalSpacing = staticCompositionLocalOf { Spacing() }\n@Composable fun QuestTheme(content: @Composable () -> Unit) {\n    CompositionLocalProvider(LocalSpacing provides Spacing(compact = 8.dp)) {\n        MaterialTheme(colorScheme = questColors, typography = questType, content = content)\n    }\n}",
+              "caption": "Tree-scoped theme tokens extend MaterialTheme without hiding feature dependencies."
+            },
+            {
+              "type": "table",
+              "title": "System layer",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Semantic colours and type",
+                  "MaterialTheme"
+                ],
+                [
+                  "Repeated product dimensions",
+                  "Focused token set"
+                ],
+                [
+                  "Reusable behaviour",
+                  "Semantic component wrapper"
+                ],
+                [
+                  "Flexible region",
+                  "Composable slot"
+                ],
+                [
+                  "Ambient tree policy",
+                  "CompositionLocal"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Components encode semantic contracts",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Design-system components wrap semantic Material components and expose focused variants or composable slots. Required content comes first, modifier is the first optional parameter, state and events remain caller-owned, and optional slots allow structured extension. The wrapper should preserve touch targets, roles, focus, enabled state, and content descriptions. Avoid a universal component with dozens of booleans. Preview meaningful combinations under light, dark, large font, long translation, RTL, selected, disabled, loading, and error states."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val LocalSpacing = staticCompositionLocalOf { Spacing() }\n@Composable fun QuestTheme(content: @Composable () -> Unit) {\n    CompositionLocalProvider(LocalSpacing provides Spacing(compact = 8.dp)) {\n        MaterialTheme(colorScheme = questColors, typography = questType, content = content)\n    }\n}",
+              "caption": "Tree-scoped theme tokens extend MaterialTheme without hiding feature dependencies."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Implicit is a cost",
+              "text": "Use CompositionLocal when descendants conceptually inherit the value, not to avoid parameters."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "CompositionLocal is implicit tree-scoped data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "CompositionLocal provides data implicitly to descendants and is appropriate when the value is conceptually ambient and broadly cross-cutting, such as theme tokens. staticCompositionLocalOf invalidates a wider provider subtree when changed; compositionLocalOf tracks reads more precisely. Dependencies such as repositories, navigation, and screen state should normally remain explicit or enter through app-level injection because implicit access obscures ownership and testing. Give a Local a safe default only when absence is genuinely valid; otherwise fail clearly near the provider boundary."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not hide repositories in locals",
+              "text": "Implicit business dependencies obscure ownership, lifecycle, and isolated tests."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Material 3 in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/designsystems/material3",
+          "whyRead": "Covers Material 3 theming and component foundations."
+        },
+        {
+          "title": "CompositionLocal",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/compositionlocal",
+          "whyRead": "Explains implicit tree-scoped data, invalidation, and alternatives."
+        },
+        {
+          "title": "Custom design systems",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/designsystems/custom",
+          "whyRead": "Shows extending or replacing Material design-system layers."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Expose the hidden repository",
+      "language": "kotlin",
+      "code": "val LocalRepo = staticCompositionLocalOf<Repo> { error(\"missing\") }\n@Composable fun BuyButton() { LocalRepo.current.buy() }",
+      "walkthrough": [
+        "A leaf silently performs business work through an implicit global-like dependency.",
+        "Ownership, lifecycle, preview setup, and event testing become unclear.",
+        "Accept an onBuy intent and let the route or state holder use the repository."
+      ],
+      "expectedOutput": "The button is reusable and business dependency ownership remains explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Creating a global token for every isolated padding value.",
+        "why": "The token surface becomes meaningless and difficult to evolve.",
+        "fix": "Promote only coherent repeated product decisions."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create light and dark semantic tokens plus two accessible slot-based components, documenting why each dependency is explicit or tree-scoped.",
+      "successLooksLike": "Tokens express roles rather than screen-specific colours. Components retain semantic Material behaviour. Previews cover long text, RTL, and large font."
+    },
+    "recall": [
+      {
+        "prompt": "What belongs in MaterialTheme?",
+        "answer": "Semantic colour, typography, and shape roles."
+      },
+      {
+        "prompt": "What is a good CompositionLocal use?",
+        "answer": "Tree-inherited theme or ambient policy."
+      },
+      {
+        "prompt": "What should a design component preserve?",
+        "answer": "Semantics, interaction, state ownership, and focused extension."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-12-06-design-systems-compositionlocal",
+  "challengeId": "challenge-level-03-week-12-06-design-systems-compositionlocal",
+  "revision": {
+    "objectives": [
+      "Model semantic theme tokens.",
+      "Build slot-based accessible components.",
+      "Choose explicit parameters versus CompositionLocal."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/designsystems/material3",
+    "https://developer.android.com/develop/ui/compose/compositionlocal",
+    "https://developer.android.com/develop/ui/compose/designsystems/custom"
+  ],
+  "version": "0.5.0"
+}

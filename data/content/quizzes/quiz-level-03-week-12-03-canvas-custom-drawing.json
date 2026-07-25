@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-12-03-canvas-custom-drawing",
+  "title": "Canvas and Custom Drawing Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-12-03-canvas-custom-drawing"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-12-03-canvas-custom-drawing-decision",
+      "prompt": "Which modifier prepares reusable drawing objects?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "drawWithCache",
+      "explanation": "It rebuilds cached drawing data when relevant inputs or size change.",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing",
+      "options": [
+        "drawWithCache",
+        "verticalScroll",
+        "rememberSaveable only",
+        "navigation"
+      ]
+    },
+    {
+      "id": "q-level-03-week-12-03-canvas-custom-drawing-truth",
+      "prompt": "Canvas paths automatically expose chart values to accessibility services.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Drawn pixels need explicit semantics and equivalent content.",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing"
+    },
+    {
+      "id": "q-level-03-week-12-03-canvas-custom-drawing-recall",
+      "prompt": "What determines Canvas size?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The Compose layout constraints and modifiers",
+      "explanation": "Drawing operates inside bounds assigned by the layout phase.",
+      "lessonId": "level-03-week-12-03-canvas-custom-drawing"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-05-parallelism-thread-safety",
+  "title": "Concurrency, Parallelism, and Thread Safety Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-05-parallelism-thread-safety"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-05-parallelism-thread-safety-decision",
+      "prompt": "What should atomically update MutableStateFlow state?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "update with a pure lambda",
+      "explanation": "Atomic compare-and-set retries prevent lost read-modify-write changes.",
+      "lessonId": "level-04-week-14-05-parallelism-thread-safety",
+      "options": [
+        "update with a pure lambda",
+        "Reading and assigning separately",
+        "Thread.sleep",
+        "A random retry"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-05-parallelism-thread-safety-truth",
+      "prompt": "Coroutine code cannot race if it begins on one thread.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Suspension, re-entry, and dispatcher changes can interleave operations.",
+      "lessonId": "level-04-week-14-05-parallelism-thread-safety"
+    },
+    {
+      "id": "q-level-04-week-14-05-parallelism-thread-safety-recall",
+      "prompt": "Where should slow I/O run relative to a Mutex?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Usually outside the lock",
+      "explanation": "Only the small invariant-changing commit should hold the critical section.",
+      "lessonId": "level-04-week-14-05-parallelism-thread-safety"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

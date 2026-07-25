@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-18-01-room-entities-daos-relations-transactions",
+  "title": "Model the News Database",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-18-01-room-entities-daos-relations-transactions",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Design article, author, bookmark, remote-key, and pending-mutation entities with DAOs, indices, relationships, atomic page replacement, and rollback tests.",
+  "successCriteria": [
+    "Stable keys and uniqueness protect identity.",
+    "No network call runs inside a transaction.",
+    "Relationship and rollback behaviour is tested on Room."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Database(entities = [ArticleEntity::class, AuthorEntity::class], version = 1) abstract class NewsDatabase : RoomDatabase()"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

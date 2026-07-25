@@ -1,0 +1,223 @@
+{
+  "id": "level-03-week-10-05-navigation-compose-concepts",
+  "title": "Navigation Compose and Destination State",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 10,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-10-04-lazy-lists-grids"
+  ],
+  "tags": [
+    "compose",
+    "navigation",
+    "back-stack"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Navigation is state: destinations, arguments, deep links, back behaviour, and saved state require defined ownership.",
+      "realWorldUse": "Multi-screen applications need typed routes, correct back stacks, destination state holders, and independently testable content.",
+      "outcome": "Define typed destinations, pass minimal IDs, resolve current data at the destination, and keep NavController at the graph boundary."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Back stack is navigation state",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A NavHost renders the destination at the top of a NavController back stack and declares reachable routes. Typed destinations use serializable route objects and avoid manual string assembly. A graph should express top-level flows and ownership without turning every visual component into a destination. Back removes the current entry when possible; up expresses hierarchy and can differ after an external deep link. Specify behaviour for normal entry, cold deep link, re-selection, and process recreation."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Serializable data class NoteRoute(val noteId: String)\ncomposable<NoteRoute> { entry ->\n    val route = entry.toRoute<NoteRoute>()\n    NoteDestination(route.noteId)\n}",
+              "caption": "A typed route carries only the stable identity required by the destination."
+            },
+            {
+              "type": "table",
+              "title": "Navigation boundary",
+              "columns": [
+                "Decision",
+                "Rule"
+              ],
+              "rows": [
+                [
+                  "Screen",
+                  "Emits intent with ID"
+                ],
+                [
+                  "Graph",
+                  "Pushes typed route"
+                ],
+                [
+                  "Destination",
+                  "Reads SavedStateHandle"
+                ],
+                [
+                  "Repository",
+                  "Loads current data"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Pass identity, not object graphs",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Arguments should carry the minimum stable identity needed to reconstruct a destination, normally an ID rather than a Parcelable domain object or JSON payload. The destination reads the argument from SavedStateHandle and asks a repository for authoritative current data. This avoids binder limits, stale snapshots, schema coupling, and awkward deep links. Validate external arguments and render a missing-record state. Back-stack entries own lifecycle and saved state, enabling destination-scoped or intentionally graph-scoped ViewModels."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Serializable data class NoteRoute(val noteId: String)\ncomposable<NoteRoute> { entry ->\n    val route = entry.toRoute<NoteRoute>()\n    NoteDestination(route.noteId)\n}",
+              "caption": "A typed route carries only the stable identity required by the destination."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Navigate with identity",
+              "text": "Pass a compact key and resolve current data inside the destination owner."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Convert screen intent at graph boundaries",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep NavController in the app or navigation layer. Screen content emits onNoteSelected(id) or onFinished; a route converts those intents into navigation calls. Content previews and tests then need no controller. Never navigate unconditionally from a composable body when state equals success because recomposition can repeat the action. Consume a defined event or model navigation state at the proper owner. Test graph transitions separately from testing that screen semantics invoke callbacks."
+            },
+            {
+              "type": "paragraph",
+              "text": "A production implementation should make this topic observable and testable. Start with a concrete user outcome, then cover loading or absence, failure, recreation, rapid repeated input, long content, large font scale, and alternate navigation entry where relevant. Keep state ownership visible in parameters and keep side effects behind a lifecycle-aware boundary. Use previews for representative visual states, unit tests for pure state transformation, Compose UI tests for semantics and interaction, and runtime inspection only when the question depends on scheduling, layout, drawing, or device behaviour. Document any trade-off that a future maintainer cannot infer from the code. Correctness means the feature still behaves predictably when recomposition, cancellation, configuration change, or user timing differs from the happy-path demonstration."
+            },
+            {
+              "type": "flow",
+              "title": "Production reasoning loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Name contract",
+                  "detail": "State the owner, lifetime, inputs, output, and cancellation behaviour."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Use the narrowest API that expresses the required lifecycle and semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise",
+                  "detail": "Cover normal, empty, failure, recreation, and rapid-interaction states."
+                },
+                {
+                  "id": "observe",
+                  "label": "Observe",
+                  "detail": "Use tests, inspection, or traces appropriate to the behaviour."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Change the measured cause while preserving explicit ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not serialise domain objects into routes",
+              "text": "Payloads become large, stale, coupled, and difficult to deep link."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Navigation with Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/navigation",
+          "whyRead": "Covers typed routes, arguments, deep links, testing, and decoupling."
+        },
+        {
+          "title": "Navigation principles",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/navigation/principles",
+          "whyRead": "Explains back stacks, start destinations, up, back, and deep links."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Decouple the note row",
+      "language": "kotlin",
+      "code": "@Composable fun NoteRow(note: Note, nav: NavController) {\n    Row(Modifier.clickable { nav.navigate(note.toString()) }) { }\n}",
+      "walkthrough": [
+        "The leaf depends directly on the navigation runtime.",
+        "The full object representation is an unstable and potentially large route payload.",
+        "Emit note.id through a callback and construct the typed route at the graph."
+      ],
+      "expectedOutput": "The row previews independently and a graph test observes one typed ID argument."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling navigate whenever composed state is successful.",
+        "why": "Recomposition may execute the call more than once.",
+        "fix": "Use an explicit consumed event or state transition contract."
+      },
+      {
+        "mistake": "Optimising or abstracting before the behaviour is measured.",
+        "why": "It adds machinery while the actual ownership or runtime problem remains unknown.",
+        "fix": "Write a focused test or collect runtime evidence before changing the design."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create typed list, detail, and edit routes with an external deep link, minimal arguments, missing-note handling, and decoupled callbacks.",
+      "successLooksLike": "No route serialises a domain object. Back, up, and deep-link behaviour are specified. Graph and screen callbacks are tested independently."
+    },
+    "recall": [
+      {
+        "prompt": "What should a detail route carry?",
+        "answer": "A stable identifier for destination data."
+      },
+      {
+        "prompt": "Where should NavController stay?",
+        "answer": "At the route or navigation graph boundary."
+      },
+      {
+        "prompt": "What owns destination lifecycle?",
+        "answer": "Its navigation back-stack entry."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-10-05-navigation-compose-concepts",
+  "challengeId": "challenge-level-03-week-10-05-navigation-compose-concepts",
+  "revision": {
+    "objectives": [
+      "Build typed routes and graph structure.",
+      "Validate minimal destination arguments.",
+      "Decouple content from NavController."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/navigation",
+    "https://developer.android.com/guide/navigation/principles"
+  ],
+  "version": "0.5.0"
+}

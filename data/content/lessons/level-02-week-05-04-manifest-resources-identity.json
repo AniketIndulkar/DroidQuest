@@ -1,0 +1,227 @@
+{
+  "id": "level-02-week-05-04-manifest-resources-identity",
+  "title": "Manifest, Resources, and Application Identity",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 5,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-05-03-gradle-agp-build-flow"
+  ],
+  "tags": [
+    "manifest",
+    "resources",
+    "application-id",
+    "components"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android combines declarative metadata and compiled resources with code; these contracts let the system understand an app before running its classes.",
+      "realWorldUse": "The package manager reads merged component declarations, permissions, features, themes, labels, and intent filters while resource IDs connect qualified assets to code.",
+      "outcome": "Read a merged manifest, distinguish namespace from application ID, and use typed resources without hard-coded configuration assumptions."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "manifest",
+          "title": "The manifest declares the app to Android",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every Android application artifact contains a merged AndroidManifest.xml. It declares components the system may instantiate, required permissions or device features, application metadata, and intent filters. Library and variant manifests contribute to the final merged document under precedence rules, so the source file you opened may not be the installed truth. Use Android Studio’s merged-manifest view when a component, attribute, or permission appears unexpectedly. Component class names refer to code, while exported controls whether other applications may reach a component. Components with intent filters require deliberate exported decisions; expose only a documented external contract."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n    <application android:theme=\"@style/Theme.Notes\">\n        <activity android:name=\".MainActivity\" android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n</manifest>",
+              "caption": "The launcher activity is a system entry point and is intentionally exported for the launcher contract."
+            },
+            {
+              "type": "table",
+              "title": "Manifest questions",
+              "columns": [
+                "Declaration",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "activity/service/receiver/provider",
+                  "May the system instantiate this component?"
+                ],
+                [
+                  "android:exported",
+                  "Can another app address it?"
+                ],
+                [
+                  "uses-permission",
+                  "Which protected capability is requested?"
+                ],
+                [
+                  "uses-feature",
+                  "Which device capability affects compatibility?"
+                ],
+                [
+                  "intent-filter",
+                  "Which external intent patterns are accepted?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "identity",
+          "title": "Namespace, application ID, and package are related but distinct",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Gradle namespace determines generated code names such as the module R class and is the package used to resolve relative manifest class names. The applicationId identifies the installed application and Play listing; build variants may suffix it so debug and release can coexist. Kotlin source package declarations organise code and imports but do not independently set installed identity. Older projects often used one identical string for all three, which makes the distinction easy to miss. Treat a released application ID as durable: changing it creates a different installed app and loses the upgrade relationship. Inspect the selected variant rather than inferring identity from a source directory."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "android {\n    namespace = \"dev.droidquest.notes\"\n    defaultConfig { applicationId = \"dev.droidquest.notes\" }\n    buildTypes { debug { applicationIdSuffix = \".debug\" } }\n}",
+              "caption": "The debug variant can install beside release while generated R names remain under the stable namespace."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Installed identity is variant-specific",
+              "text": "applicationId is the package-manager identity; namespace is primarily a source and generated-code boundary."
+            }
+          ]
+        },
+        {
+          "id": "resources",
+          "title": "Resources separate content and configuration from code",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Files under res are compiled into typed resource entries. Code refers to R.string.app_name or stringResource rather than a filesystem path. The resource system can choose alternatives for locale, night mode, density, orientation, screen size, or platform version. Values such as user-visible text, dimensions, colours, styles, drawables, and layouts belong in suitable resource types when they vary by configuration or require Android tooling. Never concatenate UI sentences from fragments that translators cannot reorder. Every qualified resource needs a compatible default unless the application intentionally requires that qualifier; otherwise another device configuration can fail at runtime."
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<resources>\n    <string name=\"note_count\">%1$d notes</string>\n    <string name=\"empty_notes\">No notes yet</string>\n</resources>\n\nval title = resources.getString(R.string.note_count, count)",
+              "caption": "The resource entry has a stable identifier and accepts a formatted value without hard-coding display text in Kotlin."
+            },
+            {
+              "type": "flow",
+              "title": "Resource resolution",
+              "steps": [
+                {
+                  "id": "reference",
+                  "label": "Reference ID",
+                  "detail": "Code asks for one typed resource name."
+                },
+                {
+                  "id": "configuration",
+                  "label": "Read configuration",
+                  "detail": "System considers locale, density, night mode, and other qualifiers."
+                },
+                {
+                  "id": "match",
+                  "label": "Choose best match",
+                  "detail": "Most appropriate available alternative wins."
+                },
+                {
+                  "id": "fallback",
+                  "label": "Fall back",
+                  "detail": "Default resource supplies configurations without a specific alternative."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "App manifest overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/manifest/manifest-intro",
+          "whyRead": "Explains manifest structure, component declarations, permissions, features, and system discovery."
+        },
+        {
+          "title": "App resources overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/resources/providing-resources",
+          "whyRead": "Documents resource types, qualified alternatives, default resources, and runtime selection."
+        },
+        {
+          "title": "Configure the app module",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/configure-app-module",
+          "whyRead": "Clarifies namespace, application ID, SDK settings, and variant-specific configuration."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Explain an unexpected permission",
+      "language": "text",
+      "code": "app/src/main/AndroidManifest.xml: no CAMERA permission\ncamera-library/AndroidManifest.xml: <uses-permission android:name=\"android.permission.CAMERA\"/>\nMerged Manifest: CAMERA permission present",
+      "walkthrough": [
+        "The packaged manifest is merged from the app, libraries, and selected variant.",
+        "A library contributed the permission even though the app source manifest did not show it.",
+        "The merged-manifest view should identify the contributing file and allow a deliberate removal or acceptance."
+      ],
+      "expectedOutput": "Review the merged declaration and dependency need before publishing."
+    },
+    "trap_check": [
+      {
+        "mistake": "Reading only the app source manifest during diagnosis.",
+        "why": "Libraries and variant overlays may contribute or override packaged declarations.",
+        "fix": "Inspect the merged manifest for the selected variant."
+      },
+      {
+        "mistake": "Providing a qualified resource without a default.",
+        "why": "Devices that do not match the qualifier may fail to resolve the resource.",
+        "fix": "Define a valid default and add alternatives only where behaviour differs."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a manifest-and-resources audit for a Notes app with one launcher activity, a debug application ID suffix, default strings, and one locale alternative.",
+      "successLooksLike": "Every exported component has a documented reason. Namespace and both variant application IDs are recorded. All alternative string resources have defaults with compatible formatting arguments."
+    },
+    "recall": [
+      {
+        "prompt": "What does android:exported control?",
+        "answer": "Whether another application can directly reach the declared component."
+      },
+      {
+        "prompt": "What identifies the installed app?",
+        "answer": "The selected variant application ID identifies it to Android and stores."
+      },
+      {
+        "prompt": "How does Android choose a resource?",
+        "answer": "It matches the current configuration to the best qualified alternative and default."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-05-04-manifest-resources-identity",
+  "challengeId": "challenge-level-02-week-05-04-manifest-resources-identity",
+  "revision": {
+    "objectives": [
+      "Interpret components and exposure in a merged manifest.",
+      "Distinguish namespace, source packages, and application ID.",
+      "Use typed default and qualified resources safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/topics/manifest/manifest-intro",
+    "https://developer.android.com/guide/topics/resources/providing-resources",
+    "https://developer.android.com/build/configure-app-module"
+  ],
+  "version": "0.4.0"
+}

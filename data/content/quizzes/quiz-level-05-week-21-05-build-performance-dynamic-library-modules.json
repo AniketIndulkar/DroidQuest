@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-21-05-build-performance-dynamic-library-modules",
+  "title": "Build Performance, Dynamic Features, and Library Modules Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-21-05-build-performance-dynamic-library-modules"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-21-05-build-performance-dynamic-library-modules-decision",
+      "prompt": "Which approach best demonstrates sound build performance, dynamic features, and library modules?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Measure an incremental build scenario, assess whether statements should be a normal or dynamic feature, and define the public surface of a reusable banking SDK module.",
+        "Claiming modularisation improved build speed after comparing one clean build on different machine conditions.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Measure an incremental build scenario, assess whether statements should be a normal or dynamic feature, and define the public surface of a reusable banking SDK module.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-21-05-build-performance-dynamic-library-modules"
+    },
+    {
+      "id": "q-level-05-week-21-05-build-performance-dynamic-library-modules-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-21-05-build-performance-dynamic-library-modules"
+    },
+    {
+      "id": "q-level-05-week-21-05-build-performance-dynamic-library-modules-recall",
+      "prompt": "What evidence should accompany the build performance, dynamic features, and library modules decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-21-05-build-performance-dynamic-library-modules"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

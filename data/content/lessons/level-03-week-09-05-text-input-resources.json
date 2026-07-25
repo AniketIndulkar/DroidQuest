@@ -1,0 +1,236 @@
+{
+  "id": "level-03-week-09-05-text-input-resources",
+  "title": "Text, Input, Images, and Resources",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 9,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-09-04-material3-scaffold-slots"
+  ],
+  "tags": [
+    "compose",
+    "text",
+    "input",
+    "resources"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Content rendering and input combine typography, localisation, keyboard behaviour, selection, accessibility, and configuration-aware resources.",
+      "realWorldUse": "Every form, search field, image, icon, and message must display current state and remain usable across locales, font scales, keyboards, and restoration.",
+      "outcome": "Render resource-backed text and images, build a controlled text field, and distinguish decorative from meaningful content semantics."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Text is content plus typography and semantics",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Text receives a String or annotated text and a TextStyle that can come from MaterialTheme typography. User-visible application strings should use stringResource or pluralStringResource so translations can reorder arguments and apply quantity grammar. Avoid fixed line counts that clip large fonts unless truncation is a deliberate disclosed interaction. AnnotatedString supports multiple spans and annotations, while LinkAnnotation and appropriate components provide accessible links. Selection, copy, and text layout may matter for learning code and long lessons. Test pseudo-locales, RTL, and large font scale rather than assuming one English screenshot represents the content."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Composable\nfun NoteTitleField(value: String, error: String?, onValueChange: (String) -> Unit) {\n    OutlinedTextField(\n        value = value, onValueChange = onValueChange,\n        label = { Text(stringResource(R.string.note_title)) },\n        isError = error != null,\n        supportingText = { if (error != null) Text(error) },\n        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),\n    )\n}",
+              "caption": "The field renders caller state, reports edits, and exposes validation without owning domain policy."
+            },
+            {
+              "type": "table",
+              "title": "Content semantics",
+              "columns": [
+                "Content",
+                "Description"
+              ],
+              "rows": [
+                [
+                  "Decorative divider/image",
+                  "null description"
+                ],
+                [
+                  "Icon-only save action",
+                  "Action description such as Save note"
+                ],
+                [
+                  "Image conveying lesson meaning",
+                  "Concise equivalent meaning"
+                ],
+                [
+                  "Visible icon plus identical text label",
+                  "Usually avoid duplicate announcement"
+                ],
+                [
+                  "User-entered note",
+                  "User data, not translated app resource"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Text fields are controlled state machines",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A TextField is controlled: value is the current state and onValueChange reports proposed edits. If the callback does not update state, the field appears read-only. Hoist business-relevant input to the screen state holder; simple local UI input can remain near the field and use rememberSaveable when restoration matters. Choose keyboardOptions and keyboardActions from the semantic input, but validate independently because keyboards are hints, paste bypasses them, and hardware input differs. Show error state and supporting text from validation state without mutating during composition. For advanced selection and composition handling, use the appropriate text-field state APIs instead of repeatedly replacing text."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val message = pluralStringResource(R.plurals.note_count, notes.size, notes.size)\nText(message, style = MaterialTheme.typography.bodyLarge)",
+              "caption": "Plural resources let the locale select grammar while substituting the count."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Keyboard type is not validation",
+              "text": "IME configuration improves input but all external text still needs domain validation."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Resources and images adapt to environment",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "painterResource loads drawable resources, while image-loading libraries handle remote or decoded images outside this foundation. Icon vectors should follow tint and direction behaviour; use auto-mirrored directional icons. contentDescription is null for purely decorative imagery already explained by adjacent text, and concise for meaningful images or icon-only actions. Modifier.size controls layout size while ContentScale controls how image content fits bounds. Do not decode large bitmaps in a composable body. Resolve current resources in composition so locale/night changes update naturally, and keep stable domain identity separate from translated display labels."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production work on text, input, images, and resources should begin with an observable requirement rather than a preferred API. Exercise the normal path, empty and error states, recreation, long content, large font scale, and rapid repeated input where they apply. Keep ownership visible in function signatures, make cancellation and failure behaviour deliberate, and record any assumption that crosses a lifecycle or platform boundary. Use previews for visual state, focused unit tests for pure transformations, Compose UI tests for semantics and interaction, and device traces or inspection tools only when runtime evidence is required. The goal is not merely code that renders once; it is behaviour another engineer can explain, test, change, and recover after the operating system or user changes the conditions."
+            },
+            {
+              "type": "flow",
+              "title": "A reliable implementation loop",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "Define inputs",
+                  "detail": "Name the state, constraints, and user outcome."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Build the smallest semantic UI tree."
+                },
+                {
+                  "id": "interact",
+                  "label": "Exercise",
+                  "detail": "Test events, state changes, and configuration."
+                },
+                {
+                  "id": "inspect",
+                  "label": "Inspect",
+                  "detail": "Use previews, tests, and tooling to find incorrect assumptions."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Improve the measured problem without hiding ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not duplicate accessibility labels",
+              "text": "An icon beside visible equivalent text usually should not announce the same words again."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Text in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/text",
+          "whyRead": "Covers text display, styling, annotations, selection, fonts, and user interaction."
+        },
+        {
+          "title": "User input in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/text/user-input",
+          "whyRead": "Explains text field state, transformation, keyboard actions, validation, and input handling."
+        },
+        {
+          "title": "Resources in Compose",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/resources",
+          "whyRead": "Shows strings, plurals, dimensions, colours, vectors, images, and resource-backed Compose APIs."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Diagnose a frozen field",
+      "language": "kotlin",
+      "code": "OutlinedTextField(value = state.title, onValueChange = { println(it) })",
+      "walkthrough": [
+        "Typing calls onValueChange with a proposal.",
+        "The callback logs but never updates the state supplied as value.",
+        "Recomposition receives the old title, so the visible field cannot advance."
+      ],
+      "expectedOutput": "Send a TitleChanged event and have the state owner publish the updated value."
+    },
+    "trap_check": [
+      {
+        "mistake": "Treating keyboardType as input validation.",
+        "why": "Paste, hardware input, and IME behaviour can bypass the hint.",
+        "fix": "Validate at the state/domain boundary."
+      },
+      {
+        "mistake": "Giving every image a content description.",
+        "why": "Decorative or duplicated content creates noisy accessibility output.",
+        "fix": "Describe only meaningful information or action."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create title/body inputs with saved state, validation, keyboard actions, plural character feedback, and correct icon/image semantics.",
+      "successLooksLike": "Fields remain controlled across recreation. All application text comes from resources and handles large fonts. Validation does not rely on keyboard type."
+    },
+    "recall": [
+      {
+        "prompt": "Why can a controlled field look frozen?",
+        "answer": "Its onValueChange path does not publish a new value."
+      },
+      {
+        "prompt": "How should quantities be displayed?",
+        "answer": "Use plural resources with locale-aware quantity selection."
+      },
+      {
+        "prompt": "When is contentDescription null?",
+        "answer": "When imagery is decorative or already equivalently represented."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-09-05-text-input-resources",
+  "challengeId": "challenge-level-03-week-09-05-text-input-resources",
+  "revision": {
+    "objectives": [
+      "Use typography and translatable resources.",
+      "Implement controlled and validated input.",
+      "Provide intentional image/icon semantics."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/text",
+    "https://developer.android.com/develop/ui/compose/text/user-input",
+    "https://developer.android.com/develop/ui/compose/resources"
+  ],
+  "version": "0.5.0"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "quiz-level-02-week-05-05-sdk-levels-variants-packaging",
+  "title": "SDK Levels, Variants, APKs, and App Bundles Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-05-sdk-levels-variants-packaging"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-05-05-sdk-match",
+      "prompt": "Match each SDK setting to its contract.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "minSdk": "oldest installable API",
+        "compileSdk": "compile-time API symbols",
+        "targetSdk": "tested platform behaviour contract"
+      },
+      "explanation": "The three values govern different compatibility boundaries.",
+      "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging"
+    },
+    {
+      "id": "q-week-05-05-aab-fact",
+      "prompt": "An Android App Bundle is normally installed directly on a device with adb install.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "An AAB is publishing input used to generate device-specific APKs.",
+      "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging"
+    },
+    {
+      "id": "q-week-05-05-api-bug",
+      "prompt": "Spot the bug: minSdk is 26, a method introduced in API 31 is called unconditionally, and compileSdk is 36.",
+      "type": "spot_bug",
+      "difficulty": "beginner",
+      "answer": "The running API 26–30 devices do not implement the method even though compilation succeeds",
+      "explanation": "A runtime guard, compatibility API, alternative implementation, or higher minSdk is required.",
+      "lessonId": "level-02-week-05-05-sdk-levels-variants-packaging"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

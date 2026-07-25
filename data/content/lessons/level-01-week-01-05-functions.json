@@ -1,0 +1,228 @@
+{
+  "id": "level-01-week-01-05-functions",
+  "title": "Functions as Reusable Decisions",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-04-loops-ranges"
+  ],
+  "tags": [
+    "kotlin",
+    "functions",
+    "parameters",
+    "return-values"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Functions turn a growing program into named, reusable decisions with clear inputs and outputs.",
+      "realWorldUse": "Android projects use functions for validation, state updates, formatting, mapping data, event handling, and nearly every interaction with a library.",
+      "outcome": "Declare, call, and decompose functions using parameters, return types, defaults, and named arguments."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "function-contract",
+          "title": "A function is a contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A function has a name, zero or more parameters, a return type, and a body. Parameters describe the inputs available to the body. A return value communicates the result to the caller. Read fun calculateTotal(quantity: Int, price: Double): Double as a contract: provide an Int and a Double, and receive a Double. Kotlin function parameters are read-only inside the body, which prevents the function from quietly replacing the caller’s input names."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun calculateTotal(quantity: Int, price: Double): Double {\n    return quantity * price\n}\n\nfun main() {\n    val total = calculateTotal(quantity = 3, price = 2.50)\n    println(total)\n}",
+              "caption": "The caller supplies two arguments and stores the returned calculation."
+            },
+            {
+              "type": "table",
+              "title": "Function vocabulary",
+              "columns": [
+                "Term",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "Declaration",
+                  "Defines a function and its contract"
+                ],
+                [
+                  "Parameter",
+                  "Named input in the declaration"
+                ],
+                [
+                  "Argument",
+                  "Value supplied by a caller"
+                ],
+                [
+                  "Return type",
+                  "Type promised to the caller"
+                ],
+                [
+                  "Return value",
+                  "Specific result produced by one call"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "expression-bodies-and-unit",
+          "title": "Return a value or perform an action",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A short function that returns one expression can use an expression body: fun isValid(amount: Double) = amount > 0.0. The compiler infers the return type, although explicit return types are valuable for public APIs because they preserve the intended contract. A function that only performs an action returns Unit. Unit means the call completes without producing a meaningful domain result; it is not the same as failure or absence."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun isValidAmount(amount: Double): Boolean = amount > 0.0\n\nfun printStatus(isValid: Boolean) {\n    val message = if (isValid) \"Ready\" else \"Blocked\"\n    println(message)\n}",
+              "caption": "One function answers a question; the other performs output and implicitly returns Unit."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Return facts before printing them",
+              "text": "Business rules are easier to reuse and test when they return values. Keep console or UI presentation at an outer boundary."
+            }
+          ]
+        },
+        {
+          "id": "defaults-names-decomposition",
+          "title": "Make calls clear and responsibilities small",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A default parameter supplies a value when the caller omits that argument. Named arguments make calls self-documenting and allow selected defaults to be skipped. They are especially useful for adjacent arguments of the same type or unexplained Boolean flags. Defaults should represent a safe, unsurprising common case. A function with too many configuration parameters may be revealing that several responsibilities or concepts need their own model."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun formatExpense(\n    category: String,\n    amount: Double,\n    currency: String = \"GBP\",\n    includeLabel: Boolean = true,\n): String {\n    val value = \"$currency $amount\"\n    return if (includeLabel) \"$category: $value\" else value\n}\n\nval summary = formatExpense(\n    category = \"Travel\",\n    amount = 8.25,\n)",
+              "caption": "Defaults keep the common call short while names make each supplied argument unambiguous."
+            },
+            {
+              "type": "flow",
+              "title": "Decompose a requirement",
+              "steps": [
+                {
+                  "id": "verb",
+                  "label": "Find the verb",
+                  "detail": "Identify one action or decision in the requirement."
+                },
+                {
+                  "id": "inputs",
+                  "label": "List inputs",
+                  "detail": "Name the information the decision needs."
+                },
+                {
+                  "id": "output",
+                  "label": "Choose output",
+                  "detail": "Return the smallest useful result."
+                },
+                {
+                  "id": "name",
+                  "label": "Name function",
+                  "detail": "Use a verb or question that states intent."
+                },
+                {
+                  "id": "call",
+                  "label": "Call and combine",
+                  "detail": "Let an outer function coordinate smaller contracts."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "A useful function does one coherent job at one level of abstraction. “Validate an amount” and “format an approved expense” are separate responsibilities even if one screen needs both. Decomposition is not about making every line a function. It is about giving important rules names, reducing duplication, and allowing the caller to understand the program as a sequence of meaningful operations."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Create and use functions in Kotlin",
+          "publisher": "Android Developers",
+          "resourceType": "codelab",
+          "url": "https://developer.android.com/codelabs/basic-android-kotlin-compose-functions",
+          "whyRead": "A longer guided exercise covering declarations, calls, parameters, return values, defaults, and named arguments."
+        },
+        {
+          "title": "Functions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/functions.html",
+          "whyRead": "The authoritative syntax and behaviour reference for parameters, defaults, named calls, expression bodies, and return types."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Separate validation from presentation",
+      "language": "kotlin",
+      "code": "fun isValidExpense(amount: Double, category: String): Boolean {\n    return amount > 0.0 && category.isNotBlank()\n}\n\nfun expenseSummary(category: String, amount: Double): String =\n    \"$category: £$amount\"\n\nfun main() {\n    val amount = 14.25\n    val category = \"Food\"\n\n    if (isValidExpense(amount, category)) {\n        println(expenseSummary(category, amount))\n    } else {\n        println(\"Invalid expense\")\n    }\n}",
+      "walkthrough": [
+        "isValidExpense owns the rule and returns a Boolean without printing.",
+        "expenseSummary owns text construction and returns a String.",
+        "main coordinates the functions and chooses which result to present."
+      ],
+      "expectedOutput": "Food: £14.25"
+    },
+    "trap_check": [
+      {
+        "mistake": "Printing a calculated result inside every business function.",
+        "why": "The result becomes difficult to reuse in a UI, test, or another calculation.",
+        "fix": "Return the value and let an outer boundary decide how to present it."
+      },
+      {
+        "mistake": "Using multiple unexplained Boolean positional arguments.",
+        "why": "A call such as format(value, true, false) hides what each Boolean controls.",
+        "fix": "Use named arguments or replace flags with a clearer model."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Refactor one expense script into separate validation, calculation, and formatting functions.",
+      "successLooksLike": "Each function has a clear contract, business functions return values, and main reads as a short coordination flow."
+    },
+    "recall": [
+      {
+        "prompt": "What is the difference between a parameter and an argument?",
+        "answer": "A parameter is declared by the function; an argument is supplied by a caller."
+      },
+      {
+        "prompt": "What does Unit communicate?",
+        "answer": "The function completes an action without returning a meaningful domain value."
+      },
+      {
+        "prompt": "Why use named arguments?",
+        "answer": "They expose which parameter each value supplies and clarify otherwise ambiguous calls."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-05-functions",
+  "challengeId": "challenge-level-01-week-01-05-functions",
+  "revision": {
+    "objectives": [
+      "Read a function declaration as an input-output contract.",
+      "Separate calculation and validation from presentation side effects.",
+      "Use default and named arguments to keep calls safe and readable."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/functions.html",
+    "https://kotlinlang.org/docs/basic-syntax.html"
+  ],
+  "version": "0.2.0"
+}

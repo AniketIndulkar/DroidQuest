@@ -1,0 +1,218 @@
+{
+  "id": "level-05-week-22-02-architecture-decisions-incremental-refactoring",
+  "title": "Architecture Decisions and Incremental Refactoring",
+  "categoryId": "level-05-production-architecture",
+  "week": 22,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-22-01-architecture-tests-contracts-fakes"
+  ],
+  "tags": [
+    "architecture",
+    "refactoring",
+    "decision-records"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes architecture decisions and incremental refactoring a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An architecture decision record captures context, forces, choice, alternatives, consequences, and a review trigger. It is not a defence of permanence. Record decisions that future engineers might otherwise reverse without understanding constraints: offline authority, module ownership, DI framework, or payment consistency. Link evidence and code boundaries. Mark superseded records rather than rewriting history so the reason for evolution stays visible."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Adr(\n  val status: Status,\n  val context: String,\n  val decision: String,\n  val consequences: List<String>,\n  val reviewWhen: String\n)",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Refactor through a vertical slice that produces user value. First add characterisation tests around existing behaviour. Establish the target contract beside old code, route one operation through it, compare results, then remove the obsolete path. Branch by abstraction can keep builds releasable while implementations migrate. Avoid a layer-by-layer rewrite that leaves the application half-connected for months and delays feedback until the riskiest integration."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Characterise",
+                  "Capture current observable behaviour"
+                ],
+                [
+                  "Introduce seam",
+                  "Add target contract beside old path"
+                ],
+                [
+                  "Migrate",
+                  "Move one operation and compare evidence"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use fitness checks to prevent silent erosion: dependency rules, public API checks, state-sequence tests, build-time budgets, and ownership review. Each check should protect a named decision and avoid freezing harmless implementation. Track outcomes such as change lead time and escaped boundary defects. If the target structure adds cost without improving the chosen outcome, revise or remove it. Architecture remains production code and needs maintenance."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Starting a complete architecture rewrite with no releasable intermediate state or behavioural baseline."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Guide to app architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture",
+          "whyRead": "Explains separation of concerns, single sources of truth, and directional data flow."
+        },
+        {
+          "title": "Guide to Android app modularization",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/modularization",
+          "whyRead": "Explains benefits, costs, granularity, and evidence for adding Gradle modules."
+        },
+        {
+          "title": "What to test in Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/testing/fundamentals/what-to-test",
+          "whyRead": "Prioritises ViewModel, repository, domain, screen, and critical-flow behaviour."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Architecture Decisions and Incremental Refactoring boundary",
+      "language": "kotlin",
+      "code": "data class Adr(\n  val status: Status,\n  val context: String,\n  val decision: String,\n  val consequences: List<String>,\n  val reviewWhen: String\n)",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Starting a complete architecture rewrite with no releasable intermediate state or behavioural baseline.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write an ADR for extracting payments, plan a branch-by-abstraction migration from a legacy repository, and add two fitness checks tied to explicit risks.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should architecture decisions and incremental refactoring solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+  "challengeId": "challenge-level-05-week-22-02-architecture-decisions-incremental-refactoring",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Architecture Decisions and Incremental Refactoring.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture",
+    "https://developer.android.com/topic/modularization",
+    "https://developer.android.com/training/testing/fundamentals/what-to-test"
+  ],
+  "version": "0.8.0"
+}

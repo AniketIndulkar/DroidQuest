@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-20-02-hilt-graph-constructor-modules",
+  "title": "Hilt Graphs, Constructor Injection, and Modules",
+  "categoryId": "level-05-production-architecture",
+  "week": 20,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-05-week-20-01-manual-di-composition-root"
+  ],
+  "tags": [
+    "dependency-injection",
+    "hilt",
+    "dagger"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes hilt graphs, constructor injection, and modules a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Hilt automates a Dagger object graph for Android entry points. Annotating Application establishes the generated root; AndroidEntryPoint connects supported framework classes; constructor Inject tells the graph how to create owned types. Prefer constructor injection because it documents requirements and works without Hilt in unit tests. Field injection is for framework-created objects and should occur before the dependency is used. Hilt modules are binding instructions, not Gradle modules."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Module\n@InstallIn(SingletonComponent::class)\nabstract class AccountsBindings {\n  @Binds abstract fun repository(impl: OfflineAccountsRepository): AccountsRepository\n}",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use Binds when an injectable implementation satisfies an interface and Provides when construction requires a builder, primitive configuration, or a third-party type. InstallIn chooses the generated component whose lifetime and visibility should contain the binding. The graph must provide every transitive dependency and exactly one unqualified binding for each requested key. Compilation failure is a design signal: read from the missing or duplicate key outward rather than adding providers blindly."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "Constructor injection",
+                  "Graph creates an owned type"
+                ],
+                [
+                  "Binds",
+                  "Maps interface to injectable implementation"
+                ],
+                [
+                  "Provides",
+                  "Runs custom construction logic"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep modules small and owned near the implementation they expose. A network module can provide Retrofit while a data module binds AccountsRepository to OfflineAccountsRepository. Do not inject ViewModels into composables manually; use supported ViewModel creation at navigation or screen boundaries. Generated code is an implementation tool, while contracts and dependency direction remain architectural decisions the compiler cannot choose."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Writing Provides methods for every owned class instead of using constructor injection and readable requirements."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Dependency injection with Hilt",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/hilt-android",
+          "whyRead": "Documents constructor injection, modules, generated components, scopes, and qualifiers."
+        },
+        {
+          "title": "Using Dagger in Android apps",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/dependency-injection/dagger-android",
+          "whyRead": "Explains the generated graph beneath Hilt and compile-time binding diagnostics."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Hilt Graphs, Constructor Injection, and Modules boundary",
+      "language": "kotlin",
+      "code": "@Module\n@InstallIn(SingletonComponent::class)\nabstract class AccountsBindings {\n  @Binds abstract fun repository(impl: OfflineAccountsRepository): AccountsRepository\n}",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Writing Provides methods for every owned class instead of using constructor injection and readable requirements.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Convert a manual accounts graph to Hilt using constructor injection, one Binds binding, and one Provides binding, then diagnose a deliberately missing dependency.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should hilt graphs, constructor injection, and modules solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-20-02-hilt-graph-constructor-modules",
+  "challengeId": "challenge-level-05-week-20-02-hilt-graph-constructor-modules",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Hilt Graphs, Constructor Injection, and Modules.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/dependency-injection/hilt-android",
+    "https://developer.android.com/training/dependency-injection/dagger-android"
+  ],
+  "version": "0.8.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-21-01-modularization-evidence-cohesion-coupling",
+  "title": "Modularisation Evidence, Cohesion, and Coupling Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-21-01-modularization-evidence-cohesion-coupling"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-21-01-modularization-evidence-cohesion-coupling-decision",
+      "prompt": "Which approach best demonstrates sound modularisation evidence, cohesion, and coupling?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "options": [
+        "Score candidate accounts, payments, and design-system modules for cohesion, coupling, ownership, reuse, and measured build impact; reject at least one unjustified split.",
+        "Creating a Gradle module for every package before observing any ownership, reuse, isolation, or build problem.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Score candidate accounts, payments, and design-system modules for cohesion, coupling, ownership, reuse, and measured build impact; reject at least one unjustified split.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-21-01-modularization-evidence-cohesion-coupling"
+    },
+    {
+      "id": "q-level-05-week-21-01-modularization-evidence-cohesion-coupling-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-21-01-modularization-evidence-cohesion-coupling"
+    },
+    {
+      "id": "q-level-05-week-21-01-modularization-evidence-cohesion-coupling-recall",
+      "prompt": "What evidence should accompany the modularisation evidence, cohesion, and coupling decision?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-21-01-modularization-evidence-cohesion-coupling"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

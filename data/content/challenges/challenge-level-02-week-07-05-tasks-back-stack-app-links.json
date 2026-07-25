@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-07-05-tasks-back-stack-app-links",
+  "title": "Implement a Cold-Safe Note App Link",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-07-05-tasks-back-stack-app-links",
+  "difficulty": "beginner",
+  "estimatedMinutes": 60,
+  "prompt": "Define a verified HTTPS /note/{id} app link and a navigation policy for cold process, warm task, logged-out user, missing note, malformed ID, Back, and Up.",
+  "successCriteria": [
+    "The filter and asset association are narrow and documented.",
+    "All URI and access states have explicit outcomes.",
+    "Only a stable ID enters navigation and full data reloads from storage."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: The filter and asset association are narrow and documented.",
+    "Use lifecycle or boundary evidence to prove: All URI and access states have explicit outcomes."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "<intent-filter android:autoVerify=\"true\">\n    <!-- Define the verified note URL contract. -->\n</intent-filter>"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: The filter and asset association are narrow and documented.",
+    "Implement the smallest design that guarantees: All URI and access states have explicit outcomes.",
+    "Implement the smallest design that guarantees: Only a stable ID enters navigation and full data reloads from storage."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that the filter and asset association are narrow and documented.",
+    "Run a focused check demonstrating that all URI and access states have explicit outcomes.",
+    "Run a focused check demonstrating that only a stable ID enters navigation and full data reloads from storage."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

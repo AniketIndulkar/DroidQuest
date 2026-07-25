@@ -1,0 +1,231 @@
+{
+  "id": "level-03-week-13-02-focus-keyboard-scalable-content",
+  "title": "Focus, Keyboard Navigation, and Scalable Content",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 13,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-13-01-accessibility-semantics-talkback"
+  ],
+  "tags": [
+    "compose",
+    "focus",
+    "font-scale"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Android UI must remain operable with keyboards, D-pads, switches, large text, magnification, and touch targets suited to varied dexterity.",
+      "realWorldUse": "Tablets, desktop windows, Chromebooks, TVs, accessibility services, and external keyboards expose assumptions made for touch-only phone layouts.",
+      "outcome": "Use focus APIs deliberately, provide keyboard equivalents, and build content that survives large font and display scaling without clipping."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Focus is state with an interaction order",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Focus determines which component receives keyboard or accessibility interaction. Standard controls are focusable and participate in a spatial traversal policy. FocusRequester can request focus after a real event or lifecycle transition, while focusProperties can redirect next, previous, or directional movement when default geometry is inadequate. Modifier order matters because focus modifiers wrap downstream focus targets. A screen should not steal focus on every recomposition, and restoration after a dialog or destination return should be tested rather than assumed."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val requester = remember { FocusRequester() }\nOutlinedTextField(\n    value = query,\n    onValueChange = onQuery,\n    modifier = Modifier.focusRequester(requester),\n    keyboardActions = KeyboardActions(onSearch = { onSearch() })\n)",
+              "caption": "The field participates in normal focus while exposing a semantic search action."
+            },
+            {
+              "type": "table",
+              "title": "Input and scaling",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Ordinary action",
+                  "Use semantic focusable control"
+                ],
+                [
+                  "Programmatic focus",
+                  "Request after a defined event"
+                ],
+                [
+                  "App shortcut",
+                  "Handle and consume in the narrowest scope"
+                ],
+                [
+                  "Large text",
+                  "Wrap, scroll, or adapt structure"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Keyboard handling starts with semantic controls",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Buttons, text fields, selectable controls, and scroll containers already support common keyboard behaviour. onPreviewKeyEvent observes before a focused child and can intercept, while onKeyEvent observes afterward; consume only shortcuts the current scope owns. Never make Tab or arrow navigation depend on a hidden raw key listener around the entire application. Provide visible focus indication and an equivalent for hover, drag, or touch-only affordances. D-pad and keyboard traversal should reach every task without cycling or entering decorative elements."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val requester = remember { FocusRequester() }\nOutlinedTextField(\n    value = query,\n    onValueChange = onQuery,\n    modifier = Modifier.focusRequester(requester),\n    keyboardActions = KeyboardActions(onSearch = { onSearch() })\n)",
+              "caption": "The field participates in normal focus while exposing a semantic search action."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Touch-only is incomplete",
+              "text": "All important actions need reachable focus and an input-independent semantic contract."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Scalable content must reflow instead of shrink",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Text uses sp and user font scale; fixed-height containers, forced single lines, and tiny icon-only targets often fail at 200 percent scale. Let labels wrap, allow screens to scroll, preserve minimum target size, and change structure when content no longer fits horizontally. Do not cap font scale merely to protect a screenshot. Test display size and font size together because both alter effective constraints. Important diagrams need zoom or an alternate textual form, and animation must not prevent users from reaching newly reflowed content."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not freeze container height",
+              "text": "Scaled or translated text can clip, overlap, or make actions unreachable."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Change focus behavior",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/focus/change-focus-behavior",
+          "whyRead": "Covers requesters, focus groups, traversal, capture, and modifier precedence."
+        },
+        {
+          "title": "Keyboard input",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/touch-input/keyboard-input/commands",
+          "whyRead": "Explains key event propagation, shortcuts, and text-input cautions."
+        },
+        {
+          "title": "Support user-scalable content",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/accessibility/scalable-content",
+          "whyRead": "Provides current guidance for font and display scaling."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Remove the fixed-height text trap",
+      "language": "kotlin",
+      "code": "Button(onClick = onBuy, modifier = Modifier.height(40.dp)) {\n    Text(\"Complete purchase now\", maxLines = 1)\n}",
+      "walkthrough": [
+        "The forced height and one line assume a specific font, locale, and width.",
+        "Large text can clip while the target also falls below a comfortable interaction size.",
+        "Use intrinsic content height, minimum target policy, wrapping, or an adaptive label arrangement."
+      ],
+      "expectedOutput": "The complete label and focus indication remain visible at large font and narrow width."
+    },
+    "trap_check": [
+      {
+        "mistake": "Intercepting every key at a root preview handler.",
+        "why": "Text editing, accessibility, and child controls lose their expected keys.",
+        "fix": "Consume only owned shortcuts in the narrowest focus scope."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a product-search and purchase form that completes with keyboard or D-pad and remains usable at large font and display scale.",
+      "successLooksLike": "Traversal reaches controls in a logical order. No important label clips at tested scales. Touch, keyboard, and accessibility activation produce the same events."
+    },
+    "recall": [
+      {
+        "prompt": "What does FocusRequester do?",
+        "answer": "Requests focus for an attached focus target."
+      },
+      {
+        "prompt": "Who should handle common keyboard activation?",
+        "answer": "The semantic control itself."
+      },
+      {
+        "prompt": "How should large text be accommodated?",
+        "answer": "By reflowing, scrolling, or adapting structure."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-13-02-focus-keyboard-scalable-content",
+  "challengeId": "challenge-level-03-week-13-02-focus-keyboard-scalable-content",
+  "revision": {
+    "objectives": [
+      "Design predictable focus traversal.",
+      "Provide keyboard-equivalent actions.",
+      "Verify large font and display scale."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/touch-input/focus/change-focus-behavior",
+    "https://developer.android.com/develop/ui/compose/touch-input/keyboard-input/commands",
+    "https://developer.android.com/develop/ui/compose/accessibility/scalable-content"
+  ],
+  "version": "0.6.0"
+}

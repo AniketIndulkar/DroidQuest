@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-01-week-01-kotlin-starter",
+  "title": "Kotlin Foundations: Week 1",
+  "description": "Awarded for demonstrating the Week 1 foundations needed to read, trace, and structure a small Kotlin program.",
+  "categoryId": "level-01-programming-foundations",
+  "icon": "terminal-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-01-week-01-checkpoint",
+    "minimumScore": 0.78
+  },
+  "xp": 200,
+  "rarity": "common",
+  "version": "0.2.0"
+}

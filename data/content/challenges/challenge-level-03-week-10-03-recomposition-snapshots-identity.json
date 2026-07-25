@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-10-03-recomposition-snapshots-identity",
+  "title": "Repair a Reordering Editor",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-10-03-recomposition-snapshots-identity",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Build a reorderable note editor with per-row draft state and a jump-to-top threshold, demonstrating stable keys and narrow observation.",
+  "successCriteria": [
+    "Drafts follow note IDs after sorting.",
+    "Threshold state avoids per-pixel composition changes.",
+    "Inspection explains the scopes that update."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "LazyColumn { items(notes, key = { it.id }) { NoteEditor(it) } }"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

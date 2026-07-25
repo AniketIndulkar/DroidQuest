@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-17-05-websockets-sse-realtime",
+  "title": "WebSockets, Server-Sent Events, and Realtime State",
+  "categoryId": "level-04-async-data-networking",
+  "week": 17,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-17-04-multipart-upload-progress"
+  ],
+  "tags": [
+    "networking",
+    "websocket",
+    "sse"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Realtime transports provide long-lived ordered connections but still require authentication, reconnect, resume, heartbeat, backpressure, and local state reconciliation.",
+      "realWorldUse": "Chat, live scores, market updates, presence, and server notifications have different bidirectional and one-way delivery needs.",
+      "outcome": "Choose WebSocket or SSE, model connection state, resume from sequence identity, and avoid treating transient delivery as authoritative storage."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Transport direction and infrastructure determine the protocol",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "WebSocket provides a bidirectional framed connection after an HTTP upgrade and fits interactive two-way messages. Server-Sent Events streams server-to-client text events over HTTP and naturally fits one-way updates with event IDs and retry hints. Regular polling can be simpler when freshness needs are modest. Select from server support, proxy behaviour, battery, background restrictions, message direction, ordering, and recovery—not from the word realtime."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun events(): Flow<ServerEvent> = callbackFlow {\n    val listener = listener(\n        onEvent = { trySend(it) },\n        onFailure = { close(it) }\n    )\n    socket.connect(listener)\n    awaitClose { socket.close(1000, \"collector stopped\") }\n}",
+              "caption": "callbackFlow ties callback registration and socket cleanup to collector lifetime."
+            },
+            {
+              "type": "table",
+              "title": "Realtime policy",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Two-way interactive frames",
+                  "WebSocket"
+                ],
+                [
+                  "Server-to-client text stream",
+                  "SSE"
+                ],
+                [
+                  "Modest freshness",
+                  "Polling may be simpler"
+                ],
+                [
+                  "Reconnect",
+                  "Resume ID plus capped jittered backoff"
+                ],
+                [
+                  "Authoritative state",
+                  "Snapshot or local database"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Connections are state machines, not callbacks",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Model Disconnected, Connecting, Connected, BackingOff, and Failed states. Authenticate during the documented handshake without placing tokens in logged query strings. Define heartbeat or idle timeout from server policy, close codes, maximum message size, parser failure, and app foreground/background behaviour. Wrap callback APIs with callbackFlow, use awaitClose for listener removal and socket closure, and choose bounded channel overflow from whether intermediate updates may be lost."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun events(): Flow<ServerEvent> = callbackFlow {\n    val listener = listener(\n        onEvent = { trySend(it) },\n        onFailure = { close(it) }\n    )\n    socket.connect(listener)\n    awaitClose { socket.close(1000, \"collector stopped\") }\n}",
+              "caption": "callbackFlow ties callback registration and socket cleanup to collector lifetime."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Realtime delivery is not storage",
+              "text": "Use events to update or invalidate an authoritative model."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Resume and reconciliation protect against gaps and duplicates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A connection can drop after the server commits an event but before the client receives it. Persist or remember the last server sequence/event ID, resume when supported, deduplicate stable event IDs, and fetch a snapshot when a gap cannot be repaired. Treat the local database or server snapshot as authoritative; a transient socket is a change signal. Reconnect uses capped backoff and jitter and stops on logout, permanent authorization failure, or owner cancellation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not reconnect forever after logout",
+              "text": "Owner cancellation and permanent authentication failure must terminate the loop."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OkHttp WebSockets",
+          "publisher": "Square",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-web-socket/",
+          "whyRead": "Documents WebSocket send, queue, close, cancel, and listener contracts."
+        },
+        {
+          "title": "OkHttp Server-Sent Events",
+          "publisher": "Square",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/5.x/okhttp-sse/okhttp3.sse/-event-source/",
+          "whyRead": "Documents EventSource lifecycle and cancellation."
+        },
+        {
+          "title": "Connectivity best practices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/connectivity",
+          "whyRead": "Provides Android networking and device-state context."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Close the leaked callback connection",
+      "language": "kotlin",
+      "code": "fun events() = callbackFlow {\n    socket.addListener { trySend(it) }\n}",
+      "walkthrough": [
+        "The callback remains registered after collection is cancelled.",
+        "The socket retains resources and can send into an abandoned channel.",
+        "Use awaitClose to remove the listener and close or release the owned connection."
+      ],
+      "expectedOutput": "Cancelling the collector closes one connection and no later callback reaches it."
+    },
+    "trap_check": [
+      {
+        "mistake": "Appending every socket event without stable identity.",
+        "why": "Reconnect and server replay create duplicates and gaps remain invisible.",
+        "fix": "Track sequence IDs, deduplicate, resume, and refresh a snapshot on gaps."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement a callbackFlow-backed SSE or WebSocket client with states, authentication, bounded buffering, heartbeat, resume IDs, deduplication, snapshot recovery, and cancellation.",
+      "successLooksLike": "Owner cancellation releases the connection. Reconnect uses capped jitter and stops on permanent failure. Duplicate and missing sequence cases reconcile correctly."
+    },
+    "recall": [
+      {
+        "prompt": "Which transport is naturally bidirectional?",
+        "answer": "WebSocket."
+      },
+      {
+        "prompt": "What should callbackFlow cleanup use?",
+        "answer": "awaitClose."
+      },
+      {
+        "prompt": "What is authoritative after a suspected event gap?",
+        "answer": "A reconciled snapshot or local source of truth."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-17-05-websockets-sse-realtime",
+  "challengeId": "challenge-level-04-week-17-05-websockets-sse-realtime",
+  "revision": {
+    "objectives": [
+      "Select a realtime transport.",
+      "Model connection and owner lifetime.",
+      "Resume and reconcile event delivery."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-web-socket/",
+    "https://square.github.io/okhttp/5.x/okhttp-sse/okhttp3.sse/-event-source/",
+    "https://developer.android.com/develop/connectivity"
+  ],
+  "version": "0.7.0"
+}

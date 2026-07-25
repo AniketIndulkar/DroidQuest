@@ -1,0 +1,91 @@
+{
+  "id": "quiz-level-01-week-02-checkpoint",
+  "title": "Week 2 Kotlin Modelling Checkpoint",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-02-01-classes-objects-composition",
+    "level-01-week-02-02-data-enum-sealed-models",
+    "level-01-week-02-03-collections-transformations",
+    "level-01-week-02-04-lambdas-extensions-scope"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "beginner",
+  "passingScore": 0.78,
+  "questions": [
+    {
+      "id": "q-week-02-checkpoint-composition",
+      "prompt": "Why is composition usually safer than inheritance for adding an independent logging capability?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "Composition keeps the logging collaborator replaceable without claiming an is-a relationship",
+      "explanation": "Composition expresses a has-a collaboration and avoids coupling the class to inherited implementation details.",
+      "lessonId": "level-01-week-02-01-classes-objects-composition"
+    },
+    {
+      "id": "q-week-02-checkpoint-sealed",
+      "prompt": "Which model best represents a closed set of states carrying different data?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A sealed interface with data subclasses",
+      "explanation": "A sealed hierarchy constrains variants and allows exhaustive when handling while each case carries suitable data.",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models",
+      "options": [
+        "A sealed interface with data subclasses",
+        "One nullable String",
+        "An open class with unknown subclasses",
+        "A mutable list of Any"
+      ]
+    },
+    {
+      "id": "q-week-02-checkpoint-pipeline",
+      "prompt": "Order a readable collection pipeline for raw expense text.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "parse raw values",
+        "filter invalid records",
+        "map to domain expenses",
+        "group by category"
+      ],
+      "explanation": "Each stage strengthens or organises the data, and the order prevents invalid values from reaching domain grouping.",
+      "lessonId": "level-01-week-02-03-collections-transformations"
+    },
+    {
+      "id": "q-week-02-checkpoint-scope",
+      "prompt": "Match each scope function to its most distinctive receiver and result shape.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "let": "it receiver and lambda result",
+        "apply": "this receiver and original object",
+        "also": "it receiver and original object",
+        "run": "this receiver and lambda result"
+      },
+      "explanation": "Receiver access and return value provide a more reliable selection rule than choosing scope functions by style.",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope"
+    },
+    {
+      "id": "q-week-02-checkpoint-data-copy",
+      "prompt": "A data-class copy automatically performs a deep copy of nested mutable collections.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Generated copy is shallow, so nested object and collection references remain shared unless copied deliberately.",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models"
+    },
+    {
+      "id": "q-week-02-checkpoint-lambda",
+      "prompt": "What can a lambda capture from its surrounding scope?",
+      "type": "fill_blank",
+      "difficulty": "beginner",
+      "answer": "variables and values visible at its declaration site",
+      "explanation": "A closure retains access to visible surrounding declarations, which can include mutable state and therefore needs care.",
+      "lessonId": "level-01-week-02-04-lambdas-extensions-scope"
+    }
+  ],
+  "rewards": {
+    "xp": 220,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

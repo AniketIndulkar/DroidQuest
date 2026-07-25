@@ -1,0 +1,227 @@
+{
+  "id": "level-04-week-16-06-mockwebserver-network-integration-tests",
+  "title": "Network Integration Testing with MockWebServer",
+  "categoryId": "level-04-async-data-networking",
+  "week": 16,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-16-05-network-failures-timeouts-retries"
+  ],
+  "tags": [
+    "networking",
+    "mockwebserver",
+    "testing"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Network boundaries need deterministic protocol tests against the real configured HTTP stack without relying on an external service.",
+      "realWorldUse": "Paths, query encoding, headers, JSON converters, status mapping, timeouts, retries, cancellation, and redaction can regress despite unit mocks.",
+      "outcome": "Drive Retrofit and OkHttp with MockWebServer, enqueue adverse responses, inspect recorded requests, and keep tests hermetic and deterministic."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "A controlled server tests the real client boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MockWebServer runs a local HTTP server and queues scripted responses for the real OkHttp and Retrofit client. Point the test base URL at server.url and exercise the remote data source rather than mocking its service interface. Enqueue status, headers, body, delay, disconnect, throttling, and malformed representations. takeRequest records method, path, query, headers, and body for assertions. Start and close the server for each test or test class under clear ownership."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val server = MockWebServer()\nserver.enqueue(MockResponse().setResponseCode(200).setBody(articleJson))\nval retrofit = Retrofit.Builder().baseUrl(server.url(\"/\")).client(client).build()\nval result = remoteSource.fetch(null)\nval request = server.takeRequest()\nassertEquals(\"/articles\", request.path)",
+              "caption": "The real converter and client execute against a deterministic local protocol peer."
+            },
+            {
+              "type": "table",
+              "title": "Test boundary",
+              "columns": [
+                "Concern",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Client input",
+                  "Queued MockResponse"
+                ],
+                [
+                  "Wire request",
+                  "RecordedRequest assertion"
+                ],
+                [
+                  "Representation",
+                  "Reviewed local fixture"
+                ],
+                [
+                  "Retry sequence",
+                  "Several queued outcomes and request count"
+                ],
+                [
+                  "External internet",
+                  "Never required"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Responses and recorded requests provide two-sided evidence",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Assert observable contracts rather than library implementation: correct encoded cursor, authorization header presence without printing it, conditional cache header, DTO mapping, empty-body handling, typed 404, malformed JSON, and safe error-body truncation. Use fixtures that are small, reviewed, and free of production data. Dispatcher tests and network integration tests have different responsibilities; do not use Thread.sleep to wait for requests when awaitable client calls and server records provide coordination."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val server = MockWebServer()\nserver.enqueue(MockResponse().setResponseCode(200).setBody(articleJson))\nval retrofit = Retrofit.Builder().baseUrl(server.url(\"/\")).client(client).build()\nval result = remoteSource.fetch(null)\nval request = server.takeRequest()\nassertEquals(\"/articles\", request.path)",
+              "caption": "The real converter and client execute against a deterministic local protocol peer."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Test the configured stack",
+              "text": "A mocked Retrofit interface cannot reveal path, converter, interceptor, or protocol integration errors."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Timing and retries require deterministic dispatch and budgets",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Retry tests enqueue a sequence and assert request count, backoff through an injected delay or virtual scheduler, and identical idempotency key across attempts. Socket-level timeout behaviour can use controlled server delays with small explicit client limits, while policy timing belongs in a fast unit test. Cancellation tests start a delayed response, cancel the parent, and confirm the call ends without later state. Capture logs to assert secrets are redacted, never to snapshot complete bodies."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production readiness requires evidence beyond a happy-path demonstration. State the owner and lifetime of every mutable value, the expected response to failure or cancellation, and the behaviour after recreation or a second simultaneous request. Exercise long and translated content, large font scale, alternate input, slow dependencies, and rapid repeated actions wherever they apply. Prefer deterministic unit tests for pure logic, integration tests at library and protocol boundaries, and device tests when platform lifecycle, rendering, accessibility, or system UI is part of the contract. Do not hide a missing decision behind a generic helper. A future engineer should be able to identify what may run concurrently, what survives, what is authoritative, and which evidence proves the implementation remains correct."
+            },
+            {
+              "type": "flow",
+              "title": "Engineering loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name ownership, lifetime, inputs, outputs, failure, and cancellation."
+                },
+                {
+                  "id": "implement",
+                  "label": "Implement",
+                  "detail": "Choose the smallest API that preserves those semantics."
+                },
+                {
+                  "id": "exercise",
+                  "label": "Exercise boundaries",
+                  "detail": "Test absence, failure, recreation, concurrency, and unusual input."
+                },
+                {
+                  "id": "observe",
+                  "label": "Collect evidence",
+                  "detail": "Use semantics, deterministic tests, traces, or protocol inspection."
+                },
+                {
+                  "id": "harden",
+                  "label": "Harden",
+                  "detail": "Fix the demonstrated risk and document the remaining trade-off."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not make content tests call live services",
+              "text": "External state and credentials make tests slow, unsafe, and nondeterministic."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "MockWebServer",
+          "publisher": "Square OkHttp",
+          "resourceType": "official_docs",
+          "url": "https://square.github.io/okhttp/5.x/mockwebserver3/mockwebserver3/-mock-web-server/",
+          "whyRead": "Documents deterministic local responses, recorded requests, lifecycle, and dispatchers."
+        },
+        {
+          "title": "Test the data layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer#testing",
+          "whyRead": "Recommends controlled external-resource fakes and network integration servers."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Replace a live API test",
+      "language": "kotlin",
+      "code": "@Test fun articles() = runTest {\n    val result = productionApi.fetchArticles()\n    assertTrue(result.isNotEmpty())\n}",
+      "walkthrough": [
+        "The test depends on internet, live content, server availability, and possibly credentials.",
+        "It cannot deterministically exercise error, malformed, timeout, or retry cases.",
+        "Point the real client at MockWebServer with explicit queued responses and request assertions."
+      ],
+      "expectedOutput": "The suite passes offline and covers every protocol boundary deterministically."
+    },
+    "trap_check": [
+      {
+        "mistake": "Testing retry sleeps with real multi-second delays.",
+        "why": "The suite becomes slow and flaky while policy remains difficult to inspect.",
+        "fix": "Inject delay/backoff for unit tests and reserve socket timing for focused integration cases."
+      },
+      {
+        "mistake": "Adding abstraction or optimisation before defining the failure.",
+        "why": "The code becomes harder while ownership, correctness, or measured cost remains unresolved.",
+        "fix": "First write a boundary test or collect evidence that identifies the real defect."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Test the Week 16 news client end to end through MockWebServer for success, conditional request, empty body, typed errors, malformed JSON, timeout, retry, cancellation, and log redaction.",
+      "successLooksLike": "No test reaches the public internet. Recorded requests verify path, query, and safe headers. Adverse responses map to exact typed outcomes."
+    },
+    "recall": [
+      {
+        "prompt": "What does enqueue provide?",
+        "answer": "A deterministic response for a client request."
+      },
+      {
+        "prompt": "What does takeRequest provide?",
+        "answer": "The actual recorded HTTP request."
+      },
+      {
+        "prompt": "What stack should the test exercise?",
+        "answer": "The configured Retrofit, converter, OkHttp, interceptors, and source."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-16-06-mockwebserver-network-integration-tests",
+  "challengeId": "challenge-level-04-week-16-06-mockwebserver-network-integration-tests",
+  "revision": {
+    "objectives": [
+      "Build hermetic client integration tests.",
+      "Assert requests and adverse responses.",
+      "Separate policy virtual time from socket timing."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 110,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://square.github.io/okhttp/5.x/mockwebserver3/mockwebserver3/-mock-web-server/",
+    "https://developer.android.com/topic/architecture/data-layer#testing"
+  ],
+  "version": "0.6.0"
+}

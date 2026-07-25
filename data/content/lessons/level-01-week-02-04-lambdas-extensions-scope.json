@@ -1,0 +1,227 @@
+{
+  "id": "level-01-week-02-04-lambdas-extensions-scope",
+  "title": "Lambdas, Higher-Order Functions, and Extensions",
+  "categoryId": "level-01-programming-foundations",
+  "week": 2,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-02-03-collections-transformations"
+  ],
+  "tags": [
+    "kotlin",
+    "lambdas",
+    "higher-order-functions",
+    "extensions"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Treating behaviour as a value lets Kotlin APIs separate a reusable operation from the policy supplied by each caller.",
+      "realWorldUse": "Compose event callbacks, collection operators, coroutine builders, configuration blocks, listeners, and test helpers all rely on lambdas and function types.",
+      "outcome": "Read function types, write focused lambdas and higher-order functions, and use extensions or scope functions without hiding control flow."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "function-values",
+          "title": "Functions can receive behaviour",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A function type describes inputs and output, such as (Expense) -> Boolean for a rule that receives an Expense and returns a Boolean. A lambda is an unnamed function value. Its parameters appear before -> and its last expression becomes the result. Higher-order functions accept or return functions. This is how filter receives a caller-defined predicate while keeping traversal reusable. Give complex lambdas named functions when the policy deserves a domain name or is reused."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val isLarge: (Expense) -> Boolean = { expense ->\n    expense.amount >= 100.0\n}\n\nfun countMatching(\n    expenses: List<Expense>,\n    predicate: (Expense) -> Boolean,\n): Int = expenses.count(predicate)",
+              "caption": "The higher-order function owns iteration and the supplied lambda owns the matching policy."
+            },
+            {
+              "type": "table",
+              "title": "Function type parts",
+              "columns": [
+                "Syntax",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "(Expense) -> Boolean",
+                  "One Expense input and Boolean output"
+                ],
+                [
+                  "() -> Unit",
+                  "No input and action-like output"
+                ],
+                [
+                  "(A, B) -> R",
+                  "Two inputs and one result"
+                ],
+                [
+                  "suspend () -> T",
+                  "Suspending behaviour that eventually produces T"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "extensions",
+          "title": "Extensions improve local vocabulary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An extension function is called with receiver syntax but does not modify the receiver class or gain private access. Resolution is static from the declared receiver type, so an extension cannot provide runtime polymorphism. Extensions work well for focused transformations closely associated with an existing type, especially at application boundaries. Avoid broad public extensions with generic names because they pollute completion and can collide. Keep visibility as narrow as practical."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun String.toPositiveAmountOrNull(): Double? =\n    trim().toDoubleOrNull()?.takeIf { it > 0.0 }\n\nfun Expense.formatted(): String =\n    \"${category.displayName()}: £%.2f\".format(amount)",
+              "caption": "Each extension adds a small domain operation while using only the receiver public API."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "No new member exists",
+              "text": "Extension dispatch is static. If subtype-specific behaviour is required, use a member or interface contract instead."
+            }
+          ]
+        },
+        {
+          "id": "scope-functions",
+          "title": "Use scope functions for one clear purpose",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "let, run, with, apply, and also execute a block with an object in scope, but differ in receiver name and returned value. Choose from intent: apply configures and returns the receiver; also performs an additional side effect and returns the receiver; let transforms using it; run computes using this; with is a non-extension form. Deep nesting and switching between this and it make control flow opaque. A normal local variable is often clearer."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val draft = ExpenseDraft().copy(category = \"Food\")\n\nval amount = rawAmount\n    .toPositiveAmountOrNull()\n    ?.also { println(\"Parsed amount: $it\") }\n    ?: return",
+              "caption": "The extension owns parsing, also observes the present value, and Elvis exits on absence."
+            },
+            {
+              "type": "flow",
+              "title": "Choose a scope construct",
+              "steps": [
+                {
+                  "id": "need",
+                  "label": "State intent",
+                  "detail": "Configure, transform, compute, or observe?"
+                },
+                {
+                  "id": "receiver",
+                  "label": "Choose receiver name",
+                  "detail": "Will this or it be clearer?"
+                },
+                {
+                  "id": "return",
+                  "label": "Choose result",
+                  "detail": "Return receiver or block result?"
+                },
+                {
+                  "id": "simplify",
+                  "label": "Check clarity",
+                  "detail": "Prefer ordinary code if the chain hides flow."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Name important lambdas when they encode business policy. A declaration such as isReimbursable communicates intent more clearly than repeating a dense predicate in several collection chains."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Higher-order functions and lambdas",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/lambdas.html",
+          "whyRead": "The full reference for function types, lambda syntax, closures, receivers, and higher-order function behaviour."
+        },
+        {
+          "title": "Extensions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/extensions.html",
+          "whyRead": "Explains static extension resolution, nullable receivers, extension properties, scope, and member extensions."
+        },
+        {
+          "title": "Scope functions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/scope-functions.html",
+          "whyRead": "Compares let, run, with, apply, and also by receiver access, return value, and intended use."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Pass an expense policy",
+      "language": "kotlin",
+      "code": "data class Expense(val category: String, val amount: Double)\nfun List<Expense>.totalWhere(rule: (Expense) -> Boolean): Double =\n    filter(rule).sumOf { it.amount }\nfun main() {\n    val items = listOf(Expense(\"Food\", 5.0), Expense(\"Travel\", 12.0))\n    val travelTotal = items.totalWhere { it.category == \"Travel\" }\n    println(travelTotal)\n}",
+      "walkthrough": [
+        "The extension receiver is a List<Expense>.",
+        "totalWhere accepts caller-supplied policy as a function value.",
+        "The lambda selects Travel and the shared pipeline sums the selected amount."
+      ],
+      "expectedOutput": "12.0"
+    },
+    "trap_check": [
+      {
+        "mistake": "Nesting several scope functions using both this and it.",
+        "why": "The reader loses track of receivers, returned values, and early exits.",
+        "fix": "Name intermediate values or replace the nesting with ordinary statements."
+      },
+      {
+        "mistake": "Expecting an extension to override a member at runtime.",
+        "why": "Extensions are resolved statically and members take precedence.",
+        "fix": "Use an interface or open member for polymorphic behaviour."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Add parsing and formatting extensions plus a higher-order report function that accepts different expense-selection policies.",
+      "successLooksLike": "Function types make selection policy explicit. Extensions remain focused and have narrow visibility. The solution avoids nested scope-function chains."
+    },
+    "recall": [
+      {
+        "prompt": "What does (Expense) -> Boolean describe?",
+        "answer": "A function value taking one Expense and returning a Boolean."
+      },
+      {
+        "prompt": "Can an extension access private receiver state?",
+        "answer": "No, it uses the same visible API as ordinary external code."
+      },
+      {
+        "prompt": "What should decide scope-function choice?",
+        "answer": "The intended receiver name, returned value, and clarity of the operation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-02-04-lambdas-extensions-scope",
+  "challengeId": "challenge-level-01-week-02-04-lambdas-extensions-scope",
+  "revision": {
+    "objectives": [
+      "Read and declare common Kotlin function types.",
+      "Pass domain policy into a higher-order function.",
+      "Use extensions and scope functions without obscuring behaviour."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 80,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/lambdas.html",
+    "https://kotlinlang.org/docs/extensions.html",
+    "https://kotlinlang.org/docs/scope-functions.html"
+  ],
+  "version": "0.3.0"
+}

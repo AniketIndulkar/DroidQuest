@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-06-05-resources-qualifiers-localisation",
+  "title": "Internationalise the Notes Summary",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-06-05-resources-qualifiers-localisation",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Create default and second-locale resources for titles, formatted dates, and note counts, plus night colours and a test checklist for RTL, pseudo-locale, and large font scale.",
+  "successCriteria": [
+    "Every alternative has a valid default.",
+    "Quantities and formatted messages remain complete translation units.",
+    "Stable note categories are stored independently of translated labels."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Every alternative has a valid default.",
+    "Use lifecycle or boundary evidence to prove: Quantities and formatted messages remain complete translation units."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "<resources>\n    <string name=\"notes_title\">Notes</string>\n    <plurals name=\"note_count\">...</plurals>\n</resources>"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Every alternative has a valid default.",
+    "Implement the smallest design that guarantees: Quantities and formatted messages remain complete translation units.",
+    "Implement the smallest design that guarantees: Stable note categories are stored independently of translated labels."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that every alternative has a valid default.",
+    "Run a focused check demonstrating that quantities and formatted messages remain complete translation units.",
+    "Run a focused check demonstrating that stable note categories are stored independently of translated labels."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

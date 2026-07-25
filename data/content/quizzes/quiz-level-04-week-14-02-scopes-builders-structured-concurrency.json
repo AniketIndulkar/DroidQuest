@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-14-02-scopes-builders-structured-concurrency",
+  "title": "Scopes, Builders, and Structured Concurrency Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-02-scopes-builders-structured-concurrency"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-14-02-scopes-builders-structured-concurrency-decision",
+      "prompt": "Which builder represents a value that will be awaited?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "async",
+      "explanation": "async returns Deferred and is appropriate when concurrent work produces a value.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency",
+      "options": [
+        "async",
+        "launch only",
+        "SideEffect",
+        "Thread.sleep"
+      ]
+    },
+    {
+      "id": "q-level-04-week-14-02-scopes-builders-structured-concurrency-truth",
+      "prompt": "A well-structured suspend function should usually launch hidden GlobalScope work.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The caller should retain completion, cancellation, and failure control.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency"
+    },
+    {
+      "id": "q-level-04-week-14-02-scopes-builders-structured-concurrency-recall",
+      "prompt": "What should cancel a child coroutine?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Its owning parent or explicit owner scope",
+      "explanation": "Structured lifetimes prevent accidental work leaks.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

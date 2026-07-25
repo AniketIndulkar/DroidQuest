@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-05-week-22-05-multi-module-banking-capstone",
+  "title": "Apply Capstone: Multi-Module Banking Demo",
+  "categoryId": "level-05-production-architecture",
+  "lessonId": "level-05-week-22-05-multi-module-banking-capstone",
+  "difficulty": "advanced",
+  "estimatedMinutes": 180,
+  "prompt": "Deliver the complete multi-module banking demo and its evidence pack, including offline account reads, session replacement, unresolved payment recovery, graph rules, contract tests, and build measurements.",
+  "successCriteria": [
+    "Every important state and dependency has one named owner.",
+    "Dependencies point through the smallest consumer-facing contracts.",
+    "Tests, graph checks, or measurements cover the primary failure and change scenarios."
+  ],
+  "hints": [
+    "Trace one user event end to end before drawing additional layers.",
+    "Remove any wrapper that cannot name the change, risk, or test seam it protects."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class BankingApplicationGraph {\n  // app composition, feature contracts, data implementations, session scope\n}\n\ninterface BankingTestGraph {\n  val accounts: AccountsRepository\n  val payments: PaymentsRepository\n}"
+  },
+  "solutionOutline": [
+    "Model behaviours, lifetimes, dependencies, and failure states first.",
+    "Implement the smallest boundary, compose it at the edge, and collect evidence."
+  ],
+  "verification": [
+    "Run the focused behaviour or contract tests.",
+    "Inspect the dependency graph and repeat the adverse scenario after recreation or replacement."
+  ],
+  "rewards": {
+    "xp": 250,
+    "stars": 5
+  },
+  "version": "0.8.0"
+}

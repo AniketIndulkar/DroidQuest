@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-03-04-annotations-reflection-dsls",
+  "title": "Create an Expense Report Builder",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-03-04-annotations-reflection-dsls",
+  "difficulty": "beginner",
+  "estimatedMinutes": 50,
+  "prompt": "Design a small receiver-based builder that validates expenses, prevents nested receiver confusion, and returns a read-only report.",
+  "successCriteria": [
+    "The DSL marker constrains nested receiver scope.",
+    "Invalid expenses cannot enter the built report.",
+    "The returned model does not expose builder mutation."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: The DSL marker constrains nested receiver scope.",
+    "Use an executable example or focused check to verify: Invalid expenses cannot enter the built report."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@DslMarker annotation class ExpenseDsl\n@ExpenseDsl class ReportBuilder { /* builder API */ }\nfun report(block: ReportBuilder.() -> Unit): List<Expense> = TODO()"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: The DSL marker constrains nested receiver scope.",
+    "Implement and explain how the solution ensures: Invalid expenses cannot enter the built report.",
+    "Implement and explain how the solution ensures: The returned model does not expose builder mutation."
+  ],
+  "verification": [
+    "Run a focused check proving that the DSL marker constrains nested receiver scope.",
+    "Run a focused check proving that invalid expenses cannot enter the built report.",
+    "Run a focused check proving that the returned model does not expose builder mutation."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

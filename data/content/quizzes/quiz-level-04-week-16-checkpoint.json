@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-04-week-16-checkpoint",
+  "title": "Week 16 Checkpoint",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-01-http-contracts-status-headers",
+    "level-04-week-16-02-dto-kotlin-serialization",
+    "level-04-week-16-03-retrofit-data-source-repository",
+    "level-04-week-16-04-okhttp-interceptors-auth-logging",
+    "level-04-week-16-05-network-failures-timeouts-retries",
+    "level-04-week-16-06-mockwebserver-network-integration-tests"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-16-checkpoint-01",
+      "prompt": "What should protect a retried purchase from duplication?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "A server-supported idempotency key",
+      "explanation": "The server can recognise multiple attempts as one logical operation.",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers",
+      "options": [
+        "A server-supported idempotency key",
+        "A random UI delay",
+        "Ignoring the response",
+        "Using HTTP without TLS"
+      ]
+    },
+    {
+      "id": "q-week-16-checkpoint-02",
+      "prompt": "Every successful HTTP response contains a JSON body.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Responses such as 204 intentionally contain no content, and representations vary.",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers"
+    },
+    {
+      "id": "q-week-16-checkpoint-03",
+      "prompt": "Where should an invalid published timestamp be handled?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "At the DTO-to-domain mapping boundary",
+      "explanation": "The boundary converts untrusted representation into validated application meaning.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization",
+      "options": [
+        "At the DTO-to-domain mapping boundary",
+        "Inside a Text composable",
+        "By database auto-increment",
+        "By ignoring every error"
+      ]
+    },
+    {
+      "id": "q-week-16-checkpoint-04",
+      "prompt": "One model should always represent network, database, domain, and UI.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Separate models allow independent schemas and invariants to evolve safely.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization"
+    },
+    {
+      "id": "q-week-16-checkpoint-05",
+      "prompt": "Which layer should interpret retrofit2.Response?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Remote data source",
+      "explanation": "Transport status, headers, and bodies belong at the network boundary.",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository",
+      "options": [
+        "Remote data source",
+        "Composable card",
+        "Navigation graph",
+        "Glossary renderer"
+      ]
+    },
+    {
+      "id": "q-week-16-checkpoint-06",
+      "prompt": "A Retrofit suspend endpoint must always be wrapped in withContext(IO).",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Retrofit performs asynchronous network work and integrates with coroutine cancellation.",
+      "lessonId": "level-04-week-16-03-retrofit-data-source-repository"
+    },
+    {
+      "id": "q-week-16-checkpoint-07",
+      "prompt": "What should a normal interceptor do with chain.proceed?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Call it exactly once",
+      "explanation": "The chain expects one downstream exchange unless a valid short-circuit or carefully designed retry applies.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "options": [
+        "Call it exactly once",
+        "Call it until success",
+        "Never call it",
+        "Call it after logging tokens"
+      ]
+    },
+    {
+      "id": "q-week-16-checkpoint-08",
+      "prompt": "BODY logging is safe whenever BuildConfig.DEBUG is true.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Debug builds can contain real sensitive data and logs can escape.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging"
+    }
+  ],
+  "rewards": {
+    "xp": 275,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

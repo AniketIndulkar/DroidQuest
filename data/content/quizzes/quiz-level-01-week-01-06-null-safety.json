@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-01-week-01-06-null-safety",
+  "title": "Null Safety and Uncertain Input Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-01-06-null-safety"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-01-06-nullable-fact",
+      "prompt": "String? can contain either a String or null.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "The question mark marks the type as nullable.",
+      "lessonId": "level-01-week-01-06-null-safety"
+    },
+    {
+      "id": "q-week-01-06-safe-tools",
+      "prompt": "Which operations handle null without asserting it cannot occur?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "options": [
+        "?.",
+        "?:",
+        "explicit null check",
+        "!!"
+      ],
+      "answer": [
+        "?.",
+        "?:",
+        "explicit null check"
+      ],
+      "explanation": "Safe calls, Elvis defaults, and checks model absence; !! throws if the assertion is wrong.",
+      "lessonId": "level-01-week-01-06-null-safety"
+    },
+    {
+      "id": "q-week-01-06-parse-output",
+      "prompt": "What does \"abc\".toIntOrNull() produce?",
+      "type": "code_output",
+      "difficulty": "beginner",
+      "answer": "null",
+      "explanation": "The OrNull parsing function represents invalid numeric text with null instead of throwing.",
+      "lessonId": "level-01-week-01-06-null-safety"
+    }
+  ],
+  "rewards": {
+    "xp": 30,
+    "stars": 2
+  },
+  "version": "0.2.0"
+}

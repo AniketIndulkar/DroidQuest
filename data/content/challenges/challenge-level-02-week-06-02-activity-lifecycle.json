@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-06-02-activity-lifecycle",
+  "title": "Build a Lifecycle Trace Screen",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-06-02-activity-lifecycle",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Create an activity that records transitions and owns a visible-only observer through a lifecycle-aware API, then test launch, background, overlay, rotation, and return.",
+  "successCriteria": [
+    "The trace distinguishes instance identity across recreation.",
+    "The observer runs only while the screen is visible.",
+    "No durable save depends solely on onDestroy."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: The trace distinguishes instance identity across recreation.",
+    "Use lifecycle or boundary evidence to prove: The observer runs only while the screen is visible."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class MainActivity : ComponentActivity() {\n    override fun onCreate(state: Bundle?) { /* trace identity */ }\n}"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: The trace distinguishes instance identity across recreation.",
+    "Implement the smallest design that guarantees: The observer runs only while the screen is visible.",
+    "Implement the smallest design that guarantees: No durable save depends solely on onDestroy."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that the trace distinguishes instance identity across recreation.",
+    "Run a focused check demonstrating that the observer runs only while the screen is visible.",
+    "Run a focused check demonstrating that no durable save depends solely on onDestroy."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

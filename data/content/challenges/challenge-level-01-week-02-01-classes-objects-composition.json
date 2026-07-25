@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-01-week-02-01-classes-objects-composition",
+  "title": "Model an Expense Recorder",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-02-01-classes-objects-composition",
+  "difficulty": "beginner",
+  "estimatedMinutes": 40,
+  "prompt": "Build Expense, ExpenseStore, InMemoryExpenseStore, and ExpenseRecorder so invalid expenses cannot be created and storage can be replaced.",
+  "successCriteria": [
+    "Expense construction rejects blank categories and non-positive amounts.",
+    "Recorder depends on ExpenseStore rather than a concrete list.",
+    "The in-memory implementation does not expose its mutable collection."
+  ],
+  "hints": [
+    "Begin with the smallest model or function that can demonstrate: Expense construction rejects blank categories and non-positive amounts.",
+    "Use an executable example or focused check to verify: Recorder depends on ExpenseStore rather than a concrete list."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "interface ExpenseStore {\n    fun save(expense: Expense)\n}\n\nclass ExpenseRecorder(/* dependency */) {\n    // Record a valid expense.\n}"
+  },
+  "solutionOutline": [
+    "Implement and explain how the solution ensures: Expense construction rejects blank categories and non-positive amounts.",
+    "Implement and explain how the solution ensures: Recorder depends on ExpenseStore rather than a concrete list.",
+    "Implement and explain how the solution ensures: The in-memory implementation does not expose its mutable collection."
+  ],
+  "verification": [
+    "Run a focused check proving that expense construction rejects blank categories and non-positive amounts.",
+    "Run a focused check proving that recorder depends on ExpenseStore rather than a concrete list.",
+    "Run a focused check proving that the in-memory implementation does not expose its mutable collection."
+  ],
+  "rewards": {
+    "xp": 120,
+    "stars": 5
+  },
+  "version": "0.3.0"
+}

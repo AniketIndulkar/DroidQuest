@@ -1,0 +1,67 @@
+{
+  "id": "level-03-jetpack-compose",
+  "title": "Level 3: Jetpack Compose",
+  "order": 3,
+  "description": "Build accessible, adaptive declarative interfaces with predictable state, controlled effects, reusable design systems, navigation, animation, and performance awareness.",
+  "difficulty": "intermediate",
+  "status": "complete",
+  "weekRange": {
+    "start": 9,
+    "end": 13
+  },
+  "unlockPrerequisites": [
+    "level-02-android-platform-fundamentals"
+  ],
+  "tags": [
+    "compose",
+    "ui",
+    "accessibility"
+  ],
+  "estimatedLearningMinutes": 267,
+  "lessonIds": [
+    "level-03-week-09-01-compose-mental-model",
+    "level-03-week-09-02-modifiers-constraints-order",
+    "level-03-week-09-03-row-column-box-layout",
+    "level-03-week-09-04-material3-scaffold-slots",
+    "level-03-week-09-05-text-input-resources",
+    "level-03-week-10-01-state-remember-saveable",
+    "level-03-week-10-02-state-hoisting-udf",
+    "level-03-week-10-03-recomposition-snapshots-identity",
+    "level-03-week-10-04-lazy-lists-grids",
+    "level-03-week-10-05-navigation-compose-concepts",
+    "level-03-week-11-01-effect-fundamentals-keys",
+    "level-03-week-11-02-launched-effect-coroutine-scope",
+    "level-03-week-11-03-disposable-sideeffect-updatedstate",
+    "level-03-week-11-04-derived-state-snapshot-flow",
+    "level-03-week-11-05-viewmodel-lifecycle-collection",
+    "level-03-week-12-01-stability-skipping-performance",
+    "level-03-week-12-02-custom-layout-measure-placement",
+    "level-03-week-12-03-canvas-custom-drawing",
+    "level-03-week-12-04-gestures-pointer-input",
+    "level-03-week-12-05-animation-nested-scroll",
+    "level-03-week-12-06-design-systems-compositionlocal",
+    "level-03-week-13-01-accessibility-semantics-talkback",
+    "level-03-week-13-02-focus-keyboard-scalable-content",
+    "level-03-week-13-03-localisation-rtl-theme-policy",
+    "level-03-week-13-04-edge-to-edge-window-insets",
+    "level-03-week-13-05-adaptive-layout-navigation3",
+    "level-03-week-13-06-compose-testing-shopping-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-03-week-09-01-compose-mental-model",
+  "plannedTopics": [
+    "Declarative composition, layout, Material components, text, input, resources, and responsive relationships",
+    "State ownership, snapshots, lazy collections, typed navigation, lifecycle effects, and Flow collection",
+    "Custom layout and drawing, gestures, animation, nested scrolling, design systems, accessibility, adaptive UI, and testing"
+  ],
+  "project": {
+    "title": "Adaptive Shopping Application",
+    "summary": "Build an accessible shopping experience that adapts across phones, tablets, and foldables with tested navigation and animation."
+  },
+  "theme": {
+    "color": "#8A4FFF",
+    "icon": "layers",
+    "mapMood": "A responsive city of state-driven screens and reusable visual systems."
+  },
+  "version": "0.6.0",
+  "checkpointQuizId": "quiz-level-03-checkpoint"
+}

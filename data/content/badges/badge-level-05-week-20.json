@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-05-week-20",
+  "title": "Week 20 Graph Smith",
+  "description": "Awarded for completing the Week 20 production architecture checkpoint.",
+  "categoryId": "level-05-production-architecture",
+  "icon": "architecture-week-20",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-05-week-20-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 350,
+  "rarity": "rare",
+  "version": "0.8.0"
+}

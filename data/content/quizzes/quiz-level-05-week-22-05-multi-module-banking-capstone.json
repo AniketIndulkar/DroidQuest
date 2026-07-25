@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-05-week-22-05-multi-module-banking-capstone",
+  "title": "Capstone: Multi-Module Banking Demo Check",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-22-05-multi-module-banking-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-05-week-22-05-multi-module-banking-capstone-decision",
+      "prompt": "Which approach best demonstrates sound capstone: multi-module banking demo?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Deliver the complete multi-module banking demo and its evidence pack, including offline account reads, session replacement, unresolved payment recovery, graph rules, contract tests, and build measurements.",
+        "Judging the capstone by module count or diagram appearance while payment recovery and test replacement remain unproven.",
+        "Copy the largest sample architecture without measuring its fit",
+        "Hide dependencies behind global lookup to reduce constructor parameters"
+      ],
+      "answer": "Deliver the complete multi-module banking demo and its evidence pack, including offline account reads, session replacement, unresolved payment recovery, graph rules, contract tests, and build measurements.",
+      "explanation": "The sound choice names the protected contract and requires observable evidence rather than structural appearance.",
+      "lessonId": "level-05-week-22-05-multi-module-banking-capstone"
+    },
+    {
+      "id": "q-level-05-week-22-05-multi-module-banking-capstone-truth",
+      "prompt": "Adding more interfaces and Gradle modules always improves application architecture.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Every boundary has cost and must protect a real responsibility, change seam, ownership rule, or measured build property.",
+      "lessonId": "level-05-week-22-05-multi-module-banking-capstone"
+    },
+    {
+      "id": "q-level-05-week-22-05-multi-module-banking-capstone-recall",
+      "prompt": "What evidence should accompany the capstone: multi-module banking demo decision?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "A focused behavioural test, dependency graph rule, failure scenario, or measurement tied to the claimed benefit.",
+      "explanation": "Architecture claims become reviewable when a specific check can prove or disprove them.",
+      "lessonId": "level-05-week-22-05-multi-module-banking-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 100,
+    "stars": 3
+  },
+  "version": "0.8.0"
+}

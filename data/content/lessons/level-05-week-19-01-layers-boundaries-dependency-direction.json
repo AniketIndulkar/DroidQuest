@@ -1,0 +1,210 @@
+{
+  "id": "level-05-week-19-01-layers-boundaries-dependency-direction",
+  "title": "Layers, Boundaries, and Dependency Direction",
+  "categoryId": "level-05-production-architecture",
+  "week": 19,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-18-07-offline-first-news-capstone"
+  ],
+  "tags": [
+    "architecture",
+    "layers",
+    "boundaries"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "This lesson makes layers, boundaries, and dependency direction a concrete production decision rather than a diagram or naming convention.",
+      "realWorldUse": "Growing Android codebases need this skill to preserve correctness, independent change, testability, and understandable ownership across teams and releases.",
+      "outcome": "Design and defend the boundary, recognise its failure modes, and verify it with code and evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Model the responsibility before the mechanism",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Architecture is the set of boundaries that lets people change software without first understanding every file. Android guidance separates a UI layer from a data layer and allows an optional domain layer between them. This is a responsibility model, not a demand for three folders. UI code renders state and relays intent. Data code owns application data and coordinates sources. Domain code earns its place only when reusable or complex business rules need a focused home. The important property is that each decision has an accountable owner."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "interface AccountsRepository {\n  fun observeAccounts(): Flow<List<Account>>\n}\n\nclass AccountsViewModel(\n  private val accounts: AccountsRepository\n) : ViewModel()",
+              "caption": "The code exposes the ownership or dependency contract that the architecture must preserve."
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Make dependency and lifetime rules explicit",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependencies should point toward stable contracts, while volatile details stay behind those contracts. A payment screen may depend on an operation such as SendPayment, but it should not know Retrofit paths, Room tables, or token refresh. The data implementation may know those technologies. Android framework types should remain near platform boundaries unless a lower layer genuinely models a platform capability. Package names alone cannot enforce this rule; constructor signatures and Gradle dependencies reveal the real direction."
+            },
+            {
+              "type": "table",
+              "title": "Decision lens",
+              "columns": [
+                "Element",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "UI",
+                  "Renders state and sends intent"
+                ],
+                [
+                  "Data",
+                  "Owns application data and source coordination"
+                ],
+                [
+                  "Domain",
+                  "Optional reusable or complex business policy"
+                ],
+                [
+                  "Evidence",
+                  "A focused test, graph rule, or measurement proves the claim"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Verify the architecture under change",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Start a design from behaviours and failure states, then draw owners and arrows. Ask who may mutate an account balance, which state survives process death, and which layer translates protocol failures. A boundary is useful when it protects a policy, supports independent testing, or contains change. It is harmful when it only forwards calls and forces engineers through identical models. Review architecture by tracing one user action from UI event to durable result and back to renderable state."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production architecture is evaluated by behaviour under change and failure. Name the owner, lifetime, public contract, cancellation path, and test seam before adding a pattern or framework. Trace one real user action through every boundary, including recreation and alternate implementations. Keep types immutable at consumer boundaries, make dependencies visible in constructors or build files, and prefer a small purposeful abstraction over a generic hierarchy. Record why the choice exists and the evidence that would justify revisiting it. Include privacy, accessibility, observability, and team comprehension in the review because a technically valid graph can still fail its users and maintainers."
+            },
+            {
+              "type": "flow",
+              "title": "Architecture feedback loop",
+              "steps": [
+                {
+                  "id": "force",
+                  "label": "Name forces",
+                  "detail": "Identify product risk, ownership, lifetime, reuse, and change pressure."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Choose boundary",
+                  "detail": "Assign one owner and the smallest stable consumer contract."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Connect concrete implementations only at the authorised edge."
+                },
+                {
+                  "id": "stress",
+                  "label": "Stress",
+                  "detail": "Exercise failure, recreation, replacement, and parallel development."
+                },
+                {
+                  "id": "review",
+                  "label": "Review evidence",
+                  "detail": "Keep, reshape, or remove the boundary based on observed results."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Architecture is not file naming",
+              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Guide to app architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture",
+          "whyRead": "Explains separation of concerns, single sources of truth, and directional data flow."
+        },
+        {
+          "title": "Recommendations for Android architecture",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/recommendations",
+          "whyRead": "Provides current recommendations and the conditions under which optional layers add value."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Layers, Boundaries, and Dependency Direction boundary",
+      "language": "kotlin",
+      "code": "interface AccountsRepository {\n  fun observeAccounts(): Flow<List<Account>>\n}\n\nclass AccountsViewModel(\n  private val accounts: AccountsRepository\n) : ViewModel()",
+      "walkthrough": [
+        "Identify the consumer-facing contract and the concrete implementation or state owner behind it.",
+        "Trace dependency direction and confirm that shorter-lived or technology-specific details do not leak outward.",
+        "Define a focused test or graph check that would fail if the architectural promise were broken."
+      ],
+      "expectedOutput": "A small, explainable boundary whose responsibility, lifetime, dependency direction, and verification are explicit."
+    },
+    "trap_check": [
+      {
+        "mistake": "Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient.",
+        "why": "It obscures ownership or adds coupling without protecting a measurable product or engineering property.",
+        "fix": "Return to the user behaviour, name the invariant and owner, then introduce only the smallest boundary that protects it."
+      },
+      {
+        "mistake": "Selecting a pattern or tool before defining lifetime, failure, and replacement behaviour.",
+        "why": "The implementation can compile while recreation, testing, alternate implementations, and team changes remain unsafe.",
+        "fix": "Write the dependency and state contract first, then test it through failure and replacement."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Draw the dependency map for a banking accounts feature, assign every state mutation and error translation to one owner, and remove any boundary that has no testable purpose.",
+      "successLooksLike": "The design has explicit owners and dependency direction, survives its adverse scenarios, and includes evidence for every claimed benefit."
+    },
+    "recall": [
+      {
+        "prompt": "What problem should layers, boundaries, and dependency direction solve?",
+        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+      },
+      {
+        "prompt": "What makes an architecture boundary trustworthy?",
+        "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
+      },
+      {
+        "prompt": "When should an abstraction or module be removed?",
+        "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
+      }
+    ]
+  },
+  "quizId": "quiz-level-05-week-19-01-layers-boundaries-dependency-direction",
+  "challengeId": "challenge-level-05-week-19-01-layers-boundaries-dependency-direction",
+  "revision": {
+    "objectives": [
+      "Explain the responsibility and trade-offs in Layers, Boundaries, and Dependency Direction.",
+      "Apply the dependency and lifetime rules to a production Android feature.",
+      "Verify the architectural contract with focused tests or measurements."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 65,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/architecture",
+    "https://developer.android.com/topic/architecture/recommendations"
+  ],
+  "version": "0.8.0"
+}

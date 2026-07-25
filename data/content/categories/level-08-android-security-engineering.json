@@ -1,0 +1,39 @@
+{
+  "id": "level-08-android-security-engineering",
+  "title": "Level 8: Android Security Engineering",
+  "order": 8,
+  "description": "Protect Android applications through threat modelling, secure storage, cryptographic key handling, transport controls, identity flows, and operational rotation plans.",
+  "difficulty": "advanced",
+  "status": "planned",
+  "weekRange": {
+    "start": 31,
+    "end": 34
+  },
+  "unlockPrerequisites": [
+    "level-07-testing-quality-engineering"
+  ],
+  "tags": [
+    "security",
+    "privacy",
+    "threat-modeling"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-08-preview",
+  "plannedTopics": [
+    "Threat models and reverse-engineering fundamentals",
+    "Keystore, encryption, and secure local storage",
+    "TLS, pinning, rotation, and network security configuration",
+    "OAuth, deep links, integrity, fraud, and abuse controls"
+  ],
+  "project": {
+    "title": "Banking Application Security Review",
+    "summary": "Produce a threat model, attack tree, findings report, remediation, certificate-rotation plan, and secret-management architecture."
+  },
+  "theme": {
+    "color": "#384A61",
+    "icon": "security",
+    "mapMood": "Trust boundaries, protected stores, and incident routes made visible."
+  },
+  "version": "0.2.0"
+}

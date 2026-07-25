@@ -1,0 +1,223 @@
+{
+  "id": "level-01-week-01-04-loops-ranges",
+  "title": "Repeating Work with Loops and Ranges",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-03-expressions-decisions"
+  ],
+  "tags": [
+    "kotlin",
+    "loops",
+    "ranges",
+    "iteration"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "A program should express repeated work once and apply it safely to many values.",
+      "realWorldUse": "Android code iterates over screen items, validation errors, database results, retry attempts, and batches of work.",
+      "outcome": "Choose a for or while loop, define its boundary, and trace changing loop state."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "for-and-ranges",
+          "title": "Use for when the values are known",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A for loop visits each value supplied by an iterable source. Ranges are a convenient source for ordered numbers. The closed range 1..5 includes both endpoints. The open-ended range 0..<size excludes size and is useful for valid zero-based indexes. downTo counts downward, and step changes the interval. Prefer iterating directly over collection values when you do not need indexes; it communicates intent and avoids boundary mistakes."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "for (day in 1..3) {\n    println(\"Day $day\")\n}\n\nfor (index in 0..<3) {\n    println(\"Index $index\")\n}",
+              "caption": "The first range includes 3; the second stops before 3."
+            },
+            {
+              "type": "table",
+              "title": "Range forms",
+              "columns": [
+                "Form",
+                "Values",
+                "Use"
+              ],
+              "rows": [
+                [
+                  "1..3",
+                  "1, 2, 3",
+                  "Closed range including both ends"
+                ],
+                [
+                  "0..<3",
+                  "0, 1, 2",
+                  "Open upper bound"
+                ],
+                [
+                  "3 downTo 1",
+                  "3, 2, 1",
+                  "Descending sequence"
+                ],
+                [
+                  "0..6 step 2",
+                  "0, 2, 4, 6",
+                  "Regular interval"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "while-and-progress",
+          "title": "Use while when repetition depends on a condition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A while loop repeats while its condition remains true. It fits work where the number of iterations is not known in advance, such as reading valid input or retrying until a limit. The body must make progress toward making the condition false. If it does not, the loop may never end. Identify the initial state, continuation condition, and state update before writing the body."
+            },
+            {
+              "type": "flow",
+              "title": "A safe while loop",
+              "steps": [
+                {
+                  "id": "initialise",
+                  "label": "Initialise",
+                  "detail": "Create the state used by the condition."
+                },
+                {
+                  "id": "check",
+                  "label": "Check",
+                  "detail": "Stop immediately when the condition is false."
+                },
+                {
+                  "id": "work",
+                  "label": "Work",
+                  "detail": "Perform one iteration of useful behaviour."
+                },
+                {
+                  "id": "update",
+                  "label": "Update",
+                  "detail": "Move state toward termination."
+                },
+                {
+                  "id": "repeat",
+                  "label": "Repeat",
+                  "detail": "Return to the condition with new state."
+                }
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "var attempts = 0\nval maximumAttempts = 3\n\nwhile (attempts < maximumAttempts) {\n    attempts += 1\n    println(\"Attempt $attempts\")\n}",
+              "caption": "attempts changes every iteration, so the condition eventually becomes false."
+            }
+          ]
+        },
+        {
+          "id": "accumulators-and-tracing",
+          "title": "Build a result across iterations",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An accumulator stores a result built across iterations. A total often starts at zero and adds each value. A product starts at one. A text result may begin empty. Because an accumulator changes, it is commonly a var even when surrounding data remains val. Keep the mutable state close to the loop and make the update easy to spot. Later, collection operators will express many common loops without manual mutation, but understanding the mechanics remains essential for debugging and performance reasoning."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val dailyExpenses = listOf(4.50, 8.25, 3.00)\nvar total = 0.0\n\nfor (expense in dailyExpenses) {\n    total += expense\n    println(\"Added £$expense; total is £$total\")\n}\n\nprintln(\"Final total: £$total\")",
+              "caption": "Tracing after each update shows exactly how the accumulator reaches its final value."
+            },
+            {
+              "type": "paragraph",
+              "text": "Before running a loop, trace a small example in a table with columns for iteration, current item, state before, and state after. This exposes off-by-one errors and updates placed in the wrong location. Avoid changing the collection you are iterating unless the API explicitly supports it. If a loop contains several unrelated responsibilities, move one responsibility into a function so the iteration remains readable."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Conditions and loops",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/control-flow.html",
+          "whyRead": "Reinforces for, while, do-while, break, and continue using the complete official language reference."
+        },
+        {
+          "title": "Ranges and progressions",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/ranges.html",
+          "whyRead": "Explains closed and open ranges, downward progressions, steps, and the boundary behaviour behind Kotlin loops."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Sum approved expenses only",
+      "language": "kotlin",
+      "code": "fun main() {\n    val expenses = listOf(12.0, -3.0, 8.5, 0.0)\n    var total = 0.0\n\n    for (amount in expenses) {\n        if (amount > 0.0) {\n            total += amount\n        }\n    }\n\n    println(\"Approved total: £$total\")\n}",
+      "walkthrough": [
+        "The for loop visits every amount directly, so no index is required.",
+        "The condition rejects zero and negative values before they reach the accumulator.",
+        "Only 12.0 and 8.5 are added, leaving a final total of 20.5."
+      ],
+      "expectedOutput": "Approved total: £20.5"
+    },
+    "trap_check": [
+      {
+        "mistake": "Using 0..items.size to access list indexes.",
+        "why": "The closed range includes items.size, which is one position beyond the final valid index.",
+        "fix": "Iterate over items directly, use items.indices, or use 0..<items.size."
+      },
+      {
+        "mistake": "Forgetting to update state inside a while loop.",
+        "why": "The continuation condition may remain true forever and create an infinite loop.",
+        "fix": "Write the intended progress update before filling in other loop work."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Process a list of seven daily amounts, ignore invalid values, and calculate both the total and valid-item count.",
+      "successLooksLike": "The loop has correct boundaries, mutable accumulators are minimal, and a trace explains the first three iterations."
+    },
+    "recall": [
+      {
+        "prompt": "When is a for loop the clearer choice?",
+        "answer": "Use for when iterating over a known range or collection of values."
+      },
+      {
+        "prompt": "What three facts define a while loop?",
+        "answer": "Its initial state, continuation condition, and progress update."
+      },
+      {
+        "prompt": "Why does 0..size often cause a bug?",
+        "answer": "The closed range includes size, which is beyond the last zero-based index."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-04-loops-ranges",
+  "challengeId": "challenge-level-01-week-01-04-loops-ranges",
+  "revision": {
+    "objectives": [
+      "Select for or while based on the repetition model.",
+      "Use inclusive and exclusive range boundaries correctly.",
+      "Trace an accumulator across repeated updates."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/control-flow.html",
+    "https://kotlinlang.org/docs/ranges.html"
+  ],
+  "version": "0.2.0"
+}

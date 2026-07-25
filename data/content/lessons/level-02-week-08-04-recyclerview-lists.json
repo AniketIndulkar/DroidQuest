@@ -1,0 +1,224 @@
+{
+  "id": "level-02-week-08-04-recyclerview-lists",
+  "title": "RecyclerView and Efficient View Lists",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 8,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-08-03-fragments-navigation"
+  ],
+  "tags": [
+    "recyclerview",
+    "adapter",
+    "diffutil",
+    "lists"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Large retained lists need to reuse item views and update only changed content rather than inflating an entire hierarchy for every row.",
+      "realWorldUse": "RecyclerView, LayoutManager, Adapter, ViewHolder, DiffUtil, and ListAdapter remain common in legacy and hybrid list screens.",
+      "outcome": "Explain recycling, bind complete row state, submit immutable lists with stable identity, and avoid position-capture bugs."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "roles",
+          "title": "RecyclerView separates layout, creation, and binding",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "RecyclerView hosts a scrolling collection of item views. LayoutManager decides placement and scrolling; Adapter creates ViewHolders for item view types and binds data; ViewHolder retains references for one recyclable row. Only enough holders for visible content and a small cache are normally active. Binding can occur many times for different items, so onBindViewHolder must overwrite every visual property that might differ—text, visibility, checked state, enabled state, colour, accessibility, and listeners. Never treat a holder as permanent ownership of one model."
+            },
+            {
+              "type": "table",
+              "title": "Recycler roles",
+              "columns": [
+                "Role",
+                "Responsibility"
+              ],
+              "rows": [
+                [
+                  "RecyclerView",
+                  "Host, recycle, scroll coordination"
+                ],
+                [
+                  "LayoutManager",
+                  "Measure and place item views"
+                ],
+                [
+                  "Adapter",
+                  "Create and bind holders"
+                ],
+                [
+                  "ViewHolder",
+                  "Retain one row hierarchy references"
+                ],
+                [
+                  "DiffUtil/ListAdapter",
+                  "Calculate updates from old and new lists"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class NoteHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {\n    fun bind(note: Note, onClick: (String) -> Unit) {\n        binding.title.text = note.title\n        binding.pinned.isVisible = note.isPinned\n        binding.root.setOnClickListener { onClick(note.id) }\n    }\n}",
+              "caption": "Every recycled property is reset and the click captures stable item identity."
+            }
+          ]
+        },
+        {
+          "id": "diffs",
+          "title": "Identity and content answer different change questions",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "notifyDataSetChanged forces broad rebinding and discards useful animation information. DiffUtil compares an old and new list: areItemsTheSame identifies the same logical record, usually by stable ID; areContentsTheSame determines whether displayed content is unchanged. ListAdapter performs this work and accepts list snapshots. Do not mutate the same list instance after submission because the differ cannot observe a clear old/new transition. Stable IDs can help in specific cases but must remain genuinely stable and unique. Diff correctness is a UI consistency contract, not merely performance tuning."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "object NoteDiff : DiffUtil.ItemCallback<NoteRow>() {\n    override fun areItemsTheSame(a: NoteRow, b: NoteRow) = a.id == b.id\n    override fun areContentsTheSame(a: NoteRow, b: NoteRow) = a == b\n}\nadapter.submitList(newRows.toList())",
+              "caption": "Logical identity uses ID while value equality decides whether the row needs rebinding."
+            },
+            {
+              "type": "flow",
+              "title": "List update",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "New UI state",
+                  "detail": "ViewModel emits immutable rows."
+                },
+                {
+                  "id": "submit",
+                  "label": "Submit snapshot",
+                  "detail": "Adapter receives a distinct list value."
+                },
+                {
+                  "id": "diff",
+                  "label": "Calculate diff",
+                  "detail": "Identity and content comparisons find changes."
+                },
+                {
+                  "id": "dispatch",
+                  "label": "Dispatch updates",
+                  "detail": "RecyclerView inserts, removes, moves, or rebinds."
+                },
+                {
+                  "id": "bind",
+                  "label": "Bind visible rows",
+                  "detail": "Holders render complete current state."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "events",
+          "title": "Report item identity, not stale adapter position",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Adapter positions can change after inserts, moves, or asynchronous diff application. A listener created with an old position may operate on the wrong item. Bind the current note ID into the listener or query bindingAdapterPosition at click time and reject NO_POSITION. Keep selection and expanded state in screen models when it must survive recycling; a checkbox property only on the ViewHolder will reappear on an unrelated row. Multiple view types require explicit type mapping. Test rapid updates, duplicate content with distinct IDs, removal during interaction, restoration, accessibility focus, and empty/loading states."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "binding.root.setOnClickListener {\n    val position = bindingAdapterPosition\n    if (position != RecyclerView.NO_POSITION) onNoteClick(getItem(position).id)\n}",
+              "caption": "The handler resolves the current adapter position at event time and passes stable identity upward."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "A ViewHolder is temporary presentation",
+              "text": "State that belongs to a note or screen must not live only in a recyclable row object."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Create dynamic lists with RecyclerView",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/views/layout/recyclerview",
+          "whyRead": "Explains RecyclerView, LayoutManager, Adapter, ViewHolder, creation, binding, and recycling."
+        },
+        {
+          "title": "ListAdapter API",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter",
+          "whyRead": "Documents asynchronous diffing, submitted lists, commits, and current-list behaviour."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find a recycled-state bug",
+      "language": "text",
+      "code": "fun bind(note: Note) {\n    title.text = note.title\n    if (note.isPinned) pinned.visibility = View.VISIBLE\n}",
+      "walkthrough": [
+        "A holder previously bound to a pinned note can be recycled.",
+        "Binding an unpinned note never resets visibility.",
+        "Every branch-dependent property must receive a value on every bind."
+      ],
+      "expectedOutput": "Set pinned.isVisible = note.isPinned unconditionally."
+    },
+    "trap_check": [
+      {
+        "mistake": "Setting a view property only in the true branch.",
+        "why": "Recycled holders retain old values for later items.",
+        "fix": "Bind every variable visual property on every call."
+      },
+      {
+        "mistake": "Capturing the original position in a long-lived click listener.",
+        "why": "Diffs can move or remove the item before the event.",
+        "fix": "Pass stable ID or resolve current bindingAdapterPosition safely."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement a ListAdapter notes screen with View Binding, immutable rows, stable ID diffing, pinned state, clicks, empty state, and rapid-update tests.",
+      "successLooksLike": "Recycled rows never show stale pinned or selected state. Clicks always report the current stable note ID. Diff callbacks distinguish identity from content correctly."
+    },
+    "recall": [
+      {
+        "prompt": "What gets recycled?",
+        "answer": "ViewHolder item hierarchies are rebound to different models."
+      },
+      {
+        "prompt": "How do DiffUtil identity and content differ?",
+        "answer": "Identity tracks the same record; content checks whether its displayed value changed."
+      },
+      {
+        "prompt": "Where should selected state live?",
+        "answer": "In screen/model state when it must survive recycling and recreation."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-08-04-recyclerview-lists",
+  "challengeId": "challenge-level-02-week-08-04-recyclerview-lists",
+  "revision": {
+    "objectives": [
+      "Explain RecyclerView ownership and recycling.",
+      "Implement accurate immutable list diffs.",
+      "Handle events using current positions or stable identity."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/views/layout/recyclerview",
+    "https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter"
+  ],
+  "version": "0.4.0"
+}

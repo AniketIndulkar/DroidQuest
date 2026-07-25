@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-17-03-paging3-cursors-loadstates",
+  "title": "Paging 3, Cursors, and Load States Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-17-03-paging3-cursors-loadstates"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-17-03-paging3-cursors-loadstates-decision",
+      "prompt": "How should an opaque next cursor be handled?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Returned unchanged to the next request",
+      "explanation": "Only the server defines cursor continuation meaning.",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates",
+      "options": [
+        "Returned unchanged to the next request",
+        "Converted to a list index",
+        "Sorted alphabetically",
+        "Decoded as a timestamp without contract"
+      ]
+    },
+    {
+      "id": "q-level-04-week-17-03-paging3-cursors-loadstates-truth",
+      "prompt": "Append failure should always replace existing content with a blank full-screen error.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Existing items remain useful while an append-specific retry is shown.",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates"
+    },
+    {
+      "id": "q-level-04-week-17-03-paging3-cursors-loadstates-recall",
+      "prompt": "What does cachedIn do?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Shares PagingData in an owning coroutine scope",
+      "explanation": "A ViewModel can preserve the paging generation across configuration recreation.",
+      "lessonId": "level-04-week-17-03-paging3-cursors-loadstates"
+    }
+  ],
+  "rewards": {
+    "xp": 85,
+    "stars": 3
+  },
+  "version": "0.7.0"
+}

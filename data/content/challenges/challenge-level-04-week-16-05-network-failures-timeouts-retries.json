@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-16-05-network-failures-timeouts-retries",
+  "title": "Implement a Typed Retry Engine",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-16-05-network-failures-timeouts-retries",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Build a cancellable retry engine with typed transport and HTTP failures, timeout budget, exponential backoff and jitter, Retry-After support, and idempotency gating.",
+  "successCriteria": [
+    "Permanent and authentication failures do not loop.",
+    "Cancellation stops active call or delay.",
+    "Virtual-time tests prove attempts, delays, and exhaustion."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "suspend fun <T> execute(policy: RetryPolicy, operation: suspend () -> T): NetworkResult<T>"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

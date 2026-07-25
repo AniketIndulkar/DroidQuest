@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-17-04-multipart-upload-progress",
+  "title": "Build a Durable Attachment Upload",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-17-04-multipart-upload-progress",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Stream a picked image with metadata, sampled progress, cancellation, persistent URI access, stable idempotency ID, and recoverable background scheduling.",
+  "successCriteria": [
+    "Memory use is independent of file size.",
+    "Cancellation closes every resource.",
+    "Retry reconciles to one remote attachment."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class AttachmentUploader(private val resolver: ContentResolver, private val api: AttachmentApi)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

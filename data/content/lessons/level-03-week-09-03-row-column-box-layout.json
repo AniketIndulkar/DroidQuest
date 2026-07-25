@@ -1,0 +1,228 @@
+{
+  "id": "level-03-week-09-03-row-column-box-layout",
+  "title": "Row, Column, Box, and Responsive Layout",
+  "categoryId": "level-03-jetpack-compose",
+  "week": 9,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-03-week-09-02-modifiers-constraints-order"
+  ],
+  "tags": [
+    "compose",
+    "row",
+    "column",
+    "box"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Compose’s core layout primitives express one-dimensional and stacked relationships while constraints determine whether the result adapts or overflows.",
+      "realWorldUse": "Cards, forms, app bars, empty states, overlays, and responsive panes are assembled from Row, Column, Box, Spacer, alignment, and arrangement.",
+      "outcome": "Choose the correct primitive, apply weight and alignment, and design a layout that responds to content and available width."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Choose by relationship, not screenshot",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Row measures and places children horizontally, Column vertically, and Box stacks children in the same region. These primitives describe relationships rather than fixed coordinates. Arrangement distributes children along the main axis; alignment positions them on the cross axis. Box contentAlignment supplies a default while align can position one child. Spacer is useful when space itself is a meaningful element, but arrangement.spacedBy normally expresses repeated gaps more clearly. Avoid deep nesting copied from View hierarchies: Compose can nest efficiently, yet a tree should still communicate the screen structure and reading order."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "Row(\n    Modifier.fillMaxWidth().padding(16.dp),\n    verticalAlignment = Alignment.CenterVertically,\n    horizontalArrangement = Arrangement.spacedBy(12.dp),\n) {\n    Icon(Icons.Default.Description, contentDescription = null)\n    Column(Modifier.weight(1f)) { Text(note.title); Text(note.preview) }\n    IconButton(onClick = onStar) { Icon(Icons.Default.Star, \"Star note\") }\n}",
+              "caption": "The text column receives remaining width and lets the action keep its natural touch size."
+            },
+            {
+              "type": "table",
+              "title": "Core layout choice",
+              "columns": [
+                "Relationship",
+                "Primitive"
+              ],
+              "rows": [
+                [
+                  "Horizontal siblings",
+                  "Row"
+                ],
+                [
+                  "Vertical sequence",
+                  "Column"
+                ],
+                [
+                  "Overlay or aligned stack",
+                  "Box"
+                ],
+                [
+                  "Scrolling sequence",
+                  "LazyColumn or scrollable Column"
+                ],
+                [
+                  "Responsive screen structure",
+                  "Adaptive/window-aware container"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Alignment and arrangement operate on different axes",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Weight asks Row or Column to allocate remaining main-axis space proportionally after unweighted children are measured. fill determines whether weighted content occupies its allocated share. Intrinsic measurement can query child needs before ordinary measurement but adds work and should solve a specific dependency. Baseline alignment keeps text with different styles visually coherent. A Box overlay can place a badge or loading layer, but decorative overlays should not accidentally intercept input or appear before primary content in accessibility traversal. Test long labels and large font scale because a Row that fits short English text may need wrapping or a structural change."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "BoxWithConstraints {\n    if (maxWidth < 600.dp) NoteList(notes)\n    else Row { NoteList(notes, Modifier.weight(1f)); NoteDetail(selected, Modifier.weight(1f)) }\n}",
+              "caption": "A local width decision changes structure while shared state remains above the branch."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Main axis versus cross axis",
+              "text": "Arrangement distributes along the layout direction; alignment positions across it."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Responsive composition can change structure",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Responsive UI reacts to available space rather than device names. BoxWithConstraints can expose local constraints for a small decision, while window size classes or adaptive layout APIs suit screen-level structure. Preserve state and stable destination identity when switching from a single pane to list-detail; responsiveness should not create two independent screens. Use resources and Material spacing rather than magic device-width thresholds. Preview compact and expanded widths, landscape, fold posture where relevant, RTL, and keyboard focus. Week 13 will harden full adaptive production layouts, but responsive thinking begins with every Row and Column now."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production work on row, column, box, and responsive layout should begin with an observable requirement rather than a preferred API. Exercise the normal path, empty and error states, recreation, long content, large font scale, and rapid repeated input where they apply. Keep ownership visible in function signatures, make cancellation and failure behaviour deliberate, and record any assumption that crosses a lifecycle or platform boundary. Use previews for visual state, focused unit tests for pure transformations, Compose UI tests for semantics and interaction, and device traces or inspection tools only when runtime evidence is required. The goal is not merely code that renders once; it is behaviour another engineer can explain, test, change, and recover after the operating system or user changes the conditions."
+            },
+            {
+              "type": "flow",
+              "title": "A reliable implementation loop",
+              "steps": [
+                {
+                  "id": "state",
+                  "label": "Define inputs",
+                  "detail": "Name the state, constraints, and user outcome."
+                },
+                {
+                  "id": "compose",
+                  "label": "Compose",
+                  "detail": "Build the smallest semantic UI tree."
+                },
+                {
+                  "id": "interact",
+                  "label": "Exercise",
+                  "detail": "Test events, state changes, and configuration."
+                },
+                {
+                  "id": "inspect",
+                  "label": "Inspect",
+                  "detail": "Use previews, tests, and tooling to find incorrect assumptions."
+                },
+                {
+                  "id": "refine",
+                  "label": "Refine",
+                  "detail": "Improve the measured problem without hiding ownership."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not encode one device screenshot",
+              "text": "Fixed widths and one-line assumptions fail with translation, font scale, resizing, and alternate input."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Compose layout basics",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/basics",
+          "whyRead": "Introduces composable layout, Row, Column, Box, slots, alignment, and the composition-layout-draw pipeline."
+        },
+        {
+          "title": "Build adaptive layouts",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/ui/compose/layouts/adaptive",
+          "whyRead": "Connects available window space to adaptive layout decisions and canonical patterns."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Diagnose compressed text",
+      "language": "kotlin",
+      "code": "Row(Modifier.fillMaxWidth()) {\n    Text(longTitle)\n    Button(onClick = onSave) { Text(\"Save\") }\n}",
+      "walkthrough": [
+        "Both children request width without a policy for remaining space.",
+        "Long text can crowd or push the action under constrained width.",
+        "Give the text region weight, appropriate wrapping, and stable spacing while preserving button touch size."
+      ],
+      "expectedOutput": "Verify compact width, large font, and a long translated action label."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using Arrangement where cross-axis alignment is needed.",
+        "why": "The property affects a different layout axis.",
+        "fix": "Identify main and cross axes before choosing arrangement or alignment."
+      },
+      {
+        "mistake": "Branching responsive layout with separate state owners.",
+        "why": "Switching width can reset or diverge the same screen state.",
+        "fix": "Hoist shared state above the structural branch."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a note row that survives long text and a compact/expanded list-detail layout sharing one selection state.",
+      "successLooksLike": "Row actions retain accessible touch size. Large fonts and RTL remain usable. Changing available width does not reset selection."
+    },
+    "recall": [
+      {
+        "prompt": "What does Box primarily express?",
+        "answer": "Children sharing and aligning within the same stacked region."
+      },
+      {
+        "prompt": "What does weight distribute?",
+        "answer": "Remaining main-axis space in Row or Column."
+      },
+      {
+        "prompt": "What should responsive decisions use?",
+        "answer": "Available window/container space and content needs."
+      }
+    ]
+  },
+  "quizId": "quiz-level-03-week-09-03-row-column-box-layout",
+  "challengeId": "challenge-level-03-week-09-03-row-column-box-layout",
+  "revision": {
+    "objectives": [
+      "Select Row, Column, or Box by relationship.",
+      "Control remaining space and alignment.",
+      "Preserve state across responsive structure changes."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 100,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/develop/ui/compose/layouts/basics",
+    "https://developer.android.com/develop/ui/compose/layouts/adaptive"
+  ],
+  "version": "0.5.0"
+}

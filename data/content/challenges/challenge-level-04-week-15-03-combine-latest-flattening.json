@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-15-03-combine-latest-flattening",
+  "title": "Build a Replaceable Search Pipeline",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-15-03-combine-latest-flattening",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Combine query and filters, debounce input, replace obsolete searches, and test rapid changes, cancellation, initial state, and errors.",
+  "successCriteria": [
+    "Latest accepted request owns visible results.",
+    "Old source collection is demonstrably cancelled.",
+    "Durable selection events use a non-cancelling path."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun searchResults(query: Flow<String>, filters: Flow<Filters>): Flow<SearchState>"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

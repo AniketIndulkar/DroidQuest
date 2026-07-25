@@ -1,0 +1,119 @@
+{
+  "id": "quiz-level-04-week-14-checkpoint",
+  "title": "Week 14 Checkpoint",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-01-suspend-main-safety-dispatchers",
+    "level-04-week-14-02-scopes-builders-structured-concurrency",
+    "level-04-week-14-03-cancellation-timeouts-cleanup",
+    "level-04-week-14-04-exceptions-supervision",
+    "level-04-week-14-05-parallelism-thread-safety",
+    "level-04-week-14-06-coroutine-testing-virtual-time"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.75,
+  "questions": [
+    {
+      "id": "q-week-14-checkpoint-01",
+      "prompt": "What makes a blocking file read main-safe?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "withContext on an injected IO dispatcher",
+      "explanation": "The blocking operation is moved from Main while its owner keeps the API contract simple.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers",
+      "options": [
+        "withContext on an injected IO dispatcher",
+        "Adding suspend only",
+        "Calling it twice",
+        "Using a global variable"
+      ]
+    },
+    {
+      "id": "q-week-14-checkpoint-02",
+      "prompt": "Every suspend function automatically runs on Dispatchers.IO.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Suspend functions inherit coroutine context unless implementation changes it.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers"
+    },
+    {
+      "id": "q-week-14-checkpoint-03",
+      "prompt": "Which builder represents a value that will be awaited?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "async",
+      "explanation": "async returns Deferred and is appropriate when concurrent work produces a value.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency",
+      "options": [
+        "async",
+        "launch only",
+        "SideEffect",
+        "Thread.sleep"
+      ]
+    },
+    {
+      "id": "q-week-14-checkpoint-04",
+      "prompt": "A well-structured suspend function should usually launch hidden GlobalScope work.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The caller should retain completion, cancellation, and failure control.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency"
+    },
+    {
+      "id": "q-week-14-checkpoint-05",
+      "prompt": "What should a broad catch do with CancellationException?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Rethrow it",
+      "explanation": "Cancellation is a structured control signal and must reach the parent.",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup",
+      "options": [
+        "Rethrow it",
+        "Show a generic network error",
+        "Retry forever",
+        "Persist it as user data"
+      ]
+    },
+    {
+      "id": "q-week-14-checkpoint-06",
+      "prompt": "Adding suspend to a CPU loop makes it cancellation-cooperative.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "The loop must encounter a suspending call or explicit cancellation check.",
+      "lessonId": "level-04-week-14-03-cancellation-timeouts-cleanup"
+    },
+    {
+      "id": "q-week-14-checkpoint-07",
+      "prompt": "When is supervisorScope appropriate?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Independent useful sibling tasks",
+      "explanation": "Supervision preserves siblings only when their outcomes remain valuable independently.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision",
+      "options": [
+        "Independent useful sibling tasks",
+        "One atomic transaction",
+        "A single sequential call",
+        "To ignore every error"
+      ]
+    },
+    {
+      "id": "q-week-14-checkpoint-08",
+      "prompt": "SupervisorJob automatically handles and logs every child exception.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It changes cancellation propagation; errors still require explicit handling.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision"
+    }
+  ],
+  "rewards": {
+    "xp": 275,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

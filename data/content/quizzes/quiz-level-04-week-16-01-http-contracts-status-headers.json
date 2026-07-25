@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-01-http-contracts-status-headers",
+  "title": "HTTP Contracts, Status, and Headers Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-01-http-contracts-status-headers"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-01-http-contracts-status-headers-decision",
+      "prompt": "What should protect a retried purchase from duplication?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "A server-supported idempotency key",
+      "explanation": "The server can recognise multiple attempts as one logical operation.",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers",
+      "options": [
+        "A server-supported idempotency key",
+        "A random UI delay",
+        "Ignoring the response",
+        "Using HTTP without TLS"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-01-http-contracts-status-headers-truth",
+      "prompt": "Every successful HTTP response contains a JSON body.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Responses such as 204 intentionally contain no content, and representations vary.",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers"
+    },
+    {
+      "id": "q-level-04-week-16-01-http-contracts-status-headers-recall",
+      "prompt": "What does ETag support?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Cache validation",
+      "explanation": "A conditional request can confirm whether a cached representation remains current.",
+      "lessonId": "level-04-week-16-01-http-contracts-status-headers"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

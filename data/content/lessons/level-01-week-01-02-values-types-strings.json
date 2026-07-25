@@ -1,0 +1,235 @@
+{
+  "id": "level-01-week-01-02-values-types-strings",
+  "title": "Values, Variables, Types, and Strings",
+  "categoryId": "level-01-programming-foundations",
+  "week": 1,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-01-week-01-01-first-program"
+  ],
+  "tags": [
+    "kotlin",
+    "variables",
+    "types",
+    "strings"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Programs become useful when they can name and transform information instead of printing fixed text.",
+      "realWorldUse": "Android code stores user names, item counts, prices, feature states, identifiers, and screen text in deliberately typed values.",
+      "outcome": "Declare clear Kotlin values, choose basic types, and build readable text with string templates."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "names-for-values",
+          "title": "Names for values",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A variable associates a meaningful name with a value. Kotlin uses val for a read-only reference and var for a reference that may be reassigned. Prefer val until the program genuinely needs reassignment: fewer changing values means fewer possible states to reason about. Read val learnerName = \"Mina\" as “learnerName refers to this String and the reference will not be assigned again.” Read var completedLessons = 0 as “this Int may receive a later value.”"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val learnerName = \"Mina\"\nvar completedLessons = 0\ncompletedLessons = completedLessons + 1\n\nprintln(learnerName)\nprintln(completedLessons)",
+              "caption": "The name stays fixed while the completed lesson count deliberately changes."
+            },
+            {
+              "type": "paragraph",
+              "text": "Reassignment changes which value a variable holds; it does not redeclare the variable. Writing val twice with the same name in one scope is an error. Good names describe the information, not its type or its position. completedLessons communicates more than number or x. Kotlin convention uses lower camel case for local variables: the first word begins lowercase and each later word begins uppercase."
+            }
+          ]
+        },
+        {
+          "id": "types-and-inference",
+          "title": "Types describe permitted values",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every Kotlin value has a type. A type defines which values are possible and which operations are valid. Common starting types are Int for whole numbers, Double for decimal numbers, Boolean for true or false, Char for one character, and String for text. Kotlin often infers the type from the assigned value. The compiler reads val stars = 3 and infers Int. An explicit annotation, val stars: Int = 3, states the same fact and is useful when inference would hide important intent."
+            },
+            {
+              "type": "table",
+              "title": "Basic Kotlin types",
+              "columns": [
+                "Type",
+                "Example",
+                "Typical use"
+              ],
+              "rows": [
+                [
+                  "Int",
+                  "42",
+                  "Counts and whole-number quantities"
+                ],
+                [
+                  "Double",
+                  "19.95",
+                  "Decimal measurements or prices"
+                ],
+                [
+                  "Boolean",
+                  "true",
+                  "Yes-or-no conditions"
+                ],
+                [
+                  "Char",
+                  "'A'",
+                  "One character"
+                ],
+                [
+                  "String",
+                  "\"Kotlin\"",
+                  "Text made from zero or more characters"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Kotlin does not silently treat every number type as interchangeable. A Double can represent fractional values, while integer division discards a remainder. Money also needs careful modelling because binary floating-point is not exact for every decimal; later production lessons will introduce safer domain choices. For now, choose the type that matches the example and notice compiler feedback when an operation is invalid."
+            }
+          ]
+        },
+        {
+          "id": "strings-and-templates",
+          "title": "Build readable text with templates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A string template inserts a value into text using a dollar sign. Use $name for a simple identifier and ${expression} when Kotlin must evaluate a larger expression. Templates are clearer than repeatedly joining text with plus signs. They also keep the final message visually close to its output. Escape sequences such as \n represent special characters; triple-quoted strings are useful when text spans several lines."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val item = \"Notebook\"\nval quantity = 2\nval price = 4.50\nval total = quantity * price\n\nprintln(\"$quantity x $item\")\nprintln(\"Total: £$total\")",
+              "caption": "Templates insert named values while the expression calculates a total before presentation."
+            },
+            {
+              "type": "flow",
+              "title": "A useful value lifecycle",
+              "steps": [
+                {
+                  "id": "choose",
+                  "label": "Choose type",
+                  "detail": "Match the type to the information and operations."
+                },
+                {
+                  "id": "name",
+                  "label": "Name value",
+                  "detail": "Use a specific domain name."
+                },
+                {
+                  "id": "transform",
+                  "label": "Transform",
+                  "detail": "Calculate a new value without needless mutation."
+                },
+                {
+                  "id": "present",
+                  "label": "Present",
+                  "detail": "Insert the result into readable output."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "val is not deep immutability",
+              "text": "val prevents reassignment of the reference. A mutable object referenced by val can still change internally; later lessons distinguish these ideas."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Create and use variables in Kotlin",
+          "publisher": "Android Developers",
+          "resourceType": "codelab",
+          "url": "https://developer.android.com/codelabs/basic-android-kotlin-compose-variables",
+          "whyRead": "Provides additional guided practice with val, var, type inference, basic types, comments, and changing values."
+        },
+        {
+          "title": "Types overview",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/types-overview.html",
+          "whyRead": "Use this as the official reference for Kotlin numbers, Booleans, characters, strings, arrays, and special types."
+        },
+        {
+          "title": "Strings",
+          "publisher": "Kotlin Documentation",
+          "resourceType": "official_docs",
+          "url": "https://kotlinlang.org/docs/strings.html",
+          "whyRead": "Expands on string templates, multiline text, common operations, and safe conversion from text into other types."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Build an expense summary",
+      "language": "kotlin",
+      "code": "fun main() {\n    val category: String = \"Travel\"\n    val journeys = 3\n    val fare = 2.75\n    val total = journeys * fare\n    val approved = total <= 10.0\n\n    println(\"Category: $category\")\n    println(\"Total: £$total\")\n    println(\"Within limit: $approved\")\n}",
+      "walkthrough": [
+        "The explicit String annotation documents the category type; the remaining types are inferred.",
+        "Multiplying Int by Double produces the decimal total used by the next comparison.",
+        "Each template presents a named result instead of embedding unexplained calculations in output."
+      ],
+      "expectedOutput": "Category: Travel\nTotal: £8.25\nWithin limit: true"
+    },
+    "trap_check": [
+      {
+        "mistake": "Using var for every declaration by habit.",
+        "why": "Unnecessary reassignment increases the number of states the reader must consider.",
+        "fix": "Start with val and change to var only when reassignment is required."
+      },
+      {
+        "mistake": "Putting a decimal value into an inferred Int variable.",
+        "why": "A variable keeps its inferred type; 2 and 2.5 are values of different numeric types.",
+        "fix": "Choose Double initially when fractional values are valid."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Model one expense using named values, calculate its total, and print a readable two-line summary.",
+      "successLooksLike": "Names reveal intent, val is used by default, numeric types fit the data, and string templates present the calculated result."
+    },
+    "recall": [
+      {
+        "prompt": "When should you prefer val over var?",
+        "answer": "Prefer val whenever the reference does not need to be reassigned."
+      },
+      {
+        "prompt": "What does type inference do?",
+        "answer": "It lets the compiler determine a declaration type from its assigned value."
+      },
+      {
+        "prompt": "When does a string template need braces?",
+        "answer": "Use braces around an expression or when its boundary would otherwise be unclear."
+      }
+    ]
+  },
+  "quizId": "quiz-level-01-week-01-02-values-types-strings",
+  "challengeId": "challenge-level-01-week-01-02-values-types-strings",
+  "revision": {
+    "objectives": [
+      "Choose val or var based on actual reassignment needs.",
+      "Select basic Kotlin types for common pieces of information.",
+      "Produce readable output using expressions and string templates."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 70,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://kotlinlang.org/docs/basic-syntax.html",
+    "https://kotlinlang.org/docs/types-overview.html",
+    "https://kotlinlang.org/docs/strings.html"
+  ],
+  "version": "0.2.0"
+}

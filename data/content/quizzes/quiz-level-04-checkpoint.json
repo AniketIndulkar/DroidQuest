@@ -1,0 +1,180 @@
+{
+  "id": "quiz-level-04-checkpoint",
+  "title": "Level 4 Async Data and Networking Boss",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-14-01-suspend-main-safety-dispatchers",
+    "level-04-week-14-02-scopes-builders-structured-concurrency",
+    "level-04-week-14-03-cancellation-timeouts-cleanup",
+    "level-04-week-14-04-exceptions-supervision",
+    "level-04-week-14-05-parallelism-thread-safety",
+    "level-04-week-14-06-coroutine-testing-virtual-time",
+    "level-04-week-15-01-cold-flow-context-collection",
+    "level-04-week-15-02-flow-operators-errors-retry",
+    "level-04-week-15-03-combine-latest-flattening",
+    "level-04-week-15-04-buffer-conflate-backpressure",
+    "level-04-week-15-05-stateflow-sharedflow-events",
+    "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
+    "level-04-week-16-01-http-contracts-status-headers",
+    "level-04-week-16-02-dto-kotlin-serialization",
+    "level-04-week-16-03-retrofit-data-source-repository",
+    "level-04-week-16-04-okhttp-interceptors-auth-logging",
+    "level-04-week-16-05-network-failures-timeouts-retries",
+    "level-04-week-16-06-mockwebserver-network-integration-tests",
+    "level-04-week-17-01-oauth-tokens-session-security",
+    "level-04-week-17-02-single-flight-token-refresh",
+    "level-04-week-17-03-paging3-cursors-loadstates",
+    "level-04-week-17-04-multipart-upload-progress",
+    "level-04-week-17-05-websockets-sse-realtime",
+    "level-04-week-17-06-connectivity-policy-network-capabilities",
+    "level-04-week-18-01-room-entities-daos-relations-transactions",
+    "level-04-week-18-02-room-migrations-fts-testing",
+    "level-04-week-18-03-datastore-and-file-storage",
+    "level-04-week-18-04-source-of-truth-cache-ttl",
+    "level-04-week-18-05-offline-writes-sync-conflicts",
+    "level-04-week-18-06-workmanager-durable-sync",
+    "level-04-week-18-07-offline-first-news-capstone"
+  ],
+  "kind": "level_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-04-boss-01",
+      "prompt": "What makes a blocking file read main-safe?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "withContext on an injected IO dispatcher",
+      "explanation": "The blocking operation is moved from Main while its owner keeps the API contract simple.",
+      "lessonId": "level-04-week-14-01-suspend-main-safety-dispatchers",
+      "options": [
+        "withContext on an injected IO dispatcher",
+        "Adding suspend only",
+        "Calling it twice",
+        "Using a global variable"
+      ]
+    },
+    {
+      "id": "q-level-04-boss-02",
+      "prompt": "What should cancel a child coroutine?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Its owning parent or explicit owner scope",
+      "explanation": "Structured lifetimes prevent accidental work leaks.",
+      "lessonId": "level-04-week-14-02-scopes-builders-structured-concurrency"
+    },
+    {
+      "id": "q-level-04-boss-03",
+      "prompt": "SupervisorJob automatically handles and logs every child exception.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It changes cancellation propagation; errors still require explicit handling.",
+      "lessonId": "level-04-week-14-04-exceptions-supervision"
+    },
+    {
+      "id": "q-level-04-boss-04",
+      "prompt": "How should two injected TestDispatchers be created in runTest?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "With the same testScheduler",
+      "explanation": "One scheduler makes all queued tasks respond to the same virtual clock.",
+      "lessonId": "level-04-week-14-06-coroutine-testing-virtual-time",
+      "options": [
+        "With the same testScheduler",
+        "With unrelated default schedulers",
+        "As real IO dispatchers",
+        "Inside GlobalScope"
+      ]
+    },
+    {
+      "id": "q-level-04-boss-05",
+      "prompt": "What starts a cold Flow?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "A terminal collection operation",
+      "explanation": "Intermediate operators remain declarative until a terminal operator executes the pipeline.",
+      "lessonId": "level-04-week-15-01-cold-flow-context-collection"
+    },
+    {
+      "id": "q-level-04-boss-06",
+      "prompt": "flatMapLatest is safe for every write that must complete.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A later outer value cancels previous inner work.",
+      "lessonId": "level-04-week-15-03-combine-latest-flattening"
+    },
+    {
+      "id": "q-level-04-boss-07",
+      "prompt": "Which type best exposes complete current screen state?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "StateFlow",
+      "explanation": "It always provides a current conflated state snapshot to collectors.",
+      "lessonId": "level-04-week-15-05-stateflow-sharedflow-events",
+      "options": [
+        "StateFlow",
+        "SharedFlow with no replay",
+        "A raw callback list",
+        "GlobalScope"
+      ]
+    },
+    {
+      "id": "q-level-04-boss-08",
+      "prompt": "What owns the sharing coroutine lifetime?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The scope passed to stateIn or shareIn",
+      "explanation": "Cancellation of that scope stops the shared upstream job.",
+      "lessonId": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests"
+    },
+    {
+      "id": "q-level-04-boss-09",
+      "prompt": "One model should always represent network, database, domain, and UI.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Separate models allow independent schemas and invariants to evolve safely.",
+      "lessonId": "level-04-week-16-02-dto-kotlin-serialization"
+    },
+    {
+      "id": "q-level-04-boss-10",
+      "prompt": "What should a normal interceptor do with chain.proceed?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Call it exactly once",
+      "explanation": "The chain expects one downstream exchange unless a valid short-circuit or carefully designed retry applies.",
+      "lessonId": "level-04-week-16-04-okhttp-interceptors-auth-logging",
+      "options": [
+        "Call it exactly once",
+        "Call it until success",
+        "Never call it",
+        "Call it after logging tokens"
+      ]
+    },
+    {
+      "id": "q-level-04-boss-11",
+      "prompt": "Why add jitter to backoff?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "To avoid synchronized retry storms",
+      "explanation": "Random variation spreads client load after a shared outage.",
+      "lessonId": "level-04-week-16-05-network-failures-timeouts-retries"
+    },
+    {
+      "id": "q-level-04-boss-12",
+      "prompt": "An ID token should automatically be used as an API bearer token.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "ID tokens describe authentication to a client, while access tokens target resource authorization.",
+      "lessonId": "level-04-week-17-01-oauth-tokens-session-security"
+    }
+  ],
+  "rewards": {
+    "xp": 800,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

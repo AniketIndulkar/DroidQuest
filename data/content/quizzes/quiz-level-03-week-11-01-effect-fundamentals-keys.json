@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-11-01-effect-fundamentals-keys",
+  "title": "Effect Fundamentals and Keys Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-11-01-effect-fundamentals-keys"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-11-01-effect-fundamentals-keys-decision",
+      "prompt": "What should an effect key normally represent?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Identity whose change requires restart",
+      "explanation": "Keys connect resource or work identity to cancellation and relaunch.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys",
+      "options": [
+        "Identity whose change requires restart",
+        "A random value",
+        "Every local variable",
+        "A colour token"
+      ]
+    },
+    {
+      "id": "q-level-03-week-11-01-effect-fundamentals-keys-truth",
+      "prompt": "LaunchedEffect(Unit) runs once for the whole application installation.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "It runs once per entering composition instance and can run again after leaving and re-entering.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys"
+    },
+    {
+      "id": "q-level-03-week-11-01-effect-fundamentals-keys-recall",
+      "prompt": "What should pure display calculation use?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "Ordinary or derived state",
+      "explanation": "Pure results do not require lifecycle-bound side effects.",
+      "lessonId": "level-03-week-11-01-effect-fundamentals-keys"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

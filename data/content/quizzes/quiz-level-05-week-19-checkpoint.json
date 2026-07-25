@@ -1,0 +1,106 @@
+{
+  "id": "quiz-level-05-week-19-checkpoint",
+  "title": "Week 19: Architecture Boundaries, State, and Data Contracts Checkpoint",
+  "categoryId": "level-05-production-architecture",
+  "linkedLessonIds": [
+    "level-05-week-19-01-layers-boundaries-dependency-direction",
+    "level-05-week-19-02-immutable-ui-state-udf",
+    "level-05-week-19-03-state-holders-events-ui-logic",
+    "level-05-week-19-04-repositories-source-of-truth-mappers",
+    "level-05-week-19-05-domain-use-cases-error-models",
+    "level-05-week-19-06-mvvm-mvi-clean-tradeoffs"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "intermediate",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-05-week-19-1",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-19-01-layers-boundaries-dependency-direction",
+      "prompt": "Which two checks matter before applying Layers, Boundaries, and Dependency Direction?",
+      "type": "multiple_choice",
+      "options": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement",
+        "Maximise wrapper count",
+        "Hide dependencies globally"
+      ],
+      "answer": [
+        "Name the protected responsibility or risk",
+        "Define a test, graph rule, or measurement"
+      ]
+    },
+    {
+      "id": "q-level-05-week-19-2",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-19-02-immutable-ui-state-udf",
+      "prompt": "Order the architecture feedback loop.",
+      "type": "order_steps",
+      "options": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ],
+      "answer": [
+        "Name forces",
+        "Choose boundary",
+        "Compose implementations",
+        "Stress adverse cases",
+        "Review evidence"
+      ]
+    },
+    {
+      "id": "q-level-05-week-19-3",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-19-03-state-holders-events-ui-logic",
+      "prompt": "Match each architecture concern to its evidence.",
+      "type": "match_pairs",
+      "options": [
+        "State contract",
+        "Dependency direction",
+        "Build claim"
+      ],
+      "answer": {
+        "State contract": "State-sequence test",
+        "Dependency direction": "Module graph rule",
+        "Build claim": "Repeated measured scenario"
+      }
+    },
+    {
+      "id": "q-level-05-week-19-4",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-19-04-repositories-source-of-truth-mappers",
+      "prompt": "Spot the architectural defect: Exposing DAO entities and Retrofit response wrappers directly to every ViewModel.",
+      "type": "spot_bug",
+      "answer": "Exposing DAO entities and Retrofit response wrappers directly to every ViewModel.",
+      "acceptedAnswers": [
+        "The choice adds coupling or hides ownership without evidence."
+      ]
+    },
+    {
+      "id": "q-level-05-week-19-5",
+      "difficulty": "intermediate",
+      "explanation": "The correct response follows explicit ownership, inward dependency direction, proportionate abstraction, and evidence-based architecture.",
+      "lessonId": "level-05-week-19-05-domain-use-cases-error-models",
+      "prompt": "Complete the rule: an abstraction should protect a named responsibility, risk, change seam, or ____ property.",
+      "type": "fill_blank",
+      "answer": "measured",
+      "acceptedAnswers": [
+        "measured",
+        "measurable"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 4
+  },
+  "version": "0.8.0"
+}

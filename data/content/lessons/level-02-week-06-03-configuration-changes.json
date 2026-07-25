@@ -1,0 +1,225 @@
+{
+  "id": "level-02-week-06-03-configuration-changes",
+  "title": "Configuration Changes and Activity Recreation",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 6,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-06-02-activity-lifecycle"
+  ],
+  "tags": [
+    "configuration",
+    "recreation",
+    "viewmodel",
+    "adaptive"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "The device environment can change while an app runs; recreation lets Android rebuild UI from resources and state suited to the new configuration.",
+      "realWorldUse": "Rotation, window resizing, locale, font scale, dark mode, keyboard, and other changes can recreate an activity and select different resources.",
+      "outcome": "Distinguish recreation from process death, preserve screen state with ViewModel, and test configuration changes instead of disabling them."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "configuration",
+          "title": "Configuration describes the current device environment",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Android Configuration includes locale, layout direction, orientation, screen dimensions, density, font scale, night mode, input devices, and more. A change can invalidate resources and UI assumptions. By default, the system destroys the current activity instance and creates a new one so resource resolution and layout can begin under the new configuration. This is normal, not a crash. The application process and ViewModel may remain while activity fields and views do not. Modern resizable windows mean configuration change is not only a phone rotation event; a window can change dimensions repeatedly on tablets, desktops, foldables, and multi-window devices."
+            },
+            {
+              "type": "flow",
+              "title": "Recreation",
+              "steps": [
+                {
+                  "id": "old-pause",
+                  "label": "Old instance pauses",
+                  "detail": "Foreground interaction ends."
+                },
+                {
+                  "id": "old-save",
+                  "label": "State opportunity",
+                  "detail": "Small reconstructive UI state can be recorded."
+                },
+                {
+                  "id": "old-destroy",
+                  "label": "Old instance destroyed",
+                  "detail": "Views and activity fields disappear."
+                },
+                {
+                  "id": "new-create",
+                  "label": "New instance created",
+                  "detail": "New configuration and resources apply."
+                },
+                {
+                  "id": "restore",
+                  "label": "Restore screen",
+                  "detail": "ViewModel and saved keys rebuild expected UI."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "Same screen, new host instance",
+              "text": "The user expects continuity even though Android may replace the activity and its entire view hierarchy."
+            }
+          ]
+        },
+        {
+          "id": "viewmodel",
+          "title": "ViewModel retains screen data across host recreation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A ViewModel is scoped to a ViewModelStoreOwner such as an activity, fragment, or navigation destination. During configuration recreation, the new host receives the existing ViewModel, avoiding unnecessary reload and preserving complex in-memory UI state. It should expose immutable screen state and accept events while remaining independent of Activity, View, Fragment, and themed Context references. ViewModel does not survive system-initiated process death, so it is one layer of continuity rather than persistence. SavedStateHandle can hold small reconstruction inputs, while notes themselves belong in durable storage. Scope matters: an activity-scoped ViewModel and destination-scoped ViewModel have different sharing and cleanup boundaries."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class NotesUiState(val query: String, val selectedId: String?)\n\nclass NotesViewModel : ViewModel() {\n    private val _state = MutableStateFlow(NotesUiState(\"\", null))\n    val state: StateFlow<NotesUiState> = _state.asStateFlow()\n}",
+              "caption": "The state holder contains screen data but no reference to the activity instance rendering it."
+            },
+            {
+              "type": "table",
+              "title": "Survival matrix",
+              "columns": [
+                "State owner",
+                "Recreation",
+                "Process death"
+              ],
+              "rows": [
+                [
+                  "Activity field",
+                  "No",
+                  "No"
+                ],
+                [
+                  "ViewModel",
+                  "Yes",
+                  "No"
+                ],
+                [
+                  "Saved state",
+                  "Yes",
+                  "Yes for small supported values"
+                ],
+                [
+                  "Persistent storage",
+                  "Yes",
+                  "Yes"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "handling",
+          "title": "Avoid opting out unless the app truly handles every consequence",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Declaring configChanges asks Android not to recreate an activity for listed changes and transfers responsibility to the app. It often masks state bugs while leaving unlisted changes and process death unsolved. Prefer adaptive UI, configuration resources, ViewModel, and saved state. If a specialised app handles a change manually, it must update every affected resource and layout correctly. Test recreation with “Don’t keep activities” only as an additional stress tool, not an exact simulation of process death. Also test font scaling, dark mode, locale, split-screen resizing, and rotation with partially entered data and a selected note."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContent { NotesRoute() }\n    }\n}",
+              "caption": "The host can remain small because screen state and restoration policy live in suitable state holders and storage."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Do not lock orientation to hide state defects",
+              "text": "A product restriction may be valid, but it does not remove resizing, locale, night mode, or process-recreation obligations."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Handle configuration changes",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/resources/runtime-changes",
+          "whyRead": "Explains recreation, configuration callbacks, state preservation, Compose reaction, and why opting out is risky."
+        },
+        {
+          "title": "ViewModel overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/architecture/viewmodel",
+          "whyRead": "Documents ViewModel scope, lifecycle, UI-state ownership, and SavedStateHandle integration."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Classify state after rotation",
+      "language": "text",
+      "code": "Activity instance: replaced\nView hierarchy: replaced\nApplication process: retained\nActivity-scoped ViewModel: retained\nUnpersisted activity field: lost",
+      "walkthrough": [
+        "Rotation caused host recreation under a changed configuration.",
+        "The process remained, allowing the ViewModelStore to retain its ViewModel.",
+        "A field owned only by the old activity had no restoration mechanism."
+      ],
+      "expectedOutput": "Move screen data into ViewModel and save only minimal reconstruction keys for later process death."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using android:configChanges as the default fix.",
+        "why": "It transfers complex update responsibility and does not solve other recreation paths.",
+        "fix": "Allow recreation and preserve state through architecture."
+      },
+      {
+        "mistake": "Putting Activity or View references in ViewModel.",
+        "why": "The retained ViewModel can keep the destroyed UI instance alive.",
+        "fix": "Expose data and events while the new UI observes it."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a Notes screen state holder that preserves query and selection across rotation without retaining UI objects, then document what still disappears after process death.",
+      "successLooksLike": "Rotation creates a new activity while keeping expected screen data. The ViewModel contains no Context, View, Activity, or Fragment. The report distinguishes recreation from process-death restoration."
+    },
+    "recall": [
+      {
+        "prompt": "Why does Android recreate on configuration change?",
+        "answer": "To rebuild UI and resources for the new environment."
+      },
+      {
+        "prompt": "What survives recreation but not process death?",
+        "answer": "A correctly scoped ViewModel and its in-memory state."
+      },
+      {
+        "prompt": "Is rotation the only configuration change?",
+        "answer": "No, locale, font scale, night mode, window size, and input configuration also change."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-06-03-configuration-changes",
+  "challengeId": "challenge-level-02-week-06-03-configuration-changes",
+  "revision": {
+    "objectives": [
+      "Explain recreation as normal platform behaviour.",
+      "Assign UI data to a lifecycle-safe ViewModel.",
+      "Test multiple configurations without hiding recreation."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/guide/topics/resources/runtime-changes",
+    "https://developer.android.com/topic/libraries/architecture/viewmodel"
+  ],
+  "version": "0.4.0"
+}

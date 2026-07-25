@@ -1,0 +1,36 @@
+{
+  "id": "challenge-level-01-week-01-04-loops-ranges",
+  "title": "Summarise a Week of Expenses",
+  "categoryId": "level-01-programming-foundations",
+  "lessonId": "level-01-week-01-04-loops-ranges",
+  "difficulty": "beginner",
+  "estimatedMinutes": 30,
+  "prompt": "Iterate over seven daily amounts, reject zero or negative entries, and calculate both the accepted total and accepted count.",
+  "successCriteria": [
+    "Iteration boundaries cover each amount exactly once.",
+    "Only the two required accumulators are mutable.",
+    "The final output reports both total and count."
+  ],
+  "hints": [
+    "Iterate directly over values instead of indexes.",
+    "Update total and count inside the same valid branch."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "fun main() {\n    val amounts = listOf(4.5, 0.0, 8.25, -2.0, 3.0, 6.75, 1.5)\n    // Calculate valid total and count.\n}"
+  },
+  "solutionOutline": [
+    "Initialise total and count before the loop.",
+    "Visit each amount and test whether it is positive.",
+    "Update both accumulators only for accepted entries."
+  ],
+  "verification": [
+    "Trace the first three iterations in a small table.",
+    "Calculate the expected result by hand and compare it with output."
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.2.0"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "level-07-testing-quality-engineering",
+  "title": "Level 7: Testing and Quality Engineering",
+  "order": 7,
+  "description": "Build fast, trustworthy confidence with appropriately scoped unit, integration, UI, accessibility, screenshot, static-analysis, and release-candidate checks.",
+  "difficulty": "advanced",
+  "status": "planned",
+  "weekRange": {
+    "start": 27,
+    "end": 30
+  },
+  "unlockPrerequisites": [
+    "level-06-android-platform-use-cases"
+  ],
+  "tags": [
+    "testing",
+    "quality",
+    "automation"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-07-preview",
+  "plannedTopics": [
+    "Unit tests and test doubles",
+    "Coroutine, Flow, repository, and ViewModel tests",
+    "Instrumented, Compose, screenshot, and accessibility tests",
+    "Static quality and test strategy"
+  ],
+  "project": {
+    "title": "Release Confidence Plan",
+    "summary": "Create and implement a layered test strategy with explicit boundaries, critical journeys, test data, and flakiness policy."
+  },
+  "theme": {
+    "color": "#B23B2A",
+    "icon": "verified",
+    "mapMood": "A quality arena where each check protects a specific failure boundary."
+  },
+  "version": "0.2.0"
+}

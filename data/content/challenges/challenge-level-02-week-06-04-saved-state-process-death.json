@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-06-04-saved-state-process-death",
+  "title": "Build and Test Note Restoration",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-06-04-saved-state-process-death",
+  "difficulty": "beginner",
+  "estimatedMinutes": 55,
+  "prompt": "Implement selected-note and query restoration using SavedStateHandle plus a persistent repository, then test rotation, stopped-process recreation, Back, and fresh launch.",
+  "successCriteria": [
+    "Only small reconstruction values enter saved state.",
+    "Full notes reload from durable storage.",
+    "Expected behaviour is documented separately for all four scenarios."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Only small reconstruction values enter saved state.",
+    "Use lifecycle or boundary evidence to prove: Full notes reload from durable storage."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class NotesViewModel(\n    private val saved: SavedStateHandle,\n    private val repository: NoteRepository,\n) : ViewModel() { /* restore by key */ }"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Only small reconstruction values enter saved state.",
+    "Implement the smallest design that guarantees: Full notes reload from durable storage.",
+    "Implement the smallest design that guarantees: Expected behaviour is documented separately for all four scenarios."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that only small reconstruction values enter saved state.",
+    "Run a focused check demonstrating that full notes reload from durable storage.",
+    "Run a focused check demonstrating that expected behaviour is documented separately for all four scenarios."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

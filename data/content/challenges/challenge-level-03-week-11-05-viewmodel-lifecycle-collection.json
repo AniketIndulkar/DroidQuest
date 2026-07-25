@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-11-05-viewmodel-lifecycle-collection",
+  "title": "Build a Lifecycle-aware Notes Route",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-11-05-viewmodel-lifecycle-collection",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 55,
+  "prompt": "Create repository Flow, ViewModel StateFlow, a lifecycle-aware route, and stateless content with explicit loading, empty, error, and content states.",
+  "successCriteria": [
+    "Upstream data has one immutable screen contract.",
+    "Inactive destination collection follows lifecycle policy.",
+    "Content previews cover every state without a ViewModel."
+  ],
+  "hints": [
+    "Begin with immutable state and a stateless content composable.",
+    "Verify one lifecycle, configuration, or rapid-interaction edge case before polishing visuals."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun NotesRoute(vm: NotesViewModel = viewModel())"
+  },
+  "solutionOutline": [
+    "Define the state, events, ownership boundary, and UI contract.",
+    "Implement the smallest correct flow, then exercise every success criterion."
+  ],
+  "verification": [
+    "Run focused state and interaction tests.",
+    "Inspect semantics and the relevant lifecycle or runtime behaviour."
+  ],
+  "rewards": {
+    "xp": 175,
+    "stars": 5
+  },
+  "version": "0.5.0"
+}

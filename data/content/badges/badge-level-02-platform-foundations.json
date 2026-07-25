@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-02-platform-foundations",
+  "title": "Android Platform Foundations Complete",
+  "description": "Awarded for completing Level 2 platform, lifecycle, component, legacy UI, interoperability, and Notes capstone mastery.",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "icon": "android-platform-boss-badge",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-02-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 600,
+  "rarity": "epic",
+  "version": "0.4.0"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-04-week-17",
+  "title": "Week 17 Data Pathfinder",
+  "description": "Awarded for completing the Week 17 reliable data and offline engineering checkpoint.",
+  "categoryId": "level-04-async-data-networking",
+  "icon": "data-pathfinder-17",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-04-week-17-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 325,
+  "rarity": "rare",
+  "version": "0.7.0"
+}

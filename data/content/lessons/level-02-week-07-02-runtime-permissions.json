@@ -1,0 +1,224 @@
+{
+  "id": "level-02-week-07-02-runtime-permissions",
+  "title": "Runtime Permissions and Graceful Degradation",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "week": 7,
+  "difficulty": "beginner",
+  "prerequisites": [
+    "level-02-week-07-01-intents-activity-results"
+  ],
+  "tags": [
+    "permissions",
+    "privacy",
+    "activity-results",
+    "security"
+  ],
+  "estimatedLearningMinutes": 9,
+  "revealStages": {
+    "scout": {
+      "purpose": "Permissions are revocable user decisions around sensitive capabilities, so a feature must remain understandable and safe through every outcome.",
+      "realWorldUse": "Camera, microphone, location, contacts, notifications, and nearby-device features combine manifest declarations, runtime requests, policy, and platform-version behaviour.",
+      "outcome": "Minimise permission use, request in context with a contract, handle denial or revocation, and keep unrelated app features working."
+    },
+    "learn": {
+      "estimatedMinutes": 9,
+      "sections": [
+        {
+          "id": "minimise",
+          "title": "Avoid permission before designing a request",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "First ask whether a system picker, photo picker, Storage Access Framework, approximate data, or user-supplied input can provide the feature without broad permission. Declare only required capabilities and scope them to supported API levels where appropriate. A manifest declaration makes a request possible; dangerous permissions on supported platforms still need runtime consent. Permission groups are presentation hints, not stable behavioural contracts. Store no assumption that a grant lasts forever: users and the system can revoke access, one-time grants expire, and platform releases can add new permission boundaries."
+            },
+            {
+              "type": "table",
+              "title": "Permission-first alternatives",
+              "columns": [
+                "Need",
+                "Lower-access option"
+              ],
+              "rows": [
+                [
+                  "Choose one photo",
+                  "System photo picker"
+                ],
+                [
+                  "Open one document",
+                  "Storage Access Framework"
+                ],
+                [
+                  "Share a note",
+                  "Intent chooser"
+                ],
+                [
+                  "Approximate nearby result",
+                  "Coarse or task-specific API"
+                ],
+                [
+                  "Notify only after user action",
+                  "Explain value before notification request"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "language": "xml",
+              "code": "<uses-permission android:name=\"android.permission.CAMERA\" />\n<!-- Declare only when the feature truly needs direct camera access. -->",
+              "caption": "The manifest declaration is necessary for direct camera access but does not equal runtime grant."
+            }
+          ]
+        },
+        {
+          "id": "workflow",
+          "title": "Ask when the user invokes the dependent feature",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Check current grant immediately before the protected operation. If granted, continue. If a rationale is appropriate, explain the feature benefit and allow cancellation without trapping the user. Otherwise launch ActivityResultContracts.RequestPermission. The callback returns the current grant result, not a promise for the future. Do not repeatedly pressure a person after denial or interpret denial as corruption. Some permanent-denial or policy states require directing the user to system settings only when they choose to re-enable the feature. Request multiple permissions together only when one user action genuinely requires all of them."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "private val requestCamera = registerForActivityResult(\n    ActivityResultContracts.RequestPermission(),\n) { granted ->\n    if (granted) openScanner() else showManualEntry()\n}",
+              "caption": "The denied branch retains useful manual note entry instead of blocking the whole application."
+            },
+            {
+              "type": "flow",
+              "title": "Permission decision",
+              "steps": [
+                {
+                  "id": "need",
+                  "label": "Feature invoked",
+                  "detail": "Ask only in relevant context."
+                },
+                {
+                  "id": "check",
+                  "label": "Check grant",
+                  "detail": "Continue immediately when already allowed."
+                },
+                {
+                  "id": "explain",
+                  "label": "Explain if useful",
+                  "detail": "Describe concrete feature benefit and cancellation."
+                },
+                {
+                  "id": "request",
+                  "label": "System request",
+                  "detail": "Launch the registered contract."
+                },
+                {
+                  "id": "result",
+                  "label": "Handle result",
+                  "detail": "Run feature or graceful alternative."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "robustness",
+          "title": "Check again at use time and test every branch",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A grant can change while the app is backgrounded, so protected code must handle SecurityException or unavailable results even after a previous check. Separate feature availability from screen availability: a Notes app can disable voice attachment while preserving reading and editing. Explain which data is accessed and avoid collecting more than the user initiated. Test first request, grant, denial, rationale, repeated denial, revocation in settings, one-time expiry, and platform versions where the permission does not exist or behaves differently. Permission UI is product behaviour, not boilerplate to delegate entirely to one utility."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "fun startAttachmentCapture() {\n    if (ContextCompat.checkSelfPermission(context, CAMERA) == PERMISSION_GRANTED) {\n        camera.open()\n    } else {\n        events += ShowCameraPermissionEducation\n    }\n}",
+              "caption": "The capability is checked at the moment it is needed and the UI receives an explicit event."
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Never gate the whole app unnecessarily",
+              "text": "A denied optional permission should disable or adapt that feature while leaving unrelated local-first notes usable."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Request runtime permissions",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/permissions/requesting",
+          "whyRead": "Covers minimisation, contextual requests, rationale, Activity Result contracts, denial, and one-time grants."
+        },
+        {
+          "title": "Permissions on Android",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/topics/permissions/overview",
+          "whyRead": "Explains permission types, workflow, least privilege, and alternatives to sensitive access."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Find the denial-loop bug",
+      "language": "text",
+      "code": "if (!hasCameraPermission()) {\n    requestCamera.launch(CAMERA)\n}\n// Called again automatically after every denial",
+      "walkthrough": [
+        "The user did not initiate each new request.",
+        "Repeated dialogs provide no graceful path and can become harassment.",
+        "The denied result should offer manual entry and wait for a new deliberate feature action."
+      ],
+      "expectedOutput": "Stop the automatic loop; preserve the feature alternative and explain settings only on request."
+    },
+    "trap_check": [
+      {
+        "mistake": "Requesting permission at app launch without feature context.",
+        "why": "The user cannot connect sensitive access to a benefit and may be blocked unnecessarily.",
+        "fix": "Ask when the protected feature is invoked."
+      },
+      {
+        "mistake": "Assuming a previous grant remains valid.",
+        "why": "Permissions can be revoked or expire while the app is not active.",
+        "fix": "Check at use time and handle protected-call failure."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and implement a microphone feature that requests only on user action, supports denial and revocation, and leaves text notes fully usable.",
+      "successLooksLike": "Every permission state has visible product behaviour. A denial never loops or blocks note editing. Tests cover revocation while the app is backgrounded."
+    },
+    "recall": [
+      {
+        "prompt": "What comes before requesting permission?",
+        "answer": "Evaluate a lower-access API or system-mediated alternative."
+      },
+      {
+        "prompt": "When should a rationale appear?",
+        "answer": "When useful to explain why the user-invoked feature needs that access."
+      },
+      {
+        "prompt": "How should denial affect optional features?",
+        "answer": "Degrade that feature gracefully while unrelated app functions continue."
+      }
+    ]
+  },
+  "quizId": "quiz-level-02-week-07-02-runtime-permissions",
+  "challengeId": "challenge-level-02-week-07-02-runtime-permissions",
+  "revision": {
+    "objectives": [
+      "Minimise declared and requested access.",
+      "Implement the contextual runtime-permission flow.",
+      "Test grant, denial, revocation, and version branches."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/permissions/requesting",
+    "https://developer.android.com/guide/topics/permissions/overview"
+  ],
+  "version": "0.4.0"
+}

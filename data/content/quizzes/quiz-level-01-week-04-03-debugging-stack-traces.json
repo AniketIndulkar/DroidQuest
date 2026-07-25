@@ -1,0 +1,62 @@
+{
+  "id": "quiz-level-01-week-04-03-debugging-stack-traces",
+  "title": "Debugging with Evidence Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-04-03-debugging-stack-traces"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-04-03-first-action",
+      "prompt": "What is the best first action for a reported failure?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Create a precise reproduction",
+      "explanation": "A stable reproduction defines the question and supplies a way to verify later changes.",
+      "lessonId": "level-01-week-04-03-debugging-stack-traces",
+      "options": [
+        "Create a precise reproduction",
+        "Rewrite every related function",
+        "Delete all logging",
+        "Assume the last commit caused it"
+      ]
+    },
+    {
+      "id": "q-week-04-03-trace-order",
+      "prompt": "Order the useful stack-trace reading steps.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "read exception type and message",
+        "find first relevant application frame",
+        "follow caller frames",
+        "inspect caused-by sections"
+      ],
+      "explanation": "The exception describes the failure, application frames localise detection, callers reveal the path, and causes reveal wrapped origins.",
+      "lessonId": "level-01-week-04-03-debugging-stack-traces"
+    },
+    {
+      "id": "q-week-04-03-bug-hypothesis",
+      "prompt": "Which is a falsifiable debugging hypothesis?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Blank text passes because validation runs before trimming",
+      "explanation": "It names a mechanism and predicts observable state at a specific boundary.",
+      "lessonId": "level-01-week-04-03-debugging-stack-traces",
+      "options": [
+        "Blank text passes because validation runs before trimming",
+        "Something somewhere is wrong",
+        "Kotlin dislikes this app",
+        "The computer is confused"
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://droidquest.dev/schema/challenge.schema.json",
+  "title": "DroidQuest challenge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "categoryId", "lessonId", "difficulty", "estimatedMinutes", "prompt", "successCriteria", "hints", "starterCode", "solutionOutline", "verification", "rewards", "version"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 5 },
+    "categoryId": { "type": "string", "minLength": 3 },
+    "lessonId": { "type": "string", "minLength": 3 },
+    "difficulty": { "enum": ["beginner", "intermediate", "advanced", "expert"] },
+    "estimatedMinutes": { "type": "integer", "minimum": 5, "maximum": 180 },
+    "prompt": { "type": "string", "minLength": 30 },
+    "successCriteria": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 12 } },
+    "hints": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 10 } },
+    "starterCode": { "type": "object", "additionalProperties": false, "required": ["language", "code"], "properties": { "language": { "type": "string" }, "code": { "type": "string", "minLength": 8 } } },
+    "solutionOutline": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 12 } },
+    "verification": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 10 } },
+    "rewards": { "type": "object", "additionalProperties": false, "required": ["xp", "stars"], "properties": { "xp": { "type": "integer", "minimum": 1 }, "stars": { "type": "integer", "minimum": 1, "maximum": 5 } } },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

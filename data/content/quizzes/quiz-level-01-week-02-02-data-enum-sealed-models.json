@@ -1,0 +1,49 @@
+{
+  "id": "quiz-level-01-week-02-02-data-enum-sealed-models",
+  "title": "Data Classes, Enums, and Sealed Models Quick Check",
+  "categoryId": "level-01-programming-foundations",
+  "linkedLessonIds": [
+    "level-01-week-02-02-data-enum-sealed-models"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-02-02-copy-fact",
+      "prompt": "A data-class copy automatically deep-copies every nested mutable object.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "copy is shallow; nested references remain shared unless they are explicitly replaced.",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models"
+    },
+    {
+      "id": "q-week-02-02-model-match",
+      "prompt": "Match the modelling need to the Kotlin construct.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "valueRecord": "data class",
+        "fixedConstants": "enum class",
+        "closedDifferentPayloads": "sealed interface"
+      },
+      "explanation": "Each specialised type communicates a different constraint about equality and alternatives.",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models"
+    },
+    {
+      "id": "q-week-02-02-sealed-why",
+      "prompt": "Why is an exhaustive when useful with sealed state?",
+      "type": "short_answer",
+      "difficulty": "beginner",
+      "answer": "The compiler reports when a known state is not handled",
+      "explanation": "Exhaustiveness converts missing state handling into compiler feedback.",
+      "lessonId": "level-01-week-02-02-data-enum-sealed-models"
+    }
+  ],
+  "rewards": {
+    "xp": 40,
+    "stars": 3
+  },
+  "version": "0.3.0"
+}

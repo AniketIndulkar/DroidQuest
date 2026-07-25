@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-06-03-configuration-changes",
+  "title": "Configuration Changes and Activity Recreation Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-06-03-configuration-changes"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-06-03-viewmodel-survival",
+      "prompt": "Which event does a normal ViewModel survive?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Activity recreation for configuration change",
+      "explanation": "The ViewModelStore retains it for the replacement owner instance, but not after process death.",
+      "lessonId": "level-02-week-06-03-configuration-changes",
+      "options": [
+        "Activity recreation for configuration change",
+        "Application uninstall",
+        "All process death automatically",
+        "Clear app data"
+      ]
+    },
+    {
+      "id": "q-week-06-03-state-match",
+      "prompt": "Match state storage to its lifetime.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "activityField": "current instance only",
+        "ViewModel": "configuration recreation",
+        "savedState": "small process reconstruction",
+        "database": "durable application data"
+      },
+      "explanation": "Different mechanisms cover different lifetime and size requirements.",
+      "lessonId": "level-02-week-06-03-configuration-changes"
+    },
+    {
+      "id": "q-week-06-03-config-opt-out",
+      "prompt": "Opting out of rotation recreation also solves system process death.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Process death and many other recreation paths remain independent of the rotation declaration.",
+      "lessonId": "level-02-week-06-03-configuration-changes"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

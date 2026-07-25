@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-03-week-09-05-text-input-resources",
+  "title": "Text, Input, Images, and Resources Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-09-05-text-input-resources"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-09-05-text-input-resources-frozen-field",
+      "prompt": "Why does value=\"\" with an empty onValueChange stay blank?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "No new value is stored and passed back",
+      "explanation": "Controlled input changes only when its state owner accepts and republishes the edit.",
+      "lessonId": "level-03-week-09-05-text-input-resources",
+      "options": [
+        "No new value is stored and passed back",
+        "TextField has no keyboard",
+        "Compose cannot display strings",
+        "Material disables typing"
+      ]
+    },
+    {
+      "id": "q-level-03-week-09-05-text-input-resources-content-match",
+      "prompt": "Match content to description treatment.",
+      "type": "match_pairs",
+      "difficulty": "intermediate",
+      "answer": {
+        "decorativeImage": "null",
+        "iconOnlySave": "Save note",
+        "visibleTextAndIcon": "avoid duplicate description"
+      },
+      "explanation": "Descriptions should add equivalent meaning without duplicating nearby semantics.",
+      "lessonId": "level-03-week-09-05-text-input-resources"
+    },
+    {
+      "id": "q-level-03-week-09-05-text-input-resources-keyboard-validation",
+      "prompt": "A numeric keyboard guarantees only valid numeric input arrives.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "Keyboard configuration is a hint and validation remains necessary.",
+      "lessonId": "level-03-week-09-05-text-input-resources"
+    }
+  ],
+  "rewards": {
+    "xp": 75,
+    "stars": 3
+  },
+  "version": "0.5.0"
+}

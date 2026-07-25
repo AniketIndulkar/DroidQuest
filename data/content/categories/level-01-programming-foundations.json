@@ -1,0 +1,61 @@
+{
+  "id": "level-01-programming-foundations",
+  "title": "Level 1: Programming Foundations",
+  "order": 1,
+  "description": "Learn programming from first principles with Kotlin, then add the software-development habits needed to build, inspect, and improve reliable programs.",
+  "difficulty": "beginner",
+  "status": "complete",
+  "weekRange": {
+    "start": 1,
+    "end": 4
+  },
+  "unlockPrerequisites": [],
+  "tags": [
+    "kotlin",
+    "programming",
+    "software-engineering"
+  ],
+  "estimatedLearningMinutes": 209,
+  "lessonIds": [
+    "level-01-week-01-01-first-program",
+    "level-01-week-01-02-values-types-strings",
+    "level-01-week-01-03-expressions-decisions",
+    "level-01-week-01-04-loops-ranges",
+    "level-01-week-01-05-functions",
+    "level-01-week-01-06-null-safety",
+    "level-01-week-01-07-small-program-design",
+    "level-01-week-02-01-classes-objects-composition",
+    "level-01-week-02-02-data-enum-sealed-models",
+    "level-01-week-02-03-collections-transformations",
+    "level-01-week-02-04-lambdas-extensions-scope",
+    "level-01-week-03-01-exceptions-results",
+    "level-01-week-03-02-generics-variance",
+    "level-01-week-03-03-delegation-inline-value-classes",
+    "level-01-week-03-04-annotations-reflection-dsls",
+    "level-01-week-03-05-jvm-interop-memory",
+    "level-01-week-04-01-terminal-files-processes",
+    "level-01-week-04-02-git-collaboration-docs",
+    "level-01-week-04-03-debugging-stack-traces",
+    "level-01-week-04-04-data-structures-complexity",
+    "level-01-week-04-05-http-rest-json",
+    "level-01-week-04-06-expense-manager-capstone"
+  ],
+  "checkpointQuizId": "quiz-level-01-checkpoint",
+  "roadmapStartNodeId": "node-level-01-week-01-01-first-program",
+  "plannedTopics": [
+    "Kotlin syntax, control flow, functions, null safety, and small-program design",
+    "Object modelling, sealed outcomes, collections, lambdas, extensions, and scope functions",
+    "Exceptions, generics, variance, delegation, inline APIs, value classes, metadata, JVM interop, and memory",
+    "Terminal workflows, Git collaboration, debugging, data structures, HTTP, JSON, and capstone delivery"
+  ],
+  "project": {
+    "title": "Kotlin Expense Manager",
+    "summary": "Create a command-line expense manager with validation, persistence, tests, and clean domain models."
+  },
+  "theme": {
+    "color": "#5B5BD6",
+    "icon": "terminal",
+    "mapMood": "A clear starting route where every symbol gains a practical meaning."
+  },
+  "version": "0.3.0"
+}

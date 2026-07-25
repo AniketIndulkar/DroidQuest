@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-17-03-paging3-cursors-loadstates",
+  "title": "Build a Cursor-paged News Feed",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-17-03-paging3-cursors-loadstates",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Implement and test a cursor PagingSource with stable IDs, filter invalidation, refresh keys, append retry, empty state, and ViewModel caching.",
+  "successCriteria": [
+    "Opaque cursors are never interpreted.",
+    "Refresh and append failures render separately.",
+    "Tests cover terminal, retry, and invalidation cases."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class ArticlePagingSource(private val api: NewsApi, private val query: Query) : PagingSource<String, Article>()"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

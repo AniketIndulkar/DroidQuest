@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-03-week-13-05-adaptive-layout-navigation3",
+  "title": "Adaptive Layouts and Navigation 3 Concepts Check",
+  "categoryId": "level-03-jetpack-compose",
+  "linkedLessonIds": [
+    "level-03-week-13-05-adaptive-layout-navigation3"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-03-week-13-05-adaptive-layout-navigation3-decision",
+      "prompt": "What should drive a phone-versus-two-pane decision?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Current app-window adaptive information",
+      "explanation": "Available application bounds and posture can change independently of the physical device category.",
+      "lessonId": "level-03-week-13-05-adaptive-layout-navigation3",
+      "options": [
+        "Current app-window adaptive information",
+        "Device marketing name",
+        "Battery percentage",
+        "Install date"
+      ]
+    },
+    {
+      "id": "q-level-03-week-13-05-adaptive-layout-navigation3-truth",
+      "prompt": "A resize should create a separate copy of selected-item state for each pane.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "One hoisted identity preserves continuity across presentation changes.",
+      "lessonId": "level-03-week-13-05-adaptive-layout-navigation3"
+    },
+    {
+      "id": "q-level-03-week-13-05-adaptive-layout-navigation3-recall",
+      "prompt": "What owns the Navigation 3 back stack?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "The application",
+      "explanation": "Navigation 3 renders app-managed keys through NavDisplay and scene strategies.",
+      "lessonId": "level-03-week-13-05-adaptive-layout-navigation3"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

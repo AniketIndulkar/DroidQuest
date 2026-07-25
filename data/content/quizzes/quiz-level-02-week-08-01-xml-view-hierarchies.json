@@ -1,0 +1,55 @@
+{
+  "id": "quiz-level-02-week-08-01-xml-view-hierarchies",
+  "title": "XML Layouts and View Hierarchies Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-08-01-xml-view-hierarchies"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-08-01-inflation",
+      "prompt": "What does layout inflation create?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "A hierarchy of View objects",
+      "explanation": "The inflater parses XML and instantiates configured View and ViewGroup classes.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies",
+      "options": [
+        "A hierarchy of View objects",
+        "An APK signature",
+        "A database transaction",
+        "A Gradle wrapper"
+      ]
+    },
+    {
+      "id": "q-week-08-01-pipeline",
+      "prompt": "Order the core View traversal stages.",
+      "type": "order_steps",
+      "difficulty": "beginner",
+      "answer": [
+        "measure",
+        "layout",
+        "draw"
+      ],
+      "explanation": "Sizes are resolved before bounds can be assigned and content rendered.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies"
+    },
+    {
+      "id": "q-week-08-01-sp",
+      "prompt": "Text dimensions should normally use sp so they respect user font scale.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": true,
+      "explanation": "Scale-independent pixels incorporate font-scale accessibility preferences.",
+      "lessonId": "level-02-week-08-01-xml-view-hierarchies"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

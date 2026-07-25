@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-04-week-17-01-oauth-tokens-session-security",
+  "title": "Design a Secure Session Repository",
+  "categoryId": "level-04-async-data-networking",
+  "lessonId": "level-04-week-17-01-oauth-tokens-session-security",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Specify a PKCE sign-in, session model, credential persistence boundary, account switch, expiry, redacted diagnostics, and complete logout path.",
+  "successCriteria": [
+    "No static secret is bundled in the app.",
+    "Raw tokens never leave the session boundary or logs.",
+    "Logout produces one tested unauthenticated state and cache policy."
+  ],
+  "hints": [
+    "Name the authoritative state and durable identity before selecting a library API.",
+    "Test the operation after cancellation, duplication, or process recreation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class SecureSessionRepository(/* private storage, clock, authorization service */)"
+  },
+  "solutionOutline": [
+    "Model the data, operation, failure, and recovery states explicitly.",
+    "Implement the transactional path and prove every adverse success criterion."
+  ],
+  "verification": [
+    "Run deterministic persistence or protocol tests.",
+    "Inspect durable state after interruption and retry."
+  ],
+  "rewards": {
+    "xp": 200,
+    "stars": 5
+  },
+  "version": "0.7.0"
+}

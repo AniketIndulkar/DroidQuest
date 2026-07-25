@@ -1,0 +1,235 @@
+{
+  "id": "level-04-week-18-02-room-migrations-fts-testing",
+  "title": "Room Migrations, Full-text Search, and Database Testing",
+  "categoryId": "level-04-async-data-networking",
+  "week": 18,
+  "difficulty": "intermediate",
+  "prerequisites": [
+    "level-04-week-18-01-room-entities-daos-relations-transactions"
+  ],
+  "tags": [
+    "room",
+    "migrations",
+    "fts"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "A database schema is a released compatibility contract; upgrades must preserve user data and search behaviour across every supported version path.",
+      "realWorldUse": "Adding columns, splitting tables, changing indices, full-text search, and cache redesign can corrupt or silently discard installed application data.",
+      "outcome": "Write explicit migrations, export schemas, test every upgrade path, use FTS intentionally, and inspect real queries and constraints."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Schema version changes require migration paths",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Increase the Room database version whenever the schema changes. AutoMigration handles supported mechanical changes and can use a specification for renames or deletes; complex data transforms require a manual Migration with SQL. Export schema JSON into version control so tooling and tests know historical structure. A migration must preserve data meaning, constraints, defaults, indices, triggers, and foreign-key validity, not merely make table creation succeed."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val MIGRATION_1_2 = object : Migration(1, 2) {\n    override fun migrate(db: SupportSQLiteDatabase) {\n        db.execSQL(\"ALTER TABLE articles ADD COLUMN summary TEXT NOT NULL DEFAULT ''\")\n        db.execSQL(\"CREATE INDEX index_articles_publishedAt ON articles(publishedAt)\")\n    }\n}",
+              "caption": "The migration supplies a valid default for existing rows and recreates the intended query index."
+            },
+            {
+              "type": "table",
+              "title": "Upgrade evidence",
+              "columns": [
+                "Decision",
+                "Production rule"
+              ],
+              "rows": [
+                [
+                  "Historical schema",
+                  "Export and version control"
+                ],
+                [
+                  "Mechanical supported change",
+                  "AutoMigration"
+                ],
+                [
+                  "Data transformation",
+                  "Manual Migration"
+                ],
+                [
+                  "User-owned data",
+                  "Never destructive fallback"
+                ],
+                [
+                  "Verification",
+                  "MigrationTestHelper with representative rows"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mechanics",
+          "title": "Destructive fallback is a data-loss policy",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "fallbackToDestructiveMigration drops data when no path exists and is appropriate only for explicitly disposable caches whose authoritative source can rebuild them. It is unsafe for notes, bookmarks, drafts, queued writes, and other user-owned state. Even cache destruction can break offline use or waste bandwidth, so document it. Full-text search virtual tables support efficient token search but have tokenizer, language, ranking, and synchronization choices; test queries with punctuation, prefix, diacritics, and empty input."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val MIGRATION_1_2 = object : Migration(1, 2) {\n    override fun migrate(db: SupportSQLiteDatabase) {\n        db.execSQL(\"ALTER TABLE articles ADD COLUMN summary TEXT NOT NULL DEFAULT ''\")\n        db.execSQL(\"CREATE INDEX index_articles_publishedAt ON articles(publishedAt)\")\n    }\n}",
+              "caption": "The migration supplies a valid default for existing rows and recreates the intended query index."
+            },
+            {
+              "type": "callout",
+              "tone": "remember",
+              "title": "A migration moves data meaning",
+              "text": "Schema validation alone cannot prove values, identity, and queued intent survived."
+            }
+          ]
+        },
+        {
+          "id": "production-practice",
+          "title": "Real Room tests verify SQL and migration outcomes",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "DAO and database tests should use a real Room database because mocks cannot verify SQL, constraints, transactions, invalidation, or query plans. Android device or emulator tests represent the platform SQLite implementation. MigrationTestHelper creates an old schema, inserts representative rows, runs the migration, and validates final schema and data. Test the direct and sequential path from every supported old version, including nullable defaults, identity preservation, queued operations, and FTS rebuild."
+            },
+            {
+              "type": "paragraph",
+              "text": "Production data work must remain correct after interruption and repetition. Define the source of truth, stable operation identity, transaction boundary, cancellation behaviour, and the state shown before remote confirmation. Exercise empty and stale data, malformed input, duplicate delivery, simultaneous callers, process death, schema upgrade, storage pressure, and connectivity restoration where relevant. Use pure unit tests for mapping and conflict policy, real Room or DataStore instances for persistence contracts, MockWebServer for protocol behaviour, and WorkManager test APIs for durable scheduling. Logs must reveal operation state without exposing tokens, user content, or personal identifiers. A future engineer should be able to explain which component owns every row, cursor, credential, retry, and final user-visible outcome."
+            },
+            {
+              "type": "flow",
+              "title": "Reliable data loop",
+              "steps": [
+                {
+                  "id": "contract",
+                  "label": "Define contract",
+                  "detail": "Name authority, identity, lifetime, failure, cancellation, and recovery."
+                },
+                {
+                  "id": "persist",
+                  "label": "Persist intent",
+                  "detail": "Commit user-visible state or queued work before unreliable boundaries."
+                },
+                {
+                  "id": "execute",
+                  "label": "Execute",
+                  "detail": "Perform the smallest idempotent or transactional operation."
+                },
+                {
+                  "id": "reconcile",
+                  "label": "Reconcile",
+                  "detail": "Merge authoritative outcome and resolve conflicts deliberately."
+                },
+                {
+                  "id": "verify",
+                  "label": "Verify",
+                  "detail": "Test interruption, recreation, migration, duplication, and offline recovery."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Destructive migration is deletion",
+              "text": "Use it only for explicitly disposable data with a tested rebuild path."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Migrate a Room database",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/migrating-db-versions",
+          "whyRead": "Covers automatic and manual migrations, schema export, and destructive fallback."
+        },
+        {
+          "title": "Test and debug Room",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/testing-db",
+          "whyRead": "Explains real database testing, migration testing, and Database Inspector."
+        },
+        {
+          "title": "Full-text search with Room",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/defining-data#full-text",
+          "whyRead": "Introduces FTS entities and table design."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Reject destructive bookmark migration",
+      "language": "kotlin",
+      "code": "Room.databaseBuilder(context, NewsDatabase::class.java, \"news.db\")\n    .fallbackToDestructiveMigration()\n    .build()",
+      "walkthrough": [
+        "Bookmarks and pending mutations may be the only copy of user intent.",
+        "A missing path silently drops them on application upgrade.",
+        "Implement and test every supported migration path, reserving deletion for proven disposable caches."
+      ],
+      "expectedOutput": "Upgrade preserves bookmarked IDs, pending writes, article data, and search behaviour."
+    },
+    "trap_check": [
+      {
+        "mistake": "Testing only a fresh database at the newest version.",
+        "why": "New installs pass while existing users fail during upgrade.",
+        "fix": "Create historical schemas and test direct and chained migrations with data."
+      },
+      {
+        "mistake": "Adding a retry, cache, or abstraction without naming the failure contract.",
+        "why": "The implementation hides ambiguity while duplicate, stale, or lost outcomes remain possible.",
+        "fix": "Write the invariant and an interruption test before introducing machinery."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Add summaries, authors, indices, and FTS across two schema versions with exported schemas and tests from every supported version containing real bookmarks and queued writes.",
+      "successLooksLike": "All user-owned rows survive upgrade. FTS results handle documented language cases. No unsupported path silently deletes data."
+    },
+    "recall": [
+      {
+        "prompt": "Why export Room schemas?",
+        "answer": "To preserve historical structure for migration review and tests."
+      },
+      {
+        "prompt": "When is destructive fallback acceptable?",
+        "answer": "Only for explicitly disposable rebuildable data."
+      },
+      {
+        "prompt": "What verifies real SQL behaviour?",
+        "answer": "Tests using an actual Room database."
+      }
+    ]
+  },
+  "quizId": "quiz-level-04-week-18-02-room-migrations-fts-testing",
+  "challengeId": "challenge-level-04-week-18-02-room-migrations-fts-testing",
+  "revision": {
+    "objectives": [
+      "Design safe schema evolution.",
+      "Implement and test migration paths.",
+      "Use and verify FTS search."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      3,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 115,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/room/migrating-db-versions",
+    "https://developer.android.com/training/data-storage/room/testing-db",
+    "https://developer.android.com/training/data-storage/room/defining-data#full-text"
+  ],
+  "version": "0.7.0"
+}

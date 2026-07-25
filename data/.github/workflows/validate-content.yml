@@ -1,0 +1,52 @@
+name: Validate content
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Cron has no fortnight operator. Trigger weekly; the cadence job selects alternating epoch weeks.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cadence:
+    runs-on: ubuntu-latest
+    outputs:
+      run_content: ${{ steps.decide.outputs.run_content }}
+    steps:
+      - name: Select fortnightly schedule slot
+        id: decide
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            echo "run_content=true" >> "$GITHUB_OUTPUT"
+          elif (( $(date -u +%s) / 604800 % 2 == 0 )); then
+            echo "run_content=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_content=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  content:
+    needs: cadence
+    if: needs.cadence.outputs.run_content == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate sources and generated output
+        run: npm run test:content

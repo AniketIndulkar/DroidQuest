@@ -1,0 +1,43 @@
+{
+  "id": "level-12-advanced-specialisations",
+  "title": "Level 12: Advanced Specialisations",
+  "order": 12,
+  "description": "Pursue any or all expert tracks in SDK engineering, on-device AI, native Android, device form factors, AOSP, or regulated enterprise development.",
+  "difficulty": "expert",
+  "status": "planned",
+  "weekRange": {
+    "start": 48,
+    "end": 52
+  },
+  "unlockPrerequisites": [
+    "level-11-android-internals-aosp"
+  ],
+  "tags": [
+    "specialisation",
+    "sdk",
+    "ai",
+    "ndk",
+    "aosp"
+  ],
+  "estimatedLearningMinutes": 0,
+  "lessonIds": [],
+  "roadmapStartNodeId": "node-level-12-preview",
+  "plannedTopics": [
+    "Android SDK and library engineering",
+    "On-device AI",
+    "NDK, JNI, CMake, and native diagnostics",
+    "Wear, Auto, TV, foldables, ChromeOS, and XR",
+    "AOSP platform engineering",
+    "Enterprise and financial Android"
+  ],
+  "project": {
+    "title": "Specialisation Portfolio",
+    "summary": "Complete one or more independent expert tracks; every track remains available and none is forced or mutually exclusive."
+  },
+  "theme": {
+    "color": "#6F3B83",
+    "icon": "route",
+    "mapMood": "Optional expert branches that remain open for unrestricted exploration."
+  },
+  "version": "0.2.0"
+}

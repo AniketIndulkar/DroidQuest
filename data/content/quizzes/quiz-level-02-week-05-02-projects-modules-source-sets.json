@@ -1,0 +1,56 @@
+{
+  "id": "quiz-level-02-week-05-02-projects-modules-source-sets",
+  "title": "Projects, Modules, and Source Sets Quick Check",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "linkedLessonIds": [
+    "level-02-week-05-02-projects-modules-source-sets"
+  ],
+  "kind": "lesson",
+  "difficulty": "beginner",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-week-05-02-module-output",
+      "prompt": "Which module type produces an installable Android application?",
+      "type": "single_choice",
+      "difficulty": "beginner",
+      "answer": "Application module",
+      "explanation": "The Android application plugin packages the installable artifact and application identity.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets",
+      "options": [
+        "Application module",
+        "Pure Kotlin library only",
+        "Documentation module",
+        "Version catalog"
+      ]
+    },
+    {
+      "id": "q-week-05-02-source-match",
+      "prompt": "Match each source set to its role.",
+      "type": "match_pairs",
+      "difficulty": "beginner",
+      "answer": {
+        "main": "shared production sources",
+        "test": "local JVM tests",
+        "androidTest": "device tests",
+        "debug": "debug build-type overlay"
+      },
+      "explanation": "Source-set names determine which variant or test compilation receives their files.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets"
+    },
+    {
+      "id": "q-week-05-02-cycle",
+      "prompt": "A Gradle module dependency graph can safely contain circular project dependencies.",
+      "type": "true_false",
+      "difficulty": "beginner",
+      "answer": false,
+      "explanation": "Build modules require an acyclic dependency order; shared contracts should be extracted or coordination moved upward.",
+      "lessonId": "level-02-week-05-02-projects-modules-source-sets"
+    }
+  ],
+  "rewards": {
+    "xp": 45,
+    "stars": 3
+  },
+  "version": "0.4.0"
+}

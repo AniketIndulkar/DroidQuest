@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-04-week-16-06-mockwebserver-network-integration-tests",
+  "title": "Network Integration Testing with MockWebServer Check",
+  "categoryId": "level-04-async-data-networking",
+  "linkedLessonIds": [
+    "level-04-week-16-06-mockwebserver-network-integration-tests"
+  ],
+  "kind": "lesson",
+  "difficulty": "intermediate",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-04-week-16-06-mockwebserver-network-integration-tests-decision",
+      "prompt": "What does mocking NewsService fail to test?",
+      "type": "single_choice",
+      "difficulty": "intermediate",
+      "answer": "Retrofit path, converter, and interceptor integration",
+      "explanation": "MockWebServer exercises the real HTTP client stack while controlling the server.",
+      "lessonId": "level-04-week-16-06-mockwebserver-network-integration-tests",
+      "options": [
+        "Retrofit path, converter, and interceptor integration",
+        "Pure mapper arithmetic",
+        "A local string function",
+        "Kotlin compiler syntax"
+      ]
+    },
+    {
+      "id": "q-level-04-week-16-06-mockwebserver-network-integration-tests-truth",
+      "prompt": "Network integration tests should require the production service.",
+      "type": "true_false",
+      "difficulty": "intermediate",
+      "answer": false,
+      "explanation": "A local controlled server makes boundary behaviour deterministic and safe.",
+      "lessonId": "level-04-week-16-06-mockwebserver-network-integration-tests"
+    },
+    {
+      "id": "q-level-04-week-16-06-mockwebserver-network-integration-tests-recall",
+      "prompt": "What inspects the actual outgoing request?",
+      "type": "short_answer",
+      "difficulty": "intermediate",
+      "answer": "RecordedRequest from takeRequest",
+      "explanation": "It contains method, path, headers, and body received by the local server.",
+      "lessonId": "level-04-week-16-06-mockwebserver-network-integration-tests"
+    }
+  ],
+  "rewards": {
+    "xp": 80,
+    "stars": 3
+  },
+  "version": "0.6.0"
+}

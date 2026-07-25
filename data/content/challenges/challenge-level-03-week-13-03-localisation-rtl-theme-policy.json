@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-03-week-13-03-localisation-rtl-theme-policy",
+  "title": "Internationalise the Shopping Shell",
+  "categoryId": "level-03-jetpack-compose",
+  "lessonId": "level-03-week-13-03-localisation-rtl-theme-policy",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 60,
+  "prompt": "Localise basket, prices, dates, errors, and navigation; verify pseudo-locales, one RTL locale, light/dark schemes, and dynamic-colour fallback.",
+  "successCriteria": [
+    "No app sentence is assembled from translated fragments.",
+    "Directional controls and focus behave correctly in RTL.",
+    "Theme roles pass contrast checks in representative states."
+  ],
+  "hints": [
+    "Write down the ownership and failure contract before choosing library APIs.",
+    "Prove one adverse or lifecycle case before improving presentation."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "@Composable fun ShoppingShell(state: ShopUiState, onEvent: (ShopEvent) -> Unit)"
+  },
+  "solutionOutline": [
+    "Model immutable inputs, outputs, events, and failures at the boundary.",
+    "Implement the smallest correct path and verify every success criterion."
+  ],
+  "verification": [
+    "Run deterministic state or protocol tests.",
+    "Inspect the relevant accessibility, lifecycle, concurrency, or network boundary."
+  ],
+  "rewards": {
+    "xp": 190,
+    "stars": 5
+  },
+  "version": "0.6.0"
+}

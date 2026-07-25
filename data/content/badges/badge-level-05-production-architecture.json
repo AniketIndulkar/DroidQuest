@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-05-production-architecture",
+  "title": "Production Architecture Engineer",
+  "description": "Awarded for mastering proportionate Android architecture, dependency injection, modularisation, architectural tests, and the banking capstone.",
+  "categoryId": "level-05-production-architecture",
+  "icon": "production-architecture-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-05-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 900,
+  "rarity": "epic",
+  "version": "0.8.0"
+}

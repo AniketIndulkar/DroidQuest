@@ -1,0 +1,37 @@
+{
+  "id": "challenge-level-02-week-06-03-configuration-changes",
+  "title": "Make a Draft Survive Recreation",
+  "categoryId": "level-02-android-platform-fundamentals",
+  "lessonId": "level-02-week-06-03-configuration-changes",
+  "difficulty": "beginner",
+  "estimatedMinutes": 45,
+  "prompt": "Create a Notes screen state holder that preserves query and selection across rotation without retaining UI objects, then document what still disappears after process death.",
+  "successCriteria": [
+    "Rotation creates a new activity while keeping expected screen data.",
+    "The ViewModel contains no Context, View, Activity, or Fragment.",
+    "The report distinguishes recreation from process-death restoration."
+  ],
+  "hints": [
+    "Begin with one executable scenario that demonstrates: Rotation creates a new activity while keeping expected screen data.",
+    "Use lifecycle or boundary evidence to prove: The ViewModel contains no Context, View, Activity, or Fragment."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class NotesUiState(val query: String, val selectedId: String?)\nclass NotesViewModel : ViewModel() { /* state and events */ }"
+  },
+  "solutionOutline": [
+    "Implement the smallest design that guarantees: Rotation creates a new activity while keeping expected screen data.",
+    "Implement the smallest design that guarantees: The ViewModel contains no Context, View, Activity, or Fragment.",
+    "Implement the smallest design that guarantees: The report distinguishes recreation from process-death restoration."
+  ],
+  "verification": [
+    "Run a focused check demonstrating that rotation creates a new activity while keeping expected screen data.",
+    "Run a focused check demonstrating that the ViewModel contains no Context, View, Activity, or Fragment.",
+    "Run a focused check demonstrating that the report distinguishes recreation from process-death restoration."
+  ],
+  "rewards": {
+    "xp": 140,
+    "stars": 5
+  },
+  "version": "0.4.0"
+}

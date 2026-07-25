@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://droidquest.dev/schema/glossary.schema.json",
+  "title": "DroidQuest glossary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "version", "entries"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 3 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "entries": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "term", "definition", "categoryId", "tags", "relatedLessonIds"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "term": { "type": "string", "minLength": 2 },
+          "definition": { "type": "string", "minLength": 20 },
+          "categoryId": { "type": "string", "minLength": 3 },
+          "tags": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "relatedLessonIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
