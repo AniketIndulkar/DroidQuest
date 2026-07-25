@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "title": "Apply Replay, Fraud Controls, and Resilience Limits",
+  "categoryId": "level-08-android-security-engineering",
+  "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Design replay-safe transfer execution and a tiered fraud decision table, then document bypasses, false positives, privacy, recovery, telemetry, and incident actions.",
+  "successCriteria": [
+    "The asset, attacker, boundary, abuse path, assumptions, and residual risk are explicit.",
+    "The implementation enforces least privilege at the authoritative boundary and preserves safe failure.",
+    "Adversarial tests plus rotation, revocation, migration, monitoring, recovery, and ownership are documented."
+  ],
+  "hints": [
+    "Attempt the attack before and after the control so evidence demonstrates the intended property.",
+    "Inspect the release artifact and server contract, not only source or UI behaviour."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "suspend fun postOnce(p:Principal,r:Transfer)=transaction {\n idempotency.find(p.id,r.operationId)?.let{return@transaction it}\n authoriseAndPost(p,r).also{idempotency.save(p.id,r.operationId,hash(r),it)}\n}"
+  },
+  "solutionOutline": [
+    "Create the threat and data-flow model, then select the narrowest sufficient control.",
+    "Implement and attack the control, document limitations, and rehearse lifecycle and incident paths."
+  ],
+  "verification": [
+    "Run bypass, replay/substitution, account-switch, failure, and recovery scenarios.",
+    "Review evidence and residual risk with the owner who can accept or remediate it."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

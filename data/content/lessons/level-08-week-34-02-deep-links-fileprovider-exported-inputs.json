@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+  "title": "Secure Deep Links, FileProvider, and Exported Inputs",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+  ],
+  "tags": [
+    "security",
+    "deep-links",
+    "fileprovider"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through secure deep links, fileprovider, and exported inputs, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A verified App Link establishes that the package is associated with a web domain; it does not make every path, query, or action authorised. Parse with Uri, require HTTPS, exact allowlisted host, expected path shape, bounded parameters, and a fresh server lookup. Never execute a money movement directly from link data. Require authenticated state and explicit confirmation, then let the server validate ownership and operation state. Handle verification failure and browser fallback without weakening the protected action."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "FileProvider converts private files to content URIs and temporary grants. Configure only narrow subdirectories; avoid root-path, broad dot paths, and sensitive external storage. Create files with unguessable identity, canonicalise and validate imports, grant read or write—not both—only for the receiving intent, and revoke or expire access. Treat MIME type, display name, size, archive entries, image metadata, and file content as attacker-controlled, even when the picker or provider supplied them."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val accepted=uri.scheme==\"https\" && uri.host==\"bank.example\" && uri.pathSegments.firstOrNull()==\"approve\"\nrequire(accepted)\n// Fetch operation by opaque ID; server authorises; user confirms.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "For every exported entry point define caller assumptions, accepted structure, authentication, authorisation, replay identity, safe failure, and telemetry. Test with a separate hostile app: alternate schemes, lookalike hosts, encoded traversal, duplicate parameters, huge files, wrong MIME, mutable grants, reused links, stale sessions, and another account. Inspect the merged release manifest and hosted assetlinks.json for the exact package and app-signing certificate. Client validation protects the parser; server policy protects the asset."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Checking host with string suffix matching can accept attacker-controlled lookalike domains, while a verified domain still cannot authorise a transaction."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Verify Android App Links",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links/verify-android-applinks",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "FileProvider exposure risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/file-providers",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Intent redirection risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/intent-redirection",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Secure Deep Links, FileProvider, and Exported Inputs boundary",
+      "language": "kotlin",
+      "code": "val accepted=uri.scheme==\"https\" && uri.host==\"bank.example\" && uri.pathSegments.firstOrNull()==\"approve\"\nrequire(accepted)\n// Fetch operation by opaque ID; server authorises; user confirms.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Checking host with string suffix matching can accept attacker-controlled lookalike domains, while a verified domain still cannot authorise a transaction.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Harden one approval App Link and document-sharing FileProvider, then build hostile-app tests for URI parsing, grants, files, replay, and cross-account access.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What should a sensitive deep link carry?",
+        "answer": "An opaque operation reference that is revalidated and authorised server-side, not trusted authority or sensitive credentials."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+  "challengeId": "challenge-level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Secure Deep Links, FileProvider, and Exported Inputs.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/app-links/verify-android-applinks",
+    "https://developer.android.com/privacy-and-security/risks/file-providers",
+    "https://developer.android.com/privacy-and-security/risks/intent-redirection"
+  ],
+  "version": "0.11.0"
+}

@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+  "title": "Key Lifecycle, Rotation, Invalidation, and Attestation",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 32,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-32-02-android-keystore-hardware-strongbox"
+  ],
+  "tags": [
+    "security",
+    "key-rotation",
+    "attestation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through key lifecycle, rotation, invalidation, and attestation, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Key management includes creation, identification, activation, use, rotation, retirement, destruction, compromise response, and audit—not only an encryption call. Prefix stored ciphertext with a format and key version so readers choose the correct primitive. During rotation, write with the new primary key while retaining old keys only long enough to decrypt and migrate existing records. Make migration resumable and idempotent; power loss between decrypt and rewrite must not destroy the only usable copy."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keys can become unavailable after secure-lock changes, biometric enrollment rules, app data clearing, restore to another device, hardware failure, or explicit deletion. Decide per data class whether to reauthenticate and redownload, ask for recovery material, discard cache, or declare permanent loss. Never silently regenerate a key and then report existing ciphertext as corrupt. Surface typed states such as KeyInvalidated, RestoreRequiresSignIn, or DataUnrecoverable, and monitor their rate without logging protected data."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "sealed interface DecryptResult { data class Ok(val bytes:ByteArray):DecryptResult; data object KeyInvalidated:DecryptResult; data object UnknownVersion:DecryptResult }\n// Never replace an invalidated key before classifying existing ciphertext.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Key attestation can let a server evaluate a generated key’s claimed security properties. Verification belongs on a trusted server: validate the certificate chain, trusted root, signatures, challenge binding, security level, application identity where relevant, and revocation. An attestation result is scoped evidence, not a permanent “safe device” badge. Define freshness, fallback, privacy, unsupported-device behaviour, and the exact server action affected by the result."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Regenerating a missing alias under the same name hides key loss and makes every existing record permanently undecryptable without a clear recovery path."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Android Keystore system",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/keystore",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Verify hardware-backed keys with attestation",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-key-attestation",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Key Lifecycle, Rotation, Invalidation, and Attestation boundary",
+      "language": "kotlin",
+      "code": "sealed interface DecryptResult { data class Ok(val bytes:ByteArray):DecryptResult; data object KeyInvalidated:DecryptResult; data object UnknownVersion:DecryptResult }\n// Never replace an invalidated key before classifying existing ciphertext.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Regenerating a missing alias under the same name hides key loss and makes every existing record permanently undecryptable without a clear recovery path.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement a resumable v1-to-v2 ciphertext rotation plan and write incident runbooks for key invalidation, restore, compromise, rollback, and attestation failure.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Why must ciphertext carry a key or format version?",
+        "answer": "So decryption and resumable rotation can select the correct format and key without guessing."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+  "challengeId": "challenge-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Key Lifecycle, Rotation, Invalidation, and Attestation.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/keystore",
+    "https://developer.android.com/privacy-and-security/security-key-attestation"
+  ],
+  "version": "0.11.0"
+}

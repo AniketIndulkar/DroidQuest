@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "title": "Apply Certificate and Public-Key Pinning Decisions",
+  "categoryId": "level-08-android-security-engineering",
+  "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Write a pinning decision record comparing no pinning, CA restriction, SPKI pins, and certificate pins, including ownership, backup, old-client support, and recovery.",
+  "successCriteria": [
+    "The asset, attacker, boundary, abuse path, assumptions, and residual risk are explicit.",
+    "The implementation enforces least privilege at the authoritative boundary and preserves safe failure.",
+    "Adversarial tests plus rotation, revocation, migration, monitoring, recovery, and ownership are documented."
+  ],
+  "hints": [
+    "Attempt the attack before and after the control so evidence demonstrates the intended property.",
+    "Inspect the release artifact and server contract, not only source or UI behaviour."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val client=OkHttpClient.Builder().certificatePinner(CertificatePinner.Builder().add(\"api.bank.example\",\"sha256/PRIMARY=\",\"sha256/BACKUP=\").build()).build()"
+  },
+  "solutionOutline": [
+    "Create the threat and data-flow model, then select the narrowest sufficient control.",
+    "Implement and attack the control, document limitations, and rehearse lifecycle and incident paths."
+  ],
+  "verification": [
+    "Run bypass, replay/substitution, account-switch, failure, and recovery scenarios.",
+    "Review evidence and residual risk with the owner who can accept or remediate it."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-01-threat-model-assets-attackers-boundaries",
+  "title": "Threat Models: Assets, Attackers, and Trust Boundaries Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-01-threat-model-assets-attackers-boundaries-decision",
+      "prompt": "Which design best applies threat models: assets, attackers, and trust boundaries?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Model the transfer asset, actors, data flows, trust boundaries, abuse paths, controls, and residual risk before selecting APIs.",
+        "Encrypt every String in the app",
+        "Assume the app sandbox removes all threats",
+        "List vulnerabilities without system context"
+      ],
+      "answer": "Model the transfer asset, actors, data flows, trust boundaries, abuse paths, controls, and residual risk before selecting APIs.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+    },
+    {
+      "id": "q-level-08-week-31-01-threat-model-assets-attackers-boundaries-truth",
+      "prompt": "A trust boundary exists only where traffic crosses the public internet.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Starting with a checklist of APIs before identifying assets and attack paths can harden irrelevant code while the real authority boundary remains exposed.",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+    },
+    {
+      "id": "q-level-08-week-31-01-threat-model-assets-attackers-boundaries-recall",
+      "prompt": "What makes a threat scenario actionable?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It names an asset, attacker capability, boundary, abuse path, impact, control, evidence, owner, and residual risk.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

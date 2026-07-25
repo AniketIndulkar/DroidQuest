@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-08-week-33",
+  "title": "Week 33 Trust Operator",
+  "description": "Awarded for completing the Week 33 security checkpoint with threat-based evidence.",
+  "categoryId": "level-08-android-security-engineering",
+  "icon": "security-week-33",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-08-week-33-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 425,
+  "rarity": "rare",
+  "version": "0.11.0"
+}

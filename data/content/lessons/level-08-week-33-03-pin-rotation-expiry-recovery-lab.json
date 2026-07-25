@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+  "title": "Certificate Rotation, Expiry, and Failure Recovery Lab",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 33,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-33-02-certificate-public-key-pinning-decisions"
+  ],
+  "tags": [
+    "security",
+    "certificate-rotation",
+    "incident-response"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through certificate rotation, expiry, and failure recovery lab, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Safe rotation is a compatibility deployment across server certificates and many immutable client pin sets. Build a matrix of app versions, active installs, primary pins, backup pins, minimum supported versions, certificate expiry, release adoption, and server chains. The invariant is simple: every supported client must share at least one acceptable pin with every server chain it may encounter. Deploy client trust before server use, wait for adoption, introduce the new chain, observe, then retire old material only when policy permits."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An expiration attribute can restore platform trust after a date, reducing permanent lockout for abandoned versions while weakening the extra restriction after expiry. Choose it from actual release cadence and risk; it is not free recovery. Emergency design needs a pre-shipped backup key or chain, protected signing/release ability, DNS/CDN coordination, customer communication, telemetry, and server rollback. Never rely solely on remote configuration fetched through the failing pinned connection."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Compatibility(val app:String,val trusted:Set<String>,val served:Set<String>)\nfun compatible(x:Compatibility)=x.trusted.intersect(x.served).isNotEmpty()",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Rehearse failure. Test an old app with the old primary, new primary, backup, unexpected CA, expired pin policy, offline clock, and partial regional rollout. Monitor handshake failures by version and region without sensitive URLs. Define stop conditions and who can rotate server, mobile, CDN, and DNS material. The exercise is complete only when the team can explain recovery for an unupdated client after primary-key compromise and demonstrate that recovery before production needs it."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Rotating the server to a new key before an adopted mobile release trusts it immediately locks every older pinned client out."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Network Security Configuration",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-config",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "OkHttp CertificatePinner",
+          "publisher": "Square",
+          "resourceType": "guide",
+          "url": "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-certificate-pinner/index.html",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Certificate Rotation, Expiry, and Failure Recovery Lab boundary",
+      "language": "kotlin",
+      "code": "data class Compatibility(val app:String,val trusted:Set<String>,val served:Set<String>)\nfun compatible(x:Compatibility)=x.trusted.intersect(x.served).isNotEmpty()",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Rotating the server to a new key before an adopted mobile release trusts it immediately locks every older pinned client out.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Given old, new, and emergency keys plus four installed app versions, produce and test a no-outage rotation timeline, rollback, monitoring, expiry, and compromise plan.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What invariant prevents a pinning outage?",
+        "answer": "Every supported installed client and every served chain must share at least one acceptable pin."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+  "challengeId": "challenge-level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Certificate Rotation, Expiry, and Failure Recovery Lab.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/security-config",
+    "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-certificate-pinner/index.html"
+  ],
+  "version": "0.11.0"
+}

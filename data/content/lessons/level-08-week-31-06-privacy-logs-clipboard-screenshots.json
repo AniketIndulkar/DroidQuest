@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "title": "Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 31,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+  ],
+  "tags": [
+    "security",
+    "privacy",
+    "logging"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through privacy surfaces: logs, clipboard, screenshots, and errors, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Sensitive data escapes through secondary surfaces that developers use for convenience: logcat, analytics, crash breadcrumbs, screenshots, recents thumbnails, notifications, clipboard, keyboard suggestions, support exports, exception messages, and test fixtures. Classify fields before instrumentation and define permitted transformations for each sink. Prefer event names, coarse states, and short-lived opaque correlation IDs over names, tokens, account numbers, locations, request bodies, or raw server errors. Privacy-safe diagnosis must be designed, not added after an incident."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Build redaction at the logging boundary so callers cannot accidentally bypass it, and configure verbose sinks only in non-release builds. Mark clipboard content sensitive where supported, clear exceptionally sensitive copied values when the product can do so without surprising users, and never use clipboard for credentials by default. Apply secure-window or screenshot controls only to screens whose threat model justifies the usability and support cost; remember that an attacker controlling the device can use other capture techniques."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "logger.info(\"transfer_failed\",mapOf(\"operation\" to opId.shortHash(),\"reason\" to error.safeCode))\n// Never attach accessToken, accountNumber, requestBody, or Throwable message blindly.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Map every data field through collection, memory, display, persistence, backup, telemetry, support, deletion, and retention. Test release variants by searching logs, crash reports, notifications, recent-app previews, clipboard previews, screenshots, and exported diagnostics while executing success and failure paths. Safe error design gives users an action and support identifier while retaining detailed server-side evidence under access controls. Treat third-party SDK data collection as another boundary with contracts, configuration, retention, and removal evidence."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Redacting only the happy path leaves tokens and personal data exposed when generic exception logging serialises failed requests and headers."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Log information disclosure",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Secure clipboard handling",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/secure-clipboard-handling",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Android security checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors boundary",
+      "language": "kotlin",
+      "code": "logger.info(\"transfer_failed\",mapOf(\"operation\" to opId.shortHash(),\"reason\" to error.safeCode))\n// Never attach accessToken, accountNumber, requestBody, or Throwable message blindly.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Redacting only the happy path leaves tokens and personal data exposed when generic exception logging serialises failed requests and headers.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a sensitive-data inventory and run a release-build privacy test across logs, crash reports, clipboard, notifications, screenshots, support exports, and deletion.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What should a user-facing security error contain?",
+        "answer": "A safe explanation, a next action, and an opaque support identifier—not secrets or internal policy details."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "challengeId": "challenge-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+    "https://developer.android.com/privacy-and-security/risks/secure-clipboard-handling",
+    "https://developer.android.com/privacy-and-security/security-tips"
+  ],
+  "version": "0.11.0"
+}

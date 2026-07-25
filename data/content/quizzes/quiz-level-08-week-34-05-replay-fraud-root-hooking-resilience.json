@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "title": "Replay, Fraud Controls, and Resilience Limits Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-05-replay-fraud-root-hooking-resilience-decision",
+      "prompt": "Which design best applies replay, fraud controls, and resilience limits?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Enforce one-time business effects and layered server risk decisions while treating local resilience checks as bypassable signals.",
+        "Trust a client timestamp alone",
+        "Use root detection as sole authorisation",
+        "Retry mutations without operation identity"
+      ],
+      "answer": "Enforce one-time business effects and layered server risk decisions while treating local resilience checks as bypassable signals.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+    },
+    {
+      "id": "q-level-08-week-34-05-replay-fraud-root-hooking-resilience-truth",
+      "prompt": "A random nonce prevents replay even if the server neither stores nor binds it to identity and payload.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Blocking every rooted or hook-detected device on the client creates false positives while an attacker can patch the branch or relay through a clean device.",
+      "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+    },
+    {
+      "id": "q-level-08-week-34-05-replay-fraud-root-hooking-resilience-recall",
+      "prompt": "What makes an operation ID replay-safe?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Server-side atomic storage bound to principal and payload, with defined expiry and repeated-delivery semantics.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

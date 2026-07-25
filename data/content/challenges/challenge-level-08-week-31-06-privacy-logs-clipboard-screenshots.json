@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "title": "Apply Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors",
+  "categoryId": "level-08-android-security-engineering",
+  "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Create a sensitive-data inventory and run a release-build privacy test across logs, crash reports, clipboard, notifications, screenshots, support exports, and deletion.",
+  "successCriteria": [
+    "The asset, attacker, boundary, abuse path, assumptions, and residual risk are explicit.",
+    "The implementation enforces least privilege at the authoritative boundary and preserves safe failure.",
+    "Adversarial tests plus rotation, revocation, migration, monitoring, recovery, and ownership are documented."
+  ],
+  "hints": [
+    "Attempt the attack before and after the control so evidence demonstrates the intended property.",
+    "Inspect the release artifact and server contract, not only source or UI behaviour."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "logger.info(\"transfer_failed\",mapOf(\"operation\" to opId.shortHash(),\"reason\" to error.safeCode))\n// Never attach accessToken, accountNumber, requestBody, or Throwable message blindly."
+  },
+  "solutionOutline": [
+    "Create the threat and data-flow model, then select the narrowest sufficient control.",
+    "Implement and attack the control, document limitations, and rehearse lifecycle and incident paths."
+  ],
+  "verification": [
+    "Run bypass, replay/substitution, account-switch, failure, and recovery scenarios.",
+    "Review evidence and residual risk with the owner who can accept or remediate it."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

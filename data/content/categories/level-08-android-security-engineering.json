@@ -2,9 +2,9 @@
   "id": "level-08-android-security-engineering",
   "title": "Level 8: Android Security Engineering",
   "order": 8,
-  "description": "Protect Android applications through threat modelling, secure storage, cryptographic key handling, transport controls, identity flows, and operational rotation plans.",
+  "description": "Protect Android systems through threat modelling, least privilege, secure local cryptography, transport and certificate operations, secret and signing-key boundaries, identity, integrity, abuse controls, and incident-ready recovery.",
   "difficulty": "advanced",
-  "status": "planned",
+  "status": "complete",
   "weekRange": {
     "start": 31,
     "end": 34
@@ -17,14 +17,39 @@
     "privacy",
     "threat-modeling"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-08-preview",
+  "estimatedLearningMinutes": 240,
+  "lessonIds": [
+    "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+    "level-08-week-31-02-masvs-least-privilege-defense-depth",
+    "level-08-week-31-03-client-server-trust-authz-validation",
+    "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+    "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+    "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+    "level-08-week-32-01-data-classification-storage-decisions",
+    "level-08-week-32-02-android-keystore-hardware-strongbox",
+    "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+    "level-08-week-32-04-tink-aead-associated-data-envelopes",
+    "level-08-week-32-05-encrypted-files-databases-sql-injection",
+    "level-08-week-32-06-biometric-keys-backup-recovery",
+    "level-08-week-33-01-tls-chains-network-security-config",
+    "level-08-week-33-02-certificate-public-key-pinning-decisions",
+    "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+    "level-08-week-33-04-secrets-git-build-apk-boundaries",
+    "level-08-week-33-05-api-key-restrictions-server-secrets",
+    "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+    "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+    "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+    "level-08-week-34-03-webview-origin-capability-security",
+    "level-08-week-34-04-play-integrity-request-binding-verdicts",
+    "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+    "level-08-week-34-06-banking-security-review-capstone"
+  ],
+  "roadmapStartNodeId": "node-level-08-week-31-01-threat-model-assets-attackers-boundaries",
   "plannedTopics": [
-    "Threat models and reverse-engineering fundamentals",
-    "Keystore, encryption, and secure local storage",
-    "TLS, pinning, rotation, and network security configuration",
-    "OAuth, deep links, integrity, fraud, and abuse controls"
+    "Threat models, MASVS, client/server authority, IPC attack surface, reverse engineering, and privacy surfaces",
+    "Data classification, Keystore and StrongBox, key lifecycle and attestation, Tink AEAD, database safety, biometrics, and backup recovery",
+    "TLS and Network Security Configuration, pinning decisions and rotation, five secret classes, API restrictions, and app signing",
+    "OAuth with PKCE, secure links and files, WebView origins, Play Integrity request binding, replay and fraud controls, and banking review"
   ],
   "project": {
     "title": "Banking Application Security Review",
@@ -35,5 +60,6 @@
     "icon": "security",
     "mapMood": "Trust boundaries, protected stores, and incident routes made visible."
   },
-  "version": "0.2.0"
+  "version": "0.11.0",
+  "checkpointQuizId": "quiz-level-08-checkpoint"
 }

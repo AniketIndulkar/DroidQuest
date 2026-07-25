@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-08-android-security-engineering",
+  "title": "Android Security Engineer",
+  "description": "Awarded for completing a threat-based banking security review with verified controls, recovery, and residual-risk ownership.",
+  "categoryId": "level-08-android-security-engineering",
+  "icon": "android-security-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-08-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 1100,
+  "rarity": "epic",
+  "version": "0.11.0"
+}

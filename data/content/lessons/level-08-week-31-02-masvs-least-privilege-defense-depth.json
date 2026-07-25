@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-31-02-masvs-least-privilege-defense-depth",
+  "title": "MASVS, Least Privilege, and Defence in Depth",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 31,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+  ],
+  "tags": [
+    "security",
+    "masvs",
+    "least-privilege"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through masvs, least privilege, and defence in depth, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "OWASP MASVS organises mobile controls across storage, cryptography, authentication, networking, platform interaction, code, resilience, and privacy. Use it to check coverage after modelling the product, not as a substitute for a threat model. Select controls according to the banking app’s data, deployment, regulatory context, attacker capabilities, and backend responsibilities. Record the exact MASVS version because the standard evolves, and link controls to evidence rather than declaring broad compliance from the presence of a library."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Least privilege applies to more than runtime permissions. Keep components unexported unless another app truly needs them; make URI grants narrow and temporary; scope OAuth tokens and API keys; constrain cryptographic keys to required algorithms, purposes, authentication, and validity; give CI identities only the release action they need. Reduce lifetime as well as breadth: revoke a grant after sharing, clear session material at logout, and expire server authority. A permission that is unused during the current journey is unnecessary attack surface."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val intent=PendingIntent.getActivity(context,42,transferIntent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)\n// Server still authorises transfer ownership and limits.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Defence in depth combines independent controls that fail differently. A transfer might require server authorisation, a short-lived token, transaction validation, optional user reauthentication, replay-resistant request identity, limits, monitoring, and recovery. Layers must not all depend on a client boolean that an attacker can patch. Secure defaults make the ordinary path safe without caller discipline: reject unknown hosts, immutable PendingIntents, no cleartext, and deny-by-default server policies. Document which layer detects failure when another is bypassed."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Calling an app “MASVS compliant” because it uses Keystore, TLS, and obfuscation ignores whether controls address its actual threats or have verification evidence."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OWASP Mobile Application Security Verification Standard",
+          "publisher": "OWASP",
+          "resourceType": "official_docs",
+          "url": "https://mas.owasp.org/MASVS/",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Minimise permission requests",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/minimize-permission-requests",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the MASVS, Least Privilege, and Defence in Depth boundary",
+      "language": "kotlin",
+      "code": "val intent=PendingIntent.getActivity(context,42,transferIntent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)\n// Server still authorises transfer ownership and limits.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Calling an app “MASVS compliant” because it uses Keystore, TLS, and obfuscation ignores whether controls address its actual threats or have verification evidence.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Map the banking app to the eight MASVS control groups and produce a least-privilege table for permissions, components, tokens, keys, files, and CI identities.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Which two dimensions should least privilege minimise?",
+        "answer": "The breadth of authority and the time for which that authority exists."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-31-02-masvs-least-privilege-defense-depth",
+  "challengeId": "challenge-level-08-week-31-02-masvs-least-privilege-defense-depth",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain MASVS, Least Privilege, and Defence in Depth.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://mas.owasp.org/MASVS/",
+    "https://developer.android.com/privacy-and-security/minimize-permission-requests"
+  ],
+  "version": "0.11.0"
+}

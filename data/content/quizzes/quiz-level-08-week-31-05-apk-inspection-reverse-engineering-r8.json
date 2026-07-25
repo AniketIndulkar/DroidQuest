@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+  "title": "APK Inspection, Reverse Engineering, and R8 Limits Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-05-apk-inspection-reverse-engineering-r8-decision",
+      "prompt": "Which design best applies apk inspection, reverse engineering, and r8 limits?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Inspect the exact release artifact, treat obfuscation as delay rather than secrecy, and keep authoritative controls off-device.",
+        "Review only debug source code",
+        "Delete R8 mapping files after release",
+        "Assume native code cannot be decompiled"
+      ],
+      "answer": "Inspect the exact release artifact, treat obfuscation as delay rather than secrecy, and keep authoritative controls off-device.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+    },
+    {
+      "id": "q-level-08-week-31-05-apk-inspection-reverse-engineering-r8-truth",
+      "prompt": "R8 obfuscation makes embedded credentials confidential from a determined attacker.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Encrypting an API secret and shipping both ciphertext and the decryption routine merely changes the reverse-engineering steps; it does not create confidentiality.",
+      "lessonId": "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+    },
+    {
+      "id": "q-level-08-week-31-05-apk-inspection-reverse-engineering-r8-recall",
+      "prompt": "Which release artifact is required to interpret obfuscated production stack traces?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The exact R8 mapping file produced for that release.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

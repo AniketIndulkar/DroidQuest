@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+  "title": "App Signing, Upload Keys, CI, and Recovery Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-33-06-app-signing-upload-keys-ci-recovery-decision",
+      "prompt": "Which design best applies app signing, upload keys, ci, and recovery?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Separate delivered app-signing identity from upload authentication and protect the whole audited release path.",
+        "Commit the keystore encrypted beside its password",
+        "Use the upload fingerprint for delivered-app restrictions",
+        "Skip artifact verification after signing"
+      ],
+      "answer": "Separate delivered app-signing identity from upload authentication and protect the whole audited release path.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+    },
+    {
+      "id": "q-level-08-week-33-06-app-signing-upload-keys-ci-recovery-truth",
+      "prompt": "Resetting a compromised upload key changes the signing certificate on APKs already delivered by Play.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Using the irreplaceable app-signing key directly on every developer laptop increases exposure when a separate resettable upload key could be used.",
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+    },
+    {
+      "id": "q-level-08-week-33-06-app-signing-upload-keys-ci-recovery-recall",
+      "prompt": "Why separate the upload key from the app-signing key?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The upload key can authenticate releases with less exposure and can be reset without changing the delivered app-signing identity.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

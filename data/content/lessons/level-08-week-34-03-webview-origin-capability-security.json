@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-34-03-webview-origin-capability-security",
+  "title": "WebView Origin and Capability Security",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+  ],
+  "tags": [
+    "security",
+    "webview",
+    "origin"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through webview origin and capability security, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use a browser or Custom Tab when web content does not require tightly bounded app integration. A WebView combines remote HTML, JavaScript, cookies, navigation, file/content access, and optional native capabilities inside the app’s trust context. Define an exact origin allowlist using parsed HTTPS scheme and host, constrain navigation and redirects, disable unneeded file/content access and JavaScript, and keep Safe Browsing and platform updates in the plan. String contains, startsWith, or endsWith checks are not origin validation."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A JavaScript bridge can expose annotated native methods to every frame loaded in the WebView and may not provide the calling origin expected by application code. Avoid addJavascriptInterface for untrusted or mixed content. Prefer message channels that enforce allowed origins where supported, expose minimal command-specific capabilities, validate every payload, and remove interfaces before untrusted navigation. Never expose tokens, filesystem primitives, arbitrary intents, SQL, reflection, or generic HTTP through a bridge."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val uri=request.url\nif(uri.scheme==\"https\" && uri.host==\"support.bank.example\") return false\nopenExternal(uri); return true",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Clear sensitive cookies/cache according to account lifecycle, prevent credential entry into untrusted pages, handle downloads and external schemes explicitly, and avoid bypassing TLS errors. Test redirects, iframes, popups, javascript/content/file schemes, compromised allowed pages, offline errors, process recreation, logout, mixed content, and malicious bridge messages. WebView content and backend responses remain hostile input even when the top-level domain is owned by the organisation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Allowing a URL because its string contains bank.example accepts crafted authorities, paths, user-info, and schemes that do not share the trusted origin."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Unsafe URI loading in WebView",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/unsafe-uri-loading",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "WebView native bridge risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/insecure-webview-native-bridges",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Android security checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the WebView Origin and Capability Security boundary",
+      "language": "kotlin",
+      "code": "val uri=request.url\nif(uri.scheme==\"https\" && uri.host==\"support.bank.example\") return false\nopenExternal(uri); return true",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Allowing a URL because its string contains bank.example accepts crafted authorities, paths, user-info, and schemes that do not share the trusted origin.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Build a WebView security policy and adversarial suite covering origins, redirects, bridges, schemes, TLS errors, cookies, logout, and compromised allowed content.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Why is a generic JavaScript bridge dangerous?",
+        "answer": "It can turn untrusted web content into a caller of powerful native capabilities without a reliable least-privilege origin contract."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-03-webview-origin-capability-security",
+  "challengeId": "challenge-level-08-week-34-03-webview-origin-capability-security",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain WebView Origin and Capability Security.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/risks/unsafe-uri-loading",
+    "https://developer.android.com/privacy-and-security/risks/insecure-webview-native-bridges",
+    "https://developer.android.com/privacy-and-security/security-tips"
+  ],
+  "version": "0.11.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-32-06-biometric-keys-backup-recovery",
+  "title": "Biometric-Protected Keys, Backup, and Recovery Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-32-06-biometric-keys-backup-recovery"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-32-06-biometric-keys-backup-recovery-decision",
+      "prompt": "Which design best applies biometric-protected keys, backup, and recovery?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Bind the sensitive cryptographic operation to system authentication and design explicit recovery for invalidated or non-restored keys.",
+        "Treat biometric success as server identity",
+        "Back up all ciphertext by default",
+        "Silently downgrade after key invalidation"
+      ],
+      "answer": "Bind the sensitive cryptographic operation to system authentication and design explicit recovery for invalidated or non-restored keys.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-32-06-biometric-keys-backup-recovery"
+    },
+    {
+      "id": "q-level-08-week-32-06-biometric-keys-backup-recovery-truth",
+      "prompt": "BiometricPrompt proves to a backend which named person is holding the phone.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Backing up encrypted preferences while the device-bound key is excluded restores unreadable ciphertext and can trap the user in an unexplained failure loop.",
+      "lessonId": "level-08-week-32-06-biometric-keys-backup-recovery"
+    },
+    {
+      "id": "q-level-08-week-32-06-biometric-keys-backup-recovery-recall",
+      "prompt": "What is the critical backup test for device-bound ciphertext?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Restore the ciphertext on another or reset device where the Keystore key is absent and verify the intended recovery path.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-32-06-biometric-keys-backup-recovery"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

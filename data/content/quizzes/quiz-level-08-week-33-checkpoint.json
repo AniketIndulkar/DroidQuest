@@ -1,0 +1,115 @@
+{
+  "id": "quiz-level-08-week-33-checkpoint",
+  "title": "Week 33: Transport, Secrets, and Signing Checkpoint",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-33-01-tls-chains-network-security-config",
+    "level-08-week-33-02-certificate-public-key-pinning-decisions",
+    "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+    "level-08-week-33-04-secrets-git-build-apk-boundaries",
+    "level-08-week-33-05-api-key-restrictions-server-secrets",
+    "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-08-week-33-1",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-01-tls-chains-network-security-config",
+      "prompt": "Which two items belong in every actionable threat record?",
+      "type": "multiple_choice",
+      "options": [
+        "Attacker capability and asset",
+        "Recovery and residual risk",
+        "A promise that obfuscation is unbreakable",
+        "Every Android permission"
+      ],
+      "answer": [
+        "Attacker capability and asset",
+        "Recovery and residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-33-2",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions",
+      "prompt": "Order the security workflow.",
+      "type": "order_steps",
+      "options": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ],
+      "answer": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-33-3",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "prompt": "Match evidence to its authority.",
+      "type": "match_pairs",
+      "options": [
+        "Account ownership",
+        "APK signing identity",
+        "Local key use"
+      ],
+      "answer": {
+        "Account ownership": "Backend authorisation",
+        "APK signing identity": "App signing certificate",
+        "Local key use": "Android Keystore authorisation"
+      }
+    },
+    {
+      "id": "q-level-08-week-33-4",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-04-secrets-git-build-apk-boundaries",
+      "prompt": "Spot the security defect: Describing BuildConfig injection as encryption encourages teams to ship a backend credential that an attacker can extract or invoke.",
+      "type": "spot_bug",
+      "answer": "Describing BuildConfig injection as encryption encourages teams to ship a backend credential that an attacker can extract or invoke.",
+      "acceptedAnswers": [
+        "The design trusts the wrong boundary or omits lifecycle and recovery."
+      ]
+    },
+    {
+      "id": "q-level-08-week-33-5",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-05-api-key-restrictions-server-secrets",
+      "prompt": "Complete the rule: an Android app is a public client, so backend credentials must remain on the ____.",
+      "type": "fill_blank",
+      "answer": "backend",
+      "acceptedAnswers": [
+        "backend",
+        "server"
+      ]
+    },
+    {
+      "id": "q-level-08-week-33-6",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "prompt": "What does this print? val pins=setOf(\"old\",\"backup\"); val served=setOf(\"new\",\"backup\"); print(pins.intersect(served).single())",
+      "type": "code_output",
+      "answer": "backup"
+    }
+  ],
+  "rewards": {
+    "xp": 220,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

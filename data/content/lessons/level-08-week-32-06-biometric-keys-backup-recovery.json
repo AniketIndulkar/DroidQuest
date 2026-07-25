@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-32-06-biometric-keys-backup-recovery",
+  "title": "Biometric-Protected Keys, Backup, and Recovery",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 32,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-32-05-encrypted-files-databases-sql-injection"
+  ],
+  "tags": [
+    "security",
+    "biometric",
+    "backup"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through biometric-protected keys, backup, and recovery, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "BiometricPrompt authenticates using system-managed biometric or device-credential UI; it does not identify a remote bank customer or replace server authentication. Connect a CryptoObject to a Keystore key when the threat requires the cryptographic operation itself to depend on recent user authentication. Choose auth-per-use versus time-bound authorisation from the action: signing a high-value transfer differs from briefly unlocking a local view. Define allowed authenticator strength, cancellation, lockout, fallback, and accessibility."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Key authorisation may be invalidated when biometric enrollment or secure-lock state changes, depending on configuration and platform version. Treat this as a recoverable domain state: stop the protected operation, explain the next step, perform strong server reauthentication where appropriate, and establish replacement local material. Do not fall back from a required biometric-protected key to an unprotected software secret silently. Test cancellation, negative action, lockout, backgrounding, rotation, process death, enrollment changes, and unsupported hardware."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "biometricPrompt.authenticate(PromptInfo.Builder().setTitle(\"Approve transfer\").setAllowedAuthenticators(BIOMETRIC_STRONG).build(),BiometricPrompt.CryptoObject(signature))",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Backups and device transfer complicate encrypted data because device-bound Keystore keys generally do not accompany ciphertext. Exclude tokens, keysets, and device-bound ciphertext unless the restoration design intentionally supports them. For recoverable user data, restore server authority after sign-in or use a separate well-designed recovery mechanism. Test actual backup and restore on supported versions, including the state where ciphertext returns but its key does not. Deleting app data or logging out must remove the correct local authority without destroying server-owned records."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Backing up encrypted preferences while the device-bound key is excluded restores unreadable ciphertext and can trap the user in an unexplained failure loop."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Biometric authentication with cryptography",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/identity/sign-in/biometric-auth",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Security recommendations for backups",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/backup-best-practices",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Android Keystore system",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/keystore",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Biometric-Protected Keys, Backup, and Recovery boundary",
+      "language": "kotlin",
+      "code": "biometricPrompt.authenticate(PromptInfo.Builder().setTitle(\"Approve transfer\").setAllowedAuthenticators(BIOMETRIC_STRONG).build(),BiometricPrompt.CryptoObject(signature))",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Backing up encrypted preferences while the device-bound key is excluded restores unreadable ciphertext and can trap the user in an unexplained failure loop.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and test biometric approval for a high-value transfer plus backup, restore, enrollment-change, lockout, logout, and server-reauthentication recovery paths.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What is the critical backup test for device-bound ciphertext?",
+        "answer": "Restore the ciphertext on another or reset device where the Keystore key is absent and verify the intended recovery path."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-32-06-biometric-keys-backup-recovery",
+  "challengeId": "challenge-level-08-week-32-06-biometric-keys-backup-recovery",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Biometric-Protected Keys, Backup, and Recovery.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/identity/sign-in/biometric-auth",
+    "https://developer.android.com/privacy-and-security/risks/backup-best-practices",
+    "https://developer.android.com/privacy-and-security/keystore"
+  ],
+  "version": "0.11.0"
+}

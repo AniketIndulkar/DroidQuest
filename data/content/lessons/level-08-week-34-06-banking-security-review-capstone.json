@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-34-06-banking-security-review-capstone",
+  "title": "Banking Application Security Review Capstone",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+  ],
+  "tags": [
+    "security",
+    "capstone",
+    "banking"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through banking application security review capstone, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A security review connects product promises to evidence. Scope the banking application, environments, versions, backend dependencies, third-party SDKs, data stores, identities, and release pipeline. Build data-flow diagrams and an attack tree for login, account display, transfer, deep-link approval, notifications, offline state, support export, and release signing. Rank findings by realistic attacker capability, impact, exploitability, affected users, detectability, and recovery—not by tool severity alone."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "For each finding, include evidence, reproduction, affected boundary, root cause, concrete harm, remediation options, compensating controls, verification, owner, target release, and residual risk. Produce a focused remediation change rather than a cosmetic API swap. Validate the release artifact with manifest and APK inspection, exercise hostile intents/files/links, inspect logs and backups, test key loss and token revocation, and verify server authorisation, idempotency, pin compatibility, and integrity binding."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Finding(val threat:String,val evidence:String,val impact:String,val fix:String,val verification:String,val owner:String,val residualRisk:String)\n// A scanner alert without boundary, exploit story, and evidence is not a finished finding.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The final package contains the threat model, attack tree, findings report, remediation pull request, certificate-rotation compatibility plan, five-class secret-management architecture, and incident runbooks. Include explicit non-findings and assumptions so readers know what was tested. Map applicable MASVS controls to evidence without claiming universal compliance. Present accepted residual risks to an accountable owner and define monitoring and review triggers. Security is complete only when changes, tests, operations, and recovery agree."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Submitting a long scanner export without validated attack paths, remediation, ownership, operations, or residual-risk decisions does not constitute a security review."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OWASP Mobile Application Security Verification Standard",
+          "publisher": "OWASP",
+          "resourceType": "official_docs",
+          "url": "https://mas.owasp.org/MASVS/",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Android security checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Play Integrity API overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/google/play/integrity/overview",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Banking Application Security Review Capstone boundary",
+      "language": "kotlin",
+      "code": "data class Finding(val threat:String,val evidence:String,val impact:String,val fix:String,val verification:String,val owner:String,val residualRisk:String)\n// A scanner alert without boundary, exploit story, and evidence is not a finished finding.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Submitting a long scanner export without validated attack paths, remediation, ownership, operations, or residual-risk decisions does not constitute a security review.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Perform the complete banking review and deliver the threat model, attack tree, verified findings, remediation, rotation plan, secret architecture, MASVS evidence map, and incident rehearsal.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Which artifacts make the capstone operational?",
+        "answer": "Threat model, attack tree, evidence-based findings, remediation and verification, rotation and secret plans, owners, runbooks, and residual-risk decisions."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-06-banking-security-review-capstone",
+  "challengeId": "challenge-level-08-week-34-06-banking-security-review-capstone",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Banking Application Security Review Capstone.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 130,
+    "starsAvailable": 5
+  },
+  "sourceRefs": [
+    "https://mas.owasp.org/MASVS/",
+    "https://developer.android.com/privacy-and-security/security-tips",
+    "https://developer.android.com/google/play/integrity/overview"
+  ],
+  "version": "0.11.0"
+}

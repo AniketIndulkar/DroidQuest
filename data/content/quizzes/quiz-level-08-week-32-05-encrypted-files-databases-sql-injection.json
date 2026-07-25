@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-32-05-encrypted-files-databases-sql-injection",
+  "title": "Encrypted Files, Databases, and Query Safety Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-32-05-encrypted-files-databases-sql-injection"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-32-05-encrypted-files-databases-sql-injection-decision",
+      "prompt": "Which design best applies encrypted files, databases, and query safety?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Choose encryption scope from threats while independently enforcing parameterised queries, ownership, integrity, migration, and recovery.",
+        "Concatenate escaped search text into rawQuery",
+        "Assume Room encrypts files automatically",
+        "Adopt deprecated encrypted preferences for new secrets"
+      ],
+      "answer": "Choose encryption scope from threats while independently enforcing parameterised queries, ownership, integrity, migration, and recovery.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-32-05-encrypted-files-databases-sql-injection"
+    },
+    {
+      "id": "q-level-08-week-32-05-encrypted-files-databases-sql-injection-truth",
+      "prompt": "Database encryption prevents SQL injection because an attacker cannot read the database file.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Encrypting a Room database while constructing raw SQL with user input preserves confidentiality at rest but still permits injection during use.",
+      "lessonId": "level-08-week-32-05-encrypted-files-databases-sql-injection"
+    },
+    {
+      "id": "q-level-08-week-32-05-encrypted-files-databases-sql-injection-recall",
+      "prompt": "Why can a placeholder not safely represent a dynamic sort column?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Parameters bind data values, not SQL identifiers or executable query structure; identifiers need an allowlist.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-32-05-encrypted-files-databases-sql-injection"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

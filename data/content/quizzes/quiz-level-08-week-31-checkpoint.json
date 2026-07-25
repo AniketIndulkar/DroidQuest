@@ -1,0 +1,115 @@
+{
+  "id": "quiz-level-08-week-31-checkpoint",
+  "title": "Week 31: Threat Modelling and Attack Surface Checkpoint",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+    "level-08-week-31-02-masvs-least-privilege-defense-depth",
+    "level-08-week-31-03-client-server-trust-authz-validation",
+    "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+    "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+    "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-1",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "prompt": "Which two items belong in every actionable threat record?",
+      "type": "multiple_choice",
+      "options": [
+        "Attacker capability and asset",
+        "Recovery and residual risk",
+        "A promise that obfuscation is unbreakable",
+        "Every Android permission"
+      ],
+      "answer": [
+        "Attacker capability and asset",
+        "Recovery and residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-31-2",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-02-masvs-least-privilege-defense-depth",
+      "prompt": "Order the security workflow.",
+      "type": "order_steps",
+      "options": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ],
+      "answer": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-31-3",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation",
+      "prompt": "Match evidence to its authority.",
+      "type": "match_pairs",
+      "options": [
+        "Account ownership",
+        "APK signing identity",
+        "Local key use"
+      ],
+      "answer": {
+        "Account ownership": "Backend authorisation",
+        "APK signing identity": "App signing certificate",
+        "Local key use": "Android Keystore authorisation"
+      }
+    },
+    {
+      "id": "q-level-08-week-31-4",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+      "prompt": "Spot the security defect: Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority.",
+      "type": "spot_bug",
+      "answer": "Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority.",
+      "acceptedAnswers": [
+        "The design trusts the wrong boundary or omits lifecycle and recovery."
+      ]
+    },
+    {
+      "id": "q-level-08-week-31-5",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+      "prompt": "Complete the rule: an Android app is a public client, so backend credentials must remain on the ____.",
+      "type": "fill_blank",
+      "answer": "backend",
+      "acceptedAnswers": [
+        "backend",
+        "server"
+      ]
+    },
+    {
+      "id": "q-level-08-week-31-6",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+      "prompt": "What does this print? val pins=setOf(\"old\",\"backup\"); val served=setOf(\"new\",\"backup\"); print(pins.intersect(served).single())",
+      "type": "code_output",
+      "answer": "backup"
+    }
+  ],
+  "rewards": {
+    "xp": 220,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-04-component-intent-pendingintent-attack-surface",
+  "title": "Components, Intents, and PendingIntent Attack Surface Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-04-component-intent-pendingintent-attack-surface-decision",
+      "prompt": "Which design best applies components, intents, and pendingintent attack surface?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Expose only necessary capabilities, validate every IPC field and destination, and make delegated intents immutable and narrowly scoped.",
+        "Trust intents carrying your package name",
+        "Export all components for easier testing",
+        "Use one mutable PendingIntent for every notification"
+      ],
+      "answer": "Expose only necessary capabilities, validate every IPC field and destination, and make delegated intents immutable and narrowly scoped.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+    },
+    {
+      "id": "q-level-08-week-31-04-component-intent-pendingintent-attack-surface-truth",
+      "prompt": "A PendingIntent is only navigation data and never delegates the creator application’s identity.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority.",
+      "lessonId": "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+    },
+    {
+      "id": "q-level-08-week-31-04-component-intent-pendingintent-attack-surface-recall",
+      "prompt": "Why can a PendingIntent be security-sensitive?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It lets its holder perform the wrapped operation using the creator application’s identity and permissions.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

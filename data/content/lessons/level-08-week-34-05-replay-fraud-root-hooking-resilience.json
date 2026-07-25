@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "title": "Replay, Fraud Controls, and Resilience Limits",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-34-04-play-integrity-request-binding-verdicts"
+  ],
+  "tags": [
+    "security",
+    "fraud",
+    "resilience"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through replay, fraud controls, and resilience limits, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Prevent replay at the authority boundary with unique operation IDs, server-side idempotency records, expiry, principal and payload binding, monotonic or challenge state where appropriate, and atomic state transitions. A timestamp alone fails under clock skew and reuse; a nonce without storage or binding is just another value. Define whether repeated delivery returns the original result, rejects, or safely resumes. Payment and outbox flows should expect retries while ensuring the business effect happens once."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Fraud controls combine per-user, device, destination, velocity, amount, history, integrity, and behavioural signals. Apply decisions server-side and choose proportionate friction: observe, rate-limit, step up, hold, review, or block. Protect thresholds and models, but assume attackers probe them. Avoid discriminatory proxies, provide recovery and appeal, monitor false positives, and separate security telemetry from product analytics with minimal retention and controlled access."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "suspend fun postOnce(p:Principal,r:Transfer)=transaction {\n idempotency.find(p.id,r.operationId)?.let{return@transaction it}\n authoriseAndPost(p,r).also{idempotency.save(p.id,r.operationId,hash(r),it)}\n}",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Root, debugger, emulator, hook, tamper, and obfuscation checks increase analysis cost or add signals; determined attackers can patch clients, hide environments, or relay requests from valid devices. Do not make one brittle local check the gate for account access. Layer server authority, request binding, revocation, limits, anomaly detection, and rapid response. Test bypass and degraded-signal scenarios. Measure whether a resilience control changes real attack economics without causing unacceptable availability, privacy, or accessibility harm."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Blocking every rooted or hook-detected device on the client creates false positives while an attacker can patch the branch or relay through a clean device."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Play Integrity API overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/google/play/integrity/overview",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "MASVS resilience controls",
+          "publisher": "OWASP",
+          "resourceType": "official_docs",
+          "url": "https://mas.owasp.org/MASVS/11-MASVS-RESILIENCE/",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "OWASP Mobile Application Security Verification Standard",
+          "publisher": "OWASP",
+          "resourceType": "official_docs",
+          "url": "https://mas.owasp.org/MASVS/",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Replay, Fraud Controls, and Resilience Limits boundary",
+      "language": "kotlin",
+      "code": "suspend fun postOnce(p:Principal,r:Transfer)=transaction {\n idempotency.find(p.id,r.operationId)?.let{return@transaction it}\n authoriseAndPost(p,r).also{idempotency.save(p.id,r.operationId,hash(r),it)}\n}",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Blocking every rooted or hook-detected device on the client creates false positives while an attacker can patch the branch or relay through a clean device.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design replay-safe transfer execution and a tiered fraud decision table, then document bypasses, false positives, privacy, recovery, telemetry, and incident actions.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What makes an operation ID replay-safe?",
+        "answer": "Server-side atomic storage bound to principal and payload, with defined expiry and repeated-delivery semantics."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "challengeId": "challenge-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Replay, Fraud Controls, and Resilience Limits.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/google/play/integrity/overview",
+    "https://mas.owasp.org/MASVS/11-MASVS-RESILIENCE/",
+    "https://mas.owasp.org/MASVS/"
+  ],
+  "version": "0.11.0"
+}

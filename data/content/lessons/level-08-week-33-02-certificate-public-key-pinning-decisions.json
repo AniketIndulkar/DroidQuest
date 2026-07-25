@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "title": "Certificate and Public-Key Pinning Decisions",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 33,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-33-01-tls-chains-network-security-config"
+  ],
+  "tags": [
+    "security",
+    "pinning",
+    "tls"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through certificate and public-key pinning decisions, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Pinning narrows which otherwise valid certificate chains an app accepts. Android Network Security Configuration and OkHttp commonly pin hashes of SubjectPublicKeyInfo rather than an entire leaf certificate, allowing a renewed certificate to reuse a key. Pinning can reduce exposure to a compromised or unwanted CA, but it does not replace TLS, hostname validation, backend authentication, or request authorisation. First document the attacker, endpoints under your control, certificate operations, supported app lifetime, and why platform trust is insufficient."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The availability risk is severe: mobile versions remain installed while certificates, keys, CAs, CDNs, acquisitions, and incident plans change. Ship at least one independently controlled backup pin, ensure every supported version trusts a future chain before rotation, and define expiration deliberately. Pinning a leaf, intermediate, CA, or public key changes rotation flexibility and blast radius. Third-party domains you cannot coordinate are poor candidates. Debug interception belongs in debug-only trust configuration, never a release bypass."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val client=OkHttpClient.Builder().certificatePinner(CertificatePinner.Builder().add(\"api.bank.example\",\"sha256/PRIMARY=\",\"sha256/BACKUP=\").build()).build()",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Treat pins as versioned production configuration with inventory, owner, expiry alerts, monitoring, staged rollout, synthetic handshakes, rollback, and an emergency route. Test primary, backup, new, expired, wrong, and mixed chains across old app versions. A kill switch delivered over the pinned channel cannot recover clients already locked out. If the organisation cannot operate this lifecycle safely, platform trust plus certificate transparency, strong server controls, and monitoring may be the more secure system outcome."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Shipping only the current leaf pin can turn routine certificate renewal into a permanent outage for every older installed version."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Network Security Configuration",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-config",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "OkHttp CertificatePinner",
+          "publisher": "Square",
+          "resourceType": "guide",
+          "url": "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-certificate-pinner/index.html",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Certificate and Public-Key Pinning Decisions boundary",
+      "language": "kotlin",
+      "code": "val client=OkHttpClient.Builder().certificatePinner(CertificatePinner.Builder().add(\"api.bank.example\",\"sha256/PRIMARY=\",\"sha256/BACKUP=\").build()).build()",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Shipping only the current leaf pin can turn routine certificate renewal into a permanent outage for every older installed version.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write a pinning decision record comparing no pinning, CA restriction, SPKI pins, and certificate pins, including ownership, backup, old-client support, and recovery.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Why must a pin set include backup key material?",
+        "answer": "So a planned or emergency certificate/key change can remain trusted by already-installed app versions."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "challengeId": "challenge-level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Certificate and Public-Key Pinning Decisions.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/security-config",
+    "https://square.github.io/okhttp/5.x/okhttp/okhttp3/-certificate-pinner/index.html"
+  ],
+  "version": "0.11.0"
+}

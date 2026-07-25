@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-03-webview-origin-capability-security",
+  "title": "WebView Origin and Capability Security Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-03-webview-origin-capability-security"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-03-webview-origin-capability-security-decision",
+      "prompt": "Which design best applies webview origin and capability security?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Prefer external browser surfaces; otherwise allowlist parsed origins and expose only minimal origin-bound native capabilities.",
+        "Ignore all SSL errors",
+        "Expose a generic native bridge",
+        "Validate URLs with contains(domain)"
+      ],
+      "answer": "Prefer external browser surfaces; otherwise allowlist parsed origins and expose only minimal origin-bound native capabilities.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-03-webview-origin-capability-security"
+    },
+    {
+      "id": "q-level-08-week-34-03-webview-origin-capability-security-truth",
+      "prompt": "An HTTPS top-level page guarantees every iframe and JavaScript message originates from the same trusted host.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Allowing a URL because its string contains bank.example accepts crafted authorities, paths, user-info, and schemes that do not share the trusted origin.",
+      "lessonId": "level-08-week-34-03-webview-origin-capability-security"
+    },
+    {
+      "id": "q-level-08-week-34-03-webview-origin-capability-security-recall",
+      "prompt": "Why is a generic JavaScript bridge dangerous?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It can turn untrusted web content into a caller of powerful native capabilities without a reliable least-privilege origin contract.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-03-webview-origin-capability-security"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

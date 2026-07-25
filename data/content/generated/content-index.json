@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.10.0",
-  "contentRevision": 10,
+  "curriculumVersion": "0.11.0",
+  "contentRevision": 11,
   "counts": {
     "categories": 12,
-    "lessons": 170,
-    "quizzes": 206,
-    "challenges": 170,
-    "badges": 36,
-    "glossaryEntries": 182
+    "lessons": 194,
+    "quizzes": 235,
+    "challenges": 194,
+    "badges": 41,
+    "glossaryEntries": 206
   },
   "categories": [
     {
@@ -248,9 +248,34 @@
       "id": "level-08-android-security-engineering",
       "title": "Level 8: Android Security Engineering",
       "order": 8,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+        "level-08-week-31-02-masvs-least-privilege-defense-depth",
+        "level-08-week-31-03-client-server-trust-authz-validation",
+        "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+        "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+        "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+        "level-08-week-32-01-data-classification-storage-decisions",
+        "level-08-week-32-02-android-keystore-hardware-strongbox",
+        "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+        "level-08-week-32-04-tink-aead-associated-data-envelopes",
+        "level-08-week-32-05-encrypted-files-databases-sql-injection",
+        "level-08-week-32-06-biometric-keys-backup-recovery",
+        "level-08-week-33-01-tls-chains-network-security-config",
+        "level-08-week-33-02-certificate-public-key-pinning-decisions",
+        "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+        "level-08-week-33-04-secrets-git-build-apk-boundaries",
+        "level-08-week-33-05-api-key-restrictions-server-secrets",
+        "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+        "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+        "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+        "level-08-week-34-03-webview-origin-capability-security",
+        "level-08-week-34-04-play-integrity-request-binding-verdicts",
+        "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+        "level-08-week-34-06-banking-security-review-capstone"
+      ],
       "path": "content/categories/level-08-android-security-engineering.json",
-      "sha256": "f70953c6b2b9b58403dc6ac89546a072e61787b5ec27c862609d07550e8abcea"
+      "sha256": "60cad86174fcfadbab5ea54c550278e9dd5671cc5c9914533aede0ada0eb0e55"
     },
     {
       "id": "level-09-gradle-build-cicd",
@@ -2713,6 +2738,342 @@
       ],
       "path": "content/lessons/level-07-week-30-06-release-confidence-plan-capstone.json",
       "sha256": "f0b98a9246a7453ea03735dc5f5bb1257456e7d6433a781301c4c5519928ff88"
+    },
+    {
+      "id": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "title": "Threat Models: Assets, Attackers, and Trust Boundaries",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "threat-modeling",
+        "attack-tree"
+      ],
+      "path": "content/lessons/level-08-week-31-01-threat-model-assets-attackers-boundaries.json",
+      "sha256": "748bd3ecfc75f78c886c1a3837e412ba10096097d3c2da02472e6570c74d0ad6"
+    },
+    {
+      "id": "level-08-week-31-02-masvs-least-privilege-defense-depth",
+      "title": "MASVS, Least Privilege, and Defence in Depth",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "masvs",
+        "least-privilege"
+      ],
+      "path": "content/lessons/level-08-week-31-02-masvs-least-privilege-defense-depth.json",
+      "sha256": "f6244cc9f235b52508884606179b8f569375361f17be36513cd71b642d74d29d"
+    },
+    {
+      "id": "level-08-week-31-03-client-server-trust-authz-validation",
+      "title": "Client–Server Trust, Authorisation, and Hostile Input",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "authorization",
+        "validation"
+      ],
+      "path": "content/lessons/level-08-week-31-03-client-server-trust-authz-validation.json",
+      "sha256": "b987f4fc6a80a6629f902eda6c3cd14ed5dfc5bd5776a45ead1bf9ef092a832e"
+    },
+    {
+      "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+      "title": "Components, Intents, and PendingIntent Attack Surface",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "intents",
+        "pendingintent"
+      ],
+      "path": "content/lessons/level-08-week-31-04-component-intent-pendingintent-attack-surface.json",
+      "sha256": "0193a795829b362367cfe4643839995e91c331f188566b12562b16d0db510964"
+    },
+    {
+      "id": "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+      "title": "APK Inspection, Reverse Engineering, and R8 Limits",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "reverse-engineering",
+        "r8"
+      ],
+      "path": "content/lessons/level-08-week-31-05-apk-inspection-reverse-engineering-r8.json",
+      "sha256": "540dfe4640e4e4a7dd17f82e1a0a9ec01b5ce815b6ee06b59b256b90452d30b1"
+    },
+    {
+      "id": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+      "title": "Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "privacy",
+        "logging"
+      ],
+      "path": "content/lessons/level-08-week-31-06-privacy-logs-clipboard-screenshots.json",
+      "sha256": "42ca1f9b132e5c92b4c0aea1d024e92d45f04a35001d849c367ef7263fab984c"
+    },
+    {
+      "id": "level-08-week-32-01-data-classification-storage-decisions",
+      "title": "Data Classification and Storage Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "storage",
+        "data-classification"
+      ],
+      "path": "content/lessons/level-08-week-32-01-data-classification-storage-decisions.json",
+      "sha256": "a9cc570b08a04cb36c701b6b8f3adf30fd413848dc6721cbc3f8ef6c62b92d86"
+    },
+    {
+      "id": "level-08-week-32-02-android-keystore-hardware-strongbox",
+      "title": "Android Keystore, Hardware Security, and StrongBox",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "keystore",
+        "strongbox"
+      ],
+      "path": "content/lessons/level-08-week-32-02-android-keystore-hardware-strongbox.json",
+      "sha256": "96e568a538d1db4a6d4f802d669e922aa0f43beb419876714e288d99b49772dd"
+    },
+    {
+      "id": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+      "title": "Key Lifecycle, Rotation, Invalidation, and Attestation",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "key-rotation",
+        "attestation"
+      ],
+      "path": "content/lessons/level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation.json",
+      "sha256": "41b5daaa39054286dafaee54bb10a1d58422ebcebef09bcc40a2d2d77840cc23"
+    },
+    {
+      "id": "level-08-week-32-04-tink-aead-associated-data-envelopes",
+      "title": "Tink AEAD, Associated Data, and Envelope Design",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "tink",
+        "encryption"
+      ],
+      "path": "content/lessons/level-08-week-32-04-tink-aead-associated-data-envelopes.json",
+      "sha256": "e1ea892a4519076245b6cf3a74390ea45f35ecc13338325beb96b23237e80fed"
+    },
+    {
+      "id": "level-08-week-32-05-encrypted-files-databases-sql-injection",
+      "title": "Encrypted Files, Databases, and Query Safety",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "database",
+        "sql-injection"
+      ],
+      "path": "content/lessons/level-08-week-32-05-encrypted-files-databases-sql-injection.json",
+      "sha256": "33a1a137bd5f154613960ea4eb401cc30a42ecac1daf89cb4c9785cc86e7f4b5"
+    },
+    {
+      "id": "level-08-week-32-06-biometric-keys-backup-recovery",
+      "title": "Biometric-Protected Keys, Backup, and Recovery",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "biometric",
+        "backup"
+      ],
+      "path": "content/lessons/level-08-week-32-06-biometric-keys-backup-recovery.json",
+      "sha256": "85ad8a6da3be2e0072ebe51d377328e9f18dd1e5aac1da5ad5b12d89da9642b1"
+    },
+    {
+      "id": "level-08-week-33-01-tls-chains-network-security-config",
+      "title": "TLS Chains and Network Security Configuration",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "tls",
+        "network-security-config"
+      ],
+      "path": "content/lessons/level-08-week-33-01-tls-chains-network-security-config.json",
+      "sha256": "f6669254f9d62cc4547b146220813cea4f368af9480da5c3bb7e5feb5e354a6d"
+    },
+    {
+      "id": "level-08-week-33-02-certificate-public-key-pinning-decisions",
+      "title": "Certificate and Public-Key Pinning Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "pinning",
+        "tls"
+      ],
+      "path": "content/lessons/level-08-week-33-02-certificate-public-key-pinning-decisions.json",
+      "sha256": "236b9431062cc330a517a3dbf56b63950cb8d599872d4843320ba18fdaf1f82e"
+    },
+    {
+      "id": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "title": "Certificate Rotation, Expiry, and Failure Recovery Lab",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "certificate-rotation",
+        "incident-response"
+      ],
+      "path": "content/lessons/level-08-week-33-03-pin-rotation-expiry-recovery-lab.json",
+      "sha256": "04c0ea1259d2c425ab946468deef2fc77b57f9c58a24b4666ba05ab4a7ae9f81"
+    },
+    {
+      "id": "level-08-week-33-04-secrets-git-build-apk-boundaries",
+      "title": "Secrets in Git, Builds, and APKs: Five Different Problems",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "secrets",
+        "build"
+      ],
+      "path": "content/lessons/level-08-week-33-04-secrets-git-build-apk-boundaries.json",
+      "sha256": "b10bd1e94109d803aa465de2e6c9e4d453b975007bd710a4e8cd390d2248e25b"
+    },
+    {
+      "id": "level-08-week-33-05-api-key-restrictions-server-secrets",
+      "title": "Client API Keys, Restrictions, Quotas, and Server Secrets",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "api-keys",
+        "abuse"
+      ],
+      "path": "content/lessons/level-08-week-33-05-api-key-restrictions-server-secrets.json",
+      "sha256": "f6d2b2688b1d85ea8eb1074222303f155ba0c86a3e50214eb42838862950d51b"
+    },
+    {
+      "id": "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "title": "App Signing, Upload Keys, CI, and Recovery",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "app-signing",
+        "ci"
+      ],
+      "path": "content/lessons/level-08-week-33-06-app-signing-upload-keys-ci-recovery.json",
+      "sha256": "3920ab9b7bdf47ba627e5751125e9fe43752616c199037d413b0cf69ef097739"
+    },
+    {
+      "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+      "title": "OAuth 2.0 with PKCE and Session Token Lifecycle",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "oauth",
+        "pkce"
+      ],
+      "path": "content/lessons/level-08-week-34-01-oauth-pkce-session-token-lifecycle.json",
+      "sha256": "5f62b09fc94b7521c4a7a3909b60e201202ebcae00f64f7f283693ae9f3228db"
+    },
+    {
+      "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+      "title": "Secure Deep Links, FileProvider, and Exported Inputs",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "deep-links",
+        "fileprovider"
+      ],
+      "path": "content/lessons/level-08-week-34-02-deep-links-fileprovider-exported-inputs.json",
+      "sha256": "68b29ddb5b24ca235fa7eb52568ee13e115b1968bffdd6250bdedb38fb09bf7d"
+    },
+    {
+      "id": "level-08-week-34-03-webview-origin-capability-security",
+      "title": "WebView Origin and Capability Security",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "webview",
+        "origin"
+      ],
+      "path": "content/lessons/level-08-week-34-03-webview-origin-capability-security.json",
+      "sha256": "b1c7d53fad82be3cbf19e532ddd0fb100e9b53f18d5836c1c4a8781fba0f9444"
+    },
+    {
+      "id": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "title": "Play Integrity, Request Binding, and Verdict Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "play-integrity",
+        "request-binding"
+      ],
+      "path": "content/lessons/level-08-week-34-04-play-integrity-request-binding-verdicts.json",
+      "sha256": "c1d450cdd3a9f8cf834704c8c808089b2ec71b9df63c6d4135ae71245e73bcbf"
+    },
+    {
+      "id": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+      "title": "Replay, Fraud Controls, and Resilience Limits",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "fraud",
+        "resilience"
+      ],
+      "path": "content/lessons/level-08-week-34-05-replay-fraud-root-hooking-resilience.json",
+      "sha256": "b1feab7f717596b238c8c5827ed5670181fd83a2793e78cd2e28ed768f6df50a"
+    },
+    {
+      "id": "level-08-week-34-06-banking-security-review-capstone",
+      "title": "Banking Application Security Review Capstone",
+      "categoryId": "level-08-android-security-engineering",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "security",
+        "capstone",
+        "banking"
+      ],
+      "path": "content/lessons/level-08-week-34-06-banking-security-review-capstone.json",
+      "sha256": "d0c8a58cfe1cd3fbb48d45d62d15f1aca3136f70cc848483a9349f112b2b6d94"
     }
   ],
   "quizzes": [
@@ -5279,6 +5640,368 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-07-week-30-checkpoint.json",
       "sha256": "0d325738e3311c45e1d97efafb31e786b4c6e26f7fae6f8e86f0ba9e2b5e75a0"
+    },
+    {
+      "id": "quiz-level-08-checkpoint",
+      "title": "Level 8 Boss: Banking Security Review",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+        "level-08-week-31-02-masvs-least-privilege-defense-depth",
+        "level-08-week-31-03-client-server-trust-authz-validation",
+        "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+        "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+        "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+        "level-08-week-32-01-data-classification-storage-decisions",
+        "level-08-week-32-02-android-keystore-hardware-strongbox",
+        "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+        "level-08-week-32-04-tink-aead-associated-data-envelopes",
+        "level-08-week-32-05-encrypted-files-databases-sql-injection",
+        "level-08-week-32-06-biometric-keys-backup-recovery",
+        "level-08-week-33-01-tls-chains-network-security-config",
+        "level-08-week-33-02-certificate-public-key-pinning-decisions",
+        "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+        "level-08-week-33-04-secrets-git-build-apk-boundaries",
+        "level-08-week-33-05-api-key-restrictions-server-secrets",
+        "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+        "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+        "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+        "level-08-week-34-03-webview-origin-capability-security",
+        "level-08-week-34-04-play-integrity-request-binding-verdicts",
+        "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+        "level-08-week-34-06-banking-security-review-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-08-checkpoint.json",
+      "sha256": "a5ee6541d0306cc871b7ae9294e7372364aacf459757e0ef25d855f208887273"
+    },
+    {
+      "id": "quiz-level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "title": "Threat Models: Assets, Attackers, and Trust Boundaries Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-01-threat-model-assets-attackers-boundaries.json",
+      "sha256": "44fc0bcbd5d4eb842ac42b7c5a6a758c469568757f35d614cc61a5bd2cc7d0ac"
+    },
+    {
+      "id": "quiz-level-08-week-31-02-masvs-least-privilege-defense-depth",
+      "title": "MASVS, Least Privilege, and Defence in Depth Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-02-masvs-least-privilege-defense-depth"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-02-masvs-least-privilege-defense-depth.json",
+      "sha256": "65fc2510fc7133c0a73fbe9b18ca8e81a5d31b8064d35e498d5e8849df06d13c"
+    },
+    {
+      "id": "quiz-level-08-week-31-03-client-server-trust-authz-validation",
+      "title": "Client–Server Trust, Authorisation, and Hostile Input Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-03-client-server-trust-authz-validation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-03-client-server-trust-authz-validation.json",
+      "sha256": "e6e6d7927db78ff50e0cd6f241cea454cae32770864f93359a014c0d7e505b75"
+    },
+    {
+      "id": "quiz-level-08-week-31-04-component-intent-pendingintent-attack-surface",
+      "title": "Components, Intents, and PendingIntent Attack Surface Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-04-component-intent-pendingintent-attack-surface.json",
+      "sha256": "dc6ab341bc7e3c5245f3c6ce90fb96300dec8fe5b4b5d1c5c0c241ef224471c0"
+    },
+    {
+      "id": "quiz-level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+      "title": "APK Inspection, Reverse Engineering, and R8 Limits Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-05-apk-inspection-reverse-engineering-r8.json",
+      "sha256": "7a111cfef1b891bf5dba21fd52ea00f345a4e758787161a6ab18ea9c785836f0"
+    },
+    {
+      "id": "quiz-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+      "title": "Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-31-06-privacy-logs-clipboard-screenshots.json",
+      "sha256": "b34bae25158ad05377d04c434e54cedb83c007174f46dd1f79013d86d183460a"
+    },
+    {
+      "id": "quiz-level-08-week-31-checkpoint",
+      "title": "Week 31: Threat Modelling and Attack Surface Checkpoint",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+        "level-08-week-31-02-masvs-least-privilege-defense-depth",
+        "level-08-week-31-03-client-server-trust-authz-validation",
+        "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+        "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+        "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-08-week-31-checkpoint.json",
+      "sha256": "c517b16a194005facec1b9a4f28814f3150164e66fd263ce8565d749314c803c"
+    },
+    {
+      "id": "quiz-level-08-week-32-01-data-classification-storage-decisions",
+      "title": "Data Classification and Storage Decisions Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-01-data-classification-storage-decisions"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-01-data-classification-storage-decisions.json",
+      "sha256": "a3c1ac7fa3c5ff3da9eba413306131630fdbb24d26da5db247fcc9958fcce565"
+    },
+    {
+      "id": "quiz-level-08-week-32-02-android-keystore-hardware-strongbox",
+      "title": "Android Keystore, Hardware Security, and StrongBox Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-02-android-keystore-hardware-strongbox"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-02-android-keystore-hardware-strongbox.json",
+      "sha256": "637bb030cf57b71e1e2fde7ed137a7d14533b5babe884633d9d8758c178f32c2"
+    },
+    {
+      "id": "quiz-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+      "title": "Key Lifecycle, Rotation, Invalidation, and Attestation Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation.json",
+      "sha256": "e7a131b4f5d8e103ce591b78b123bc8e7b5009f25c41e559b550faf12165c074"
+    },
+    {
+      "id": "quiz-level-08-week-32-04-tink-aead-associated-data-envelopes",
+      "title": "Tink AEAD, Associated Data, and Envelope Design Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-04-tink-aead-associated-data-envelopes"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-04-tink-aead-associated-data-envelopes.json",
+      "sha256": "a06ecc9919eaf94687b91b45f0a560ab2db56476e201f6138fd01e7309e1a1ac"
+    },
+    {
+      "id": "quiz-level-08-week-32-05-encrypted-files-databases-sql-injection",
+      "title": "Encrypted Files, Databases, and Query Safety Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-05-encrypted-files-databases-sql-injection"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-05-encrypted-files-databases-sql-injection.json",
+      "sha256": "f1699be2524feae7fb753d95dc32ee4da1d6492a34589c40b21b1593d2f8922f"
+    },
+    {
+      "id": "quiz-level-08-week-32-06-biometric-keys-backup-recovery",
+      "title": "Biometric-Protected Keys, Backup, and Recovery Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-06-biometric-keys-backup-recovery"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-32-06-biometric-keys-backup-recovery.json",
+      "sha256": "4451ffa2bf394ddd85961c4f21bbe8f5d44b89083d9fa3539135906cdbc5a559"
+    },
+    {
+      "id": "quiz-level-08-week-32-checkpoint",
+      "title": "Week 32: Protected Local Data and Cryptographic Keys Checkpoint",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-32-01-data-classification-storage-decisions",
+        "level-08-week-32-02-android-keystore-hardware-strongbox",
+        "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+        "level-08-week-32-04-tink-aead-associated-data-envelopes",
+        "level-08-week-32-05-encrypted-files-databases-sql-injection",
+        "level-08-week-32-06-biometric-keys-backup-recovery"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-08-week-32-checkpoint.json",
+      "sha256": "d0c1dbff9bcac88056638caba27b3fe3cacef9f10fa22c11fd2f56b952d9cca2"
+    },
+    {
+      "id": "quiz-level-08-week-33-01-tls-chains-network-security-config",
+      "title": "TLS Chains and Network Security Configuration Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-01-tls-chains-network-security-config"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-01-tls-chains-network-security-config.json",
+      "sha256": "509d15ea869993ac9ba19c492b6469f5da7e3e96afb9f0a26c836904dd6aee21"
+    },
+    {
+      "id": "quiz-level-08-week-33-02-certificate-public-key-pinning-decisions",
+      "title": "Certificate and Public-Key Pinning Decisions Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-02-certificate-public-key-pinning-decisions"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-02-certificate-public-key-pinning-decisions.json",
+      "sha256": "7ad34e9c70e06f7b8d409564ace9ab69947e52317259ce7446803ce2bb882740"
+    },
+    {
+      "id": "quiz-level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "title": "Certificate Rotation, Expiry, and Failure Recovery Lab Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-03-pin-rotation-expiry-recovery-lab.json",
+      "sha256": "0962ae5174ba950ba90a026cad978324b433088f10cd76ec4131373d19869c45"
+    },
+    {
+      "id": "quiz-level-08-week-33-04-secrets-git-build-apk-boundaries",
+      "title": "Secrets in Git, Builds, and APKs: Five Different Problems Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-04-secrets-git-build-apk-boundaries"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-04-secrets-git-build-apk-boundaries.json",
+      "sha256": "a6778895bc383e401e9575bb3fcf35dd15269f7205f0469909fae95128a5b7cb"
+    },
+    {
+      "id": "quiz-level-08-week-33-05-api-key-restrictions-server-secrets",
+      "title": "Client API Keys, Restrictions, Quotas, and Server Secrets Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-05-api-key-restrictions-server-secrets"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-05-api-key-restrictions-server-secrets.json",
+      "sha256": "94c998696434805c2d47a0d85ab2a0814ad9e7f84682353aeea0f02f29f87c13"
+    },
+    {
+      "id": "quiz-level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "title": "App Signing, Upload Keys, CI, and Recovery Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-33-06-app-signing-upload-keys-ci-recovery.json",
+      "sha256": "153f5a2fa28fca77441657e7d2b2347be2950599d767116cd368344337c9d13f"
+    },
+    {
+      "id": "quiz-level-08-week-33-checkpoint",
+      "title": "Week 33: Transport, Secrets, and Signing Checkpoint",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-33-01-tls-chains-network-security-config",
+        "level-08-week-33-02-certificate-public-key-pinning-decisions",
+        "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+        "level-08-week-33-04-secrets-git-build-apk-boundaries",
+        "level-08-week-33-05-api-key-restrictions-server-secrets",
+        "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-08-week-33-checkpoint.json",
+      "sha256": "13958e05b46561648e24c49ee59c8e7b065bfaed34a8f4649652ec416c897e24"
+    },
+    {
+      "id": "quiz-level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+      "title": "OAuth 2.0 with PKCE and Session Token Lifecycle Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-01-oauth-pkce-session-token-lifecycle.json",
+      "sha256": "1b08faf244867b329f55a701b0aaffa7a9af37cb1d1f08c14f622e0aba4ff41b"
+    },
+    {
+      "id": "quiz-level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+      "title": "Secure Deep Links, FileProvider, and Exported Inputs Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-02-deep-links-fileprovider-exported-inputs.json",
+      "sha256": "b1447a76a78a7b37b18c47db5b5e1b787720ebf0318380200fc301e00b96542a"
+    },
+    {
+      "id": "quiz-level-08-week-34-03-webview-origin-capability-security",
+      "title": "WebView Origin and Capability Security Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-03-webview-origin-capability-security"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-03-webview-origin-capability-security.json",
+      "sha256": "c9c267b5be43320f655a17873e34f3772da18e61966cbeb246aa612c03d3d2ad"
+    },
+    {
+      "id": "quiz-level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "title": "Play Integrity, Request Binding, and Verdict Decisions Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-04-play-integrity-request-binding-verdicts"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-04-play-integrity-request-binding-verdicts.json",
+      "sha256": "a10651f004c11d94f89d881b263f12c20ba622910fb4342d4111be93dd93c6d4"
+    },
+    {
+      "id": "quiz-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+      "title": "Replay, Fraud Controls, and Resilience Limits Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-05-replay-fraud-root-hooking-resilience.json",
+      "sha256": "37b3eab323a5126a46d0357ad9a139f7550cb20356baff17a58972546c72d17f"
+    },
+    {
+      "id": "quiz-level-08-week-34-06-banking-security-review-capstone",
+      "title": "Banking Application Security Review Capstone Check",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-06-banking-security-review-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-08-week-34-06-banking-security-review-capstone.json",
+      "sha256": "782e67b2db76bd46fe575ca905f9c712cec20aa075962745352da2f484e595fc"
+    },
+    {
+      "id": "quiz-level-08-week-34-checkpoint",
+      "title": "Week 34: Identity, Integrity, Abuse, and Security Review Checkpoint",
+      "categoryId": "level-08-android-security-engineering",
+      "linkedLessonIds": [
+        "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+        "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+        "level-08-week-34-03-webview-origin-capability-security",
+        "level-08-week-34-04-play-integrity-request-binding-verdicts",
+        "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+        "level-08-week-34-06-banking-security-review-capstone"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-08-week-34-checkpoint.json",
+      "sha256": "857fcf81275a821369d6bd40abb964f71d542d49c15e07d15021ea345e7aac7a"
     }
   ],
   "challenges": [
@@ -6641,6 +7364,198 @@
       "lessonId": "level-07-week-30-06-release-confidence-plan-capstone",
       "path": "content/challenges/challenge-level-07-week-30-06-release-confidence-plan-capstone.json",
       "sha256": "5c815f6d6cf41181d2d3cf5b4bd15997b3a233cae3bfc9b37b55e1e87c3799ed"
+    },
+    {
+      "id": "challenge-level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "title": "Apply Threat Models: Assets, Attackers, and Trust Boundaries",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "path": "content/challenges/challenge-level-08-week-31-01-threat-model-assets-attackers-boundaries.json",
+      "sha256": "97902e385aae346454fb1fda80373a915524e86104d24eb1cd86c97a0f9d299a"
+    },
+    {
+      "id": "challenge-level-08-week-31-02-masvs-least-privilege-defense-depth",
+      "title": "Apply MASVS, Least Privilege, and Defence in Depth",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-02-masvs-least-privilege-defense-depth",
+      "path": "content/challenges/challenge-level-08-week-31-02-masvs-least-privilege-defense-depth.json",
+      "sha256": "d18087efc1d7dd2fcdcc480a25ccc02925ab14513faa8f69fec295fa2bae92ba"
+    },
+    {
+      "id": "challenge-level-08-week-31-03-client-server-trust-authz-validation",
+      "title": "Apply Client–Server Trust, Authorisation, and Hostile Input",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation",
+      "path": "content/challenges/challenge-level-08-week-31-03-client-server-trust-authz-validation.json",
+      "sha256": "f0ddbb2c4fcd8c43bfa815e1b5d7fc6e4df76d3f5716957d750cf8b66f17d66d"
+    },
+    {
+      "id": "challenge-level-08-week-31-04-component-intent-pendingintent-attack-surface",
+      "title": "Apply Components, Intents, and PendingIntent Attack Surface",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+      "path": "content/challenges/challenge-level-08-week-31-04-component-intent-pendingintent-attack-surface.json",
+      "sha256": "00bcd54547616500cbea88fac88514537171e785c4f0e8234aacd274cd01428f"
+    },
+    {
+      "id": "challenge-level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+      "title": "Apply APK Inspection, Reverse Engineering, and R8 Limits",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+      "path": "content/challenges/challenge-level-08-week-31-05-apk-inspection-reverse-engineering-r8.json",
+      "sha256": "16debc59ef8c789b4c6f8e7249cf9e20a4060a4b604616d4a43d834f74c5cdbe"
+    },
+    {
+      "id": "challenge-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+      "title": "Apply Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+      "path": "content/challenges/challenge-level-08-week-31-06-privacy-logs-clipboard-screenshots.json",
+      "sha256": "f3dc090d62d162e23ebd7619aaea2babfb161c600a03ca6c648d88c5ca28220c"
+    },
+    {
+      "id": "challenge-level-08-week-32-01-data-classification-storage-decisions",
+      "title": "Apply Data Classification and Storage Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-01-data-classification-storage-decisions",
+      "path": "content/challenges/challenge-level-08-week-32-01-data-classification-storage-decisions.json",
+      "sha256": "3c6a42437900620f5c862cf4cee5821ae266c5575e9aad46251aa8b5ee0354e6"
+    },
+    {
+      "id": "challenge-level-08-week-32-02-android-keystore-hardware-strongbox",
+      "title": "Apply Android Keystore, Hardware Security, and StrongBox",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-02-android-keystore-hardware-strongbox",
+      "path": "content/challenges/challenge-level-08-week-32-02-android-keystore-hardware-strongbox.json",
+      "sha256": "49f93c83b2e35d57a5808173c3e9b198b1e92d9f570ce5b7b814f09ef5d11aef"
+    },
+    {
+      "id": "challenge-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+      "title": "Apply Key Lifecycle, Rotation, Invalidation, and Attestation",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+      "path": "content/challenges/challenge-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation.json",
+      "sha256": "734e99816885d59cfba0a80f9f44bf0c6cee59c59155f85cbb8cae322bf3b9a7"
+    },
+    {
+      "id": "challenge-level-08-week-32-04-tink-aead-associated-data-envelopes",
+      "title": "Apply Tink AEAD, Associated Data, and Envelope Design",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-04-tink-aead-associated-data-envelopes",
+      "path": "content/challenges/challenge-level-08-week-32-04-tink-aead-associated-data-envelopes.json",
+      "sha256": "e162fe34ee3a5f5038d19882a912ff6e8d4f381d764f1859b4d1c25840376e42"
+    },
+    {
+      "id": "challenge-level-08-week-32-05-encrypted-files-databases-sql-injection",
+      "title": "Apply Encrypted Files, Databases, and Query Safety",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-05-encrypted-files-databases-sql-injection",
+      "path": "content/challenges/challenge-level-08-week-32-05-encrypted-files-databases-sql-injection.json",
+      "sha256": "fd6e422d5cf26b953980e22bb474402507d8f57ba2d02b410b750e2b497acda2"
+    },
+    {
+      "id": "challenge-level-08-week-32-06-biometric-keys-backup-recovery",
+      "title": "Apply Biometric-Protected Keys, Backup, and Recovery",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-32-06-biometric-keys-backup-recovery",
+      "path": "content/challenges/challenge-level-08-week-32-06-biometric-keys-backup-recovery.json",
+      "sha256": "277acc32331c65c706b4d35c100ebf45b6bf1038c791b27029517ec1c90a0f49"
+    },
+    {
+      "id": "challenge-level-08-week-33-01-tls-chains-network-security-config",
+      "title": "Apply TLS Chains and Network Security Configuration",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-01-tls-chains-network-security-config",
+      "path": "content/challenges/challenge-level-08-week-33-01-tls-chains-network-security-config.json",
+      "sha256": "e871a1b53770bc68f60e3a73670afed5de254ce99f4a3fffddf80b7559def16f"
+    },
+    {
+      "id": "challenge-level-08-week-33-02-certificate-public-key-pinning-decisions",
+      "title": "Apply Certificate and Public-Key Pinning Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions",
+      "path": "content/challenges/challenge-level-08-week-33-02-certificate-public-key-pinning-decisions.json",
+      "sha256": "a725142ed23880d22d69bb1bea0002c8bfd1252bc5e5a69adc283c496548bc35"
+    },
+    {
+      "id": "challenge-level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "title": "Apply Certificate Rotation, Expiry, and Failure Recovery Lab",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "path": "content/challenges/challenge-level-08-week-33-03-pin-rotation-expiry-recovery-lab.json",
+      "sha256": "d70eef8c029dd86b7d8fa23b8a43d76738448f1d96263f40027e9116c8756325"
+    },
+    {
+      "id": "challenge-level-08-week-33-04-secrets-git-build-apk-boundaries",
+      "title": "Apply Secrets in Git, Builds, and APKs: Five Different Problems",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-04-secrets-git-build-apk-boundaries",
+      "path": "content/challenges/challenge-level-08-week-33-04-secrets-git-build-apk-boundaries.json",
+      "sha256": "5e656a37af754afe9b8feb2bda6fbd0c8d08dd99b244273d86c13828ad8dd99d"
+    },
+    {
+      "id": "challenge-level-08-week-33-05-api-key-restrictions-server-secrets",
+      "title": "Apply Client API Keys, Restrictions, Quotas, and Server Secrets",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-05-api-key-restrictions-server-secrets",
+      "path": "content/challenges/challenge-level-08-week-33-05-api-key-restrictions-server-secrets.json",
+      "sha256": "e22db2eff344f8f5a5447eff1c3b1b76e414e90bdc18994662b43d57fd664df5"
+    },
+    {
+      "id": "challenge-level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "title": "Apply App Signing, Upload Keys, CI, and Recovery",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "path": "content/challenges/challenge-level-08-week-33-06-app-signing-upload-keys-ci-recovery.json",
+      "sha256": "2685df1f408546a1843e256477a91a9338b5763f8fd6f5924a6c2b1fbe036f5d"
+    },
+    {
+      "id": "challenge-level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+      "title": "Apply OAuth 2.0 with PKCE and Session Token Lifecycle",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+      "path": "content/challenges/challenge-level-08-week-34-01-oauth-pkce-session-token-lifecycle.json",
+      "sha256": "9d85fdf48d2843d817de42a079172ace84186807bf0627ce8c647729685892b2"
+    },
+    {
+      "id": "challenge-level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+      "title": "Apply Secure Deep Links, FileProvider, and Exported Inputs",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+      "path": "content/challenges/challenge-level-08-week-34-02-deep-links-fileprovider-exported-inputs.json",
+      "sha256": "36325c136a90f40db54fab0420178ca97178ce21cdc17cfe446b49ed44f5a4fb"
+    },
+    {
+      "id": "challenge-level-08-week-34-03-webview-origin-capability-security",
+      "title": "Apply WebView Origin and Capability Security",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-03-webview-origin-capability-security",
+      "path": "content/challenges/challenge-level-08-week-34-03-webview-origin-capability-security.json",
+      "sha256": "a6e7b843bd6bb7ea8f794c4fabda2390fa053cc0bf9de27439b53f9270aca38e"
+    },
+    {
+      "id": "challenge-level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "title": "Apply Play Integrity, Request Binding, and Verdict Decisions",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "path": "content/challenges/challenge-level-08-week-34-04-play-integrity-request-binding-verdicts.json",
+      "sha256": "bb1504ac735c01d4368aa5990e94a469771405a950b9fca2f0209cc4149a1ec0"
+    },
+    {
+      "id": "challenge-level-08-week-34-05-replay-fraud-root-hooking-resilience",
+      "title": "Apply Replay, Fraud Controls, and Resilience Limits",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+      "path": "content/challenges/challenge-level-08-week-34-05-replay-fraud-root-hooking-resilience.json",
+      "sha256": "0c705ada629c922e6c29cc1cb5e685b2604ba251910ea532f64f4942d2438f20"
+    },
+    {
+      "id": "challenge-level-08-week-34-06-banking-security-review-capstone",
+      "title": "Apply Banking Application Security Review Capstone",
+      "categoryId": "level-08-android-security-engineering",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone",
+      "path": "content/challenges/challenge-level-08-week-34-06-banking-security-review-capstone.json",
+      "sha256": "45f9d3e576c99f34aaecab738c2e14fc3f8862bad4065b74fe40a2ee52039a16"
     }
   ],
   "badges": [
@@ -6895,6 +7810,41 @@
       "categoryId": "level-07-testing-quality-engineering",
       "path": "content/badges/badge-level-07-week-30.json",
       "sha256": "f69b01693408117a992e9d482079b0e3f08842e67265d0bba81f64150b64e9ba"
+    },
+    {
+      "id": "badge-level-08-android-security-engineering",
+      "title": "Android Security Engineer",
+      "categoryId": "level-08-android-security-engineering",
+      "path": "content/badges/badge-level-08-android-security-engineering.json",
+      "sha256": "ebf15919044ff2b38329595c439fc707c31d41ae882e3e23540f9a9b1d2703f2"
+    },
+    {
+      "id": "badge-level-08-week-31",
+      "title": "Week 31 Threat Mapper",
+      "categoryId": "level-08-android-security-engineering",
+      "path": "content/badges/badge-level-08-week-31.json",
+      "sha256": "04c1e671bfd1dc99daea5d7ff12d8db7d082a594a58edb8f76aa58eb4581429d"
+    },
+    {
+      "id": "badge-level-08-week-32",
+      "title": "Week 32 Key Custodian",
+      "categoryId": "level-08-android-security-engineering",
+      "path": "content/badges/badge-level-08-week-32.json",
+      "sha256": "7efc8932fe5d944778ec0cbfade736dbf9a8a4be1c53477d86da04f17028e5a5"
+    },
+    {
+      "id": "badge-level-08-week-33",
+      "title": "Week 33 Trust Operator",
+      "categoryId": "level-08-android-security-engineering",
+      "path": "content/badges/badge-level-08-week-33.json",
+      "sha256": "92edaabdbe27821bb1707b088d32af1b5b9f209fa64e63ee601b836a03158e44"
+    },
+    {
+      "id": "badge-level-08-week-34",
+      "title": "Week 34 Security Reviewer",
+      "categoryId": "level-08-android-security-engineering",
+      "path": "content/badges/badge-level-08-week-34.json",
+      "sha256": "e4090aa793563c65be8d9e9b4d1297df2fb41e9d665d147f48b7aca5b8f53f3b"
     }
   ],
   "roadmap": [
@@ -6902,7 +7852,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "77537d7ea3905d960712ddd072437fb291727c4eeb4972e4ce2bb7a86fb5c974"
+      "sha256": "97f1e3591c58de2e9ae24e7d0ea7533c992f54fa24eb6699ac9f978d1e9bdda3"
     }
   ]
 }

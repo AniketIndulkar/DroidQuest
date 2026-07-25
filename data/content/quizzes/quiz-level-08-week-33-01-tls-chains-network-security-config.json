@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-33-01-tls-chains-network-security-config",
+  "title": "TLS Chains and Network Security Configuration Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-33-01-tls-chains-network-security-config"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-33-01-tls-chains-network-security-config-decision",
+      "prompt": "Which design best applies tls chains and network security configuration?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Keep platform hostname and chain validation, deny cleartext, and isolate exceptional trust to narrow declarative debug or domain policy.",
+        "Install a trust-all manager",
+        "Allow cleartext globally for one host",
+        "Trust user CAs in release without a threat decision"
+      ],
+      "answer": "Keep platform hostname and chain validation, deny cleartext, and isolate exceptional trust to narrow declarative debug or domain policy.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-33-01-tls-chains-network-security-config"
+    },
+    {
+      "id": "q-level-08-week-33-01-tls-chains-network-security-config-truth",
+      "prompt": "A valid certificate chain proves that the authenticated user may access the requested account.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Adding a trust-all manager for one development certificate disables peer authentication and exposes credentials and responses to interception.",
+      "lessonId": "level-08-week-33-01-tls-chains-network-security-config"
+    },
+    {
+      "id": "q-level-08-week-33-01-tls-chains-network-security-config-recall",
+      "prompt": "Which two checks authenticate a normal HTTPS server?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "A valid chain to a trusted anchor and hostname verification for the requested host.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-33-01-tls-chains-network-security-config"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -2365,6 +2365,318 @@
       ],
       "relatedLessonIds": [
         "level-07-week-30-06-release-confidence-plan-capstone"
+      ]
+    },
+    {
+      "id": "term-threat-model",
+      "term": "Threat model",
+      "definition": "A maintained description of valuable assets, plausible attackers, trust boundaries, abuse paths, controls, and residual risk.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "threat-modeling"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-01-threat-model-assets-attackers-boundaries"
+      ]
+    },
+    {
+      "id": "term-least-privilege",
+      "term": "Least privilege",
+      "definition": "Granting each user, component, process, key, and service only the authority needed for its current task and lifetime.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "masvs"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-02-masvs-least-privilege-defense-depth"
+      ]
+    },
+    {
+      "id": "term-public-client",
+      "term": "Public client",
+      "definition": "An installed client that cannot keep a shared secret confidential and therefore cannot authenticate itself using an embedded secret.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "authorization"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-03-client-server-trust-authz-validation"
+      ]
+    },
+    {
+      "id": "term-confused-deputy",
+      "term": "Confused deputy",
+      "definition": "A trusted component tricked into using its authority on behalf of an unauthorised caller.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "intents"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-04-component-intent-pendingintent-attack-surface"
+      ]
+    },
+    {
+      "id": "term-reverse-engineering",
+      "term": "Reverse engineering",
+      "definition": "Analysing a built application’s manifest, resources, bytecode, native code, data, and runtime behaviour to recover design and implementation details.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "reverse-engineering"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-05-apk-inspection-reverse-engineering-r8"
+      ]
+    },
+    {
+      "id": "term-data-minimisation",
+      "term": "Data minimisation",
+      "definition": "Collecting, processing, retaining, displaying, and transmitting only the data necessary for a declared purpose.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "privacy"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+      ]
+    },
+    {
+      "id": "term-data-at-rest",
+      "term": "Data at rest",
+      "definition": "Data persisted on a device or backup medium rather than actively moving across a network boundary.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "storage"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-01-data-classification-storage-decisions"
+      ]
+    },
+    {
+      "id": "term-non-exportable-key",
+      "term": "Non-exportable key",
+      "definition": "A key whose raw material cannot be retrieved through the API, while approved cryptographic operations can still be requested.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "keystore"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-02-android-keystore-hardware-strongbox"
+      ]
+    },
+    {
+      "id": "term-key-attestation",
+      "term": "Key attestation",
+      "definition": "A signed certificate chain describing properties of a generated key and, when verified correctly, its hardware security level.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "key-rotation"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+      ]
+    },
+    {
+      "id": "term-aead",
+      "term": "Authenticated encryption with associated data",
+      "definition": "Encryption that provides confidentiality and integrity for plaintext while authenticating, but not hiding, contextual associated data.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "tink"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-04-tink-aead-associated-data-envelopes"
+      ]
+    },
+    {
+      "id": "term-parameterized-query",
+      "term": "Parameterized query",
+      "definition": "A query whose structure is fixed separately from bound data values, preventing values from becoming executable SQL syntax.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "database"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-05-encrypted-files-databases-sql-injection"
+      ]
+    },
+    {
+      "id": "term-auth-per-use-key",
+      "term": "Auth-per-use key",
+      "definition": "A cryptographic key requiring an approved user authentication for each protected operation.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "biometric"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-32-06-biometric-keys-backup-recovery"
+      ]
+    },
+    {
+      "id": "term-trust-anchor",
+      "term": "Trust anchor",
+      "definition": "A trusted CA certificate used as the root for validating a peer certificate chain.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "tls"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-01-tls-chains-network-security-config"
+      ]
+    },
+    {
+      "id": "term-spki-pin",
+      "term": "SPKI pin",
+      "definition": "A hash of a certificate public key representation used to restrict acceptable certificate chains.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "pinning"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-02-certificate-public-key-pinning-decisions"
+      ]
+    },
+    {
+      "id": "term-pin-overlap-window",
+      "term": "Pin overlap window",
+      "definition": "A period when old clients and new server chains share at least one trusted pin during staged rotation.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "certificate-rotation"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+      ]
+    },
+    {
+      "id": "term-embedded-secret",
+      "term": "Embedded secret",
+      "definition": "Credential material packaged in an application artifact and therefore recoverable by someone who can inspect or run it.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "secrets"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-04-secrets-git-build-apk-boundaries"
+      ]
+    },
+    {
+      "id": "term-api-key-restriction",
+      "term": "API key restriction",
+      "definition": "Provider-side limits binding a key to approved APIs and client identity signals such as package name and signing certificate.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "api-keys"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-05-api-key-restrictions-server-secrets"
+      ]
+    },
+    {
+      "id": "term-upload-key",
+      "term": "Upload key",
+      "definition": "A private key used to authenticate an uploaded artifact to Play App Signing, separate from the app-signing key used on delivered APKs.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "app-signing"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+      ]
+    },
+    {
+      "id": "term-pkce",
+      "term": "PKCE",
+      "definition": "A transaction-bound proof that prevents an intercepted OAuth authorisation code being redeemed without the original verifier.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "oauth"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+      ]
+    },
+    {
+      "id": "term-uri-grant",
+      "term": "URI permission grant",
+      "definition": "Temporary read or write authority for a specific content URI delegated to another application.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "deep-links"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+      ]
+    },
+    {
+      "id": "term-webview-bridge",
+      "term": "WebView native bridge",
+      "definition": "An interface exposing native application capabilities to web content, potentially across origin and frame boundaries.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "webview"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-03-webview-origin-capability-security"
+      ]
+    },
+    {
+      "id": "term-request-binding",
+      "term": "Request binding",
+      "definition": "Cryptographically associating an integrity result with the exact server action and canonical request data it is intended to protect.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "play-integrity"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-04-play-integrity-request-binding-verdicts"
+      ]
+    },
+    {
+      "id": "term-replay-attack",
+      "term": "Replay attack",
+      "definition": "Reuse of a previously valid message, credential, or operation to trigger an unauthorised duplicate or stale action.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "fraud"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-05-replay-fraud-root-hooking-resilience"
+      ]
+    },
+    {
+      "id": "term-residual-risk",
+      "term": "Residual risk",
+      "definition": "Risk deliberately remaining after controls, documented with rationale, owner, monitoring, and review conditions.",
+      "categoryId": "level-08-android-security-engineering",
+      "tags": [
+        "security",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-08-week-34-06-banking-security-review-capstone"
       ]
     }
   ]

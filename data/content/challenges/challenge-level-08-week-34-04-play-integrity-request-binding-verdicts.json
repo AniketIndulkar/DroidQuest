@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "title": "Apply Play Integrity, Request Binding, and Verdict Decisions",
+  "categoryId": "level-08-android-security-engineering",
+  "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Protect a transfer with canonical requestHash binding and a server decision table covering verdicts, limits, step-up, outages, false positives, monitoring, and appeal.",
+  "successCriteria": [
+    "The asset, attacker, boundary, abuse path, assumptions, and residual risk are explicit.",
+    "The implementation enforces least privilege at the authoritative boundary and preserves safe failure.",
+    "Adversarial tests plus rotation, revocation, migration, monitoring, recovery, and ownership are documented."
+  ],
+  "hints": [
+    "Attempt the attack before and after the control so evidence demonstrates the intended property.",
+    "Inspect the release artifact and server contract, not only source or UI behaviour."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "val canonical=\"$operationId|$accountId|$amountMinor|$currency|$destinationId\"\nval requestHash=base64Url(sha256(canonical.encodeToByteArray()))\n// Server recomputes before applying policy."
+  },
+  "solutionOutline": [
+    "Create the threat and data-flow model, then select the narrowest sufficient control.",
+    "Implement and attack the control, document limitations, and rehearse lifecycle and incident paths."
+  ],
+  "verification": [
+    "Run bypass, replay/substitution, account-switch, failure, and recovery scenarios.",
+    "Review evidence and residual risk with the owner who can accept or remediate it."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

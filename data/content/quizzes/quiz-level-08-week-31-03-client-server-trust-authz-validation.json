@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-03-client-server-trust-authz-validation",
+  "title": "Client–Server Trust, Authorisation, and Hostile Input Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-03-client-server-trust-authz-validation"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-03-client-server-trust-authz-validation-decision",
+      "prompt": "Which design best applies client–server trust, authorisation, and hostile input?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Treat the app as a public, potentially modified client and enforce ownership and business authority on the server.",
+        "Ship a shared admin secret in native code",
+        "Trust fields because Play installed the app",
+        "Authorise by hiding a button in Compose"
+      ],
+      "answer": "Treat the app as a public, potentially modified client and enforce ownership and business authority on the server.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation"
+    },
+    {
+      "id": "q-level-08-week-31-03-client-server-trust-authz-validation-truth",
+      "prompt": "Client-side validation is sufficient when the APK is signed by the legitimate developer.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Hiding a premium or transfer-authorisation boolean behind R8 still leaves a patchable client decision controlling a server-owned entitlement.",
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation"
+    },
+    {
+      "id": "q-level-08-week-31-03-client-server-trust-authz-validation-recall",
+      "prompt": "What must a server check separately from authentication?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Authorisation for the exact resource and action, plus business invariants, replay/idempotency, and abuse limits.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

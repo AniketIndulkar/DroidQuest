@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+  "title": "Secure Deep Links, FileProvider, and Exported Inputs Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-02-deep-links-fileprovider-exported-inputs-decision",
+      "prompt": "Which design best applies secure deep links, fileprovider, and exported inputs?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Verify origin and structure, grant the narrowest file capability, and perform authenticated server authorisation before sensitive action.",
+        "Trust all parameters on a verified link",
+        "Expose root-path for convenience",
+        "Grant read and write indefinitely"
+      ],
+      "answer": "Verify origin and structure, grant the narrowest file capability, and perform authenticated server authorisation before sensitive action.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+    },
+    {
+      "id": "q-level-08-week-34-02-deep-links-fileprovider-exported-inputs-truth",
+      "prompt": "Domain verification means an App Link may safely perform its encoded transaction without server lookup or confirmation.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Checking host with string suffix matching can accept attacker-controlled lookalike domains, while a verified domain still cannot authorise a transaction.",
+      "lessonId": "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+    },
+    {
+      "id": "q-level-08-week-34-02-deep-links-fileprovider-exported-inputs-recall",
+      "prompt": "What should a sensitive deep link carry?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "An opaque operation reference that is revalidated and authorised server-side, not trusted authority or sensitive credentials.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-02-deep-links-fileprovider-exported-inputs"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

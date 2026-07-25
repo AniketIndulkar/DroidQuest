@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+  "title": "Key Lifecycle, Rotation, Invalidation, and Attestation Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation-decision",
+      "prompt": "Which design best applies key lifecycle, rotation, invalidation, and attestation?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Version ciphertext and keys, migrate idempotently, distinguish loss from corruption, and verify attestation server-side with fresh binding.",
+        "Delete the old key before migration",
+        "Trust an attestation chain entirely on-device",
+        "Use an alias without format metadata"
+      ],
+      "answer": "Version ciphertext and keys, migrate idempotently, distinguish loss from corruption, and verify attestation server-side with fresh binding.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+    },
+    {
+      "id": "q-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation-truth",
+      "prompt": "Successful key attestation permanently proves that every future request from the device is trustworthy.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Regenerating a missing alias under the same name hides key loss and makes every existing record permanently undecryptable without a clear recovery path.",
+      "lessonId": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+    },
+    {
+      "id": "q-level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation-recall",
+      "prompt": "Why must ciphertext carry a key or format version?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "So decryption and resumable rotation can select the correct format and key without guessing.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

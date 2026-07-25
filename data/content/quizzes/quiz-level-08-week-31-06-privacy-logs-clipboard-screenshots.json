@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-06-privacy-logs-clipboard-screenshots",
+  "title": "Privacy Surfaces: Logs, Clipboard, Screenshots, and Errors Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-06-privacy-logs-clipboard-screenshots-decision",
+      "prompt": "Which design best applies privacy surfaces: logs, clipboard, screenshots, and errors?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Classify and minimise data before it reaches secondary surfaces, centralise redaction, and test release failure paths.",
+        "Log full payloads and rely on access control",
+        "Put tokens on the clipboard for debugging",
+        "Show backend exception text directly to users"
+      ],
+      "answer": "Classify and minimise data before it reaches secondary surfaces, centralise redaction, and test release failure paths.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+    },
+    {
+      "id": "q-level-08-week-31-06-privacy-logs-clipboard-screenshots-truth",
+      "prompt": "Hashing a low-entropy identifier always makes it anonymous and safe to log.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Redacting only the happy path leaves tokens and personal data exposed when generic exception logging serialises failed requests and headers.",
+      "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+    },
+    {
+      "id": "q-level-08-week-31-06-privacy-logs-clipboard-screenshots-recall",
+      "prompt": "What should a user-facing security error contain?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "A safe explanation, a next action, and an opaque support identifier—not secrets or internal policy details.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-06-privacy-logs-clipboard-screenshots"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

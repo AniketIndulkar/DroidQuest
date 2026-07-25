@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-08-week-32",
+  "title": "Week 32 Key Custodian",
+  "description": "Awarded for completing the Week 32 security checkpoint with threat-based evidence.",
+  "categoryId": "level-08-android-security-engineering",
+  "icon": "security-week-32",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-08-week-32-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 425,
+  "rarity": "rare",
+  "version": "0.11.0"
+}

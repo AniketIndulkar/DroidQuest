@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+  "title": "OAuth 2.0 with PKCE and Session Token Lifecycle Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-01-oauth-pkce-session-token-lifecycle-decision",
+      "prompt": "Which design best applies oauth 2.0 with pkce and session token lifecycle?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Treat the app as public, use external-browser authorization code with PKCE, and manage scoped tokens as revocable server authority.",
+        "Use a universal APK client secret",
+        "Collect credentials in WebView",
+        "Authorise account access from token presence alone"
+      ],
+      "answer": "Treat the app as public, use external-browser authorization code with PKCE, and manage scoped tokens as revocable server authority.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+    },
+    {
+      "id": "q-level-08-week-34-01-oauth-pkce-session-token-lifecycle-truth",
+      "prompt": "PKCE makes a native app capable of keeping a shared client secret confidential.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Shipping an OAuth client secret in the APK and using an embedded WebView mistakes an inspectable public client for a confidential server.",
+      "lessonId": "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+    },
+    {
+      "id": "q-level-08-week-34-01-oauth-pkce-session-token-lifecycle-recall",
+      "prompt": "What does the PKCE verifier prove at code redemption?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "That the redeemer is the client instance that created the challenge for that authorisation transaction.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-01-oauth-pkce-session-token-lifecycle"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

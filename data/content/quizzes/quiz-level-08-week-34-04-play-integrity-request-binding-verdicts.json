@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "title": "Play Integrity, Request Binding, and Verdict Decisions Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-04-play-integrity-request-binding-verdicts"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-04-play-integrity-request-binding-verdicts-decision",
+      "prompt": "Which design best applies play integrity, request binding, and verdict decisions?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Verify verdicts server-side and bind them to the exact canonical request before combining them with other risk controls.",
+        "Authorise solely from device integrity",
+        "Put the access token in requestHash plaintext",
+        "Reuse one verdict for a session"
+      ],
+      "answer": "Verify verdicts server-side and bind them to the exact canonical request before combining them with other risk controls.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts"
+    },
+    {
+      "id": "q-level-08-week-34-04-play-integrity-request-binding-verdicts-truth",
+      "prompt": "A positive Play Integrity verdict proves that the signed-in user intended the exact transfer request.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Checking only that an integrity token exists, without binding and server comparison, lets a valid verdict be presented for the wrong transaction.",
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts"
+    },
+    {
+      "id": "q-level-08-week-34-04-play-integrity-request-binding-verdicts-recall",
+      "prompt": "What must the backend do with requestHash?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Recompute the digest from the canonical server-visible request and compare it with the verified verdict field.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

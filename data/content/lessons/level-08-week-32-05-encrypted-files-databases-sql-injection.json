@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-32-05-encrypted-files-databases-sql-injection",
+  "title": "Encrypted Files, Databases, and Query Safety",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 32,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-32-04-tink-aead-associated-data-envelopes"
+  ],
+  "tags": [
+    "security",
+    "database",
+    "sql-injection"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through encrypted files, databases, and query safety, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Encryption scope follows the threat. Field encryption can protect selected values and bind context but complicates querying and migration. Whole-file or database encryption can reduce offline disclosure while open, yet plaintext may exist in process memory, journals, temporary files, exports, screenshots, or logs. Room does not automatically encrypt a database. Evaluate a maintained database-encryption solution, platform support, performance, backup and migration needs instead of claiming protection from a filename or app sandbox alone."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Encryption does not prevent injection or unauthorised queries. Use Room-generated queries or bound parameters, never concatenate attacker-controlled values into SQL. Allowlist identifiers such as sort columns because placeholders bind values, not arbitrary SQL structure. Enforce ownership in repository and server contracts, constrain rawQuery use, validate imported database or backup formats, and test wildcards, quotes, comments, Unicode, oversized values, and hostile migration content. Integrity and authorisation remain distinct from confidentiality."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "@Query(\"SELECT * FROM transfer WHERE ownerId=:ownerId AND memo LIKE :pattern\")\nsuspend fun search(ownerId:String,pattern:String):List<TransferEntity>\n// Bind values; allowlist any dynamic sort identifier.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "AndroidX Security Crypto types such as EncryptedSharedPreferences are deprecated and should be treated as legacy migration concerns rather than the course default. A replacement design begins with data minimisation, Android Keystore-protected key material, a reviewed primitive such as Tink where encryption is needed, and a versioned storage boundary. Plan atomic writes, authenticated metadata, corruption versus tamper signals, key loss, logout, backups, and progressive migration before changing live records."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Encrypting a Room database while constructing raw SQL with user input preserves confidentiality at rest but still permits injection during use."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "SQL injection risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/sql-injection",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Data and file storage security",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-best-practices#data",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "EncryptedSharedPreferences API status",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Encrypted Files, Databases, and Query Safety boundary",
+      "language": "kotlin",
+      "code": "@Query(\"SELECT * FROM transfer WHERE ownerId=:ownerId AND memo LIKE :pattern\")\nsuspend fun search(ownerId:String,pattern:String):List<TransferEntity>\n// Bind values; allowlist any dynamic sort identifier.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Encrypting a Room database while constructing raw SQL with user input preserves confidentiality at rest but still permits injection during use.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Review a banking database for sensitive fields, journals, exports, raw queries, ownership filters, encryption boundaries, legacy EncryptedSharedPreferences, and migration recovery.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Why can a placeholder not safely represent a dynamic sort column?",
+        "answer": "Parameters bind data values, not SQL identifiers or executable query structure; identifiers need an allowlist."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-32-05-encrypted-files-databases-sql-injection",
+  "challengeId": "challenge-level-08-week-32-05-encrypted-files-databases-sql-injection",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Encrypted Files, Databases, and Query Safety.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/risks/sql-injection",
+    "https://developer.android.com/privacy-and-security/security-best-practices#data",
+    "https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences"
+  ],
+  "version": "0.11.0"
+}

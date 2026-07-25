@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-34-06-banking-security-review-capstone",
+  "title": "Banking Application Security Review Capstone Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-06-banking-security-review-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-06-banking-security-review-capstone-decision",
+      "prompt": "Which design best applies banking application security review capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Connect scoped threats to verified evidence, proportionate remediation, operational recovery, ownership, and explicit residual risk.",
+        "Report every tool alert as critical",
+        "Claim security from zero findings",
+        "Leave recovery and ownership for after release"
+      ],
+      "answer": "Connect scoped threats to verified evidence, proportionate remediation, operational recovery, ownership, and explicit residual risk.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone"
+    },
+    {
+      "id": "q-level-08-week-34-06-banking-security-review-capstone-truth",
+      "prompt": "A security assessment with no validated findings proves the banking app has no exploitable risk.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "Submitting a long scanner export without validated attack paths, remediation, ownership, operations, or residual-risk decisions does not constitute a security review.",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone"
+    },
+    {
+      "id": "q-level-08-week-34-06-banking-security-review-capstone-recall",
+      "prompt": "Which artifacts make the capstone operational?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "Threat model, attack tree, evidence-based findings, remediation and verification, rotation and secret plans, owners, runbooks, and residual-risk decisions.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

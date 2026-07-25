@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+  "title": "OAuth 2.0 with PKCE and Session Token Lifecycle",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-33-06-app-signing-upload-keys-ci-recovery"
+  ],
+  "tags": [
+    "security",
+    "oauth",
+    "pkce"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through oauth 2.0 with pkce and session token lifecycle, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A native Android app is a public OAuth client: an embedded client secret cannot authenticate every installation confidentially. Use the system browser or an external user-agent for authorisation, authorization-code flow with PKCE, an exact registered redirect, and transaction-specific state. The app creates a high-entropy verifier and sends its challenge; the token endpoint accepts the code only with the matching verifier. Do not use an embedded WebView to collect provider credentials or rely on a custom-scheme redirect without interception analysis."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Validate state, redirect scheme/host/path, issuer, token audience, and server responses according to the protocol and library contract. Prefer verified HTTPS App Links where the provider supports them. Keep access tokens short-lived and narrowly scoped; rotate refresh tokens, detect reuse where the server supports it, revoke sessions, and clear local material on logout. Synchronise refresh so concurrent 401 responses do not race, and never attach credentials to logs, analytics, untrusted hosts, WebViews, or deep-link parameters."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val verifier=secureRandomUrlString(64)\nval challenge=base64Url(sha256(verifier))\n// Persist only transaction state needed to validate the exact redirect; redeem once.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Separate authentication, token possession, resource authorisation, and reauthentication for risky actions. A valid access token does not prove the current holder should transfer from any supplied account. The backend still enforces ownership, limits, operation identity, and anomaly controls. Test code interception, state mismatch, redirect capture, cancellation, process death, expired access, refresh reuse, revocation, clock skew, account switch, concurrent refresh, offline logout, and compromised-device response."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Shipping an OAuth client secret in the APK and using an embedded WebView mistakes an inspectable public client for a confidential server."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OAuth 2.0 for Native Apps",
+          "publisher": "RFC Editor",
+          "resourceType": "official_docs",
+          "url": "https://www.rfc-editor.org/rfc/rfc8252",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "OAuth 2.0 Security Best Current Practice",
+          "publisher": "RFC Editor",
+          "resourceType": "official_docs",
+          "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the OAuth 2.0 with PKCE and Session Token Lifecycle boundary",
+      "language": "kotlin",
+      "code": "val verifier=secureRandomUrlString(64)\nval challenge=base64Url(sha256(verifier))\n// Persist only transaction state needed to validate the exact redirect; redeem once.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Shipping an OAuth client secret in the APK and using an embedded WebView mistakes an inspectable public client for a confidential server.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Threat-model and test a browser-based PKCE sign-in with verified redirect, state, token rotation, concurrent refresh, revocation, logout, and server authorisation.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What does the PKCE verifier prove at code redemption?",
+        "answer": "That the redeemer is the client instance that created the challenge for that authorisation transaction."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+  "challengeId": "challenge-level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain OAuth 2.0 with PKCE and Session Token Lifecycle.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://www.rfc-editor.org/rfc/rfc8252",
+    "https://www.rfc-editor.org/rfc/rfc9700.html"
+  ],
+  "version": "0.11.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-32-01-data-classification-storage-decisions",
+  "title": "Data Classification and Storage Decisions Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-32-01-data-classification-storage-decisions"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-32-01-data-classification-storage-decisions-decision",
+      "prompt": "Which design best applies data classification and storage decisions?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Classify each field and minimise persistence before selecting location, encryption, backup, retention, and recovery controls.",
+        "Encrypt the entire cache with one immortal key",
+        "Store all fields in preferences for consistency",
+        "Assume internal storage needs no threat analysis"
+      ],
+      "answer": "Classify each field and minimise persistence before selecting location, encryption, backup, retention, and recovery controls.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-32-01-data-classification-storage-decisions"
+    },
+    {
+      "id": "q-level-08-week-32-01-data-classification-storage-decisions-truth",
+      "prompt": "Encryption at rest prevents sensitive plaintext from ever appearing in process memory.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Labelling all internal-storage data “secure” skips field sensitivity, integrity, backups, device compromise, sharing, retention, and recovery requirements.",
+      "lessonId": "level-08-week-32-01-data-classification-storage-decisions"
+    },
+    {
+      "id": "q-level-08-week-32-01-data-classification-storage-decisions-recall",
+      "prompt": "Which decision should precede choosing an encryption API?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Whether the value needs to be persisted at all, followed by its classification and lifecycle requirements.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-32-01-data-classification-storage-decisions"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "quiz-level-08-week-34-checkpoint",
+  "title": "Week 34: Identity, Integrity, Abuse, and Security Review Checkpoint",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+    "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+    "level-08-week-34-03-webview-origin-capability-security",
+    "level-08-week-34-04-play-integrity-request-binding-verdicts",
+    "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+    "level-08-week-34-06-banking-security-review-capstone"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-08-week-34-1",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+      "prompt": "Which two items belong in every actionable threat record?",
+      "type": "multiple_choice",
+      "options": [
+        "Attacker capability and asset",
+        "Recovery and residual risk",
+        "A promise that obfuscation is unbreakable",
+        "Every Android permission"
+      ],
+      "answer": [
+        "Attacker capability and asset",
+        "Recovery and residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-34-2",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+      "prompt": "Order the security workflow.",
+      "type": "order_steps",
+      "options": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ],
+      "answer": [
+        "Name asset and attacker",
+        "Trace trust boundary",
+        "Choose least-privilege control",
+        "Attack and test lifecycle",
+        "Assign residual risk"
+      ]
+    },
+    {
+      "id": "q-level-08-week-34-3",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-03-webview-origin-capability-security",
+      "prompt": "Match evidence to its authority.",
+      "type": "match_pairs",
+      "options": [
+        "Account ownership",
+        "APK signing identity",
+        "Local key use"
+      ],
+      "answer": {
+        "Account ownership": "Backend authorisation",
+        "APK signing identity": "App signing certificate",
+        "Local key use": "Android Keystore authorisation"
+      }
+    },
+    {
+      "id": "q-level-08-week-34-4",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "prompt": "Spot the security defect: Checking only that an integrity token exists, without binding and server comparison, lets a valid verdict be presented for the wrong transaction.",
+      "type": "spot_bug",
+      "answer": "Checking only that an integrity token exists, without binding and server comparison, lets a valid verdict be presented for the wrong transaction.",
+      "acceptedAnswers": [
+        "The design trusts the wrong boundary or omits lifecycle and recovery."
+      ]
+    },
+    {
+      "id": "q-level-08-week-34-5",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+      "prompt": "Complete the rule: an Android app is a public client, so backend credentials must remain on the ____.",
+      "type": "fill_blank",
+      "answer": "backend",
+      "acceptedAnswers": [
+        "backend",
+        "server"
+      ]
+    },
+    {
+      "id": "q-level-08-week-34-6",
+      "difficulty": "advanced",
+      "explanation": "Security evidence must connect a threat and authority boundary to a control, lifecycle, adversarial test, and recovery plan.",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone",
+      "prompt": "What does this print? val pins=setOf(\"old\",\"backup\"); val served=setOf(\"new\",\"backup\"); print(pins.intersect(served).single())",
+      "type": "code_output",
+      "answer": "backup"
+    }
+  ],
+  "rewards": {
+    "xp": 220,
+    "stars": 4
+  },
+  "version": "0.11.0"
+}

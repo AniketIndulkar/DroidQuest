@@ -1,0 +1,213 @@
+{
+  "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+  "title": "Components, Intents, and PendingIntent Attack Surface",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 31,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-31-03-client-server-trust-authz-validation"
+  ],
+  "tags": [
+    "security",
+    "intents",
+    "pendingintent"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through components, intents, and pendingintent attack surface, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Activities, services, receivers, providers, intent filters, URI grants, and PendingIntents expose capabilities across process boundaries. Inspect the final merged manifest because libraries and filters can change exported state. Default to unexported components; when exposure is required, define the caller, action, data, permission, and result contract. An exported component must treat every extra, URI, flag, ClipData item, nested Intent, and caller claim as hostile. Authentication inside the visible UI does not protect an independently invocable component."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A confused-deputy attack occurs when an attacker asks your privileged component to perform an operation they could not perform directly. Validate the resolved destination of nested intents, clear dangerous grant flags, use IntentSanitizer where appropriate, and prefer explicit intents for internal navigation. PendingIntent delegates your app’s identity: make it immutable unless the recipient genuinely must fill a documented field, use explicit base intents, choose unique identities, and avoid wrapping an implicit intent whose eventual target can be captured."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val safe=IntentSanitizer.Builder()\n .allowComponent(ComponentName(context,ConfirmActivity::class.java))\n .allowData { it.scheme==\"https\" && it.host==\"bank.example\" }\n .build().sanitizeByThrowing(incoming)",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test exported surfaces from a separate test application or adb, not only through normal navigation. Attempt missing authentication, cross-account IDs, unexpected schemes, path traversal, oversized extras, mutable PendingIntent modification, replay, and malicious result data. Check every build variant’s merged manifest and add lint/static rules for accidental exports. Record why each public component exists, its required permission or verified-link relationship, and its removal plan. Inter-process boundaries deserve API-level review even when both ends appear in one repository."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Exported components",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/android-exported",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Intent redirection risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/intent-redirection",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "PendingIntent security risks",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/risks/pending-intent",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Components, Intents, and PendingIntent Attack Surface boundary",
+      "language": "kotlin",
+      "code": "val safe=IntentSanitizer.Builder()\n .allowComponent(ComponentName(context,ConfirmActivity::class.java))\n .allowData { it.scheme==\"https\" && it.host==\"bank.example\" }\n .build().sanitizeByThrowing(incoming)",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Audit the merged manifest and implement adversarial tests for one exported Activity, receiver, FileProvider grant, and notification PendingIntent.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "Why can a PendingIntent be security-sensitive?",
+        "answer": "It lets its holder perform the wrapped operation using the creator application’s identity and permissions."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-31-04-component-intent-pendingintent-attack-surface",
+  "challengeId": "challenge-level-08-week-31-04-component-intent-pendingintent-attack-surface",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Components, Intents, and PendingIntent Attack Surface.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/privacy-and-security/risks/android-exported",
+    "https://developer.android.com/privacy-and-security/risks/intent-redirection",
+    "https://developer.android.com/privacy-and-security/risks/pending-intent"
+  ],
+  "version": "0.11.0"
+}

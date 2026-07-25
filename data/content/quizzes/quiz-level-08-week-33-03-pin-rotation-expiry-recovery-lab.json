@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+  "title": "Certificate Rotation, Expiry, and Failure Recovery Lab Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-33-03-pin-rotation-expiry-recovery-lab-decision",
+      "prompt": "Which design best applies certificate rotation, expiry, and failure recovery lab?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Model the installed-version compatibility matrix and establish overlapping trust before changing the served chain.",
+        "Rotate server first and release later",
+        "Use remote config through the pinned host as sole recovery",
+        "Remove old pins based only on latest-version availability"
+      ],
+      "answer": "Model the installed-version compatibility matrix and establish overlapping trust before changing the served chain.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+    },
+    {
+      "id": "q-level-08-week-33-03-pin-rotation-expiry-recovery-lab-truth",
+      "prompt": "Publishing a compatible app update guarantees that all active users can connect after rotation.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Rotating the server to a new key before an adopted mobile release trusts it immediately locks every older pinned client out.",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+    },
+    {
+      "id": "q-level-08-week-33-03-pin-rotation-expiry-recovery-lab-recall",
+      "prompt": "What invariant prevents a pinning outage?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Every supported installed client and every served chain must share at least one acceptable pin.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

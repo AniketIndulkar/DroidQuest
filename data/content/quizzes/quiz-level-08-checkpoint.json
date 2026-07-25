@@ -1,0 +1,167 @@
+{
+  "id": "quiz-level-08-checkpoint",
+  "title": "Level 8 Boss: Banking Security Review",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+    "level-08-week-31-02-masvs-least-privilege-defense-depth",
+    "level-08-week-31-03-client-server-trust-authz-validation",
+    "level-08-week-31-04-component-intent-pendingintent-attack-surface",
+    "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
+    "level-08-week-31-06-privacy-logs-clipboard-screenshots",
+    "level-08-week-32-01-data-classification-storage-decisions",
+    "level-08-week-32-02-android-keystore-hardware-strongbox",
+    "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
+    "level-08-week-32-04-tink-aead-associated-data-envelopes",
+    "level-08-week-32-05-encrypted-files-databases-sql-injection",
+    "level-08-week-32-06-biometric-keys-backup-recovery",
+    "level-08-week-33-01-tls-chains-network-security-config",
+    "level-08-week-33-02-certificate-public-key-pinning-decisions",
+    "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+    "level-08-week-33-04-secrets-git-build-apk-boundaries",
+    "level-08-week-33-05-api-key-restrictions-server-secrets",
+    "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+    "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
+    "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
+    "level-08-week-34-03-webview-origin-capability-security",
+    "level-08-week-34-04-play-integrity-request-binding-verdicts",
+    "level-08-week-34-05-replay-fraud-root-hooking-resilience",
+    "level-08-week-34-06-banking-security-review-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-08-boss-1",
+      "prompt": "Which threat-model statement is strongest?",
+      "type": "single_choice",
+      "options": [
+        "A malicious app can replay a transfer approval URI across the exported Activity boundary, causing an unauthorised debit unless the server binds a one-time operation to the authenticated owner.",
+        "Use encryption everywhere.",
+        "Rooted devices are insecure.",
+        "Apply MASVS."
+      ],
+      "answer": "A malicious app can replay a transfer approval URI across the exported Activity boundary, causing an unauthorised debit unless the server binds a one-time operation to the authenticated owner.",
+      "lessonId": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-2",
+      "prompt": "Select both true statements about installed Android clients.",
+      "type": "multiple_choice",
+      "options": [
+        "They cannot keep a universal backend secret confidential",
+        "Server authorisation remains necessary",
+        "R8 makes them confidential clients",
+        "Play installation proves every request is untampered"
+      ],
+      "answer": [
+        "They cannot keep a universal backend secret confidential",
+        "Server authorisation remains necessary"
+      ],
+      "lessonId": "level-08-week-31-03-client-server-trust-authz-validation",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-3",
+      "prompt": "A StrongBox key protects every plaintext value from a compromised app process.",
+      "type": "true_false",
+      "answer": false,
+      "lessonId": "level-08-week-32-02-android-keystore-hardware-strongbox",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-4",
+      "prompt": "Complete the rule: AEAD associated data is authenticated but not ____.",
+      "type": "fill_blank",
+      "answer": "encrypted",
+      "acceptedAnswers": [
+        "encrypted",
+        "hidden"
+      ],
+      "lessonId": "level-08-week-32-04-tink-aead-associated-data-envelopes",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-5",
+      "prompt": "Order a no-outage pin rotation.",
+      "type": "order_steps",
+      "options": [
+        "Ship trust for new and backup pins",
+        "Wait for supported-client adoption",
+        "Serve the new chain",
+        "Monitor and retain rollback",
+        "Retire old material by policy"
+      ],
+      "answer": [
+        "Ship trust for new and backup pins",
+        "Wait for supported-client adoption",
+        "Serve the new chain",
+        "Monitor and retain rollback",
+        "Retire old material by policy"
+      ],
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-6",
+      "prompt": "Match the key with its responsibility.",
+      "type": "match_pairs",
+      "options": [
+        "App-signing key",
+        "Upload key",
+        "Keystore data key"
+      ],
+      "answer": {
+        "App-signing key": "Identity of delivered updates",
+        "Upload key": "Authentication to Play upload",
+        "Keystore data key": "Authorised local cryptographic operations"
+      },
+      "lessonId": "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-7",
+      "prompt": "Spot the flaw: the backend accepts any positive Integrity verdict for any transfer during the next ten minutes.",
+      "type": "spot_bug",
+      "answer": "The verdict is not bound to the exact canonical transfer request and principal.",
+      "acceptedAnswers": [
+        "missing request binding",
+        "verdict is reusable across requests"
+      ],
+      "lessonId": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-8",
+      "prompt": "What prints? val trusted=setOf(\"old\",\"backup\"); val chain=setOf(\"new\",\"backup\"); print(trusted.intersect(chain).first())",
+      "type": "code_output",
+      "answer": "backup",
+      "lessonId": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    },
+    {
+      "id": "q-level-08-boss-9",
+      "prompt": "Why is a scanner export not a complete security review?",
+      "type": "short_answer",
+      "answer": "It lacks validated attack paths, system context, evidence, remediation, verification, ownership, operations, recovery, and explicit residual-risk decisions.",
+      "lessonId": "level-08-week-34-06-banking-security-review-capstone",
+      "difficulty": "expert",
+      "explanation": "Level 8 mastery connects threat, authority, least privilege, adversarial evidence, lifecycle, recovery, and residual risk."
+    }
+  ],
+  "rewards": {
+    "xp": 550,
+    "stars": 5
+  },
+  "version": "0.11.0"
+}

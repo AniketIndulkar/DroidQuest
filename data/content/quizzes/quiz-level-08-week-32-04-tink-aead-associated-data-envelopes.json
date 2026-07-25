@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-32-04-tink-aead-associated-data-envelopes",
+  "title": "Tink AEAD, Associated Data, and Envelope Design Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-32-04-tink-aead-associated-data-envelopes"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-32-04-tink-aead-associated-data-envelopes-decision",
+      "prompt": "Which design best applies tink aead, associated data, and envelope design?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Use a reviewed AEAD primitive and bind ciphertext to stable, visible, canonical context through associated data.",
+        "Reuse an AES-GCM nonce manually",
+        "Put the access token in associated data",
+        "Return empty plaintext when authentication fails"
+      ],
+      "answer": "Use a reviewed AEAD primitive and bind ciphertext to stable, visible, canonical context through associated data.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-32-04-tink-aead-associated-data-envelopes"
+    },
+    {
+      "id": "q-level-08-week-32-04-tink-aead-associated-data-envelopes-truth",
+      "prompt": "AEAD associated data is encrypted and therefore safe for secrets.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Using a display name or locale-formatted string as associated data makes decryption depend on mutable presentation details and can strand valid ciphertext.",
+      "lessonId": "level-08-week-32-04-tink-aead-associated-data-envelopes"
+    },
+    {
+      "id": "q-level-08-week-32-04-tink-aead-associated-data-envelopes-recall",
+      "prompt": "Which attack can account-bound associated data prevent?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Substituting valid ciphertext from one user, tenant, record type, or purpose into another context.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-32-04-tink-aead-associated-data-envelopes"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

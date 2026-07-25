@@ -41,7 +41,7 @@ Challenges are separate practice activities with starter code, hints, success cr
 
 Roadmap nodes use `available` or `planned` status. Available lesson nodes link to lesson files, and available checkpoint nodes link to quizzes. `level_preview` nodes contain no teaching content and cannot be completed. Unlock eligibility is derived from `unlockPrerequisites` in `content/generated/roadmap-graph.json`.
 
-The current graph publishes complete Levels 1–7. Lessons and weekly checkpoints form an acyclic prerequisite chain through each level boss. Level 7 starts only after the Level 6 boss, and the planned Level 8 preview depends on the completed Level 7 boss. Later level previews remain chained in curriculum order.
+The current graph publishes complete Levels 1–8. Lessons and weekly checkpoints form an acyclic prerequisite chain through each level boss. Level 8 starts only after the Level 7 boss, and the planned Level 9 preview depends on the completed Level 8 boss. Later level previews remain chained in curriculum order.
 
 ## Android consumption
 

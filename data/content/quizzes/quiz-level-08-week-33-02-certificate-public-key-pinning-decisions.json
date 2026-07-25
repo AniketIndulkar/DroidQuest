@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-33-02-certificate-public-key-pinning-decisions",
+  "title": "Certificate and Public-Key Pinning Decisions Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-33-02-certificate-public-key-pinning-decisions"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-33-02-certificate-public-key-pinning-decisions-decision",
+      "prompt": "Which design best applies certificate and public-key pinning decisions?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Pin only for a named threat and operable endpoint, with independent backup material, monitoring, rotation, and old-client recovery.",
+        "Pin every third-party endpoint",
+        "Ship only today’s leaf certificate",
+        "Fetch replacement pins only after pin failure"
+      ],
+      "answer": "Pin only for a named threat and operable endpoint, with independent backup material, monitoring, rotation, and old-client recovery.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions"
+    },
+    {
+      "id": "q-level-08-week-33-02-certificate-public-key-pinning-decisions-truth",
+      "prompt": "Certificate pinning is always recommended for every Android HTTPS connection.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Shipping only the current leaf pin can turn routine certificate renewal into a permanent outage for every older installed version.",
+      "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions"
+    },
+    {
+      "id": "q-level-08-week-33-02-certificate-public-key-pinning-decisions-recall",
+      "prompt": "Why must a pin set include backup key material?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "So a planned or emergency certificate/key change can remain trusted by already-installed app versions.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-33-02-certificate-public-key-pinning-decisions"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}

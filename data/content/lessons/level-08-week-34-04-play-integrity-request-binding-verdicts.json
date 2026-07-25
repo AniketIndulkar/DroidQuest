@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "title": "Play Integrity, Request Binding, and Verdict Decisions",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 34,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-08-week-34-03-webview-origin-capability-security"
+  ],
+  "tags": [
+    "security",
+    "play-integrity",
+    "request-binding"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through play integrity, request binding, and verdict decisions, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Play Integrity supplies signals about app recognition, licensing, device integrity, account activity, and optional environment risks. It is not user authentication, transaction authorisation, or proof that client logic ran honestly. Request a verdict near a valuable server action and define how each signal changes server policy. Standard requests include automatic replay protection, but the backend must still verify token freshness, package, verdicts, and that the returned requestHash matches its own digest of the relevant canonical request."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Bind the digest to immutable, security-relevant fields such as operation ID, account, amount, currency, destination, and server challenge. Never place sensitive plaintext in requestHash; hash a canonical encoding, because mismatched field order or formatting creates false failures. Decode and evaluate tokens only on the trusted server. Prevent substitution between actions, users, environments, and sessions. A verdict cached too early or accepted for a different request provides confidence about the wrong event."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val canonical=\"$operationId|$accountId|$amountMinor|$currency|$destinationId\"\nval requestHash=base64Url(sha256(canonical.encodeToByteArray()))\n// Server recomputes before applying policy.",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use tiered responses based on risk: allow, step up authentication, reduce limits, delay, challenge, review, or deny. Account for unsupported devices, outages, accessibility, false positives, attackers learning thresholds, and user recovery. Combine integrity with authentication, authorisation, rate/value limits, device/account history, monitoring, and incident response. Measure fraud outcome and support cost rather than maximising denials. Test tampered payloads, wrong hashes, stale tokens, package mismatch, unavailable service, and verdict transitions."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Checking only that an integrity token exists, without binding and server comparison, lets a valid verdict be presented for the wrong transaction."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Play Integrity standard requests",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/google/play/integrity/standard",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Play Integrity API overview",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/google/play/integrity/overview",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Play Integrity, Request Binding, and Verdict Decisions boundary",
+      "language": "kotlin",
+      "code": "val canonical=\"$operationId|$accountId|$amountMinor|$currency|$destinationId\"\nval requestHash=base64Url(sha256(canonical.encodeToByteArray()))\n// Server recomputes before applying policy.",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Checking only that an integrity token exists, without binding and server comparison, lets a valid verdict be presented for the wrong transaction.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Protect a transfer with canonical requestHash binding and a server decision table covering verdicts, limits, step-up, outages, false positives, monitoring, and appeal.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What must the backend do with requestHash?",
+        "answer": "Recompute the digest from the canonical server-visible request and compare it with the verified verdict field."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "challengeId": "challenge-level-08-week-34-04-play-integrity-request-binding-verdicts",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Play Integrity, Request Binding, and Verdict Decisions.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/google/play/integrity/standard",
+    "https://developer.android.com/google/play/integrity/overview"
+  ],
+  "version": "0.11.0"
+}

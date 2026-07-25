@@ -1,0 +1,205 @@
+{
+  "id": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
+  "title": "Threat Models: Assets, Attackers, and Trust Boundaries",
+  "categoryId": "level-08-android-security-engineering",
+  "week": 31,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-07-week-30-06-release-confidence-plan-capstone"
+  ],
+  "tags": [
+    "security",
+    "threat-modeling",
+    "attack-tree"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Protect a real Android boundary through threat models: assets, attackers, and trust boundaries, rather than adding a security API without a threat.",
+      "realWorldUse": "Production Android security spans an attacker-controlled client, system IPC, local data, networks, backend authority, build infrastructure, and incident recovery.",
+      "outcome": "Model the attack, choose a proportionate control, verify its limitations, and operate its failure and recovery paths."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "threat-scenario",
+          "title": "Start from the attack scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Security starts with a concrete system and a concrete loss. Inventory assets such as money movement, credentials, personal data, signing identity, availability, and user consent. Describe attackers by capability rather than by stereotype: a malicious app can send intents, a network attacker can observe or alter traffic, a device owner can inspect local files, and a fraudster can automate valid APIs. The same feature has different risk when the attacker owns the phone, controls Wi-Fi, compromises a backend account, or only submits hostile input."
+            },
+            {
+              "type": "flow",
+              "title": "Threat-to-evidence path",
+              "steps": [
+                {
+                  "id": "asset",
+                  "label": "Name asset",
+                  "detail": "Define concrete harm and attacker capability."
+                },
+                {
+                  "id": "boundary",
+                  "label": "Trace boundary",
+                  "detail": "Mark authority and data ownership changes."
+                },
+                {
+                  "id": "control",
+                  "label": "Design control",
+                  "detail": "Use least privilege and independent layers."
+                },
+                {
+                  "id": "verify",
+                  "label": "Attack control",
+                  "detail": "Test bypass, failure, recovery, and change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "control-contract",
+          "title": "Design the control contract",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Draw trust boundaries wherever data changes owner, authority, process, machine, or protection. An Activity receiving an App Link crosses an inter-app boundary; a repository calling a backend crosses device-to-server and authentication boundaries; decrypted plaintext crossing from Keystore-backed operations into memory changes exposure. For each data flow, ask who authenticates whom, who authorises the action, what can be replayed, and which claim the client cannot prove. Turn answers into an attack tree whose leaves are testable scenarios rather than vague labels such as “hacking”."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Threat(val asset:String,val actor:String,val boundary:String,val abuse:String,val impact:String)\nval transferThreat=Threat(\"account balance\",\"malicious app\",\"verified link -> activity\",\"replay approval URI\",\"unauthorised transfer\")",
+              "caption": "A focused fragment expressing the security boundary; production work must include the surrounding lifecycle and server policy."
+            }
+          ]
+        },
+        {
+          "id": "operations-evidence",
+          "title": "Verify and operate the boundary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Rank scenarios using likelihood, impact, detectability, and recovery cost, while documenting uncertainty. Connect each important path to prevention, detection, response, an owner, and evidence. Residual risk is not failure: it is the explicitly accepted risk left after controls. Revisit the model when a data flow, SDK, exported component, authentication method, backend contract, or attacker capability changes. A diagram that never affects requirements, tests, monitoring, or release decisions is decoration rather than a security control."
+            },
+            {
+              "type": "paragraph",
+              "text": "Security controls must preserve the user promise under attack, failure, recovery, and change. Record the protected asset, attacker capability, trust boundary, preconditions, prevention, detection, response, recovery, owner, and residual risk. Prefer secure platform defaults and reviewed protocols over custom cryptography or hidden client logic. Validate the exact release artifact and authoritative server boundary, then deliberately attempt bypass, replay, substitution, downgrade, stale state, account switching, process death, key loss, and partial rollout. Collect privacy-safe diagnostic evidence that distinguishes policy denial, implementation defect, dependency outage, device limitation, and active abuse. A control is production-ready only when rotation, revocation, migration, monitoring, accessibility, support, and incident response are owned and rehearsed."
+            },
+            {
+              "type": "table",
+              "title": "Security review record",
+              "columns": [
+                "Field",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "Threat",
+                  "Asset, actor, preconditions, abuse path, and impact"
+                ],
+                [
+                  "Control",
+                  "Prevention, detection, response, recovery, and limitations"
+                ],
+                [
+                  "Lifecycle",
+                  "Creation, rotation, revocation, migration, and failure"
+                ],
+                [
+                  "Decision",
+                  "Owner, tests, telemetry, residual risk, and review trigger"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Security theatre to avoid",
+              "text": "Starting with a checklist of APIs before identifying assets and attack paths can harden irrelevant code while the real authority boundary remains exposed."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "OWASP Mobile Application Security Verification Standard",
+          "publisher": "OWASP",
+          "resourceType": "official_docs",
+          "url": "https://mas.owasp.org/MASVS/",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        },
+        {
+          "title": "Android security checklist",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/privacy-and-security/security-tips",
+          "whyRead": "Primary guidance for the platform behaviour, threat, control limitations, verification, and operational lifecycle taught in this lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect the Threat Models: Assets, Attackers, and Trust Boundaries boundary",
+      "language": "kotlin",
+      "code": "data class Threat(val asset:String,val actor:String,val boundary:String,val abuse:String,val impact:String)\nval transferThreat=Threat(\"account balance\",\"malicious app\",\"verified link -> activity\",\"replay approval URI\",\"unauthorised transfer\")",
+      "walkthrough": [
+        "Identify the asset, attacker capability, and trust boundary represented by the example.",
+        "Separate client safety checks from the component or server that owns authority.",
+        "List bypass, rotation, revocation, migration, diagnostics, user recovery, and residual-risk evidence required around the fragment."
+      ],
+      "expectedOutput": "A least-privilege control tied to a named threat, with adversarial verification and an operable lifecycle."
+    },
+    "trap_check": [
+      {
+        "mistake": "Starting with a checklist of APIs before identifying assets and attack paths can harden irrelevant code while the real authority boundary remains exposed.",
+        "why": "The implementation either trusts the wrong boundary or ignores a lifecycle path, producing false confidence or an availability failure.",
+        "fix": "Return to the threat model, enforce authority at the correct boundary, and add evidence for bypass, change, and recovery."
+      },
+      {
+        "mistake": "Treating an obfuscated or integrity-checked client decision as server authority.",
+        "why": "Installed clients remain observable and modifiable, and local signals can be bypassed or relayed.",
+        "fix": "Keep authoritative decisions, revocation, limits, and audit on a trusted server while using client controls as bounded layers."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a data-flow diagram and attack tree for the banking transfer journey, then rank five abuse paths and assign prevention, detection, recovery, evidence, and owners.",
+      "successLooksLike": "The deliverable names threats and assumptions, implements the narrow control, demonstrates an intended attack failing, and documents ownership, monitoring, recovery, and residual risk."
+    },
+    "recall": [
+      {
+        "prompt": "What makes a threat scenario actionable?",
+        "answer": "It names an asset, attacker capability, boundary, abuse path, impact, control, evidence, owner, and residual risk."
+      },
+      {
+        "prompt": "What should happen before choosing a security API?",
+        "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
+      },
+      {
+        "prompt": "Why must recovery be part of a security design?",
+        "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
+      }
+    ]
+  },
+  "quizId": "quiz-level-08-week-31-01-threat-model-assets-attackers-boundaries",
+  "challengeId": "challenge-level-08-week-31-01-threat-model-assets-attackers-boundaries",
+  "revision": {
+    "objectives": [
+      "Threat-model and explain Threat Models: Assets, Attackers, and Trust Boundaries.",
+      "Implement a least-privilege control at the authoritative boundary.",
+      "Verify bypass, lifecycle, diagnostics, recovery, and residual risk."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://mas.owasp.org/MASVS/",
+    "https://developer.android.com/privacy-and-security/security-tips"
+  ],
+  "version": "0.11.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-08-week-31-02-masvs-least-privilege-defense-depth",
+  "title": "MASVS, Least Privilege, and Defence in Depth Check",
+  "categoryId": "level-08-android-security-engineering",
+  "linkedLessonIds": [
+    "level-08-week-31-02-masvs-least-privilege-defense-depth"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-08-week-31-02-masvs-least-privilege-defense-depth-decision",
+      "prompt": "Which design best applies masvs, least privilege, and defence in depth?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Use MASVS as a coverage framework, minimise every authority’s scope and lifetime, and combine controls with independent failure modes.",
+        "Request all permissions during onboarding",
+        "Treat obfuscation as the primary access-control layer",
+        "Let every module share one privileged service account"
+      ],
+      "answer": "Use MASVS as a coverage framework, minimise every authority’s scope and lifetime, and combine controls with independent failure modes.",
+      "explanation": "The strongest option enforces authority at the correct boundary and includes limitations, lifecycle, adversarial verification, and recovery.",
+      "lessonId": "level-08-week-31-02-masvs-least-privilege-defense-depth"
+    },
+    {
+      "id": "q-level-08-week-31-02-masvs-least-privilege-defense-depth-truth",
+      "prompt": "Defence in depth means adding several controls that all trust the same client-side flag.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Calling an app “MASVS compliant” because it uses Keystore, TLS, and obfuscation ignores whether controls address its actual threats or have verification evidence.",
+      "lessonId": "level-08-week-31-02-masvs-least-privilege-defense-depth"
+    },
+    {
+      "id": "q-level-08-week-31-02-masvs-least-privilege-defense-depth-recall",
+      "prompt": "Which two dimensions should least privilege minimise?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The breadth of authority and the time for which that authority exists.",
+      "explanation": "The answer identifies the specific security property and boundary required by the lesson rather than naming a library.",
+      "lessonId": "level-08-week-31-02-masvs-least-privilege-defense-depth"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.11.0"
+}
