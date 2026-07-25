@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-06-application-size-delivery-analysis",
+  "title": "Application Size and Delivery Analysis Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-06-application-size-delivery-analysis"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-06-application-size-delivery-analysis-decision",
+      "prompt": "Which approach best applies application size and delivery analysis?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Measure delivered and installed bytes by device and attribute regressions before choosing shrinking or delivery changes.",
+        "Use AAB size as download size",
+        "Move all assets on demand without UX",
+        "Add broad R8 keep rules"
+      ],
+      "answer": "Measure delivered and installed bytes by device and attribute regressions before choosing shrinking or delivery changes.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis"
+    },
+    {
+      "id": "q-level-10-week-40-06-application-size-delivery-analysis-truth",
+      "prompt": "An Android App Bundle’s filesystem size equals every user’s download size.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Comparing raw AAB file size between releases can misrepresent what a device downloads because bundle compression and split contents differ.",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis"
+    },
+    {
+      "id": "q-level-10-week-40-06-application-size-delivery-analysis-recall",
+      "prompt": "Which artifact should size investigation model?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The device-specific APK set and installed/first-use footprint, not only the source AAB.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

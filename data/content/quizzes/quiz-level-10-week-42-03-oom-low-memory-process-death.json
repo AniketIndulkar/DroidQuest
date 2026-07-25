@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-03-oom-low-memory-process-death",
+  "title": "OOM, Low-Memory Kills, and Process Recovery Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-03-oom-low-memory-process-death"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-03-oom-low-memory-process-death-decision",
+      "prompt": "Which approach best applies oom, low-memory kills, and process recovery?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Reduce the causal memory ownership and make durable operations recover across process termination.",
+        "Retry OOM immediately",
+        "Depend on onDestroy",
+        "Call System.gc before every image"
+      ],
+      "answer": "Reduce the causal memory ownership and make durable operations recover across process termination.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-03-oom-low-memory-process-death"
+    },
+    {
+      "id": "q-level-10-week-42-03-oom-low-memory-process-death-truth",
+      "prompt": "A low-memory kill always produces a catchable OutOfMemoryError in the app.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Catching OutOfMemoryError and retrying the same allocation can loop in a compromised low-memory state and hide the underlying unbounded use.",
+      "lessonId": "level-10-week-42-03-oom-low-memory-process-death"
+    },
+    {
+      "id": "q-level-10-week-42-03-oom-low-memory-process-death-recall",
+      "prompt": "Why can the OOM allocation stack be misleading?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It shows the allocation that finally failed, while earlier retention or native/graphics growth may have consumed the memory.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-03-oom-low-memory-process-death"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

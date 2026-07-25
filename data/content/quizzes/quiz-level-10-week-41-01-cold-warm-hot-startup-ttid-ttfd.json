@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+  "title": "Cold, Warm, and Hot Startup with TTID and TTFD Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd-decision",
+      "prompt": "Which approach best applies cold, warm, and hot startup with ttid and ttfd?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Measure explicit startup modes and signal full display only when meaningful content is usable.",
+        "Mix startup modes in one average",
+        "Measure debug builds",
+        "Report full display before content"
+      ],
+      "answer": "Measure explicit startup modes and signal full display only when meaningful content is usable.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+    },
+    {
+      "id": "q-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd-truth",
+      "prompt": "A faster TTID guarantees the app’s first interaction is ready sooner.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Calling reportFullyDrawn immediately in onCreate improves the recorded TTFD while leaving the user waiting for the same content.",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+    },
+    {
+      "id": "q-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd-recall",
+      "prompt": "What distinguishes TTFD from TTID?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "TTID ends at first frame; TTFD represents the app-defined point when meaningful critical content is fully drawn and usable.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

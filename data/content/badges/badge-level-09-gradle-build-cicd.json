@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-09-gradle-build-cicd",
+  "title": "Android Build and Release Engineer",
+  "description": "Awarded for completing a tested convention-plugin build and a traceable, least-privilege Android release pipeline.",
+  "categoryId": "level-09-gradle-build-cicd",
+  "icon": "android-build-release-level-boss",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-09-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 1100,
+  "rarity": "epic",
+  "version": "0.13.0"
+}

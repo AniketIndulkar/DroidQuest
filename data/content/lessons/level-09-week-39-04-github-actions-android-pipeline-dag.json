@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-39-04-github-actions-android-pipeline-dag",
+  "title": "GitHub Actions Android Pipeline DAG",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 39,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-39-03-release-tracks-staged-rollout-rollback"
+  ],
+  "tags": [
+    "ci-cd",
+    "github-actions",
+    "pipeline"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand github actions android pipeline dag as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Teams need releases whose exact bytes, approvals, credentials, promotion history, diagnostics, and recovery actions remain trustworthy under pressure.",
+      "outcome": "You can explain, implement, test, and operate github actions android pipeline dag with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Model CI as evidence with different trust and cost. Pull requests run dependency validation, compilation, lint/static analysis, unit and screenshot tests, selected instrumented tests, coverage and a debug artifact. Main repeats required checks and may create a signed QA artifact. A protected release tag builds the approved AAB, verifies it, uploads to an internal track, runs smoke tests and promotes only through environments. Job needs relationships form a DAG; fan out independent work and fan in at explicit gates."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Pin Java, Android SDK, Gradle wrapper and action versions; validate the wrapper and use Gradle-native caching rather than archiving arbitrary mutable state. Upload test reports and diagnostics even on failure while preventing a failed test from appearing successful. Use concurrency groups to cancel obsolete PR runs but never cancel an active protected release unexpectedly. Matrix only meaningful dimensions and shard expensive device tests from timing data, preserving deterministic test ownership."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "jobs:\n  verify:\n    strategy: { matrix: { task: [lint, unitTest, screenshotTest] } }\n  gate:\n    needs: [verify]\n  internal-release:\n    needs: [gate]\n    environment: play-internal",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use reusable workflows carefully: inputs, secrets, permissions and caller trust remain API surface. Artifacts need names, retention, digests and separation by revision/variant. Do not rebuild between approval and deployment; promote the verified artifact. Test the workflow on branches without granting release authority, and add a dry-run path. Measure queue, setup, execution, flake/retry and critical-path time so pipeline optimisation does not remove evidence."
+            },
+            {
+              "type": "paragraph",
+              "text": "Release engineering turns source into a traceable product under explicit trust and compatibility boundaries. Treat build logic, credentials, artifacts, metadata, promotion controls and recovery procedures as one production system. Prefer immutable inputs, public typed APIs, least privilege, reproducible evidence and protected approval boundaries. Test the exact release variant and exercise failure paths before promotion. Record artifact identity, ownership, supported toolchains, health signals and rollback or roll-forward decisions. A pipeline is successful only when it produces the intended bytes, explains where they came from, prevents untrusted mutation and gives operators enough evidence to release or stop safely. Preserve the evidence and decision record so another engineer can reproduce the release, verify every promotion boundary, and distinguish an approved artifact from a merely successful build."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Building a new AAB inside the deployment job after approving a different artifact breaks the link between reviewed evidence and released bytes."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Build and Test Java with Gradle",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/tutorials/build-and-test-code/java-with-gradle",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Deployments and Environments",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect GitHub Actions Android Pipeline DAG",
+      "language": "kotlin",
+      "code": "jobs:\n  verify:\n    strategy: { matrix: { task: [lint, unitTest, screenshotTest] } }\n  gate:\n    needs: [verify]\n  internal-release:\n    needs: [gate]\n    environment: play-internal",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Building a new AAB inside the deployment job after approving a different artifact breaks the link between reviewed evidence and released bytes.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Implement the PR/main/tag pipeline DAG with explicit gates, retained failure reports, verified artifact promotion and concurrency behaviour.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What must deployment promote?",
+        "answer": "The exact immutable artifact whose digest and tests were approved, not a newly rebuilt equivalent."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-39-04-github-actions-android-pipeline-dag",
+  "challengeId": "challenge-level-09-week-39-04-github-actions-android-pipeline-dag",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind GitHub Actions Android Pipeline DAG.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.github.com/en/actions/tutorials/build-and-test-code/java-with-gradle",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"
+  ],
+  "version": "0.13.0"
+}

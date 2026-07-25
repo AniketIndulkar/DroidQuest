@@ -1,0 +1,210 @@
+{
+  "id": "level-10-week-40-01-performance-investigation-representative-evidence",
+  "title": "Performance Investigation from User Impact to Evidence",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 40,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-39-06-convention-plugin-release-capstone"
+  ],
+  "tags": [
+    "performance",
+    "measurement",
+    "investigation"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand performance investigation from user impact to evidence as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate performance investigation from user impact to evidence with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Start with a user-visible problem: slow launch, missed frames, delayed input, memory pressure, battery drain, excess data or install size. Define a representative device tier, OS, app version, account/data state, network, thermal state and journey. Choose a metric and budget before opening a profiler. One fast run and emulator-only traces cannot represent production diversity. Use field signals to prioritise, then controlled local evidence to locate causes."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Separate observation from attribution. Reproduce, capture a system-level trace or profiler evidence, identify the critical path and form one hypothesis. Change one relevant mechanism, preserve correctness, repeat enough iterations and compare distribution—not just minimum. CPU time, wall time, runnable versus blocked state, allocations, frame deadlines and I/O answer different questions. Profiling overhead changes behaviour; use profileable release-like builds and the least intrusive tool that resolves the hypothesis."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class PerfScenario(val journey:String,val device:String,val state:String,val metric:String,val budget:Double)\nval launch=PerfScenario(\"cold start to usable\",\"mid-tier physical\",\"logged-in 500 items\",\"TTFD ms\",1200.0)",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep a performance report with scenario, environment, trace, before/after median and tails, confidence limits where useful, code change, trade-offs and regression guard. Check accessibility, battery, memory and network side effects. Do not optimise code absent from the critical path or trade a startup win for later jank silently. Performance work is complete when the user metric improves reproducibly and CI/production signals can detect regression."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Profiling a debuggable build with debugger and method instrumentation can create hotspots and jank that are not present in the optimised release path."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Measure App Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/measuring-performance",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Profile App Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Performance Investigation from User Impact to Evidence",
+      "language": "kotlin",
+      "code": "data class PerfScenario(val journey:String,val device:String,val state:String,val metric:String,val budget:Double)\nval launch=PerfScenario(\"cold start to usable\",\"mid-tier physical\",\"logged-in 500 items\",\"TTFD ms\",1200.0)",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Profiling a debuggable build with debugger and method instrumentation can create hotspots and jank that are not present in the optimised release path.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Write and execute a controlled performance investigation for one user complaint, including hypothesis, trace, before/after distribution and regression budget.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What should every performance number include?",
+        "answer": "The exact journey, metric, device/environment, app/data state, compilation/build state and measurement method."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-40-01-performance-investigation-representative-evidence",
+  "challengeId": "challenge-level-10-week-40-01-performance-investigation-representative-evidence",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Performance Investigation from User Impact to Evidence.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/measuring-performance",
+    "https://developer.android.com/studio/profile"
+  ],
+  "version": "0.13.0"
+}

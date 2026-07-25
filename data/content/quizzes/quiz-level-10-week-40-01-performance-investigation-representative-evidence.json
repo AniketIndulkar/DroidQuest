@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-01-performance-investigation-representative-evidence",
+  "title": "Performance Investigation from User Impact to Evidence Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-01-performance-investigation-representative-evidence"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-01-performance-investigation-representative-evidence-decision",
+      "prompt": "Which approach best applies performance investigation from user impact to evidence?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Define representative user impact and controlled evidence before changing the measured critical path.",
+        "Optimise the largest method by intuition",
+        "Use one emulator run",
+        "Report only the best duration"
+      ],
+      "answer": "Define representative user impact and controlled evidence before changing the measured critical path.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence"
+    },
+    {
+      "id": "q-level-10-week-40-01-performance-investigation-representative-evidence-truth",
+      "prompt": "A profiler hotspot proves optimising that method will improve the user’s end-to-end metric.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Profiling a debuggable build with debugger and method instrumentation can create hotspots and jank that are not present in the optimised release path.",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence"
+    },
+    {
+      "id": "q-level-10-week-40-01-performance-investigation-representative-evidence-recall",
+      "prompt": "What should every performance number include?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The exact journey, metric, device/environment, app/data state, compilation/build state and measurement method.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

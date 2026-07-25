@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-10-week-40-checkpoint",
+  "title": "Week 40: Profiling and Runtime Performance Checkpoint",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-01-performance-investigation-representative-evidence",
+    "level-10-week-40-02-cpu-perfetto-system-traces",
+    "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+    "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+    "level-10-week-40-05-battery-network-efficiency",
+    "level-10-week-40-06-application-size-delivery-analysis"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-40-1-performance-investigation-representative-evidence",
+      "prompt": "Checkpoint: What should every performance number include?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "explanation": "The exact journey, metric, device/environment, app/data state, compilation/build state and measurement method. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence",
+      "options": [
+        "Define representative user impact and controlled evidence before changing the measured critical path.",
+        "Optimise the largest method by intuition",
+        "Use one emulator run",
+        "Report only the best duration"
+      ],
+      "answer": "Define representative user impact and controlled evidence before changing the measured critical path."
+    },
+    {
+      "id": "q-week-40-2-cpu-perfetto-system-traces",
+      "prompt": "Select the two sound practices for cpu profiler, perfetto, and trace interpretation.",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "explanation": "Thread scheduling state, child work and system events aligned with the app slice. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces",
+      "options": [
+        "Use time-aligned system and app slices to distinguish running, blocked and scheduled causes on the user critical path.",
+        "Record representative evidence and an owned recovery action",
+        "Interpret slice width as CPU",
+        "Trace every tiny function"
+      ],
+      "answer": [
+        "Use time-aligned system and app slices to distinguish running, blocked and scheduled causes on the user critical path.",
+        "Record representative evidence and an owned recovery action"
+      ]
+    },
+    {
+      "id": "q-week-40-3-memory-allocations-leaks-bitmaps",
+      "prompt": "A large object in a heap dump is necessarily a memory leak.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "explanation": "An object remains reachable through an unintended retaining path after its useful owner lifecycle has ended. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "answer": false
+    },
+    {
+      "id": "q-week-40-4-frame-timing-jank-compose-recomposition",
+      "prompt": "Complete the operational rule: Why does display refresh rate matter to jank analysis?",
+      "type": "fill_blank",
+      "difficulty": "advanced",
+      "explanation": "Higher refresh rates provide a smaller time budget before each frame deadline. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "answer": "Higher refresh rates provide a smaller time budget before each frame deadline.",
+      "acceptedAnswers": [
+        "Higher refresh rates provide a smaller time budget before each frame deadline."
+      ]
+    },
+    {
+      "id": "q-week-40-5-battery-network-efficiency",
+      "prompt": "Order the investigation steps for battery and network efficiency.",
+      "type": "order_steps",
+      "difficulty": "advanced",
+      "explanation": "Each request can incur scheduling, connection and radio high-power tail overhead. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency",
+      "options": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ],
+      "answer": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ]
+    },
+    {
+      "id": "q-week-40-6-application-size-delivery-analysis",
+      "prompt": "Match the review concern to its evidence for application size and delivery analysis.",
+      "type": "match_pairs",
+      "difficulty": "advanced",
+      "explanation": "The device-specific APK set and installed/first-use footprint, not only the source AAB. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis",
+      "options": [
+        "Outcome → journey and threshold",
+        "Mechanism → direct trace or artifact evidence",
+        "Safety → failure and compatibility tests"
+      ],
+      "answer": {
+        "Outcome": "journey and threshold",
+        "Mechanism": "direct trace or artifact evidence",
+        "Safety": "failure and compatibility tests"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

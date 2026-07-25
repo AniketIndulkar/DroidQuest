@@ -2,9 +2,9 @@
   "id": "level-09-gradle-build-cicd",
   "title": "Level 9: Gradle, Build Engineering, and CI/CD",
   "order": 9,
-  "description": "Engineer predictable Android builds through Gradle lifecycle and lazy task models, Android variants and dependency governance, composable tested convention plugins, and measured cache-correct performance.",
+  "description": "Engineer predictable Android builds and trusted releases through Gradle models, Android variants, tested convention plugins, measured cache correctness, signed artifacts, protected CI/CD, provenance, staged rollout, and recovery.",
   "difficulty": "advanced",
-  "status": "in_progress",
+  "status": "complete",
   "weekRange": {
     "start": 35,
     "end": 39
@@ -17,7 +17,7 @@
     "build-engineering",
     "ci-cd"
   ],
-  "estimatedLearningMinutes": 240,
+  "estimatedLearningMinutes": 300,
   "lessonIds": [
     "level-09-week-35-01-gradle-lifecycle-task-dag",
     "level-09-week-35-02-task-registration-dependencies-ordering",
@@ -42,24 +42,31 @@
     "level-09-week-38-03-local-remote-build-cache-correctness",
     "level-09-week-38-04-parallel-execution-module-critical-path",
     "level-09-week-38-05-ksp-incremental-processing",
-    "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+    "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+    "level-09-week-39-01-signed-aab-artifact-identity",
+    "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+    "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+    "level-09-week-39-04-github-actions-android-pipeline-dag",
+    "level-09-week-39-05-cicd-security-oidc-attestations",
+    "level-09-week-39-06-convention-plugin-release-capstone"
   ],
   "roadmapStartNodeId": "node-level-09-week-35-01-gradle-lifecycle-task-dag",
   "plannedTopics": [
-    "Gradle initialization, configuration and execution, task DAGs, Providers, inputs and outputs, incremental work, Kotlin DSL, services and workers",
-    "Android source sets, build types, flavours, variant-aware resolution, catalogues, BOMs, locking, verification and Android Components",
-    "Convention plugins, buildSrc versus included builds, typed extensions, code generation, TestKit and a composable convention suite",
-    "Build measurement, configuration and build caches, parallel critical paths, KSP incrementality, ABI analysis and CI cache correctness",
-    "Week 39: signed release artifacts, App Bundles, R8 outputs, release tracks, CI/CD security and the completed convention-plugin project"
+    "Gradle lifecycle, lazy task graphs, deterministic inputs and parallel-safe work",
+    "Android variants, dependency governance, locking, verification, and public AGP APIs",
+    "Convention plugins, typed extensions, code generation, TestKit, and build-platform ownership",
+    "Measured configuration, compilation, caching, KSP, ABI, and dependency performance",
+    "Signed App Bundles, R8 outputs, symbols, release tracks, GitHub Actions security, attestations, rollout, and recovery"
   ],
   "project": {
-    "title": "Convention Plugin Build",
-    "summary": "Create tested application, library, Compose, testing, coverage, and static-analysis conventions for a scalable Android build."
+    "title": "Trusted Convention Plugin and Release Pipeline",
+    "summary": "Create a tested Android convention-plugin suite and a protected pipeline that produces, verifies, attests, promotes, observes, and recovers exact signed release artifacts."
   },
   "theme": {
     "color": "#3F6B3B",
     "icon": "build",
     "mapMood": "A build pipeline where inputs, outputs, caches, and releases are traceable."
   },
-  "version": "0.12.0"
+  "version": "0.13.0",
+  "checkpointQuizId": "quiz-level-09-checkpoint"
 }

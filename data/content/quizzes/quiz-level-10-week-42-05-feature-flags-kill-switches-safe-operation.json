@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+  "title": "Feature Flags, Kill Switches, and Safe Operation Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-05-feature-flags-kill-switches-safe-operation-decision",
+      "prompt": "Which approach best applies feature flags, kill switches, and safe operation?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Provide a nonblocking safe default and an audited control that preserves state while stopping harmful work.",
+        "Fetch every flag before first frame",
+        "Use flags for server authorisation",
+        "Keep flags forever"
+      ],
+      "answer": "Provide a nonblocking safe default and an audited control that preserves state while stopping harmful work.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+    },
+    {
+      "id": "q-level-10-week-42-05-feature-flags-kill-switches-safe-operation-truth",
+      "prompt": "A kill switch eliminates the need for backwards-compatible server and database changes.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Using a remotely fetched flag as the only defence against a crashing startup path fails when the app crashes before it can fetch the disabling value.",
+      "lessonId": "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+    },
+    {
+      "id": "q-level-10-week-42-05-feature-flags-kill-switches-safe-operation-recall",
+      "prompt": "What must happen when flag configuration cannot be fetched?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The app follows a predefined safe cached/default behaviour without blocking critical startup or losing durable state.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

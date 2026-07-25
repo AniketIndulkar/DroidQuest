@@ -1,0 +1,210 @@
+{
+  "id": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "title": "Memory Allocations, Leaks, and Bitmap Pressure",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 40,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-40-02-cpu-perfetto-system-traces"
+  ],
+  "tags": [
+    "performance",
+    "memory",
+    "leaks"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand memory allocations, leaks, and bitmap pressure as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate memory allocations, leaks, and bitmap pressure with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Memory performance includes steady heap, allocation rate, garbage-collection pauses, native/graphics memory, peak working set, low-memory kills and OOM. A leak is unwanted reachability, not simply large memory. Use the Memory Profiler and heap dumps to trace paths from GC roots to Activities, Views, Compose state, callbacks or caches that outlive their owner. Allocation recording identifies churn; repeated short-lived objects can cause GC pressure without a long-term leak."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Respect lifecycle ownership: unregister callbacks, cancel scope-owned work, clear View bindings, avoid storing Context/View in singletons and bound caches by cost. Bitmaps expand to decoded pixel memory regardless of compressed file size; request appropriate dimensions, reuse image loaders, avoid duplicate transformations and release references. Native and GPU allocations may not appear like ordinary Java heap. Test background/foreground, navigation loops, rotation, large media and low-memory callbacks."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class ScreenFragment:Fragment(){\n private var binding:ScreenBinding?=null\n override fun onDestroyView(){ binding=null; super.onDestroyView() }\n}",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compare heap after repeatable journeys and forced settling, not a single snapshot. Identify dominator and retaining path before patching. Weak references are not a generic leak fix and can create nondeterministic data loss. Monitor OOM and low-memory kills by device tier in production. A memory fix must preserve image quality, caching value and latency. Add a regression journey that repeats the lifecycle and asserts bounded growth rather than an exact heap number."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Replacing a strong reference with WeakReference without fixing ownership hides the lifetime contract and can cause data to disappear unpredictably."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Manage App Memory",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/memory",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Profile App Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Memory Allocations, Leaks, and Bitmap Pressure",
+      "language": "kotlin",
+      "code": "class ScreenFragment:Fragment(){\n private var binding:ScreenBinding?=null\n override fun onDestroyView(){ binding=null; super.onDestroyView() }\n}",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Replacing a strong reference with WeakReference without fixing ownership hides the lifetime contract and can cause data to disappear unpredictably.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Reproduce and fix one lifecycle leak and one bitmap/allocation spike, documenting retaining paths, peak memory and repeated-journey evidence.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What evidence proves a leak?",
+        "answer": "An object remains reachable through an unintended retaining path after its useful owner lifecycle has ended."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "challengeId": "challenge-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Memory Allocations, Leaks, and Bitmap Pressure.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/memory",
+    "https://developer.android.com/studio/profile"
+  ],
+  "version": "0.13.0"
+}

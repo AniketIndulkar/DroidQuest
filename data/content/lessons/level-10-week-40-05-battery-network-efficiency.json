@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-40-05-battery-network-efficiency",
+  "title": "Battery and Network Efficiency",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 40,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+  ],
+  "tags": [
+    "performance",
+    "battery",
+    "network"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand battery and network efficiency as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate battery and network efficiency with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Battery cost comes from CPU, wakeups, sensors, location, network radio, foreground work and preventing sleep. Measure a defined journey and background interval with system tools and production signals rather than inferring from one API call. Coalesce deferrable work under WorkManager constraints, avoid polling, release sensors/location, and respect Doze and user data/battery policies. Exact timing and persistent foreground execution require product justification, not performance convenience."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Network efficiency balances bytes, requests, latency, freshness and failure. Batch or coalesce compatible requests, compress appropriate payloads, paginate, cache with validators, deduplicate refresh and avoid retry storms. Many small transfers can pay repeated radio and TLS overhead. Observe metered/Data Saver state as policy signals without pretending connectivity guarantees success. Do not cache private responses across accounts or trade correctness for stale data without an explicit UI contract."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val request=OneTimeWorkRequestBuilder<SyncWorker>()\n .setConstraints(Constraints(requiredNetworkType=NetworkType.UNMETERED,requiresCharging=true))\n .build()",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measure request count, bytes, wakeups, job duration, CPU and user-perceived freshness under success, offline, metered, high latency and failure. Compare background behaviour over time, not only foreground traces. Protect server capacity with idempotency, backoff and jitter. Battery optimisations must not strand critical user intent. Add budgets and alerts for unexpected background traffic per version while redacting URLs and user data."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Retrying every failed request immediately can keep CPU and radio active, amplify a service outage and drain battery without improving success."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Optimise Battery Use",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/power",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Optimise Network Data Usage",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/develop/connectivity/network-ops/data-saver",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Profile App Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Battery and Network Efficiency",
+      "language": "kotlin",
+      "code": "val request=OneTimeWorkRequestBuilder<SyncWorker>()\n .setConstraints(Constraints(requiredNetworkType=NetworkType.UNMETERED,requiresCharging=true))\n .build()",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Retrying every failed request immediately can keep CPU and radio active, amplify a service outage and drain battery without improving success.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Profile one background sync and redesign batching, caching, constraints and retry policy; compare bytes, wakeups, duration and freshness.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why can many tiny cellular requests cost more than one batch?",
+        "answer": "Each request can incur scheduling, connection and radio high-power tail overhead."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-40-05-battery-network-efficiency",
+  "challengeId": "challenge-level-10-week-40-05-battery-network-efficiency",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Battery and Network Efficiency.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/power",
+    "https://developer.android.com/develop/connectivity/network-ops/data-saver",
+    "https://developer.android.com/studio/profile"
+  ],
+  "version": "0.13.0"
+}

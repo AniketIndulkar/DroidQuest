@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+  "title": "Frame Timing, Jank, and Compose Recomposition Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-04-frame-timing-jank-compose-recomposition-decision",
+      "prompt": "Which approach best applies frame timing, jank, and compose recomposition?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Tie Compose or rendering work to missed frame evidence and optimise the responsible phase without breaking state correctness.",
+        "Eliminate all recomposition",
+        "Use method tracing for final frame metrics",
+        "Assume main thread is every jank cause"
+      ],
+      "answer": "Tie Compose or rendering work to missed frame evidence and optimise the responsible phase without breaking state correctness.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+    },
+    {
+      "id": "q-level-10-week-40-04-frame-timing-jank-compose-recomposition-truth",
+      "prompt": "A recomposed composable necessarily causes a missed frame.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Counting every recomposition as wasted work encourages incorrect remember/stability changes even when frames meet deadlines and state should update.",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+    },
+    {
+      "id": "q-level-10-week-40-04-frame-timing-jank-compose-recomposition-recall",
+      "prompt": "Why does display refresh rate matter to jank analysis?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Higher refresh rates provide a smaller time budget before each frame deadline.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

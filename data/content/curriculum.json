@@ -2,8 +2,8 @@
   "id": "droidquest-curriculum",
   "title": "DroidQuest: Beginner to Android Platform Expert",
   "description": "A 52-week, local-first Android curriculum that progresses from zero programming experience to production engineering and Android platform expertise.",
-  "version": "0.12.0",
-  "contentRevision": 12,
+  "version": "0.13.0",
+  "contentRevision": 13,
   "releasedAt": "2026-07-25",
   "defaultLocale": "en-GB",
   "supportedLocales": [
@@ -646,6 +646,70 @@
         "level-09-week-38-06-abi-dependency-analysis-ci-cache"
       ],
       "checkpointQuizId": "quiz-level-09-week-38-checkpoint"
+    },
+    {
+      "id": "week-39",
+      "number": 39,
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Release Engineering, CI/CD, and Build Capstone",
+      "status": "available",
+      "lessonIds": [
+        "level-09-week-39-01-signed-aab-artifact-identity",
+        "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+        "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+        "level-09-week-39-04-github-actions-android-pipeline-dag",
+        "level-09-week-39-05-cicd-security-oidc-attestations",
+        "level-09-week-39-06-convention-plugin-release-capstone"
+      ],
+      "checkpointQuizId": "quiz-level-09-checkpoint"
+    },
+    {
+      "id": "week-40",
+      "number": 40,
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Profiling and Runtime Performance",
+      "status": "available",
+      "lessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence",
+        "level-10-week-40-02-cpu-perfetto-system-traces",
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+        "level-10-week-40-05-battery-network-efficiency",
+        "level-10-week-40-06-application-size-delivery-analysis"
+      ],
+      "checkpointQuizId": "quiz-level-10-week-40-checkpoint"
+    },
+    {
+      "id": "week-41",
+      "number": 41,
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Startup Performance and Profiles",
+      "status": "available",
+      "lessonIds": [
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+        "level-10-week-41-02-startup-critical-path-providers-main-thread",
+        "level-10-week-41-03-app-startup-lazy-di-initialization",
+        "level-10-week-41-04-macrobenchmark-startup-measurement",
+        "level-10-week-41-05-baseline-profiles-critical-journeys",
+        "level-10-week-41-06-startup-profiles-dex-layout-release"
+      ],
+      "checkpointQuizId": "quiz-level-10-week-41-checkpoint"
+    },
+    {
+      "id": "week-42",
+      "number": 42,
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Reliability Engineering and Safe Recovery",
+      "status": "available",
+      "lessonIds": [
+        "level-10-week-42-01-anr-types-strictmode-diagnosis",
+        "level-10-week-42-02-managed-native-crashes-exit-info",
+        "level-10-week-42-03-oom-low-memory-process-death",
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+        "level-10-week-42-06-compatible-migrations-rollback-planning"
+      ],
+      "checkpointQuizId": "quiz-level-10-week-42-checkpoint"
     }
   ],
   "specialisationPolicy": {

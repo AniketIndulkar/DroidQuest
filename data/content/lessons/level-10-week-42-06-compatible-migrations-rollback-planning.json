@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-42-06-compatible-migrations-rollback-planning",
+  "title": "Backwards-Compatible Migrations and Rollback Planning",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 42,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+  ],
+  "tags": [
+    "reliability",
+    "migrations",
+    "rollback"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand backwards-compatible migrations and rollback planning as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate backwards-compatible migrations and rollback planning with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Mobile rollouts contain old and new clients simultaneously and Play rollback may require a higher-version hotfix. Use expand-and-contract for APIs, database schemas and persisted models: add readable optional fields/tables, deploy compatible readers/writers, migrate/backfill safely, observe adoption, then remove old support later. A destructive migration is data loss, not rollback. Export Room schemas and test every supported upgrade path with representative data."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Forward and backward compatibility differ. A new app may need to read old data after upgrade; an old app may encounter server data written by new code during staged rollout. Avoid changing meaning in place. Dual read/write can aid transition but needs conflict and removal rules. Migrations must be atomic or resumable, handle low disk/process death and preserve queued user intent. Version local formats explicitly and do not tie schema completion to one Activity launch."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "// Expand: add nullable server field and Room column; old readers ignore it.\n// Migrate/backfill and observe.\n// Contract in a later release after old-client support window.",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Rollback plan covers app, backend, database, configuration and irreversible effects. Identify point of no return, backups/recovery, kill switches, monitoring and decision owner. Rehearse failed migration, partially adopted release and server rollback. Verify old and new clients throughout. Promote only when health and adoption make contract removal safe. Document retained compatibility windows and cleanup debt with an expiry rather than leaving dual paths indefinitely."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Dropping or reinterpreting a field in the same release that introduces its replacement breaks old clients still active during staged rollout."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Room Migration Testing",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/data-storage/room/migrating-db-versions",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Offline-First Data Layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Prepare and Roll Out a Release",
+          "publisher": "Google Play Console Help",
+          "resourceType": "official_docs",
+          "url": "https://support.google.com/googleplay/android-developer/answer/9859348",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Backwards-Compatible Migrations and Rollback Planning",
+      "language": "kotlin",
+      "code": "// Expand: add nullable server field and Room column; old readers ignore it.\n// Migrate/backfill and observe.\n// Contract in a later release after old-client support window.",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Dropping or reinterpreting a field in the same release that introduces its replacement breaks old clients still active during staged rollout.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and test an expand-contract migration across Room, API and queued writes, including partial rollout and hotfix-forward rollback.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why is mobile rollback often a roll-forward hotfix?",
+        "answer": "Installed version codes and irreversible local/server changes can prevent simply downgrading users to an older binary."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-42-06-compatible-migrations-rollback-planning",
+  "challengeId": "challenge-level-10-week-42-06-compatible-migrations-rollback-planning",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Backwards-Compatible Migrations and Rollback Planning.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/training/data-storage/room/migrating-db-versions",
+    "https://developer.android.com/topic/architecture/data-layer/offline-first",
+    "https://support.google.com/googleplay/android-developer/answer/9859348"
+  ],
+  "version": "0.13.0"
+}

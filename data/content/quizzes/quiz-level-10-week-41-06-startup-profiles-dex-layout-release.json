@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-06-startup-profiles-dex-layout-release",
+  "title": "Startup Profiles, DEX Layout, and Release Verification Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-06-startup-profiles-dex-layout-release"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-06-startup-profiles-dex-layout-release-decision",
+      "prompt": "Which approach best applies startup profiles, dex layout, and release verification?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Keep startup rules focused, consume them through optimised release tooling and verify actual DEX-layout benefit.",
+        "Disable R8 in release",
+        "Include entire test suite",
+        "Assume same purpose as Baseline Profiles"
+      ],
+      "answer": "Keep startup rules focused, consume them through optimised release tooling and verify actual DEX-layout benefit.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release"
+    },
+    {
+      "id": "q-level-10-week-41-06-startup-profiles-dex-layout-release-truth",
+      "prompt": "Startup Profiles primarily instruct ART which methods to JIT compile after installation.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Including long post-launch navigation in Startup Profile generation can dilute DEX layout focus and push critical startup code beyond the preferred primary DEX set.",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release"
+    },
+    {
+      "id": "q-level-10-week-41-06-startup-profiles-dex-layout-release-recall",
+      "prompt": "What distinct optimisation does a Startup Profile drive?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Build-time DEX layout of startup code, while Baseline Profiles guide install-time ART precompilation.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

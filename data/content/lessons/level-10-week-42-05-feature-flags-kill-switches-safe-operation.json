@@ -1,0 +1,210 @@
+{
+  "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+  "title": "Feature Flags, Kill Switches, and Safe Operation",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 42,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+  ],
+  "tags": [
+    "reliability",
+    "feature-flags",
+    "kill-switch"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand feature flags, kill switches, and safe operation as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate feature flags, kill switches, and safe operation with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Feature flags separate deployment from exposure and support cohorts, experiments or gradual enablement. Kill switches are emergency controls designed to stop harmful work such as a retry loop, incompatible endpoint or crashing feature. Define owner, default, targeting, expiry and behaviour when configuration is absent, stale, invalid or unauthorised. Security and entitlement decisions remain server-authoritative; a client flag is inspectable and patchable."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Cache signed/authenticated configuration with TTL and a safe bootstrap default. Avoid blocking startup on remote fetch. Evaluate flags at stable domain boundaries and preserve user/durable state when disabling. A kill switch may stop new work while allowing in-flight operations to complete safely. Beware flag interactions creating untested state space. Generate a flag inventory, remove expired flags and test both states, offline cache, rollback and version targeting."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "val enabled=config.cached(\"new_sync\") ?: false\nif(!enabled){ syncQueue.pauseNewWork(reason=\"remote_kill_switch\") }",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Protect the control plane with least privilege, audit and two-person approval for high-impact changes. Monitor evaluation and outcome by version without leaking identities. Rehearse activation during a game day and verify propagation delay. Flags do not replace backward-compatible API/database design because old clients may never fetch the new value. Every emergency path needs communication, recovery and a plan to ship the permanent fix."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Using a remotely fetched flag as the only defence against a crashing startup path fails when the app crashes before it can fetch the disabling value."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Feature Delivery and Runtime Behaviour",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/modularization/patterns",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Offline-First Data Layer",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Feature Flags, Kill Switches, and Safe Operation",
+      "language": "kotlin",
+      "code": "val enabled=config.cached(\"new_sync\") ?: false\nif(!enabled){ syncQueue.pauseNewWork(reason=\"remote_kill_switch\") }",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Using a remotely fetched flag as the only defence against a crashing startup path fails when the app crashes before it can fetch the disabling value.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design and rehearse a safe kill switch for a retrying sync feature, including offline defaults, in-flight work, targeting, audit and removal.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What must happen when flag configuration cannot be fetched?",
+        "answer": "The app follows a predefined safe cached/default behaviour without blocking critical startup or losing durable state."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+  "challengeId": "challenge-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Feature Flags, Kill Switches, and Safe Operation.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/modularization/patterns",
+    "https://developer.android.com/topic/architecture/data-layer/offline-first"
+  ],
+  "version": "0.13.0"
+}

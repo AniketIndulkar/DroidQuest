@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-02-startup-critical-path-providers-main-thread",
+  "title": "Startup Critical Path, Providers, and Main-Thread Blocking Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-02-startup-critical-path-providers-main-thread"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-02-startup-critical-path-providers-main-thread-decision",
+      "prompt": "Which approach best applies startup critical path, providers, and main-thread blocking?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Remove nonessential dependencies from the startup critical path rather than merely changing their thread.",
+        "Await background work on main",
+        "Use splash time as extra budget",
+        "Ignore library ContentProviders"
+      ],
+      "answer": "Remove nonessential dependencies from the startup critical path rather than merely changing their thread.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread"
+    },
+    {
+      "id": "q-level-10-week-41-02-startup-critical-path-providers-main-thread-truth",
+      "prompt": "Work on a background thread cannot delay startup.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Launching initialization on Dispatchers.IO and immediately awaiting it from the main thread preserves the same startup dependency and adds scheduling cost.",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread"
+    },
+    {
+      "id": "q-level-10-week-41-02-startup-critical-path-providers-main-thread-recall",
+      "prompt": "Why inspect the merged manifest during startup work?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Libraries can contribute providers and components that initialise before the Activity and are absent from the app’s source manifest.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

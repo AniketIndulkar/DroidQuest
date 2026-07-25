@@ -4,7 +4,7 @@
   "order": 10,
   "description": "Measure and improve startup, rendering, memory, battery, size, crashes, ANRs, operational resilience, logging, analytics, and release health.",
   "difficulty": "advanced",
-  "status": "planned",
+  "status": "in_progress",
   "weekRange": {
     "start": 40,
     "end": 43
@@ -17,14 +17,33 @@
     "reliability",
     "observability"
   ],
-  "estimatedLearningMinutes": 0,
-  "lessonIds": [],
-  "roadmapStartNodeId": "node-level-10-preview",
+  "estimatedLearningMinutes": 180,
+  "lessonIds": [
+    "level-10-week-40-01-performance-investigation-representative-evidence",
+    "level-10-week-40-02-cpu-perfetto-system-traces",
+    "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+    "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+    "level-10-week-40-05-battery-network-efficiency",
+    "level-10-week-40-06-application-size-delivery-analysis",
+    "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+    "level-10-week-41-02-startup-critical-path-providers-main-thread",
+    "level-10-week-41-03-app-startup-lazy-di-initialization",
+    "level-10-week-41-04-macrobenchmark-startup-measurement",
+    "level-10-week-41-05-baseline-profiles-critical-journeys",
+    "level-10-week-41-06-startup-profiles-dex-layout-release",
+    "level-10-week-42-01-anr-types-strictmode-diagnosis",
+    "level-10-week-42-02-managed-native-crashes-exit-info",
+    "level-10-week-42-03-oom-low-memory-process-death",
+    "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+    "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+    "level-10-week-42-06-compatible-migrations-rollback-planning"
+  ],
+  "roadmapStartNodeId": "node-level-10-week-40-01-performance-investigation-representative-evidence",
   "plannedTopics": [
-    "Profilers, Perfetto, memory, jank, and battery",
-    "Startup, Baseline Profiles, and Macrobenchmark",
-    "ANRs, crashes, retry storms, feature flags, and rollback",
-    "Structured logging, metrics, dashboards, and release health"
+    "Representative performance investigation, CPU/system traces, memory, rendering, Compose, battery, network, and size",
+    "Cold, warm, and hot startup; critical paths; App Startup; Macrobenchmark; Baseline and Startup Profiles",
+    "ANRs, managed/native crashes, OOM, process death, retry storms, circuit breakers, feature flags, kill switches, migrations, and rollback",
+    "Week 43: structured logging, metrics, dashboards, release health, and the measured performance capstone"
   ],
   "project": {
     "title": "Performance Investigation",
@@ -35,5 +54,5 @@
     "icon": "speed",
     "mapMood": "Measured paths from user action to frames, resources, failures, and operational signals."
   },
-  "version": "0.2.0"
+  "version": "0.13.0"
 }

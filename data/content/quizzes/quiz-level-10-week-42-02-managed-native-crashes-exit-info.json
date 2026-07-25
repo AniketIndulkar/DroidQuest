@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-02-managed-native-crashes-exit-info",
+  "title": "Managed and Native Crash Diagnosis with Exit Information Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-02-managed-native-crashes-exit-info"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-02-managed-native-crashes-exit-info-decision",
+      "prompt": "Which approach best applies managed and native crash diagnosis with exit information?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Tie crash evidence to the exact release mapping/symbols and reconstruct a reproducible causal path.",
+        "Catch all Throwable and continue",
+        "Use nearest mapping file",
+        "Log full user state"
+      ],
+      "answer": "Tie crash evidence to the exact release mapping/symbols and reconstruct a reproducible causal path.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-02-managed-native-crashes-exit-info"
+    },
+    {
+      "id": "q-level-10-week-42-02-managed-native-crashes-exit-info-truth",
+      "prompt": "A source revision uniquely determines native addresses even when toolchain and linking inputs change.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Using a mapping or native-symbol archive from a “similar” build can produce plausible but incorrect function names and send diagnosis toward the wrong code.",
+      "lessonId": "level-10-week-42-02-managed-native-crashes-exit-info"
+    },
+    {
+      "id": "q-level-10-week-42-02-managed-native-crashes-exit-info-recall",
+      "prompt": "Which identity links native frames to symbols reliably?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The exact binary/build ID and its matching symbol artifact, indexed with the release.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-02-managed-native-crashes-exit-info"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

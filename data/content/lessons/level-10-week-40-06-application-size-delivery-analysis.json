@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-40-06-application-size-delivery-analysis",
+  "title": "Application Size and Delivery Analysis",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 40,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-40-05-battery-network-efficiency"
+  ],
+  "tags": [
+    "performance",
+    "app-size",
+    "delivery"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand application size and delivery analysis as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate application size and delivery analysis with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measure the size users receive for representative device configurations, not only the AAB or universal APK. App Bundles let Play deliver configuration-specific splits; download, transfer and installed size differ. Use APK Analyzer and bundle tooling to attribute DEX, resources, native libraries and assets to modules and dependencies. Establish budgets by artifact and feature, and compare release-to-release diffs with ownership."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Enable R8 and resource shrinking for release, remove unused dependencies/resources, compress or convert media appropriately, and avoid duplicate native ABIs or assets. Dynamic feature or asset delivery can move bytes out of install time but adds loading, offline and failure UX; it does not eliminate total cost. Review transitive SDK size against value and runtime memory/startup impact. Keep rules should be narrow enough to preserve behaviour without retaining entire graphs."
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "code": "./gradlew :app:bundleRelease\n# Inspect AAB and generated device APK set; attribute DEX, resources, assets and native libs.",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test minified functionality, split delivery, missing/on-demand modules, upgrades and low-storage conditions. Monitor install failures and adoption by device. A smaller app that downloads large data immediately after first launch merely shifts the cost; include first-use network and disk footprint. Record why unavoidable assets exist and automate size regression thresholds with an exception/expiry process rather than silently raising budgets."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Comparing raw AAB file size between releases can misrepresent what a device downloads because bundle compression and split contents differ."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Reduce App Size",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/reduce-apk-size",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Android App Bundles",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/app-bundle",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Enable App Optimisation with R8",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/app-optimization/enable-app-optimization",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Application Size and Delivery Analysis",
+      "language": "shell",
+      "code": "./gradlew :app:bundleRelease\n# Inspect AAB and generated device APK set; attribute DEX, resources, assets and native libs.",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Comparing raw AAB file size between releases can misrepresent what a device downloads because bundle compression and split contents differ.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Create a device-specific size report, remove one verified source of bloat and add a release budget with owned exceptions.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Which artifact should size investigation model?",
+        "answer": "The device-specific APK set and installed/first-use footprint, not only the source AAB."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-40-06-application-size-delivery-analysis",
+  "challengeId": "challenge-level-10-week-40-06-application-size-delivery-analysis",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Application Size and Delivery Analysis.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/reduce-apk-size",
+    "https://developer.android.com/guide/app-bundle",
+    "https://developer.android.com/topic/performance/app-optimization/enable-app-optimization"
+  ],
+  "version": "0.13.0"
+}

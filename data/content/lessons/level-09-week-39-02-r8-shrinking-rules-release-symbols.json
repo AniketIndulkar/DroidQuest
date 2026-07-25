@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+  "title": "R8, Resource Shrinking, Rules, Mapping, and Symbols",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 39,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-39-01-signed-aab-artifact-identity"
+  ],
+  "tags": [
+    "release",
+    "r8",
+    "symbols"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand r8, resource shrinking, rules, mapping, and symbols as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Teams need releases whose exact bytes, approvals, credentials, promotion history, diagnostics, and recovery actions remain trustworthy under pressure.",
+      "outcome": "You can explain, implement, test, and operate r8, resource shrinking, rules, mapping, and symbols with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Release optimisation combines R8 shrinking, optimisation and obfuscation with Android resource shrinking. R8 traces reachable bytecode under program rules and library/consumer rules; reflection, JNI, serialization and dynamically referenced classes may need narrowly justified keep rules. Libraries publish consumer rules for behaviour their consumers cannot infer. Broad keep-all rules restore function by disabling optimisation and hide the real contract. Test the exact minified release variant, not only debug."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Resource shrinking relies on code shrinker information and can remove dynamically addressed resources unless usage is modelled. Inspect usage and seeds when diagnosing. Preserve mapping.txt for each release to retrace obfuscated JVM crashes, and upload it to the crash/reporting system associated with that version. Native binaries need matching debug symbols or symbol tables for useful native stacks. Mapping and symbols are release-specific; using a nearby version can produce dangerously incorrect diagnosis."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "android { buildTypes.release {\n isMinifyEnabled=true; isShrinkResources=true\n proguardFiles(getDefaultProguardFile(\"proguard-android-optimize.txt\"),\"proguard-rules.pro\")\n} }",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Store mappings and symbols as protected immutable artifacts indexed by application ID, versionCode, build ID and digest. Verify upload success before rollout, then test a controlled JVM and native crash in an internal track. Review optimisation warnings and missing-class rules rather than suppressing globally. Compare size and startup after R8 changes, because optimisation affects runtime and Baseline/Startup Profiles. Roll back the code or rules when evidence fails; never regenerate mapping later."
+            },
+            {
+              "type": "paragraph",
+              "text": "Release engineering turns source into a traceable product under explicit trust and compatibility boundaries. Treat build logic, credentials, artifacts, metadata, promotion controls and recovery procedures as one production system. Prefer immutable inputs, public typed APIs, least privilege, reproducible evidence and protected approval boundaries. Test the exact release variant and exercise failure paths before promotion. Record artifact identity, ownership, supported toolchains, health signals and rollback or roll-forward decisions. A pipeline is successful only when it produces the intended bytes, explains where they came from, prevents untrusted mutation and gives operators enough evidence to release or stop safely. Preserve the evidence and decision record so another engineer can reproduce the release, verify every promotion boundary, and distinguish an approved artifact from a merely successful build."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Keeping every class in a package to fix one reflection failure disables useful shrinking and can conceal an undocumented runtime contract."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Enable App Optimisation with R8",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/app-optimization/enable-app-optimization",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Native Crash Support and Symbols",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/build/include-native-symbols",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect R8, Resource Shrinking, Rules, Mapping, and Symbols",
+      "language": "kotlin",
+      "code": "android { buildTypes.release {\n isMinifyEnabled=true; isShrinkResources=true\n proguardFiles(getDefaultProguardFile(\"proguard-android-optimize.txt\"),\"proguard-rules.pro\")\n} }",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Keeping every class in a package to fix one reflection failure disables useful shrinking and can conceal an undocumented runtime contract.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Minify a release build, replace a broad keep rule with a targeted contract, then archive and verify JVM mapping and native symbols.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why are mapping and native symbols release-specific?",
+        "answer": "Optimisation and linking assign names and addresses for exact binary bytes; another build can map stacks incorrectly."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+  "challengeId": "challenge-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind R8, Resource Shrinking, Rules, Mapping, and Symbols.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/app-optimization/enable-app-optimization",
+    "https://developer.android.com/build/include-native-symbols"
+  ],
+  "version": "0.13.0"
+}

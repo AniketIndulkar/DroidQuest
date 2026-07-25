@@ -1,7 +1,7 @@
 {
   "id": "android-glossary",
   "title": "DroidQuest Android Glossary",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "entries": [
     {
       "id": "term-entry-point",
@@ -2989,6 +2989,342 @@
       ],
       "relatedLessonIds": [
         "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+      ]
+    },
+    {
+      "id": "term-release-artifact-identity",
+      "term": "Release artifact identity",
+      "definition": "The traceable association among source revision, dependency/toolchain state, version, digest, signing certificate and distributed binary.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "release",
+        "app-bundle",
+        "signing"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-01-signed-aab-artifact-identity"
+      ]
+    },
+    {
+      "id": "term-consumer-proguard-rule",
+      "term": "Consumer ProGuard rule",
+      "definition": "A library-supplied optimisation rule packaged for application consumers whose R8 build needs to preserve required behaviour.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "release",
+        "r8",
+        "symbols"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-02-r8-shrinking-rules-release-symbols"
+      ]
+    },
+    {
+      "id": "term-staged-rollout",
+      "term": "Staged rollout",
+      "definition": "Progressively exposing a release to a controlled percentage while monitoring predefined health signals and retaining stop/recovery actions.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "release",
+        "staged-rollout",
+        "rollback"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-03-release-tracks-staged-rollout-rollback"
+      ]
+    },
+    {
+      "id": "term-ci-fan-in",
+      "term": "CI fan-in",
+      "definition": "A gate job that depends on independently executed prerequisite jobs and represents their combined success.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "pipeline"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-04-github-actions-android-pipeline-dag"
+      ]
+    },
+    {
+      "id": "term-artifact-attestation",
+      "term": "Artifact attestation",
+      "definition": "Signed provenance linking an artifact digest to claims about the workflow and identity that produced it.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "ci-cd",
+        "security",
+        "oidc"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-05-cicd-security-oidc-attestations"
+      ]
+    },
+    {
+      "id": "term-build-platform",
+      "term": "Build platform",
+      "definition": "The versioned conventions, tools, tests, pipelines and operational policies that provide trusted build capabilities to product modules.",
+      "categoryId": "level-09-gradle-build-cicd",
+      "tags": [
+        "gradle",
+        "ci-cd",
+        "capstone"
+      ],
+      "relatedLessonIds": [
+        "level-09-week-39-06-convention-plugin-release-capstone"
+      ]
+    },
+    {
+      "id": "term-performance-budget",
+      "term": "Performance budget",
+      "definition": "A measurable limit for a user-relevant latency or resource signal under a defined device, state and workflow.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "measurement",
+        "investigation"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence"
+      ]
+    },
+    {
+      "id": "term-system-trace",
+      "term": "System trace",
+      "definition": "A time-aligned record of scheduling, threads, processes, frames and instrumented slices used to explain latency across the system.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "perfetto",
+        "cpu-profiler"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-02-cpu-perfetto-system-traces"
+      ]
+    },
+    {
+      "id": "term-retained-object",
+      "term": "Retained object",
+      "definition": "An object still reachable from GC roots after its useful lifecycle has ended.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "memory",
+        "leaks"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+      ]
+    },
+    {
+      "id": "term-frame-deadline",
+      "term": "Frame deadline",
+      "definition": "The time budget in which application, rendering and GPU work must complete for a frame at the current refresh rate.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "jank",
+        "compose"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+      ]
+    },
+    {
+      "id": "term-radio-tail",
+      "term": "Radio tail energy",
+      "definition": "Energy consumed while cellular radio remains in a higher-power state after transfers, making many small requests costly.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "battery",
+        "network"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-05-battery-network-efficiency"
+      ]
+    },
+    {
+      "id": "term-download-size",
+      "term": "Download size",
+      "definition": "The compressed bytes a particular device receives, distinct from raw bundle, universal APK and installed size.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "app-size",
+        "delivery"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-40-06-application-size-delivery-analysis"
+      ]
+    },
+    {
+      "id": "term-time-to-full-display",
+      "term": "Time to full display",
+      "definition": "The startup duration until the app reports that meaningful content is fully drawn and usable, beyond its first visible frame.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "startup",
+        "metrics"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+      ]
+    },
+    {
+      "id": "term-startup-critical-path",
+      "term": "Startup critical path",
+      "definition": "The dependent work from launch request to the target startup milestone that determines its earliest completion.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "startup",
+        "main-thread"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-02-startup-critical-path-providers-main-thread"
+      ]
+    },
+    {
+      "id": "term-initializer-dependency",
+      "term": "Initializer dependency",
+      "definition": "An explicit ordering edge declaring that one App Startup initializer requires another to complete first.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "app-startup",
+        "dependency-injection"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-03-app-startup-lazy-di-initialization"
+      ]
+    },
+    {
+      "id": "term-compilation-mode",
+      "term": "Compilation mode",
+      "definition": "The ART compilation state established for a benchmark, such as none, partial with Baseline Profiles, or full compilation.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "macrobenchmark",
+        "startup"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-04-macrobenchmark-startup-measurement"
+      ]
+    },
+    {
+      "id": "term-baseline-profile",
+      "term": "Baseline Profile",
+      "definition": "Rules shipped with an app or library that guide ART to precompile important code paths from first install/update.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "baseline-profiles",
+        "aot"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-05-baseline-profiles-critical-journeys"
+      ]
+    },
+    {
+      "id": "term-startup-profile",
+      "term": "Startup Profile",
+      "definition": "A focused subset of profile rules used by R8/D8 at build time to optimise DEX layout for startup code.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "performance",
+        "startup-profiles",
+        "dex"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-41-06-startup-profiles-dex-layout-release"
+      ]
+    },
+    {
+      "id": "term-anr",
+      "term": "Application Not Responding event",
+      "definition": "A system-detected responsiveness failure such as input dispatch, component execution or broadcast work exceeding its allowed responsiveness window.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "anr",
+        "strictmode"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-01-anr-types-strictmode-diagnosis"
+      ]
+    },
+    {
+      "id": "term-application-exit-info",
+      "term": "ApplicationExitInfo",
+      "definition": "Platform history describing recent process exits, their reasons and available diagnostics such as traces.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "crashes",
+        "native"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-02-managed-native-crashes-exit-info"
+      ]
+    },
+    {
+      "id": "term-low-memory-kill",
+      "term": "Low-memory kill",
+      "definition": "System termination of a process to reclaim memory, distinct from an in-process OutOfMemoryError allocation failure.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "memory",
+        "process-death"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-03-oom-low-memory-process-death"
+      ]
+    },
+    {
+      "id": "term-retry-storm",
+      "term": "Retry storm",
+      "definition": "Amplified repeated traffic from many operations or clients during failure, increasing load and delaying recovery.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "retries",
+        "circuit-breaker"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+      ]
+    },
+    {
+      "id": "term-kill-switch",
+      "term": "Kill switch",
+      "definition": "An operational control that rapidly disables or degrades a risky capability without requiring all clients to update.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "feature-flags",
+        "kill-switch"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+      ]
+    },
+    {
+      "id": "term-expand-contract-migration",
+      "term": "Expand-and-contract migration",
+      "definition": "A staged change that first supports old and new representations, migrates adoption, then removes old support only after compatibility is proven.",
+      "categoryId": "level-10-performance-reliability-observability",
+      "tags": [
+        "reliability",
+        "migrations",
+        "rollback"
+      ],
+      "relatedLessonIds": [
+        "level-10-week-42-06-compatible-migrations-rollback-planning"
       ]
     }
   ]

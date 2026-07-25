@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-04-macrobenchmark-startup-measurement",
+  "title": "Macrobenchmark Startup Measurement Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-04-macrobenchmark-startup-measurement"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-04-macrobenchmark-startup-measurement-decision",
+      "prompt": "Which approach best applies macrobenchmark startup measurement?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Control process, compilation, device and fixture state and compare distributions with retained traces.",
+        "Mix compilation modes",
+        "Benchmark live unpredictable network",
+        "Retry until budget passes"
+      ],
+      "answer": "Control process, compilation, device and fixture state and compare distributions with retained traces.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement"
+    },
+    {
+      "id": "q-level-10-week-41-04-macrobenchmark-startup-measurement-truth",
+      "prompt": "Macrobenchmark measures code inside the benchmark test process.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Comparing CompilationMode.None before a change with Partial after it attributes ART compilation benefits to application code.",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement"
+    },
+    {
+      "id": "q-level-10-week-41-04-macrobenchmark-startup-measurement-recall",
+      "prompt": "Why is compilation mode part of the benchmark result?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "ART compilation materially changes execution cost, so results with different modes are not directly comparable.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-03-app-startup-lazy-di-initialization",
+  "title": "App Startup, Lazy Initialisation, and DI Cost Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-03-app-startup-lazy-di-initialization"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-03-app-startup-lazy-di-initialization-decision",
+      "prompt": "Which approach best applies app startup, lazy initialisation, and di cost?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Keep only measured essential initialization on startup and give lazy components explicit ownership and failure semantics.",
+        "Auto-initialize every SDK",
+        "Perform I/O in constructors",
+        "Assume Lazy guarantees no eager request"
+      ],
+      "answer": "Keep only measured essential initialization on startup and give lazy components explicit ownership and failure semantics.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization"
+    },
+    {
+      "id": "q-level-10-week-41-03-app-startup-lazy-di-initialization-truth",
+      "prompt": "App Startup automatically moves every initializer off the main thread.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Wrapping an expensive SDK in App Startup centralises it but still executes the cost on the application startup path.",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization"
+    },
+    {
+      "id": "q-level-10-week-41-03-app-startup-lazy-di-initialization-recall",
+      "prompt": "What question determines whether an initializer belongs at app startup?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Must this work complete before the first meaningful UI/action, or can its owning feature initialise it later?",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

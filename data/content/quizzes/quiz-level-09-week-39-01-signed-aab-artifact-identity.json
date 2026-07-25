@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-39-01-signed-aab-artifact-identity",
+  "title": "Signed App Bundles and Artifact Identity Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-39-01-signed-aab-artifact-identity"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-39-01-signed-aab-artifact-identity-decision",
+      "prompt": "Which approach best applies signed app bundles and artifact identity?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Verify and record the final immutable artifact and its delivered signing identity before upload.",
+        "Treat versionName as update order",
+        "Install the AAB directly on devices",
+        "Use the upload fingerprint for delivered-app API restrictions"
+      ],
+      "answer": "Verify and record the final immutable artifact and its delivered signing identity before upload.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity"
+    },
+    {
+      "id": "q-level-09-week-39-01-signed-aab-artifact-identity-truth",
+      "prompt": "Google Play distributes the uploaded AAB file directly to every device.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Uploading whichever AAB is newest in a shared directory can publish bytes that do not match the approved revision or recorded checksum.",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity"
+    },
+    {
+      "id": "q-level-09-week-39-01-signed-aab-artifact-identity-recall",
+      "prompt": "Which key signs APKs delivered through Play App Signing?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The app-signing key managed by Play; the developer upload key authenticates the uploaded bundle.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

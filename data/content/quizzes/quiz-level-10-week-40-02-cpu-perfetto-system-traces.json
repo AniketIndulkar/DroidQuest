@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-02-cpu-perfetto-system-traces",
+  "title": "CPU Profiler, Perfetto, and Trace Interpretation Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-02-cpu-perfetto-system-traces"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-02-cpu-perfetto-system-traces-decision",
+      "prompt": "Which approach best applies cpu profiler, perfetto, and trace interpretation?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Use time-aligned system and app slices to distinguish running, blocked and scheduled causes on the user critical path.",
+        "Interpret slice width as CPU",
+        "Trace every tiny function",
+        "Profile only a debug build"
+      ],
+      "answer": "Use time-aligned system and app slices to distinguish running, blocked and scheduled causes on the user critical path.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces"
+    },
+    {
+      "id": "q-level-10-week-40-02-cpu-perfetto-system-traces-truth",
+      "prompt": "Instrumented method tracing is the least intrusive way to validate frame timing.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Treating the total width of a trace slice as CPU time can misdiagnose a blocked wait as computation.",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces"
+    },
+    {
+      "id": "q-level-10-week-40-02-cpu-perfetto-system-traces-recall",
+      "prompt": "Which trace evidence distinguishes computation from waiting?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Thread scheduling state, child work and system events aligned with the app slice.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

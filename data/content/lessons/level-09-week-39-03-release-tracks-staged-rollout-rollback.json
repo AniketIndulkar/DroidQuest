@@ -1,0 +1,210 @@
+{
+  "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+  "title": "Release Tracks, Staged Rollout, and Rollback",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 39,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-39-02-r8-shrinking-rules-release-symbols"
+  ],
+  "tags": [
+    "release",
+    "staged-rollout",
+    "rollback"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand release tracks, staged rollout, and rollback as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Teams need releases whose exact bytes, approvals, credentials, promotion history, diagnostics, and recovery actions remain trustworthy under pressure.",
+      "outcome": "You can explain, implement, test, and operate release tracks, staged rollout, and rollback with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use internal testing for pipeline and smoke validation, closed/open testing for appropriate cohorts, and production only after evidence gates. A staged rollout limits exposure; it is not a substitute for testing and does not guarantee representative devices or behaviour. Define cohort, countries, minimum duration and promotion increments before starting. Version-code monotonicity means rollback often requires a new fixed build rather than reinstalling an older version over a newer one."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Release gates combine crash-free users, ANR, startup/rendering, authentication, transaction success, backend saturation, support signals and security indicators. Compare by app version and relevant device/OS cohorts. Establish automatic alerts and explicit stop thresholds, but include sample size and baseline so normal noise does not halt every rollout. Separate pause, halt, hotfix, feature kill switch and backend rollback; each handles different blast radius and compatibility constraints."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "data class Gate(val signal:String,val limit:Double,val windowMinutes:Int,val action:String)\nval crashGate=Gate(\"crashFreeUsers\",99.8,60,\"halt_and_investigate\")",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Rehearse rollback with database/schema, API, persisted state and feature-flag compatibility. Server and app changes should tolerate overlapping versions throughout rollout and recovery. Keep release notes, approvers, artifact digest, configuration changes, health decision and incident timeline. Promotion is a new decision requiring current evidence, not a timer. After full rollout, keep monitoring and conduct a review when thresholds were crossed or emergency controls used."
+            },
+            {
+              "type": "paragraph",
+              "text": "Release engineering turns source into a traceable product under explicit trust and compatibility boundaries. Treat build logic, credentials, artifacts, metadata, promotion controls and recovery procedures as one production system. Prefer immutable inputs, public typed APIs, least privilege, reproducible evidence and protected approval boundaries. Test the exact release variant and exercise failure paths before promotion. Record artifact identity, ownership, supported toolchains, health signals and rollback or roll-forward decisions. A pipeline is successful only when it produces the intended bytes, explains where they came from, prevents untrusted mutation and gives operators enough evidence to release or stop safely. Preserve the evidence and decision record so another engineer can reproduce the release, verify every promotion boundary, and distinguish an approved artifact from a merely successful build."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "A staged rollout cannot protect users when a backward-incompatible server or database change affects all installed versions immediately."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Prepare and Roll Out a Release",
+          "publisher": "Google Play Console Help",
+          "resourceType": "official_docs",
+          "url": "https://support.google.com/googleplay/android-developer/answer/9859348",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Android App Bundles",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/guide/app-bundle",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Release Tracks, Staged Rollout, and Rollback",
+      "language": "kotlin",
+      "code": "data class Gate(val signal:String,val limit:Double,val windowMinutes:Int,val action:String)\nval crashGate=Gate(\"crashFreeUsers\",99.8,60,\"halt_and_investigate\")",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "A staged rollout cannot protect users when a backward-incompatible server or database change affects all installed versions immediately.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Design a five-stage rollout and rollback exercise with version-aware health gates, schema/API compatibility, kill switches and decision ownership.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why must backend contracts tolerate overlapping app versions?",
+        "answer": "Staged rollout and rollback leave several client versions active concurrently."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+  "challengeId": "challenge-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Release Tracks, Staged Rollout, and Rollback.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://support.google.com/googleplay/android-developer/answer/9859348",
+    "https://developer.android.com/guide/app-bundle"
+  ],
+  "version": "0.13.0"
+}

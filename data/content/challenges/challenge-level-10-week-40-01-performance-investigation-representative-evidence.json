@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-40-01-performance-investigation-representative-evidence",
+  "title": "Apply Performance Investigation from User Impact to Evidence",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Write and execute a controlled performance investigation for one user complaint, including hypothesis, trace, before/after distribution and regression budget.",
+  "successCriteria": [
+    "The user or release outcome, environment, version, and acceptance threshold are explicit.",
+    "Evidence connects the observed cost or failure to the responsible mechanism.",
+    "Correctness, failure recovery, regression protection, ownership, and rollout decisions are documented."
+  ],
+  "hints": [
+    "Reduce the problem to one representative journey before widening the test matrix.",
+    "Record raw evidence and compare one controlled change rather than relying on intuition."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "data class PerfScenario(val journey:String,val device:String,val state:String,val metric:String,val budget:Double)\nval launch=PerfScenario(\"cold start to usable\",\"mid-tier physical\",\"logged-in 500 items\",\"TTFD ms\",1200.0)"
+  },
+  "solutionOutline": [
+    "Define the contract and capture a representative baseline or failure reproduction.",
+    "Implement the smallest safe change, verify success and failure paths, then add an owned regression guard."
+  ],
+  "verification": [
+    "Repeat the scenario under controlled conditions and retain the evidence with version context.",
+    "Exercise one adverse path and confirm the documented recovery or roll-forward action."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

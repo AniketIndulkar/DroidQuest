@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+  "title": "Frame Timing, Jank, and Compose Recomposition",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 40,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+  ],
+  "tags": [
+    "performance",
+    "jank",
+    "compose"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand frame timing, jank, and compose recomposition as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate frame timing, jank, and compose recomposition with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Jank occurs when the pipeline misses a frame deadline; the budget changes with refresh rate. Inspect the janky-frame track and correlate main thread, RenderThread and GPU completion. A slow interaction can also be data starvation without a missed frame, so define the symptom. Avoid method tracing as the first jank tool because its overhead can create false misses. Macrobenchmark frame metrics quantify a journey; Perfetto explains selected bad frames."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Compose recomposition is necessary state-driven work, not inherently a bug. Use composition tracing and compiler/runtime metrics to find unexpected scope, unstable inputs, state read in the wrong phase or list identity churn. Move frequently changing state reads to layout/draw when appropriate, use stable keys, avoid recreating collections and lambdas without evidence, and remove work from composition. Skipping more is not the goal if layout, drawing or correctness worsens."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "LazyColumn { items(items,key={it.id}) { item ->\n Row(Modifier.drawBehind { drawProgress(item.progress) }) { StableItemText(item.title) }\n} }",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Measure representative content, scrolling velocity, refresh rates and devices. Separate composition, layout, draw, image decode, GC, binder and GPU causes. Verify frame distribution before and after plus semantic and visual correctness. Avoid micro-optimising composables not present in missed frames. Establish a CI Macrobenchmark budget with enough iterations and controlled device state, while production frame signals catch device diversity."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Counting every recomposition as wasted work encourages incorrect remember/stability changes even when frames meet deadlines and state should update."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "UI Jank Detection",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile/jank-detection",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Slow Rendering",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/vitals/render",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Measure App Performance",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/measuring-performance",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Frame Timing, Jank, and Compose Recomposition",
+      "language": "kotlin",
+      "code": "LazyColumn { items(items,key={it.id}) { item ->\n Row(Modifier.drawBehind { drawProgress(item.progress) }) { StableItemText(item.title) }\n} }",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Counting every recomposition as wasted work encourages incorrect remember/stability changes even when frames meet deadlines and state should update.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Use a trace to diagnose one janky Compose journey, identify the responsible phase and verify a targeted fix with frame metrics.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why does display refresh rate matter to jank analysis?",
+        "answer": "Higher refresh rates provide a smaller time budget before each frame deadline."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+  "challengeId": "challenge-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Frame Timing, Jank, and Compose Recomposition.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/studio/profile/jank-detection",
+    "https://developer.android.com/topic/performance/vitals/render",
+    "https://developer.android.com/topic/performance/measuring-performance"
+  ],
+  "version": "0.13.0"
+}

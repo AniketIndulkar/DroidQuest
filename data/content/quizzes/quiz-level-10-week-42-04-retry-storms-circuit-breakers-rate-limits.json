@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+  "title": "Retry Storms, Circuit Breakers, and Rate Limits Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits-decision",
+      "prompt": "Which approach best applies retry storms, circuit breakers, and rate limits?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Centralise bounded idempotent retries and protect recovery with jitter, coalescing, circuits and capacity limits.",
+        "Retry at every layer",
+        "Retry permanent 4xx failures",
+        "Use fixed synchronized delays"
+      ],
+      "answer": "Centralise bounded idempotent retries and protect recovery with jitter, coalescing, circuits and capacity limits.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+    },
+    {
+      "id": "q-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits-truth",
+      "prompt": "A circuit breaker guarantees queued operations eventually succeed.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Adding exponential backoff inside both an interceptor and WorkManager can multiply attempts and create delays or load no owner understands.",
+      "lessonId": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+    },
+    {
+      "id": "q-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits-recall",
+      "prompt": "Why is jitter essential during widespread failure?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It desynchronises clients so they do not retry together and recreate the overload spike.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

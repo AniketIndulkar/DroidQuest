@@ -1,0 +1,218 @@
+{
+  "id": "level-10-week-41-02-startup-critical-path-providers-main-thread",
+  "title": "Startup Critical Path, Providers, and Main-Thread Blocking",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 41,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+  ],
+  "tags": [
+    "performance",
+    "startup",
+    "main-thread"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand startup critical path, providers, and main-thread blocking as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate startup critical path, providers, and main-thread blocking with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Application and automatically created ContentProviders run before Activity UI and can silently place SDK, database, logging or dependency-injection work on every cold start. Inspect the merged manifest and Perfetto startup trace to find provider initialization, class loading, disk reads, locks and binder calls. Remove or defer nonessential initializers; provider ordering and process-specific components may differ. Never move blocking work to another thread if startup still waits synchronously for it."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The main thread must create lifecycle/UI and respond to input. StrictMode in development exposes disk/network work but not every expensive computation or lock. Break initialization into critical synchronous state, asynchronously loadable data and truly optional features. Make repositories main-safe, use lazy construction and avoid eager graph creation. A splash screen can maintain continuity but does not extend ANR budgets or justify hidden blocking."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class App:Application(){ override fun onCreate(){\n super.onCreate(); essentialRegistry.install(); /* defer analytics, prefetch and warmups */\n} }",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Trace each proposed deferral to ensure it leaves the measured path and does not cause first-use jank, races or missing configuration. Test process death, deep-link entry, offline cache, account state and background components that may initialise without the main Activity. Add startup tests and ownership for newly introduced providers/SDKs. Review library manifest changes because an upgrade can reintroduce eager initialisation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Launching initialization on Dispatchers.IO and immediately awaiting it from the main thread preserves the same startup dependency and adds scheduling cost."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "App Startup Best Practices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/appstartup/best-practices",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Record Traces with Perfetto",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/studio/profile/record-traces",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Application Not Responding Errors",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/vitals/anr",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Startup Critical Path, Providers, and Main-Thread Blocking",
+      "language": "kotlin",
+      "code": "class App:Application(){ override fun onCreate(){\n super.onCreate(); essentialRegistry.install(); /* defer analytics, prefetch and warmups */\n} }",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Launching initialization on Dispatchers.IO and immediately awaiting it from the main thread preserves the same startup dependency and adds scheduling cost.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Audit the merged manifest and startup trace, remove one noncritical initializer from the path and verify first-use correctness.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "Why inspect the merged manifest during startup work?",
+        "answer": "Libraries can contribute providers and components that initialise before the Activity and are absent from the app’s source manifest."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-41-02-startup-critical-path-providers-main-thread",
+  "challengeId": "challenge-level-10-week-41-02-startup-critical-path-providers-main-thread",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Startup Critical Path, Providers, and Main-Thread Blocking.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/performance/appstartup/best-practices",
+    "https://developer.android.com/studio/profile/record-traces",
+    "https://developer.android.com/topic/performance/vitals/anr"
+  ],
+  "version": "0.13.0"
+}

@@ -1,0 +1,173 @@
+{
+  "id": "quiz-level-09-checkpoint",
+  "title": "Level 9 Boss: Trusted Android Release Pipeline",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-35-01-gradle-lifecycle-task-dag",
+    "level-09-week-35-02-task-registration-dependencies-ordering",
+    "level-09-week-35-03-providers-properties-build-inputs",
+    "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+    "level-09-week-35-05-kotlin-dsl-model-configuration",
+    "level-09-week-35-06-shared-services-workers-parallel-safety",
+    "level-09-week-36-01-android-source-sets-merging-priority",
+    "level-09-week-36-02-build-types-flavours-variant-matrix",
+    "level-09-week-36-03-variant-aware-dependency-resolution",
+    "level-09-week-36-04-version-catalogs-boms-platforms",
+    "level-09-week-36-05-dependency-locking-verification-upgrades",
+    "level-09-week-36-06-android-components-variant-api",
+    "level-09-week-37-01-convention-plugins-build-standards",
+    "level-09-week-37-02-buildsrc-included-build-build-logic",
+    "level-09-week-37-03-custom-plugin-extension-design",
+    "level-09-week-37-04-variant-aware-code-generation",
+    "level-09-week-37-05-gradle-testkit-functional-tests",
+    "level-09-week-37-06-composable-build-convention-suite",
+    "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+    "level-09-week-38-02-configuration-cache-adoption",
+    "level-09-week-38-03-local-remote-build-cache-correctness",
+    "level-09-week-38-04-parallel-execution-module-critical-path",
+    "level-09-week-38-05-ksp-incremental-processing",
+    "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+    "level-09-week-39-01-signed-aab-artifact-identity",
+    "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+    "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+    "level-09-week-39-04-github-actions-android-pipeline-dag",
+    "level-09-week-39-05-cicd-security-oidc-attestations",
+    "level-09-week-39-06-convention-plugin-release-capstone"
+  ],
+  "kind": "boss",
+  "difficulty": "expert",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-level-09-boss-1-signed-aab-artifact-identity",
+      "prompt": "Checkpoint: Which key signs APKs delivered through Play App Signing?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "explanation": "The app-signing key managed by Play; the developer upload key authenticates the uploaded bundle. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity",
+      "options": [
+        "Verify and record the final immutable artifact and its delivered signing identity before upload.",
+        "Treat versionName as update order",
+        "Install the AAB directly on devices",
+        "Use the upload fingerprint for delivered-app API restrictions"
+      ],
+      "answer": "Verify and record the final immutable artifact and its delivered signing identity before upload."
+    },
+    {
+      "id": "q-level-09-boss-2-r8-shrinking-rules-release-symbols",
+      "prompt": "Select the two sound practices for r8, resource shrinking, rules, mapping, and symbols.",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "explanation": "Optimisation and linking assign names and addresses for exact binary bytes; another build can map stacks incorrectly. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "options": [
+        "Test optimised release behaviour and retain exact versioned mapping and native symbols for diagnosis.",
+        "Record representative evidence and an owned recovery action",
+        "Upload debug mapping for release",
+        "Regenerate mapping after a crash"
+      ],
+      "answer": [
+        "Test optimised release behaviour and retain exact versioned mapping and native symbols for diagnosis.",
+        "Record representative evidence and an owned recovery action"
+      ]
+    },
+    {
+      "id": "q-level-09-boss-3-release-tracks-staged-rollout-rollback",
+      "prompt": "Stopping a staged rollout automatically downgrades users who already received the release.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "explanation": "Staged rollout and rollback leave several client versions active concurrently. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "answer": false
+    },
+    {
+      "id": "q-level-09-boss-4-github-actions-android-pipeline-dag",
+      "prompt": "Complete the operational rule: What must deployment promote?",
+      "type": "fill_blank",
+      "difficulty": "advanced",
+      "explanation": "The exact immutable artifact whose digest and tests were approved, not a newly rebuilt equivalent. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-04-github-actions-android-pipeline-dag",
+      "answer": "The exact immutable artifact whose digest and tests were approved, not a newly rebuilt equivalent.",
+      "acceptedAnswers": [
+        "The exact immutable artifact whose digest and tests were approved, not a newly rebuilt equivalent."
+      ]
+    },
+    {
+      "id": "q-level-09-boss-5-cicd-security-oidc-attestations",
+      "prompt": "Order the investigation steps for ci/cd security, oidc, and artifact attestations.",
+      "type": "order_steps",
+      "difficulty": "advanced",
+      "explanation": "It issues short-lived, claim-bound credentials without keeping a long-lived cloud secret in GitHub. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations",
+      "options": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ],
+      "answer": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ]
+    },
+    {
+      "id": "q-level-09-boss-6-convention-plugin-release-capstone",
+      "prompt": "Match the review concern to its evidence for convention plugin and release pipeline capstone.",
+      "type": "match_pairs",
+      "difficulty": "advanced",
+      "explanation": "A versioned tested build platform that produces and promotes one traceable artifact under measured, least-privilege operational controls. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone",
+      "options": [
+        "Outcome → journey and threshold",
+        "Mechanism → direct trace or artifact evidence",
+        "Safety → failure and compatibility tests"
+      ],
+      "answer": {
+        "Outcome": "journey and threshold",
+        "Mechanism": "direct trace or artifact evidence",
+        "Safety": "failure and compatibility tests"
+      }
+    },
+    {
+      "id": "q-level-09-boss-code-output",
+      "prompt": "What durable output should follow a successful release build after signing?",
+      "type": "code_output",
+      "difficulty": "expert",
+      "options": [
+        "Only console success",
+        "Artifact plus digest, version, revision, signing and provenance metadata",
+        "A renamed debug APK"
+      ],
+      "answer": "Artifact plus digest, version, revision, signing and provenance metadata",
+      "explanation": "The final bytes need an immutable identity and verifiable provenance before promotion.",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity"
+    },
+    {
+      "id": "q-level-09-boss-spot-bug",
+      "prompt": "Spot the central bug: a release workflow triggered by a pull request has write credentials, signs, and uploads to production automatically.",
+      "type": "spot_bug",
+      "difficulty": "expert",
+      "answer": "Untrusted or unapproved code crosses the signing and production promotion boundary; separate verification from protected release environments and least-privilege credentials.",
+      "explanation": "Pull-request validation must not grant untrusted code access to signing secrets or mutable production deployment authority.",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations"
+    },
+    {
+      "id": "q-level-09-boss-short-answer",
+      "prompt": "Why must mapping files, native symbols, attestations, and rollout records be keyed to an exact release artifact?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "They are version-specific evidence; associating a nearby build can corrupt crash diagnosis, provenance, and release decisions.",
+      "explanation": "Exact artifact identity is the join key across build, diagnostics, supply-chain evidence, and distribution operations.",
+      "lessonId": "level-09-week-39-02-r8-shrinking-rules-release-symbols"
+    }
+  ],
+  "rewards": {
+    "xp": 900,
+    "stars": 5
+  },
+  "version": "0.13.0"
+}

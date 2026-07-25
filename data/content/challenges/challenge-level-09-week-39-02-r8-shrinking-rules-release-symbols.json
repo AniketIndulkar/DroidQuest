@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+  "title": "Apply R8, Resource Shrinking, Rules, Mapping, and Symbols",
+  "categoryId": "level-09-gradle-build-cicd",
+  "lessonId": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Minify a release build, replace a broad keep rule with a targeted contract, then archive and verify JVM mapping and native symbols.",
+  "successCriteria": [
+    "The user or release outcome, environment, version, and acceptance threshold are explicit.",
+    "Evidence connects the observed cost or failure to the responsible mechanism.",
+    "Correctness, failure recovery, regression protection, ownership, and rollout decisions are documented."
+  ],
+  "hints": [
+    "Reduce the problem to one representative journey before widening the test matrix.",
+    "Record raw evidence and compare one controlled change rather than relying on intuition."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "android { buildTypes.release {\n isMinifyEnabled=true; isShrinkResources=true\n proguardFiles(getDefaultProguardFile(\"proguard-android-optimize.txt\"),\"proguard-rules.pro\")\n} }"
+  },
+  "solutionOutline": [
+    "Define the contract and capture a representative baseline or failure reproduction.",
+    "Implement the smallest safe change, verify success and failure paths, then add an owned regression guard."
+  ],
+  "verification": [
+    "Repeat the scenario under controlled conditions and retain the evidence with version context.",
+    "Exercise one adverse path and confirm the documented recovery or roll-forward action."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

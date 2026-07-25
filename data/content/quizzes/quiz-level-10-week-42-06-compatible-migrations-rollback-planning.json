@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-06-compatible-migrations-rollback-planning",
+  "title": "Backwards-Compatible Migrations and Rollback Planning Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-06-compatible-migrations-rollback-planning"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-06-compatible-migrations-rollback-planning-decision",
+      "prompt": "Which approach best applies backwards-compatible migrations and rollback planning?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Maintain overlapping readable contracts through adoption and rehearse recovery before irreversible contraction.",
+        "Use destructive fallback",
+        "Remove old server fields immediately",
+        "Assume rollback installs an older version"
+      ],
+      "answer": "Maintain overlapping readable contracts through adoption and rehearse recovery before irreversible contraction.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning"
+    },
+    {
+      "id": "q-level-10-week-42-06-compatible-migrations-rollback-planning-truth",
+      "prompt": "A database migration tested from the immediately previous version covers every supported user upgrade path.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Dropping or reinterpreting a field in the same release that introduces its replacement breaks old clients still active during staged rollout.",
+      "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning"
+    },
+    {
+      "id": "q-level-10-week-42-06-compatible-migrations-rollback-planning-recall",
+      "prompt": "Why is mobile rollback often a roll-forward hotfix?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Installed version codes and irreversible local/server changes can prevent simply downgrading users to an older binary.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

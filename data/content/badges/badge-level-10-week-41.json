@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-10-week-41",
+  "title": "Week 41 Startup Optimiser",
+  "description": "Awarded for completing the Week 41 startup performance and profiles checkpoint with representative evidence.",
+  "categoryId": "level-10-performance-reliability-observability",
+  "icon": "performance-week-41",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-10-week-41-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 450,
+  "rarity": "rare",
+  "version": "0.13.0"
+}

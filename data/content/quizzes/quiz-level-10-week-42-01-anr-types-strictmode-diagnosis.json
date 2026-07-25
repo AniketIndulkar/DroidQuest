@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-42-01-anr-types-strictmode-diagnosis",
+  "title": "ANR Types, StrictMode, and Diagnosis Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-42-01-anr-types-strictmode-diagnosis"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-42-01-anr-types-strictmode-diagnosis-decision",
+      "prompt": "Which approach best applies anr types, strictmode, and diagnosis?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Classify the ANR, reconstruct the causal thread dependency and remove blocking from the responsiveness path.",
+        "Trust one late stack blindly",
+        "Increase sleep timeouts",
+        "Use StrictMode as production recovery"
+      ],
+      "answer": "Classify the ANR, reconstruct the causal thread dependency and remove blocking from the responsiveness path.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis"
+    },
+    {
+      "id": "q-level-10-week-42-01-anr-types-strictmode-diagnosis-truth",
+      "prompt": "Every ANR report whose main stack shows nativePollOnce proves the main thread was healthy throughout the event.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Moving disk work to a coroutine and calling runBlocking on the main thread preserves the blocking dependency and can still trigger the same ANR.",
+      "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis"
+    },
+    {
+      "id": "q-level-10-week-42-01-anr-types-strictmode-diagnosis-recall",
+      "prompt": "Why inspect other threads for an ANR?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "The main thread may be waiting on a lock, binder or worker whose stack reveals the actual causal dependency.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

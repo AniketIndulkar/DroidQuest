@@ -1,0 +1,210 @@
+{
+  "id": "level-10-week-41-03-app-startup-lazy-di-initialization",
+  "title": "App Startup, Lazy Initialisation, and DI Cost",
+  "categoryId": "level-10-performance-reliability-observability",
+  "week": 41,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-10-week-41-02-startup-critical-path-providers-main-thread"
+  ],
+  "tags": [
+    "performance",
+    "app-startup",
+    "dependency-injection"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand app startup, lazy initialisation, and di cost as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Production Android teams need to locate user-visible cost and failure, improve the responsible path, and prevent regressions without hiding symptoms.",
+      "outcome": "You can explain, implement, test, and operate app startup, lazy initialisation, and di cost with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Jetpack App Startup consolidates discoverable initializers under one provider and allows explicit dependencies, but it does not make initialization free or asynchronous. Use it when components truly need application startup and dependency ordering. Disable automatic discovery for on-demand components and initialize them at the owning feature boundary. Keep create methods short, deterministic and main-thread appropriate. Avoid using App Startup as a service locator or dumping ground for every SDK."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dependency-injection containers can create large eager graphs through singleton constructors, multibindings and startup entry points. Providers/Lazy delay construction only if nothing requests them eagerly. Measure object graph creation and class loading; split critical dependencies from feature graphs and move I/O out of constructors. Lazy initialisation needs concurrency-safe single creation, failure/retry semantics and account/process ownership. Avoid first-use latency surprises by prewarming only evidence-backed paths off the user critical path."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "class LoggingInitializer:Initializer<Logger>{\n override fun create(context:Context)=Logger.minimal(context)\n override fun dependencies()=emptyList<Class<out Initializer<*>>>()\n}",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Test initializer dependency order, disabled discovery, multi-process behaviour, process recreation and failure. Trace before/after TTID, TTFD and first feature use. Document each startup initializer’s owner, cost budget, dependency and removal/defer decision. Library authors should not impose expensive automatic startup without configuration. The optimum is not zero startup work; it is the smallest correct set needed to render and accept the first intended action."
+            },
+            {
+              "type": "paragraph",
+              "text": "Performance and reliability work is an evidence loop, not a collection of folklore fixes. Start from a user-visible outcome and a representative environment, record version and device context, capture the smallest signal that can confirm or reject a hypothesis, and change one important variable at a time. Separate laboratory measurements from field health because each answers different questions. Keep correctness, privacy, accessibility, battery cost, compatibility and failure recovery in the acceptance criteria. Automate a stable regression guard only after the metric and scenario are trustworthy. Document ownership, thresholds, rollout gates and rollback or roll-forward actions so the result survives team and tool changes. Preserve the raw evidence and decision record so another engineer can reproduce the conclusion, challenge the threshold, and distinguish a genuine regression from device, workload, or environment noise."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Wrapping an expensive SDK in App Startup centralises it but still executes the cost on the application startup path."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "App Startup Library",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/libraries/app-startup",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "App Startup Best Practices",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/topic/performance/appstartup/best-practices",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect App Startup, Lazy Initialisation, and DI Cost",
+      "language": "kotlin",
+      "code": "class LoggingInitializer:Initializer<Logger>{\n override fun create(context:Context)=Logger.minimal(context)\n override fun dependencies()=emptyList<Class<out Initializer<*>>>()\n}",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Wrapping an expensive SDK in App Startup centralises it but still executes the cost on the application startup path.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Inventory App Startup and DI graph work, defer one feature graph safely and compare startup plus first-use latency.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What question determines whether an initializer belongs at app startup?",
+        "answer": "Must this work complete before the first meaningful UI/action, or can its owning feature initialise it later?"
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-10-week-41-03-app-startup-lazy-di-initialization",
+  "challengeId": "challenge-level-10-week-41-03-app-startup-lazy-di-initialization",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind App Startup, Lazy Initialisation, and DI Cost.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://developer.android.com/topic/libraries/app-startup",
+    "https://developer.android.com/topic/performance/appstartup/best-practices"
+  ],
+  "version": "0.13.0"
+}

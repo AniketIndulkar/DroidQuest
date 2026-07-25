@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "title": "Memory Allocations, Leaks, and Bitmap Pressure Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-03-memory-allocations-leaks-bitmaps-decision",
+      "prompt": "Which approach best applies memory allocations, leaks, and bitmap pressure?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Find the ownership or allocation mechanism and prove bounded memory across repeated realistic lifecycles.",
+        "Call System.gc after every screen",
+        "Use weak references everywhere",
+        "Judge leaks from one large object"
+      ],
+      "answer": "Find the ownership or allocation mechanism and prove bounded memory across repeated realistic lifecycles.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+    },
+    {
+      "id": "q-level-10-week-40-03-memory-allocations-leaks-bitmaps-truth",
+      "prompt": "A large object in a heap dump is necessarily a memory leak.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Replacing a strong reference with WeakReference without fixing ownership hides the lifetime contract and can cause data to disappear unpredictably.",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+    },
+    {
+      "id": "q-level-10-week-40-03-memory-allocations-leaks-bitmaps-recall",
+      "prompt": "What evidence proves a leak?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "An object remains reachable through an unintended retaining path after its useful owner lifecycle has ended.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

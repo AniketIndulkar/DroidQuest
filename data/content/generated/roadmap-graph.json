@@ -1,6 +1,6 @@
 {
   "id": "droidquest-roadmap-graph",
-  "curriculumVersion": "0.12.0",
+  "curriculumVersion": "0.13.0",
   "nodes": [
     {
       "id": "node-level-01-boss",
@@ -3996,6 +3996,23 @@
       }
     },
     {
+      "id": "node-level-09-boss",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Level 9 Boss: Trusted Android Release Pipeline",
+      "type": "boss",
+      "status": "available",
+      "quizId": "quiz-level-09-checkpoint",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-06-convention-plugin-release-capstone"
+      ],
+      "rewards": {
+        "xp": 900,
+        "stars": 5
+      }
+    },
+    {
       "id": "node-level-09-week-35-01-gradle-lifecycle-task-dag",
       "categoryId": "level-09-gradle-build-cicd",
       "title": "Gradle Lifecycle and the Task DAG",
@@ -4472,31 +4489,474 @@
       }
     },
     {
-      "id": "node-level-09-week-39-preview",
+      "id": "node-level-09-week-39-01-signed-aab-artifact-identity",
       "categoryId": "level-09-gradle-build-cicd",
-      "title": "Week 39: Release Engineering, CI/CD, and Convention Plugin Capstone",
+      "title": "Signed App Bundles and Artifact Identity",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-38-checkpoint"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "R8, Resource Shrinking, Rules, Mapping, and Symbols",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-01-signed-aab-artifact-identity"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Release Tracks, Staged Rollout, and Rollback",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-02-r8-shrinking-rules-release-symbols"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-09-week-39-04-github-actions-android-pipeline-dag",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "GitHub Actions Android Pipeline DAG",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-04-github-actions-android-pipeline-dag",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-03-release-tracks-staged-rollout-rollback"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-09-week-39-05-cicd-security-oidc-attestations",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "CI/CD Security, OIDC, and Artifact Attestations",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-04-github-actions-android-pipeline-dag"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-09-week-39-06-convention-plugin-release-capstone",
+      "categoryId": "level-09-gradle-build-cicd",
+      "title": "Convention Plugin and Release Pipeline Capstone",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-week-39-05-cicd-security-oidc-attestations"
+      ],
+      "rewards": {
+        "xp": 90,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-01-performance-investigation-representative-evidence",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Performance Investigation from User Impact to Evidence",
+      "type": "start",
+      "status": "available",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-09-boss"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-02-cpu-perfetto-system-traces",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "CPU Profiler, Perfetto, and Trace Interpretation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-01-performance-investigation-representative-evidence"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Memory Allocations, Leaks, and Bitmap Pressure",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-02-cpu-perfetto-system-traces"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Frame Timing, Jank, and Compose Recomposition",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-03-memory-allocations-leaks-bitmaps"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-05-battery-network-efficiency",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Battery and Network Efficiency",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-04-frame-timing-jank-compose-recomposition"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-06-application-size-delivery-analysis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Application Size and Delivery Analysis",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-05-battery-network-efficiency"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-40-checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Week 40 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-10-week-40-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-06-application-size-delivery-analysis"
+      ],
+      "rewards": {
+        "xp": 300,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Cold, Warm, and Hot Startup with TTID and TTFD",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-40-checkpoint"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Startup Critical Path, Providers, and Main-Thread Blocking",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-03-app-startup-lazy-di-initialization",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "App Startup, Lazy Initialisation, and DI Cost",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-02-startup-critical-path-providers-main-thread"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-04-macrobenchmark-startup-measurement",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Macrobenchmark Startup Measurement",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-03-app-startup-lazy-di-initialization"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-05-baseline-profiles-critical-journeys",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Baseline Profiles for Critical User Journeys",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-04-macrobenchmark-startup-measurement"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-06-startup-profiles-dex-layout-release",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Startup Profiles, DEX Layout, and Release Verification",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-05-baseline-profiles-critical-journeys"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-41-checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Week 41 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-10-week-41-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-06-startup-profiles-dex-layout-release"
+      ],
+      "rewards": {
+        "xp": 300,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "ANR Types, StrictMode, and Diagnosis",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-41-checkpoint"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-02-managed-native-crashes-exit-info",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Managed and Native Crash Diagnosis with Exit Information",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-02-managed-native-crashes-exit-info",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-01-anr-types-strictmode-diagnosis"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-03-oom-low-memory-process-death",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "OOM, Low-Memory Kills, and Process Recovery",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-03-oom-low-memory-process-death",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-02-managed-native-crashes-exit-info"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Retry Storms, Circuit Breakers, and Rate Limits",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-03-oom-low-memory-process-death"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Feature Flags, Kill Switches, and Safe Operation",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-06-compatible-migrations-rollback-planning",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Backwards-Compatible Migrations and Rollback Planning",
+      "type": "lesson",
+      "status": "available",
+      "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+      ],
+      "rewards": {
+        "xp": 75,
+        "stars": 3
+      }
+    },
+    {
+      "id": "node-level-10-week-42-checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Week 42 Checkpoint",
+      "type": "checkpoint",
+      "status": "available",
+      "quizId": "quiz-level-10-week-42-checkpoint",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 0,
+      "unlockPrerequisites": [
+        "node-level-10-week-42-06-compatible-migrations-rollback-planning"
+      ],
+      "rewards": {
+        "xp": 300,
+        "stars": 4
+      }
+    },
+    {
+      "id": "node-level-10-week-43-preview",
+      "categoryId": "level-10-performance-reliability-observability",
+      "title": "Week 43: Observability, Release Health, and Performance Capstone",
       "type": "level_preview",
       "status": "planned",
       "difficulty": "expert",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-09-week-38-checkpoint"
-      ],
-      "rewards": {
-        "xp": 0,
-        "stars": 0
-      }
-    },
-    {
-      "id": "node-level-10-preview",
-      "categoryId": "level-10-performance-reliability-observability",
-      "title": "Level 10: Performance, Reliability, and Observability",
-      "type": "level_preview",
-      "status": "planned",
-      "difficulty": "advanced",
-      "estimatedLearningMinutes": 0,
-      "unlockPrerequisites": [
-        "node-level-09-week-39-preview"
+        "node-level-10-week-42-checkpoint"
       ],
       "rewards": {
         "xp": 0,
@@ -4512,7 +4972,7 @@
       "difficulty": "expert",
       "estimatedLearningMinutes": 0,
       "unlockPrerequisites": [
-        "node-level-10-preview"
+        "node-level-10-week-43-preview"
       ],
       "rewards": {
         "xp": 0,
@@ -5713,6 +6173,11 @@
       "kind": "prerequisite"
     },
     {
+      "from": "node-level-09-boss",
+      "to": "node-level-10-week-40-01-performance-investigation-representative-evidence",
+      "kind": "prerequisite"
+    },
+    {
       "from": "node-level-09-week-35-01-gradle-lifecycle-task-dag",
       "to": "node-level-09-week-35-02-task-registration-dependencies-ordering",
       "kind": "prerequisite"
@@ -5849,16 +6314,146 @@
     },
     {
       "from": "node-level-09-week-38-checkpoint",
-      "to": "node-level-09-week-39-preview",
+      "to": "node-level-09-week-39-01-signed-aab-artifact-identity",
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-09-week-39-preview",
-      "to": "node-level-10-preview",
+      "from": "node-level-09-week-39-01-signed-aab-artifact-identity",
+      "to": "node-level-09-week-39-02-r8-shrinking-rules-release-symbols",
       "kind": "prerequisite"
     },
     {
-      "from": "node-level-10-preview",
+      "from": "node-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "to": "node-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "to": "node-level-09-week-39-04-github-actions-android-pipeline-dag",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-09-week-39-04-github-actions-android-pipeline-dag",
+      "to": "node-level-09-week-39-05-cicd-security-oidc-attestations",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-09-week-39-05-cicd-security-oidc-attestations",
+      "to": "node-level-09-week-39-06-convention-plugin-release-capstone",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-09-week-39-06-convention-plugin-release-capstone",
+      "to": "node-level-09-boss",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-01-performance-investigation-representative-evidence",
+      "to": "node-level-10-week-40-02-cpu-perfetto-system-traces",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-02-cpu-perfetto-system-traces",
+      "to": "node-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "to": "node-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "to": "node-level-10-week-40-05-battery-network-efficiency",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-05-battery-network-efficiency",
+      "to": "node-level-10-week-40-06-application-size-delivery-analysis",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-06-application-size-delivery-analysis",
+      "to": "node-level-10-week-40-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-40-checkpoint",
+      "to": "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "to": "node-level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "to": "node-level-10-week-41-03-app-startup-lazy-di-initialization",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-03-app-startup-lazy-di-initialization",
+      "to": "node-level-10-week-41-04-macrobenchmark-startup-measurement",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-04-macrobenchmark-startup-measurement",
+      "to": "node-level-10-week-41-05-baseline-profiles-critical-journeys",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-05-baseline-profiles-critical-journeys",
+      "to": "node-level-10-week-41-06-startup-profiles-dex-layout-release",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-06-startup-profiles-dex-layout-release",
+      "to": "node-level-10-week-41-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-41-checkpoint",
+      "to": "node-level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "to": "node-level-10-week-42-02-managed-native-crashes-exit-info",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-02-managed-native-crashes-exit-info",
+      "to": "node-level-10-week-42-03-oom-low-memory-process-death",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-03-oom-low-memory-process-death",
+      "to": "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "to": "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "to": "node-level-10-week-42-06-compatible-migrations-rollback-planning",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-06-compatible-migrations-rollback-planning",
+      "to": "node-level-10-week-42-checkpoint",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-42-checkpoint",
+      "to": "node-level-10-week-43-preview",
+      "kind": "prerequisite"
+    },
+    {
+      "from": "node-level-10-week-43-preview",
       "to": "node-level-11-preview",
       "kind": "prerequisite"
     },
@@ -6024,9 +6619,6 @@
     ],
     "node-level-02-boss": [
       "node-level-03-week-09-01-compose-mental-model"
-    ],
-    "node-level-10-preview": [
-      "node-level-11-preview"
     ],
     "node-level-11-preview": [
       "node-level-12-preview"
@@ -6663,10 +7255,94 @@
       "node-level-09-week-38-checkpoint"
     ],
     "node-level-09-week-38-checkpoint": [
-      "node-level-09-week-39-preview"
+      "node-level-09-week-39-01-signed-aab-artifact-identity"
     ],
-    "node-level-09-week-39-preview": [
-      "node-level-10-preview"
+    "node-level-09-week-39-01-signed-aab-artifact-identity": [
+      "node-level-09-week-39-02-r8-shrinking-rules-release-symbols"
+    ],
+    "node-level-09-week-39-02-r8-shrinking-rules-release-symbols": [
+      "node-level-09-week-39-03-release-tracks-staged-rollout-rollback"
+    ],
+    "node-level-09-week-39-03-release-tracks-staged-rollout-rollback": [
+      "node-level-09-week-39-04-github-actions-android-pipeline-dag"
+    ],
+    "node-level-09-week-39-04-github-actions-android-pipeline-dag": [
+      "node-level-09-week-39-05-cicd-security-oidc-attestations"
+    ],
+    "node-level-09-week-39-05-cicd-security-oidc-attestations": [
+      "node-level-09-week-39-06-convention-plugin-release-capstone"
+    ],
+    "node-level-09-week-39-06-convention-plugin-release-capstone": [
+      "node-level-09-boss"
+    ],
+    "node-level-09-boss": [
+      "node-level-10-week-40-01-performance-investigation-representative-evidence"
+    ],
+    "node-level-10-week-40-01-performance-investigation-representative-evidence": [
+      "node-level-10-week-40-02-cpu-perfetto-system-traces"
+    ],
+    "node-level-10-week-40-02-cpu-perfetto-system-traces": [
+      "node-level-10-week-40-03-memory-allocations-leaks-bitmaps"
+    ],
+    "node-level-10-week-40-03-memory-allocations-leaks-bitmaps": [
+      "node-level-10-week-40-04-frame-timing-jank-compose-recomposition"
+    ],
+    "node-level-10-week-40-04-frame-timing-jank-compose-recomposition": [
+      "node-level-10-week-40-05-battery-network-efficiency"
+    ],
+    "node-level-10-week-40-05-battery-network-efficiency": [
+      "node-level-10-week-40-06-application-size-delivery-analysis"
+    ],
+    "node-level-10-week-40-06-application-size-delivery-analysis": [
+      "node-level-10-week-40-checkpoint"
+    ],
+    "node-level-10-week-40-checkpoint": [
+      "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+    ],
+    "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd": [
+      "node-level-10-week-41-02-startup-critical-path-providers-main-thread"
+    ],
+    "node-level-10-week-41-02-startup-critical-path-providers-main-thread": [
+      "node-level-10-week-41-03-app-startup-lazy-di-initialization"
+    ],
+    "node-level-10-week-41-03-app-startup-lazy-di-initialization": [
+      "node-level-10-week-41-04-macrobenchmark-startup-measurement"
+    ],
+    "node-level-10-week-41-04-macrobenchmark-startup-measurement": [
+      "node-level-10-week-41-05-baseline-profiles-critical-journeys"
+    ],
+    "node-level-10-week-41-05-baseline-profiles-critical-journeys": [
+      "node-level-10-week-41-06-startup-profiles-dex-layout-release"
+    ],
+    "node-level-10-week-41-06-startup-profiles-dex-layout-release": [
+      "node-level-10-week-41-checkpoint"
+    ],
+    "node-level-10-week-41-checkpoint": [
+      "node-level-10-week-42-01-anr-types-strictmode-diagnosis"
+    ],
+    "node-level-10-week-42-01-anr-types-strictmode-diagnosis": [
+      "node-level-10-week-42-02-managed-native-crashes-exit-info"
+    ],
+    "node-level-10-week-42-02-managed-native-crashes-exit-info": [
+      "node-level-10-week-42-03-oom-low-memory-process-death"
+    ],
+    "node-level-10-week-42-03-oom-low-memory-process-death": [
+      "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+    ],
+    "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits": [
+      "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+    ],
+    "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation": [
+      "node-level-10-week-42-06-compatible-migrations-rollback-planning"
+    ],
+    "node-level-10-week-42-06-compatible-migrations-rollback-planning": [
+      "node-level-10-week-42-checkpoint"
+    ],
+    "node-level-10-week-42-checkpoint": [
+      "node-level-10-week-43-preview"
+    ],
+    "node-level-10-week-43-preview": [
+      "node-level-11-preview"
     ]
   },
   "incoming": {
@@ -6824,11 +7500,8 @@
     "node-level-02-boss": [
       "node-level-02-week-08-checkpoint"
     ],
-    "node-level-10-preview": [
-      "node-level-09-week-39-preview"
-    ],
     "node-level-11-preview": [
-      "node-level-10-preview"
+      "node-level-10-week-43-preview"
     ],
     "node-level-12-preview": [
       "node-level-11-preview"
@@ -7466,8 +8139,92 @@
     "node-level-09-week-38-checkpoint": [
       "node-level-09-week-38-06-abi-dependency-analysis-ci-cache"
     ],
-    "node-level-09-week-39-preview": [
+    "node-level-09-week-39-01-signed-aab-artifact-identity": [
       "node-level-09-week-38-checkpoint"
+    ],
+    "node-level-09-week-39-02-r8-shrinking-rules-release-symbols": [
+      "node-level-09-week-39-01-signed-aab-artifact-identity"
+    ],
+    "node-level-09-week-39-03-release-tracks-staged-rollout-rollback": [
+      "node-level-09-week-39-02-r8-shrinking-rules-release-symbols"
+    ],
+    "node-level-09-week-39-04-github-actions-android-pipeline-dag": [
+      "node-level-09-week-39-03-release-tracks-staged-rollout-rollback"
+    ],
+    "node-level-09-week-39-05-cicd-security-oidc-attestations": [
+      "node-level-09-week-39-04-github-actions-android-pipeline-dag"
+    ],
+    "node-level-09-week-39-06-convention-plugin-release-capstone": [
+      "node-level-09-week-39-05-cicd-security-oidc-attestations"
+    ],
+    "node-level-09-boss": [
+      "node-level-09-week-39-06-convention-plugin-release-capstone"
+    ],
+    "node-level-10-week-40-01-performance-investigation-representative-evidence": [
+      "node-level-09-boss"
+    ],
+    "node-level-10-week-40-02-cpu-perfetto-system-traces": [
+      "node-level-10-week-40-01-performance-investigation-representative-evidence"
+    ],
+    "node-level-10-week-40-03-memory-allocations-leaks-bitmaps": [
+      "node-level-10-week-40-02-cpu-perfetto-system-traces"
+    ],
+    "node-level-10-week-40-04-frame-timing-jank-compose-recomposition": [
+      "node-level-10-week-40-03-memory-allocations-leaks-bitmaps"
+    ],
+    "node-level-10-week-40-05-battery-network-efficiency": [
+      "node-level-10-week-40-04-frame-timing-jank-compose-recomposition"
+    ],
+    "node-level-10-week-40-06-application-size-delivery-analysis": [
+      "node-level-10-week-40-05-battery-network-efficiency"
+    ],
+    "node-level-10-week-40-checkpoint": [
+      "node-level-10-week-40-06-application-size-delivery-analysis"
+    ],
+    "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd": [
+      "node-level-10-week-40-checkpoint"
+    ],
+    "node-level-10-week-41-02-startup-critical-path-providers-main-thread": [
+      "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+    ],
+    "node-level-10-week-41-03-app-startup-lazy-di-initialization": [
+      "node-level-10-week-41-02-startup-critical-path-providers-main-thread"
+    ],
+    "node-level-10-week-41-04-macrobenchmark-startup-measurement": [
+      "node-level-10-week-41-03-app-startup-lazy-di-initialization"
+    ],
+    "node-level-10-week-41-05-baseline-profiles-critical-journeys": [
+      "node-level-10-week-41-04-macrobenchmark-startup-measurement"
+    ],
+    "node-level-10-week-41-06-startup-profiles-dex-layout-release": [
+      "node-level-10-week-41-05-baseline-profiles-critical-journeys"
+    ],
+    "node-level-10-week-41-checkpoint": [
+      "node-level-10-week-41-06-startup-profiles-dex-layout-release"
+    ],
+    "node-level-10-week-42-01-anr-types-strictmode-diagnosis": [
+      "node-level-10-week-41-checkpoint"
+    ],
+    "node-level-10-week-42-02-managed-native-crashes-exit-info": [
+      "node-level-10-week-42-01-anr-types-strictmode-diagnosis"
+    ],
+    "node-level-10-week-42-03-oom-low-memory-process-death": [
+      "node-level-10-week-42-02-managed-native-crashes-exit-info"
+    ],
+    "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits": [
+      "node-level-10-week-42-03-oom-low-memory-process-death"
+    ],
+    "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation": [
+      "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+    ],
+    "node-level-10-week-42-06-compatible-migrations-rollback-planning": [
+      "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+    ],
+    "node-level-10-week-42-checkpoint": [
+      "node-level-10-week-42-06-compatible-migrations-rollback-planning"
+    ],
+    "node-level-10-week-43-preview": [
+      "node-level-10-week-42-checkpoint"
     ]
   },
   "topologicalOrder": [
@@ -7734,8 +8491,35 @@
     "node-level-09-week-38-05-ksp-incremental-processing",
     "node-level-09-week-38-06-abi-dependency-analysis-ci-cache",
     "node-level-09-week-38-checkpoint",
-    "node-level-09-week-39-preview",
-    "node-level-10-preview",
+    "node-level-09-week-39-01-signed-aab-artifact-identity",
+    "node-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+    "node-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+    "node-level-09-week-39-04-github-actions-android-pipeline-dag",
+    "node-level-09-week-39-05-cicd-security-oidc-attestations",
+    "node-level-09-week-39-06-convention-plugin-release-capstone",
+    "node-level-09-boss",
+    "node-level-10-week-40-01-performance-investigation-representative-evidence",
+    "node-level-10-week-40-02-cpu-perfetto-system-traces",
+    "node-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+    "node-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+    "node-level-10-week-40-05-battery-network-efficiency",
+    "node-level-10-week-40-06-application-size-delivery-analysis",
+    "node-level-10-week-40-checkpoint",
+    "node-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+    "node-level-10-week-41-02-startup-critical-path-providers-main-thread",
+    "node-level-10-week-41-03-app-startup-lazy-di-initialization",
+    "node-level-10-week-41-04-macrobenchmark-startup-measurement",
+    "node-level-10-week-41-05-baseline-profiles-critical-journeys",
+    "node-level-10-week-41-06-startup-profiles-dex-layout-release",
+    "node-level-10-week-41-checkpoint",
+    "node-level-10-week-42-01-anr-types-strictmode-diagnosis",
+    "node-level-10-week-42-02-managed-native-crashes-exit-info",
+    "node-level-10-week-42-03-oom-low-memory-process-death",
+    "node-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+    "node-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+    "node-level-10-week-42-06-compatible-migrations-rollback-planning",
+    "node-level-10-week-42-checkpoint",
+    "node-level-10-week-43-preview",
     "node-level-11-preview",
     "node-level-12-preview"
   ],
@@ -7880,20 +8664,25 @@
         "node-level-09-week-35-checkpoint",
         "node-level-09-week-36-checkpoint",
         "node-level-09-week-37-checkpoint",
-        "node-level-09-week-38-checkpoint"
+        "node-level-09-week-38-checkpoint",
+        "node-level-09-boss"
       ],
-      "previewNodeIds": [
-        "node-level-09-week-39-preview"
-      ]
+      "previewNodeIds": []
     },
     {
       "id": "level-10-performance-reliability-observability",
       "title": "Level 10: Performance, Reliability, and Observability",
       "order": 10,
-      "startNodeIds": [],
-      "checkpointNodeIds": [],
+      "startNodeIds": [
+        "node-level-10-week-40-01-performance-investigation-representative-evidence"
+      ],
+      "checkpointNodeIds": [
+        "node-level-10-week-40-checkpoint",
+        "node-level-10-week-41-checkpoint",
+        "node-level-10-week-42-checkpoint"
+      ],
       "previewNodeIds": [
-        "node-level-10-preview"
+        "node-level-10-week-43-preview"
       ]
     },
     {

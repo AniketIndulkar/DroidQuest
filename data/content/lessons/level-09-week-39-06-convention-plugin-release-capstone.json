@@ -1,0 +1,218 @@
+{
+  "id": "level-09-week-39-06-convention-plugin-release-capstone",
+  "title": "Convention Plugin and Release Pipeline Capstone",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 39,
+  "difficulty": "expert",
+  "prerequisites": [
+    "level-09-week-39-05-cicd-security-oidc-attestations"
+  ],
+  "tags": [
+    "gradle",
+    "ci-cd",
+    "capstone"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand convention plugin and release pipeline capstone as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Teams need releases whose exact bytes, approvals, credentials, promotion history, diagnostics, and recovery actions remain trustworthy under pressure.",
+      "outcome": "You can explain, implement, test, and operate convention plugin and release pipeline capstone with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Complete the included build begun in Week 37 with application, library, Compose, testing, coverage and static-analysis convention plugins. Add release-specific application capability without leaking signing into libraries. Each plugin has a stable ID, typed minimal extension, compatibility matrix and TestKit fixtures. Custom generation declares deterministic inputs/outputs and passes relocation, cache and configuration-cache tests. Module scripts should state capabilities and genuine product differences rather than copied mechanics."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Connect the plugin suite to a GitHub Actions PR/main/tag DAG. Validate wrapper and dependencies, run quality evidence, build once, record release metadata, sign through protected authority, verify digest/certificate, upload mappings and symbols, attest provenance, distribute internally and smoke test. Promotion uses environment protections and the same artifact. Forks cannot write caches or access credentials. Include controlled dependency/plugin upgrade and signing/upload-key recovery procedures."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "plugins { id(\"droidquest.android.application\"); id(\"droidquest.quality\"); id(\"droidquest.release\") }\n// TestKit verifies conventions; protected CI owns credentials and promotion.",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Deliver architecture, plugin sources, fixtures, CI workflow, release manifest, SBOM, attestation verification, cache trust policy, performance baseline and rollback rehearsal. Demonstrate one failing convention test, stale custom-task prevention, configuration-cache reuse, remote-cache restoration, minified crash retracing and halted staged rollout. Week 39 and Level 9 are complete only when build correctness, speed, security and release operations form one tested system."
+            },
+            {
+              "type": "paragraph",
+              "text": "Release engineering turns source into a traceable product under explicit trust and compatibility boundaries. Treat build logic, credentials, artifacts, metadata, promotion controls and recovery procedures as one production system. Prefer immutable inputs, public typed APIs, least privilege, reproducible evidence and protected approval boundaries. Test the exact release variant and exercise failure paths before promotion. Record artifact identity, ownership, supported toolchains, health signals and rollback or roll-forward decisions. A pipeline is successful only when it produces the intended bytes, explains where they came from, prevents untrusted mutation and gives operators enough evidence to release or stop safely. Preserve the evidence and decision record so another engineer can reproduce the release, verify every promotion boundary, and distinguish an approved artifact from a merely successful build."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "A polished convention plugin project without real release-artifact verification, failure tests and protected promotion demonstrates configuration reuse but not build engineering."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Build and Test Java with Gradle",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/tutorials/build-and-test-code/java-with-gradle",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Convention Plugins",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Testing Build Logic with TestKit",
+          "publisher": "Gradle",
+          "resourceType": "official_docs",
+          "url": "https://docs.gradle.org/current/userguide/test_kit.html",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect Convention Plugin and Release Pipeline Capstone",
+      "language": "kotlin",
+      "code": "plugins { id(\"droidquest.android.application\"); id(\"droidquest.quality\"); id(\"droidquest.release\") }\n// TestKit verifies conventions; protected CI owns credentials and promotion.",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "A polished convention plugin project without real release-artifact verification, failure tests and protected promotion demonstrates configuration reuse but not build engineering.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Deliver the complete tested convention-plugin build and secure Android release pipeline, then rehearse cache poisoning, key reset and rollout halt scenarios.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What unifies the Level 9 capstone?",
+        "answer": "A versioned tested build platform that produces and promotes one traceable artifact under measured, least-privilege operational controls."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-39-06-convention-plugin-release-capstone",
+  "challengeId": "challenge-level-09-week-39-06-convention-plugin-release-capstone",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind Convention Plugin and Release Pipeline Capstone.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 90,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.github.com/en/actions/tutorials/build-and-test-code/java-with-gradle",
+    "https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html",
+    "https://docs.gradle.org/current/userguide/test_kit.html"
+  ],
+  "version": "0.13.0"
+}

@@ -1,0 +1,117 @@
+{
+  "id": "quiz-level-10-week-41-checkpoint",
+  "title": "Week 41: Startup Performance and Profiles Checkpoint",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+    "level-10-week-41-02-startup-critical-path-providers-main-thread",
+    "level-10-week-41-03-app-startup-lazy-di-initialization",
+    "level-10-week-41-04-macrobenchmark-startup-measurement",
+    "level-10-week-41-05-baseline-profiles-critical-journeys",
+    "level-10-week-41-06-startup-profiles-dex-layout-release"
+  ],
+  "kind": "week_checkpoint",
+  "difficulty": "advanced",
+  "passingScore": 0.8,
+  "questions": [
+    {
+      "id": "q-week-41-1-cold-warm-hot-startup-ttid-ttfd",
+      "prompt": "Checkpoint: What distinguishes TTFD from TTID?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "explanation": "TTID ends at first frame; TTFD represents the app-defined point when meaningful critical content is fully drawn and usable. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "options": [
+        "Measure explicit startup modes and signal full display only when meaningful content is usable.",
+        "Mix startup modes in one average",
+        "Measure debug builds",
+        "Report full display before content"
+      ],
+      "answer": "Measure explicit startup modes and signal full display only when meaningful content is usable."
+    },
+    {
+      "id": "q-week-41-2-startup-critical-path-providers-main-thread",
+      "prompt": "Select the two sound practices for startup critical path, providers, and main-thread blocking.",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "explanation": "Libraries can contribute providers and components that initialise before the Activity and are absent from the app’s source manifest. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "options": [
+        "Remove nonessential dependencies from the startup critical path rather than merely changing their thread.",
+        "Record representative evidence and an owned recovery action",
+        "Await background work on main",
+        "Use splash time as extra budget"
+      ],
+      "answer": [
+        "Remove nonessential dependencies from the startup critical path rather than merely changing their thread.",
+        "Record representative evidence and an owned recovery action"
+      ]
+    },
+    {
+      "id": "q-week-41-3-app-startup-lazy-di-initialization",
+      "prompt": "App Startup automatically moves every initializer off the main thread.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "explanation": "Must this work complete before the first meaningful UI/action, or can its owning feature initialise it later? This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization",
+      "answer": false
+    },
+    {
+      "id": "q-week-41-4-macrobenchmark-startup-measurement",
+      "prompt": "Complete the operational rule: Why is compilation mode part of the benchmark result?",
+      "type": "fill_blank",
+      "difficulty": "advanced",
+      "explanation": "ART compilation materially changes execution cost, so results with different modes are not directly comparable. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement",
+      "answer": "ART compilation materially changes execution cost, so results with different modes are not directly comparable.",
+      "acceptedAnswers": [
+        "ART compilation materially changes execution cost, so results with different modes are not directly comparable."
+      ]
+    },
+    {
+      "id": "q-week-41-5-baseline-profiles-critical-journeys",
+      "prompt": "Order the investigation steps for baseline profiles for critical user journeys.",
+      "type": "order_steps",
+      "difficulty": "advanced",
+      "explanation": "They ship with the release for first-launch benefit, while Cloud Profiles aggregate after real usage and arrive later. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys",
+      "options": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ],
+      "answer": [
+        "Name the user or release outcome",
+        "Capture representative evidence",
+        "Identify the responsible mechanism",
+        "Apply a controlled change",
+        "Verify and guard recovery"
+      ]
+    },
+    {
+      "id": "q-week-41-6-startup-profiles-dex-layout-release",
+      "prompt": "Match the review concern to its evidence for startup profiles, dex layout, and release verification.",
+      "type": "match_pairs",
+      "difficulty": "advanced",
+      "explanation": "Build-time DEX layout of startup code, while Baseline Profiles guide install-time ART precompilation. This applies the lesson's evidence and recovery model.",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release",
+      "options": [
+        "Outcome → journey and threshold",
+        "Mechanism → direct trace or artifact evidence",
+        "Safety → failure and compatibility tests"
+      ],
+      "answer": {
+        "Outcome": "journey and threshold",
+        "Mechanism": "direct trace or artifact evidence",
+        "Safety": "failure and compatibility tests"
+      }
+    }
+  ],
+  "rewards": {
+    "xp": 300,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

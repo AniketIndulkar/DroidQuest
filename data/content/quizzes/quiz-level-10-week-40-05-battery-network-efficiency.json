@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-40-05-battery-network-efficiency",
+  "title": "Battery and Network Efficiency Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-40-05-battery-network-efficiency"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-40-05-battery-network-efficiency-decision",
+      "prompt": "Which approach best applies battery and network efficiency?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Measure end-to-end work and coalesce deferrable CPU/network activity while preserving durable user intent.",
+        "Poll every minute",
+        "Retry without jitter",
+        "Assume NetworkCapabilities proves internet access"
+      ],
+      "answer": "Measure end-to-end work and coalesce deferrable CPU/network activity while preserving durable user intent.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency"
+    },
+    {
+      "id": "q-level-10-week-40-05-battery-network-efficiency-truth",
+      "prompt": "Fewer bytes always means lower battery use regardless of request count and timing.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Retrying every failed request immediately can keep CPU and radio active, amplify a service outage and drain battery without improving success.",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency"
+    },
+    {
+      "id": "q-level-10-week-40-05-battery-network-efficiency-recall",
+      "prompt": "Why can many tiny cellular requests cost more than one batch?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "Each request can incur scheduling, connection and radio high-power tail overhead.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

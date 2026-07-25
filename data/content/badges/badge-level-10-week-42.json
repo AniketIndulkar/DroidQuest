@@ -1,0 +1,15 @@
+{
+  "id": "badge-level-10-week-42",
+  "title": "Week 42 Reliability Operator",
+  "description": "Awarded for completing the Week 42 reliability engineering and safe recovery checkpoint with representative evidence.",
+  "categoryId": "level-10-performance-reliability-observability",
+  "icon": "performance-week-42",
+  "criteria": {
+    "type": "complete_checkpoint",
+    "targetId": "quiz-level-10-week-42-checkpoint",
+    "minimumScore": 0.8
+  },
+  "xp": 450,
+  "rarity": "rare",
+  "version": "0.13.0"
+}

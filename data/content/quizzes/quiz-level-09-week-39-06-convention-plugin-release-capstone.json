@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-39-06-convention-plugin-release-capstone",
+  "title": "Convention Plugin and Release Pipeline Capstone Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-39-06-convention-plugin-release-capstone"
+  ],
+  "kind": "lesson",
+  "difficulty": "expert",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-39-06-convention-plugin-release-capstone-decision",
+      "prompt": "Which approach best applies convention plugin and release pipeline capstone?",
+      "type": "single_choice",
+      "difficulty": "expert",
+      "options": [
+        "Integrate tested build capabilities with one verified, attested and safely promoted release artifact.",
+        "Focus only on DSL reduction",
+        "Rebuild at every promotion stage",
+        "Keep failure and recovery outside the project"
+      ],
+      "answer": "Integrate tested build capabilities with one verified, attested and safely promoted release artifact.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone"
+    },
+    {
+      "id": "q-level-09-week-39-06-convention-plugin-release-capstone-truth",
+      "prompt": "Passing convention-plugin unit tests alone proves the release pipeline is secure and reproducible.",
+      "type": "true_false",
+      "difficulty": "expert",
+      "answer": false,
+      "explanation": "A polished convention plugin project without real release-artifact verification, failure tests and protected promotion demonstrates configuration reuse but not build engineering.",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone"
+    },
+    {
+      "id": "q-level-09-week-39-06-convention-plugin-release-capstone-recall",
+      "prompt": "What unifies the Level 9 capstone?",
+      "type": "short_answer",
+      "difficulty": "expert",
+      "answer": "A versioned tested build platform that produces and promotes one traceable artifact under measured, least-privilege operational controls.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

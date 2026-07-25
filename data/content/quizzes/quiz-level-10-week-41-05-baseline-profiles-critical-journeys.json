@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-10-week-41-05-baseline-profiles-critical-journeys",
+  "title": "Baseline Profiles for Critical User Journeys Check",
+  "categoryId": "level-10-performance-reliability-observability",
+  "linkedLessonIds": [
+    "level-10-week-41-05-baseline-profiles-critical-journeys"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-10-week-41-05-baseline-profiles-critical-journeys-decision",
+      "prompt": "Which approach best applies baseline profiles for critical user journeys?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Profile representative critical paths and verify packaged, measured release benefit under controlled compilation.",
+        "Profile every test",
+        "Use profile presence as proof",
+        "Expect it to fix blocking I/O"
+      ],
+      "answer": "Profile representative critical paths and verify packaged, measured release benefit under controlled compilation.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys"
+    },
+    {
+      "id": "q-level-10-week-41-05-baseline-profiles-critical-journeys-truth",
+      "prompt": "Baseline Profiles only optimise app startup and cannot improve scrolling or navigation.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Adding every automated test journey to the profile can bloat compilation and profile maintenance without targeting frequent performance-sensitive paths.",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys"
+    },
+    {
+      "id": "q-level-10-week-41-05-baseline-profiles-critical-journeys-recall",
+      "prompt": "How do Baseline Profiles differ from Cloud Profiles?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "They ship with the release for first-launch benefit, while Cloud Profiles aggregate after real usage and arrive later.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

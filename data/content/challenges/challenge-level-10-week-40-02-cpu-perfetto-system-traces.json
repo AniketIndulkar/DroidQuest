@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-40-02-cpu-perfetto-system-traces",
+  "title": "Apply CPU Profiler, Perfetto, and Trace Interpretation",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Capture a Perfetto trace for a delayed interaction, annotate the causal thread timeline and verify one fix with a lower-overhead repeat.",
+  "successCriteria": [
+    "The user or release outcome, environment, version, and acceptance threshold are explicit.",
+    "Evidence connects the observed cost or failure to the responsible mechanism.",
+    "Correctness, failure recovery, regression protection, ownership, and rollout decisions are documented."
+  ],
+  "hints": [
+    "Reduce the problem to one representative journey before widening the test matrix.",
+    "Record raw evidence and compare one controlled change rather than relying on intuition."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "trace(\"load_home\") {\n repository.refreshIfNeeded()\n}\n// Inspect whether the slice runs, blocks, schedules binder work or waits for I/O."
+  },
+  "solutionOutline": [
+    "Define the contract and capture a representative baseline or failure reproduction.",
+    "Implement the smallest safe change, verify success and failure paths, then add an owned regression guard."
+  ],
+  "verification": [
+    "Repeat the scenario under controlled conditions and retain the evidence with version context.",
+    "Exercise one adverse path and confirm the documented recovery or roll-forward action."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

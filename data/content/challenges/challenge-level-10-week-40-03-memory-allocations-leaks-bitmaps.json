@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "title": "Apply Memory Allocations, Leaks, and Bitmap Pressure",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Reproduce and fix one lifecycle leak and one bitmap/allocation spike, documenting retaining paths, peak memory and repeated-journey evidence.",
+  "successCriteria": [
+    "The user or release outcome, environment, version, and acceptance threshold are explicit.",
+    "Evidence connects the observed cost or failure to the responsible mechanism.",
+    "Correctness, failure recovery, regression protection, ownership, and rollout decisions are documented."
+  ],
+  "hints": [
+    "Reduce the problem to one representative journey before widening the test matrix.",
+    "Record raw evidence and compare one controlled change rather than relying on intuition."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "class ScreenFragment:Fragment(){\n private var binding:ScreenBinding?=null\n override fun onDestroyView(){ binding=null; super.onDestroyView() }\n}"
+  },
+  "solutionOutline": [
+    "Define the contract and capture a representative baseline or failure reproduction.",
+    "Implement the smallest safe change, verify success and failure paths, then add an owned regression guard."
+  ],
+  "verification": [
+    "Repeat the scenario under controlled conditions and retain the evidence with version context.",
+    "Exercise one adverse path and confirm the documented recovery or roll-forward action."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

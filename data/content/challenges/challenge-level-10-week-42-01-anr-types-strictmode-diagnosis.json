@@ -1,0 +1,35 @@
+{
+  "id": "challenge-level-10-week-42-01-anr-types-strictmode-diagnosis",
+  "title": "Apply ANR Types, StrictMode, and Diagnosis",
+  "categoryId": "level-10-performance-reliability-observability",
+  "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis",
+  "difficulty": "advanced",
+  "estimatedMinutes": 60,
+  "prompt": "Diagnose an injected startup or lock-contention ANR using cluster evidence and Perfetto, then add StrictMode/regression and rollout monitoring.",
+  "successCriteria": [
+    "The user or release outcome, environment, version, and acceptance threshold are explicit.",
+    "Evidence connects the observed cost or failure to the responsible mechanism.",
+    "Correctness, failure recovery, regression protection, ownership, and rollout decisions are documented."
+  ],
+  "hints": [
+    "Reduce the problem to one representative journey before widening the test matrix.",
+    "Record raw evidence and compare one controlled change rather than relying on intuition."
+  ],
+  "starterCode": {
+    "language": "kotlin",
+    "code": "if(BuildConfig.DEBUG) StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectDiskReads().detectNetwork().penaltyLog().build())"
+  },
+  "solutionOutline": [
+    "Define the contract and capture a representative baseline or failure reproduction.",
+    "Implement the smallest safe change, verify success and failure paths, then add an owned regression guard."
+  ],
+  "verification": [
+    "Repeat the scenario under controlled conditions and retain the evidence with version context.",
+    "Exercise one adverse path and confirm the documented recovery or roll-forward action."
+  ],
+  "rewards": {
+    "xp": 125,
+    "stars": 4
+  },
+  "version": "0.13.0"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "quiz-level-09-week-39-05-cicd-security-oidc-attestations",
+  "title": "CI/CD Security, OIDC, and Artifact Attestations Check",
+  "categoryId": "level-09-gradle-build-cicd",
+  "linkedLessonIds": [
+    "level-09-week-39-05-cicd-security-oidc-attestations"
+  ],
+  "kind": "lesson",
+  "difficulty": "advanced",
+  "passingScore": 0.67,
+  "questions": [
+    {
+      "id": "q-level-09-week-39-05-cicd-security-oidc-attestations-decision",
+      "prompt": "Which approach best applies ci/cd security, oidc, and artifact attestations?",
+      "type": "single_choice",
+      "difficulty": "advanced",
+      "options": [
+        "Concentrate short-lived release authority in protected jobs and bind provenance to final artifact digests.",
+        "Expose environment secrets to forks",
+        "Pin actions to mutable tags only",
+        "Treat attestation as vulnerability proof"
+      ],
+      "answer": "Concentrate short-lived release authority in protected jobs and bind provenance to final artifact digests.",
+      "explanation": "This answer preserves the underlying platform or delivery contract while requiring representative evidence, explicit failure behaviour, and operational ownership.",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations"
+    },
+    {
+      "id": "q-level-09-week-39-05-cicd-security-oidc-attestations-truth",
+      "prompt": "GitHub id-token write grants repository contents write permission.",
+      "type": "true_false",
+      "difficulty": "advanced",
+      "answer": false,
+      "explanation": "Giving id-token write to all jobs and trusting only the repository name lets compromised or unintended workflows request powerful cloud identities.",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations"
+    },
+    {
+      "id": "q-level-09-week-39-05-cicd-security-oidc-attestations-recall",
+      "prompt": "What security property does OIDC improve over a stored cloud key?",
+      "type": "short_answer",
+      "difficulty": "advanced",
+      "answer": "It issues short-lived, claim-bound credentials without keeping a long-lived cloud secret in GitHub.",
+      "explanation": "The response identifies the mechanism that makes the decision reliable instead of relying on a convenient proxy.",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations"
+    }
+  ],
+  "rewards": {
+    "xp": 55,
+    "stars": 3
+  },
+  "version": "0.13.0"
+}

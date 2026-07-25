@@ -1,0 +1,218 @@
+{
+  "id": "level-09-week-39-05-cicd-security-oidc-attestations",
+  "title": "CI/CD Security, OIDC, and Artifact Attestations",
+  "categoryId": "level-09-gradle-build-cicd",
+  "week": 39,
+  "difficulty": "advanced",
+  "prerequisites": [
+    "level-09-week-39-04-github-actions-android-pipeline-dag"
+  ],
+  "tags": [
+    "ci-cd",
+    "security",
+    "oidc"
+  ],
+  "estimatedLearningMinutes": 10,
+  "revealStages": {
+    "scout": {
+      "purpose": "Understand ci/cd security, oidc, and artifact attestations as an engineering decision with measurable evidence and a safe operational boundary.",
+      "realWorldUse": "Teams need releases whose exact bytes, approvals, credentials, promotion history, diagnostics, and recovery actions remain trustworthy under pressure.",
+      "outcome": "You can explain, implement, test, and operate ci/cd security, oidc, and artifact attestations with explicit evidence."
+    },
+    "learn": {
+      "estimatedMinutes": 10,
+      "sections": [
+        {
+          "id": "mental-model",
+          "title": "Build the mental model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Set GitHub token permissions to the minimum per job: contents read by default, with write scopes only where required. Protect deployment environments with branch/tag policies, reviewers and no self-approval for sensitive releases. Fork pull requests execute untrusted code and must not receive write tokens, signing material or writable trusted caches. Pin third-party actions to immutable commits and review their source/update process because actions execute inside the job trust boundary."
+            },
+            {
+              "type": "flow",
+              "title": "Evidence-driven engineering loop",
+              "steps": [
+                {
+                  "id": "outcome",
+                  "label": "Name outcome",
+                  "detail": "Define the user-visible success or failure and its context."
+                },
+                {
+                  "id": "measure",
+                  "label": "Capture evidence",
+                  "detail": "Use a representative build, trace, profile, report, or incident record."
+                },
+                {
+                  "id": "explain",
+                  "label": "Find mechanism",
+                  "detail": "Connect the observation to the responsible platform or delivery contract."
+                },
+                {
+                  "id": "change",
+                  "label": "Change safely",
+                  "detail": "Apply the smallest controlled intervention with correctness constraints."
+                },
+                {
+                  "id": "guard",
+                  "label": "Guard and operate",
+                  "detail": "Add regression evidence, ownership, rollout gates, and recovery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": "Apply the model",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "OIDC lets a workflow request a short-lived identity token for a specific repository, ref, environment, workflow and audience instead of storing long-lived cloud credentials. Grant id-token write only to the deployment job; it permits token minting, not general repository write. Configure cloud trust claims narrowly and use protected environments. Keep signing keys in a managed signing service or Play workflow where possible, and mask/redact without assuming masking can undo a secret printed or encoded by hostile code."
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "permissions:\n  contents: read\n  id-token: write\n  attestations: write\n# Restrict these permissions to the protected release job.",
+              "caption": "A focused example whose production contract includes representative measurement, failure behaviour, and operational ownership."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verify and operate it",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Generate an SBOM and checksums for the final artifact, then create provenance/attestation bound to its digest. Verification proves the attestation and expected workflow identity, not that the source is vulnerability-free. Separate trusted builders and cache writers, scan dependencies, retain audit logs and rehearse credential/key rotation. Treat self-hosted runners as persistent infrastructure with isolation and cleanup responsibilities. Incident response must revoke authority, block promotion and identify all affected artifacts."
+            },
+            {
+              "type": "paragraph",
+              "text": "Release engineering turns source into a traceable product under explicit trust and compatibility boundaries. Treat build logic, credentials, artifacts, metadata, promotion controls and recovery procedures as one production system. Prefer immutable inputs, public typed APIs, least privilege, reproducible evidence and protected approval boundaries. Test the exact release variant and exercise failure paths before promotion. Record artifact identity, ownership, supported toolchains, health signals and rollback or roll-forward decisions. A pipeline is successful only when it produces the intended bytes, explains where they came from, prevents untrusted mutation and gives operators enough evidence to release or stop safely. Preserve the evidence and decision record so another engineer can reproduce the release, verify every promotion boundary, and distinguish an approved artifact from a merely successful build."
+            },
+            {
+              "type": "table",
+              "title": "Engineering review record",
+              "columns": [
+                "Concern",
+                "Required evidence"
+              ],
+              "rows": [
+                [
+                  "User outcome",
+                  "Named journey, environment, version, and success threshold"
+                ],
+                [
+                  "Mechanism",
+                  "Traceable cause rather than temporal correlation"
+                ],
+                [
+                  "Safety",
+                  "Correctness, privacy, compatibility, resource, and failure constraints"
+                ],
+                [
+                  "Operations",
+                  "Regression guard, owner, rollout gate, and recovery action"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warning",
+              "title": "Common trap",
+              "text": "Giving id-token write to all jobs and trusting only the repository name lets compromised or unintended workflows request powerful cloud identities."
+            }
+          ]
+        }
+      ],
+      "furtherReading": [
+        {
+          "title": "Security for GitHub Actions",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/how-tos/secure-your-work",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "OpenID Connect in GitHub Actions",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/reference/security/oidc",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        },
+        {
+          "title": "Artifact Attestations",
+          "publisher": "GitHub Docs",
+          "resourceType": "official_docs",
+          "url": "https://docs.github.com/en/actions/concepts/security/artifact-attestations",
+          "whyRead": "Use this primary reference to verify the platform contract, limitations, diagnostics, and current recommended practice behind the lesson."
+        }
+      ]
+    },
+    "inspect": {
+      "title": "Inspect CI/CD Security, OIDC, and Artifact Attestations",
+      "language": "kotlin",
+      "code": "permissions:\n  contents: read\n  id-token: write\n  attestations: write\n# Restrict these permissions to the protected release job.",
+      "walkthrough": [
+        "Identify the user-visible or release outcome and the exact context in which this fragment runs.",
+        "Trace the platform, build, data, scheduling, or resource contract that determines its behaviour.",
+        "Define representative evidence, failure tests, regression thresholds, ownership, and a safe recovery action."
+      ],
+      "expectedOutput": "A reviewable implementation whose behaviour, evidence, limitations, and operational response can be explained."
+    },
+    "trap_check": [
+      {
+        "mistake": "Giving id-token write to all jobs and trusting only the repository name lets compromised or unintended workflows request powerful cloud identities.",
+        "why": "It substitutes an assumption or local success for a complete production contract and can hide a release, performance, or reliability failure.",
+        "fix": "Reproduce the relevant path, collect direct evidence, apply the narrow fix, and verify both success and recovery."
+      },
+      {
+        "mistake": "Optimising or automating before defining the user-visible outcome and representative conditions.",
+        "why": "A locally improved proxy can regress correctness or fail to change the experience that matters.",
+        "fix": "Name the journey and threshold first, then compare controlled evidence and preserve a regression guard."
+      }
+    ],
+    "challenge_intro": {
+      "task": "Threat-model the pipeline and add least-privilege permissions, protected environments, OIDC claim restrictions, fork isolation, SBOM and artifact attestation verification.",
+      "successLooksLike": "The solution includes a clear model, reproducible evidence, failure-path tests, measurable acceptance criteria, and an owned recovery decision."
+    },
+    "recall": [
+      {
+        "prompt": "What security property does OIDC improve over a stored cloud key?",
+        "answer": "It issues short-lived, claim-bound credentials without keeping a long-lived cloud secret in GitHub."
+      },
+      {
+        "prompt": "What evidence should exist before changing this system?",
+        "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
+      },
+      {
+        "prompt": "What turns a local improvement into a production capability?",
+        "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
+      }
+    ]
+  },
+  "quizId": "quiz-level-09-week-39-05-cicd-security-oidc-attestations",
+  "challengeId": "challenge-level-09-week-39-05-cicd-security-oidc-attestations",
+  "revision": {
+    "objectives": [
+      "Explain the operating model behind CI/CD Security, OIDC, and Artifact Attestations.",
+      "Use representative evidence to distinguish cause from correlation.",
+      "Implement, verify, monitor, and recover the capability safely."
+    ],
+    "reviewIntervalsDays": [
+      1,
+      7,
+      21
+    ],
+    "masteryThreshold": 0.8,
+    "xp": 75,
+    "starsAvailable": 3
+  },
+  "sourceRefs": [
+    "https://docs.github.com/en/actions/how-tos/secure-your-work",
+    "https://docs.github.com/en/actions/reference/security/oidc",
+    "https://docs.github.com/en/actions/concepts/security/artifact-attestations"
+  ],
+  "version": "0.13.0"
+}

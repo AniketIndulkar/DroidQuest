@@ -1,14 +1,14 @@
 {
   "id": "droidquest-content-index",
-  "curriculumVersion": "0.12.0",
-  "contentRevision": 12,
+  "curriculumVersion": "0.13.0",
+  "contentRevision": 13,
   "counts": {
     "categories": 12,
-    "lessons": 218,
-    "quizzes": 263,
-    "challenges": 218,
-    "badges": 45,
-    "glossaryEntries": 230
+    "lessons": 242,
+    "quizzes": 291,
+    "challenges": 242,
+    "badges": 49,
+    "glossaryEntries": 254
   },
   "categories": [
     {
@@ -305,18 +305,43 @@
         "level-09-week-38-03-local-remote-build-cache-correctness",
         "level-09-week-38-04-parallel-execution-module-critical-path",
         "level-09-week-38-05-ksp-incremental-processing",
-        "level-09-week-38-06-abi-dependency-analysis-ci-cache"
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+        "level-09-week-39-01-signed-aab-artifact-identity",
+        "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+        "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+        "level-09-week-39-04-github-actions-android-pipeline-dag",
+        "level-09-week-39-05-cicd-security-oidc-attestations",
+        "level-09-week-39-06-convention-plugin-release-capstone"
       ],
       "path": "content/categories/level-09-gradle-build-cicd.json",
-      "sha256": "7616772fdf0350eeeee1a2db1abfd4043ff458cc97f604cc9e1dd5f36657432c"
+      "sha256": "2e026a4577e4899394d34af0013a3489d29d680dc8bfa7df88c7febecb185e95"
     },
     {
       "id": "level-10-performance-reliability-observability",
       "title": "Level 10: Performance, Reliability, and Observability",
       "order": 10,
-      "lessonIds": [],
+      "lessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence",
+        "level-10-week-40-02-cpu-perfetto-system-traces",
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+        "level-10-week-40-05-battery-network-efficiency",
+        "level-10-week-40-06-application-size-delivery-analysis",
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+        "level-10-week-41-02-startup-critical-path-providers-main-thread",
+        "level-10-week-41-03-app-startup-lazy-di-initialization",
+        "level-10-week-41-04-macrobenchmark-startup-measurement",
+        "level-10-week-41-05-baseline-profiles-critical-journeys",
+        "level-10-week-41-06-startup-profiles-dex-layout-release",
+        "level-10-week-42-01-anr-types-strictmode-diagnosis",
+        "level-10-week-42-02-managed-native-crashes-exit-info",
+        "level-10-week-42-03-oom-low-memory-process-death",
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+        "level-10-week-42-06-compatible-migrations-rollback-planning"
+      ],
       "path": "content/categories/level-10-performance-reliability-observability.json",
-      "sha256": "6fe22eeba2f246628e5ffc73efd5c287b2a937868ca48a7cbd7cda1af2f10afd"
+      "sha256": "af8f1bc7489483c2b8acae824b2131b7c7cc71f0ec1da1b2a7d68b331d3b9d8b"
     },
     {
       "id": "level-11-android-internals-aosp",
@@ -3435,6 +3460,342 @@
       ],
       "path": "content/lessons/level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
       "sha256": "f93bddd50914f54d0caa1dc45e544b77f1e7992917f2c7a2c7fbc2e3de1c518d"
+    },
+    {
+      "id": "level-09-week-39-01-signed-aab-artifact-identity",
+      "title": "Signed App Bundles and Artifact Identity",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "release",
+        "app-bundle",
+        "signing"
+      ],
+      "path": "content/lessons/level-09-week-39-01-signed-aab-artifact-identity.json",
+      "sha256": "01386f14b34049b93eea06d2a23c9009378d79836b5a1321d3b4b4bf00cff6ba"
+    },
+    {
+      "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "title": "R8, Resource Shrinking, Rules, Mapping, and Symbols",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "release",
+        "r8",
+        "symbols"
+      ],
+      "path": "content/lessons/level-09-week-39-02-r8-shrinking-rules-release-symbols.json",
+      "sha256": "8e2e66c361d6eb9c4fda94ed31f398bb55d14a4ee019ce0acfd9df47ad49df8b"
+    },
+    {
+      "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "title": "Release Tracks, Staged Rollout, and Rollback",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "release",
+        "staged-rollout",
+        "rollback"
+      ],
+      "path": "content/lessons/level-09-week-39-03-release-tracks-staged-rollout-rollback.json",
+      "sha256": "e940359d3787de9caf1321d9e43ed88a5d7831454888e7093c005a351d6ff6ec"
+    },
+    {
+      "id": "level-09-week-39-04-github-actions-android-pipeline-dag",
+      "title": "GitHub Actions Android Pipeline DAG",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "pipeline"
+      ],
+      "path": "content/lessons/level-09-week-39-04-github-actions-android-pipeline-dag.json",
+      "sha256": "4ae36dae55dac5849481e8bf4d62f3a5bf8d6253be354c3660fb8d6f945bbe5a"
+    },
+    {
+      "id": "level-09-week-39-05-cicd-security-oidc-attestations",
+      "title": "CI/CD Security, OIDC, and Artifact Attestations",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "ci-cd",
+        "security",
+        "oidc"
+      ],
+      "path": "content/lessons/level-09-week-39-05-cicd-security-oidc-attestations.json",
+      "sha256": "3d9894b0b9c5fd75e7c0660af0b73a71ac3c17347def7b056505a007c594917e"
+    },
+    {
+      "id": "level-09-week-39-06-convention-plugin-release-capstone",
+      "title": "Convention Plugin and Release Pipeline Capstone",
+      "categoryId": "level-09-gradle-build-cicd",
+      "difficulty": "expert",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "gradle",
+        "ci-cd",
+        "capstone"
+      ],
+      "path": "content/lessons/level-09-week-39-06-convention-plugin-release-capstone.json",
+      "sha256": "eca76fc91f18f0ef2065e91a8283d9c13d8ccbdac59764300f19a4de81241e65"
+    },
+    {
+      "id": "level-10-week-40-01-performance-investigation-representative-evidence",
+      "title": "Performance Investigation from User Impact to Evidence",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "measurement",
+        "investigation"
+      ],
+      "path": "content/lessons/level-10-week-40-01-performance-investigation-representative-evidence.json",
+      "sha256": "4337605020de7ca4e9bcca16ed9b04a0e3a136bdc7a64b6053937155882bdd54"
+    },
+    {
+      "id": "level-10-week-40-02-cpu-perfetto-system-traces",
+      "title": "CPU Profiler, Perfetto, and Trace Interpretation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "perfetto",
+        "cpu-profiler"
+      ],
+      "path": "content/lessons/level-10-week-40-02-cpu-perfetto-system-traces.json",
+      "sha256": "f4d7b35479d62811fecde9b67f0f541dba455371b5b4ed85f77318a6af4a1a6e"
+    },
+    {
+      "id": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "title": "Memory Allocations, Leaks, and Bitmap Pressure",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "memory",
+        "leaks"
+      ],
+      "path": "content/lessons/level-10-week-40-03-memory-allocations-leaks-bitmaps.json",
+      "sha256": "d3c5dc4b1d4c9f9268945fc69e987e55768ca6a778cd06df2b9c51d263b0e43f"
+    },
+    {
+      "id": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "title": "Frame Timing, Jank, and Compose Recomposition",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "jank",
+        "compose"
+      ],
+      "path": "content/lessons/level-10-week-40-04-frame-timing-jank-compose-recomposition.json",
+      "sha256": "e2e8f99c812dace885a7a15c4c6e3903c5a587299f9e360b1356baa5b2b49073"
+    },
+    {
+      "id": "level-10-week-40-05-battery-network-efficiency",
+      "title": "Battery and Network Efficiency",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "battery",
+        "network"
+      ],
+      "path": "content/lessons/level-10-week-40-05-battery-network-efficiency.json",
+      "sha256": "499170ec65854ab5a3e5a5ed3f23e050635c4b780f97257fda4a238bb7bc687c"
+    },
+    {
+      "id": "level-10-week-40-06-application-size-delivery-analysis",
+      "title": "Application Size and Delivery Analysis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "app-size",
+        "delivery"
+      ],
+      "path": "content/lessons/level-10-week-40-06-application-size-delivery-analysis.json",
+      "sha256": "07ed43a5ef4a53fd2d54cb6d60e731e4a41447d42a59a946d58f4490334f1987"
+    },
+    {
+      "id": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "title": "Cold, Warm, and Hot Startup with TTID and TTFD",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "startup",
+        "metrics"
+      ],
+      "path": "content/lessons/level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd.json",
+      "sha256": "ffe2de8b5afb0f937d40ae69d355d3d32f0dd316a926d2db562902f4ef91e8e4"
+    },
+    {
+      "id": "level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "title": "Startup Critical Path, Providers, and Main-Thread Blocking",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "startup",
+        "main-thread"
+      ],
+      "path": "content/lessons/level-10-week-41-02-startup-critical-path-providers-main-thread.json",
+      "sha256": "4446b5e9b68f70c829b4f3b2e77d5b4f120e73d9b0d5d1328e68d0a8e8de8083"
+    },
+    {
+      "id": "level-10-week-41-03-app-startup-lazy-di-initialization",
+      "title": "App Startup, Lazy Initialisation, and DI Cost",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "app-startup",
+        "dependency-injection"
+      ],
+      "path": "content/lessons/level-10-week-41-03-app-startup-lazy-di-initialization.json",
+      "sha256": "4e28e7a604388ed3a083732b19a9111abde1ff410bfba9f55a2e0d211712c3be"
+    },
+    {
+      "id": "level-10-week-41-04-macrobenchmark-startup-measurement",
+      "title": "Macrobenchmark Startup Measurement",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "macrobenchmark",
+        "startup"
+      ],
+      "path": "content/lessons/level-10-week-41-04-macrobenchmark-startup-measurement.json",
+      "sha256": "03e96453fdf9c5655cdd550b3fdb34cc1adb4e9bc675fa33dc2aeda4fef2eff6"
+    },
+    {
+      "id": "level-10-week-41-05-baseline-profiles-critical-journeys",
+      "title": "Baseline Profiles for Critical User Journeys",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "baseline-profiles",
+        "aot"
+      ],
+      "path": "content/lessons/level-10-week-41-05-baseline-profiles-critical-journeys.json",
+      "sha256": "940cf6e1e2642135b62990aeff0811f552530d236420e7519c6999d253b30148"
+    },
+    {
+      "id": "level-10-week-41-06-startup-profiles-dex-layout-release",
+      "title": "Startup Profiles, DEX Layout, and Release Verification",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "performance",
+        "startup-profiles",
+        "dex"
+      ],
+      "path": "content/lessons/level-10-week-41-06-startup-profiles-dex-layout-release.json",
+      "sha256": "223bcc95e94b1e18631dc5dbaa8e9bf773a0221b23cc57fd2197bb6277e6cf20"
+    },
+    {
+      "id": "level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "title": "ANR Types, StrictMode, and Diagnosis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "anr",
+        "strictmode"
+      ],
+      "path": "content/lessons/level-10-week-42-01-anr-types-strictmode-diagnosis.json",
+      "sha256": "8257ed17fc46c230379238289442348ee00d3c88e4a1264bbfdd2ccf982ceb80"
+    },
+    {
+      "id": "level-10-week-42-02-managed-native-crashes-exit-info",
+      "title": "Managed and Native Crash Diagnosis with Exit Information",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "crashes",
+        "native"
+      ],
+      "path": "content/lessons/level-10-week-42-02-managed-native-crashes-exit-info.json",
+      "sha256": "924b09247e3ee88b6a6454be914268e6f28349703bcadd0e8b916a25620a7516"
+    },
+    {
+      "id": "level-10-week-42-03-oom-low-memory-process-death",
+      "title": "OOM, Low-Memory Kills, and Process Recovery",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "memory",
+        "process-death"
+      ],
+      "path": "content/lessons/level-10-week-42-03-oom-low-memory-process-death.json",
+      "sha256": "0e46870398ecb205ba36b40c837fcfdff3f0efc1869e43ffd069b2292e806d65"
+    },
+    {
+      "id": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "title": "Retry Storms, Circuit Breakers, and Rate Limits",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "retries",
+        "circuit-breaker"
+      ],
+      "path": "content/lessons/level-10-week-42-04-retry-storms-circuit-breakers-rate-limits.json",
+      "sha256": "26938c40d01d9fb5fd56231d489d9da0c72e836e89bd44d85c789855856fbe62"
+    },
+    {
+      "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "title": "Feature Flags, Kill Switches, and Safe Operation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "feature-flags",
+        "kill-switch"
+      ],
+      "path": "content/lessons/level-10-week-42-05-feature-flags-kill-switches-safe-operation.json",
+      "sha256": "879d14a66257faa8ee0566b27cca32261556cb4ff7bcbf51e8acba0c6214eb0c"
+    },
+    {
+      "id": "level-10-week-42-06-compatible-migrations-rollback-planning",
+      "title": "Backwards-Compatible Migrations and Rollback Planning",
+      "categoryId": "level-10-performance-reliability-observability",
+      "difficulty": "advanced",
+      "estimatedLearningMinutes": 10,
+      "tags": [
+        "reliability",
+        "migrations",
+        "rollback"
+      ],
+      "path": "content/lessons/level-10-week-42-06-compatible-migrations-rollback-planning.json",
+      "sha256": "4a1e144e0f79d8425e81fb2868318b6d1ec25a9dc2acbf9a40f49c34c45e0343"
     }
   ],
   "quizzes": [
@@ -6365,6 +6726,46 @@
       "sha256": "857fcf81275a821369d6bd40abb964f71d542d49c15e07d15021ea345e7aac7a"
     },
     {
+      "id": "quiz-level-09-checkpoint",
+      "title": "Level 9 Boss: Trusted Android Release Pipeline",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-35-01-gradle-lifecycle-task-dag",
+        "level-09-week-35-02-task-registration-dependencies-ordering",
+        "level-09-week-35-03-providers-properties-build-inputs",
+        "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
+        "level-09-week-35-05-kotlin-dsl-model-configuration",
+        "level-09-week-35-06-shared-services-workers-parallel-safety",
+        "level-09-week-36-01-android-source-sets-merging-priority",
+        "level-09-week-36-02-build-types-flavours-variant-matrix",
+        "level-09-week-36-03-variant-aware-dependency-resolution",
+        "level-09-week-36-04-version-catalogs-boms-platforms",
+        "level-09-week-36-05-dependency-locking-verification-upgrades",
+        "level-09-week-36-06-android-components-variant-api",
+        "level-09-week-37-01-convention-plugins-build-standards",
+        "level-09-week-37-02-buildsrc-included-build-build-logic",
+        "level-09-week-37-03-custom-plugin-extension-design",
+        "level-09-week-37-04-variant-aware-code-generation",
+        "level-09-week-37-05-gradle-testkit-functional-tests",
+        "level-09-week-37-06-composable-build-convention-suite",
+        "level-09-week-38-01-measure-build-scans-profiles-analyzer",
+        "level-09-week-38-02-configuration-cache-adoption",
+        "level-09-week-38-03-local-remote-build-cache-correctness",
+        "level-09-week-38-04-parallel-execution-module-critical-path",
+        "level-09-week-38-05-ksp-incremental-processing",
+        "level-09-week-38-06-abi-dependency-analysis-ci-cache",
+        "level-09-week-39-01-signed-aab-artifact-identity",
+        "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+        "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+        "level-09-week-39-04-github-actions-android-pipeline-dag",
+        "level-09-week-39-05-cicd-security-oidc-attestations",
+        "level-09-week-39-06-convention-plugin-release-capstone"
+      ],
+      "kind": "boss",
+      "path": "content/quizzes/quiz-level-09-checkpoint.json",
+      "sha256": "9fda385ba48bce1897d0ea225583820c3592087b5925c9c6fb3145e49f11456a"
+    },
+    {
       "id": "quiz-level-09-week-35-01-gradle-lifecycle-task-dag",
       "title": "Gradle Lifecycle and the Task DAG Check",
       "categoryId": "level-09-gradle-build-cicd",
@@ -6691,6 +7092,318 @@
       "kind": "week_checkpoint",
       "path": "content/quizzes/quiz-level-09-week-38-checkpoint.json",
       "sha256": "a80a49f22afc3c8a7921cf5257b139b728a703c343a8576c275bee2a89d14bfc"
+    },
+    {
+      "id": "quiz-level-09-week-39-01-signed-aab-artifact-identity",
+      "title": "Signed App Bundles and Artifact Identity Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-01-signed-aab-artifact-identity"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-01-signed-aab-artifact-identity.json",
+      "sha256": "699583318bf532602035cebc92807f40fd9b3261c19121d6987dd599cce1aaa6"
+    },
+    {
+      "id": "quiz-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "title": "R8, Resource Shrinking, Rules, Mapping, and Symbols Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-02-r8-shrinking-rules-release-symbols"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-02-r8-shrinking-rules-release-symbols.json",
+      "sha256": "2c751c7248be85fa0c416a4fd53bf1e726d306e81d394c95ae1a674f28a4e453"
+    },
+    {
+      "id": "quiz-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "title": "Release Tracks, Staged Rollout, and Rollback Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-03-release-tracks-staged-rollout-rollback"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-03-release-tracks-staged-rollout-rollback.json",
+      "sha256": "5de7c51e40693756a371e1e8725402a5b4932478e38eedb1069d2729f0f64342"
+    },
+    {
+      "id": "quiz-level-09-week-39-04-github-actions-android-pipeline-dag",
+      "title": "GitHub Actions Android Pipeline DAG Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-04-github-actions-android-pipeline-dag"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-04-github-actions-android-pipeline-dag.json",
+      "sha256": "fedcd22f2a0999dadcfd3396b757691160381aa9564a7285ac05659a1e2ab493"
+    },
+    {
+      "id": "quiz-level-09-week-39-05-cicd-security-oidc-attestations",
+      "title": "CI/CD Security, OIDC, and Artifact Attestations Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-05-cicd-security-oidc-attestations"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-05-cicd-security-oidc-attestations.json",
+      "sha256": "573d2e879d35c01944a8aa1b3d0ef4218b16e491785cd8be972300bf075c3224"
+    },
+    {
+      "id": "quiz-level-09-week-39-06-convention-plugin-release-capstone",
+      "title": "Convention Plugin and Release Pipeline Capstone Check",
+      "categoryId": "level-09-gradle-build-cicd",
+      "linkedLessonIds": [
+        "level-09-week-39-06-convention-plugin-release-capstone"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-09-week-39-06-convention-plugin-release-capstone.json",
+      "sha256": "c62a983a820fb6fbef7a953d3097bb2fdba319276eec696d74479360e5ceb4f7"
+    },
+    {
+      "id": "quiz-level-10-week-40-01-performance-investigation-representative-evidence",
+      "title": "Performance Investigation from User Impact to Evidence Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-01-performance-investigation-representative-evidence.json",
+      "sha256": "db234ef459c877043ef96a431f5876e75e18e3d71fc12394e8d9a85d8bc24776"
+    },
+    {
+      "id": "quiz-level-10-week-40-02-cpu-perfetto-system-traces",
+      "title": "CPU Profiler, Perfetto, and Trace Interpretation Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-02-cpu-perfetto-system-traces"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-02-cpu-perfetto-system-traces.json",
+      "sha256": "f2098fc800da64990fc9afb1c6f11827edd516bfe506191f4c741ee248f55dfb"
+    },
+    {
+      "id": "quiz-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "title": "Memory Allocations, Leaks, and Bitmap Pressure Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-03-memory-allocations-leaks-bitmaps.json",
+      "sha256": "acf4686351ef47644ed7508272922273c69ff17228ddfc0f8015580b7b75649e"
+    },
+    {
+      "id": "quiz-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "title": "Frame Timing, Jank, and Compose Recomposition Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-04-frame-timing-jank-compose-recomposition.json",
+      "sha256": "8c2027cc597b77d3d0bee9e5b4972b5d391d7d0baeac2a50274fb731d0902f1f"
+    },
+    {
+      "id": "quiz-level-10-week-40-05-battery-network-efficiency",
+      "title": "Battery and Network Efficiency Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-05-battery-network-efficiency"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-05-battery-network-efficiency.json",
+      "sha256": "1264fd9957349d18354bfc520ec0a06bef176b6beddf849958dcddc9a8c94310"
+    },
+    {
+      "id": "quiz-level-10-week-40-06-application-size-delivery-analysis",
+      "title": "Application Size and Delivery Analysis Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-06-application-size-delivery-analysis"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-40-06-application-size-delivery-analysis.json",
+      "sha256": "14af3b2470010212a50cdf795ef459409dc010b4d3bd7abe4ec866b9943707cf"
+    },
+    {
+      "id": "quiz-level-10-week-40-checkpoint",
+      "title": "Week 40: Profiling and Runtime Performance Checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-40-01-performance-investigation-representative-evidence",
+        "level-10-week-40-02-cpu-perfetto-system-traces",
+        "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+        "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+        "level-10-week-40-05-battery-network-efficiency",
+        "level-10-week-40-06-application-size-delivery-analysis"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-10-week-40-checkpoint.json",
+      "sha256": "046ae8cde443f33af9429f4ab9bc994379d500e6ae1aa02ac0746f1bf1834e72"
+    },
+    {
+      "id": "quiz-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "title": "Cold, Warm, and Hot Startup with TTID and TTFD Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd.json",
+      "sha256": "d7206ea84053f5b213b0372251092608b380ec9bf9c80b6db2e0203a7a2cd697"
+    },
+    {
+      "id": "quiz-level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "title": "Startup Critical Path, Providers, and Main-Thread Blocking Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-02-startup-critical-path-providers-main-thread"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-02-startup-critical-path-providers-main-thread.json",
+      "sha256": "ab2a6ae820e260f6722dde2e39026369cd103a90be3de1206c87742f88ca6f5b"
+    },
+    {
+      "id": "quiz-level-10-week-41-03-app-startup-lazy-di-initialization",
+      "title": "App Startup, Lazy Initialisation, and DI Cost Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-03-app-startup-lazy-di-initialization"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-03-app-startup-lazy-di-initialization.json",
+      "sha256": "da1a23caa4637d88c9e3b044be627f113917721be1c95ad12e0783bfc3fd3fc5"
+    },
+    {
+      "id": "quiz-level-10-week-41-04-macrobenchmark-startup-measurement",
+      "title": "Macrobenchmark Startup Measurement Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-04-macrobenchmark-startup-measurement"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-04-macrobenchmark-startup-measurement.json",
+      "sha256": "166f19d658734d538eba77358b523deeb8f5170f5f4a4e7ce1b70d81f36d0f1a"
+    },
+    {
+      "id": "quiz-level-10-week-41-05-baseline-profiles-critical-journeys",
+      "title": "Baseline Profiles for Critical User Journeys Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-05-baseline-profiles-critical-journeys"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-05-baseline-profiles-critical-journeys.json",
+      "sha256": "da4ea23620fcedf450085b1b56f077db12ee3a1626945fb4ea6fdba9cb41429d"
+    },
+    {
+      "id": "quiz-level-10-week-41-06-startup-profiles-dex-layout-release",
+      "title": "Startup Profiles, DEX Layout, and Release Verification Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-06-startup-profiles-dex-layout-release"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-41-06-startup-profiles-dex-layout-release.json",
+      "sha256": "abe4d4f9c78c46de5ec20828e85d7c690b3957e8bac8a1cf9efd36da8cf6f7f1"
+    },
+    {
+      "id": "quiz-level-10-week-41-checkpoint",
+      "title": "Week 41: Startup Performance and Profiles Checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+        "level-10-week-41-02-startup-critical-path-providers-main-thread",
+        "level-10-week-41-03-app-startup-lazy-di-initialization",
+        "level-10-week-41-04-macrobenchmark-startup-measurement",
+        "level-10-week-41-05-baseline-profiles-critical-journeys",
+        "level-10-week-41-06-startup-profiles-dex-layout-release"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-10-week-41-checkpoint.json",
+      "sha256": "a2df399af5d4908a858b3579dca2f79805a1c5bc30a344bfbf103da09d94e5a5"
+    },
+    {
+      "id": "quiz-level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "title": "ANR Types, StrictMode, and Diagnosis Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-01-anr-types-strictmode-diagnosis"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-01-anr-types-strictmode-diagnosis.json",
+      "sha256": "92ad6800929c3b80ac21c8fc3be9716afbe547682b9b56f23da63dd49bd766e7"
+    },
+    {
+      "id": "quiz-level-10-week-42-02-managed-native-crashes-exit-info",
+      "title": "Managed and Native Crash Diagnosis with Exit Information Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-02-managed-native-crashes-exit-info"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-02-managed-native-crashes-exit-info.json",
+      "sha256": "7c3b7c648cfaefc85f8e60af594081f876ae6904215e2ec916ec191decd312a7"
+    },
+    {
+      "id": "quiz-level-10-week-42-03-oom-low-memory-process-death",
+      "title": "OOM, Low-Memory Kills, and Process Recovery Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-03-oom-low-memory-process-death"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-03-oom-low-memory-process-death.json",
+      "sha256": "2e4b219651c434f77d52fed7bb6752c26d1df3b586ee22e7b7bd8cf49b7d20a6"
+    },
+    {
+      "id": "quiz-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "title": "Retry Storms, Circuit Breakers, and Rate Limits Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits.json",
+      "sha256": "753c3fca6803f815a102eb23caa1d2c707196f061db2bef6977fa11bba967825"
+    },
+    {
+      "id": "quiz-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "title": "Feature Flags, Kill Switches, and Safe Operation Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-05-feature-flags-kill-switches-safe-operation.json",
+      "sha256": "b1941b889da015ffab85db58862d568a680a72746c8abb733936f184d189b792"
+    },
+    {
+      "id": "quiz-level-10-week-42-06-compatible-migrations-rollback-planning",
+      "title": "Backwards-Compatible Migrations and Rollback Planning Check",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-06-compatible-migrations-rollback-planning"
+      ],
+      "kind": "lesson",
+      "path": "content/quizzes/quiz-level-10-week-42-06-compatible-migrations-rollback-planning.json",
+      "sha256": "d24ad28f2ebf632632f291dec07e0161ef6041efdce86f1de813a8ae9dc8476a"
+    },
+    {
+      "id": "quiz-level-10-week-42-checkpoint",
+      "title": "Week 42: Reliability Engineering and Safe Recovery Checkpoint",
+      "categoryId": "level-10-performance-reliability-observability",
+      "linkedLessonIds": [
+        "level-10-week-42-01-anr-types-strictmode-diagnosis",
+        "level-10-week-42-02-managed-native-crashes-exit-info",
+        "level-10-week-42-03-oom-low-memory-process-death",
+        "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+        "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+        "level-10-week-42-06-compatible-migrations-rollback-planning"
+      ],
+      "kind": "week_checkpoint",
+      "path": "content/quizzes/quiz-level-10-week-42-checkpoint.json",
+      "sha256": "443c6acfc1892e0b9956e293759732ebcda39c7dfd4d103bf43ab93934061a7d"
     }
   ],
   "challenges": [
@@ -8437,6 +9150,198 @@
       "lessonId": "level-09-week-38-06-abi-dependency-analysis-ci-cache",
       "path": "content/challenges/challenge-level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
       "sha256": "b2653f45b4ddcfa5e4e9967bf988b77fe32d92f0fff630a833552942bd569e59"
+    },
+    {
+      "id": "challenge-level-09-week-39-01-signed-aab-artifact-identity",
+      "title": "Apply Signed App Bundles and Artifact Identity",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-01-signed-aab-artifact-identity",
+      "path": "content/challenges/challenge-level-09-week-39-01-signed-aab-artifact-identity.json",
+      "sha256": "8384ebb54ca773bd3d01dd26f25d43f84275452f6765b4b19f2fcc2d74d14f06"
+    },
+    {
+      "id": "challenge-level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "title": "Apply R8, Resource Shrinking, Rules, Mapping, and Symbols",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
+      "path": "content/challenges/challenge-level-09-week-39-02-r8-shrinking-rules-release-symbols.json",
+      "sha256": "c256b37b846a0a09f703efa5588d5170ae455af7b56570817ed7367bf38c9d04"
+    },
+    {
+      "id": "challenge-level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "title": "Apply Release Tracks, Staged Rollout, and Rollback",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
+      "path": "content/challenges/challenge-level-09-week-39-03-release-tracks-staged-rollout-rollback.json",
+      "sha256": "b9da3a5196e583e0f20b07d3426a91c71d5367b03a27fd47388a586899fc6fa3"
+    },
+    {
+      "id": "challenge-level-09-week-39-04-github-actions-android-pipeline-dag",
+      "title": "Apply GitHub Actions Android Pipeline DAG",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-04-github-actions-android-pipeline-dag",
+      "path": "content/challenges/challenge-level-09-week-39-04-github-actions-android-pipeline-dag.json",
+      "sha256": "fc988c049b6dc9414d26ce4435d1a431dde97adcbbf63bcaea560b56d24841ee"
+    },
+    {
+      "id": "challenge-level-09-week-39-05-cicd-security-oidc-attestations",
+      "title": "Apply CI/CD Security, OIDC, and Artifact Attestations",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-05-cicd-security-oidc-attestations",
+      "path": "content/challenges/challenge-level-09-week-39-05-cicd-security-oidc-attestations.json",
+      "sha256": "ba9449f6e53267c02197e01b5510938dde3cefba66dd3619e6faabecdee4944f"
+    },
+    {
+      "id": "challenge-level-09-week-39-06-convention-plugin-release-capstone",
+      "title": "Apply Convention Plugin and Release Pipeline Capstone",
+      "categoryId": "level-09-gradle-build-cicd",
+      "lessonId": "level-09-week-39-06-convention-plugin-release-capstone",
+      "path": "content/challenges/challenge-level-09-week-39-06-convention-plugin-release-capstone.json",
+      "sha256": "8bb8eafbc73e100ec87bdff429688de596a53522d5dcd5a46fdf4945b9ab9565"
+    },
+    {
+      "id": "challenge-level-10-week-40-01-performance-investigation-representative-evidence",
+      "title": "Apply Performance Investigation from User Impact to Evidence",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-01-performance-investigation-representative-evidence",
+      "path": "content/challenges/challenge-level-10-week-40-01-performance-investigation-representative-evidence.json",
+      "sha256": "38ed07dc99dcfe321fceb864d24c46232f5d98b6b9dbde003ebef23949a909fd"
+    },
+    {
+      "id": "challenge-level-10-week-40-02-cpu-perfetto-system-traces",
+      "title": "Apply CPU Profiler, Perfetto, and Trace Interpretation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-02-cpu-perfetto-system-traces",
+      "path": "content/challenges/challenge-level-10-week-40-02-cpu-perfetto-system-traces.json",
+      "sha256": "162de1bae56f6997719f2afe0e5132a315aa7cd72644eec2b05c3a1ffe16331a"
+    },
+    {
+      "id": "challenge-level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "title": "Apply Memory Allocations, Leaks, and Bitmap Pressure",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
+      "path": "content/challenges/challenge-level-10-week-40-03-memory-allocations-leaks-bitmaps.json",
+      "sha256": "315dd43320b929769dbd4f7e112b5abd2a5bc7ef81b0ec038f2dd0e85027fa0e"
+    },
+    {
+      "id": "challenge-level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "title": "Apply Frame Timing, Jank, and Compose Recomposition",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
+      "path": "content/challenges/challenge-level-10-week-40-04-frame-timing-jank-compose-recomposition.json",
+      "sha256": "4012a07a2848bc8f30b5add3ab6452560fb9b6a1249f1e0e4e6fa953bc228357"
+    },
+    {
+      "id": "challenge-level-10-week-40-05-battery-network-efficiency",
+      "title": "Apply Battery and Network Efficiency",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-05-battery-network-efficiency",
+      "path": "content/challenges/challenge-level-10-week-40-05-battery-network-efficiency.json",
+      "sha256": "70101826bb70eccce9ce6e560af4ab95054704f57761238e10e7533efceac424"
+    },
+    {
+      "id": "challenge-level-10-week-40-06-application-size-delivery-analysis",
+      "title": "Apply Application Size and Delivery Analysis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-40-06-application-size-delivery-analysis",
+      "path": "content/challenges/challenge-level-10-week-40-06-application-size-delivery-analysis.json",
+      "sha256": "238c7bd8ac71768e70b7b3a3a00e4e730512a72913d68507608a302684ac655c"
+    },
+    {
+      "id": "challenge-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "title": "Apply Cold, Warm, and Hot Startup with TTID and TTFD",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
+      "path": "content/challenges/challenge-level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd.json",
+      "sha256": "143b4f5dba7c1b76fc80146535f69fcac8a355a2e0a9463a270316c62432fd3d"
+    },
+    {
+      "id": "challenge-level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "title": "Apply Startup Critical Path, Providers, and Main-Thread Blocking",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-02-startup-critical-path-providers-main-thread",
+      "path": "content/challenges/challenge-level-10-week-41-02-startup-critical-path-providers-main-thread.json",
+      "sha256": "92a861f9a51203a658fedea5563989c1cc6ac2676a61939e719ac39271f4b795"
+    },
+    {
+      "id": "challenge-level-10-week-41-03-app-startup-lazy-di-initialization",
+      "title": "Apply App Startup, Lazy Initialisation, and DI Cost",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-03-app-startup-lazy-di-initialization",
+      "path": "content/challenges/challenge-level-10-week-41-03-app-startup-lazy-di-initialization.json",
+      "sha256": "ef58948a1d8917e764bdffe34614c07cbf2c070d550d7069fe22f3bb5188fdfc"
+    },
+    {
+      "id": "challenge-level-10-week-41-04-macrobenchmark-startup-measurement",
+      "title": "Apply Macrobenchmark Startup Measurement",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-04-macrobenchmark-startup-measurement",
+      "path": "content/challenges/challenge-level-10-week-41-04-macrobenchmark-startup-measurement.json",
+      "sha256": "5da5ea9e6fd15e4deaf409b41efeca7eaf5beb0d293128ab9078ffdd81d458f2"
+    },
+    {
+      "id": "challenge-level-10-week-41-05-baseline-profiles-critical-journeys",
+      "title": "Apply Baseline Profiles for Critical User Journeys",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-05-baseline-profiles-critical-journeys",
+      "path": "content/challenges/challenge-level-10-week-41-05-baseline-profiles-critical-journeys.json",
+      "sha256": "afc1a3a18385e08ef4ed412e937eff224034a4e42d950be87bfd9b8d4b05292a"
+    },
+    {
+      "id": "challenge-level-10-week-41-06-startup-profiles-dex-layout-release",
+      "title": "Apply Startup Profiles, DEX Layout, and Release Verification",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-41-06-startup-profiles-dex-layout-release",
+      "path": "content/challenges/challenge-level-10-week-41-06-startup-profiles-dex-layout-release.json",
+      "sha256": "8170376057c40c9695f40bd79ab8ade84486ec8fcbb3f19fc08ea738cefa2b53"
+    },
+    {
+      "id": "challenge-level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "title": "Apply ANR Types, StrictMode, and Diagnosis",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-01-anr-types-strictmode-diagnosis",
+      "path": "content/challenges/challenge-level-10-week-42-01-anr-types-strictmode-diagnosis.json",
+      "sha256": "236d7fc438b8f3fb3419570c55a8afd66858949fe8f8b287c57b69b8bc55ee19"
+    },
+    {
+      "id": "challenge-level-10-week-42-02-managed-native-crashes-exit-info",
+      "title": "Apply Managed and Native Crash Diagnosis with Exit Information",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-02-managed-native-crashes-exit-info",
+      "path": "content/challenges/challenge-level-10-week-42-02-managed-native-crashes-exit-info.json",
+      "sha256": "22bafd5ec7e74e7446648db32bab4346ae8cb0bb99f82dda5148272c0b57f44c"
+    },
+    {
+      "id": "challenge-level-10-week-42-03-oom-low-memory-process-death",
+      "title": "Apply OOM, Low-Memory Kills, and Process Recovery",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-03-oom-low-memory-process-death",
+      "path": "content/challenges/challenge-level-10-week-42-03-oom-low-memory-process-death.json",
+      "sha256": "e8a4e2174d86813fa145f846bc119a137c9f1e28f48d983cba7fcf79c17d7d8a"
+    },
+    {
+      "id": "challenge-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "title": "Apply Retry Storms, Circuit Breakers, and Rate Limits",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
+      "path": "content/challenges/challenge-level-10-week-42-04-retry-storms-circuit-breakers-rate-limits.json",
+      "sha256": "af85b8bed230bdf8fdcee1953a7f91244f2a318bc72c7b51219b4f19d8b0dd6e"
+    },
+    {
+      "id": "challenge-level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "title": "Apply Feature Flags, Kill Switches, and Safe Operation",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
+      "path": "content/challenges/challenge-level-10-week-42-05-feature-flags-kill-switches-safe-operation.json",
+      "sha256": "e3cd503ba997b722b711c352a8eeda2908caf119c09537bda3c95fb21495b17f"
+    },
+    {
+      "id": "challenge-level-10-week-42-06-compatible-migrations-rollback-planning",
+      "title": "Apply Backwards-Compatible Migrations and Rollback Planning",
+      "categoryId": "level-10-performance-reliability-observability",
+      "lessonId": "level-10-week-42-06-compatible-migrations-rollback-planning",
+      "path": "content/challenges/challenge-level-10-week-42-06-compatible-migrations-rollback-planning.json",
+      "sha256": "a941183a08dd28550eb8d252c1ce31a17357672bdbe2fda5260cda6633331cdf"
     }
   ],
   "badges": [
@@ -8728,6 +9633,13 @@
       "sha256": "e4090aa793563c65be8d9e9b4d1297df2fb41e9d665d147f48b7aca5b8f53f3b"
     },
     {
+      "id": "badge-level-09-gradle-build-cicd",
+      "title": "Android Build and Release Engineer",
+      "categoryId": "level-09-gradle-build-cicd",
+      "path": "content/badges/badge-level-09-gradle-build-cicd.json",
+      "sha256": "f422f3db943f97fb439c21d4ea3ddb0606917ee85a02ac9875d253551a6446dd"
+    },
+    {
       "id": "badge-level-09-week-35",
       "title": "Week 35 Graph Cartographer",
       "categoryId": "level-09-gradle-build-cicd",
@@ -8754,6 +9666,27 @@
       "categoryId": "level-09-gradle-build-cicd",
       "path": "content/badges/badge-level-09-week-38.json",
       "sha256": "90c33530aa963bc289a1f619a6d5b6f0ad9bea64c7ba014eb913ae9d4ee89bbc"
+    },
+    {
+      "id": "badge-level-10-week-40",
+      "title": "Week 40 Performance Investigator",
+      "categoryId": "level-10-performance-reliability-observability",
+      "path": "content/badges/badge-level-10-week-40.json",
+      "sha256": "7e67123726c73dd48e3f440533d7bda480d82004d4b5a6dcf042293b35329b8b"
+    },
+    {
+      "id": "badge-level-10-week-41",
+      "title": "Week 41 Startup Optimiser",
+      "categoryId": "level-10-performance-reliability-observability",
+      "path": "content/badges/badge-level-10-week-41.json",
+      "sha256": "74828bca0b236ec390ab58206e979174a38e4e0c7aa626472437b10fa4c351d9"
+    },
+    {
+      "id": "badge-level-10-week-42",
+      "title": "Week 42 Reliability Operator",
+      "categoryId": "level-10-performance-reliability-observability",
+      "path": "content/badges/badge-level-10-week-42.json",
+      "sha256": "cdcc641ccefade5068419d5ddeb288905451ce2e0b51fe59aece64fb3917322b"
     }
   ],
   "roadmap": [
@@ -8761,7 +9694,7 @@
       "id": "main-roadmap",
       "title": "DroidQuest Beginner-to-Expert Roadmap",
       "path": "content/roadmap/main-roadmap.json",
-      "sha256": "31966b3bd59a7654173233896acaa938151ad224e1da7539dc4bc205f578ff0c"
+      "sha256": "2b19d92016a4663aa709d77d4d811ae26514488316a2f1edcaf3cd923fbaec8c"
     }
   ]
 }
