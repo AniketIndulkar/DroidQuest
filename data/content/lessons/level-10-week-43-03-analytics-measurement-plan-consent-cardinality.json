@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Sending a unique order ID as an analytics parameter creates high cardinality and may turn product measurement into unnecessary personal or transactional tracking."
+              "text": "Watch carefully for this common failure mode in production: Sending a unique order ID as an analytics parameter creates high cardinality and may turn product measurement into unnecessary personal or transactional tracking."
             }
           ]
         }

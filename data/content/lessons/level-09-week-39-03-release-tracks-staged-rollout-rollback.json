@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "A staged rollout cannot protect users when a backward-incompatible server or database change affects all installed versions immediately."
+              "text": "Watch carefully for this common failure mode in production: A staged rollout cannot protect users when a backward-incompatible server or database change affects all installed versions immediately."
             }
           ]
         }

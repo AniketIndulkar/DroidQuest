@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Setting configuration-cache-problems=warn permanently can conceal new incompatible build logic while the team assumes the feature is safely adopted."
+              "text": "Watch carefully for this common failure mode in production: Setting configuration-cache-problems=warn permanently can conceal new incompatible build logic while the team assumes the feature is safely adopted."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Replacing a strong reference with WeakReference without fixing ownership hides the lifetime contract and can cause data to disappear unpredictably."
+              "text": "Watch carefully for this common failure mode in production: Replacing a strong reference with WeakReference without fixing ownership hides the lifetime contract and can cause data to disappear unpredictably."
             }
           ]
         }

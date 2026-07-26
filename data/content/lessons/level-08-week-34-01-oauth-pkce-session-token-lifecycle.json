@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Shipping an OAuth client secret in the APK and using an embedded WebView mistakes an inspectable public client for a confidential server."
+              "text": "Watch carefully for this common failure mode in production: Shipping an OAuth client secret in the APK and using an embedded WebView mistakes an inspectable public client for a confidential server."
             }
           ]
         }

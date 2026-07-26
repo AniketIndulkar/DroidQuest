@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Running Ktlint, Detekt, and Android lint with overlapping conflicting style rules and suppressing whichever fails."
+              "text": "Watch carefully for this common failure mode in production: Running Ktlint, Detekt, and Android lint with overlapping conflicting style rules and suppressing whichever fails."
             }
           ]
         }

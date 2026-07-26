@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Sending successful payment through a non-replayed channel and navigating only if a collector happens to be active."
+              "text": "Watch carefully for this common failure mode in production: Sending successful payment through a non-replayed channel and navigating only if a collector happens to be active."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should state holders, events, and ui logic solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They assign business state and short-lived UI behaviour to owners whose lifetimes match the work, without retaining shorter-lived Android objects."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Requesting CAMERA permission and embedding CameraX for a single optional receipt photo that the system camera can provide."
+              "text": "Watch carefully for this common failure mode in production: Requesting CAMERA permission and embedding CameraX for a single optional receipt photo that the system camera can provide."
             }
           ]
         }

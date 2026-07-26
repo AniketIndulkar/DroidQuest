@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Making an API module depend on its implementation or exposing implementation DTOs through the contract."
+              "text": "Watch carefully for this common failure mode in production: Making an API module depend on its implementation or exposing implementation DTOs through the contract."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should api/implementation modules and acyclic dependency graphs solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They let consumers depend on a small stable contract while technology-specific implementations remain replaceable and the module graph stays acyclic."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

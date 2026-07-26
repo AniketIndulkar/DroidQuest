@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Reordering a loaded content rail without stable identity or focus restoration can strand focus or jump the user to an unrelated item."
+              "text": "Watch carefully for this common failure mode in production: Reordering a loaded content rail without stable identity or focus restoration can strand focus or jump the user to an unrelated item."
             }
           ]
         }

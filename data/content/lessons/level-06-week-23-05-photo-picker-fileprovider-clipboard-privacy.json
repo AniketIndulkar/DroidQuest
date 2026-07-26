@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Resolving a selected content URI into a filesystem path and granting broad storage access to make it work."
+              "text": "Watch carefully for this common failure mode in production: Resolving a selected content URI into a filesystem path and granting broad storage access to make it work."
             }
           ]
         }

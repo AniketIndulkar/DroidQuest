@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Blaming every missed frame on slow Compose or Views ignores RenderThread, GPU, buffer latch, SurfaceFlinger, HWC, and display stages."
+              "text": "Watch carefully for this common failure mode in production: Blaming every missed frame on slow Compose or Views ignores RenderThread, GPU, buffer latch, SurfaceFlinger, HWC, and display stages."
             }
           ]
         }

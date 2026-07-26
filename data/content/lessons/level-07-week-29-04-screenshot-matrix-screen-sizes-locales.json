@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Regenerating and committing all goldens automatically after a broad visual diff without human review."
+              "text": "Watch carefully for this common failure mode in production: Regenerating and committing all goldens automatically after a broad visual diff without human review."
             }
           ]
         }

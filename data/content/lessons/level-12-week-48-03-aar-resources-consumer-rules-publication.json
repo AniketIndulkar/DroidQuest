@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Testing only with an included project can pass even when the published POM or Gradle metadata omits a runtime dependency."
+              "text": "Watch carefully for this common failure mode in production: Testing only with an included project can pass even when the published POM or Gradle metadata omits a runtime dependency."
             }
           ]
         }

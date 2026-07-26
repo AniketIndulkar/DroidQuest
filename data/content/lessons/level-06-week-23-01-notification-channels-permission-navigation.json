@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Creating a new high-importance channel to bypass the importance the user selected on an existing channel."
+              "text": "Watch carefully for this common failure mode in production: Creating a new high-importance channel to bypass the importance the user selected on an existing channel."
             }
           ]
         }

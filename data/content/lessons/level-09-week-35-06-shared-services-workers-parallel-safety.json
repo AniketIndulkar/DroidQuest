@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Putting a mutable result cache inside a BuildService without modelling its inputs can make task output depend on invocation order and daemon history."
+              "text": "Watch carefully for this common failure mode in production: Putting a mutable result cache inside a BuildService without modelling its inputs can make task output depend on invocation order and daemon history."
             }
           ]
         }

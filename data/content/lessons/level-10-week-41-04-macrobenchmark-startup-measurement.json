@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Comparing CompilationMode.None before a change with Partial after it attributes ART compilation benefits to application code."
+              "text": "Watch carefully for this common failure mode in production: Comparing CompilationMode.None before a change with Partial after it attributes ART compilation benefits to application code."
             }
           ]
         }

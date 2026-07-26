@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Treating the total width of a trace slice as CPU time can misdiagnose a blocked wait as computation."
+              "text": "Watch carefully for this common failure mode in production: Treating the total width of a trace slice as CPU time can misdiagnose a blocked wait as computation."
             }
           ]
         }

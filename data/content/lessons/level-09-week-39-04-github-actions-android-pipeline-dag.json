@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Building a new AAB inside the deployment job after approving a different artifact breaks the link between reviewed evidence and released bytes."
+              "text": "Watch carefully for this common failure mode in production: Building a new AAB inside the deployment job after approving a different artifact breaks the link between reviewed evidence and released bytes."
             }
           ]
         }

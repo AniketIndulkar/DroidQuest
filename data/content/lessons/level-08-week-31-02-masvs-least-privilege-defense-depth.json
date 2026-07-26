@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Calling an app “MASVS compliant” because it uses Keystore, TLS, and obfuscation ignores whether controls address its actual threats or have verification evidence."
+              "text": "Watch carefully for this common failure mode in production: Calling an app “MASVS compliant” because it uses Keystore, TLS, and obfuscation ignores whether controls address its actual threats or have verification evidence."
             }
           ]
         }

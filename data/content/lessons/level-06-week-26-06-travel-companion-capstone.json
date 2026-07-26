@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Connecting every platform API directly to the main Activity and treating a successful demo path as production readiness."
+              "text": "Watch carefully for this common failure mode in production: Connecting every platform API directly to the main Activity and treating a successful demo path as production readiness."
             }
           ]
         }

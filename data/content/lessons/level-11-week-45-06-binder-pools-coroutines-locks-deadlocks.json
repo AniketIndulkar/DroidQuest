@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Increasing a Binder or coroutine thread pool can hide saturation briefly while preserving the wait cycle that causes the failure."
+              "text": "Watch carefully for this common failure mode in production: Increasing a Binder or coroutine thread pool can hide saturation briefly while preserving the wait cycle that causes the failure."
             }
           ]
         }

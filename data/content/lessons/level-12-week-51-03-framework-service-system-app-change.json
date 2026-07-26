@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Calling clearCallingIdentity before authorization makes later checks run as the privileged service rather than the original app caller."
+              "text": "Watch carefully for this common failure mode in production: Calling clearCallingIdentity before authorization makes later checks run as the privileged service rather than the original app caller."
             }
           ]
         }

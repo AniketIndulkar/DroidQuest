@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Choosing an enormous rewrite prevents controlled comparison and makes it impossible to attribute improvement or review compatibility risk."
+              "text": "Watch carefully for this common failure mode in production: Choosing an enormous rewrite prevents controlled comparison and makes it impossible to attribute improvement or review compatibility risk."
             }
           ]
         }

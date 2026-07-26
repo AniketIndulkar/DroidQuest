@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Reading a low Java heap as proof of low process memory ignores native, graphics, code, stacks, mapped files, and allocator retention."
+              "text": "Watch carefully for this common failure mode in production: Reading a low Java heap as proof of low process memory ignores native, graphics, code, stacks, mapped files, and allocator retention."
             }
           ]
         }

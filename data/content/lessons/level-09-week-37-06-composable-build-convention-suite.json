@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Coupling coverage, signing, publishing and every analysis tool into the base Android library convention makes harmless modules pay cost and gain unsafe capabilities."
+              "text": "Watch carefully for this common failure mode in production: Coupling coverage, signing, publishing and every analysis tool into the base Android library convention makes harmless modules pay cost and gain unsafe capabilities."
             }
           ]
         }

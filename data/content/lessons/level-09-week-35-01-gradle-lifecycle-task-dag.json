@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Calling an expensive function while configuring a registered task still performs that work during configuration; placing text inside the registration block does not make it an execution action."
+              "text": "Watch carefully for this common failure mode in production: Calling an expensive function while configuring a registered task still performs that work during configuration; placing text inside the registration block does not make it an execution action."
             }
           ]
         }

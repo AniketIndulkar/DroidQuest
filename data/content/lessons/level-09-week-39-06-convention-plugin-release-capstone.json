@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "A polished convention plugin project without real release-artifact verification, failure tests and protected promotion demonstrates configuration reuse but not build engineering."
+              "text": "Watch carefully for this common failure mode in production: A polished convention plugin project without real release-artifact verification, failure tests and protected promotion demonstrates configuration reuse but not build engineering."
             }
           ]
         }

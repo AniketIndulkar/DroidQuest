@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Passing a Rust-owned allocation to C++ free or a C++ allocation to Rust deallocation crosses allocator contracts and can corrupt memory."
+              "text": "Watch carefully for this common failure mode in production: Passing a Rust-owned allocation to C++ free or a C++ allocation to Rust deallocation crosses allocator contracts and can corrupt memory."
             }
           ]
         }

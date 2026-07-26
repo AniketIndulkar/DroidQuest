@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Wrapping an expensive SDK in App Startup centralises it but still executes the cost on the application startup path."
+              "text": "Watch carefully for this common failure mode in production: Wrapping an expensive SDK in App Startup centralises it but still executes the cost on the application startup path."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Moving copied scripts into buildSrc without extracting plugins still leaves imperative helpers, hidden mutation and little functional-test surface."
+              "text": "Watch carefully for this common failure mode in production: Moving copied scripts into buildSrc without extracting plugins still leaves imperative helpers, hidden mutation and little functional-test surface."
             }
           ]
         }

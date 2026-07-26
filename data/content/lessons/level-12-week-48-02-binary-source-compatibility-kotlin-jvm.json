@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Updating an API dump after an accidental break only blesses the new surface; it does not make existing compiled clients compatible."
+              "text": "Watch carefully for this common failure mode in production: Updating an API dump after an accidental break only blesses the new surface; it does not make existing compiled clients compatible."
             }
           ]
         }

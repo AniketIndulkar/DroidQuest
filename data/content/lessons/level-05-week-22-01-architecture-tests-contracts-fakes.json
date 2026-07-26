@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Using mocks for every collaborator and asserting internal call order instead of user-visible or contract behaviour."
+              "text": "Watch carefully for this common failure mode in production: Using mocks for every collaborator and asserting internal call order instead of user-visible or contract behaviour."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should architecture tests, contracts, and purposeful fakes solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They prove each boundary’s observable promise with the smallest deterministic test and a fake that models relevant behaviour rather than implementation calls."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

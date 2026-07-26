@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Caching JNIEnv in a global and using it from worker threads violates its thread affinity and can corrupt runtime interaction."
+              "text": "Watch carefully for this common failure mode in production: Caching JNIEnv in a global and using it from worker threads violates its thread affinity and can corrupt runtime interaction."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "A portfolio containing only polished application screenshots provides no evidence of compatibility, diagnosis, security, release, or operational skill."
+              "text": "Watch carefully for this common failure mode in production: A portfolio containing only polished application screenshots provides no evidence of compatibility, diagnosis, security, release, or operational skill."
             }
           ]
         }

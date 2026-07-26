@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Using random values without a recorded seed, domain generator, invariant, or reproducible counterexample."
+              "text": "Watch carefully for this common failure mode in production: Using random values without a recorded seed, domain generator, invariant, or reproducible counterexample."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Replacing the active model file in place can leave a corrupt partial model after process death or storage failure."
+              "text": "Watch carefully for this common failure mode in production: Replacing the active model file in place can leave a corrupt partial model after process death or storage failure."
             }
           ]
         }

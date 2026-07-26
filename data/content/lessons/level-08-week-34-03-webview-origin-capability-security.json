@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Allowing a URL because its string contains bank.example accepts crafted authorities, paths, user-info, and schemes that do not share the trusted origin."
+              "text": "Watch carefully for this common failure mode in production: Allowing a URL because its string contains bank.example accepts crafted authorities, paths, user-info, and schemes that do not share the trusted origin."
             }
           ]
         }

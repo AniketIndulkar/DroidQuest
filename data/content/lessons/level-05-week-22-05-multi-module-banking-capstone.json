@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Judging the capstone by module count or diagram appearance while payment recovery and test replacement remain unproven."
+              "text": "Watch carefully for this common failure mode in production: Judging the capstone by module count or diagram appearance while payment recovery and test replacement remain unproven."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should capstone: multi-module banking demo solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "It demonstrates an integrated banking flow whose layers, modules, scopes, replacements, and recovery paths each have a testable reason to exist."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

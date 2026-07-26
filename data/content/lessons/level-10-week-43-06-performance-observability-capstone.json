@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Selecting the fastest after-result and comparing it with the slowest baseline produces an impressive number but no defensible performance evidence."
+              "text": "Watch carefully for this common failure mode in production: Selecting the fastest after-result and comparing it with the slowest baseline produces an impressive number but no defensible performance evidence."
             }
           ]
         }

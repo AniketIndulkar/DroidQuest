@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Using runBlocking and Thread.sleep to wait for viewModelScope work on a real dispatcher."
+              "text": "Watch carefully for this common failure mode in production: Using runBlocking and Thread.sleep to wait for viewModelScope work on a real dispatcher."
             }
           ]
         }

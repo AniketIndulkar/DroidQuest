@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Assuming every device supplies a fixed 16-millisecond frame budget makes animations and thresholds wrong on high and variable refresh displays."
+              "text": "Watch carefully for this common failure mode in production: Assuming every device supplies a fixed 16-millisecond frame budget makes animations and thresholds wrong on high and variable refresh displays."
             }
           ]
         }

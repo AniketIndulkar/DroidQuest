@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Booting a Hilt application for every small unit test and asserting framework wiring instead of business behaviour."
+              "text": "Watch carefully for this common failure mode in production: Booting a Hilt application for every small unit test and asserting framework wiring instead of business behaviour."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should di testing, dagger diagnostics, and framework trade-offs solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They keep unit tests fast through direct construction, reserve graph replacement for integration boundaries, and make framework compile-time and runtime trade-offs explicit."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Writing one unit test per production method without identifying the behaviour or regression it protects."
+              "text": "Watch carefully for this common failure mode in production: Writing one unit test per production method without identifying the behaviour or regression it protects."
             }
           ]
         }

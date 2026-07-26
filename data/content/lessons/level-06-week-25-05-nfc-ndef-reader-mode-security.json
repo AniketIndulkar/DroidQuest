@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Treating an NDEF tag containing an account or booking ID as cryptographic proof that the holder is authorised."
+              "text": "Watch carefully for this common failure mode in production: Treating an NDEF tag containing an account or booking ID as cryptographic proof that the holder is authorised."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Interpreting am start -W total time as only application code ignores intent resolution, process creation, Binder scheduling, window, and system transition work."
+              "text": "Watch carefully for this common failure mode in production: Interpreting am start -W total time as only application code ignores intent resolution, process creation, Binder scheduling, window, and system transition work."
             }
           ]
         }

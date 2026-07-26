@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context."
+              "text": "Watch carefully for this common failure mode in production: Placing a selected account ID in a singleton provider so any screen can retrieve mutable global context."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should qualifiers, multibindings, and assisted factories solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They resolve same-type bindings by semantic purpose, collect extensible sets or maps, and combine graph dependencies with runtime values safely."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

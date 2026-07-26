@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Changing a frozen parcelable field type in place breaks old clients or servers even when both sides compile in the latest tree."
+              "text": "Watch carefully for this common failure mode in production: Changing a frozen parcelable field type in place breaks old clients or servers even when both sides compile in the latest tree."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Equating an activity task with a Linux process fails because tasks can outlive processes and one process can host components participating in different task states."
+              "text": "Watch carefully for this common failure mode in production: Equating an activity task with a Linux process fails because tasks can outlive processes and one process can host components participating in different task states."
             }
           ]
         }

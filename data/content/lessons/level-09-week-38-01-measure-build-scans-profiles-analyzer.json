@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Comparing a cold clean build before the change with a warm cached build after it attributes cache state to the optimisation."
+              "text": "Watch carefully for this common failure mode in production: Comparing a cold clean build before the change with a warm cached build after it attributes cache state to the optimisation."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Writing audit records only from the Android client lets a modified or offline client omit, forge, reorder, or replay authoritative actions."
+              "text": "Watch carefully for this common failure mode in production: Writing audit records only from the Android client lets a modified or offline client omit, forge, reorder, or replay authoritative actions."
             }
           ]
         }

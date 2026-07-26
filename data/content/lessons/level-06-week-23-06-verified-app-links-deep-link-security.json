@@ -44,7 +44,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Keep manifest filters broad enough to verify reliably and validate path, query, and identifier in application code. Android 15 dynamic rules can refine allowed paths where supported, but server rules cannot safely expand beyond the declared manifest scope. Never place tokens or sensitive personal data in URLs; links leak through history, logs, and referrers. Resolve the destination from authoritative data and enforce authentication or entitlement after routing."
+              "text": "Keep manifest filters broad enough to verify reliably and validate path, query, and identifier in application code. On Android 15 (API level 35) or later, devices with Google services can periodically fetch `dynamic_app_link_components` rules from `assetlinks.json` to refine the manifest-declared URL scope. Server rules cannot expand that manifest scope, and older Android versions ignore the dynamic field. Never place tokens or sensitive personal data in URLs; links leak through history, logs, and referrers. Resolve the destination from authoritative data and enforce authentication or entitlement after routing."
             },
             {
               "type": "table",
@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Treating every URI that matches an intent filter as trusted and executing its requested action without validation."
+              "text": "Watch carefully for this common failure mode in production: Treating every URI that matches an intent filter as trusted and executing its requested action without validation."
             }
           ]
         }
@@ -140,6 +140,13 @@
           "resourceType": "official_docs",
           "url": "https://developer.android.com/training/app-links/verify-applinks",
           "whyRead": "Provides the current platform contract, lifecycle, privacy, compatibility, and implementation guidance for this capability."
+        },
+        {
+          "title": "Configure website associations and dynamic rules",
+          "publisher": "Android Developers",
+          "resourceType": "official_docs",
+          "url": "https://developer.android.com/training/app-links/configure-assetlinks",
+          "whyRead": "Documents Android 15 Dynamic App Links, `dynamic_app_link_components`, manifest scope limits, and version compatibility."
         }
       ]
     },
@@ -204,7 +211,8 @@
   },
   "sourceRefs": [
     "https://developer.android.com/training/app-links/about",
-    "https://developer.android.com/training/app-links/verify-applinks"
+    "https://developer.android.com/training/app-links/verify-applinks",
+    "https://developer.android.com/training/app-links/configure-assetlinks"
   ],
   "version": "0.9.0"
 }

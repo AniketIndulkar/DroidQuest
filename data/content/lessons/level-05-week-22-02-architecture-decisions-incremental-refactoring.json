@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Starting a complete architecture rewrite with no releasable intermediate state or behavioural baseline."
+              "text": "Watch carefully for this common failure mode in production: Starting a complete architecture rewrite with no releasable intermediate state or behavioural baseline."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should architecture decisions and incremental refactoring solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They preserve context, alternatives, consequences, and review triggers so boundaries can evolve in small verified steps without losing the original constraints."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

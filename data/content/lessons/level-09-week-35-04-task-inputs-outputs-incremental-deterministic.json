@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Using the current timestamp in generated JSON while omitting it from inputs makes identical cache keys produce different bytes and poisons shared reuse."
+              "text": "Watch carefully for this common failure mode in production: Using the current timestamp in generated JSON while omitting it from inputs makes identical cache keys produce different bytes and poisons shared reuse."
             }
           ]
         }

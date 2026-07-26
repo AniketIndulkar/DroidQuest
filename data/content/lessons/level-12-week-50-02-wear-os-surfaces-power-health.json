@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Porting the complete phone information architecture to a watch creates deep, slow interactions that fight wrist ergonomics and battery constraints."
+              "text": "Watch carefully for this common failure mode in production: Porting the complete phone information architecture to a watch creates deep, slow interactions that fight wrist ergonomics and battery constraints."
             }
           ]
         }

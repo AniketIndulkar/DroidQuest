@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Using resolutionStrategy.force to silence a mismatch can select a binary or behavioural combination that no producer declared compatible."
+              "text": "Watch carefully for this common failure mode in production: Using resolutionStrategy.force to silence a mismatch can select a binary or behavioural combination that no producer declared compatible."
             }
           ]
         }

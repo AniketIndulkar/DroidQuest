@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Adding every automated test journey to the profile can bloat compilation and profile maintenance without targeting frequent performance-sensitive paths."
+              "text": "Watch carefully for this common failure mode in production: Adding every automated test journey to the profile can bloat compilation and profile maintenance without targeting frequent performance-sensitive paths."
             }
           ]
         }

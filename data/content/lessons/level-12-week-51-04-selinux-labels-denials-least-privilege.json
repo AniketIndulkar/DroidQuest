@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Generating and accepting every audit2allow suggestion converts observed behavior into broad authority without checking labels or architecture."
+              "text": "Watch carefully for this common failure mode in production: Generating and accepting every audit2allow suggestion converts observed behavior into broad authority without checking labels or architecture."
             }
           ]
         }

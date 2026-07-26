@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Claiming modularisation improved build speed after comparing one clean build on different machine conditions."
+              "text": "Watch carefully for this common failure mode in production: Claiming modularisation improved build speed after comparing one clean build on different machine conditions."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should build performance, dynamic features, and library modules solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They solve measured compilation, reuse, or delivery needs; module type and count must follow evidence rather than an assumption that more modules are faster."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

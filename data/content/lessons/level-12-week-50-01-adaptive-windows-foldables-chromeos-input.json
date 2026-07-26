@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Checking smallestScreenWidth once at startup misses live window resizing, multi-window, fold posture, and external-display changes."
+              "text": "Watch carefully for this common failure mode in production: Checking smallestScreenWidth once at startup misses live window resizing, multi-window, fold posture, and external-display changes."
             }
           ]
         }

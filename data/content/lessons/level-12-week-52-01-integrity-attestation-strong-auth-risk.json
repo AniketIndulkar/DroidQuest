@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Checking an integrity verdict only in client code lets a modified client bypass or fabricate the entire decision."
+              "text": "Watch carefully for this common failure mode in production: Checking an integrity verdict only in client code lets a modified client bypass or fabricate the entire decision."
             }
           ]
         }

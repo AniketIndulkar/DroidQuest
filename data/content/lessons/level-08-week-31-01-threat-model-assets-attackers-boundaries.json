@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Starting with a checklist of APIs before identifying assets and attack paths can harden irrelevant code while the real authority boundary remains exposed."
+              "text": "Watch carefully for this common failure mode in production: Starting with a checklist of APIs before identifying assets and attack paths can harden irrelevant code while the real authority boundary remains exposed."
             }
           ]
         }

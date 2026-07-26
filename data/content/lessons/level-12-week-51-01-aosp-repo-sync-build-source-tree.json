@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Editing files across several Git projects on one ordinary branch misses Repo project boundaries and makes upload or review incomplete."
+              "text": "Watch carefully for this common failure mode in production: Editing files across several Git projects on one ordinary branch misses Repo project boundaries and makes upload or review incomplete."
             }
           ]
         }

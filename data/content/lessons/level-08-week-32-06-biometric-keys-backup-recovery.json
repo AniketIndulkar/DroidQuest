@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Backing up encrypted preferences while the device-bound key is excluded restores unreadable ciphertext and can trap the user in an unexplained failure loop."
+              "text": "Watch carefully for this common failure mode in production: Backing up encrypted preferences while the device-bound key is excluded restores unreadable ciphertext and can trap the user in an unexplained failure loop."
             }
           ]
         }

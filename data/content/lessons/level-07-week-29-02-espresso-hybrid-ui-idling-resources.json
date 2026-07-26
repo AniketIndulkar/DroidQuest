@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Adding Thread.sleep after a click to wait for asynchronous data and increasing the delay whenever CI flakes."
+              "text": "Watch carefully for this common failure mode in production: Adding Thread.sleep after a click to wait for asynchronous data and increasing the delay whenever CI flakes."
             }
           ]
         }

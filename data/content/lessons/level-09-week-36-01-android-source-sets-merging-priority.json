@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Defining a release class with the same fully qualified name in main and release does not override main; both compile and cause a duplicate-class failure."
+              "text": "Watch carefully for this common failure mode in production: Defining a release class with the same fully qualified name in main and release does not override main; both compile and cause a duplicate-class failure."
             }
           ]
         }

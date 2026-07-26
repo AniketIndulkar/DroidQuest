@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Hiding a premium or transfer-authorisation boolean behind R8 still leaves a patchable client decision controlling a server-owned entitlement."
+              "text": "Watch carefully for this common failure mode in production: Hiding a premium or transfer-authorisation boolean behind R8 still leaves a patchable client decision controlling a server-owned entitlement."
             }
           ]
         }

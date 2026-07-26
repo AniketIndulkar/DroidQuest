@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Uploading whichever AAB is newest in a shared directory can publish bytes that do not match the approved revision or recorded checksum."
+              "text": "Watch carefully for this common failure mode in production: Uploading whichever AAB is newest in a shared directory can publish bytes that do not match the approved revision or recorded checksum."
             }
           ]
         }

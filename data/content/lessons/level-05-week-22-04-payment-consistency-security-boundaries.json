@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Turning a network timeout into PaymentFailed and allowing a new command without reconciling the first one."
+              "text": "Watch carefully for this common failure mode in production: Turning a network timeout into PaymentFailed and allowing a new command without reconciling the first one."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should payment consistency and security boundaries solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They model payment as a recoverable state machine with stable command identity, server authority, idempotent delivery, and reconciliation after uncertain outcomes."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

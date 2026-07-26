@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Removing every dependency reported unused without checking reflection, generated code, service loading, or runtime-only use."
+              "text": "Watch carefully for this common failure mode in production: Removing every dependency reported unused without checking reflection, generated code, service loading, or runtime-only use."
             }
           ]
         }

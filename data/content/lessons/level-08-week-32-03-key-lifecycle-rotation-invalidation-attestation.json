@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Regenerating a missing alias under the same name hides key loss and makes every existing record permanently undecryptable without a clear recovery path."
+              "text": "Watch carefully for this common failure mode in production: Regenerating a missing alias under the same name hides key loss and makes every existing record permanently undecryptable without a clear recovery path."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Publishing a Kotlin data class as the request type makes generated constructor, copy, componentN, equality, and property signatures part of evolution risk."
+              "text": "Watch carefully for this common failure mode in production: Publishing a Kotlin data class as the request type makes generated constructor, copy, componentN, equality, and property signatures part of evolution risk."
             }
           ]
         }

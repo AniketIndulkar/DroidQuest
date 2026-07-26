@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Adding a module to Android.bp compiles it only when selected by the graph; it does not automatically install it in every product image."
+              "text": "Watch carefully for this common failure mode in production: Adding a module to Android.bp compiles it only when selected by the graph; it does not automatically install it in every product image."
             }
           ]
         }

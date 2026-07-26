@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Adding a flavour for every feature flag multiplies variants, source sets and CI cost even when runtime configuration would model the capability safely."
+              "text": "Watch carefully for this common failure mode in production: Adding a flavour for every feature flag multiplies variants, source sets and CI cost even when runtime configuration would model the capability safely."
             }
           ]
         }

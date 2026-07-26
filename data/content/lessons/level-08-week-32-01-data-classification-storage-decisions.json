@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Labelling all internal-storage data “secure” skips field sensitivity, integrity, backups, device compromise, sharing, retention, and recovery requirements."
+              "text": "Watch carefully for this common failure mode in production: Labelling all internal-storage data “secure” skips field sensitivity, integrity, backups, device compromise, sharing, retention, and recovery requirements."
             }
           ]
         }

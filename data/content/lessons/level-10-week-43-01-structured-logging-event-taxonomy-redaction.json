@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Logging an entire exception request object can silently include tokens, user content, URLs, and high-cardinality values even when the top-level message looks harmless."
+              "text": "Watch carefully for this common failure mode in production: Logging an entire exception request object can silently include tokens, user content, URLs, and high-cardinality values even when the top-level message looks harmless."
             }
           ]
         }

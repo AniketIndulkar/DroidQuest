@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Adding test tags to every composable and asserting implementation hierarchy instead of accessible behaviour."
+              "text": "Watch carefully for this common failure mode in production: Adding test tags to every composable and asserting implementation hierarchy instead of accessible behaviour."
             }
           ]
         }

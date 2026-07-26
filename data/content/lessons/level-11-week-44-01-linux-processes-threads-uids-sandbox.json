@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Treating the Application singleton as durable global state loses data and invariants whenever Android kills and later recreates the process."
+              "text": "Watch carefully for this common failure mode in production: Treating the Application singleton as durable global state loses data and invariants whenever Android kills and later recreates the process."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Blocking the user until the in-app review card appears and treating flow completion as proof that a review was submitted."
+              "text": "Watch carefully for this common failure mode in production: Blocking the user until the in-app review card appears and treating flow completion as proof that a review was submitted."
             }
           ]
         }

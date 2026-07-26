@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Increasing org.gradle.workers.max on a memory-bound agent can make builds slower or unstable through contention and swapping."
+              "text": "Watch carefully for this common failure mode in production: Increasing org.gradle.workers.max on a memory-bound agent can make builds slower or unstable through contention and swapping."
             }
           ]
         }

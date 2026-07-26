@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Creating a use case for every repository method even when no reusable rule or orchestration exists."
+              "text": "Watch carefully for this common failure mode in production: Creating a use case for every repository method even when no reusable rule or orchestration exists."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should use cases, business rules, and error models solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They isolate reused or complex business policy and expose meaningful outcomes; a pass-through class with no policy does not justify a use case."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

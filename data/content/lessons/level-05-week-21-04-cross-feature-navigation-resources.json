@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Importing PaymentScreen and its internal Room entity directly from the accounts feature."
+              "text": "Watch carefully for this common failure mode in production: Importing PaymentScreen and its internal Room entity directly from the accounts feature."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should cross-feature navigation and resource encapsulation solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They let features navigate through stable destination contracts and identifiers while keeping implementation types and private resources encapsulated."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

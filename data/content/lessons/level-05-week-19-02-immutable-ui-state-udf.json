@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Representing loading, content, empty, and error with unrelated flags that can contradict each other."
+              "text": "Watch carefully for this common failure mode in production: Representing loading, content, empty, and error with unrelated flags that can contradict each other."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should immutable ui state and unidirectional data flow solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They make UI mutation traceable by representing the screen as one immutable snapshot and routing events through a single state owner."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

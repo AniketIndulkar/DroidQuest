@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Requiring 100 percent global line coverage and adding tests that execute code without asserting meaningful outcomes."
+              "text": "Watch carefully for this common failure mode in production: Requiring 100 percent global line coverage and adding tests that execute code without asserting meaningful outcomes."
             }
           ]
         }

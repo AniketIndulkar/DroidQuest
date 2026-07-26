@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Counting every recomposition as wasted work encourages incorrect remember/stability changes even when frames meet deadlines and state should update."
+              "text": "Watch carefully for this common failure mode in production: Counting every recomposition as wasted work encourages incorrect remember/stability changes even when frames meet deadlines and state should update."
             }
           ]
         }

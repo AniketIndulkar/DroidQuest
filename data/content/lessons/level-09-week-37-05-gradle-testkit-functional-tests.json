@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Sharing one fixture directory between parallel tests allows outputs and configuration state from one case to make another case pass."
+              "text": "Watch carefully for this common failure mode in production: Sharing one fixture directory between parallel tests allows outputs and configuration state from one case to make another case pass."
             }
           ]
         }

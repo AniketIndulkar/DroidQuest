@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Writing every variant’s generated file to the same build/generated/config directory creates races and cross-variant contamination."
+              "text": "Watch carefully for this common failure mode in production: Writing every variant’s generated file to the same build/generated/config directory creates races and cross-variant contamination."
             }
           ]
         }

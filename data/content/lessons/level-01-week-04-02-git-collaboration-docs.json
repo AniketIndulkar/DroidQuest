@@ -166,7 +166,7 @@
     },
     "inspect": {
       "title": "Review a focused history",
-      "language": "kotlin",
+      "language": "shell",
       "code": "git status\ngit diff --staged\ngit log --oneline --decorate -3",
       "walkthrough": [
         "status reveals untracked, modified, and staged paths.",

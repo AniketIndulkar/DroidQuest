@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Encrypting a Room database while constructing raw SQL with user input preserves confidentiality at rest but still permits injection during use."
+              "text": "Watch carefully for this common failure mode in production: Encrypting a Room database while constructing raw SQL with user input preserves confidentiality at rest but still permits injection during use."
             }
           ]
         }

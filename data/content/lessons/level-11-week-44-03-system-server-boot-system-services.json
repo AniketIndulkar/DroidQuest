@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Calling getSystemService returns a local manager object, but assuming all work is local hides Binder latency, remote failure, permission checks, and system ownership."
+              "text": "Watch carefully for this common failure mode in production: Calling getSystemService returns a local manager object, but assuming all work is local hides Binder latency, remote failure, permission checks, and system ownership."
             }
           ]
         }

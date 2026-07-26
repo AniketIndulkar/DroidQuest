@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Using screen coordinates and fixed delays to automate a permission dialog across API levels and locales."
+              "text": "Watch carefully for this common failure mode in production: Using screen coordinates and fixed delays to automate a permission dialog across API levels and locales."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "A green global average can hide a catastrophic regression isolated to one common device model or OS version."
+              "text": "Watch carefully for this common failure mode in production: A green global average can hide a catastrophic regression isolated to one common device model or OS version."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Allowing any URL whose string starts with https://travel.example, which also accepts attacker-controlled lookalike authorities."
+              "text": "Watch carefully for this common failure mode in production: Allowing any URL whose string starts with https://travel.example, which also accepts attacker-controlled lookalike authorities."
             }
           ]
         }

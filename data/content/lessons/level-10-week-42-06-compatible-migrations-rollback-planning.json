@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Dropping or reinterpreting a field in the same release that introduces its replacement breaks old clients still active during staged rollout."
+              "text": "Watch carefully for this common failure mode in production: Dropping or reinterpreting a field in the same release that introduces its replacement breaks old clients still active during staged rollout."
             }
           ]
         }

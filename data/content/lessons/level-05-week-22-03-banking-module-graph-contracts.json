@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Creating the suggested module tree verbatim without checking team ownership, variants, reuse, or build measurements."
+              "text": "Watch carefully for this common failure mode in production: Creating the suggested module tree verbatim without checking team ownership, variants, reuse, or build measurements."
             }
           ]
         }
@@ -180,7 +180,7 @@
     "recall": [
       {
         "prompt": "What problem should designing the banking module graph solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "It assigns each banking capability and trust boundary to one owner, keeps peer features independent, and points dependencies toward stable contracts."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

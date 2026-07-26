@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority."
+              "text": "Watch carefully for this common failure mode in production: Checking that an incoming Intent is non-null, then forwarding its nested Intent with inherited grant flags, lets an attacker redirect your app’s authority."
             }
           ]
         }

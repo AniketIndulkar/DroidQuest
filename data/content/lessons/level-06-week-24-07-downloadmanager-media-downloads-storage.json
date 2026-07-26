@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Listening only for ACTION_DOWNLOAD_COMPLETE and assuming the broadcast proves a valid, accessible, successful file."
+              "text": "Watch carefully for this common failure mode in production: Listening only for ACTION_DOWNLOAD_COMPLETE and assuming the broadcast proves a valid, accessible, successful file."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Describing Zygote as a template containing a fully initialized copy of each app incorrectly implies that application objects and user state exist before the fork."
+              "text": "Watch carefully for this common failure mode in production: Describing Zygote as a template containing a fully initialized copy of each app incorrectly implies that application objects and user state exist before the fork."
             }
           ]
         }

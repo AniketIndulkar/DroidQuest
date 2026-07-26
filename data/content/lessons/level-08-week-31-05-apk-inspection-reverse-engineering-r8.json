@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Encrypting an API secret and shipping both ciphertext and the decryption routine merely changes the reverse-engineering steps; it does not create confidentiality."
+              "text": "Watch carefully for this common failure mode in production: Encrypting an API secret and shipping both ciphertext and the decryption routine merely changes the reverse-engineering steps; it does not create confidentiality."
             }
           ]
         }

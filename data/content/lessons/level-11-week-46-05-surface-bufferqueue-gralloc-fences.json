@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Treating Surface lifecycle as identical to Activity lifecycle can render into a destroyed queue during pause, rotation, or window replacement."
+              "text": "Watch carefully for this common failure mode in production: Treating Surface lifecycle as identical to Activity lifecycle can render into a destroyed queue during pause, rotation, or window replacement."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Relying on onTrimMemory as a guaranteed warning before termination leaves recovery broken when the process is killed without that callback."
+              "text": "Watch carefully for this common failure mode in production: Relying on onTrimMemory as a guaranteed warning before termination leaves recovery broken when the process is killed without that callback."
             }
           ]
         }

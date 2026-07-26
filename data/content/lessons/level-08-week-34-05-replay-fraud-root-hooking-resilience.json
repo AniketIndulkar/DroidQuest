@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Blocking every rooted or hook-detected device on the client creates false positives while an attacker can patch the branch or relay through a clean device."
+              "text": "Watch carefully for this common failure mode in production: Blocking every rooted or hook-detected device on the client creates false positives while an attacker can patch the branch or relay through a clean device."
             }
           ]
         }

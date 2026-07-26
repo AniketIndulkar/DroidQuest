@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Giving id-token write to all jobs and trusting only the repository name lets compromised or unintended workflows request powerful cloud identities."
+              "text": "Watch carefully for this common failure mode in production: Giving id-token write to all jobs and trusting only the repository name lets compromised or unintended workflows request powerful cloud identities."
             }
           ]
         }

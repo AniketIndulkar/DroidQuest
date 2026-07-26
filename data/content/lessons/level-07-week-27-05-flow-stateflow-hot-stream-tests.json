@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Collecting an infinite StateFlow with toList and waiting for the test to finish."
+              "text": "Watch carefully for this common failure mode in production: Collecting an infinite StateFlow with toList and waiting for the test to finish."
             }
           ]
         }

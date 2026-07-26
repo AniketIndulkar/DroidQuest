@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Reading resources, Window, or injected activity state from property initializers can run before Activity attachment and create ordering-dependent failures."
+              "text": "Watch carefully for this common failure mode in production: Reading resources, Window, or injected activity state from property initializers can run before Activity attachment and create ordering-dependent failures."
             }
           ]
         }

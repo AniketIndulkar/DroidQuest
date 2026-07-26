@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient."
+              "text": "Watch carefully for this common failure mode in production: Putting Retrofit, Room, navigation, and formatting directly inside one ViewModel because it is convenient."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should layers, boundaries, and dependency direction solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They assign UI, data, and optional domain responsibilities to accountable owners while keeping dependencies pointed at stable contracts."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

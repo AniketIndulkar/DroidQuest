@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Rotating the server to a new key before an adopted mobile release trusts it immediately locks every older pinned client out."
+              "text": "Watch carefully for this common failure mode in production: Rotating the server to a new key before an adopted mobile release trusts it immediately locks every older pinned client out."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Profiling a debuggable build with debugger and method instrumentation can create hotspots and jank that are not present in the optimised release path."
+              "text": "Watch carefully for this common failure mode in production: Profiling a debuggable build with debugger and method instrumentation can create hotspots and jank that are not present in the optimised release path."
             }
           ]
         }

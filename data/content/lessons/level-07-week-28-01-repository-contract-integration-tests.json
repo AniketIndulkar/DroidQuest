@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Calling verify dao.insert exactly once instead of asserting the repository’s observable state and idempotency contract."
+              "text": "Watch carefully for this common failure mode in production: Calling verify dao.insert exactly once instead of asserting the repository’s observable state and idempotency contract."
             }
           ]
         }

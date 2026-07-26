@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Calling ART an ahead-of-time-only runtime ignores interpretation, JIT, profile-guided compilation, install state, and device policy."
+              "text": "Watch carefully for this common failure mode in production: Calling ART an ahead-of-time-only runtime ignores interpretation, JIT, profile-guided compilation, install state, and device policy."
             }
           ]
         }

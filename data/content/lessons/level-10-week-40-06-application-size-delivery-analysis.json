@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Comparing raw AAB file size between releases can misrepresent what a device downloads because bundle compression and split contents differ."
+              "text": "Watch carefully for this common failure mode in production: Comparing raw AAB file size between releases can misrepresent what a device downloads because bundle compression and split contents differ."
             }
           ]
         }

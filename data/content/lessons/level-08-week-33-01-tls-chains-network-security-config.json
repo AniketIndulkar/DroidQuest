@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Adding a trust-all manager for one development certificate disables peer authentication and exposes credentials and responses to interception."
+              "text": "Watch carefully for this common failure mode in production: Adding a trust-all manager for one development certificate disables peer authentication and exposes credentials and responses to interception."
             }
           ]
         }

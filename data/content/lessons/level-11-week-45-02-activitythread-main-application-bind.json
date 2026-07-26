@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "The class name ActivityThread often leads learners to claim it creates a separate thread per Activity, which is not its role."
+              "text": "Watch carefully for this common failure mode in production: The class name ActivityThread often leads learners to claim it creates a separate thread per Activity, which is not its role."
             }
           ]
         }

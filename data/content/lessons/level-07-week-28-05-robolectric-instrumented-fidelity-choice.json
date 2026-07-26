@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Moving every slow device test to Robolectric without checking whether the simulated API can expose the original regression."
+              "text": "Watch carefully for this common failure mode in production: Moving every slow device test to Robolectric without checking whether the simulated API can expose the original regression."
             }
           ]
         }

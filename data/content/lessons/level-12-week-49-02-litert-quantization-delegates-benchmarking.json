@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Reporting only warm delegate inference time hides model download, initialization, preprocessing, fallback, and first-run cost users experience."
+              "text": "Watch carefully for this common failure mode in production: Reporting only warm delegate inference time hides model download, initialization, preprocessing, fallback, and first-run cost users experience."
             }
           ]
         }

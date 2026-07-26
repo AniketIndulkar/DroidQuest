@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Building a custom share-target picker and passing an absolute private file path in the intent."
+              "text": "Watch carefully for this common failure mode in production: Building a custom share-target picker and passing an absolute private file path in the intent."
             }
           ]
         }

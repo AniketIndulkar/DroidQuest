@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Using reflection to fetch an undocumented service name couples an app to hidden policy, interfaces, transaction behavior, and release-specific availability."
+              "text": "Watch carefully for this common failure mode in production: Using reflection to fetch an undocumented service name couples an app to hidden policy, interfaces, transaction behavior, and release-specific availability."
             }
           ]
         }

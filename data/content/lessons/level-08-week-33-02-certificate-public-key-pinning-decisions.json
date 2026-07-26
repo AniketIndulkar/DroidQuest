@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Shipping only the current leaf pin can turn routine certificate renewal into a permanent outage for every older installed version."
+              "text": "Watch carefully for this common failure mode in production: Shipping only the current leaf pin can turn routine certificate renewal into a permanent outage for every older installed version."
             }
           ]
         }

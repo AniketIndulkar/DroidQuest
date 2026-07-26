@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Showing “paid” immediately after the client receives payment data can create false success when backend authorization times out or fails."
+              "text": "Watch carefully for this common failure mode in production: Showing “paid” immediately after the client receives payment data can create false success when backend authorization times out or fails."
             }
           ]
         }

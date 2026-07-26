@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Testing only fresh database creation while shipping an untested upgrade path for existing users."
+              "text": "Watch carefully for this common failure mode in production: Testing only fresh database creation while shipping an untested upgrade path for existing users."
             }
           ]
         }

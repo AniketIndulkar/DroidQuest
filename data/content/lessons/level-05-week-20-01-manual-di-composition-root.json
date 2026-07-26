@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests."
+              "text": "Watch carefully for this common failure mode in production: Calling a global ServiceLocator from ViewModels, which hides dependencies and leaks shared state into tests."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should manual dependency injection and the composition root solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They make dependencies and lifetimes visible, assemble implementations at an authorised edge, and let tests replace collaborators directly."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

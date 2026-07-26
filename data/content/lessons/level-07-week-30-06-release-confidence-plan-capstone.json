@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Listing every available test tool without mapping it to a risk, execution trigger, owner, or release decision."
+              "text": "Watch carefully for this common failure mode in production: Listing every available test tool without mapping it to a risk, execution trigger, owner, or release decision."
             }
           ]
         }

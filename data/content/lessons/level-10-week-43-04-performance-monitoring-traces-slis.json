@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common systems trap",
-              "text": "Starting one custom trace for every rendered item creates overhead and unbounded event volume without measuring the user-visible journey."
+              "text": "Watch carefully for this common failure mode in production: Starting one custom trace for every rendered item creates overhead and unbounded event volume without measuring the user-visible journey."
             }
           ]
         }

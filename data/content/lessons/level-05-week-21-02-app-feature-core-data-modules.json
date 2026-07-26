@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Moving all shared-looking code into core-common until every module depends on an unowned dumping ground."
+              "text": "Watch carefully for this common failure mode in production: Moving all shared-looking code into core-common until every module depends on an unowned dumping ground."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should app, feature, core, and data modules solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They give composition, vertical features, domain data, and genuinely shared capabilities distinct owners without turning core into a dumping ground."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

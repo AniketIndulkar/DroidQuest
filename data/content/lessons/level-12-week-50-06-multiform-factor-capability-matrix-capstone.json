@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Sharing the entire phone presentation module across every device creates interaction, permission, dependency, and release coupling disguised as reuse."
+              "text": "Watch carefully for this common failure mode in production: Sharing the entire phone presentation module across every device creates interaction, permission, dependency, and release coupling disguised as reuse."
             }
           ]
         }

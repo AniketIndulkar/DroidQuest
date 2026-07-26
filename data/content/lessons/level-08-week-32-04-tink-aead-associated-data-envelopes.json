@@ -116,7 +116,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Security theatre to avoid",
-              "text": "Using a display name or locale-formatted string as associated data makes decryption depend on mutable presentation details and can strand valid ciphertext."
+              "text": "Watch carefully for this common failure mode in production: Using a display name or locale-formatted string as associated data makes decryption depend on mutable presentation details and can strand valid ciphertext."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Launching initialization on Dispatchers.IO and immediately awaiting it from the main thread preserves the same startup dependency and adds scheduling cost."
+              "text": "Watch carefully for this common failure mode in production: Launching initialization on Dispatchers.IO and immediately awaiting it from the main thread preserves the same startup dependency and adds scheduling cost."
             }
           ]
         }

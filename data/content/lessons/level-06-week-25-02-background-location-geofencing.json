@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Requesting background location during first launch before the learner enables any feature that needs it."
+              "text": "Watch carefully for this common failure mode in production: Requesting background location during first launch before the learner enables any feature that needs it."
             }
           ]
         }

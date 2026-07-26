@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Moving disk work to a coroutine and calling runBlocking on the main thread preserves the blocking dependency and can still trigger the same ANR."
+              "text": "Watch carefully for this common failure mode in production: Moving disk work to a coroutine and calling runBlocking on the main thread preserves the blocking dependency and can still trigger the same ANR."
             }
           ]
         }

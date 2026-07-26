@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Marking every provider Singleton to silence duplicate construction without analysing ownership or memory lifetime."
+              "text": "Watch carefully for this common failure mode in production: Marking every provider Singleton to silence duplicate construction without analysing ownership or memory lifetime."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should hilt components, scopes, and lifetimes solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They align object ownership with Android lifecycles and graph visibility so instances are shared only as long and as widely as their consumers require."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

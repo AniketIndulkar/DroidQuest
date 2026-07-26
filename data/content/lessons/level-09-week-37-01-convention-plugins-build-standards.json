@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "A single convention plugin that applies every tool to every module recreates global configuration under a new name and increases cost and coupling."
+              "text": "Watch carefully for this common failure mode in production: A single convention plugin that applies every tool to every module recreates global configuration under a new name and increases cost and coupling."
             }
           ]
         }

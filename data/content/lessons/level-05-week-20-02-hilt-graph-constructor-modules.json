@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Writing Provides methods for every owned class instead of using constructor injection and readable requirements."
+              "text": "Watch carefully for this common failure mode in production: Writing Provides methods for every owned class instead of using constructor injection and readable requirements."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should hilt graphs, constructor injection, and modules solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They automate creation for Android entry points while constructor injection documents requirements and modules supply only bindings the graph cannot construct."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

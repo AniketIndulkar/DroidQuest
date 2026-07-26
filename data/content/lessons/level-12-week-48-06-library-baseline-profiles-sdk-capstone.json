@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Generating a Baseline Profile by calling every public API can bloat compilation and teaches nothing about an actual consumer critical journey."
+              "text": "Watch carefully for this common failure mode in production: Generating a Baseline Profile by calling every public API can bloat compilation and teaches nothing about an actual consumer critical journey."
             }
           ]
         }

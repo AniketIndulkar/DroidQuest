@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common build trap",
-              "text": "Kotlin compilation can hide architectural sprawl when every module still copies a large, tightly coupled script with subtle divergent defaults."
+              "text": "Watch carefully for this common failure mode in production: Kotlin compilation can hide architectural sprawl when every module still copies a large, tightly coupled script with subtle divergent defaults."
             }
           ]
         }

@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Displaying lastLocation as live position without checking timestamp, accuracy, permission, or provider state."
+              "text": "Watch carefully for this common failure mode in production: Displaying lastLocation as live position without checking timestamp, accuracy, permission, or provider state."
             }
           ]
         }

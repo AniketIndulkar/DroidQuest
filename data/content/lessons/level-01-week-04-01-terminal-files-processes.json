@@ -153,7 +153,7 @@
     },
     "inspect": {
       "title": "Trace a process invocation",
-      "language": "shell",
+      "language": "kotlin",
       "code": "fun main(args: Array<String>) {\n    println(\"argumentCount=${args.size}\")\n    args.forEachIndexed { index, value -> println(\"$index=$value\") }\n}",
       "walkthrough": [
         "The shell starts one program process.",

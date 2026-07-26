@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "An auto-initializing provider that contacts the network can delay every app process and collect data before the host establishes consent."
+              "text": "Watch carefully for this common failure mode in production: An auto-initializing provider that contacts the network can delay every app process and collect data before the host establishes consent."
             }
           ]
         }

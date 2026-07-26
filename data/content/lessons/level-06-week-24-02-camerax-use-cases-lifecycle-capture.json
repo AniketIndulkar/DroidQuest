@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "The system is part of the feature",
-              "text": "Creating and binding new CameraX use cases from recomposition, causing repeated hardware churn and inconsistent state."
+              "text": "Watch carefully for this common failure mode in production: Creating and binding new CameraX use cases from recomposition, causing repeated hardware churn and inconsistent state."
             }
           ]
         }

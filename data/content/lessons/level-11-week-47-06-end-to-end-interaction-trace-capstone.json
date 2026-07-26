@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Expert trap",
-              "text": "Highlighting the longest slice in a trace and calling it the cause ignores whether later work actually depends on that slice."
+              "text": "Watch carefully for this common failure mode in production: Highlighting the longest slice in a trace and calling it the cause ignores whether later work actually depends on that slice."
             }
           ]
         }

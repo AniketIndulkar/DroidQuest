@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "A passing check can still be weak",
-              "text": "Mocking a Retrofit service method and claiming that paths, JSON adapters, headers, and OkHttp policy are covered."
+              "text": "Watch carefully for this common failure mode in production: Mocking a Retrofit service method and claiming that paths, JSON adapters, headers, and OkHttp policy are covered."
             }
           ]
         }

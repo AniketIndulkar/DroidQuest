@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Architecture is not file naming",
-              "text": "A package, interface, module, or framework adds value only when it protects a real contract. Exposing DAO entities and Retrofit response wrappers directly to every ViewModel."
+              "text": "Watch carefully for this common failure mode in production: Exposing DAO entities and Retrofit response wrappers directly to every ViewModel."
             }
           ]
         }
@@ -173,7 +173,7 @@
     "recall": [
       {
         "prompt": "What problem should repositories, sources of truth, and mappers solve?",
-        "answer": "A named product, ownership, change, lifetime, testability, or build problem rather than diagram conformity."
+        "answer": "They give callers one coherent data contract, keep consistency policy inside the repository, and translate storage or network models at the boundary."
       },
       {
         "prompt": "What makes an architecture boundary trustworthy?",

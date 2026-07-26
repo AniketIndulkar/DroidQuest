@@ -121,7 +121,7 @@
               "type": "callout",
               "tone": "warning",
               "title": "Common trap",
-              "text": "Catching OutOfMemoryError and retrying the same allocation can loop in a compromised low-memory state and hide the underlying unbounded use."
+              "text": "Watch carefully for this common failure mode in production: Catching OutOfMemoryError and retrying the same allocation can loop in a compromised low-memory state and hide the underlying unbounded use."
             }
           ]
         }
