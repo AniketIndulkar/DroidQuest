@@ -2,28 +2,26 @@
 
 A local-first, gamified Android-learning app and the versioned curriculum that powers it. DroidQuest takes a learner from zero programming experience to Android platform expertise through a roadmap of levels, lessons, quizzes, and challenges — all bundled into the app and fully usable **offline**.
 
-This repository holds two things:
+This repository holds the shared curriculum and two aligned native clients:
 
 | Path | What it is |
 |------|-----------|
 | [`data/`](data/) | The curriculum **content repository** — the single source of truth. Versioned JSON validated against JSON Schemas, plus generated indexes (content index, search index, roadmap graph). |
 | [`DroidQuest-Android/`](DroidQuest-Android/) | The **Android app** (Jetpack Compose + Material 3). Bundles a verified snapshot of `data/content` and renders the whole curriculum. See its [README](DroidQuest-Android/README.md). |
+| [`DroidQuest-iOS/`](DroidQuest-iOS/) | The **iOS app** (SwiftUI). Bundles and verifies the same `data/content` snapshot, stable IDs, progression, quizzes, rewards, reviews, search, and local-first progress. See its [README](DroidQuest-iOS/README.md). |
 
 ## How content flows into the app
 
 ```
-data/content/*.json ──(build-time Gradle sync)──▶ APK assets: droidquest/content/**
-        (source of truth)                                   │
-                                                            ▼
-                                        DroidQuestContentRepository
-                                     (verifies content API + SHA-256)
-                                                            │
-                                                            ▼
-                                        Compose UI (offline, no network)
+                                      ┌─(Gradle sync)─▶ Android APK assets ─▶ Compose UI
+data/content/*.json (source of truth) ┤
+                                      └─(Xcode resource)─▶ iOS app bundle ──▶ SwiftUI
+
+Both clients verify content API compatibility, release version, counts, and indexed SHA-256 hashes.
 ```
 
-- Content is **shipped inside the APK** as assets. The app never reads `data/` at runtime and needs no network for normal learning.
-- The build embeds the JSON via a Gradle task that reads `data/content`; the content index's SHA-256 hashes are re-verified when the app loads the snapshot.
+- Content is shipped inside each platform's app bundle. Neither installed app reads the repository at runtime, and normal learning needs no network.
+- Android embeds JSON through its Gradle sync task; iOS embeds the same folder through an Xcode resource reference. Both re-verify the content index's SHA-256 hashes when loading.
 - Because content is compiled in, **editing `data/` requires an app rebuild** for the change to appear.
 
 ## The content model (summary)
@@ -48,7 +46,7 @@ npm run test:content  # validate schemas + cross-references, confirm generated f
 
 Validation rules: [`data/docs/VALIDATION_RULES.md`](data/docs/VALIDATION_RULES.md). Authoring: [`data/docs/AUTHORING_GUIDE.md`](data/docs/AUTHORING_GUIDE.md).
 
-## Building the app
+## Building the apps
 
 ```bash
 cd DroidQuest-Android
@@ -57,6 +55,15 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
 Full build/test/run details are in [`DroidQuest-Android/README.md`](DroidQuest-Android/README.md).
+
+```bash
+cd DroidQuest-iOS
+ruby scripts/generate_project.rb
+xcodebuild -project DroidQuest.xcodeproj -scheme DroidQuest \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build test
+```
+
+Full iOS details are in [`DroidQuest-iOS/README.md`](DroidQuest-iOS/README.md).
 
 ## Current release
 
