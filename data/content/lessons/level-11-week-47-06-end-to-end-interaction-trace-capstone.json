@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone-recall-1",
         "prompt": "What proves that an observed slice caused the delayed frame?",
         "answer": "A dependency path connects it to presentation and a controlled change predictably moves the resulting latency distribution."
       },
       {
+        "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

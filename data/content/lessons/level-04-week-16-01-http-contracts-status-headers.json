@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-01-http-contracts-status-headers-recall-1",
         "prompt": "What does Content-Type describe?",
         "answer": "The representation format of the body."
       },
       {
+        "id": "level-04-week-16-01-http-contracts-status-headers-recall-2",
         "prompt": "What does 204 mean?",
         "answer": "Successful response with no content body."
       },
       {
+        "id": "level-04-week-16-01-http-contracts-status-headers-recall-3",
         "prompt": "What makes a write retry safer?",
         "answer": "Idempotent semantics or a server-supported idempotency key."
       }

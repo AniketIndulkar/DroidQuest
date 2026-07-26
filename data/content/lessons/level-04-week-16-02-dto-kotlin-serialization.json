@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-02-dto-kotlin-serialization-recall-1",
         "prompt": "What does a DTO model?",
         "answer": "The external wire representation."
       },
       {
+        "id": "level-04-week-16-02-dto-kotlin-serialization-recall-2",
         "prompt": "Where are business invariants enforced?",
         "answer": "In mapping to the domain model."
       },
       {
+        "id": "level-04-week-16-02-dto-kotlin-serialization-recall-3",
         "prompt": "What does ignoreUnknownKeys permit?",
         "answer": "Additional undeclared JSON object fields."
       }

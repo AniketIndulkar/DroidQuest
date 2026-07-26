@@ -193,14 +193,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-02-git-collaboration-docs-recall-1",
         "prompt": "What does the staging area represent?",
         "answer": "The exact changes selected for the next commit."
       },
       {
+        "id": "level-01-week-04-02-git-collaboration-docs-recall-2",
         "prompt": "What does a merge conflict mean?",
         "answer": "Git needs a person to reconcile overlapping histories according to intended behaviour."
       },
       {
+        "id": "level-01-week-04-02-git-collaboration-docs-recall-3",
         "prompt": "When should documentation change?",
         "answer": "In the same change that alters the behaviour, workflow, or decision it documents."
       }

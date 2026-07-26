@@ -66,6 +66,6 @@ class LessonRenderTest {
         rule.onNodeWithText("Trap Check").assertExists()
         rule.onNodeWithText("Recall").assertExists()
         assert(rule.onAllNodesWithText("Copy").fetchSemanticsNodes().isNotEmpty())           // code block affordance
-        assert(rule.onAllNodesWithText("Tap to reveal answer").fetchSemanticsNodes().isNotEmpty()) // recall reveal
+        assert(rule.onAllNodesWithText("Write what you remember…").fetchSemanticsNodes().isNotEmpty()) // active recall input
     }
 }

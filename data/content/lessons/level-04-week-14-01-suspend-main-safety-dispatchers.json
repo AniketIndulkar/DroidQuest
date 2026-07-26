@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-01-suspend-main-safety-dispatchers-recall-1",
         "prompt": "Does suspend imply a background thread?",
         "answer": "No, suspension and dispatch are separate."
       },
       {
+        "id": "level-04-week-14-01-suspend-main-safety-dispatchers-recall-2",
         "prompt": "Who makes an API main-safe?",
         "answer": "The layer that owns the blocking or CPU-heavy operation."
       },
       {
+        "id": "level-04-week-14-01-suspend-main-safety-dispatchers-recall-3",
         "prompt": "Why inject dispatchers?",
         "answer": "To make execution policy replaceable and tests deterministic."
       }

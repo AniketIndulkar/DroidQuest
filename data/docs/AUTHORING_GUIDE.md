@@ -7,7 +7,8 @@
 3. Keep `estimatedLearningMinutes` at 10 or below and match it to `revealStages.learn.estimatedMinutes`.
 4. Write at least three Learn sections. Across them, include meaningful prose, at least one Kotlin code block, and at least one flow or table visual.
 5. Write a complete Inspect example with expected output and a step-by-step explanation.
-6. Add at least two actionable traps and three recall prompts.
+6. Add at least two actionable traps and three recall prompts. Give every recall prompt a permanent
+   kebab-case ID derived from the lesson ID; prompts must require retrieval rather than recognition.
 7. Add two to four learner-facing `furtherReading` links. Include at least one official document or codelab and explain why each resource is worth opening.
 8. Add official primary sources to `sourceRefs`; paraphrase and teach in DroidQuest's own voice.
 9. Create and link the lesson quiz and challenge.

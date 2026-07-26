@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-03-local-remote-build-cache-correctness-recall-1",
         "prompt": "Why should trusted CI often be the only remote-cache writer?",
         "answer": "It reduces cache-poisoning risk while still letting developers and other jobs consume verified reusable outputs."
       },
       {
+        "id": "level-09-week-38-03-local-remote-build-cache-correctness-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-03-local-remote-build-cache-correctness-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

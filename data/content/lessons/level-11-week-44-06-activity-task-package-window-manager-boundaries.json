@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-44-06-activity-task-package-window-manager-boundaries-recall-1",
         "prompt": "Which service boundary owns installed component and signature metadata?",
         "answer": "PackageManager; task, process, and window services consume that information for their own responsibilities."
       },
       {
+        "id": "level-11-week-44-06-activity-task-package-window-manager-boundaries-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-44-06-activity-task-package-window-manager-boundaries-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

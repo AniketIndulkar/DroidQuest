@@ -177,14 +177,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-06-null-safety-recall-1",
         "prompt": "What does the question mark in String? mean?",
         "answer": "The type permits either a String value or null."
       },
       {
+        "id": "level-01-week-01-06-null-safety-recall-2",
         "prompt": "What does a safe call do when its receiver is null?",
         "answer": "It skips the access or call and returns null for the expression."
       },
       {
+        "id": "level-01-week-01-06-null-safety-recall-3",
         "prompt": "Why use toDoubleOrNull for external text?",
         "answer": "It represents invalid numeric text as null instead of throwing an exception."
       }

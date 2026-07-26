@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-50-03-android-auto-automotive-driver-safety-recall-1",
         "prompt": "What is the architectural difference between Auto and Automotive OS?",
         "answer": "Auto projects a phone-powered experience into the car, while Automotive OS runs apps on the vehicle platform."
       },
       {
+        "id": "level-12-week-50-03-android-auto-automotive-driver-safety-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-50-03-android-auto-automotive-driver-safety-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

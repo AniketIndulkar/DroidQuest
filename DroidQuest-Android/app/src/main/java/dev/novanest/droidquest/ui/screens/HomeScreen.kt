@@ -49,6 +49,7 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
     val next = UiDerive.nextNode(content, progress)
     val currentCat = next?.let { content.category(it.categoryId) } ?: content.categoriesInOrder().first()
     val catPct = UiDerive.categoryProgress(content, progress, currentCat.id).pct
+    val reviewsDue = progress.reviewsDue(System.currentTimeMillis())
 
     Column(
         Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 32.dp),
@@ -67,6 +68,23 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
                     modifier = Modifier.clip(RoundedCornerShape(100)).background(DQ.Amber.copy(alpha = 0.15f)).padding(horizontal = 10.dp, vertical = 6.dp))
                 Text("Lv $level", color = DQ.BlueLight, fontSize = 12.sp, fontWeight = FontWeight.Bold,
                     modifier = Modifier.clip(RoundedCornerShape(100)).background(DQ.Blue.copy(alpha = 0.16f)).padding(horizontal = 10.dp, vertical = 6.dp))
+            }
+        }
+
+        if (reviewsDue > 0) {
+            Column(
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp))
+                    .background(DQ.Blue.copy(alpha = 0.10f)).border(1.dp, DQ.Blue.copy(alpha = 0.35f), RoundedCornerShape(20.dp))
+                    .clickable { vm.startDailyReview() }.padding(18.dp),
+            ) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text("REVIEW DUE", color = DQ.BlueLight, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.5.sp)
+                        Text("Strengthen $reviewsDue ${if (reviewsDue == 1) "memory" else "memories"}", color = DQ.TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 5.dp))
+                        Text("A short, mixed session—no penalties.", color = DQ.text(0.5f), fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp))
+                    }
+                    Text("Review ›", color = DQ.BlueLight, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                }
             }
         }
 

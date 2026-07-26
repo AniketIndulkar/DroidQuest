@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-10-03-recomposition-snapshots-identity-recall-1",
         "prompt": "What identifies repeated calls by default?",
         "answer": "Call site plus execution position."
       },
       {
+        "id": "level-03-week-10-03-recomposition-snapshots-identity-recall-2",
         "prompt": "Why supply lazy keys?",
         "answer": "To keep work attached to domain identity."
       },
       {
+        "id": "level-03-week-10-03-recomposition-snapshots-identity-recall-3",
         "prompt": "When does derivedStateOf help?",
         "answer": "When derived output changes less often than inputs."
       }

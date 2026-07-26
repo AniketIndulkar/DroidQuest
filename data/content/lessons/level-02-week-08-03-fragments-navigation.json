@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-03-fragments-navigation-recall-1",
         "prompt": "Which lifecycle owns binding?",
         "answer": "The fragment view lifecycle ending at onDestroyView."
       },
       {
+        "id": "level-02-week-08-03-fragments-navigation-recall-2",
         "prompt": "Which manager owns nested fragments?",
         "answer": "The hosting fragment childFragmentManager."
       },
       {
+        "id": "level-02-week-08-03-fragments-navigation-recall-3",
         "prompt": "What belongs in navigation arguments?",
         "answer": "Small stable values needed to identify or reconstruct the destination."
       }

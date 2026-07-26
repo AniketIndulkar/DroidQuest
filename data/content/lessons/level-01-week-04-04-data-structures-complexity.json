@@ -204,14 +204,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-04-data-structures-complexity-recall-1",
         "prompt": "When is a Map a natural choice?",
         "answer": "When callers know a unique key and need repeated lookup of its associated value."
       },
       {
+        "id": "level-01-week-04-04-data-structures-complexity-recall-2",
         "prompt": "What does O(n) communicate?",
         "answer": "The modelled work grows proportionally with input size."
       },
       {
+        "id": "level-01-week-04-04-data-structures-complexity-recall-3",
         "prompt": "Why might building an index be wasteful?",
         "answer": "It costs time and memory that one small lookup may not repay."
       }

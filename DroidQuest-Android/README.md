@@ -81,5 +81,7 @@ Refresh the app after editing `../data`:
 ## Design notes
 
 - Progression comes from the roadmap graph's `unlockPrerequisites`, never from array position or display titles. A lesson node completes when its lesson quiz passes; checkpoint/boss nodes complete when their quiz passes. Challenges are optional and never gate progression.
+- Active recall items use stable IDs and an offline spaced-repetition scheduler. Review ratings create a calm due queue but never gate progression or award farmable repeat XP.
+- Wrong objective quiz answers reveal the accepted answer. Open-ended prose is self-assessed against a model answer instead of requiring an exact sentence.
 - Streak is intentionally **not** fabricated — it is shown as "not tracked yet" until real tracking exists.
 - The score→stars mapping (`RewardPolicy`), unlock rules (`ProgressionPolicy`), grading (`QuizEvaluator`), and search routing (`SearchRouter`) are isolated policy classes, changeable without a data migration.

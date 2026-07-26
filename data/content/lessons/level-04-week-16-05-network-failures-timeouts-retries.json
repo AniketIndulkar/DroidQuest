@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-05-network-failures-timeouts-retries-recall-1",
         "prompt": "Is an HTTP 500 a transport exception?",
         "answer": "No, it is a completed HTTP response with failure status."
       },
       {
+        "id": "level-04-week-16-05-network-failures-timeouts-retries-recall-2",
         "prompt": "What should jitter prevent?",
         "answer": "Many clients retrying in synchronized waves."
       },
       {
+        "id": "level-04-week-16-05-network-failures-timeouts-retries-recall-3",
         "prompt": "What must cancellation do during retry delay?",
         "answer": "Stop the retry state machine immediately."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-35-01-gradle-lifecycle-task-dag-recall-1",
         "prompt": "What determines which tasks execute?",
         "answer": "The requested tasks and the directed dependency graph Gradle constructs for that invocation."
       },
       {
+        "id": "level-09-week-35-01-gradle-lifecycle-task-dag-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-35-01-gradle-lifecycle-task-dag-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

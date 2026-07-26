@@ -2,6 +2,7 @@ package dev.novanest.droidquest
 
 import dev.novanest.droidquest.content.LoadedContent
 import dev.novanest.droidquest.content.model.RoadmapNodeType
+import dev.novanest.droidquest.content.model.NodeStatus
 import dev.novanest.droidquest.domain.NodeProgress
 import dev.novanest.droidquest.domain.ProgressionPolicy
 import org.junit.Assert.assertEquals
@@ -42,9 +43,9 @@ class ProgressionPolicyTest {
 
     @Test
     fun planned_preview_can_never_start_even_with_prerequisites_met() {
-        val preview = graph.nodes.firstOrNull { it.type == RoadmapNodeType.LEVEL_PREVIEW }
-        assertNotNull("release should expose at least one planned preview", preview)
-        preview!!
+        // The current release may be fully authored, so exercise the policy with a synthetic
+        // preview derived from a real node rather than coupling this unit test to release status.
+        val preview = graph.nodes.first().copy(type = RoadmapNodeType.LEVEL_PREVIEW, status = NodeStatus.PLANNED)
         assertTrue(ProgressionPolicy.isPlanned(preview))
         // Even with every prerequisite completed, a preview cannot be started or completed.
         assertFalse(ProgressionPolicy.canStart(preview, preview.unlockPrerequisites.toSet()))

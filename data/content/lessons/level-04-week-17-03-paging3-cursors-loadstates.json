@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-03-paging3-cursors-loadstates-recall-1",
         "prompt": "What does null nextKey mean?",
         "answer": "No further page in that direction."
       },
       {
+        "id": "level-04-week-17-03-paging3-cursors-loadstates-recall-2",
         "prompt": "Where should PagingData be cached?",
         "answer": "In the ViewModel scope with cachedIn."
       },
       {
+        "id": "level-04-week-17-03-paging3-cursors-loadstates-recall-3",
         "prompt": "What does refreshKey preserve?",
         "answer": "A sensible load position near the current anchor."
       }

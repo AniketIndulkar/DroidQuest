@@ -167,14 +167,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-31-03-client-server-trust-authz-validation-recall-1",
         "prompt": "What must a server check separately from authentication?",
         "answer": "Authorisation for the exact resource and action, plus business invariants, replay/idempotency, and abuse limits."
       },
       {
+        "id": "level-08-week-31-03-client-server-trust-authz-validation-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-31-03-client-server-trust-authz-validation-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

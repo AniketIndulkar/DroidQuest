@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-01-accessibility-semantics-talkback-recall-1",
         "prompt": "What tree do accessibility services consume?",
         "answer": "The Compose semantics tree."
       },
       {
+        "id": "level-03-week-13-01-accessibility-semantics-talkback-recall-2",
         "prompt": "When should descendants merge?",
         "answer": "When they form one coherent accessible focus target."
       },
       {
+        "id": "level-03-week-13-01-accessibility-semantics-talkback-recall-3",
         "prompt": "What must custom gestures provide?",
         "answer": "An equivalent semantic action."
       }

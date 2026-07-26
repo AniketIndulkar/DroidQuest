@@ -85,10 +85,32 @@ class QuizEvaluatorTest {
     }
 
     @Test
+    fun open_ended_questions_use_learner_self_assessment_when_scored() {
+        val question = firstOfType(QuestionType.SHORT_ANSWER)
+        val quiz = content.quizzesById.values.first { question in it.questions }
+        val answers = quiz.questions.associate { it.id to correctAnswer(it) }
+        val assessments = quiz.questions.filter(QuizEvaluator::requiresSelfAssessment).associate { it.id to true }
+
+        val score = QuizEvaluator.score(quiz, answers, assessments)
+
+        assertEquals(quiz.questions.size, score.correct)
+    }
+
+    @Test
+    fun model_answer_preserves_multiline_code_output() {
+        val question = allQuestions.first {
+            it.type == QuestionType.CODE_OUTPUT && it.answer.jsonPrimitive.content.contains('\n')
+        }
+
+        assertEquals(question.answer.jsonPrimitive.content, QuizEvaluator.modelAnswer(question))
+    }
+
+    @Test
     fun scoring_uses_passing_score() {
         val quiz = content.quizzesById.values.first()
         val allCorrect = quiz.questions.associate { it.id to correctAnswer(it) }
-        val perfect = QuizEvaluator.score(quiz, allCorrect)
+        val assessments = quiz.questions.filter(QuizEvaluator::requiresSelfAssessment).associate { it.id to true }
+        val perfect = QuizEvaluator.score(quiz, allCorrect, assessments)
         assertEquals(quiz.questions.size, perfect.correct)
         assertTrue(perfect.passed)
 

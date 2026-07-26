@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-09-04-material3-scaffold-slots-recall-1",
         "prompt": "Who owns Material component state?",
         "answer": "The caller supplies state and handles events."
       },
       {
+        "id": "level-03-week-09-04-material3-scaffold-slots-recall-2",
         "prompt": "What does Scaffold content receive?",
         "answer": "PaddingValues for space occupied by scaffold regions."
       },
       {
+        "id": "level-03-week-09-04-material3-scaffold-slots-recall-3",
         "prompt": "What does a slot API provide?",
         "answer": "A named composable region callers can fill with structured UI."
       }

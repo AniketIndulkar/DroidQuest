@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-01-oauth-tokens-session-security-recall-1",
         "prompt": "What does an access token authorize?",
         "answer": "A scoped request to a resource server."
       },
       {
+        "id": "level-04-week-17-01-oauth-tokens-session-security-recall-2",
         "prompt": "Can an APK protect a client secret?",
         "answer": "No, installed applications are public clients."
       },
       {
+        "id": "level-04-week-17-01-oauth-tokens-session-security-recall-3",
         "prompt": "What protects authorization code exchange?",
         "answer": "PKCE plus redirect and state validation."
       }

@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-02-constraintlayout-viewbinding-recall-1",
         "prompt": "What does 0dp mean in ConstraintLayout?",
         "answer": "Match constraints: size is determined from constraint relationships."
       },
       {
+        "id": "level-02-week-08-02-constraintlayout-viewbinding-recall-2",
         "prompt": "What does View Binding generate?",
         "answer": "A typed binding class for an eligible XML layout and its ID views."
       },
       {
+        "id": "level-02-week-08-02-constraintlayout-viewbinding-recall-3",
         "prompt": "When does fragment binding end?",
         "answer": "At onDestroyView, independently of fragment object destruction."
       }

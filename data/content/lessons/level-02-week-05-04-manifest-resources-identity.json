@@ -187,14 +187,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-05-04-manifest-resources-identity-recall-1",
         "prompt": "What does android:exported control?",
         "answer": "Whether another application can directly reach the declared component."
       },
       {
+        "id": "level-02-week-05-04-manifest-resources-identity-recall-2",
         "prompt": "What identifies the installed app?",
         "answer": "The selected variant application ID identifies it to Android and stores."
       },
       {
+        "id": "level-02-week-05-04-manifest-resources-identity-recall-3",
         "prompt": "How does Android choose a resource?",
         "answer": "It matches the current configuration to the best qualified alternative and default."
       }

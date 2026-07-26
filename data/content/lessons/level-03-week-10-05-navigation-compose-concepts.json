@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-10-05-navigation-compose-concepts-recall-1",
         "prompt": "What should a detail route carry?",
         "answer": "A stable identifier for destination data."
       },
       {
+        "id": "level-03-week-10-05-navigation-compose-concepts-recall-2",
         "prompt": "Where should NavController stay?",
         "answer": "At the route or navigation graph boundary."
       },
       {
+        "id": "level-03-week-10-05-navigation-compose-concepts-recall-3",
         "prompt": "What owns destination lifecycle?",
         "answer": "Its navigation back-stack entry."
       }

@@ -136,6 +136,12 @@ function semanticValidation(all) {
     else if (challenge.lessonId !== lesson.id) warn(`${lesson.id}: challenge '${challenge.id}' links back to '${challenge.lessonId}'`);
   }
 
+  const recallItems = [];
+  for (const { file, data: lesson } of all.lessons) {
+    for (const recall of lesson.revealStages.recall) recallItems.push({ file, data: recall });
+  }
+  uniqueValues(recallItems, 'recall id');
+
   const questionItems = [];
   const usedQuestionTypes = new Set();
   for (const { file, data: quiz } of all.quizzes) {

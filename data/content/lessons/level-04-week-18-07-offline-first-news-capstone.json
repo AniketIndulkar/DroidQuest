@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-07-offline-first-news-capstone-recall-1",
         "prompt": "What should the feed UI observe?",
         "answer": "Room-backed repository state."
       },
       {
+        "id": "level-04-week-18-07-offline-first-news-capstone-recall-2",
         "prompt": "What schedules outbox delivery?",
         "answer": "Unique persistent WorkManager synchronization."
       },
       {
+        "id": "level-04-week-18-07-offline-first-news-capstone-recall-3",
         "prompt": "What proves convergence?",
         "answer": "Tests showing local and server state agree after retry and conflict policy."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-35-05-kotlin-dsl-model-configuration-recall-1",
         "prompt": "Why might a dynamically created model element lack a type-safe accessor?",
         "answer": "Accessors are generated from plugins and model elements known before the script body is compiled."
       },
       {
+        "id": "level-09-week-35-05-kotlin-dsl-model-configuration-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-35-05-kotlin-dsl-model-configuration-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

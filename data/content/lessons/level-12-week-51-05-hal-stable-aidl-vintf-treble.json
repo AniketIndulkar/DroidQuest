@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble-recall-1",
         "prompt": "Why freeze stable AIDL versions?",
         "answer": "Framework and vendor components can build and update against explicit compatible interface versions across partition boundaries."
       },
       {
+        "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

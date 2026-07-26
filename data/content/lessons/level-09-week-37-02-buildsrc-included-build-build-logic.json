@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-37-02-buildsrc-included-build-build-logic-recall-1",
         "prompt": "What is the main architectural benefit of a build-logic included build?",
         "answer": "It provides an explicit, separately structured and testable build boundary with stable plugin interfaces."
       },
       {
+        "id": "level-09-week-37-02-buildsrc-included-build-build-logic-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-37-02-buildsrc-included-build-build-logic-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

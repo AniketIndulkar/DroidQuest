@@ -208,14 +208,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-05-05-sdk-levels-variants-packaging-recall-1",
         "prompt": "What does targetSdk communicate?",
         "answer": "The Android behaviour contract against which the app claims testing and compatibility."
       },
       {
+        "id": "level-02-week-05-05-sdk-levels-variants-packaging-recall-2",
         "prompt": "What creates a build variant?",
         "answer": "A build type combined with any selected product flavours."
       },
       {
+        "id": "level-02-week-05-05-sdk-levels-variants-packaging-recall-3",
         "prompt": "Why is signing durable?",
         "answer": "Android uses signing identity to trust updates to an installed application."
       }

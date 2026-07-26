@@ -180,14 +180,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs-recall-1",
         "prompt": "What problem should mvvm, mvi, clean architecture, and proportionate design solve?",
         "answer": "They provide explicit state, intent, policy, and dependency properties in proportion to the app’s needs; adopting a label alone solves nothing."
       },
       {
+        "id": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

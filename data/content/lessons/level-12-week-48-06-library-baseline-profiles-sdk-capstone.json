@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone-recall-1",
         "prompt": "Where is a library Baseline Profile ultimately used?",
         "answer": "It is packaged with the library, merged by the consuming app, and used by ART installation/profile compilation for matching code."
       },
       {
+        "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

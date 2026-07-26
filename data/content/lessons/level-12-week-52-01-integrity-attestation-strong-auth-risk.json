@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-52-01-integrity-attestation-strong-auth-risk-recall-1",
         "prompt": "What must bind an integrity result to the protected action?",
         "answer": "A fresh server-known nonce or request hash plus account and transaction context checked against replay."
       },
       {
+        "id": "level-12-week-52-01-integrity-attestation-strong-auth-risk-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-52-01-integrity-attestation-strong-auth-risk-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

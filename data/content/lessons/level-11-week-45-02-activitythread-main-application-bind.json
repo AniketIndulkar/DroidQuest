@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-45-02-activitythread-main-application-bind-recall-1",
         "prompt": "What happens before the main Looper begins handling normal component transactions?",
         "answer": "The process enters ActivityThread.main, prepares the main Looper, attaches to system services, and receives application binding work."
       },
       {
+        "id": "level-11-week-45-02-activitythread-main-application-bind-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-45-02-activitythread-main-application-bind-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

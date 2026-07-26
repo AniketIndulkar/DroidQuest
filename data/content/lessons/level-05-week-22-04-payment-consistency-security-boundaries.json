@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-22-04-payment-consistency-security-boundaries-recall-1",
         "prompt": "What problem should payment consistency and security boundaries solve?",
         "answer": "They model payment as a recoverable state machine with stable command identity, server authority, idempotent delivery, and reconciliation after uncertain outcomes."
       },
       {
+        "id": "level-05-week-22-04-payment-consistency-security-boundaries-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-22-04-payment-consistency-security-boundaries-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

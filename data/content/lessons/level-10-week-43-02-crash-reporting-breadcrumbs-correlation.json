@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation-recall-1",
         "prompt": "Why must mappings and symbols match the exact build?",
         "answer": "Optimisation and linking change names and addresses per artifact, so nearby-build metadata can produce a false stack diagnosis."
       },
       {
+        "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

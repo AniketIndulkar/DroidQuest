@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-37-03-custom-plugin-extension-design-recall-1",
         "prompt": "When should an extension Property normally be read?",
         "answer": "By a consuming task or late model boundary through its Provider, after build scripts can configure it."
       },
       {
+        "id": "level-09-week-37-03-custom-plugin-extension-design-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-37-03-custom-plugin-extension-design-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

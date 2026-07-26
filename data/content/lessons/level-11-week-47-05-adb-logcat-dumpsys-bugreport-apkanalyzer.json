@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-recall-1",
         "prompt": "Why combine dumpsys with Perfetto?",
         "answer": "dumpsys provides scoped state snapshots, while Perfetto shows timing and causality across an interval."
       },
       {
+        "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

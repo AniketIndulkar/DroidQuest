@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-09-01-compose-mental-model-recall-1",
         "prompt": "What creates the initial Composition?",
         "answer": "The first execution of composable functions for that UI tree."
       },
       {
+        "id": "level-03-week-09-01-compose-mental-model-recall-2",
         "prompt": "What causes recomposition?",
         "answer": "A changed observable state value read by a composition scope."
       },
       {
+        "id": "level-03-week-09-01-compose-mental-model-recall-3",
         "prompt": "What property should a composable body have?",
         "answer": "It should be idempotent and free of uncontrolled side effects."
       }

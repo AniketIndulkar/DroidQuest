@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-03-05-jvm-interop-memory-recall-1",
         "prompt": "What is a platform type?",
         "answer": "A Java-origin type whose nullability Kotlin cannot determine safely."
       },
       {
+        "id": "level-01-week-03-05-jvm-interop-memory-recall-2",
         "prompt": "How do == and === differ?",
         "answer": "== checks structural equality and === checks reference identity."
       },
       {
+        "id": "level-01-week-03-05-jvm-interop-memory-recall-3",
         "prompt": "When can Int require boxing?",
         "answer": "At nullable, generic, interface, and other object-representation boundaries."
       }

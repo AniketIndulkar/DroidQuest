@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-52-03-certificate-lifecycle-multibrand-environments-recall-1",
         "prompt": "Why deploy new certificate trust before using the new certificate?",
         "answer": "An overlap window lets old clients or servers accept both identities while deployment and adoption complete."
       },
       {
+        "id": "level-12-week-52-03-certificate-lifecycle-multibrand-environments-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-52-03-certificate-lifecycle-multibrand-environments-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

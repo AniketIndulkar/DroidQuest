@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-42-03-oom-low-memory-process-death-recall-1",
         "prompt": "Why can the OOM allocation stack be misleading?",
         "answer": "It shows the allocation that finally failed, while earlier retention or native/graphics growth may have consumed the memory."
       },
       {
+        "id": "level-10-week-42-03-oom-low-memory-process-death-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-42-03-oom-low-memory-process-death-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

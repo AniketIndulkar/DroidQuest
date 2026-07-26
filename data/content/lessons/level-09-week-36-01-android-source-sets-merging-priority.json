@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-36-01-android-source-sets-merging-priority-recall-1",
         "prompt": "What should be inspected to understand final component export and permissions?",
         "answer": "The merged manifest for the exact built variant."
       },
       {
+        "id": "level-09-week-36-01-android-source-sets-merging-priority-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-36-01-android-source-sets-merging-priority-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

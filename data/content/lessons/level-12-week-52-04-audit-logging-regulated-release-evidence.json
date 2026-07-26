@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-52-04-audit-logging-regulated-release-evidence-recall-1",
         "prompt": "What makes release evidence reproducible?",
         "answer": "It is bound to exact source, configuration, artifact, tools, tests, reviewers, outcomes, and retained raw records."
       },
       {
+        "id": "level-12-week-52-04-audit-logging-regulated-release-evidence-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-52-04-audit-logging-regulated-release-evidence-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

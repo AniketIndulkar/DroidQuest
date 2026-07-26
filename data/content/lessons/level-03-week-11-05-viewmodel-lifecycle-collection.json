@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-11-05-viewmodel-lifecycle-collection-recall-1",
         "prompt": "What does ViewModel own?",
         "answer": "Screen state and business work for its scope."
       },
       {
+        "id": "level-03-week-11-05-viewmodel-lifecycle-collection-recall-2",
         "prompt": "What does collectAsStateWithLifecycle add?",
         "answer": "Android lifecycle-aware Flow collection into Compose State."
       },
       {
+        "id": "level-03-week-11-05-viewmodel-lifecycle-collection-recall-3",
         "prompt": "What should content receive?",
         "answer": "Immutable UiState and explicit event callbacks."
       }

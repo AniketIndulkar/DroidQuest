@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-20-02-hilt-graph-constructor-modules-recall-1",
         "prompt": "What problem should hilt graphs, constructor injection, and modules solve?",
         "answer": "They automate creation for Android entry points while constructor injection documents requirements and modules supply only bindings the graph cannot construct."
       },
       {
+        "id": "level-05-week-20-02-hilt-graph-constructor-modules-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-20-02-hilt-graph-constructor-modules-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

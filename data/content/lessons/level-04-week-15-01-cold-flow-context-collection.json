@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-01-cold-flow-context-collection-recall-1",
         "prompt": "When does a cold flow builder run?",
         "answer": "When each collector starts collection."
       },
       {
+        "id": "level-04-week-15-01-cold-flow-context-collection-recall-2",
         "prompt": "What starts a pipeline?",
         "answer": "A terminal operator such as collect."
       },
       {
+        "id": "level-04-week-15-01-cold-flow-context-collection-recall-3",
         "prompt": "What does flowOn affect?",
         "answer": "Only the upstream portion of the pipeline."
       }

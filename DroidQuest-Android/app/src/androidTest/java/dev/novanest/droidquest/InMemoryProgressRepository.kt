@@ -1,6 +1,7 @@
 package dev.novanest.droidquest
 
 import dev.novanest.droidquest.domain.RewardPolicy
+import dev.novanest.droidquest.domain.ReviewState
 import dev.novanest.droidquest.progress.LearnerProgress
 import dev.novanest.droidquest.progress.ProgressRepository
 import dev.novanest.droidquest.progress.QuizRecordResult
@@ -17,6 +18,7 @@ class InMemoryProgressRepository : ProgressRepository {
         return QuizRecordResult(o, nodeIdToComplete, o.passed)
     }
     override suspend fun completeChallenge(challengeId: String, rewardXp: Int, rewardStars: Int) {}
+    override suspend fun saveReviewState(state: ReviewState) {}
     override suspend fun setGithubConnected(connected: Boolean) {}
     override suspend fun setNotifications(enabled: Boolean) {}
     override suspend fun setSound(enabled: Boolean) {}

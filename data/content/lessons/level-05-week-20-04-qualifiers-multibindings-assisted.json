@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-20-04-qualifiers-multibindings-assisted-recall-1",
         "prompt": "What problem should qualifiers, multibindings, and assisted factories solve?",
         "answer": "They resolve same-type bindings by semantic purpose, collect extensible sets or maps, and combine graph dependencies with runtime values safely."
       },
       {
+        "id": "level-05-week-20-04-qualifiers-multibindings-assisted-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-20-04-qualifiers-multibindings-assisted-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

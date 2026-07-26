@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-05-functions-recall-1",
         "prompt": "What is the difference between a parameter and an argument?",
         "answer": "A parameter is declared by the function; an argument is supplied by a caller."
       },
       {
+        "id": "level-01-week-01-05-functions-recall-2",
         "prompt": "What does Unit communicate?",
         "answer": "The function completes an action without returning a meaningful domain value."
       },
       {
+        "id": "level-01-week-01-05-functions-recall-3",
         "prompt": "Why use named arguments?",
         "answer": "They expose which parameter each value supplies and clarify otherwise ambiguous calls."
       }

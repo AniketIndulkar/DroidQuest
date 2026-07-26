@@ -1,6 +1,7 @@
 package dev.novanest.droidquest.progress
 
 import dev.novanest.droidquest.domain.RewardOutcome
+import dev.novanest.droidquest.domain.ReviewState
 
 /**
  * Immutable snapshot of learner progress, stored entirely separately from curriculum content
@@ -14,6 +15,7 @@ data class LearnerProgress(
     val readNodeIds: Set<String> = emptySet(),
     val bestQuizScore: Map<String, Double> = emptyMap(),
     val quizAttempts: Map<String, Int> = emptyMap(),
+    val reviewStates: Map<String, ReviewState> = emptyMap(),
     val totalXp: Int = 0,
     val totalStars: Int = 0,
     val settings: LearnerSettings = LearnerSettings(),
@@ -24,6 +26,8 @@ data class LearnerProgress(
     fun isStarred(lessonId: String): Boolean = lessonId in starredLessonIds
     fun isNodeComplete(nodeId: String): Boolean = nodeId in completedNodeIds
     fun isChallengeComplete(challengeId: String): Boolean = challengeId in completedChallengeIds
+    fun reviewState(recallItemId: String): ReviewState? = reviewStates[recallItemId]
+    fun reviewsDue(nowEpochMillis: Long): Int = reviewStates.values.count { it.isDue(nowEpochMillis) }
 }
 
 /** Streak is intentionally not fabricated: it is not tracked in this release. */

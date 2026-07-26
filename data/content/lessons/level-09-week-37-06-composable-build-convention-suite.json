@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-37-06-composable-build-convention-suite-recall-1",
         "prompt": "What is the organising unit of a scalable convention suite?",
         "answer": "A cohesive build capability that a module explicitly opts into through a stable plugin ID."
       },
       {
+        "id": "level-09-week-37-06-composable-build-convention-suite-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-37-06-composable-build-convention-suite-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

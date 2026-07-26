@@ -201,14 +201,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-06-notes-app-capstone-recall-1",
         "prompt": "What should a deep link carry into navigation?",
         "answer": "A validated stable note ID, not an in-memory Note object."
       },
       {
+        "id": "level-02-week-08-06-notes-app-capstone-recall-2",
         "prompt": "What bridges process death?",
         "answer": "Small saved reconstruction values combined with persistent local data."
       },
       {
+        "id": "level-02-week-08-06-notes-app-capstone-recall-3",
         "prompt": "What proves the hybrid UI is coherent?",
         "answer": "Both toolkits render one state owner and emit events through one contract."
       }

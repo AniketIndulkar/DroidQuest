@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-07-week-30-03-dependency-analysis-graph-hygiene-recall-1",
         "prompt": "What should determine the layer where a test runs?",
         "answer": "The lowest-cost environment with enough fidelity to expose the named failure."
       },
       {
+        "id": "level-07-week-30-03-dependency-analysis-graph-hygiene-recall-2",
         "prompt": "Which variables commonly cause unreliable tests?",
         "answer": "Uncontrolled time, scheduling, data, identity, external services, device state, ordering, and shared fixtures."
       },
       {
+        "id": "level-07-week-30-03-dependency-analysis-graph-hygiene-recall-3",
         "prompt": "What makes a test failure actionable?",
         "answer": "A clear contract, expected and observed state, reproducible inputs, timeline, environment, and retained artifacts."
       }

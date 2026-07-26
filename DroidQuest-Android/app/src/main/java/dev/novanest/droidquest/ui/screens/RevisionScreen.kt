@@ -89,7 +89,12 @@ fun RevisionScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQue
 
             if (quizState.phase == QuizPhase.FEEDBACK) {
                 Spacer(Modifier.height(16.dp))
-                FeedbackBox(quizState.lastCorrect == true, question.explanation)
+                FeedbackBox(
+                    correct = quizState.lastCorrect,
+                    explanation = question.explanation,
+                    expectedAnswer = QuizEvaluator.modelAnswer(question),
+                    monospaceAnswer = question.type == QuestionType.CODE_OUTPUT || question.type == QuestionType.FILL_BLANK,
+                )
             }
         }
 
@@ -97,6 +102,22 @@ fun RevisionScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQue
         val answered = isAnswered(question, ui.quiz?.answerFor(question.id) ?: UserAnswer.None)
         if (quizState.phase == QuizPhase.QUESTION) {
             PrimaryButton("Check Answer", enabled = answered, bg = if (answered) DQ.Green else DQ.text(0.15f)) { vm.submitCurrentQuestion() }
+        } else if (QuizEvaluator.requiresSelfAssessment(question) && quizState.lastCorrect == null) {
+            Text(
+                "Compare the idea, not the exact wording.",
+                color = DQ.text(0.55f),
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+            )
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Box(Modifier.weight(1f)) {
+                    PrimaryButton("Not yet", bg = DQ.Amber) { vm.assessCurrentQuestion(false) }
+                }
+                Box(Modifier.weight(1f)) {
+                    PrimaryButton("I got the idea", bg = DQ.Green) { vm.assessCurrentQuestion(true) }
+                }
+            }
         } else {
             PrimaryButton(if (quizState.index + 1 >= total) "See Results" else "Next Question", bg = DQ.Green) { vm.nextQuestion() }
         }
@@ -165,22 +186,33 @@ private fun TextInput(q: QuestionDto, vm: DroidQuestViewModel, ui: DroidQuestUiS
     val value = (ui.quiz?.answerFor(q.id) as? UserAnswer.Text)?.value ?: ""
     val isCode = q.type == QuestionType.CODE_OUTPUT
     val placeholder = when (q.type) {
-        QuestionType.CODE_OUTPUT -> "Type the exact output"
+        QuestionType.CODE_OUTPUT -> "Type only the program output"
         QuestionType.FILL_BLANK -> "Type the missing text"
         else -> "Type your answer"
     }
-    BasicTextField(
-        value = value,
-        onValueChange = { if (enabled) vm.setQuizAnswer(q.id, UserAnswer.Text(it)) },
-        enabled = enabled,
-        textStyle = TextStyle(color = DQ.TextPrimary, fontSize = 14.sp, fontFamily = if (isCode) Mono else null),
-        cursorBrush = SolidColor(DQ.Green),
-        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(DQ.Card).border(1.dp, DQ.white(0.1f), RoundedCornerShape(12.dp)).padding(14.dp),
-        decorationBox = { inner ->
-            if (value.isEmpty()) Text(placeholder, color = DQ.text(0.35f), fontSize = 14.sp, fontFamily = if (isCode) Mono else null)
-            inner()
-        },
-    )
+    Column {
+        if (q.type == QuestionType.CODE_OUTPUT) {
+            Text(
+                "Enter what the program prints—not Kotlin code.",
+                color = DQ.BlueLight,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp),
+            )
+        }
+        BasicTextField(
+            value = value,
+            onValueChange = { if (enabled) vm.setQuizAnswer(q.id, UserAnswer.Text(it)) },
+            enabled = enabled,
+            textStyle = TextStyle(color = DQ.TextPrimary, fontSize = 14.sp, fontFamily = if (isCode) Mono else null),
+            cursorBrush = SolidColor(DQ.Green),
+            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(DQ.Card).border(1.dp, DQ.white(0.1f), RoundedCornerShape(12.dp)).padding(14.dp),
+            decorationBox = { inner ->
+                if (value.isEmpty()) Text(placeholder, color = DQ.text(0.35f), fontSize = 14.sp, fontFamily = if (isCode) Mono else null)
+                inner()
+            },
+        )
+    }
 }
 
 @Composable
@@ -255,13 +287,39 @@ private fun OptionCard(text: String, selected: Boolean, enabled: Boolean, multi:
 }
 
 @Composable
-private fun FeedbackBox(correct: Boolean, explanation: String) {
+private fun FeedbackBox(correct: Boolean?, explanation: String, expectedAnswer: String, monospaceAnswer: Boolean) {
+    val color = when (correct) {
+        true -> DQ.Green
+        false -> DQ.Amber
+        null -> DQ.BlueLight
+    }
     Column(
         Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
-            .background(if (correct) DQ.Green.copy(alpha = 0.12f) else DQ.Red.copy(alpha = 0.12f))
-            .border(1.dp, if (correct) DQ.Green.copy(alpha = 0.35f) else DQ.Red.copy(alpha = 0.35f), RoundedCornerShape(14.dp)).padding(horizontal = 16.dp, vertical = 14.dp),
+            .background(color.copy(alpha = 0.12f))
+            .border(1.dp, color.copy(alpha = 0.35f), RoundedCornerShape(14.dp)).padding(horizontal = 16.dp, vertical = 14.dp),
     ) {
-        Text(if (correct) "Correct!" else "Not quite", color = if (correct) DQ.Green else DQ.Red, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(bottom = 6.dp))
+        Text(
+            when (correct) {
+                true -> "You’ve got it"
+                false -> "Let’s learn from this one"
+                null -> "Compare with the model answer"
+            },
+            color = color,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.ExtraBold,
+            modifier = Modifier.padding(bottom = 6.dp),
+        )
+        if (correct != true) {
+            Text(if (correct == null) "Model answer" else "Expected answer", color = color, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+            Text(
+                expectedAnswer,
+                color = DQ.TextPrimary,
+                fontSize = 13.sp,
+                lineHeight = 19.sp,
+                fontFamily = if (monospaceAnswer) Mono else null,
+                modifier = Modifier.padding(top = 4.dp, bottom = 10.dp),
+            )
+        }
         Text(explanation, color = DQ.text(0.7f), fontSize = 13.sp, lineHeight = 19.5.sp)
     }
 }
@@ -285,7 +343,7 @@ private fun QuizResult(vm: DroidQuestViewModel, quiz: dev.novanest.droidquest.co
         Text("${score?.correct ?: 0} / ${score?.total ?: quiz.questions.size} correct", color = DQ.TextPrimary, fontSize = 20.sp, fontWeight = FontWeight.Black)
         Spacer(Modifier.height(6.dp))
         Text(
-            if (passed) "Passed · needed ${(quiz.passingScore * 100).toInt()}%" else "Keep going · needed ${(quiz.passingScore * 100).toInt()}%",
+            if (passed) "Passed · needed ${(quiz.passingScore * 100).toInt()}%" else "You’re learning · needed ${(quiz.passingScore * 100).toInt()}%",
             color = if (passed) DQ.Green else DQ.text(0.55f), fontSize = 13.sp, fontWeight = FontWeight.Bold,
         )
         if (recorded != null && recorded.firstPass) {
@@ -293,9 +351,29 @@ private fun QuizResult(vm: DroidQuestViewModel, quiz: dev.novanest.droidquest.co
             Text("+${recorded.outcome.xpAwarded} XP · ${recorded.outcome.starsAwarded}★ earned", color = DQ.Amber, fontSize = 14.sp, fontWeight = FontWeight.Bold)
         } else if (passed) {
             Spacer(Modifier.height(10.dp))
-            Text("Already mastered — rewards granted earlier", color = DQ.text(0.45f), fontSize = 12.sp)
+            Text("Completed before — rewards granted earlier", color = DQ.text(0.45f), fontSize = 12.sp)
         }
         Spacer(Modifier.height(24.dp))
-        PrimaryButton("Back to Map", bg = DQ.Green) { vm.exitQuiz() }
+        if (!passed) {
+            Text(
+                "Mistakes are part of practice. You’ve now seen the model answers, so try once more when you’re ready.",
+                color = DQ.text(0.6f),
+                fontSize = 13.sp,
+                lineHeight = 19.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(bottom = 14.dp),
+            )
+            PrimaryButton("Try Again", bg = DQ.Green) { vm.retryQuiz() }
+            Text(
+                "Back to Map",
+                color = DQ.text(0.65f),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().clickable { vm.exitQuiz() }.padding(14.dp),
+            )
+        } else {
+            PrimaryButton("Back to Map", bg = DQ.Green) { vm.exitQuiz() }
+        }
     }
 }

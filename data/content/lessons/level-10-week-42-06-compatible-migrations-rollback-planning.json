@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-42-06-compatible-migrations-rollback-planning-recall-1",
         "prompt": "Why is mobile rollback often a roll-forward hotfix?",
         "answer": "Installed version codes and irreversible local/server changes can prevent simply downgrading users to an older binary."
       },
       {
+        "id": "level-10-week-42-06-compatible-migrations-rollback-planning-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-42-06-compatible-migrations-rollback-planning-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

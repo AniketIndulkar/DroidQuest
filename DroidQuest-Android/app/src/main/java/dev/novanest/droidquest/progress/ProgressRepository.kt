@@ -1,5 +1,7 @@
 package dev.novanest.droidquest.progress
 
+import dev.novanest.droidquest.domain.ReviewState
+
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -28,6 +30,9 @@ interface ProgressRepository {
 
     /** Complete a challenge. Optional and idempotent — never affects roadmap progression. */
     suspend fun completeChallenge(challengeId: String, rewardXp: Int, rewardStars: Int)
+
+    /** Upsert one scheduled recall state. Curriculum content remains immutable. */
+    suspend fun saveReviewState(state: ReviewState)
 
     suspend fun setGithubConnected(connected: Boolean)
     suspend fun setNotifications(enabled: Boolean)

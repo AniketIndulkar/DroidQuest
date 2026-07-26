@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-11-01-effect-fundamentals-keys-recall-1",
         "prompt": "What belongs in a composable body?",
         "answer": "Idempotent UI description from current inputs."
       },
       {
+        "id": "level-03-week-11-01-effect-fundamentals-keys-recall-2",
         "prompt": "What do effect keys declare?",
         "answer": "The identity and restart lifetime of the work."
       },
       {
+        "id": "level-03-week-11-01-effect-fundamentals-keys-recall-3",
         "prompt": "Is a formatted label an effect?",
         "answer": "No, it is a pure value derived from state."
       }

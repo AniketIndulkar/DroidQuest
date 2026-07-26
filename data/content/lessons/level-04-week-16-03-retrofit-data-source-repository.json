@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-03-retrofit-data-source-repository-recall-1",
         "prompt": "What does a Retrofit service describe?",
         "answer": "HTTP endpoint and representation declarations."
       },
       {
+        "id": "level-04-week-16-03-retrofit-data-source-repository-recall-2",
         "prompt": "Where should Response interpretation stop?",
         "answer": "At the remote data-source boundary."
       },
       {
+        "id": "level-04-week-16-03-retrofit-data-source-repository-recall-3",
         "prompt": "What does repository add?",
         "answer": "Application source, cache, and freshness policy."
       }

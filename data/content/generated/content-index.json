@@ -1,7 +1,7 @@
 {
   "id": "droidquest-content-index",
   "curriculumVersion": "1.0.0",
-  "contentRevision": 15,
+  "contentRevision": 16,
   "counts": {
     "categories": 12,
     "lessons": 302,
@@ -435,7 +435,7 @@
         "output"
       ],
       "path": "content/lessons/level-01-week-01-01-first-program.json",
-      "sha256": "6542c5b6c6c661606bcdc4dc94ec0e85a2ee5522bcc4ce2c83dc161c67e5c3f3"
+      "sha256": "503663a9cd0b0ab4941a1a54277fdf7963c31cda7e34fdd685049d06f12aac5a"
     },
     {
       "id": "level-01-week-01-02-values-types-strings",
@@ -450,7 +450,7 @@
         "strings"
       ],
       "path": "content/lessons/level-01-week-01-02-values-types-strings.json",
-      "sha256": "e6dec9cdbf07b85227c0ab3c8b0f39f4273227efb0619080b8f6507dfaa03af3"
+      "sha256": "20918bf422a15cd300c303bf927f84f65e10aa232c61054b10988fcaa6a424da"
     },
     {
       "id": "level-01-week-01-03-expressions-decisions",
@@ -465,7 +465,7 @@
         "conditions"
       ],
       "path": "content/lessons/level-01-week-01-03-expressions-decisions.json",
-      "sha256": "950f50c78e31c84e7dd4996c6ae9730c7c915c9d9250ce18a2132e5a994b5b51"
+      "sha256": "e6fc2c77644097040f4710425b6f0db8582112e8f9567b7f3f98a88257a01080"
     },
     {
       "id": "level-01-week-01-04-loops-ranges",
@@ -480,7 +480,7 @@
         "iteration"
       ],
       "path": "content/lessons/level-01-week-01-04-loops-ranges.json",
-      "sha256": "b04a7cb2b76cc48ea649ad15445b15776c9d5d09c34f2bb6bc1cb43f82304bac"
+      "sha256": "f5b4994e38f9dd37e265b7ae045369ebb3752588c5f31f3ce85fb5badc47437e"
     },
     {
       "id": "level-01-week-01-05-functions",
@@ -495,7 +495,7 @@
         "return-values"
       ],
       "path": "content/lessons/level-01-week-01-05-functions.json",
-      "sha256": "61de319856b8dadcf932316fc2d1804423db00ab2c868d5dbeddae1d72d57fae"
+      "sha256": "868a10040e1b0acb2d20abf39b717fceec1ca0d2bcdbda575f5acce309bb7765"
     },
     {
       "id": "level-01-week-01-06-null-safety",
@@ -509,7 +509,7 @@
         "input-validation"
       ],
       "path": "content/lessons/level-01-week-01-06-null-safety.json",
-      "sha256": "d6ad07eef13305c191af13d719c65e5840e00a16f86ae236970c8d2d546164b3"
+      "sha256": "682f5ec08fbd0516feddc35281b896b5eda2559f3ab2d3753ed2c5fab7b6db1f"
     },
     {
       "id": "level-01-week-01-07-small-program-design",
@@ -524,7 +524,7 @@
         "expense-manager"
       ],
       "path": "content/lessons/level-01-week-01-07-small-program-design.json",
-      "sha256": "028ff8756e1bba2b7d098fdccedc8c8cc1669de01d69b3209ff8011f6d0e70a6"
+      "sha256": "5f4f21f9f86bdecb0a34e91389ac18cf662aa1168e4a3cf6fd933c9f122496ac"
     },
     {
       "id": "level-01-week-02-01-classes-objects-composition",
@@ -539,7 +539,7 @@
         "composition"
       ],
       "path": "content/lessons/level-01-week-02-01-classes-objects-composition.json",
-      "sha256": "bb2f1ef0d75ab683ca7649dbcf34b6c01305d8a1d6f772f880727118870b2cb8"
+      "sha256": "4b6ae94abcb8317d0efd060cc288d43beb6e48892e2b323e0c828d9ea0142e1d"
     },
     {
       "id": "level-01-week-02-02-data-enum-sealed-models",
@@ -554,7 +554,7 @@
         "sealed-types"
       ],
       "path": "content/lessons/level-01-week-02-02-data-enum-sealed-models.json",
-      "sha256": "13f9004d3b04ce397ff4b0c686d230db1958a570c621ed1a46e84cb19709ca42"
+      "sha256": "afd318141397451989f964ae0ee221fc004961ae528c89da4f1047f38d19eab3"
     },
     {
       "id": "level-01-week-02-03-collections-transformations",
@@ -569,7 +569,7 @@
         "pipelines"
       ],
       "path": "content/lessons/level-01-week-02-03-collections-transformations.json",
-      "sha256": "aec047b98426f5d6ed0c3c82a02d38449bda5c7a8be6ba0fd2d9a58c811e9423"
+      "sha256": "30f2192415af111311eed453d3826da38e3a9ebccedfd3df77b55be2a1079c1b"
     },
     {
       "id": "level-01-week-02-04-lambdas-extensions-scope",
@@ -584,7 +584,7 @@
         "extensions"
       ],
       "path": "content/lessons/level-01-week-02-04-lambdas-extensions-scope.json",
-      "sha256": "e42a24dc1997882ddc5b457e670c5704bc8ed46347b46170c72b17529466246d"
+      "sha256": "28cfed947c82a10ac898b83b9360267cb7c711b46125eee77394a1eaa4144c01"
     },
     {
       "id": "level-01-week-03-01-exceptions-results",
@@ -599,7 +599,7 @@
         "failure"
       ],
       "path": "content/lessons/level-01-week-03-01-exceptions-results.json",
-      "sha256": "d1f10f8b4ba647191083e6e235b6c21396dd6891c41ed7ae044e3f95a655dff0"
+      "sha256": "bdec0c29416a659c44120f1b6426cfc75c78eda99f1a992f95b992b10616dbd3"
     },
     {
       "id": "level-01-week-03-02-generics-variance",
@@ -614,7 +614,7 @@
         "type-safety"
       ],
       "path": "content/lessons/level-01-week-03-02-generics-variance.json",
-      "sha256": "46167c09c061268348d2962b1108c34bf7d575399e89094b6dcdfea4d14acd2a"
+      "sha256": "982b64003932e23c44c3e3ba23893e04a3c381b641a6d55584c6c5e645deb309"
     },
     {
       "id": "level-01-week-03-03-delegation-inline-value-classes",
@@ -630,7 +630,7 @@
         "value-classes"
       ],
       "path": "content/lessons/level-01-week-03-03-delegation-inline-value-classes.json",
-      "sha256": "5ec5d574ef800640d38ff66ee841fb2e5b728de6ec923bf95aa6319ce169db83"
+      "sha256": "4ffdeaafbaab23c67075d2f0f008e5a3136d7c0cdd229b739b25550a92660658"
     },
     {
       "id": "level-01-week-03-04-annotations-reflection-dsls",
@@ -645,7 +645,7 @@
         "dsl"
       ],
       "path": "content/lessons/level-01-week-03-04-annotations-reflection-dsls.json",
-      "sha256": "7c49ec7eb4ccc0f238f62e3c42d929845bafbfa177c7d6dc68a0cf0db78e89e4"
+      "sha256": "9aae812ae8d45e84f7829acca91d85da0489dc6274d6d42a0974ef35f4c26b9d"
     },
     {
       "id": "level-01-week-03-05-jvm-interop-memory",
@@ -660,7 +660,7 @@
         "memory"
       ],
       "path": "content/lessons/level-01-week-03-05-jvm-interop-memory.json",
-      "sha256": "39cef1c3ad69a3247995eb0a9eb0fa0b111c57f4120d19c3fe997669636b6836"
+      "sha256": "8aed469a17011a7e37695bac1773553f8d82f30f50b66057735b60b49d7c25d3"
     },
     {
       "id": "level-01-week-04-01-terminal-files-processes",
@@ -675,7 +675,7 @@
         "processes"
       ],
       "path": "content/lessons/level-01-week-04-01-terminal-files-processes.json",
-      "sha256": "4518cf38c2833abe0f5b6b8801e9882d0d7c9056e1d52d3b9811f2b676223605"
+      "sha256": "eafaced3d16b7a21f1af1b4648fe272ba90150360a474585f52d091c4f424be5"
     },
     {
       "id": "level-01-week-04-02-git-collaboration-docs",
@@ -690,7 +690,7 @@
         "documentation"
       ],
       "path": "content/lessons/level-01-week-04-02-git-collaboration-docs.json",
-      "sha256": "b7002fa0aad82cc9388ce8fa24d364320256037b1b5e60a512d72f01fb9db3d4"
+      "sha256": "bdd89bbf254accedfa559a2e99dd7d29379cb075e5e18b58120c22624105607c"
     },
     {
       "id": "level-01-week-04-03-debugging-stack-traces",
@@ -705,7 +705,7 @@
         "tooling"
       ],
       "path": "content/lessons/level-01-week-04-03-debugging-stack-traces.json",
-      "sha256": "7a079c64e4dae068a7f5baacd0e92bdb91d1834e9d6133b08d3f9457ac7ef3c7"
+      "sha256": "3ae0718e454dea580021741df55a206b62eb571f5c93caa23e5b636500b872d9"
     },
     {
       "id": "level-01-week-04-04-data-structures-complexity",
@@ -720,7 +720,7 @@
         "algorithms"
       ],
       "path": "content/lessons/level-01-week-04-04-data-structures-complexity.json",
-      "sha256": "240dcd1597ad80ca4c8e175318e9612dd0a6da7a256d411b1c73689d12a4f358"
+      "sha256": "598aeb6d24227f2bd1a03047e99f087dd4fb4b4d6062cb40644818da9f3f2607"
     },
     {
       "id": "level-01-week-04-05-http-rest-json",
@@ -735,7 +735,7 @@
         "networking"
       ],
       "path": "content/lessons/level-01-week-04-05-http-rest-json.json",
-      "sha256": "4f4f70948053c16059982ddd09c01fbe8275350efdaf81c7de985e9cba018729"
+      "sha256": "5498cf0a9eddd7e036056c7eb844b3e2a6ed3793b831c817d7db7aabcb546f24"
     },
     {
       "id": "level-01-week-04-06-expense-manager-capstone",
@@ -750,7 +750,7 @@
         "testing"
       ],
       "path": "content/lessons/level-01-week-04-06-expense-manager-capstone.json",
-      "sha256": "320a7c27d761ca39d31d84757566eb3da487bc674480203684bb0cf0cb33b3e0"
+      "sha256": "ff3971a8499a37cf5f0c84dc731323a04659a3e690735b4f796010bfbf87c328"
     },
     {
       "id": "level-02-week-05-01-studio-sdk-emulator",
@@ -765,7 +765,7 @@
         "tooling"
       ],
       "path": "content/lessons/level-02-week-05-01-studio-sdk-emulator.json",
-      "sha256": "c1dc58f1cb3d0bd6fe07da45fd8027ee17e4c00e2bf987943a06b06a5ab5da86"
+      "sha256": "0c665d3c8864f53b674481a941d5c00c902549ef97eaf54501f7e21f53baa54d"
     },
     {
       "id": "level-02-week-05-02-projects-modules-source-sets",
@@ -780,7 +780,7 @@
         "structure"
       ],
       "path": "content/lessons/level-02-week-05-02-projects-modules-source-sets.json",
-      "sha256": "cb0135bc8cee5c9b8777a2864c6b3bc80dd31868185c8b149da34355e08926a8"
+      "sha256": "465b5791d014f3e3104703149ef0281a55c664dfc2b17e15d092ab0cf10843cc"
     },
     {
       "id": "level-02-week-05-03-gradle-agp-build-flow",
@@ -795,7 +795,7 @@
         "dependencies"
       ],
       "path": "content/lessons/level-02-week-05-03-gradle-agp-build-flow.json",
-      "sha256": "e2c9ddccf63637ec8795b3aa4cabe2cb46fd027cf948aad944d066f2db7a97ef"
+      "sha256": "b5700d1494e02d557feceba68efbd197f985ef9e974347eb5450bcf28517c8ea"
     },
     {
       "id": "level-02-week-05-04-manifest-resources-identity",
@@ -810,7 +810,7 @@
         "components"
       ],
       "path": "content/lessons/level-02-week-05-04-manifest-resources-identity.json",
-      "sha256": "5cdcedc08566471853bc2663ea575b7fd6c0ebcf481839d63d9bdb4ec7cba502"
+      "sha256": "667e3f6bbad9fe2107cde85c5db592cbb8503bfc2f6b899be38c4e28e9e61895"
     },
     {
       "id": "level-02-week-05-05-sdk-levels-variants-packaging",
@@ -825,7 +825,7 @@
         "app-bundle"
       ],
       "path": "content/lessons/level-02-week-05-05-sdk-levels-variants-packaging.json",
-      "sha256": "4b70b984f576d60bab45b14f55ef24834b725374162b1ec7d731a42e712b0aaa"
+      "sha256": "5e084f6f4568c4bfda4ef523451ce3f47f8da509b22d9f9ad9091969763201ca"
     },
     {
       "id": "level-02-week-06-01-application-process-context",
@@ -840,7 +840,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-02-week-06-01-application-process-context.json",
-      "sha256": "b97561839fc6874c7d1ec6e457651a24022db76d78979fddef9164f375710ba2"
+      "sha256": "04759de2290e6bd2dc19a01338893c5dd28c3072c6cd338785816a424be03079"
     },
     {
       "id": "level-02-week-06-02-activity-lifecycle",
@@ -855,7 +855,7 @@
         "visibility"
       ],
       "path": "content/lessons/level-02-week-06-02-activity-lifecycle.json",
-      "sha256": "6fbb4f8e559ddd63551621eafd3bac58971c72b596b97a6a4abd5e73d94c07c7"
+      "sha256": "f4a8d501b77d798132b500f6fcee9efa8404c277aa0f18f12a7be70113980e4f"
     },
     {
       "id": "level-02-week-06-03-configuration-changes",
@@ -870,7 +870,7 @@
         "adaptive"
       ],
       "path": "content/lessons/level-02-week-06-03-configuration-changes.json",
-      "sha256": "9ad84f030329680b25cd3bd43ea4e30fc70c9dc8bd0fe6844e70bd9bf55ce352"
+      "sha256": "6784eb480aae9505150c1ce771c7dcb24f8e554a19c9df7f5cb196312b425047"
     },
     {
       "id": "level-02-week-06-04-saved-state-process-death",
@@ -885,7 +885,7 @@
         "persistence"
       ],
       "path": "content/lessons/level-02-week-06-04-saved-state-process-death.json",
-      "sha256": "606b59daf66b2d5858200e4254d1be0de344bca626a365dbd1674a97abe6e2eb"
+      "sha256": "5d0390d0dfc40e0aa29dae518ad88394d83cd6b55b097bdc518404a8779a8047"
     },
     {
       "id": "level-02-week-06-05-resources-qualifiers-localisation",
@@ -900,7 +900,7 @@
         "configuration"
       ],
       "path": "content/lessons/level-02-week-06-05-resources-qualifiers-localisation.json",
-      "sha256": "953debfee137feeca4567b21909c7c58afb242c18250471187250c2a5e655e37"
+      "sha256": "91cd112c3fbca8be3728d3033b4c2129344ae8e6a35f64feee42399c2c28a2ec"
     },
     {
       "id": "level-02-week-07-01-intents-activity-results",
@@ -915,7 +915,7 @@
         "contracts"
       ],
       "path": "content/lessons/level-02-week-07-01-intents-activity-results.json",
-      "sha256": "477621086560fff3a7c788ba7363c78e9e70fdac2367edd1cfb06414c28be842"
+      "sha256": "114f96df0dbab404dec3012bbe95f7ecf5d59711e31f4bc2feb1f5b13cce5d56"
     },
     {
       "id": "level-02-week-07-02-runtime-permissions",
@@ -930,7 +930,7 @@
         "security"
       ],
       "path": "content/lessons/level-02-week-07-02-runtime-permissions.json",
-      "sha256": "07428ca2b6f96d24dff9936a00375fa54c3c178b770af97c0fe0c0727f892ce6"
+      "sha256": "8edae04f5788dd34acb6064002e0ad2093d4911325984c463787a2e3e22c9673"
     },
     {
       "id": "level-02-week-07-03-component-selection-services",
@@ -945,7 +945,7 @@
         "background-work"
       ],
       "path": "content/lessons/level-02-week-07-03-component-selection-services.json",
-      "sha256": "11b0c04e559ed9d1fe36c2337cff64dfe58a8e22b4d7ae597a0a5fbffe41917d"
+      "sha256": "36a4b467c554137265031d21729783c6523d6666c1e13858f85c70c532161851"
     },
     {
       "id": "level-02-week-07-04-broadcasts-providers-pending-intents",
@@ -960,7 +960,7 @@
         "ipc"
       ],
       "path": "content/lessons/level-02-week-07-04-broadcasts-providers-pending-intents.json",
-      "sha256": "3aa6159973ca63f4a380790ae14b38a0dc98d394caf1f774b125dcbb2c567c49"
+      "sha256": "e91ce05c3701b354aa349eb9e85973e71056c7c823ff30454135b937bfbdfc02"
     },
     {
       "id": "level-02-week-07-05-tasks-back-stack-app-links",
@@ -975,7 +975,7 @@
         "app-links"
       ],
       "path": "content/lessons/level-02-week-07-05-tasks-back-stack-app-links.json",
-      "sha256": "c56a94d902b86d51645285d0cc2cd71a099691038679b810e3ab1227ab2a8258"
+      "sha256": "debc19476b502f8ce4876d808d7d40509f86fe26d8a69fa94388ebcb599fae90"
     },
     {
       "id": "level-02-week-08-01-xml-view-hierarchies",
@@ -990,7 +990,7 @@
         "ui"
       ],
       "path": "content/lessons/level-02-week-08-01-xml-view-hierarchies.json",
-      "sha256": "f732e16b9f7f4399164797f972be14bf2b0ff8de14a5e76f9488c9990ca60809"
+      "sha256": "5793521aa9191707ff8e774de432bc161666245e194406e8492c3bb2c0200965"
     },
     {
       "id": "level-02-week-08-02-constraintlayout-viewbinding",
@@ -1005,7 +1005,7 @@
         "safety"
       ],
       "path": "content/lessons/level-02-week-08-02-constraintlayout-viewbinding.json",
-      "sha256": "85c9dc9cd8c9b6c5eff6bb0dfcf34ee6791be0339eb934c9ddd0ad9746d6f696"
+      "sha256": "a08189bede35193af947b2c8fd5638ebccf11f436c8288b2daf76577c82e0666"
     },
     {
       "id": "level-02-week-08-03-fragments-navigation",
@@ -1020,7 +1020,7 @@
         "saved-state"
       ],
       "path": "content/lessons/level-02-week-08-03-fragments-navigation.json",
-      "sha256": "f29820bc887c044717c44f181f407460919679f31093564d77f3447f080c6f97"
+      "sha256": "11a3f0d51292e341476c7d3e8ab240a415516c6bbbdde562ecb4d53b9419bdf6"
     },
     {
       "id": "level-02-week-08-04-recyclerview-lists",
@@ -1035,7 +1035,7 @@
         "lists"
       ],
       "path": "content/lessons/level-02-week-08-04-recyclerview-lists.json",
-      "sha256": "ac1dcffd41826c5c053c8146bdb96a220275bd884a05229439fd3fa205536852"
+      "sha256": "4f7ba2e4b361d2349e87b1d5c1a5789190243c172e30acaf07b55f863ea4097d"
     },
     {
       "id": "level-02-week-08-05-view-compose-interoperability",
@@ -1050,7 +1050,7 @@
         "migration"
       ],
       "path": "content/lessons/level-02-week-08-05-view-compose-interoperability.json",
-      "sha256": "ff3b417fe6a46fd4a0c721bfb6423c2ddb51523a2cc0e900565a547a76f9a159"
+      "sha256": "7be79455c1ff6e41ee5cf278f0d09314b39b725629663d1915509c144b011d6f"
     },
     {
       "id": "level-02-week-08-06-notes-app-capstone",
@@ -1065,7 +1065,7 @@
         "hybrid-ui"
       ],
       "path": "content/lessons/level-02-week-08-06-notes-app-capstone.json",
-      "sha256": "21a6df295c51177d28b0788aa79235bb75a7331863edbb1f5efb716e28f9ea2b"
+      "sha256": "9f08c10986b3022b87d6644215ac553122a6b6433ef284ba94f9b9786ebfa29c"
     },
     {
       "id": "level-03-week-09-01-compose-mental-model",
@@ -1079,7 +1079,7 @@
         "composition"
       ],
       "path": "content/lessons/level-03-week-09-01-compose-mental-model.json",
-      "sha256": "8b099cfeb1950ca3d7e64f84aba2aba53a91c0dfc94931324bdef797daa41905"
+      "sha256": "cfcff6bce0c797b650a387fcfca6e5cda0a19e8a4e470f70b3b27df2bd4029f2"
     },
     {
       "id": "level-03-week-09-02-modifiers-constraints-order",
@@ -1094,7 +1094,7 @@
         "layout"
       ],
       "path": "content/lessons/level-03-week-09-02-modifiers-constraints-order.json",
-      "sha256": "35e2cf88a8e0f35e60b08bffe382226f41ad4977f17dd8c1ce1e6b27f0473a18"
+      "sha256": "602f3093bb1c703d2c3bc103e905103b691b283486123486391a42d1adbc003a"
     },
     {
       "id": "level-03-week-09-03-row-column-box-layout",
@@ -1109,7 +1109,7 @@
         "box"
       ],
       "path": "content/lessons/level-03-week-09-03-row-column-box-layout.json",
-      "sha256": "201881c5563904271aae6df6ada8c3ad6769005fe612c3eef86a299f544ddf61"
+      "sha256": "d463aff2231473e927bedc661d5e9d693ed8609fc45675343e7548f22d814bbb"
     },
     {
       "id": "level-03-week-09-04-material3-scaffold-slots",
@@ -1124,7 +1124,7 @@
         "slots"
       ],
       "path": "content/lessons/level-03-week-09-04-material3-scaffold-slots.json",
-      "sha256": "31bfab3ff4f9f72a7b675170d71bdb9265d75c29fb878e305515168f47a267f8"
+      "sha256": "427c9f099c2ac98d15dcccc293bc2541729dc0886cf5f807abec557e5b34ba9a"
     },
     {
       "id": "level-03-week-09-05-text-input-resources",
@@ -1139,7 +1139,7 @@
         "resources"
       ],
       "path": "content/lessons/level-03-week-09-05-text-input-resources.json",
-      "sha256": "fc026d72077427e1284caa724bb8ec755306288e4cd018c1862c0d15ffcd0383"
+      "sha256": "028cdfd831311de0e830b4f512a141f07e7dcba5992267c59b4186f2705a3141"
     },
     {
       "id": "level-03-week-10-01-state-remember-saveable",
@@ -1153,7 +1153,7 @@
         "restoration"
       ],
       "path": "content/lessons/level-03-week-10-01-state-remember-saveable.json",
-      "sha256": "b940c8ab85a28c7de8c384c38d2d97821c7058549b52b937717e363b7937f353"
+      "sha256": "87d2978e1b1b2628cf551fca7d9b35b94a433ce0bc09c9c2d18faadcb25481c2"
     },
     {
       "id": "level-03-week-10-02-state-hoisting-udf",
@@ -1167,7 +1167,7 @@
         "udf"
       ],
       "path": "content/lessons/level-03-week-10-02-state-hoisting-udf.json",
-      "sha256": "caec70fd4344d846b86bdb33e8b915cff3a5ee0408dd18e36283647c2984e9fe"
+      "sha256": "da4b7231450164d7686f0159501d36ef736b9ac7e213204a8adac69b87c8c07f"
     },
     {
       "id": "level-03-week-10-03-recomposition-snapshots-identity",
@@ -1181,7 +1181,7 @@
         "snapshots"
       ],
       "path": "content/lessons/level-03-week-10-03-recomposition-snapshots-identity.json",
-      "sha256": "52cac25d5989a7704722fd63b16d413e0c2f063d45ef37f01e13d7e65c55f54e"
+      "sha256": "0674f8afb09e4df70ee5613c614ea71b9c6c514b2ee3ade7295086f529803f20"
     },
     {
       "id": "level-03-week-10-04-lazy-lists-grids",
@@ -1195,7 +1195,7 @@
         "grids"
       ],
       "path": "content/lessons/level-03-week-10-04-lazy-lists-grids.json",
-      "sha256": "5cd0a54970ab785913d51000c15c65aeadf5bbab33b77e3ef4fb2dc5a2393904"
+      "sha256": "e85522d36a36b843446da429950087a1e0dd1ab9b5b17b8982659331d7859b5c"
     },
     {
       "id": "level-03-week-10-05-navigation-compose-concepts",
@@ -1209,7 +1209,7 @@
         "back-stack"
       ],
       "path": "content/lessons/level-03-week-10-05-navigation-compose-concepts.json",
-      "sha256": "bb13fab6fc4607b4f75d6acf7c38d91bdd9f58fa10e083a3ca79a1fc5063686c"
+      "sha256": "2204d7d1aa28fa7c6b7ce8073e0949ab12b9c12f7468f1488d0ce57dfd32a9b9"
     },
     {
       "id": "level-03-week-11-01-effect-fundamentals-keys",
@@ -1223,7 +1223,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-03-week-11-01-effect-fundamentals-keys.json",
-      "sha256": "93e010d991e51f10c373c6c42c5a1141b53a932de1c8d0eca9052ca78e04f070"
+      "sha256": "5647fb0d6de8530e2fc18881ce1a0772f7f32ea22c3c736bcc15ffb42f2328f4"
     },
     {
       "id": "level-03-week-11-02-launched-effect-coroutine-scope",
@@ -1237,7 +1237,7 @@
         "cancellation"
       ],
       "path": "content/lessons/level-03-week-11-02-launched-effect-coroutine-scope.json",
-      "sha256": "7f6c03b04cb6f7578906039505f58f63629b01eeaf7f4521e62e985cdcbf6eff"
+      "sha256": "85eea932974684fd61ce1d5735c01fe2eecae461630f69b73436f4b2f6888183"
     },
     {
       "id": "level-03-week-11-03-disposable-sideeffect-updatedstate",
@@ -1251,7 +1251,7 @@
         "interop"
       ],
       "path": "content/lessons/level-03-week-11-03-disposable-sideeffect-updatedstate.json",
-      "sha256": "f4183ebb9fe837163293060df172a2b37ee77c9722889ef7c880f310c772016d"
+      "sha256": "96ffe761bd242135c00f99dd09faadf69b56d1cc464bc4a9c3c690077b841b03"
     },
     {
       "id": "level-03-week-11-04-derived-state-snapshot-flow",
@@ -1265,7 +1265,7 @@
         "flow"
       ],
       "path": "content/lessons/level-03-week-11-04-derived-state-snapshot-flow.json",
-      "sha256": "54744215f31d254883533b33701de6d2a28d2e556ba90d73f02933f43588b825"
+      "sha256": "613a9bdb7ac851e2ac4d987e2b6adccc4fe0dcfadd0834be66eda018ddcdb231"
     },
     {
       "id": "level-03-week-11-05-viewmodel-lifecycle-collection",
@@ -1279,7 +1279,7 @@
         "stateflow"
       ],
       "path": "content/lessons/level-03-week-11-05-viewmodel-lifecycle-collection.json",
-      "sha256": "d798c487accb68cacd4e64503600c52c3b6edacec43865a87bff2de3ab8b9a0f"
+      "sha256": "c236d47b8ad0ae5ec61f55b5d1fe2c6158ef547d1528b20f3330fc7bfb06fdea"
     },
     {
       "id": "level-03-week-12-01-stability-skipping-performance",
@@ -1293,7 +1293,7 @@
         "performance"
       ],
       "path": "content/lessons/level-03-week-12-01-stability-skipping-performance.json",
-      "sha256": "75aadca0b54340bc07c48d919dbaac5213390ae65a689248ce4284bf2f53933b"
+      "sha256": "99f72a59404f5c61ff410cbe35a8c7fffa3be84dedeab7b50fada8bcb29b018b"
     },
     {
       "id": "level-03-week-12-02-custom-layout-measure-placement",
@@ -1307,7 +1307,7 @@
         "measurement"
       ],
       "path": "content/lessons/level-03-week-12-02-custom-layout-measure-placement.json",
-      "sha256": "08ff6a457f11cebae5e6ddabbe034086d12100074863e4f650bf579aede56ddd"
+      "sha256": "9ccbf151fa3f96247c88a83dd9fcaaa4e2f9572500f5ed4ab77b62485e6f715d"
     },
     {
       "id": "level-03-week-12-03-canvas-custom-drawing",
@@ -1321,7 +1321,7 @@
         "graphics"
       ],
       "path": "content/lessons/level-03-week-12-03-canvas-custom-drawing.json",
-      "sha256": "dbc2d4ff24e7c126e0eb5eb86c662737a05aa1e2ed5998d0c264d43882bacaea"
+      "sha256": "08b4cc00e3a471f501e47d25f9c983d979f6da94db0c320d7f8b4d911b081ebc"
     },
     {
       "id": "level-03-week-12-04-gestures-pointer-input",
@@ -1335,7 +1335,7 @@
         "pointer-input"
       ],
       "path": "content/lessons/level-03-week-12-04-gestures-pointer-input.json",
-      "sha256": "eea0e4e12d7f0f97e5bc69c17b499f30f624195eadb7794d18e39415a28f7c7d"
+      "sha256": "0afe41e1e37f1b693edcef6ff9d8903a7a6f0e63f45a7d78f76cc79f5ebf1400"
     },
     {
       "id": "level-03-week-12-05-animation-nested-scroll",
@@ -1349,7 +1349,7 @@
         "nested-scroll"
       ],
       "path": "content/lessons/level-03-week-12-05-animation-nested-scroll.json",
-      "sha256": "f8c551dbbb0ccb28def8c8342ac52e5c84c19150f610a775e058304802a7a570"
+      "sha256": "ffd9371bdfceb77c6ee6563624193d0b2c1e03cce66f76ba2aa13ed6bce3d441"
     },
     {
       "id": "level-03-week-12-06-design-systems-compositionlocal",
@@ -1363,7 +1363,7 @@
         "compositionlocal"
       ],
       "path": "content/lessons/level-03-week-12-06-design-systems-compositionlocal.json",
-      "sha256": "bea80f982117d6b8cf83fc787e7a8b62a2b9e8941e29847e05a2b2c25a47b386"
+      "sha256": "28482645c0b6d77364a5352b3832e92397d7e11adcf8b45a0595aa1bf2b6b694"
     },
     {
       "id": "level-03-week-13-01-accessibility-semantics-talkback",
@@ -1377,7 +1377,7 @@
         "semantics"
       ],
       "path": "content/lessons/level-03-week-13-01-accessibility-semantics-talkback.json",
-      "sha256": "a5bd0a7fc8c6297d7034a5e3fd58435011dd98e4cb2b5c81ec2171f87c2f93be"
+      "sha256": "8989210757b2945e3562716784b45d8dc0b57d3036e1161faa1967ec50f6e10e"
     },
     {
       "id": "level-03-week-13-02-focus-keyboard-scalable-content",
@@ -1391,7 +1391,7 @@
         "font-scale"
       ],
       "path": "content/lessons/level-03-week-13-02-focus-keyboard-scalable-content.json",
-      "sha256": "cff8711905964dac29bb3b084e68892b8e0c9728f6d205f80144b7b19c6f7310"
+      "sha256": "8ed8e6eafeab9e03755bdfafa31fe4042afecf7885d6881e3a9d92bea4258afa"
     },
     {
       "id": "level-03-week-13-03-localisation-rtl-theme-policy",
@@ -1405,7 +1405,7 @@
         "theming"
       ],
       "path": "content/lessons/level-03-week-13-03-localisation-rtl-theme-policy.json",
-      "sha256": "0882e16b396bc469c06ef440a53284f6525f5da2d2d1406ea56e3038e7ccb8d4"
+      "sha256": "3abb59c756e8cdb9b0029fb62a9acf452148709586fbffa432170b4c4279b5cb"
     },
     {
       "id": "level-03-week-13-04-edge-to-edge-window-insets",
@@ -1419,7 +1419,7 @@
         "insets"
       ],
       "path": "content/lessons/level-03-week-13-04-edge-to-edge-window-insets.json",
-      "sha256": "86fb0d7423b8a1a5f337a0bd77f4de55067cd17ee8d3eb089b7187483fb8ef2a"
+      "sha256": "edba832b7c621ceb130be9385a31d44f70d6073761f081cb9a1e18b23eae64dd"
     },
     {
       "id": "level-03-week-13-05-adaptive-layout-navigation3",
@@ -1433,7 +1433,7 @@
         "navigation3"
       ],
       "path": "content/lessons/level-03-week-13-05-adaptive-layout-navigation3.json",
-      "sha256": "2b950ad7be0205913e89638c378a8876e14874d5725f12a7b5931785a44ded74"
+      "sha256": "ef6010a9b399d91ced6d665734e63bdbac71ab81201a6b64aba920a2d402de8f"
     },
     {
       "id": "level-03-week-13-06-compose-testing-shopping-capstone",
@@ -1447,7 +1447,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-03-week-13-06-compose-testing-shopping-capstone.json",
-      "sha256": "b64996936a32af6996c482b46bc30a39ca5eeb5dda4d3c34ece1348f1f1de3ce"
+      "sha256": "3c1117f5eb00317a4db806df51e39f801de285331e68c5dec60acec25da363d6"
     },
     {
       "id": "level-04-week-14-01-suspend-main-safety-dispatchers",
@@ -1461,7 +1461,7 @@
         "dispatchers"
       ],
       "path": "content/lessons/level-04-week-14-01-suspend-main-safety-dispatchers.json",
-      "sha256": "472f2c43943210df602c43c7473e5ba8851a8243f817ab3e11a3078b56edd453"
+      "sha256": "85be485d0c23bd75e8dcc19cc7f9909caeede24d6ac7ae2fd734cf976ae8da71"
     },
     {
       "id": "level-04-week-14-02-scopes-builders-structured-concurrency",
@@ -1475,7 +1475,7 @@
         "scope"
       ],
       "path": "content/lessons/level-04-week-14-02-scopes-builders-structured-concurrency.json",
-      "sha256": "03e7fc944ab107d48d37f773196c689dc67140a4a9d75b65eb2012462a798f0b"
+      "sha256": "dfa8913f379bfb6747416600ff82f3b048cd5ac5a5de3d64482d7eefd680ead7"
     },
     {
       "id": "level-04-week-14-03-cancellation-timeouts-cleanup",
@@ -1489,7 +1489,7 @@
         "timeouts"
       ],
       "path": "content/lessons/level-04-week-14-03-cancellation-timeouts-cleanup.json",
-      "sha256": "35e5ef6fb392869e9b57feb96c441db801f57d87d0ad0d20d016b77fa63408d4"
+      "sha256": "4ef8a11ab921708b74bca62ce2e471d5a751bbd1e59db21bb31addf160394c1d"
     },
     {
       "id": "level-04-week-14-04-exceptions-supervision",
@@ -1503,7 +1503,7 @@
         "supervision"
       ],
       "path": "content/lessons/level-04-week-14-04-exceptions-supervision.json",
-      "sha256": "d125cf4e3c6fe5bc854f29155fce94b8a81d23091959401e08d8d2cd4fb79378"
+      "sha256": "b49b98c9c24dbd9dc13ed98a97db6be5e51d01a9e99de1532f404ac68edd0418"
     },
     {
       "id": "level-04-week-14-05-parallelism-thread-safety",
@@ -1517,7 +1517,7 @@
         "thread-safety"
       ],
       "path": "content/lessons/level-04-week-14-05-parallelism-thread-safety.json",
-      "sha256": "8bd9f4cec1448518ffcfceaec5d9266662b0a6ec32a273c4c53f042186eb4c50"
+      "sha256": "24e3737f0c52621ef11c633d7cb6447e0e3ed1e7452fd092bccc300572851a63"
     },
     {
       "id": "level-04-week-14-06-coroutine-testing-virtual-time",
@@ -1531,7 +1531,7 @@
         "virtual-time"
       ],
       "path": "content/lessons/level-04-week-14-06-coroutine-testing-virtual-time.json",
-      "sha256": "c6961d652096da450ce6bfaa29fb30c181a56fd3b77bab7adbdc7c7a9b635c60"
+      "sha256": "8130a75108c04ac01c4199da65660b4bb53a04efac1201bc070697ffa93e4b67"
     },
     {
       "id": "level-04-week-15-01-cold-flow-context-collection",
@@ -1545,7 +1545,7 @@
         "context"
       ],
       "path": "content/lessons/level-04-week-15-01-cold-flow-context-collection.json",
-      "sha256": "9c71fbf99339b6d3c1bdd6fb28d6e5035cb988500ac0288a6d6fad70b3ba7378"
+      "sha256": "b3013a225af83e957093e9abd0723f1fc859bb04d0992a5060d481c34ea547a8"
     },
     {
       "id": "level-04-week-15-02-flow-operators-errors-retry",
@@ -1559,7 +1559,7 @@
         "retry"
       ],
       "path": "content/lessons/level-04-week-15-02-flow-operators-errors-retry.json",
-      "sha256": "3435216fd9f8415edcebf27adb448ad393905a7a7900d1c06c1a5fb9b6d590eb"
+      "sha256": "d05d4ae04c2d0fc63096d09bdb6b8439a27a2aa3731511f641a40f6a3732ca05"
     },
     {
       "id": "level-04-week-15-03-combine-latest-flattening",
@@ -1573,7 +1573,7 @@
         "flatmaplatest"
       ],
       "path": "content/lessons/level-04-week-15-03-combine-latest-flattening.json",
-      "sha256": "9600f1f72bdfd4ff0b1c4739926b89bb3fc209b87027cdc488148fd79472684a"
+      "sha256": "5230745fd0804b73480c50dca7e11c969393b7a06f35473c1deb428fdcb43dc5"
     },
     {
       "id": "level-04-week-15-04-buffer-conflate-backpressure",
@@ -1587,7 +1587,7 @@
         "backpressure"
       ],
       "path": "content/lessons/level-04-week-15-04-buffer-conflate-backpressure.json",
-      "sha256": "2b22fdf3636397d8c3adbee3709820c4a2c2384114d9d585f4525d02119a9b05"
+      "sha256": "3572bab323281b850a9ce46ae6af053f63d97941dca91a868c719ece7fe017ca"
     },
     {
       "id": "level-04-week-15-05-stateflow-sharedflow-events",
@@ -1601,7 +1601,7 @@
         "sharedflow"
       ],
       "path": "content/lessons/level-04-week-15-05-stateflow-sharedflow-events.json",
-      "sha256": "5e27ca30d9316b49b0594585cda7c8306357b6209c3ef46fdb7ca14bf37d7c70"
+      "sha256": "642ac5ecf20f91266d7228b8ac9ce34d30d337c01b0d7d35c59bf8d885f60e2c"
     },
     {
       "id": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests",
@@ -1616,7 +1616,7 @@
         "testing"
       ],
       "path": "content/lessons/level-04-week-15-06-statein-sharein-lifecycle-flow-tests.json",
-      "sha256": "8c314a7a4b7d3625103e5898bac4c6df2285af5efac23eeda7061fbf8cecde56"
+      "sha256": "df2667b0350742f5888d4bc017a5067bfcf81588a6c0c6bb701c07b6e1b015af"
     },
     {
       "id": "level-04-week-16-01-http-contracts-status-headers",
@@ -1630,7 +1630,7 @@
         "protocol"
       ],
       "path": "content/lessons/level-04-week-16-01-http-contracts-status-headers.json",
-      "sha256": "b6d6e9f6db07c1de3dfc03590e18edb578ef942b811b3a2b618a222394572432"
+      "sha256": "14fff76765414bbc33788eb45592ef264c255a9687c212cef7542ff801b8bd27"
     },
     {
       "id": "level-04-week-16-02-dto-kotlin-serialization",
@@ -1644,7 +1644,7 @@
         "dto"
       ],
       "path": "content/lessons/level-04-week-16-02-dto-kotlin-serialization.json",
-      "sha256": "56408d002e743f1240dbd1439a0ce673e58106f101e856e77dafedfd38dac16d"
+      "sha256": "c777b1d8c97353423b7fe1f5cf225e9d784c8b6547bd25ce65646b6f93ed0b10"
     },
     {
       "id": "level-04-week-16-03-retrofit-data-source-repository",
@@ -1658,7 +1658,7 @@
         "repository"
       ],
       "path": "content/lessons/level-04-week-16-03-retrofit-data-source-repository.json",
-      "sha256": "7a4d9623c5e0b109e6e857a910d20ecf3f3275878c13c1d594e01e54538d45d6"
+      "sha256": "c1ba0a7d488ef6d01cd4ef9dd354c62f98db605a7a9df2ce13038f904fcd2ac7"
     },
     {
       "id": "level-04-week-16-04-okhttp-interceptors-auth-logging",
@@ -1672,7 +1672,7 @@
         "interceptors"
       ],
       "path": "content/lessons/level-04-week-16-04-okhttp-interceptors-auth-logging.json",
-      "sha256": "082ea78fbd1b0ed7356c3854a2d1e05c1377686db7d59bc9de55b2df2fc76100"
+      "sha256": "75ee10df8f7c60983b121458c83ac759210686b6f4e5df01797b682dfee3218f"
     },
     {
       "id": "level-04-week-16-05-network-failures-timeouts-retries",
@@ -1686,7 +1686,7 @@
         "retries"
       ],
       "path": "content/lessons/level-04-week-16-05-network-failures-timeouts-retries.json",
-      "sha256": "937ba72ad5c89665ca951160b9f6c039463e1f6a57b3b3249cba9ab2738ffff6"
+      "sha256": "0e84435d8a9ca3ec22b26e5074dc9b3986fdbc379fb13458f20cd7c6540318cb"
     },
     {
       "id": "level-04-week-16-06-mockwebserver-network-integration-tests",
@@ -1700,7 +1700,7 @@
         "testing"
       ],
       "path": "content/lessons/level-04-week-16-06-mockwebserver-network-integration-tests.json",
-      "sha256": "08576fd0537cc8eaa629850c69283ac32a7b9bc1a93a5d8ff11ffa0e49e07930"
+      "sha256": "00a76d2b77283fc85c0b2f8f34c3b219a66173d02ad4da6b43b19b81c6cf3f0c"
     },
     {
       "id": "level-04-week-17-01-oauth-tokens-session-security",
@@ -1714,7 +1714,7 @@
         "oauth"
       ],
       "path": "content/lessons/level-04-week-17-01-oauth-tokens-session-security.json",
-      "sha256": "bab25adbed2675a08d1b23a06c7c4e9c32adb26e68fe8f8b84baf464858b1944"
+      "sha256": "d24de97af3da0e592133213207f0a26e99864aa94d0fd2a785e96de19914d700"
     },
     {
       "id": "level-04-week-17-02-single-flight-token-refresh",
@@ -1728,7 +1728,7 @@
         "concurrency"
       ],
       "path": "content/lessons/level-04-week-17-02-single-flight-token-refresh.json",
-      "sha256": "4b2577c0d982c218b88533fb3a3133b4930370193e855f151a325e2c49bf7f29"
+      "sha256": "49ab123124b53a7655ad9293597fe914c9688e3183be8c644f5aaba3bb2067b8"
     },
     {
       "id": "level-04-week-17-03-paging3-cursors-loadstates",
@@ -1742,7 +1742,7 @@
         "pagination"
       ],
       "path": "content/lessons/level-04-week-17-03-paging3-cursors-loadstates.json",
-      "sha256": "294a9a585c0bc44f5cae96887dc3a3f9bc6e6afc684f1e7ded39921807c6b35f"
+      "sha256": "7fe19caa3511cfed99b615d3a7f5c0ed3a847d93293fea9ec494285697583945"
     },
     {
       "id": "level-04-week-17-04-multipart-upload-progress",
@@ -1756,7 +1756,7 @@
         "multipart"
       ],
       "path": "content/lessons/level-04-week-17-04-multipart-upload-progress.json",
-      "sha256": "1996cb21e246e43ddc5279080d53f11e601d8f4ff21f7e4d6092bd48d3b8af09"
+      "sha256": "10df6f462a16b30b9578d2a07589c7fc0b70f751e3c3b4812520c4cbba7708cb"
     },
     {
       "id": "level-04-week-17-05-websockets-sse-realtime",
@@ -1770,7 +1770,7 @@
         "sse"
       ],
       "path": "content/lessons/level-04-week-17-05-websockets-sse-realtime.json",
-      "sha256": "b64ba489c9916804ebc417368ede0b1b4656d81d09d6f168e3d0ae28b23b6652"
+      "sha256": "1bfef6dd008f0f024c6495c21e9c2c0de64ce177837955dd4d36b14f995622cd"
     },
     {
       "id": "level-04-week-17-06-connectivity-policy-network-capabilities",
@@ -1784,7 +1784,7 @@
         "capabilities"
       ],
       "path": "content/lessons/level-04-week-17-06-connectivity-policy-network-capabilities.json",
-      "sha256": "6e39b38416f52b7c53838849c3b78e657da2b3b1b47324d08b7efddbafd3c32e"
+      "sha256": "005e603f3cc051629314ab3cd8df94eb23fc6dcb819ae4372fa6274fefecbc6b"
     },
     {
       "id": "level-04-week-18-01-room-entities-daos-relations-transactions",
@@ -1798,7 +1798,7 @@
         "transactions"
       ],
       "path": "content/lessons/level-04-week-18-01-room-entities-daos-relations-transactions.json",
-      "sha256": "18347a71190884204f34f7a1a1afe57661757f69141e5982de95ad2478263a63"
+      "sha256": "3c654bb020c402d0e6c47e2929f66b6edcd8725c06f0c82c5b4e2654b133f00f"
     },
     {
       "id": "level-04-week-18-02-room-migrations-fts-testing",
@@ -1812,7 +1812,7 @@
         "fts"
       ],
       "path": "content/lessons/level-04-week-18-02-room-migrations-fts-testing.json",
-      "sha256": "3b61c840744d87c9446ef77882f1c9da856e0f4c0910a5e00776db77867008e7"
+      "sha256": "e4f5d1eeb568a262740c3ae840fbfb757c3831197e50a73b6a8719f5882d7c0e"
     },
     {
       "id": "level-04-week-18-03-datastore-and-file-storage",
@@ -1826,7 +1826,7 @@
         "persistence"
       ],
       "path": "content/lessons/level-04-week-18-03-datastore-and-file-storage.json",
-      "sha256": "b3941ebb9c1dc6270da99bffcd54ea395d50cd4063af5eda17aaab1b1f0cf97c"
+      "sha256": "d23d7883a5ac4c897fec782fb05e7df5f43f0591d74f8ee0e6abbd92b24600b2"
     },
     {
       "id": "level-04-week-18-04-source-of-truth-cache-ttl",
@@ -1840,7 +1840,7 @@
         "repository"
       ],
       "path": "content/lessons/level-04-week-18-04-source-of-truth-cache-ttl.json",
-      "sha256": "5463eff0c6eff24703d80af02b18559a4fb45378b1d83f2d117f7eecd40e1af9"
+      "sha256": "f408400d9aa6ea4a8a43ab9132d6e0137eeee38f45a3d9455f5e802823d379db"
     },
     {
       "id": "level-04-week-18-05-offline-writes-sync-conflicts",
@@ -1854,7 +1854,7 @@
         "conflicts"
       ],
       "path": "content/lessons/level-04-week-18-05-offline-writes-sync-conflicts.json",
-      "sha256": "bed9a6aede4b528e5028cb31eb8873a9ca601db5735278c9e58355a7acd30780"
+      "sha256": "3c436c39b959c962b26caec458b5256b5e4a2daadf53b0c64b8c987c5f6044a6"
     },
     {
       "id": "level-04-week-18-06-workmanager-durable-sync",
@@ -1868,7 +1868,7 @@
         "sync"
       ],
       "path": "content/lessons/level-04-week-18-06-workmanager-durable-sync.json",
-      "sha256": "c74169237d97c6a45fb7da00a5d7ab765bf32a8c028abb0e79be021d338eafa3"
+      "sha256": "69fca0973c78ab666880b7c8d70d0249350b80f69c0b6a53f3912ad7e26a12d5"
     },
     {
       "id": "level-04-week-18-07-offline-first-news-capstone",
@@ -1882,7 +1882,7 @@
         "news-reader"
       ],
       "path": "content/lessons/level-04-week-18-07-offline-first-news-capstone.json",
-      "sha256": "b24cb7171525efd81456dea7bdf5bdef7cf6417d15e3ffda345b9125fcd1211e"
+      "sha256": "473614826031c018aadbb6b28bbd6b6ea2d1dcb074a6731df8d33897a402c5fa"
     },
     {
       "id": "level-05-week-19-01-layers-boundaries-dependency-direction",
@@ -1896,7 +1896,7 @@
         "boundaries"
       ],
       "path": "content/lessons/level-05-week-19-01-layers-boundaries-dependency-direction.json",
-      "sha256": "432cde47cc708d7945fb6eb5b148057753c54d5f540159a846f066786f201827"
+      "sha256": "83dcc4fd0fd71924070d836e97cf0a361d0216156d2f38249a205a0d4619d11b"
     },
     {
       "id": "level-05-week-19-02-immutable-ui-state-udf",
@@ -1910,7 +1910,7 @@
         "udf"
       ],
       "path": "content/lessons/level-05-week-19-02-immutable-ui-state-udf.json",
-      "sha256": "61265ad52a42789692a5cfb6e45dc126f832cff7356be91de3acfbb6b19a6280"
+      "sha256": "e8daaea6ac2b6d5b34a1cbbf9bc5598aae1757f42e9d998876a2ddd5d38f1da4"
     },
     {
       "id": "level-05-week-19-03-state-holders-events-ui-logic",
@@ -1924,7 +1924,7 @@
         "events"
       ],
       "path": "content/lessons/level-05-week-19-03-state-holders-events-ui-logic.json",
-      "sha256": "de55e6014802b32f0629334035538cc688ce79d5c75bce13873e7642b4f92c28"
+      "sha256": "e3253685793b2a6a30bd9295db70dfd784e17a5155bc8a82326d0914b96a6c91"
     },
     {
       "id": "level-05-week-19-04-repositories-source-of-truth-mappers",
@@ -1938,7 +1938,7 @@
         "mapping"
       ],
       "path": "content/lessons/level-05-week-19-04-repositories-source-of-truth-mappers.json",
-      "sha256": "1f75c7f0f2a329172852dc3cbfb8ee6bc16183502dbd6ff86dd749a8ef47a652"
+      "sha256": "b5763dfd8b52c065234e284f5c68ce8f1cd8c8ad35dadd0c052106aab1c10447"
     },
     {
       "id": "level-05-week-19-05-domain-use-cases-error-models",
@@ -1952,7 +1952,7 @@
         "errors"
       ],
       "path": "content/lessons/level-05-week-19-05-domain-use-cases-error-models.json",
-      "sha256": "5c45a4dafdf9e9c4ec821ce1e988b8bea3c3c054730f45a0c7718d4dd6e4c71e"
+      "sha256": "3092b6f940cf1339cf49f2081de393fdec9a05cd2de7e9b36edb5df9468dced0"
     },
     {
       "id": "level-05-week-19-06-mvvm-mvi-clean-tradeoffs",
@@ -1967,7 +1967,7 @@
         "clean-architecture"
       ],
       "path": "content/lessons/level-05-week-19-06-mvvm-mvi-clean-tradeoffs.json",
-      "sha256": "ee20ae7974e7f60112def7d18673a3c3cd2a66b4af94dd0c7bc060defe78a060"
+      "sha256": "98796e80e5bea26ff4b3fb34bc5620e12afa391b92b3e10f0209627b4187ef88"
     },
     {
       "id": "level-05-week-20-01-manual-di-composition-root",
@@ -1981,7 +1981,7 @@
         "testing"
       ],
       "path": "content/lessons/level-05-week-20-01-manual-di-composition-root.json",
-      "sha256": "e1eba44f2513261a7205ba592ee493d4109a09c05d506757ecb9890fea9a4132"
+      "sha256": "5d12a835072793876e9eb936edf3931244cf375195c31480688bcbab51aa9611"
     },
     {
       "id": "level-05-week-20-02-hilt-graph-constructor-modules",
@@ -1995,7 +1995,7 @@
         "dagger"
       ],
       "path": "content/lessons/level-05-week-20-02-hilt-graph-constructor-modules.json",
-      "sha256": "1b3a4863c215fe23db45c9d3225074e66e937b6887c92a4d81095970a6066b9f"
+      "sha256": "8d25c586868eb8a34a3247140ed9f5b3bdceccdb2c5389a8181d47fa71f48ce2"
     },
     {
       "id": "level-05-week-20-03-hilt-components-scopes-lifetimes",
@@ -2009,7 +2009,7 @@
         "scopes"
       ],
       "path": "content/lessons/level-05-week-20-03-hilt-components-scopes-lifetimes.json",
-      "sha256": "a29e8a8614465540300e7222ca02378c146dd9d6996db4b54ef329b5a0ee7db1"
+      "sha256": "2b746f139b12b8642f3dab41e60771e5c6f02ecd47d1cbae07d0c852a1d99922"
     },
     {
       "id": "level-05-week-20-04-qualifiers-multibindings-assisted",
@@ -2023,7 +2023,7 @@
         "multibindings"
       ],
       "path": "content/lessons/level-05-week-20-04-qualifiers-multibindings-assisted.json",
-      "sha256": "b1090b83c21841ef5dfa2daf9474b596d4eb154fbca54ea087766443ca27291f"
+      "sha256": "334bcd41c75f476be5b379a5fb84a4748519b498ea7d1f6ee787e55a58dc6d4c"
     },
     {
       "id": "level-05-week-20-05-di-testing-dagger-koin-tradeoffs",
@@ -2037,7 +2037,7 @@
         "dagger"
       ],
       "path": "content/lessons/level-05-week-20-05-di-testing-dagger-koin-tradeoffs.json",
-      "sha256": "8095a881e00846c087321db8cee43a6fbec5ad7b22ea42eb11212c8a0c5391dd"
+      "sha256": "1b40141a37a0d761e54fd3b7fa2830e02db360729a1581c7d6abaa1036666945"
     },
     {
       "id": "level-05-week-21-01-modularization-evidence-cohesion-coupling",
@@ -2051,7 +2051,7 @@
         "coupling"
       ],
       "path": "content/lessons/level-05-week-21-01-modularization-evidence-cohesion-coupling.json",
-      "sha256": "5dece02fe56fd5f45fd68794ae7d274efdb891847eb3505ad8771c7e25320f63"
+      "sha256": "8b16fbeaae18c32c3b2280617cf4d7393e61b6974a59f37941e782ac413540f6"
     },
     {
       "id": "level-05-week-21-02-app-feature-core-data-modules",
@@ -2065,7 +2065,7 @@
         "core-modules"
       ],
       "path": "content/lessons/level-05-week-21-02-app-feature-core-data-modules.json",
-      "sha256": "13e2677750e17869c77e740eae2c1c4758a0ae9bf0b4c12ce695cd8704f71eaf"
+      "sha256": "09e85c44804f8b6f30604801b9f535876fc7e02d9dcf4a3756bd7152144fdcc6"
     },
     {
       "id": "level-05-week-21-03-api-implementation-dependency-graphs",
@@ -2079,7 +2079,7 @@
         "api-modules"
       ],
       "path": "content/lessons/level-05-week-21-03-api-implementation-dependency-graphs.json",
-      "sha256": "8b56cd58d7d155dd76f53a5b7aa1a38f8f2d2890cbdee2c424943ebd8835b547"
+      "sha256": "3fc9a3c58f1b31c12977f09ef32b890463cab95107e21cc31a1cf90d3e96d4e0"
     },
     {
       "id": "level-05-week-21-04-cross-feature-navigation-resources",
@@ -2093,7 +2093,7 @@
         "resources"
       ],
       "path": "content/lessons/level-05-week-21-04-cross-feature-navigation-resources.json",
-      "sha256": "8d7e933ae721a078881a85d498da5c78608cef1e9e6b54b3b43c2d424b45a6a2"
+      "sha256": "5f5aa254163cf2372e380f65af5b7146d075a5da43a7585c2399faef29df06dc"
     },
     {
       "id": "level-05-week-21-05-build-performance-dynamic-library-modules",
@@ -2107,7 +2107,7 @@
         "dynamic-features"
       ],
       "path": "content/lessons/level-05-week-21-05-build-performance-dynamic-library-modules.json",
-      "sha256": "41ebcc5f513b8568104b4bcbb90497f2bcad923334edaed63956705d7f449ca0"
+      "sha256": "cea31a9b8a211b2a52a2e207e75328742e3f48ae09e7f37beab5a4c20c0c51dd"
     },
     {
       "id": "level-05-week-22-01-architecture-tests-contracts-fakes",
@@ -2121,7 +2121,7 @@
         "contracts"
       ],
       "path": "content/lessons/level-05-week-22-01-architecture-tests-contracts-fakes.json",
-      "sha256": "589b52d7b67948f0ce2842863225ed8f684448224425de6794729e7e11e9f993"
+      "sha256": "559841cd18abc5506be910f093b4acb6936970591ba89e6913d95a9f0c5b2a1e"
     },
     {
       "id": "level-05-week-22-02-architecture-decisions-incremental-refactoring",
@@ -2135,7 +2135,7 @@
         "decision-records"
       ],
       "path": "content/lessons/level-05-week-22-02-architecture-decisions-incremental-refactoring.json",
-      "sha256": "68d555afcde505e681ffea2020f6c18fac2fa849e183f2dee9080543d1002bf5"
+      "sha256": "975535d0e631d6c2de78fe84b1428854c7e1f3d19fb4ecdbc97db2f234b4759e"
     },
     {
       "id": "level-05-week-22-03-banking-module-graph-contracts",
@@ -2149,7 +2149,7 @@
         "banking"
       ],
       "path": "content/lessons/level-05-week-22-03-banking-module-graph-contracts.json",
-      "sha256": "05d031b24d67c9f3acef0a9c705df66d65246dd42fac6d142b43f464586b72d8"
+      "sha256": "b7312bf9cf160e059c3dcccf43097a8c09266a0ef6d45a4e9fd7ce16a56a4414"
     },
     {
       "id": "level-05-week-22-04-payment-consistency-security-boundaries",
@@ -2163,7 +2163,7 @@
         "security"
       ],
       "path": "content/lessons/level-05-week-22-04-payment-consistency-security-boundaries.json",
-      "sha256": "e3c7c60de4c9de52660363a614a60c9037f96c958bcdde83897e4193d0e01c8e"
+      "sha256": "282942984e49df03a3a80bdd43866766465a5e170f01ae8a1fe8e70349528989"
     },
     {
       "id": "level-05-week-22-05-multi-module-banking-capstone",
@@ -2177,7 +2177,7 @@
         "multi-module"
       ],
       "path": "content/lessons/level-05-week-22-05-multi-module-banking-capstone.json",
-      "sha256": "ae8796c361b12f6f5b95dc84f1ff15ce2f562f45abac313405af3246546ab065"
+      "sha256": "b4faed94fb3cafd3025f73e1690b47ceb02e31181d2fa2e398ce5a0bb2abd67e"
     },
     {
       "id": "level-06-week-23-01-notification-channels-permission-navigation",
@@ -2191,7 +2191,7 @@
         "pending-intent"
       ],
       "path": "content/lessons/level-06-week-23-01-notification-channels-permission-navigation.json",
-      "sha256": "4c7f52ef7617aa3c6b31a132fb62b00c6916a6d36d5d11db9a09d04a8708783a"
+      "sha256": "3e1c390b4ac460ff5167c2042082e474f539aa5de4b0ec70df8268904e1ef9cf"
     },
     {
       "id": "level-06-week-23-02-exact-alarms-workmanager-foreground-services",
@@ -2205,7 +2205,7 @@
         "foreground-service"
       ],
       "path": "content/lessons/level-06-week-23-02-exact-alarms-workmanager-foreground-services.json",
-      "sha256": "b49e48d4834ca4b6e06c90c6936cde2f5bbfe5a9e9ffd4484bb5f088e4dd69b8"
+      "sha256": "7d780ba41ab3e57f5f08c565451448b44e12e0191666d8feeb3876d1e55e1ed6"
     },
     {
       "id": "level-06-week-23-03-glance-app-widgets-state-updates",
@@ -2219,7 +2219,7 @@
         "remote-ui"
       ],
       "path": "content/lessons/level-06-week-23-03-glance-app-widgets-state-updates.json",
-      "sha256": "7103a46498fc1faa2b07ca76f885dc0ca69d2fdd38225de7bf0ec266643508b8"
+      "sha256": "bd0302a8a2d93cc5309554f9cdad7a05bc103d6083e49947faef31896680f1a7"
     },
     {
       "id": "level-06-week-23-04-shortcuts-sharesheet-system-surfaces",
@@ -2233,7 +2233,7 @@
         "intents"
       ],
       "path": "content/lessons/level-06-week-23-04-shortcuts-sharesheet-system-surfaces.json",
-      "sha256": "8fb536263b6180b4f9cfa968e8eedf9fc69098b5db786f4897a2f1aaa81984da"
+      "sha256": "59c92679c97aca2a7b046ef46febbb3b20ccca4a4440f6d58c96834ce70e3660"
     },
     {
       "id": "level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy",
@@ -2247,7 +2247,7 @@
         "privacy"
       ],
       "path": "content/lessons/level-06-week-23-05-photo-picker-fileprovider-clipboard-privacy.json",
-      "sha256": "6617a4d3fc6dd100ed146016ef9ab85931bace7876697a83fba43a22de33d8c1"
+      "sha256": "032fffa673edb15b1eddbb4557057a86a9d69dbaaeaad0bced76ba3e34734d60"
     },
     {
       "id": "level-06-week-23-06-verified-app-links-deep-link-security",
@@ -2261,7 +2261,7 @@
         "security"
       ],
       "path": "content/lessons/level-06-week-23-06-verified-app-links-deep-link-security.json",
-      "sha256": "f9b34622e3b96b5eb6c81667d5b46e212a0031a9f05512e50bcebbbd7e73de5a"
+      "sha256": "d9b49ec9e654afdb00b63f58c242423a781c829537219b85bdb5c09d4467e004"
     },
     {
       "id": "level-06-week-24-01-camera-intent-versus-camerax",
@@ -2275,7 +2275,7 @@
         "activity-results"
       ],
       "path": "content/lessons/level-06-week-24-01-camera-intent-versus-camerax.json",
-      "sha256": "51258c8116ae0887b8edc1e2bcc945aa6ac890db097c9f4af2d799e9f28839f7"
+      "sha256": "c9a7f65e81813342eb752b1dc7c6d88780a97f09e1076c0a707a785029f30cc0"
     },
     {
       "id": "level-06-week-24-02-camerax-use-cases-lifecycle-capture",
@@ -2289,7 +2289,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-06-week-24-02-camerax-use-cases-lifecycle-capture.json",
-      "sha256": "b97b09fb2cc605c8b4d8dea54002e2a663d62d28dad79aa15cb5180b5f99e29b"
+      "sha256": "6660fe745f38f3656de2ed42104977b4e3b58080465180260948a7183e343aeb"
     },
     {
       "id": "level-06-week-24-03-camerax-image-analysis-backpressure",
@@ -2303,7 +2303,7 @@
         "backpressure"
       ],
       "path": "content/lessons/level-06-week-24-03-camerax-image-analysis-backpressure.json",
-      "sha256": "24686a70b87709ce4e75610102cf355a848da5dd899887977ca6467bc0036c64"
+      "sha256": "79595368e4a4adb158614a8693d64b8ed077d624508cbe02d20a83eb89109748"
     },
     {
       "id": "level-06-week-24-04-media3-player-lifecycle-audio-focus",
@@ -2317,7 +2317,7 @@
         "audio-focus"
       ],
       "path": "content/lessons/level-06-week-24-04-media3-player-lifecycle-audio-focus.json",
-      "sha256": "c5bfe39875998c8176a95a28de253053403a058b2f53bd49f71f8db9019161fd"
+      "sha256": "77cd2872cff914ce0fc62f0dac957532dc1b6e8a90ef02efe410e51b13c1a3ba"
     },
     {
       "id": "level-06-week-24-05-media-session-background-playback",
@@ -2331,7 +2331,7 @@
         "foreground-service"
       ],
       "path": "content/lessons/level-06-week-24-05-media-session-background-playback.json",
-      "sha256": "6d1c50bc915a0fe477ee01c21ff82f81f24f1f84dfdfc28edbe2b73c198218f9"
+      "sha256": "a4a1200e6ed16aabb3e4305ecfba0cd8041fd5107716114ed0f98f368598e8a7"
     },
     {
       "id": "level-06-week-24-06-picture-in-picture-video-navigation",
@@ -2345,7 +2345,7 @@
         "multi-window"
       ],
       "path": "content/lessons/level-06-week-24-06-picture-in-picture-video-navigation.json",
-      "sha256": "048c36496e0b153746e2b8016d38f18f11d5bd252e752f84617886045314a087"
+      "sha256": "5ef59a706ee19c6d79df278bd6ee369782a754d1b141de80ca030fe2e683d38c"
     },
     {
       "id": "level-06-week-24-07-downloadmanager-media-downloads-storage",
@@ -2359,7 +2359,7 @@
         "media3"
       ],
       "path": "content/lessons/level-06-week-24-07-downloadmanager-media-downloads-storage.json",
-      "sha256": "1ad311a9987e38a42d2078f6e7d1d60d8b4ef51b6802edc0f408ad5746ff9e2d"
+      "sha256": "2ea4a8452b8918c43df1ed4df6e28719ea813ec9adc29a742ae352a0f0451297"
     },
     {
       "id": "level-06-week-25-01-location-permissions-settings-updates",
@@ -2373,7 +2373,7 @@
         "fused-location"
       ],
       "path": "content/lessons/level-06-week-25-01-location-permissions-settings-updates.json",
-      "sha256": "7f857617e9dc76f8c3fd21931330853fe794c7527980ae327d8acaa00dfc0394"
+      "sha256": "c8a1c0334f10abf464d21fdfce2d0a50a9d21f002c731fb6fe9de2d5a04c584b"
     },
     {
       "id": "level-06-week-25-02-background-location-geofencing",
@@ -2387,7 +2387,7 @@
         "privacy"
       ],
       "path": "content/lessons/level-06-week-25-02-background-location-geofencing.json",
-      "sha256": "6892f3c9b9e42f190e732f31fd9f7ccab45c0ae0ba842e0a37a8f99d8543b1a7"
+      "sha256": "73648c02722cc149bde3b33ac2309520b850714a95d03ddfb5f1d5f843feea58"
     },
     {
       "id": "level-06-week-25-03-maps-compose-camera-markers-offline-state",
@@ -2401,7 +2401,7 @@
         "location"
       ],
       "path": "content/lessons/level-06-week-25-03-maps-compose-camera-markers-offline-state.json",
-      "sha256": "8a5c7c7a30de2859b95f2e5f592e8e8993777e64ba93c7d86e67a5ebb9285714"
+      "sha256": "f5b6ff360f0a496a08934c7e6f4be803e95ed8bf58215ba3f09ce7b5c94def9b"
     },
     {
       "id": "level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle",
@@ -2415,7 +2415,7 @@
         "nearby-devices"
       ],
       "path": "content/lessons/level-06-week-25-04-bluetooth-low-energy-scan-gatt-lifecycle.json",
-      "sha256": "66b60568eb781b665cf7888b3bd03b127551af634a2853d7fe089e5f621024f3"
+      "sha256": "49715d6e7d1cb3feb9f7d8fe960e0c2427f7df706605ec43dd267bf6ea3a4405"
     },
     {
       "id": "level-06-week-25-05-nfc-ndef-reader-mode-security",
@@ -2429,7 +2429,7 @@
         "reader-mode"
       ],
       "path": "content/lessons/level-06-week-25-05-nfc-ndef-reader-mode-security.json",
-      "sha256": "92cbca005fc5e6078b8b0306e00e63c93939482e03b6177d8bfa09a36f481953"
+      "sha256": "61f40b8447d07af1bcf0c8ed0e59dccceb08d5472d41b081b395af0d44234400"
     },
     {
       "id": "level-06-week-26-01-biometric-reauthorization-device-credential",
@@ -2443,7 +2443,7 @@
         "security"
       ],
       "path": "content/lessons/level-06-week-26-01-biometric-reauthorization-device-credential.json",
-      "sha256": "f7106807174cbe43db2bf2227163c042e20ca55140bddd4438cf21fb08d40e4c"
+      "sha256": "95adce59d6cfae496a79195ceeb0f53ca99ab6d3f43e0787432e567e617b26d3"
     },
     {
       "id": "level-06-week-26-02-credential-manager-passkeys-sign-in",
@@ -2457,7 +2457,7 @@
         "identity"
       ],
       "path": "content/lessons/level-06-week-26-02-credential-manager-passkeys-sign-in.json",
-      "sha256": "42b911728ea0ec6d61d84bbaeb42de04289e6c7630d72683bc45d3272d062a0d"
+      "sha256": "3321449f49904cd52b21fa9cacd897b78e6e1012034d7a6f018d7af0fcac10ae"
     },
     {
       "id": "level-06-week-26-03-webview-containment-navigation-security",
@@ -2471,7 +2471,7 @@
         "url-validation"
       ],
       "path": "content/lessons/level-06-week-26-03-webview-containment-navigation-security.json",
-      "sha256": "9ac6645b43272cfa4110fcb5ca651b10a6268ff49deff6707ce5f179809d3b06"
+      "sha256": "8725e6e9106629f7a8072f159869db92e9abfa95725ea66f5b329a34e6142c8c"
     },
     {
       "id": "level-06-week-26-04-in-app-updates-reviews-play-flows",
@@ -2485,7 +2485,7 @@
         "in-app-review"
       ],
       "path": "content/lessons/level-06-week-26-04-in-app-updates-reviews-play-flows.json",
-      "sha256": "7c16a0b6809f9b1e4ecaf210059283c5523d8df2dce9a8a4660b251abfc83a14"
+      "sha256": "6bf5d8306cb81c72c481682f0cd70b9a5ff87d63bdf1ab1b527d5e41f06e5489"
     },
     {
       "id": "level-06-week-26-05-platform-api-decision-framework",
@@ -2499,7 +2499,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-06-week-26-05-platform-api-decision-framework.json",
-      "sha256": "a6dc5c039f1fe2449c1871ba748e5aa302bdb77d4c953466f7aefacce49229d0"
+      "sha256": "f83f36d212c916d910f0eb4aa7fff6e67209fd8c636865678d229af3f77b6093"
     },
     {
       "id": "level-06-week-26-06-travel-companion-capstone",
@@ -2513,7 +2513,7 @@
         "platform-integration"
       ],
       "path": "content/lessons/level-06-week-26-06-travel-companion-capstone.json",
-      "sha256": "e8ff3216724384e29fac5793e2f374dc65691e95d4b802e8287d047abeeb066c"
+      "sha256": "6e020d89093e1b8a3017020ecdce8b81d840a1206e01e55697c3c22da836b473"
     },
     {
       "id": "level-07-week-27-01-test-strategy-junit-behaviour",
@@ -2527,7 +2527,7 @@
         "strategy"
       ],
       "path": "content/lessons/level-07-week-27-01-test-strategy-junit-behaviour.json",
-      "sha256": "9365b2dbec2e4198de5f91b2268c8158de6d417df222cf09ecb972ecc9baebe7"
+      "sha256": "7100888698e1ee372ba2beee048d05c45eacfef740ab1cb056318faeece4aa3d"
     },
     {
       "id": "level-07-week-27-02-fakes-mocks-stubs-test-contracts",
@@ -2541,7 +2541,7 @@
         "fakes"
       ],
       "path": "content/lessons/level-07-week-27-02-fakes-mocks-stubs-test-contracts.json",
-      "sha256": "7cd2377d1f3f3805822561ecff7955d31f6bf815912a413f5cb6b882a359fc0e"
+      "sha256": "049eb4306fe8860fbdc80af7c44fcc7920a76b494f4ec7182f0b24fdf1979d1f"
     },
     {
       "id": "level-07-week-27-03-parameterized-property-boundary-tests",
@@ -2555,7 +2555,7 @@
         "property-testing"
       ],
       "path": "content/lessons/level-07-week-27-03-parameterized-property-boundary-tests.json",
-      "sha256": "a4f996ad5bee0648872abbd079ce464e09c968ab1b6de01645b876a8f8a80c40"
+      "sha256": "2e44700f69da0ceae7f05ea45fb94841fdeadecee58c246408271fa5da962404"
     },
     {
       "id": "level-07-week-27-04-coroutine-tests-virtual-time-dispatchers",
@@ -2569,7 +2569,7 @@
         "virtual-time"
       ],
       "path": "content/lessons/level-07-week-27-04-coroutine-tests-virtual-time-dispatchers.json",
-      "sha256": "f04bcbf1cf28dea648d66ea7a88174b0132de4b6c9658b40bb31277f3c259d75"
+      "sha256": "6d455cd3c0de7eb2b1181a4bd3b8e61f2563a3aef71777026c77c46aec47c535"
     },
     {
       "id": "level-07-week-27-05-flow-stateflow-hot-stream-tests",
@@ -2583,7 +2583,7 @@
         "stateflow"
       ],
       "path": "content/lessons/level-07-week-27-05-flow-stateflow-hot-stream-tests.json",
-      "sha256": "e8c6e9da35ed103a6d4742860aec1bdb329c7809be2e205983b0e49821270806"
+      "sha256": "3449224db2229f9c9490fe8a0e4799c4941eadcabe56816c5278d56c2499ef3f"
     },
     {
       "id": "level-07-week-27-06-viewmodel-usecase-state-sequence-tests",
@@ -2597,7 +2597,7 @@
         "use-cases"
       ],
       "path": "content/lessons/level-07-week-27-06-viewmodel-usecase-state-sequence-tests.json",
-      "sha256": "cba2002b717e8e22f0e3921159c26477dc61d393b2e3e17fd32d30795e3bc30b"
+      "sha256": "75012d600b4622525723426b39cdbb9df91ffd5a01a0c22394b49e405a31b92d"
     },
     {
       "id": "level-07-week-28-01-repository-contract-integration-tests",
@@ -2611,7 +2611,7 @@
         "contracts"
       ],
       "path": "content/lessons/level-07-week-28-01-repository-contract-integration-tests.json",
-      "sha256": "75b4a38ee599dfa82164c79b7c84a658387487434c0f10437a2120f339d632f5"
+      "sha256": "f938924f7f3e44318d6ab1ceb3708d1af9fdcc88893b5288d77eda6d640f124a"
     },
     {
       "id": "level-07-week-28-02-room-dao-transaction-migration-tests",
@@ -2625,7 +2625,7 @@
         "migrations"
       ],
       "path": "content/lessons/level-07-week-28-02-room-dao-transaction-migration-tests.json",
-      "sha256": "b81605d4c239ca2d07a4cfad2c87a6fc48c074d464de931de010d90cb6dbecc9"
+      "sha256": "2719fbf269643295dd0f27a956847440aceb59972767f0f8235e5e6df96d1433"
     },
     {
       "id": "level-07-week-28-03-datastore-serializer-corruption-tests",
@@ -2639,7 +2639,7 @@
         "serialization"
       ],
       "path": "content/lessons/level-07-week-28-03-datastore-serializer-corruption-tests.json",
-      "sha256": "6dbb93abc005a6db7018ab95e9262f1f50274f2908de9b34ca12c076ec9043d3"
+      "sha256": "f5e3a085a0c7d5e35aa4a13fa024290508a45bbab4d73e181bfc8a673e579e68"
     },
     {
       "id": "level-07-week-28-04-mockwebserver-http-contract-tests",
@@ -2653,7 +2653,7 @@
         "http"
       ],
       "path": "content/lessons/level-07-week-28-04-mockwebserver-http-contract-tests.json",
-      "sha256": "c241484fa2c1f144533356c4453e637dd7cd91824336b26cc26f42c85a706172"
+      "sha256": "ffac1b10e359440e08bfe2543966e0d7a18a452f6aa35c4211766eb87a69ef81"
     },
     {
       "id": "level-07-week-28-05-robolectric-instrumented-fidelity-choice",
@@ -2667,7 +2667,7 @@
         "instrumented-tests"
       ],
       "path": "content/lessons/level-07-week-28-05-robolectric-instrumented-fidelity-choice.json",
-      "sha256": "847797dd7e817538a5fe2b0b44efabfda269771da706faefb9ccb3b7aef91a04"
+      "sha256": "65f04acc4819af113966647571fde5ec6f98f73b5832a4054845efe3967369e5"
     },
     {
       "id": "level-07-week-28-06-process-death-config-links-notification-tests",
@@ -2681,7 +2681,7 @@
         "system-entry"
       ],
       "path": "content/lessons/level-07-week-28-06-process-death-config-links-notification-tests.json",
-      "sha256": "e4d4b658c10fcf8e5b43bb5d5445fa78940a9f4e05ebe26d34064e61f6166274"
+      "sha256": "cb91b6c000c95fc6ee7417b02729c722d85c8496e4a91d6f92d5fcfc7b984bc8"
     },
     {
       "id": "level-07-week-29-01-compose-semantics-ui-behaviour-tests",
@@ -2695,7 +2695,7 @@
         "semantics"
       ],
       "path": "content/lessons/level-07-week-29-01-compose-semantics-ui-behaviour-tests.json",
-      "sha256": "ba9b33d8c45fac9eadd6b655fa697d67a39ee745411a3412c82ab520b7752a87"
+      "sha256": "7ac0e999dd8f94d7b16bca1ce00eee8b0000713b0ad8c8e15baa66ffdd862634"
     },
     {
       "id": "level-07-week-29-02-espresso-hybrid-ui-idling-resources",
@@ -2709,7 +2709,7 @@
         "idling-resources"
       ],
       "path": "content/lessons/level-07-week-29-02-espresso-hybrid-ui-idling-resources.json",
-      "sha256": "1a7ce5607f85c788c827ce0e97b6ede1b70c027483d511c5f97e9bff2081d8eb"
+      "sha256": "c8d62b3f58db34f14392520e60c881caeac7922e1d857a5d6f750233e7809e95"
     },
     {
       "id": "level-07-week-29-03-ui-automator-system-boundary-tests",
@@ -2723,7 +2723,7 @@
         "system-ui"
       ],
       "path": "content/lessons/level-07-week-29-03-ui-automator-system-boundary-tests.json",
-      "sha256": "3ee8c6209cdbe27881c4f60e7fb8f1003cde4dac4ddb3c9c4473f12d2b771572"
+      "sha256": "673fcf9a2e84c7ab77478a9a412e5090a8a160fb1b97852fe5cbc75783818cb9"
     },
     {
       "id": "level-07-week-29-04-screenshot-matrix-screen-sizes-locales",
@@ -2737,7 +2737,7 @@
         "adaptive-ui"
       ],
       "path": "content/lessons/level-07-week-29-04-screenshot-matrix-screen-sizes-locales.json",
-      "sha256": "362008d91c78aa24fd8de943118c535b12a7aa46948e79262892a9d5a3fb4823"
+      "sha256": "f617cbd8ede56a6bbe12196b31b2e68b0006bbd6f3ad326550bc846b67e1d360"
     },
     {
       "id": "level-07-week-29-05-accessibility-manual-automated-tests",
@@ -2751,7 +2751,7 @@
         "talkback"
       ],
       "path": "content/lessons/level-07-week-29-05-accessibility-manual-automated-tests.json",
-      "sha256": "c4bb0d48546d3b9e382239a734bd67fe5d375ba3ee279319d0f1d4331e58dd93"
+      "sha256": "504e434f95045efdaaa20b7f7a06801a15390abff87adf4129522e7f7995450e"
     },
     {
       "id": "level-07-week-29-06-animation-flakiness-orchestration-sharding",
@@ -2765,7 +2765,7 @@
         "flakiness"
       ],
       "path": "content/lessons/level-07-week-29-06-animation-flakiness-orchestration-sharding.json",
-      "sha256": "0ea5d6543fc7b81d74c59ea4e0d8dd58fd78d65867d3032e00765cacd53b9df3"
+      "sha256": "45a097cbb90c049be5a5d158942bf0a1e47400d5f1ece5ff538d94b52be3db33"
     },
     {
       "id": "level-07-week-30-01-android-lint-baselines-custom-checks",
@@ -2779,7 +2779,7 @@
         "static-analysis"
       ],
       "path": "content/lessons/level-07-week-30-01-android-lint-baselines-custom-checks.json",
-      "sha256": "9a350ee1813305424ccbca801fc4765ca6ad5ab1296d364ba6c3ebd61558b665"
+      "sha256": "d4d00b1771435505fe49edfbe586feeaea13a933f5cee96ba5ac8c46a567b84b"
     },
     {
       "id": "level-07-week-30-02-detekt-ktlint-kotlin-quality",
@@ -2793,7 +2793,7 @@
         "ktlint"
       ],
       "path": "content/lessons/level-07-week-30-02-detekt-ktlint-kotlin-quality.json",
-      "sha256": "e01e4a554d8c5e07aa273398aa4d9d954b5c359ef51825a86c7720ddd562a3e1"
+      "sha256": "28e4f0d0555fb6b29b66695d4178ccc76fc8fb28da2b5b0a3ae82c34b54eb516"
     },
     {
       "id": "level-07-week-30-03-dependency-analysis-graph-hygiene",
@@ -2807,7 +2807,7 @@
         "gradle"
       ],
       "path": "content/lessons/level-07-week-30-03-dependency-analysis-graph-hygiene.json",
-      "sha256": "5f08cdd7a37d7ef5eef91c5feca69913b3e5adf65dca88a59d274d9dae72a97d"
+      "sha256": "9b9290e5dc1704849f8f28cd32b0fa4d6375e25024348f9adeb90d312083bc24"
     },
     {
       "id": "level-07-week-30-04-coverage-kover-jacoco-sonar-gates",
@@ -2821,7 +2821,7 @@
         "sonarqube"
       ],
       "path": "content/lessons/level-07-week-30-04-coverage-kover-jacoco-sonar-gates.json",
-      "sha256": "7870ffdaf6668089b19e5a1b1bb5344fb53d9382fcc540682e3aafa4f8ec532f"
+      "sha256": "04d11488832514c72405e75c28792024d619103680f77bc21c0b114b69dbbc02"
     },
     {
       "id": "level-07-week-30-05-api-binary-compatibility-validation",
@@ -2835,7 +2835,7 @@
         "binary-compatibility"
       ],
       "path": "content/lessons/level-07-week-30-05-api-binary-compatibility-validation.json",
-      "sha256": "f069d28ad3cdff2ee337c59ce441a4c59d34081698e7908c3cb0a2bf632bbe4f"
+      "sha256": "892f9e77e76f76d767749f8a3eefc877035e8f5cb5122055b9797b57d0cc22e0"
     },
     {
       "id": "level-07-week-30-06-release-confidence-plan-capstone",
@@ -2849,7 +2849,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-07-week-30-06-release-confidence-plan-capstone.json",
-      "sha256": "daa87275f8f6f27b928a9cde1273cb29789c46360843ad48f8c6b3c225043a71"
+      "sha256": "2d1bc4763446e0837b21973b9d0e08c138de6eca0ec29d9d24f5f08ab6fe4dc7"
     },
     {
       "id": "level-08-week-31-01-threat-model-assets-attackers-boundaries",
@@ -2863,7 +2863,7 @@
         "attack-tree"
       ],
       "path": "content/lessons/level-08-week-31-01-threat-model-assets-attackers-boundaries.json",
-      "sha256": "bd280e0d74ca685ab1cf52020b41fc8c47de5f220ec746e2e30c12840be709fb"
+      "sha256": "0b0a4c8831f5660a443302f688e0f11d2083972090395795436beb504f639bfb"
     },
     {
       "id": "level-08-week-31-02-masvs-least-privilege-defense-depth",
@@ -2877,7 +2877,7 @@
         "least-privilege"
       ],
       "path": "content/lessons/level-08-week-31-02-masvs-least-privilege-defense-depth.json",
-      "sha256": "c0e4f876f0d89fc1a4c5eb6f95e2a5d19028b75805138e53470326d843de4b0f"
+      "sha256": "859417274eb30ba6d674df48a2d69cfbdd592135bb02de1521c5ec52d7d9e2fd"
     },
     {
       "id": "level-08-week-31-03-client-server-trust-authz-validation",
@@ -2891,7 +2891,7 @@
         "validation"
       ],
       "path": "content/lessons/level-08-week-31-03-client-server-trust-authz-validation.json",
-      "sha256": "c4931521b207e82b5b69397abfc16d71a73b64f896c94f9af6d0f9e7e80a90a6"
+      "sha256": "7d60c85ce23bf7e9ff05f902045104c23536483d9b8e1bdcb8be33367d6ee9ae"
     },
     {
       "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface",
@@ -2905,7 +2905,7 @@
         "pendingintent"
       ],
       "path": "content/lessons/level-08-week-31-04-component-intent-pendingintent-attack-surface.json",
-      "sha256": "cc8fb8aecba9e3501280818a30753678afe6631215e9173a7245b8dd863874a5"
+      "sha256": "fd2cc9bd23acfd1ab7ef126a4c475626b383f6196040908b551e554134879dc3"
     },
     {
       "id": "level-08-week-31-05-apk-inspection-reverse-engineering-r8",
@@ -2919,7 +2919,7 @@
         "r8"
       ],
       "path": "content/lessons/level-08-week-31-05-apk-inspection-reverse-engineering-r8.json",
-      "sha256": "efeaa4dcd93ecaeccc80f2319e24b21f51f9398a51d611dff823e443343a8973"
+      "sha256": "f71e8de727aa4e514e89a4db6bdfdf41bfdb94e5bf7e3598e9ffb68132b14a58"
     },
     {
       "id": "level-08-week-31-06-privacy-logs-clipboard-screenshots",
@@ -2933,7 +2933,7 @@
         "logging"
       ],
       "path": "content/lessons/level-08-week-31-06-privacy-logs-clipboard-screenshots.json",
-      "sha256": "f89839e00de076ea3bf7e80ec0998bf3aac16386e40d1899476fb5a5e8568eeb"
+      "sha256": "1ad3f49402bc747b3898f5d3d6bbbeb46e5566db51f521506fddfebe6d90960e"
     },
     {
       "id": "level-08-week-32-01-data-classification-storage-decisions",
@@ -2947,7 +2947,7 @@
         "data-classification"
       ],
       "path": "content/lessons/level-08-week-32-01-data-classification-storage-decisions.json",
-      "sha256": "1b460e6c3f2d11128ae6bdd0fbf6288538951118e39c6b148046b962bb56ab68"
+      "sha256": "e23be966b5f446153a010e57d742e437df82b0443605097d0826c0d241225b23"
     },
     {
       "id": "level-08-week-32-02-android-keystore-hardware-strongbox",
@@ -2961,7 +2961,7 @@
         "strongbox"
       ],
       "path": "content/lessons/level-08-week-32-02-android-keystore-hardware-strongbox.json",
-      "sha256": "030b9a25d5793851d46c1b885efd0e5a3a68bd319f3658fc149078f9b1aff607"
+      "sha256": "8fe07e6f52a3bc9dff09d0bdf86c2795a10ab384571aa51560f3419e7af4c1c4"
     },
     {
       "id": "level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation",
@@ -2975,7 +2975,7 @@
         "attestation"
       ],
       "path": "content/lessons/level-08-week-32-03-key-lifecycle-rotation-invalidation-attestation.json",
-      "sha256": "6f948c6aec964cd5c9a44056475e87a2af5670ab7d9a03598c925c5f5c53b8f3"
+      "sha256": "aa782fc617099ac453439fa9006565797cd4c2a6d0f16e933b437fdc9b26e587"
     },
     {
       "id": "level-08-week-32-04-tink-aead-associated-data-envelopes",
@@ -2989,7 +2989,7 @@
         "encryption"
       ],
       "path": "content/lessons/level-08-week-32-04-tink-aead-associated-data-envelopes.json",
-      "sha256": "f24f00051ad31aac693a7cb205fe9ab45a08e2a4322e458085408269fbd55b0c"
+      "sha256": "38a12e4d396b4f4c04e68db4f3b3c823760183f8ebc81700899ca386de850078"
     },
     {
       "id": "level-08-week-32-05-encrypted-files-databases-sql-injection",
@@ -3003,7 +3003,7 @@
         "sql-injection"
       ],
       "path": "content/lessons/level-08-week-32-05-encrypted-files-databases-sql-injection.json",
-      "sha256": "cb7f6004a1cadc08b79bebd96a0fb9f1bf94a26c76db5c1d8f5220ae6202c789"
+      "sha256": "547e9e64e7f367917be2e40131e46c6f3f2e36149bf72416c83d5005db03b2c4"
     },
     {
       "id": "level-08-week-32-06-biometric-keys-backup-recovery",
@@ -3017,7 +3017,7 @@
         "backup"
       ],
       "path": "content/lessons/level-08-week-32-06-biometric-keys-backup-recovery.json",
-      "sha256": "4b69f0a82b7d0c1f8314371a04931756b94705adb48d55608db7e1d264d3cb40"
+      "sha256": "88e164ee55199b961268c2f65438a54c47f81af19cde43c8b46ce50eada41970"
     },
     {
       "id": "level-08-week-33-01-tls-chains-network-security-config",
@@ -3031,7 +3031,7 @@
         "network-security-config"
       ],
       "path": "content/lessons/level-08-week-33-01-tls-chains-network-security-config.json",
-      "sha256": "520b22e67b9facb2bd7cfe7e5bff4210308ea448996a2c494c1df9271168ca18"
+      "sha256": "37f90f2bd48cfc5ddd3a8317a1081ada6222a76a3b3810c229b4fa5961695f33"
     },
     {
       "id": "level-08-week-33-02-certificate-public-key-pinning-decisions",
@@ -3045,7 +3045,7 @@
         "tls"
       ],
       "path": "content/lessons/level-08-week-33-02-certificate-public-key-pinning-decisions.json",
-      "sha256": "863a0d6ec884b4de5969797d54cdf9527c3d4358b0b92827406ad530c0e8e087"
+      "sha256": "a6145c34e80f9ddcfdd43ff686d1f55fec51e48aa91d422f21fb5c3702c88cbc"
     },
     {
       "id": "level-08-week-33-03-pin-rotation-expiry-recovery-lab",
@@ -3059,7 +3059,7 @@
         "incident-response"
       ],
       "path": "content/lessons/level-08-week-33-03-pin-rotation-expiry-recovery-lab.json",
-      "sha256": "92b81779fd6ebe078f2c6bc8398e3c2ba0d8bcd73cd87a2ace2e522b76f2089b"
+      "sha256": "3eb3a01d527258713de0328ebf23517bbfa699ca350cf8357fa02ef426b891f2"
     },
     {
       "id": "level-08-week-33-04-secrets-git-build-apk-boundaries",
@@ -3073,7 +3073,7 @@
         "build"
       ],
       "path": "content/lessons/level-08-week-33-04-secrets-git-build-apk-boundaries.json",
-      "sha256": "79b012f2f0ce62a56c6aef997cba67e3084e2a3b4a7edbfb70ea86b1355329e2"
+      "sha256": "c5d237c25a9d49937cda7e24ac084683f6dddb7e244c2de4a0551f686845f714"
     },
     {
       "id": "level-08-week-33-05-api-key-restrictions-server-secrets",
@@ -3087,7 +3087,7 @@
         "abuse"
       ],
       "path": "content/lessons/level-08-week-33-05-api-key-restrictions-server-secrets.json",
-      "sha256": "374b9960f7383dd921eb85b0e301b8c1302525c204be9828615783ae776e1871"
+      "sha256": "ef77deb6121e61032b95266228a370f93e7065c892ad72b4fb74e269b0c24b99"
     },
     {
       "id": "level-08-week-33-06-app-signing-upload-keys-ci-recovery",
@@ -3101,7 +3101,7 @@
         "ci"
       ],
       "path": "content/lessons/level-08-week-33-06-app-signing-upload-keys-ci-recovery.json",
-      "sha256": "644993fa395c5df01753cf4d57cba23587fd12c990172c598aee9ab3f91e4c3b"
+      "sha256": "1527da6f01bc6fbd5fb43d20335a3664cdbe6fe3e31753de21d2bda437f417ee"
     },
     {
       "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle",
@@ -3115,7 +3115,7 @@
         "pkce"
       ],
       "path": "content/lessons/level-08-week-34-01-oauth-pkce-session-token-lifecycle.json",
-      "sha256": "21993d79e1a412e6ed82be2846b8e771ab3dcebf824b8edfe7167fb52a487a83"
+      "sha256": "6056733395dd23de7a240c8361a8ea61f602d82b2e8c8f67b24fa983a9ef5c78"
     },
     {
       "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs",
@@ -3129,7 +3129,7 @@
         "fileprovider"
       ],
       "path": "content/lessons/level-08-week-34-02-deep-links-fileprovider-exported-inputs.json",
-      "sha256": "ed76300a8abe84a734fbf120cfa84af8c750514e68ca4de5ca60a9367856b6fc"
+      "sha256": "85bedd7bd973df091692d96bc10477b8243c2d9e7ac380b480834deade4dfa35"
     },
     {
       "id": "level-08-week-34-03-webview-origin-capability-security",
@@ -3143,7 +3143,7 @@
         "origin"
       ],
       "path": "content/lessons/level-08-week-34-03-webview-origin-capability-security.json",
-      "sha256": "661fa6eae951ca38457409b33cb56b4ea9eeef7e139836b80d66485845894a82"
+      "sha256": "bbef7baa47eb107d8974723c72678d5916033b112d9fcdcf2913f8657e1c4f76"
     },
     {
       "id": "level-08-week-34-04-play-integrity-request-binding-verdicts",
@@ -3157,7 +3157,7 @@
         "request-binding"
       ],
       "path": "content/lessons/level-08-week-34-04-play-integrity-request-binding-verdicts.json",
-      "sha256": "e9d3cf10304f956da826db7890df7567282d3abe43649a13611b38361cae30fe"
+      "sha256": "c215d2ac69ae83965be580503ddd48ab441d79cdbdec747eee421ae1dcf62bcb"
     },
     {
       "id": "level-08-week-34-05-replay-fraud-root-hooking-resilience",
@@ -3171,7 +3171,7 @@
         "resilience"
       ],
       "path": "content/lessons/level-08-week-34-05-replay-fraud-root-hooking-resilience.json",
-      "sha256": "213f92ffe6e9fb61258eb799657fe3c88b8b09dd645ac2b5c58c6da9872eab1e"
+      "sha256": "1a06427d9fece3ead6120ff0fb33b3aff90cf330423a09ca75a2b4da33cc8217"
     },
     {
       "id": "level-08-week-34-06-banking-security-review-capstone",
@@ -3185,7 +3185,7 @@
         "banking"
       ],
       "path": "content/lessons/level-08-week-34-06-banking-security-review-capstone.json",
-      "sha256": "3dc7a96ab00f8dd2182a76e611138f2425cc0606298b5dfac8188e05f7ac2007"
+      "sha256": "bfb959ff37b98fff84c9f6afa15a33ac8a1748759f1bc737d7aeef1c50d2d01b"
     },
     {
       "id": "level-09-week-35-01-gradle-lifecycle-task-dag",
@@ -3199,7 +3199,7 @@
         "task-graph"
       ],
       "path": "content/lessons/level-09-week-35-01-gradle-lifecycle-task-dag.json",
-      "sha256": "2b2e8f6678ba96b92b8fff4911a51defa8cd1e8f8476ac8c60b3a116102b19e9"
+      "sha256": "5857647d7d65f87a98e11d9cc7bab43cac380ff9c8b7a886203a89019e4c7182"
     },
     {
       "id": "level-09-week-35-02-task-registration-dependencies-ordering",
@@ -3213,7 +3213,7 @@
         "lazy-configuration"
       ],
       "path": "content/lessons/level-09-week-35-02-task-registration-dependencies-ordering.json",
-      "sha256": "6cb880cecc60f77bd054300ab4beee3247777e78dcbb0fffb30e27698922e161"
+      "sha256": "cdf244deb6d07f64f767b2bf66f8760201e1a0909e526a04a77fcb4e209d2797"
     },
     {
       "id": "level-09-week-35-03-providers-properties-build-inputs",
@@ -3227,7 +3227,7 @@
         "properties"
       ],
       "path": "content/lessons/level-09-week-35-03-providers-properties-build-inputs.json",
-      "sha256": "fdb54dd4653924653a1aa99077a0e24285905bf95610fa42eeac28352176c9ac"
+      "sha256": "a10d71010a01d1c9b2cff15b046a2294316018ad00103a56161a62df27a20aee"
     },
     {
       "id": "level-09-week-35-04-task-inputs-outputs-incremental-deterministic",
@@ -3241,7 +3241,7 @@
         "build-cache"
       ],
       "path": "content/lessons/level-09-week-35-04-task-inputs-outputs-incremental-deterministic.json",
-      "sha256": "2d69197f98537ddef00d03e5dd284ae2bdd5b0e87d0c7afa5493914367bbcfba"
+      "sha256": "e4ae8b85475e814d3560c42812de0a787e56f088b62aa369fc4b15963a26cfcf"
     },
     {
       "id": "level-09-week-35-05-kotlin-dsl-model-configuration",
@@ -3255,7 +3255,7 @@
         "build-logic"
       ],
       "path": "content/lessons/level-09-week-35-05-kotlin-dsl-model-configuration.json",
-      "sha256": "652a6b6c89412e03e8ead069504adddfd1b0eea412f9869417b9a8efc74fa807"
+      "sha256": "4d51de8e4194174114d15d0fcdf7181bf1c237c64eab603f8a16c674ca89ffe4"
     },
     {
       "id": "level-09-week-35-06-shared-services-workers-parallel-safety",
@@ -3269,7 +3269,7 @@
         "worker-api"
       ],
       "path": "content/lessons/level-09-week-35-06-shared-services-workers-parallel-safety.json",
-      "sha256": "4c6813ce9462b3b1cbd500ed1548499abb28f68cf2ca14a629b18b839df8b287"
+      "sha256": "960f46357412f59d60f9a1d88efd7494bf683d7ffd17967d94675aab426b8528"
     },
     {
       "id": "level-09-week-36-01-android-source-sets-merging-priority",
@@ -3283,7 +3283,7 @@
         "manifest-merging"
       ],
       "path": "content/lessons/level-09-week-36-01-android-source-sets-merging-priority.json",
-      "sha256": "d7f6c0826275f07acccb911f440145910def58cfe2b0db1f9a55ded93fdd4615"
+      "sha256": "d016344154531c1f5e28ca117a9719e2092f0a2eaba1a261298edf69909783d5"
     },
     {
       "id": "level-09-week-36-02-build-types-flavours-variant-matrix",
@@ -3297,7 +3297,7 @@
         "product-flavors"
       ],
       "path": "content/lessons/level-09-week-36-02-build-types-flavours-variant-matrix.json",
-      "sha256": "68c40ce0325e876c0edfe49debc6c5832946cea00d19a58d4c1e5682817ebafc"
+      "sha256": "ec2a15a8caeb92661461102a4ec3eb0931f63f1d7801911cb676eecd00f25900"
     },
     {
       "id": "level-09-week-36-03-variant-aware-dependency-resolution",
@@ -3311,7 +3311,7 @@
         "variants"
       ],
       "path": "content/lessons/level-09-week-36-03-variant-aware-dependency-resolution.json",
-      "sha256": "3d37f4d72f1868db038e4f42097e67a79768e1dc8bd77742c16715eb35b546cd"
+      "sha256": "078772f190ef549eafcc286333b47968f203916eb7b4a5d624a4acfebdcac04d"
     },
     {
       "id": "level-09-week-36-04-version-catalogs-boms-platforms",
@@ -3325,7 +3325,7 @@
         "bom"
       ],
       "path": "content/lessons/level-09-week-36-04-version-catalogs-boms-platforms.json",
-      "sha256": "cd1be01cd7577485bfefcda922505dae4e9f9ea92a92be2bcbf5d88b4ec5cc7b"
+      "sha256": "0d73589db2a39db64500987b077d7e0d97d5b0de4b89a45a65ed764a64d33194"
     },
     {
       "id": "level-09-week-36-05-dependency-locking-verification-upgrades",
@@ -3339,7 +3339,7 @@
         "supply-chain"
       ],
       "path": "content/lessons/level-09-week-36-05-dependency-locking-verification-upgrades.json",
-      "sha256": "a82668eaea634aa508aa4bf9759afc117ee270db2d73da475c71de2fc2ebd536"
+      "sha256": "ce9aa391d7e859d24bdb3b82f105c79a0cdce2b49893b107e614422ba9f0e1ef"
     },
     {
       "id": "level-09-week-36-06-android-components-variant-api",
@@ -3353,7 +3353,7 @@
         "agp"
       ],
       "path": "content/lessons/level-09-week-36-06-android-components-variant-api.json",
-      "sha256": "00b162c1cac1cc614124c401b34050c83644c8302d918176ade2322383af15f2"
+      "sha256": "f4ad4d65aa977abd67f0b2da8d79356af1829e583979fd4abbd4bd82ef16fb03"
     },
     {
       "id": "level-09-week-37-01-convention-plugins-build-standards",
@@ -3367,7 +3367,7 @@
         "architecture"
       ],
       "path": "content/lessons/level-09-week-37-01-convention-plugins-build-standards.json",
-      "sha256": "8e180b5a7a894b28d07a1e9742e02330cbd89d94f0436bc727ccee300ee78e00"
+      "sha256": "bc28944273b65d2d5bfdb14b836b0aad891835070a847f5882c6363f6ac9800c"
     },
     {
       "id": "level-09-week-37-02-buildsrc-included-build-build-logic",
@@ -3381,7 +3381,7 @@
         "build-logic"
       ],
       "path": "content/lessons/level-09-week-37-02-buildsrc-included-build-build-logic.json",
-      "sha256": "3e26e789bb3086cf4f482167f289f8b39a4a0a8a6c707cc8c263f2c44e7469b8"
+      "sha256": "a5b9ce19b1de78ccea589ba8877a24df5b34c33e14e44bff0261143119a4e462"
     },
     {
       "id": "level-09-week-37-03-custom-plugin-extension-design",
@@ -3395,7 +3395,7 @@
         "provider-api"
       ],
       "path": "content/lessons/level-09-week-37-03-custom-plugin-extension-design.json",
-      "sha256": "ee8664e4e945682b130735ea4c1b942b54c87d4a31d63f02e9d447144eeb4125"
+      "sha256": "ea7a460d3913296aa047f0685e71a2f1076958a1889d61d47b8707422339bc29"
     },
     {
       "id": "level-09-week-37-04-variant-aware-code-generation",
@@ -3409,7 +3409,7 @@
         "variant-api"
       ],
       "path": "content/lessons/level-09-week-37-04-variant-aware-code-generation.json",
-      "sha256": "d35ecd3ce74cda18fd19e9bf17b212c0206efc923d9bc34ceedd5c99d0ef5e14"
+      "sha256": "40eb423562cac3893f9400cd2433e3c47b97af31bcb3d18796e90cfe196e7ed8"
     },
     {
       "id": "level-09-week-37-05-gradle-testkit-functional-tests",
@@ -3423,7 +3423,7 @@
         "functional-testing"
       ],
       "path": "content/lessons/level-09-week-37-05-gradle-testkit-functional-tests.json",
-      "sha256": "89b432754eaef1d24fded6aae841e1a49761b10c88feaa05e7700e77da6571bb"
+      "sha256": "8b5ba967839822a5019e47fe4e2cae1c90c9c311abad02a6e9c8546594564e42"
     },
     {
       "id": "level-09-week-37-06-composable-build-convention-suite",
@@ -3437,7 +3437,7 @@
         "build-project"
       ],
       "path": "content/lessons/level-09-week-37-06-composable-build-convention-suite.json",
-      "sha256": "2a1bf92a09e6b8280eca36a29b8df7458f4e465326275092c9e9a190cd330dc2"
+      "sha256": "8b9162beed66e58ac6146fa1ba0ad4b3838c25a544437cb26ca58f1e680247a5"
     },
     {
       "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer",
@@ -3451,7 +3451,7 @@
         "measurement"
       ],
       "path": "content/lessons/level-09-week-38-01-measure-build-scans-profiles-analyzer.json",
-      "sha256": "1a6be72c436846813bf12e54df64e82552daa6d43e68bd725faa31ac7d5498e5"
+      "sha256": "14c74a54e4ba869266ea55445daa6581cf258e0138b4fc1c1759a39d469a1062"
     },
     {
       "id": "level-09-week-38-02-configuration-cache-adoption",
@@ -3465,7 +3465,7 @@
         "performance"
       ],
       "path": "content/lessons/level-09-week-38-02-configuration-cache-adoption.json",
-      "sha256": "ccb8f11ec476a20fba0be85306018a9c46229fd8105013e17f2e243ee721909a"
+      "sha256": "d1e376245ff03ecc1a0797e336c5ae064bed8d8fbfb89d05643e091a52c958d8"
     },
     {
       "id": "level-09-week-38-03-local-remote-build-cache-correctness",
@@ -3479,7 +3479,7 @@
         "ci-cache"
       ],
       "path": "content/lessons/level-09-week-38-03-local-remote-build-cache-correctness.json",
-      "sha256": "b624900e40d511db9dc77580ae6906beaa29696e91b9ef73bfad99db578b82ad"
+      "sha256": "687296ce424a6ddb245fec848695fdfd54b3d6fa792c568ace91914c5f6341bc"
     },
     {
       "id": "level-09-week-38-04-parallel-execution-module-critical-path",
@@ -3493,7 +3493,7 @@
         "modularization"
       ],
       "path": "content/lessons/level-09-week-38-04-parallel-execution-module-critical-path.json",
-      "sha256": "64985b1e866f9c812b0480af6ae9930e84370dd8cffdd5993f5dba1baf850756"
+      "sha256": "d1ca34f5b6d3ddfa25d883a5b42b33ae65e30a2bd96ea96502b24eb7106e6cec"
     },
     {
       "id": "level-09-week-38-05-ksp-incremental-processing",
@@ -3507,7 +3507,7 @@
         "code-generation"
       ],
       "path": "content/lessons/level-09-week-38-05-ksp-incremental-processing.json",
-      "sha256": "11735b0e32be04ffa7ff975e21c7450716db78f9aeb267ffdbb33dca45d33027"
+      "sha256": "e0386cb831c0059894d1b8817c2fea4c1bff594aa57d700809a85de822190d44"
     },
     {
       "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache",
@@ -3521,7 +3521,7 @@
         "dependency-analysis"
       ],
       "path": "content/lessons/level-09-week-38-06-abi-dependency-analysis-ci-cache.json",
-      "sha256": "626c3b7c90127bb625e525d9339d78a2ed6263387e43fd499816efbb66e0fe0a"
+      "sha256": "4d0dc75e2841d5e22fc78a3ccae84451c92e823214171f4de7fa88f3fcc56a84"
     },
     {
       "id": "level-09-week-39-01-signed-aab-artifact-identity",
@@ -3535,7 +3535,7 @@
         "signing"
       ],
       "path": "content/lessons/level-09-week-39-01-signed-aab-artifact-identity.json",
-      "sha256": "126e621c5738bfb77a408d6d89fc5d63c98f9c5dbce32cf7c73f45478993d363"
+      "sha256": "dfb97baa5021e1eabd4141de34b7cac1583ed68950d8186367ae6f57acde8538"
     },
     {
       "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols",
@@ -3549,7 +3549,7 @@
         "symbols"
       ],
       "path": "content/lessons/level-09-week-39-02-r8-shrinking-rules-release-symbols.json",
-      "sha256": "bd0f54d6d3a8c25b8c5a1b7aeeacb89ad58d3ec06d02090c691a6c1336af81f2"
+      "sha256": "8b377e09d88151d3a8b06b631b7e6cc6426f80fc174a707536bc0f791224df95"
     },
     {
       "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback",
@@ -3563,7 +3563,7 @@
         "rollback"
       ],
       "path": "content/lessons/level-09-week-39-03-release-tracks-staged-rollout-rollback.json",
-      "sha256": "a811801c2ec134f862a5d3c6962bd13dfd21005d5e1ae19528595ac4d81286a4"
+      "sha256": "62bf4b76fec6e6c1cf776342ba23815277415fde6680cf1986c4d4f37974bbf7"
     },
     {
       "id": "level-09-week-39-04-github-actions-android-pipeline-dag",
@@ -3577,7 +3577,7 @@
         "pipeline"
       ],
       "path": "content/lessons/level-09-week-39-04-github-actions-android-pipeline-dag.json",
-      "sha256": "746d512e97fdda8c4501f86e609759a6bba97b73959641ae5a46835355faa1ed"
+      "sha256": "b3b2e9d129433320f7fc9fe5d496aa9cfd470773ec837401d87fa792ce90df16"
     },
     {
       "id": "level-09-week-39-05-cicd-security-oidc-attestations",
@@ -3591,7 +3591,7 @@
         "oidc"
       ],
       "path": "content/lessons/level-09-week-39-05-cicd-security-oidc-attestations.json",
-      "sha256": "3c943b9a803f824381a4b1441ac1a9efeb97c8e1b3b191107104cea2dc271224"
+      "sha256": "7ff6fb11bb6d87b9228a65d921241e8bcb0dc1def9882d25474294fcaab5dd4e"
     },
     {
       "id": "level-09-week-39-06-convention-plugin-release-capstone",
@@ -3605,7 +3605,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-09-week-39-06-convention-plugin-release-capstone.json",
-      "sha256": "99a0b5566b49ddd0af6f404070f1c602fc4c411dfb7b0db7670596e84da56470"
+      "sha256": "aa15703ddee41563ad33ffc00c964860e81ca70ed5d0c2b4713155b60f944c25"
     },
     {
       "id": "level-10-week-40-01-performance-investigation-representative-evidence",
@@ -3619,7 +3619,7 @@
         "investigation"
       ],
       "path": "content/lessons/level-10-week-40-01-performance-investigation-representative-evidence.json",
-      "sha256": "bbee2dbda3c06d72f6d6bfb6a646e2ba8248e59608fbe1335fce1ec2fe7f2a06"
+      "sha256": "3f039625a0fc78ceba44e5ca1182279ddf7451746d4745a05674f0cc0026468b"
     },
     {
       "id": "level-10-week-40-02-cpu-perfetto-system-traces",
@@ -3633,7 +3633,7 @@
         "cpu-profiler"
       ],
       "path": "content/lessons/level-10-week-40-02-cpu-perfetto-system-traces.json",
-      "sha256": "1fae30971ca623e2ca97836b215c1c0e777879530f6912ec8d5d67b1ae39d89a"
+      "sha256": "90e675b8798305d31d0fe33e8cfcc7e0d324818edaa89ef9bdcdbe45e4326d63"
     },
     {
       "id": "level-10-week-40-03-memory-allocations-leaks-bitmaps",
@@ -3647,7 +3647,7 @@
         "leaks"
       ],
       "path": "content/lessons/level-10-week-40-03-memory-allocations-leaks-bitmaps.json",
-      "sha256": "f103ea210a5529a3ae1dcb446028a13ad8bbe45ad63e0dacecf9e3f781bf72e0"
+      "sha256": "3d521d87f0d7dce7907fe99306aedf317d478e68060418b41f8e84423d74ff1c"
     },
     {
       "id": "level-10-week-40-04-frame-timing-jank-compose-recomposition",
@@ -3661,7 +3661,7 @@
         "compose"
       ],
       "path": "content/lessons/level-10-week-40-04-frame-timing-jank-compose-recomposition.json",
-      "sha256": "94f238bd03c00637121489828489daa2a0cceca480e34622e5a8febb81a0a929"
+      "sha256": "7bf76309baa3df8403fc04bd4e16a8414faf004566c1e1ce1bcd8e474efc6250"
     },
     {
       "id": "level-10-week-40-05-battery-network-efficiency",
@@ -3675,7 +3675,7 @@
         "network"
       ],
       "path": "content/lessons/level-10-week-40-05-battery-network-efficiency.json",
-      "sha256": "9c30326ed6b91d3026d88fabeed3b1b0a35c685038ac8352c21228e97c543761"
+      "sha256": "9ba1d9ca7c642513df144ed7c079d2edfa62ddb1ea1ccd6064a74b1e843f7d73"
     },
     {
       "id": "level-10-week-40-06-application-size-delivery-analysis",
@@ -3689,7 +3689,7 @@
         "delivery"
       ],
       "path": "content/lessons/level-10-week-40-06-application-size-delivery-analysis.json",
-      "sha256": "ef3c4aa1afcf7e517ce467fa0ead2b1d5a014cc7f1078d5237623566f7343fce"
+      "sha256": "1f0a548c4a815cf85765fbdf57901f574608e7364f89314c04508278ab9bd4ac"
     },
     {
       "id": "level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd",
@@ -3703,7 +3703,7 @@
         "metrics"
       ],
       "path": "content/lessons/level-10-week-41-01-cold-warm-hot-startup-ttid-ttfd.json",
-      "sha256": "4994a4dabc9e85551fdd3cec72541899cd9f1e5e24de7b6bf25b67058eeb20cc"
+      "sha256": "e57f3f878685df6b40b6a938aee29df562568226aaaba19d0bb36dae68b7fef2"
     },
     {
       "id": "level-10-week-41-02-startup-critical-path-providers-main-thread",
@@ -3717,7 +3717,7 @@
         "main-thread"
       ],
       "path": "content/lessons/level-10-week-41-02-startup-critical-path-providers-main-thread.json",
-      "sha256": "2e00fb23b626ad0e77581dee5b731d73b4d0a97c5438bd9fe2ff1cb33367e70c"
+      "sha256": "bdfdfa0fdfbd01766c331b1e0544cb632d126cecaa3f911961c28bc241a98761"
     },
     {
       "id": "level-10-week-41-03-app-startup-lazy-di-initialization",
@@ -3731,7 +3731,7 @@
         "dependency-injection"
       ],
       "path": "content/lessons/level-10-week-41-03-app-startup-lazy-di-initialization.json",
-      "sha256": "4c912b250aa46d847301cd51577813833fd96e5473dbde365f2f98f4a8f51d5a"
+      "sha256": "009d38f85854eb1d3491e3be71d4dee10c7a394dcbf76ad6a190554bce67862c"
     },
     {
       "id": "level-10-week-41-04-macrobenchmark-startup-measurement",
@@ -3745,7 +3745,7 @@
         "startup"
       ],
       "path": "content/lessons/level-10-week-41-04-macrobenchmark-startup-measurement.json",
-      "sha256": "fea5944c3a0f5fe56e28ea3b149fb8f1e238617ac888b62a6c169f7748e2f06b"
+      "sha256": "359a52276d2e1f5a80ea59809881c1179063ff76f91658dc504c31e17e07cadc"
     },
     {
       "id": "level-10-week-41-05-baseline-profiles-critical-journeys",
@@ -3759,7 +3759,7 @@
         "aot"
       ],
       "path": "content/lessons/level-10-week-41-05-baseline-profiles-critical-journeys.json",
-      "sha256": "730f4b39c7421d326f27d7feeebb509c55b770b6ab1bc352ab429027b43efa02"
+      "sha256": "14d3ad39157dc134bd2dda05c808133fcdf0aa97426246cd9086a14672bb2894"
     },
     {
       "id": "level-10-week-41-06-startup-profiles-dex-layout-release",
@@ -3773,7 +3773,7 @@
         "dex"
       ],
       "path": "content/lessons/level-10-week-41-06-startup-profiles-dex-layout-release.json",
-      "sha256": "71328fb8eb19eb6dec712ba0d8ee2cad47875811c80d9cc1aeab45abf54fd01a"
+      "sha256": "d32067b193ca9bc681b08c9885787d16918851dfb7d80fc357c278f8570203a2"
     },
     {
       "id": "level-10-week-42-01-anr-types-strictmode-diagnosis",
@@ -3787,7 +3787,7 @@
         "strictmode"
       ],
       "path": "content/lessons/level-10-week-42-01-anr-types-strictmode-diagnosis.json",
-      "sha256": "ab1a0d8639265954b3fe1327223b7055292ab8f6e16107ec5202970bcf658119"
+      "sha256": "7371c088af5774e8f28f08c64077523a25667369f50c9a2e1c7357052fbabf1a"
     },
     {
       "id": "level-10-week-42-02-managed-native-crashes-exit-info",
@@ -3801,7 +3801,7 @@
         "native"
       ],
       "path": "content/lessons/level-10-week-42-02-managed-native-crashes-exit-info.json",
-      "sha256": "88eb82663be62283ceba8e5d87e87ab6e52d58b22ecfcf32661965f376beb297"
+      "sha256": "f99c676f87d969536289c46dc59977b052c6123074dcab7b4fc50fdec0fe0a9d"
     },
     {
       "id": "level-10-week-42-03-oom-low-memory-process-death",
@@ -3815,7 +3815,7 @@
         "process-death"
       ],
       "path": "content/lessons/level-10-week-42-03-oom-low-memory-process-death.json",
-      "sha256": "2fd3d040b9160a5a7183c38fa1b42a7769f616fd4a087798acac2499836cbfa7"
+      "sha256": "9b6faad49fe6bc766ccc52139f92bb36a8ba6f246a636b61d96a327180ba4056"
     },
     {
       "id": "level-10-week-42-04-retry-storms-circuit-breakers-rate-limits",
@@ -3829,7 +3829,7 @@
         "circuit-breaker"
       ],
       "path": "content/lessons/level-10-week-42-04-retry-storms-circuit-breakers-rate-limits.json",
-      "sha256": "5952e98f4a617ed4c1a9808a8860efe7840a6c78d33335a280e61f22000d066b"
+      "sha256": "f549295d7b5fcee618926f99deb3bb55488fde19fda99995803cec6e432b014f"
     },
     {
       "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation",
@@ -3843,7 +3843,7 @@
         "kill-switch"
       ],
       "path": "content/lessons/level-10-week-42-05-feature-flags-kill-switches-safe-operation.json",
-      "sha256": "d5b9e8928139f5fab55b16a5b29d9140a84b4eedc29fa3891cacff7036b4c47c"
+      "sha256": "014d35afdd8f743a568b4809fe45683d16b8ea9cabaffa980c939a8ce7a3ff66"
     },
     {
       "id": "level-10-week-42-06-compatible-migrations-rollback-planning",
@@ -3857,7 +3857,7 @@
         "rollback"
       ],
       "path": "content/lessons/level-10-week-42-06-compatible-migrations-rollback-planning.json",
-      "sha256": "e1d82bec40ae2b5b0113a73add502ec656a05cc0db4464f1474471200f742571"
+      "sha256": "b59da8fde5bba03e35d86fa86339ff3b2398dda4867b000e8dc7d78043ffa616"
     },
     {
       "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction",
@@ -3871,7 +3871,7 @@
         "privacy"
       ],
       "path": "content/lessons/level-10-week-43-01-structured-logging-event-taxonomy-redaction.json",
-      "sha256": "278f2de3b990b22255d642bb2640a5829a87f1c1122869f68704c5faccfeefb0"
+      "sha256": "3bb7401a636442008b2361b1a907e4ef33e0eae1b2c13e2020d46d6e47ee9b6b"
     },
     {
       "id": "level-10-week-43-02-crash-reporting-breadcrumbs-correlation",
@@ -3885,7 +3885,7 @@
         "correlation"
       ],
       "path": "content/lessons/level-10-week-43-02-crash-reporting-breadcrumbs-correlation.json",
-      "sha256": "08bbde6b6f354406940fcfddb7bb5880559288dc508faf242ccbbd4bd38670e4"
+      "sha256": "ddb72b838b6c05b2d8c03c16e561eb2edd6b28fb0f5d1e929c379bde88730f2e"
     },
     {
       "id": "level-10-week-43-03-analytics-measurement-plan-consent-cardinality",
@@ -3899,7 +3899,7 @@
         "privacy"
       ],
       "path": "content/lessons/level-10-week-43-03-analytics-measurement-plan-consent-cardinality.json",
-      "sha256": "90758d97bc062dd19bb4115afa0eadc3200cac286ca7eba50fb8318928e20c01"
+      "sha256": "3b820d1781d3c08ea5b2a342ef5d6a0aac4df9d099c1ad1f79f2986fd381fb2d"
     },
     {
       "id": "level-10-week-43-04-performance-monitoring-traces-slis",
@@ -3913,7 +3913,7 @@
         "sli"
       ],
       "path": "content/lessons/level-10-week-43-04-performance-monitoring-traces-slis.json",
-      "sha256": "3029256a13672d38c7234c84135bc8e6795c41ff6ced4f01fcb33e79a22d96d3"
+      "sha256": "8170787d904dbd5b151f3ecf53de1f938dea48d7963a0d4bfc299b162a411941"
     },
     {
       "id": "level-10-week-43-05-dashboards-release-health-slos-alerting",
@@ -3927,7 +3927,7 @@
         "slo"
       ],
       "path": "content/lessons/level-10-week-43-05-dashboards-release-health-slos-alerting.json",
-      "sha256": "192d8dd21ecc97baed9dbff356df7787eb223455ef7d4bfbd6d022d3e12042c7"
+      "sha256": "2a3e499eb96da483cb10e95f075fe77519f5ee04d2a50fee38d2ad9d9651500f"
     },
     {
       "id": "level-10-week-43-06-performance-observability-capstone",
@@ -3941,7 +3941,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-10-week-43-06-performance-observability-capstone.json",
-      "sha256": "33d8c0af23e2416b68cef9082484f8d7984c626bcf777db0448b7ae1e6cdbb1c"
+      "sha256": "8bce4f694d7e19c7465dad3786d2e3f84271a88d9eebacc865cb7db526295eab"
     },
     {
       "id": "level-11-week-44-01-linux-processes-threads-uids-sandbox",
@@ -3955,7 +3955,7 @@
         "processes"
       ],
       "path": "content/lessons/level-11-week-44-01-linux-processes-threads-uids-sandbox.json",
-      "sha256": "5ba46655d7a2363e181d0c6dc55af2a10ac5d467b8f339048fe3abf1bde74208"
+      "sha256": "add53a1eb7c30cb8c8acf99d4b8432bb4c7a705f96c49bafa36a22edb0fcc08f"
     },
     {
       "id": "level-11-week-44-02-zygote-fork-app-process-creation",
@@ -3969,7 +3969,7 @@
         "process-start"
       ],
       "path": "content/lessons/level-11-week-44-02-zygote-fork-app-process-creation.json",
-      "sha256": "60997b3fb721382f7a5e7a48ae0e5044a2337e66454dbedfd3e2c54994d5059e"
+      "sha256": "7c00a1e91e75f9a3a8d1874bee98c0523d42b588dfffb7a88340a2954497c604"
     },
     {
       "id": "level-11-week-44-03-system-server-boot-system-services",
@@ -3983,7 +3983,7 @@
         "services"
       ],
       "path": "content/lessons/level-11-week-44-03-system-server-boot-system-services.json",
-      "sha256": "7750e3ef298618a902c77e2b54fabca5b622c8ae2027dcf4e359f73055f94e90"
+      "sha256": "90f76abbc654314ae18542c3e4a82bf924fa95472c41227b221b6fe6d2e789ff"
     },
     {
       "id": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death",
@@ -3997,7 +3997,7 @@
         "ipc"
       ],
       "path": "content/lessons/level-11-week-44-04-binder-proxy-stub-parcel-identity-death.json",
-      "sha256": "2ca92ee574df2329ebd10dbe0c1cdd5d15ac975082a2d4902d9b240d4f695cce"
+      "sha256": "37502d89388af4b7da8c4abb463711d9aca0a48fe15bbaf3308533fe4aefd226"
     },
     {
       "id": "level-11-week-44-05-service-manager-discovery-handles",
@@ -4011,7 +4011,7 @@
         "binder"
       ],
       "path": "content/lessons/level-11-week-44-05-service-manager-discovery-handles.json",
-      "sha256": "140e52037965f92ee9ba7bdff30132812951a9ed382e72d410e8000ca64058e3"
+      "sha256": "dbd5675a00b95454d3c3a87d590bc4eb2a97bf3a9d263b2d263e1e3c0e9b0724"
     },
     {
       "id": "level-11-week-44-06-activity-task-package-window-manager-boundaries",
@@ -4025,7 +4025,7 @@
         "framework"
       ],
       "path": "content/lessons/level-11-week-44-06-activity-task-package-window-manager-boundaries.json",
-      "sha256": "0f8207b0f9a32e20976dd575ae169add1c9e6927e8e8b4e593dabf575c0d554b"
+      "sha256": "6147d794cc315cd6925a8d4b31e40ba9bbeb3a0c2abc04a8280aa3e3ae8ab2ad"
     },
     {
       "id": "level-11-week-45-01-launcher-intent-resolution-task-launch",
@@ -4039,7 +4039,7 @@
         "intents"
       ],
       "path": "content/lessons/level-11-week-45-01-launcher-intent-resolution-task-launch.json",
-      "sha256": "75c0a576709a20bcfcb2a35f38bdf5ec3e4f180280d520b783e342e1055a66ca"
+      "sha256": "d818452e22f283ec1bf77b90311aa82d08a804ab6e3b34aa987d36643edb6d63"
     },
     {
       "id": "level-11-week-45-02-activitythread-main-application-bind",
@@ -4053,7 +4053,7 @@
         "process-start"
       ],
       "path": "content/lessons/level-11-week-45-02-activitythread-main-application-bind.json",
-      "sha256": "11ad0653094681c004fbe2cf28e1bcd332e9ada8f902ccc043c0620f70a444c1"
+      "sha256": "ea7b9dd1ba071b1c128c1bb9f100e6194d5efdd87b0222272f0ee79ecaa156bb"
     },
     {
       "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle",
@@ -4067,7 +4067,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-11-week-45-03-instrumentation-activity-attach-lifecycle.json",
-      "sha256": "1eda407edf1b06647645b9a9a815bbf84665b5173ec0d2a635748cb6c142db80"
+      "sha256": "287a6f4d299aeef9e811d526da207f5e4d8bba07d1a22323f5da90be38528141"
     },
     {
       "id": "level-11-week-45-04-window-creation-surface-first-frame",
@@ -4081,7 +4081,7 @@
         "first-frame"
       ],
       "path": "content/lessons/level-11-week-45-04-window-creation-surface-first-frame.json",
-      "sha256": "171982844b5626477bcaf6a3e8a0fc102fa72e6d68219b2c00ca8d4fff60c219"
+      "sha256": "5400d6b2421b3603faad093bb268bdd1d7c1b95277e2ae0c903e84a8874f14b3"
     },
     {
       "id": "level-11-week-45-05-looper-messagequeue-handler-frame-starvation",
@@ -4095,7 +4095,7 @@
         "main-thread"
       ],
       "path": "content/lessons/level-11-week-45-05-looper-messagequeue-handler-frame-starvation.json",
-      "sha256": "e5344cbcdca34eb968d6e9541cf540104f9134d56f8c1489004ed5b46bb2af91"
+      "sha256": "3638372f661a3f887bfbcfbd07ce322cadf55dfac0f9a4817c99892392737c35"
     },
     {
       "id": "level-11-week-45-06-binder-pools-coroutines-locks-deadlocks",
@@ -4109,7 +4109,7 @@
         "deadlocks"
       ],
       "path": "content/lessons/level-11-week-45-06-binder-pools-coroutines-locks-deadlocks.json",
-      "sha256": "cb2221eb2019f8c08ec8e8a22ff72b03dd8ab32689c254bc290c92f51a5a27dd"
+      "sha256": "987a1d40757f938899c8e7ea0d3d9c84a61848c91bbe33928145f76c6f1f15b1"
     },
     {
       "id": "level-11-week-46-01-view-traversal-measure-layout-draw",
@@ -4123,7 +4123,7 @@
         "rendering"
       ],
       "path": "content/lessons/level-11-week-46-01-view-traversal-measure-layout-draw.json",
-      "sha256": "54189b3ac73a90adaf7c0235d3806e3ed568dc651d1f4000da3e9382eaa48504"
+      "sha256": "6c479ed407723e45020b7749b169b53d997d1074ea34cd4d6881f9c8a7cc90d5"
     },
     {
       "id": "level-11-week-46-02-compose-composition-layout-draw-snapshots",
@@ -4137,7 +4137,7 @@
         "rendering"
       ],
       "path": "content/lessons/level-11-week-46-02-compose-composition-layout-draw-snapshots.json",
-      "sha256": "c419e2d834d6ff41d859bc037d60f1b78134687fbdc078f4daeb66a5ab3e44e6"
+      "sha256": "9fd5b2703f254d42581820cc5bd9c217344030409e7515616ec84d9a4473fd9d"
     },
     {
       "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines",
@@ -4151,7 +4151,7 @@
         "frame-timing"
       ],
       "path": "content/lessons/level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines.json",
-      "sha256": "3aa19a156061d0ea190cca639c3073003610b8f8a442d5d0cffc32ed3923ea31"
+      "sha256": "dc30d50739533d622919adda0000d1afdf930d1fa77f13429c51c808ff6c5e32"
     },
     {
       "id": "level-11-week-46-04-renderthread-display-lists-hardware-acceleration",
@@ -4165,7 +4165,7 @@
         "gpu"
       ],
       "path": "content/lessons/level-11-week-46-04-renderthread-display-lists-hardware-acceleration.json",
-      "sha256": "454c08c3e736a7a9f0e21717c317d9e22c99380ed0fe875a1c77c7928448429e"
+      "sha256": "74132b5e109e703cb90aaf3cd8b9756fe22857a02bd4cb43560063f203dafe22"
     },
     {
       "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences",
@@ -4179,7 +4179,7 @@
         "graphics"
       ],
       "path": "content/lessons/level-11-week-46-05-surface-bufferqueue-gralloc-fences.json",
-      "sha256": "379971593bee4bf118eef7761ed4aa1ff8df2507e2f9a802cc5fbcc40cca5b22"
+      "sha256": "5f92982b92b2ca30d00f06e7d21eafadfbcaecfca8fb113ed6952d52e63f9250"
     },
     {
       "id": "level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace",
@@ -4193,7 +4193,7 @@
         "composition"
       ],
       "path": "content/lessons/level-11-week-46-06-surfaceflinger-hwc-composition-frame-trace.json",
-      "sha256": "04c66265f1af9f3478f698e575ba52bbd296a45104774adc35d11d77db2964d0"
+      "sha256": "d6b8a9b8e344daf17c6e90f140f4fd1cc16ebc712738c39cfbb1d5308534ed4e"
     },
     {
       "id": "level-11-week-47-01-art-dex-classloading-jit-aot-profiles",
@@ -4207,7 +4207,7 @@
         "dex"
       ],
       "path": "content/lessons/level-11-week-47-01-art-dex-classloading-jit-aot-profiles.json",
-      "sha256": "0949f41b40e36c1cee57bfdcf482344be72d7f01df2a2e4bfd3f96e30b9bed97"
+      "sha256": "ead6c2f59f373ef7f8f9c2d80355782043b7d6e541aa84703ca7fa58d4e93201"
     },
     {
       "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory",
@@ -4221,7 +4221,7 @@
         "garbage-collection"
       ],
       "path": "content/lessons/level-11-week-47-02-managed-heap-gc-allocation-native-memory.json",
-      "sha256": "04172ea50ba5049f56878800d8ac5044f5016db20b8797888246b269c6964411"
+      "sha256": "3221d1287a99f2c66e7dc1c6d55921569b2f2d84e888b752daf4676033eea16d"
     },
     {
       "id": "level-11-week-47-03-process-importance-lmkd-trim-memory",
@@ -4235,7 +4235,7 @@
         "process-lifecycle"
       ],
       "path": "content/lessons/level-11-week-47-03-process-importance-lmkd-trim-memory.json",
-      "sha256": "0557a1e7ea60fecfeb3c9019113acba388c8d301585fc773d866dcfd44578b33"
+      "sha256": "eff201f8db1adf1ca8aa5fc35ae617f3523464ff2c6e950ff6533f1305cbbddd"
     },
     {
       "id": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs",
@@ -4249,7 +4249,7 @@
         "background-work"
       ],
       "path": "content/lessons/level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs.json",
-      "sha256": "a5076bc46a6a8ec6b8eeae622903f17d411766f60e72c150371aebf014f8dd88"
+      "sha256": "e08bd23225c24f61cfb26000c62a5cd2c734bc222b15b7f6c062176cbcba5600"
     },
     {
       "id": "level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer",
@@ -4263,7 +4263,7 @@
         "adb"
       ],
       "path": "content/lessons/level-11-week-47-05-adb-logcat-dumpsys-bugreport-apkanalyzer.json",
-      "sha256": "b7d2decce8627d27f42f9b0a4a518bc7739608b24d2392f3db3db89b9efcfd5a"
+      "sha256": "f3b5382094fb5ff19e11ecdd8f96ce5eb2d59528c32dad09832b9f11690c4190"
     },
     {
       "id": "level-11-week-47-06-end-to-end-interaction-trace-capstone",
@@ -4277,7 +4277,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-11-week-47-06-end-to-end-interaction-trace-capstone.json",
-      "sha256": "b5d2df109f8e78b13fb850f9134983d0985254db44336194ce4093600ca7a774"
+      "sha256": "696e52ab99b5a75662df2f3fcd61ec61fcd78f0e7f57ead4792cda17fdfc767a"
     },
     {
       "id": "level-12-week-48-01-public-api-design-contract-semantics",
@@ -4291,7 +4291,7 @@
         "libraries"
       ],
       "path": "content/lessons/level-12-week-48-01-public-api-design-contract-semantics.json",
-      "sha256": "b4b1cce42f2306a10c056df2e2b3a2b0f029cab2290ea5a6ac8d6c424d74c247"
+      "sha256": "e7493740c75f84b3eabb48c1e9bf1a22000336808e90c0483b0a5b090f6182dc"
     },
     {
       "id": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm",
@@ -4305,7 +4305,7 @@
         "kotlin"
       ],
       "path": "content/lessons/level-12-week-48-02-binary-source-compatibility-kotlin-jvm.json",
-      "sha256": "0674375d6b0b1052d45df2af3cd1265c0f3d919b7912eca37c799518403057be"
+      "sha256": "bafb059f7732ff11d8cc97b07408a5c549b1c0738e0f1c924d48cd518d07202e"
     },
     {
       "id": "level-12-week-48-03-aar-resources-consumer-rules-publication",
@@ -4319,7 +4319,7 @@
         "publishing"
       ],
       "path": "content/lessons/level-12-week-48-03-aar-resources-consumer-rules-publication.json",
-      "sha256": "8b232bbe908c6610d6653723e7d189ad9355fb8f47684c7643ae70d872e221b8"
+      "sha256": "8d4f154e505ec4aa26dedf1c6154b482c16efc5864f400207328074430cb42f8"
     },
     {
       "id": "level-12-week-48-04-sdk-initialization-lifecycle-process-isolation",
@@ -4333,7 +4333,7 @@
         "lifecycle"
       ],
       "path": "content/lessons/level-12-week-48-04-sdk-initialization-lifecycle-process-isolation.json",
-      "sha256": "44308ce543b5a84ba81f86fa3bc3938e75fe9b1af5076c82f5ce8be5990da5ca"
+      "sha256": "26663e2da33962842604da5a3c3a02e8e7819d723039fad55f6b8b63c2d3078c"
     },
     {
       "id": "level-12-week-48-05-sdk-testing-security-observability-samples",
@@ -4347,7 +4347,7 @@
         "security"
       ],
       "path": "content/lessons/level-12-week-48-05-sdk-testing-security-observability-samples.json",
-      "sha256": "a37a076eac911156b594f7810be603b82faab6454214a9f435793b224b5e501e"
+      "sha256": "58a7e7a944adf6a715c75d521f4f4cc49117f25b933102aee784cfb30ccfdc54"
     },
     {
       "id": "level-12-week-48-06-library-baseline-profiles-sdk-capstone",
@@ -4361,7 +4361,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-12-week-48-06-library-baseline-profiles-sdk-capstone.json",
-      "sha256": "b1c70275c5c685e5fc7a1a1dc17f1961faf821cf45b682df938479f49cbf54a3"
+      "sha256": "614d9a9ce8e5c5a41070d4c3b0b9efd603655ce39ae2055c635dd0573dde9862"
     },
     {
       "id": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy",
@@ -4375,7 +4375,7 @@
         "privacy"
       ],
       "path": "content/lessons/level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy.json",
-      "sha256": "389b2a6e075e6890901bb18ba91adad3a1e5cbf8eae06ae9d4e706c66927e930"
+      "sha256": "8dbaf9f102582ec14ee5933aab4da665ecd3680bef88cd900d6da3272d3c037a"
     },
     {
       "id": "level-12-week-49-02-litert-quantization-delegates-benchmarking",
@@ -4389,7 +4389,7 @@
         "benchmarking"
       ],
       "path": "content/lessons/level-12-week-49-02-litert-quantization-delegates-benchmarking.json",
-      "sha256": "fcdf9b5a2c0a075e6dcb72385fbaec39bc696f807e6ed05bbcec1ef372d55afb"
+      "sha256": "b109feed8b2c0528f1d9bc4bff23a698c0347585793dad035420f218a2fc6081"
     },
     {
       "id": "level-12-week-49-03-model-delivery-multimodal-offline-governance",
@@ -4403,7 +4403,7 @@
         "multimodal"
       ],
       "path": "content/lessons/level-12-week-49-03-model-delivery-multimodal-offline-governance.json",
-      "sha256": "726add29422b233241ec9163566f408e44efb63049cadb51657280d25525a4be"
+      "sha256": "eb743f901139fe5666588d722106ffd21133de243d3a76978cd07b4eae897315"
     },
     {
       "id": "level-12-week-49-04-jni-boundaries-references-threads-exceptions",
@@ -4417,7 +4417,7 @@
         "native"
       ],
       "path": "content/lessons/level-12-week-49-04-jni-boundaries-references-threads-exceptions.json",
-      "sha256": "11426967e267e6c9f4dcd72d9157e95ce099c174264901b516e1e29373b05e32"
+      "sha256": "8ac29569caf34058c3bd4b5e69a7e1ce2b57c5acbacd20490dd5560b143f1283"
     },
     {
       "id": "level-12-week-49-05-cmake-abis-native-memory-rust-interop",
@@ -4431,7 +4431,7 @@
         "rust"
       ],
       "path": "content/lessons/level-12-week-49-05-cmake-abis-native-memory-rust-interop.json",
-      "sha256": "7bfc72ba9b6403b6a1cad239f88e3e49fa4c3002a610ee71e831759aeb3f843d"
+      "sha256": "2ec2137bf090a21e080b2ca12f5a09351deeab1200bf0e3216ab08d5a6c31a15"
     },
     {
       "id": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes",
@@ -4445,7 +4445,7 @@
         "sanitizers"
       ],
       "path": "content/lessons/level-12-week-49-06-native-debugging-symbols-sanitizers-crashes.json",
-      "sha256": "651a7159d62207a1c8c13bba879d1954d2f315c60b54cf00626daf6e2f2dfe14"
+      "sha256": "58096498acb50cd3e33af74ed0a9f50a3c39c88c50eb682602bc17b88be696b4"
     },
     {
       "id": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input",
@@ -4459,7 +4459,7 @@
         "foldables"
       ],
       "path": "content/lessons/level-12-week-50-01-adaptive-windows-foldables-chromeos-input.json",
-      "sha256": "35668d71817274bf8081a0af1816a9b42831ce41f7b77ad77bdf2cbffd3ea8f7"
+      "sha256": "59820233f067a50340f5ec515f496b43cfa8c5537e3a115d843189fa59353d98"
     },
     {
       "id": "level-12-week-50-02-wear-os-surfaces-power-health",
@@ -4473,7 +4473,7 @@
         "power"
       ],
       "path": "content/lessons/level-12-week-50-02-wear-os-surfaces-power-health.json",
-      "sha256": "f669da9ba028c861e665995dcbd852941eb669a8aef09bdb1b6754710ca5bfd9"
+      "sha256": "1b1d38eab1a688c198e3693379e73a489fd902b9dc2f78b86c7dbd20873cafa7"
     },
     {
       "id": "level-12-week-50-03-android-auto-automotive-driver-safety",
@@ -4487,7 +4487,7 @@
         "safety"
       ],
       "path": "content/lessons/level-12-week-50-03-android-auto-automotive-driver-safety.json",
-      "sha256": "6c2dde1196f0bc4246d21b013cec3eaee5070a0b4d3fb01eaf1b07ebe3b99cfe"
+      "sha256": "1abffc564b075ecff4d1b625787f5fe0d327ab04bb2557b5005b887fad236ffd"
     },
     {
       "id": "level-12-week-50-04-android-tv-focus-dpad-media-quality",
@@ -4501,7 +4501,7 @@
         "media"
       ],
       "path": "content/lessons/level-12-week-50-04-android-tv-focus-dpad-media-quality.json",
-      "sha256": "dcb25cd548037bb12825cb73aeb2c2a92b571e6a098b00e351ea5fb6a4eb3bbe"
+      "sha256": "f7770c8ad5b03833a81a54a76a767ff50f57ee6447b427b9eb236e58f26d89d0"
     },
     {
       "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities",
@@ -4515,7 +4515,7 @@
         "spatial-ui"
       ],
       "path": "content/lessons/level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities.json",
-      "sha256": "b513985fa74416fc20d8981de13e02de21787d94254ef8200931e0eba97e6dcd"
+      "sha256": "1d17a4a7a3bc77efa9b45c6c9b69754dc9be4859222da3ff5c458e61c295cdff"
     },
     {
       "id": "level-12-week-50-06-multiform-factor-capability-matrix-capstone",
@@ -4529,7 +4529,7 @@
         "capstone"
       ],
       "path": "content/lessons/level-12-week-50-06-multiform-factor-capability-matrix-capstone.json",
-      "sha256": "b522aefa7a570c8b7d12673ecb1b6fe31901ebee4c973fc6e3205e5349a4215a"
+      "sha256": "1f1fb564d62a15b1d4f8bbc613d07ef4d9a5d69e572a4421e24f94c23488057e"
     },
     {
       "id": "level-12-week-51-01-aosp-repo-sync-build-source-tree",
@@ -4543,7 +4543,7 @@
         "platform"
       ],
       "path": "content/lessons/level-12-week-51-01-aosp-repo-sync-build-source-tree.json",
-      "sha256": "1282652ca0a53ad50f0ec139f1b8bb5403ddb75e9e69289d389fd19ee8f6c62d"
+      "sha256": "dea7704292ed2c5aaba047add50dd2bf5d305f62c9288f907d494b94ec385c5b"
     },
     {
       "id": "level-12-week-51-02-soong-modules-products-flags-apex",
@@ -4557,7 +4557,7 @@
         "modules"
       ],
       "path": "content/lessons/level-12-week-51-02-soong-modules-products-flags-apex.json",
-      "sha256": "c66f4904be8954cb9f7293726803138e2fc8a1d08050da575ea47b932fd89016"
+      "sha256": "b90a3d9c4dcdf5860e3d47c4e77f51f4bf6e514d62baa2e5af268321605dee64"
     },
     {
       "id": "level-12-week-51-03-framework-service-system-app-change",
@@ -4571,7 +4571,7 @@
         "system-apps"
       ],
       "path": "content/lessons/level-12-week-51-03-framework-service-system-app-change.json",
-      "sha256": "64e1ee4b7e554e11e9bb8fecc3b75fd3199ec7a790f3617a353103eb38bd39d0"
+      "sha256": "0affc5f6611a8a405252ff511df6797558f252e97ecc70604c46bb99f8bcf7c5"
     },
     {
       "id": "level-12-week-51-04-selinux-labels-denials-least-privilege",
@@ -4585,7 +4585,7 @@
         "security"
       ],
       "path": "content/lessons/level-12-week-51-04-selinux-labels-denials-least-privilege.json",
-      "sha256": "2b384b8d634fd9c6871dd387f9582e07f2b88bccdb681ee56a426bc67c082246"
+      "sha256": "465f60c7a137cefdbb1712b2888aacb60f39316ad528be97af434a8d66e18f8d"
     },
     {
       "id": "level-12-week-51-05-hal-stable-aidl-vintf-treble",
@@ -4599,7 +4599,7 @@
         "stable-aidl"
       ],
       "path": "content/lessons/level-12-week-51-05-hal-stable-aidl-vintf-treble.json",
-      "sha256": "b8698fb7465f308ac19bd8e05d8c941ea7307b6d3b5e509a7975097d14f5c42b"
+      "sha256": "e6055febc63f9bfe7d72b0cbed0c460beb3c6a53856efe5e4338f9f41287a07e"
     },
     {
       "id": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution",
@@ -4613,7 +4613,7 @@
         "gerrit"
       ],
       "path": "content/lessons/level-12-week-51-06-cts-vts-gerrit-aosp-contribution.json",
-      "sha256": "48fd99daab04379ac49f3d809a808daf78da9f4d3fe9d0803c21d35cf65191ee"
+      "sha256": "30432c087fdf9f7d55860f1d8508c2bb591410f2eba443e3c280b38a9a3445dc"
     },
     {
       "id": "level-12-week-52-01-integrity-attestation-strong-auth-risk",
@@ -4627,7 +4627,7 @@
         "authentication"
       ],
       "path": "content/lessons/level-12-week-52-01-integrity-attestation-strong-auth-risk.json",
-      "sha256": "93fb78afde4167a10253de247ff54254fb867e7206f51d8bb205c7fdcb691b1f"
+      "sha256": "06bf75c84bc97ebf7368c9b21def834828397b1c34b86cf2a5aa1bc32440f5e6"
     },
     {
       "id": "level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries",
@@ -4641,7 +4641,7 @@
         "tokenization"
       ],
       "path": "content/lessons/level-12-week-52-02-payment-sdk-tokenization-tap-to-pay-boundaries.json",
-      "sha256": "705b914ae5881c3168481e36f9fb44d516a473d8c5bd077a9ddfbeda40d2cd40"
+      "sha256": "601938165f9e7ee5428c4b78121329fafc096312ea795bcdf9da0377a7fc28e5"
     },
     {
       "id": "level-12-week-52-03-certificate-lifecycle-multibrand-environments",
@@ -4655,7 +4655,7 @@
         "multi-brand"
       ],
       "path": "content/lessons/level-12-week-52-03-certificate-lifecycle-multibrand-environments.json",
-      "sha256": "b315d33e8893ac5163b06186ebe88285643f8c33e22af3962fa880b0e4de28a1"
+      "sha256": "df880108723d6614b4be7df2704179f735ee71d3f91ff8e1d22f669a7144655d"
     },
     {
       "id": "level-12-week-52-04-audit-logging-regulated-release-evidence",
@@ -4669,7 +4669,7 @@
         "compliance"
       ],
       "path": "content/lessons/level-12-week-52-04-audit-logging-regulated-release-evidence.json",
-      "sha256": "228185298f1d2c347cfdf5c91ef632dd95f5308d906216a67638d69b81b84195"
+      "sha256": "0cfd067bea771ddda56f88688c8c0fae4ed6f11ebad71f8de242d3a8a49ce562"
     },
     {
       "id": "level-12-week-52-05-specialisation-portfolio-architecture",
@@ -4683,7 +4683,7 @@
         "specialisations"
       ],
       "path": "content/lessons/level-12-week-52-05-specialisation-portfolio-architecture.json",
-      "sha256": "eda399e4f699b214559195fc21eca58f8c68180556ee39efebd69db107d0b853"
+      "sha256": "b5a86355d2a0e22b12b0d92bcd7730fb17609279d00f13547fca2333a001fc92"
     },
     {
       "id": "level-12-week-52-06-android-platform-expert-final-capstone",
@@ -4697,7 +4697,7 @@
         "production"
       ],
       "path": "content/lessons/level-12-week-52-06-android-platform-expert-final-capstone.json",
-      "sha256": "a7723ab06d2a8bd525106a4c1aafc213fb5a8067012b2825751d652f9c604b93"
+      "sha256": "48bf7b5362da25ecb0c0f20382ef922f177cf1955bd93dd93717a85eaf066d09"
     }
   ],
   "quizzes": [

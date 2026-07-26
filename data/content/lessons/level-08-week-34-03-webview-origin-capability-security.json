@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-34-03-webview-origin-capability-security-recall-1",
         "prompt": "Why is a generic JavaScript bridge dangerous?",
         "answer": "It can turn untrusted web content into a caller of powerful native capabilities without a reliable least-privilege origin contract."
       },
       {
+        "id": "level-08-week-34-03-webview-origin-capability-security-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-34-03-webview-origin-capability-security-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

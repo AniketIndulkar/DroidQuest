@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-07-03-component-selection-services-recall-1",
         "prompt": "What is a Service missing by design?",
         "answer": "A user interface and an automatic worker thread."
       },
       {
+        "id": "level-02-week-07-03-component-selection-services-recall-2",
         "prompt": "When is a foreground service appropriate?",
         "answer": "For ongoing work genuinely noticeable to the user and permitted by platform rules."
       },
       {
+        "id": "level-02-week-07-03-component-selection-services-recall-3",
         "prompt": "What suits deferrable guaranteed work?",
         "answer": "WorkManager normally models constraints, retry, and durable scheduling."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-48-01-public-api-design-contract-semantics-recall-1",
         "prompt": "Why is behavioral compatibility distinct from binary compatibility?",
         "answer": "Code can still link while its ordering, errors, side effects, timing, or lifecycle meaning changes and breaks consumers."
       },
       {
+        "id": "level-12-week-48-01-public-api-design-contract-semantics-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-48-01-public-api-design-contract-semantics-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

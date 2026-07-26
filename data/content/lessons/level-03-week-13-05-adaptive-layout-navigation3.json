@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-05-adaptive-layout-navigation3-recall-1",
         "prompt": "What should adaptive layout measure?",
         "answer": "The current application window."
       },
       {
+        "id": "level-03-week-13-05-adaptive-layout-navigation3-recall-2",
         "prompt": "What survives pane changes?",
         "answer": "Stable destination, selection, and screen state."
       },
       {
+        "id": "level-03-week-13-05-adaptive-layout-navigation3-recall-3",
         "prompt": "What does Navigation 3 expose directly?",
         "answer": "An application-owned list of back-stack keys."
       }

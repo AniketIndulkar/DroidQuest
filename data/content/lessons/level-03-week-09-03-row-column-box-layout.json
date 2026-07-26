@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-09-03-row-column-box-layout-recall-1",
         "prompt": "What does Box primarily express?",
         "answer": "Children sharing and aligning within the same stacked region."
       },
       {
+        "id": "level-03-week-09-03-row-column-box-layout-recall-2",
         "prompt": "What does weight distribute?",
         "answer": "Remaining main-axis space in Row or Column."
       },
       {
+        "id": "level-03-week-09-03-row-column-box-layout-recall-3",
         "prompt": "What should responsive decisions use?",
         "answer": "Available window/container space and content needs."
       }

@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-03-datastore-and-file-storage-recall-1",
         "prompt": "What does updateData provide?",
         "answer": "An atomic transformation of current DataStore value."
       },
       {
+        "id": "level-04-week-18-03-datastore-and-file-storage-recall-2",
         "prompt": "When should Room be used instead?",
         "answer": "For large, relational, or partially queried datasets."
       },
       {
+        "id": "level-04-week-18-03-datastore-and-file-storage-recall-3",
         "prompt": "Can cache files disappear?",
         "answer": "Yes, they must be reconstructable."
       }

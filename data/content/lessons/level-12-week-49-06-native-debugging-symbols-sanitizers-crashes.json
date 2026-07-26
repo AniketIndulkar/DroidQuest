@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-recall-1",
         "prompt": "What does a native build ID join?",
         "answer": "The exact shipped ELF binary and crash addresses to its matching symbol and source artifacts."
       },
       {
+        "id": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-49-06-native-debugging-symbols-sanitizers-crashes-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

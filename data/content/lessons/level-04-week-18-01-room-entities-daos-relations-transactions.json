@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-01-room-entities-daos-relations-transactions-recall-1",
         "prompt": "What does an Entity define?",
         "answer": "A durable table schema and constraints."
       },
       {
+        "id": "level-04-week-18-01-room-entities-daos-relations-transactions-recall-2",
         "prompt": "What does a DAO expose?",
         "answer": "Validated queries and write operations."
       },
       {
+        "id": "level-04-week-18-01-room-entities-daos-relations-transactions-recall-3",
         "prompt": "What does a transaction guarantee?",
         "answer": "All enclosed local statements commit or roll back together."
       }

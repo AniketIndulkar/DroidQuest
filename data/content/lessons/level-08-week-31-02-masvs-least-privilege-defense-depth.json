@@ -167,14 +167,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-31-02-masvs-least-privilege-defense-depth-recall-1",
         "prompt": "Which two dimensions should least privilege minimise?",
         "answer": "The breadth of authority and the time for which that authority exists."
       },
       {
+        "id": "level-08-week-31-02-masvs-least-privilege-defense-depth-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-31-02-masvs-least-privilege-defense-depth-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

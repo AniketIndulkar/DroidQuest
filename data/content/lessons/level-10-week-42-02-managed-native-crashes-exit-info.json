@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-42-02-managed-native-crashes-exit-info-recall-1",
         "prompt": "Which identity links native frames to symbols reliably?",
         "answer": "The exact binary/build ID and its matching symbol artifact, indexed with the release."
       },
       {
+        "id": "level-10-week-42-02-managed-native-crashes-exit-info-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-42-02-managed-native-crashes-exit-info-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-43-04-performance-monitoring-traces-slis-recall-1",
         "prompt": "Why pair an SLI with a data-quality indicator?",
         "answer": "Coverage, duplication, delay, or version skew can change the reported metric without changing the actual user experience."
       },
       {
+        "id": "level-10-week-43-04-performance-monitoring-traces-slis-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-10-week-43-04-performance-monitoring-traces-slis-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

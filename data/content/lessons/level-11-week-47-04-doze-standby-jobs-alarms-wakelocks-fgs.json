@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-recall-1",
         "prompt": "What is the key difference between Doze and App Standby?",
         "answer": "Doze is a device idle mode, while App Standby and its buckets restrict individual apps based on engagement and policy."
       },
       {
+        "id": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-11-week-47-04-doze-standby-jobs-alarms-wakelocks-fgs-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

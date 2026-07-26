@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-03-combine-latest-flattening-recall-1",
         "prompt": "What does combine use?",
         "answer": "The latest value from every source."
       },
       {
+        "id": "level-04-week-15-03-combine-latest-flattening-recall-2",
         "prompt": "What does zip use?",
         "answer": "Values paired by emission position."
       },
       {
+        "id": "level-04-week-15-03-combine-latest-flattening-recall-3",
         "prompt": "What does flatMapLatest do to old inner Flow?",
         "answer": "Cancels it when a new outer value arrives."
       }

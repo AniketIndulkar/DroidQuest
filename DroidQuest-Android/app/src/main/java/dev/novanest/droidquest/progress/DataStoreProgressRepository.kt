@@ -8,6 +8,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import dev.novanest.droidquest.domain.RewardPolicy
+import dev.novanest.droidquest.domain.ReviewRating
+import dev.novanest.droidquest.domain.ReviewState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -79,6 +81,14 @@ class DataStoreProgressRepository(
         }
     }
 
+    override suspend fun saveReviewState(state: ReviewState) {
+        dataStore.edit { p ->
+            val current = (p[K_REVIEWS] ?: emptySet()).mapNotNull(::decodeReview).associateBy { it.recallItemId }.toMutableMap()
+            current[state.recallItemId] = state
+            p[K_REVIEWS] = current.values.map(::encodeReview).toSet()
+        }
+    }
+
     override suspend fun setGithubConnected(connected: Boolean) {
         dataStore.edit { it[K_GITHUB] = connected }
     }
@@ -101,6 +111,7 @@ class DataStoreProgressRepository(
                 name.startsWith(ATTEMPTS_PREFIX) -> attempts[name.removePrefix(ATTEMPTS_PREFIX)] = value as Int
             }
         }
+        val reviews = (this[K_REVIEWS] ?: emptySet()).mapNotNull(::decodeReview).associateBy { it.recallItemId }
         return LearnerProgress(
             completedNodeIds = this[K_COMPLETED] ?: emptySet(),
             starredLessonIds = this[K_STARRED] ?: emptySet(),
@@ -109,6 +120,7 @@ class DataStoreProgressRepository(
             readNodeIds = this[K_READ] ?: emptySet(),
             bestQuizScore = best,
             quizAttempts = attempts,
+            reviewStates = reviews,
             totalXp = this[K_XP] ?: 0,
             totalStars = this[K_STARS] ?: 0,
             settings = LearnerSettings(
@@ -125,6 +137,7 @@ class DataStoreProgressRepository(
         val K_CHALLENGES = stringSetPreferencesKey("completed_challenges")
         val K_PASSED = stringSetPreferencesKey("passed_quizzes")
         val K_READ = stringSetPreferencesKey("read_nodes")
+        val K_REVIEWS = stringSetPreferencesKey("review_states_v1")
         val K_XP = intPreferencesKey("total_xp")
         val K_STARS = intPreferencesKey("total_stars")
         val K_GITHUB = booleanPreferencesKey("github_connected")
@@ -135,5 +148,29 @@ class DataStoreProgressRepository(
         const val ATTEMPTS_PREFIX = "attempts_"
         fun bestKey(quizId: String) = doublePreferencesKey("$BEST_PREFIX$quizId")
         fun attemptsKey(quizId: String) = intPreferencesKey("$ATTEMPTS_PREFIX$quizId")
+
+        fun encodeReview(state: ReviewState): String = listOf(
+            state.recallItemId,
+            state.dueAtEpochMillis,
+            state.intervalDays,
+            state.repetitions,
+            state.lapses,
+            state.lastReviewedAtEpochMillis,
+            state.lastRating.name,
+        ).joinToString("|")
+
+        fun decodeReview(value: String): ReviewState? = runCatching {
+            val parts = value.split('|')
+            require(parts.size == 7)
+            ReviewState(
+                recallItemId = parts[0],
+                dueAtEpochMillis = parts[1].toLong(),
+                intervalDays = parts[2].toInt(),
+                repetitions = parts[3].toInt(),
+                lapses = parts[4].toInt(),
+                lastReviewedAtEpochMillis = parts[5].toLong(),
+                lastRating = ReviewRating.valueOf(parts[6]),
+            )
+        }.getOrNull()
     }
 }

@@ -10,6 +10,7 @@ import dev.novanest.droidquest.content.model.GlossaryEntryDto
 import dev.novanest.droidquest.content.model.IndexRecordDto
 import dev.novanest.droidquest.content.model.LessonDto
 import dev.novanest.droidquest.content.model.QuizDto
+import dev.novanest.droidquest.content.model.RecallDto
 import dev.novanest.droidquest.content.model.RoadmapGraphDto
 import dev.novanest.droidquest.content.model.SearchIndexDto
 import kotlinx.coroutines.CoroutineDispatcher
@@ -38,6 +39,12 @@ class LoadedContent(
     private val categoriesById = categories.associateBy { it.id }
     private val glossaryById = glossary.associateBy { it.id }
     private val challengesByLesson = challengesById.values.associateBy { it.lessonId }
+    val recallItemsById: Map<String, RecallItem> = lessonsById.values.flatMap { lesson ->
+        lesson.revealStages.recall.mapIndexed { index, recall ->
+            val stableId = recall.id.ifBlank { "${lesson.id}-recall-${index + 1}" }
+            RecallItem(stableId, lesson, recall)
+        }
+    }.associateBy { it.id }
 
     val contentVersion: String get() = curriculum.version
 
@@ -48,10 +55,13 @@ class LoadedContent(
     fun challengeForLesson(lessonId: String?): ChallengeDto? = lessonId?.let { challengesByLesson[it] }
     fun badge(id: String?): BadgeDto? = id?.let { badgesById[it] }
     fun glossaryEntry(id: String?): GlossaryEntryDto? = id?.let { glossaryById[it] }
+    fun recallItem(id: String?): RecallItem? = id?.let { recallItemsById[it] }
 
     val roadmapNodesById get() = roadmap.nodes.associateBy { it.id }
     fun categoriesInOrder(): List<CategoryDto> = categories.sortedBy { it.order }
 }
+
+data class RecallItem(val id: String, val lesson: LessonDto, val recall: RecallDto)
 
 /**
  * Loads and verifies the bundled content snapshot behind a repository boundary.

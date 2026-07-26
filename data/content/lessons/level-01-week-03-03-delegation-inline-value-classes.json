@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-03-03-delegation-inline-value-classes-recall-1",
         "prompt": "What does class delegation remove?",
         "answer": "Mechanical forwarding while composition and ownership remain explicit."
       },
       {
+        "id": "level-01-week-03-03-delegation-inline-value-classes-recall-2",
         "prompt": "Why must reified functions be inline?",
         "answer": "Inlining substitutes the actual type at the call site where it can be used."
       },
       {
+        "id": "level-01-week-03-03-delegation-inline-value-classes-recall-3",
         "prompt": "What problem does ExpenseId solve?",
         "answer": "It prevents values with the same primitive representation from being confused."
       }

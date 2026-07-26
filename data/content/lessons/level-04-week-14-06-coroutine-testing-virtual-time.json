@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-06-coroutine-testing-virtual-time-recall-1",
         "prompt": "What does runTest provide?",
         "answer": "A TestScope and virtual-time scheduler."
       },
       {
+        "id": "level-04-week-14-06-coroutine-testing-virtual-time-recall-2",
         "prompt": "What does StandardTestDispatcher do initially?",
         "answer": "Queues new work until the scheduler runs it."
       },
       {
+        "id": "level-04-week-14-06-coroutine-testing-virtual-time-recall-3",
         "prompt": "What must injected test dispatchers share?",
         "answer": "The same TestCoroutineScheduler."
       }

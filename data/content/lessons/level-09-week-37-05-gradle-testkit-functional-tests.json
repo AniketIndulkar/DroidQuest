@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-37-05-gradle-testkit-functional-tests-recall-1",
         "prompt": "What does a functional plugin test prove that a pure unit test cannot?",
         "answer": "That the plugin applies and behaves correctly inside a real Gradle build lifecycle and task graph."
       },
       {
+        "id": "level-09-week-37-05-gradle-testkit-functional-tests-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-37-05-gradle-testkit-functional-tests-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

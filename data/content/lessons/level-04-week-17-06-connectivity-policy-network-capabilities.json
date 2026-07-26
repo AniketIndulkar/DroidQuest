@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-06-connectivity-policy-network-capabilities-recall-1",
         "prompt": "Does VALIDATED guarantee one API is reachable?",
         "answer": "No, it is only general system validation."
       },
       {
+        "id": "level-04-week-17-06-connectivity-policy-network-capabilities-recall-2",
         "prompt": "What proves a specific operation result?",
         "answer": "The attempted API request."
       },
       {
+        "id": "level-04-week-17-06-connectivity-policy-network-capabilities-recall-3",
         "prompt": "What should happen after restoration?",
         "answer": "Review or enqueue one unique durable synchronization."
       }

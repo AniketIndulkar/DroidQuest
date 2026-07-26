@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-04-multipart-upload-progress-recall-1",
         "prompt": "How should content URI data be read?",
         "answer": "Through ContentResolver."
       },
       {
+        "id": "level-04-week-17-04-multipart-upload-progress-recall-2",
         "prompt": "What if total size is unknown?",
         "answer": "Show indeterminate progress."
       },
       {
+        "id": "level-04-week-17-04-multipart-upload-progress-recall-3",
         "prompt": "What makes upload retry safer?",
         "answer": "Stable operation identity and server deduplication."
       }

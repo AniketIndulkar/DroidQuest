@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-50-04-android-tv-focus-dpad-media-quality-recall-1",
         "prompt": "What must survive asynchronous TV list updates?",
         "answer": "Stable item identity and an intentional focus restoration target so remote navigation remains predictable."
       },
       {
+        "id": "level-12-week-50-04-android-tv-focus-dpad-media-quality-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-50-04-android-tv-focus-dpad-media-quality-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

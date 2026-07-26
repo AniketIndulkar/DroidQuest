@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +21,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.novanest.droidquest.content.LoadedContent
 import dev.novanest.droidquest.content.model.LessonDto
+import dev.novanest.droidquest.domain.ReviewRating
 import dev.novanest.droidquest.ui.lesson.CodeBlock
 import dev.novanest.droidquest.ui.lesson.FurtherReadingCard
 import dev.novanest.droidquest.ui.lesson.LearnBlock
@@ -113,7 +117,7 @@ fun LessonScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuest
 
         // ── Recall ──
         Stage("Recall") {
-            RecallList(lesson)
+            RecallList(vm, lesson)
         }
 
         // Practice quiz CTA
@@ -146,22 +150,66 @@ private fun ScoutRow(label: String, text: String) {
 }
 
 @Composable
-private fun RecallList(lesson: LessonDto) {
-    val revealed = remember { mutableStateMapOf<Int, Boolean>() }
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        lesson.revealStages.recall.forEachIndexed { i, item ->
-            val isOpen = revealed[i] == true
+private fun RecallList(vm: DroidQuestViewModel, lesson: LessonDto) {
+    val answers = remember(lesson.id) { mutableStateMapOf<String, String>() }
+    val revealed = remember(lesson.id) { mutableStateMapOf<String, Boolean>() }
+    val rated = remember(lesson.id) { mutableStateMapOf<String, ReviewRating>() }
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text("Answer from memory before looking. Your wording does not need to match exactly.", color = DQ.text(0.55f), fontSize = 12.5.sp, lineHeight = 18.sp)
+        lesson.revealStages.recall.forEachIndexed { index, item ->
+            val recallId = item.id.ifBlank { "${lesson.id}-recall-${index + 1}" }
+            val answer = answers[recallId].orEmpty()
+            val isOpen = revealed[recallId] == true
+            val rating = rated[recallId]
             Column(
                 Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(DQ.Card).border(1.dp, DQ.Border, RoundedCornerShape(12.dp))
-                    .clickable { revealed[i] = !isOpen }.padding(13.dp),
+                    .padding(13.dp),
             ) {
                 Text(item.prompt, color = DQ.TextPrimary, fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
+                BasicTextField(
+                    value = answer,
+                    onValueChange = { if (!isOpen) answers[recallId] = it },
+                    enabled = !isOpen,
+                    textStyle = TextStyle(color = DQ.TextPrimary, fontSize = 13.sp, lineHeight = 19.sp),
+                    cursorBrush = SolidColor(DQ.Green),
+                    modifier = Modifier.fillMaxWidth().padding(top = 10.dp).clip(RoundedCornerShape(10.dp)).background(DQ.ScreenBg).border(1.dp, DQ.white(0.08f), RoundedCornerShape(10.dp)).padding(11.dp),
+                    decorationBox = { inner ->
+                        if (answer.isEmpty()) Text("Write what you remember…", color = DQ.text(0.32f), fontSize = 12.5.sp)
+                        inner()
+                    },
+                )
                 if (isOpen) {
-                    Text(item.answer, color = DQ.text(0.7f), fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(top = 6.dp))
+                    Text("MODEL ANSWER", color = DQ.BlueLight, fontSize = 10.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
+                    Text(item.answer, color = DQ.text(0.75f), fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(top = 4.dp))
+                    if (rating == null) {
+                        Text("How well did you remember it?", color = DQ.text(0.5f), fontSize = 11.5.sp, modifier = Modifier.padding(top = 12.dp, bottom = 7.dp))
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            RecallRating("Again", DQ.Amber, Modifier.weight(1f)) { rated[recallId] = ReviewRating.AGAIN; vm.rateRecall(lesson.id, recallId, ReviewRating.AGAIN) }
+                            RecallRating("Hard", DQ.BlueLight, Modifier.weight(1f)) { rated[recallId] = ReviewRating.HARD; vm.rateRecall(lesson.id, recallId, ReviewRating.HARD) }
+                            RecallRating("Good", DQ.Green, Modifier.weight(1f)) { rated[recallId] = ReviewRating.GOOD; vm.rateRecall(lesson.id, recallId, ReviewRating.GOOD) }
+                            RecallRating("Easy", DQ.Green, Modifier.weight(1f)) { rated[recallId] = ReviewRating.EASY; vm.rateRecall(lesson.id, recallId, ReviewRating.EASY) }
+                        }
+                    } else {
+                        Text("Scheduled for review · ${rating.name.lowercase()}", color = DQ.Green, fontSize = 11.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
+                    }
                 } else {
-                    Text("Tap to reveal answer", color = DQ.Green, fontSize = 11.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 6.dp))
+                    Text(
+                        "Compare answer",
+                        color = if (answer.isBlank()) DQ.text(0.28f) else DQ.Green,
+                        fontSize = 11.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth().padding(top = 9.dp).clip(RoundedCornerShape(9.dp)).background(DQ.Green.copy(alpha = if (answer.isBlank()) 0.03f else 0.10f)).clickable(enabled = answer.isNotBlank()) { revealed[recallId] = true }.padding(10.dp),
+                    )
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun RecallRating(label: String, color: Color, modifier: Modifier, onClick: () -> Unit) {
+    Box(modifier.clip(RoundedCornerShape(9.dp)).background(color.copy(alpha = 0.14f)).border(1.dp, color.copy(alpha = 0.35f), RoundedCornerShape(9.dp)).clickable(onClick = onClick).padding(vertical = 9.dp), contentAlignment = Alignment.Center) {
+        Text(label, color = color, fontSize = 10.5.sp, fontWeight = FontWeight.Bold)
     }
 }

@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-06-mockwebserver-network-integration-tests-recall-1",
         "prompt": "What does enqueue provide?",
         "answer": "A deterministic response for a client request."
       },
       {
+        "id": "level-04-week-16-06-mockwebserver-network-integration-tests-recall-2",
         "prompt": "What does takeRequest provide?",
         "answer": "The actual recorded HTTP request."
       },
       {
+        "id": "level-04-week-16-06-mockwebserver-network-integration-tests-recall-3",
         "prompt": "What stack should the test exercise?",
         "answer": "The configured Retrofit, converter, OkHttp, interceptors, and source."
       }

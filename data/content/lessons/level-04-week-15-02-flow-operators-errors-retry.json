@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-02-flow-operators-errors-retry-recall-1",
         "prompt": "What failures can catch observe?",
         "answer": "Exceptions from operators upstream of it."
       },
       {
+        "id": "level-04-week-15-02-flow-operators-errors-retry-recall-2",
         "prompt": "What does retry do?",
         "answer": "Resubscribes and repeats the upstream pipeline."
       },
       {
+        "id": "level-04-week-15-02-flow-operators-errors-retry-recall-3",
         "prompt": "What must backoff still respect?",
         "answer": "Coroutine cancellation."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback-recall-1",
         "prompt": "Why must backend contracts tolerate overlapping app versions?",
         "answer": "Staged rollout and rollback leave several client versions active concurrently."
       },
       {
+        "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-03-release-tracks-staged-rollout-rollback-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

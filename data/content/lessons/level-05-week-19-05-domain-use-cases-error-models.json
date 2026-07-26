@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-19-05-domain-use-cases-error-models-recall-1",
         "prompt": "What problem should use cases, business rules, and error models solve?",
         "answer": "They isolate reused or complex business policy and expose meaningful outcomes; a pass-through class with no policy does not justify a use case."
       },
       {
+        "id": "level-05-week-19-05-domain-use-cases-error-models-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-19-05-domain-use-cases-error-models-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

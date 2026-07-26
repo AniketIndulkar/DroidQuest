@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-22-02-architecture-decisions-incremental-refactoring-recall-1",
         "prompt": "What problem should architecture decisions and incremental refactoring solve?",
         "answer": "They preserve context, alternatives, consequences, and review triggers so boundaries can evolve in small verified steps without losing the original constraints."
       },
       {
+        "id": "level-05-week-22-02-architecture-decisions-incremental-refactoring-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-22-02-architecture-decisions-incremental-refactoring-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

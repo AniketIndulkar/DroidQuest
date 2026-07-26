@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-41-02-startup-critical-path-providers-main-thread-recall-1",
         "prompt": "Why inspect the merged manifest during startup work?",
         "answer": "Libraries can contribute providers and components that initialise before the Activity and are absent from the app’s source manifest."
       },
       {
+        "id": "level-10-week-41-02-startup-critical-path-providers-main-thread-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-41-02-startup-critical-path-providers-main-thread-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

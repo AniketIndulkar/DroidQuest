@@ -180,14 +180,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-01-terminal-files-processes-recall-1",
         "prompt": "How does a relative path get its starting point?",
         "answer": "It is resolved from the current working directory of the process."
       },
       {
+        "id": "level-01-week-04-01-terminal-files-processes-recall-2",
         "prompt": "What is a process?",
         "answer": "A running instance of a program with arguments, environment, streams, and an exit status."
       },
       {
+        "id": "level-01-week-04-01-terminal-files-processes-recall-3",
         "prompt": "What does exit status zero normally mean?",
         "answer": "The command completed successfully according to its contract."
       }

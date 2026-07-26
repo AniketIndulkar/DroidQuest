@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-52-06-android-platform-expert-final-capstone-recall-1",
         "prompt": "What is the defining outcome of the final capstone?",
         "answer": "Another engineer can reproduce the problem, verify the causal change, inspect exact release evidence, and operate or reverse it safely."
       },
       {
+        "id": "level-12-week-52-06-android-platform-expert-final-capstone-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-52-06-android-platform-expert-final-capstone-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

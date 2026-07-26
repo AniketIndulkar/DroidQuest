@@ -25,7 +25,8 @@ Every lesson has six stages:
 3. `inspect` provides one complete code example, a walkthrough, and expected output.
 4. `trap_check` explains common mistakes, why they fail, and how to fix them.
 5. `challenge_intro` describes the associated practice task and a successful result.
-6. `recall` contains self-paced prompts with reference answers.
+6. `recall` contains active-retrieval prompts with permanent IDs and reference answers. Learner
+   scheduling state is stored separately from the immutable lesson.
 
 Supported Learn blocks are `paragraph`, `code`, `callout`, `flow`, `table`, and `list`. These are semantic data, not HTML. The Android client can render them as Compose components and the local review page renders the same structures in a browser.
 
@@ -56,3 +57,6 @@ The future Android app should:
 7. Optionally download a newer signed GitHub release, validate it, and atomically replace the local content snapshot.
 
 Learner progress must never depend on display titles, array positions, or filenames alone. Stable IDs are permanent once released.
+
+Recall item IDs follow the same rule. The app schedules each item independently using the lesson's
+`reviewIntervalsDays`; review recommendations never gate roadmap progression.

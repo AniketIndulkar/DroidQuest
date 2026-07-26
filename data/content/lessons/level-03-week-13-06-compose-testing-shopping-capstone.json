@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-06-compose-testing-shopping-capstone-recall-1",
         "prompt": "What should UI tests query first?",
         "answer": "User-facing semantics."
       },
       {
+        "id": "level-03-week-13-06-compose-testing-shopping-capstone-recall-2",
         "prompt": "What do screenshot tests verify well?",
         "answer": "Controlled visual attributes and regressions."
       },
       {
+        "id": "level-03-week-13-06-compose-testing-shopping-capstone-recall-3",
         "prompt": "What still needs manual testing?",
         "answer": "Complete assistive-technology and keyboard workflows."
       }

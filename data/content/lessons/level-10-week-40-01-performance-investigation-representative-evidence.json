@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-40-01-performance-investigation-representative-evidence-recall-1",
         "prompt": "What should every performance number include?",
         "answer": "The exact journey, metric, device/environment, app/data state, compilation/build state and measurement method."
       },
       {
+        "id": "level-10-week-40-01-performance-investigation-representative-evidence-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-40-01-performance-investigation-representative-evidence-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-05-parallelism-thread-safety-recall-1",
         "prompt": "What is concurrency?",
         "answer": "Tasks overlapping in progress."
       },
       {
+        "id": "level-04-week-14-05-parallelism-thread-safety-recall-2",
         "prompt": "What is parallelism?",
         "answer": "Tasks executing simultaneously."
       },
       {
+        "id": "level-04-week-14-05-parallelism-thread-safety-recall-3",
         "prompt": "What property must StateFlow.update lambda have?",
         "answer": "It must be pure because it may run more than once."
       }

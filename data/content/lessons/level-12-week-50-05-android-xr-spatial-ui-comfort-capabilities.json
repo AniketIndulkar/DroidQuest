@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-recall-1",
         "prompt": "Why isolate XR APIs behind a capability boundary?",
         "answer": "Hardware, mode, permission, and preview API availability vary, while the core task still needs a stable non-spatial implementation."
       },
       {
+        "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-50-05-android-xr-spatial-ui-comfort-capabilities-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-03-canvas-custom-drawing-recall-1",
         "prompt": "Where is DrawScope origin?",
         "answer": "At the top-left of the assigned drawing bounds."
       },
       {
+        "id": "level-03-week-12-03-canvas-custom-drawing-recall-2",
         "prompt": "What can drawWithCache retain?",
         "answer": "Expensive drawing objects until observed inputs or size change."
       },
       {
+        "id": "level-03-week-12-03-canvas-custom-drawing-recall-3",
         "prompt": "Does Canvas create semantics automatically?",
         "answer": "No, meaning and actions must be supplied."
       }

@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-02-focus-keyboard-scalable-content-recall-1",
         "prompt": "What does FocusRequester do?",
         "answer": "Requests focus for an attached focus target."
       },
       {
+        "id": "level-03-week-13-02-focus-keyboard-scalable-content-recall-2",
         "prompt": "Who should handle common keyboard activation?",
         "answer": "The semantic control itself."
       },
       {
+        "id": "level-03-week-13-02-focus-keyboard-scalable-content-recall-3",
         "prompt": "How should large text be accommodated?",
         "answer": "By reflowing, scrolling, or adapting structure."
       }

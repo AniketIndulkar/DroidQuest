@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-45-04-window-creation-surface-first-frame-recall-1",
         "prompt": "Which component ultimately composes visible app layers for the display?",
         "answer": "SurfaceFlinger, using layer metadata and buffers with Hardware Composer or client composition."
       },
       {
+        "id": "level-11-week-45-04-window-creation-surface-first-frame-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-45-04-window-creation-surface-first-frame-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

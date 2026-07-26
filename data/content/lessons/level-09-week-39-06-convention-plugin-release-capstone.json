@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-06-convention-plugin-release-capstone-recall-1",
         "prompt": "What unifies the Level 9 capstone?",
         "answer": "A versioned tested build platform that produces and promotes one traceable artifact under measured, least-privilege operational controls."
       },
       {
+        "id": "level-09-week-39-06-convention-plugin-release-capstone-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-06-convention-plugin-release-capstone-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

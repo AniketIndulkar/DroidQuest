@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-36-04-version-catalogs-boms-platforms-recall-1",
         "prompt": "What is the key difference between a version catalog and a platform?",
         "answer": "A catalog improves how dependencies are declared; a platform contributes constraints that influence resolution."
       },
       {
+        "id": "level-09-week-36-04-version-catalogs-boms-platforms-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-36-04-version-catalogs-boms-platforms-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

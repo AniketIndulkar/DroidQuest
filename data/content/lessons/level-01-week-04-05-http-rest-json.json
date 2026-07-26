@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-05-http-rest-json-recall-1",
         "prompt": "What are the four main parts of an HTTP request?",
         "answer": "Method, target URI, headers, and an optional body."
       },
       {
+        "id": "level-01-week-04-05-http-rest-json-recall-2",
         "prompt": "Does REST require JSON?",
         "answer": "No. REST is an architectural style and representations can use different media types."
       },
       {
+        "id": "level-01-week-04-05-http-rest-json-recall-3",
         "prompt": "Why separate DTO and domain model?",
         "answer": "To contain transport shape and validate untrusted data before domain use."
       }

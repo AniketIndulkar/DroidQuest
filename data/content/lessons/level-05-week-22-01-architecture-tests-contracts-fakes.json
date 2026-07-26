@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-22-01-architecture-tests-contracts-fakes-recall-1",
         "prompt": "What problem should architecture tests, contracts, and purposeful fakes solve?",
         "answer": "They prove each boundary’s observable promise with the smallest deterministic test and a fake that models relevant behaviour rather than implementation calls."
       },
       {
+        "id": "level-05-week-22-01-architecture-tests-contracts-fakes-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-22-01-architecture-tests-contracts-fakes-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

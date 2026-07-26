@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-11-04-derived-state-snapshot-flow-recall-1",
         "prompt": "When does derivedStateOf help?",
         "answer": "When output changes less often than observed inputs."
       },
       {
+        "id": "level-03-week-11-04-derived-state-snapshot-flow-recall-2",
         "prompt": "What does snapshotFlow produce?",
         "answer": "A Flow from values read from Compose snapshot state."
       },
       {
+        "id": "level-03-week-11-04-derived-state-snapshot-flow-recall-3",
         "prompt": "Where should snapshotFlow be collected?",
         "answer": "In a lifecycle-appropriate coroutine such as keyed LaunchedEffect."
       }

@@ -183,14 +183,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-02-02-data-enum-sealed-models-recall-1",
         "prompt": "What does data-class copy not guarantee?",
         "answer": "It does not deep-copy nested mutable objects."
       },
       {
+        "id": "level-01-week-02-02-data-enum-sealed-models-recall-2",
         "prompt": "When is an enum preferable to a sealed type?",
         "answer": "When alternatives are simple fixed singleton constants with the same shape."
       },
       {
+        "id": "level-01-week-02-02-data-enum-sealed-models-recall-3",
         "prompt": "Why can when omit else for a sealed hierarchy?",
         "answer": "The compiler knows the controlled set of direct alternatives and can verify coverage."
       }

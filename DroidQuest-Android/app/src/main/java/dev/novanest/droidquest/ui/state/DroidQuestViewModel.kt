@@ -9,6 +9,8 @@ import dev.novanest.droidquest.content.LoadedContent
 import dev.novanest.droidquest.content.model.RoadmapNodeType
 import dev.novanest.droidquest.domain.ProgressionPolicy
 import dev.novanest.droidquest.domain.QuizEvaluator
+import dev.novanest.droidquest.domain.ReviewRating
+import dev.novanest.droidquest.domain.SpacedRepetitionPolicy
 import dev.novanest.droidquest.domain.UserAnswer
 import dev.novanest.droidquest.progress.LearnerProgress
 import dev.novanest.droidquest.progress.ProgressRepository
@@ -28,15 +30,17 @@ import kotlinx.coroutines.launch
 class DroidQuestViewModel(
     private val contentRepo: DroidQuestContentRepository,
     private val progressRepo: ProgressRepository,
+    private val nowEpochMillis: () -> Long = System::currentTimeMillis,
 ) : ViewModel() {
 
     private val loadState = MutableStateFlow<ContentLoadState>(ContentLoadState.Loading)
     private val nav = MutableStateFlow(NavState())
     private val quiz = MutableStateFlow<QuizUiState?>(null)
+    private val review = MutableStateFlow<ReviewUiState?>(null)
 
     val uiState: StateFlow<DroidQuestUiState> =
-        combine(loadState, progressRepo.progress, nav, quiz) { load, progress, navState, quizState ->
-            DroidQuestUiState(load, progress, navState, quizState)
+        combine(loadState, progressRepo.progress, nav, quiz, review) { load, progress, navState, quizState, reviewState ->
+            DroidQuestUiState(load, progress, navState, quizState, reviewState)
         }.stateIn(viewModelScope, SharingStarted.Eagerly, DroidQuestUiState())
 
     private val content: LoadedContent?
@@ -122,8 +126,21 @@ class DroidQuestViewModel(
         val q = quiz.value ?: return
         val quizDto = content?.quiz(q.quizId) ?: return
         val question = quizDto.questions.getOrNull(q.index) ?: return
-        val correct = QuizEvaluator.isCorrect(question, q.answerFor(question.id))
+        val correct = if (QuizEvaluator.requiresSelfAssessment(question)) null
+        else QuizEvaluator.isCorrect(question, q.answerFor(question.id))
         quiz.value = q.copy(phase = QuizPhase.FEEDBACK, lastCorrect = correct)
+    }
+
+    /** Records the learner's comparison with the model answer for open-ended prose. */
+    fun assessCurrentQuestion(correct: Boolean) {
+        val q = quiz.value ?: return
+        val quizDto = content?.quiz(q.quizId) ?: return
+        val question = quizDto.questions.getOrNull(q.index) ?: return
+        if (!QuizEvaluator.requiresSelfAssessment(question) || q.phase != QuizPhase.FEEDBACK) return
+        quiz.value = q.copy(
+            selfAssessments = q.selfAssessments + (question.id to correct),
+            lastCorrect = correct,
+        )
     }
 
     fun nextQuestion() {
@@ -138,7 +155,7 @@ class DroidQuestViewModel(
     }
 
     private fun finishQuiz(q: QuizUiState, quizDto: dev.novanest.droidquest.content.model.QuizDto) {
-        val score = QuizEvaluator.score(quizDto, q.answers)
+        val score = QuizEvaluator.score(quizDto, q.answers, q.selfAssessments)
         quiz.value = q.copy(phase = QuizPhase.DONE, score = score)
         val graph = content?.roadmap ?: return
         val nodeId = ProgressionPolicy.nodeCompletedByQuiz(graph, quizDto)
@@ -157,6 +174,69 @@ class DroidQuestViewModel(
 
     fun exitQuiz() {
         quiz.value = null
+        back()
+    }
+
+    fun retryQuiz() {
+        val quizId = quiz.value?.quizId ?: return
+        quiz.value = QuizUiState(quizId = quizId)
+    }
+
+    // ── Active recall / spaced repetition ───────────────────────────────
+    fun rateRecall(lessonId: String, recallItemId: String, rating: ReviewRating) {
+        val lesson = content?.lesson(lessonId) ?: return
+        val recall = content?.recallItem(recallItemId) ?: return
+        if (recall.lesson.id != lesson.id) return
+        val next = SpacedRepetitionPolicy.next(
+            recallItemId = recallItemId,
+            previous = currentProgress.reviewState(recallItemId),
+            rating = rating,
+            authoredIntervalsDays = lesson.revision.reviewIntervalsDays,
+            nowEpochMillis = nowEpochMillis(),
+        )
+        viewModelScope.launch { progressRepo.saveReviewState(next) }
+    }
+
+    fun startDailyReview() {
+        val now = nowEpochMillis()
+        val dueIds = currentProgress.reviewStates.values
+            .asSequence()
+            .filter { it.isDue(now) && content?.recallItem(it.recallItemId) != null }
+            .sortedBy { it.dueAtEpochMillis }
+            .take(20)
+            .map { it.recallItemId }
+            .toList()
+        review.value = ReviewUiState(dueIds)
+        push(nav.value.copy(screen = Screen.REVIEW, aiOpen = false))
+    }
+
+    fun setReviewAnswer(answer: String) = review.update { it?.copy(answer = answer) }
+
+    fun revealReviewAnswer() = review.update { state ->
+        if (state == null || state.answer.isBlank()) state else state.copy(revealed = true)
+    }
+
+    fun rateCurrentReview(rating: ReviewRating) {
+        val state = review.value ?: return
+        if (!state.revealed) return
+        val item = content?.recallItem(state.currentRecallItemId) ?: return
+        val nextState = SpacedRepetitionPolicy.next(
+            recallItemId = item.id,
+            previous = currentProgress.reviewState(item.id),
+            rating = rating,
+            authoredIntervalsDays = item.lesson.revision.reviewIntervalsDays,
+            nowEpochMillis = nowEpochMillis(),
+        )
+        viewModelScope.launch {
+            progressRepo.saveReviewState(nextState)
+            review.update {
+                it?.copy(index = it.index + 1, answer = "", revealed = false, lastRating = rating)
+            }
+        }
+    }
+
+    fun exitReview() {
+        review.value = null
         back()
     }
 

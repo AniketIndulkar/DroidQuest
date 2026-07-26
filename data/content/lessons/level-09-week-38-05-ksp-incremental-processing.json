@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-05-ksp-incremental-processing-recall-1",
         "prompt": "When is an output aggregating?",
         "answer": "When it can be affected by a set of inputs beyond one independently originating source, such as a global registry."
       },
       {
+        "id": "level-09-week-38-05-ksp-incremental-processing-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-05-ksp-incremental-processing-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

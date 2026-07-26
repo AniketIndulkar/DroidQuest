@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-05-animation-nested-scroll-recall-1",
         "prompt": "Which API coordinates several values from one state?",
         "answer": "updateTransition."
       },
       {
+        "id": "level-03-week-12-05-animation-nested-scroll-recall-2",
         "prompt": "Does nestedScroll make content scrollable?",
         "answer": "No, it only joins the coordination chain."
       },
       {
+        "id": "level-03-week-12-05-animation-nested-scroll-recall-3",
         "prompt": "What should a connection return?",
         "answer": "Only the delta or velocity it actually consumed."
       }

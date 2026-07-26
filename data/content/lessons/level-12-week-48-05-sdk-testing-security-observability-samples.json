@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-48-05-sdk-testing-security-observability-samples-recall-1",
         "prompt": "What should an SDK observability hook expose?",
         "answer": "Bounded redacted semantic events and correlation owned by the host, without leaking SDK or host-sensitive data."
       },
       {
+        "id": "level-12-week-48-05-sdk-testing-security-observability-samples-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-48-05-sdk-testing-security-observability-samples-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

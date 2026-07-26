@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-06-workmanager-durable-sync-recall-1",
         "prompt": "What work belongs in WorkManager?",
         "answer": "Reliable work that should survive leaving the app or process."
       },
       {
+        "id": "level-04-week-18-06-workmanager-durable-sync-recall-2",
         "prompt": "What prevents duplicate scheduling?",
         "answer": "Unique work with an explicit existing-work policy."
       },
       {
+        "id": "level-04-week-18-06-workmanager-durable-sync-recall-3",
         "prompt": "What should Work Data contain?",
         "answer": "Small stable identifiers and scheduler inputs."
       }

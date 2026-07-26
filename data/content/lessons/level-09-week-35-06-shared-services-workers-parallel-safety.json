@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-35-06-shared-services-workers-parallel-safety-recall-1",
         "prompt": "When should process isolation be preferred for worker actions?",
         "answer": "When work needs stronger process-state or classpath isolation than in-process or classloader-isolated execution provides."
       },
       {
+        "id": "level-09-week-35-06-shared-services-workers-parallel-safety-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-35-06-shared-services-workers-parallel-safety-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

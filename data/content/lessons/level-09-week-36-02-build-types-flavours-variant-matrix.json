@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-36-02-build-types-flavours-variant-matrix-recall-1",
         "prompt": "What risk does matchingFallbacks introduce?",
         "answer": "A consumer may receive a different producer variant whose behaviour or dependencies are not semantically compatible."
       },
       {
+        "id": "level-09-week-36-02-build-types-flavours-variant-matrix-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-36-02-build-types-flavours-variant-matrix-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

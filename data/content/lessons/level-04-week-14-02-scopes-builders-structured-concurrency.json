@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-02-scopes-builders-structured-concurrency-recall-1",
         "prompt": "What does launch return?",
         "answer": "A structured Job handle."
       },
       {
+        "id": "level-04-week-14-02-scopes-builders-structured-concurrency-recall-2",
         "prompt": "What does async return?",
         "answer": "A Deferred value."
       },
       {
+        "id": "level-04-week-14-02-scopes-builders-structured-concurrency-recall-3",
         "prompt": "What does coroutineScope guarantee?",
         "answer": "It waits for its structured children before returning."
       }

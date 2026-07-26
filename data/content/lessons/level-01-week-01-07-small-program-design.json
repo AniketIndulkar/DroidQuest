@@ -193,14 +193,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-07-small-program-design-recall-1",
         "prompt": "How do nouns and verbs help decompose a requirement?",
         "answer": "Nouns suggest data; verbs suggest decisions, transformations, or actions."
       },
       {
+        "id": "level-01-week-01-07-small-program-design-recall-2",
         "prompt": "What should each pipeline stage accomplish?",
         "answer": "It should strengthen what the program knows or return an explicit failure."
       },
       {
+        "id": "level-01-week-01-07-small-program-design-recall-3",
         "prompt": "Where should debugging begin?",
         "answer": "At the first point where actual behaviour differs from a reproducible expectation."
       }

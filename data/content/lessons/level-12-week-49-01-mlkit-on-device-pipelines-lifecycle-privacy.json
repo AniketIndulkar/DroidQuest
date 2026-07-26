@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy-recall-1",
         "prompt": "What four versions belong in an ML evaluation record?",
         "answer": "Model, preprocessing, decision threshold or postprocessing, and the governed evaluation dataset version."
       },
       {
+        "id": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-49-01-mlkit-on-device-pipelines-lifecycle-privacy-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

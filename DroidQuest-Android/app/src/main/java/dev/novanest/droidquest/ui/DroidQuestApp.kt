@@ -41,6 +41,7 @@ import dev.novanest.droidquest.ui.screens.LessonScreen
 import dev.novanest.droidquest.ui.screens.QuestMapScreen
 import dev.novanest.droidquest.ui.screens.RegionDetailScreen
 import dev.novanest.droidquest.ui.screens.RevisionScreen
+import dev.novanest.droidquest.ui.screens.ReviewScreen
 import dev.novanest.droidquest.ui.screens.SearchScreen
 import dev.novanest.droidquest.ui.screens.SettingsScreen
 import dev.novanest.droidquest.ui.screens.StarredScreen
@@ -75,7 +76,7 @@ fun DroidQuestApp(vm: DroidQuestViewModel) {
             is ContentLoadState.Success -> {
                 val content = load.content
                 val screen = ui.nav.screen
-                val aiVisible = screen != Screen.REVISION && screen != Screen.SETTINGS
+                val aiVisible = screen != Screen.REVISION && screen != Screen.REVIEW && screen != Screen.SETTINGS
                 Column(Modifier.fillMaxSize().windowInsetsPadding(androidx.compose.foundation.layout.WindowInsets.systemBars)) {
                     Box(Modifier.weight(1f).fillMaxWidth()) {
                         when (screen) {
@@ -85,6 +86,7 @@ fun DroidQuestApp(vm: DroidQuestViewModel) {
                             Screen.TOPIC -> TopicDetailScreen(vm, content, ui, openUrl)
                             Screen.LESSON -> LessonScreen(vm, content, ui, openUrl)
                             Screen.REVISION -> RevisionScreen(vm, content, ui)
+                            Screen.REVIEW -> ReviewScreen(vm, content, ui)
                             Screen.CHALLENGE -> ChallengeScreen(vm, content, ui)
                             Screen.SEARCH -> SearchScreen(vm, content, ui)
                             Screen.STARRED -> StarredScreen(vm, content, ui)

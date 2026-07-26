@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-41-03-app-startup-lazy-di-initialization-recall-1",
         "prompt": "What question determines whether an initializer belongs at app startup?",
         "answer": "Must this work complete before the first meaningful UI/action, or can its owning feature initialise it later?"
       },
       {
+        "id": "level-10-week-41-03-app-startup-lazy-di-initialization-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-41-03-app-startup-lazy-di-initialization-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

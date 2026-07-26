@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-06-design-systems-compositionlocal-recall-1",
         "prompt": "What belongs in MaterialTheme?",
         "answer": "Semantic colour, typography, and shape roles."
       },
       {
+        "id": "level-03-week-12-06-design-systems-compositionlocal-recall-2",
         "prompt": "What is a good CompositionLocal use?",
         "answer": "Tree-inherited theme or ambient policy."
       },
       {
+        "id": "level-03-week-12-06-design-systems-compositionlocal-recall-3",
         "prompt": "What should a design component preserve?",
         "answer": "Semantics, interaction, state ownership, and focused extension."
       }

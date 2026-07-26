@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-32-06-biometric-keys-backup-recovery-recall-1",
         "prompt": "What is the critical backup test for device-bound ciphertext?",
         "answer": "Restore the ciphertext on another or reset device where the Keystore key is absent and verify the intended recovery path."
       },
       {
+        "id": "level-08-week-32-06-biometric-keys-backup-recovery-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-32-06-biometric-keys-backup-recovery-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences-recall-1",
         "prompt": "What does a release fence protect?",
         "answer": "It indicates when the consumer has finished using a buffer so the producer can safely reuse it."
       },
       {
+        "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-46-05-surface-bufferqueue-gralloc-fences-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

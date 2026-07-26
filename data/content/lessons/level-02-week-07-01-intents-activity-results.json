@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-07-01-intents-activity-results-recall-1",
         "prompt": "When should an intent be explicit?",
         "answer": "When the exact destination component is known, especially inside one app."
       },
       {
+        "id": "level-02-week-07-01-intents-activity-results-recall-2",
         "prompt": "What does a filter prove?",
         "answer": "Only that an intent pattern matched declared routing metadata."
       },
       {
+        "id": "level-02-week-07-01-intents-activity-results-recall-3",
         "prompt": "Why register result launchers on every creation?",
         "answer": "The registry must reconnect pending results after component recreation."
       }

@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-05-03-gradle-agp-build-flow-recall-1",
         "prompt": "Why commit the Gradle wrapper?",
         "answer": "It selects the same Gradle distribution for developers and CI."
       },
       {
+        "id": "level-02-week-05-03-gradle-agp-build-flow-recall-2",
         "prompt": "What does AGP add?",
         "answer": "Android variants, manifests, resources, dexing, packaging, and related tasks."
       },
       {
+        "id": "level-02-week-05-03-gradle-agp-build-flow-recall-3",
         "prompt": "What should be read first in a build failure?",
         "answer": "The first failed task and its earliest actionable root diagnostic."
       }

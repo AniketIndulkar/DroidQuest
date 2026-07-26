@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-04-recyclerview-lists-recall-1",
         "prompt": "What gets recycled?",
         "answer": "ViewHolder item hierarchies are rebound to different models."
       },
       {
+        "id": "level-02-week-08-04-recyclerview-lists-recall-2",
         "prompt": "How do DiffUtil identity and content differ?",
         "answer": "Identity tracks the same record; content checks whether its displayed value changed."
       },
       {
+        "id": "level-02-week-08-04-recyclerview-lists-recall-3",
         "prompt": "Where should selected state live?",
         "answer": "In screen/model state when it must survive recycling and recreation."
       }

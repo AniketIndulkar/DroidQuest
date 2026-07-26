@@ -183,14 +183,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-03-expressions-decisions-recall-1",
         "prompt": "What value does a comparison expression produce?",
         "answer": "A comparison expression produces a Boolean value."
       },
       {
+        "id": "level-01-week-01-03-expressions-decisions-recall-2",
         "prompt": "Why does when branch order matter?",
         "answer": "Evaluation stops at the first matching branch."
       },
       {
+        "id": "level-01-week-01-03-expressions-decisions-recall-3",
         "prompt": "What is short-circuit evaluation?",
         "answer": "A logical operator skips an unnecessary right-hand expression once its result is known."
       }

@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-03-cancellation-timeouts-cleanup-recall-1",
         "prompt": "How does cancellation usually surface?",
         "answer": "As CancellationException at a cooperative point."
       },
       {
+        "id": "level-04-week-14-03-cancellation-timeouts-cleanup-recall-2",
         "prompt": "How does a CPU loop cooperate?",
         "answer": "By checking ensureActive or yielding."
       },
       {
+        "id": "level-04-week-14-03-cancellation-timeouts-cleanup-recall-3",
         "prompt": "When is NonCancellable suitable?",
         "answer": "For small essential suspending cleanup."
       }

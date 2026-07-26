@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-21-02-app-feature-core-data-modules-recall-1",
         "prompt": "What problem should app, feature, core, and data modules solve?",
         "answer": "They give composition, vertical features, domain data, and genuinely shared capabilities distinct owners without turning core into a dumping ground."
       },
       {
+        "id": "level-05-week-21-02-app-feature-core-data-modules-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-21-02-app-feature-core-data-modules-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

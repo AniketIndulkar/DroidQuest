@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-16-04-okhttp-interceptors-auth-logging-recall-1",
         "prompt": "How many shared clients are normally needed?",
         "answer": "One shared configured OkHttpClient, with derived variants when justified."
       },
       {
+        "id": "level-04-week-16-04-okhttp-interceptors-auth-logging-recall-2",
         "prompt": "What must an interceptor normally call?",
         "answer": "chain.proceed exactly once."
       },
       {
+        "id": "level-04-week-16-04-okhttp-interceptors-auth-logging-recall-3",
         "prompt": "What should production networking logs contain?",
         "answer": "Redacted coarse metadata, timing, and outcome."
       }

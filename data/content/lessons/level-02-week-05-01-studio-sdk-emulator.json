@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-05-01-studio-sdk-emulator-recall-1",
         "prompt": "What does an AVD store?",
         "answer": "A reusable virtual hardware and Android system-image configuration."
       },
       {
+        "id": "level-02-week-05-01-studio-sdk-emulator-recall-2",
         "prompt": "What role does adb perform?",
         "answer": "It connects development tools to emulator or physical-device services."
       },
       {
+        "id": "level-02-week-05-01-studio-sdk-emulator-recall-3",
         "prompt": "How do build and install failures differ?",
         "answer": "A build failure prevents an APK; an install failure occurs while transferring or registering one on a device."
       }

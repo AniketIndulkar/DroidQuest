@@ -187,14 +187,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-02-04-lambdas-extensions-scope-recall-1",
         "prompt": "What does (Expense) -> Boolean describe?",
         "answer": "A function value taking one Expense and returning a Boolean."
       },
       {
+        "id": "level-01-week-02-04-lambdas-extensions-scope-recall-2",
         "prompt": "Can an extension access private receiver state?",
         "answer": "No, it uses the same visible API as ordinary external code."
       },
       {
+        "id": "level-01-week-02-04-lambdas-extensions-scope-recall-3",
         "prompt": "What should decide scope-function choice?",
         "answer": "The intended receiver name, returned value, and clarity of the operation."
       }

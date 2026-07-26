@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-41-05-baseline-profiles-critical-journeys-recall-1",
         "prompt": "How do Baseline Profiles differ from Cloud Profiles?",
         "answer": "They ship with the release for first-launch benefit, while Cloud Profiles aggregate after real usage and arrive later."
       },
       {
+        "id": "level-10-week-41-05-baseline-profiles-critical-journeys-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-41-05-baseline-profiles-critical-journeys-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

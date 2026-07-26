@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-03-localisation-rtl-theme-policy-recall-1",
         "prompt": "Why avoid sentence fragments?",
         "answer": "Languages reorder and inflect complete meaning differently."
       },
       {
+        "id": "level-03-week-13-03-localisation-rtl-theme-policy-recall-2",
         "prompt": "What should horizontal spacing use?",
         "answer": "Logical start and end directions."
       },
       {
+        "id": "level-03-week-13-03-localisation-rtl-theme-policy-recall-3",
         "prompt": "What should components read for colour?",
         "answer": "Semantic Material theme roles."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols-recall-1",
         "prompt": "Why are mapping and native symbols release-specific?",
         "answer": "Optimisation and linking assign names and addresses for exact binary bytes; another build can map stacks incorrectly."
       },
       {
+        "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-02-r8-shrinking-rules-release-symbols-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

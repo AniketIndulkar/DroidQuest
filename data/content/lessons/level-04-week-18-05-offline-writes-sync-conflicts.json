@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-05-offline-writes-sync-conflicts-recall-1",
         "prompt": "What belongs in the optimistic transaction?",
         "answer": "Local desired state and a pending outbox operation."
       },
       {
+        "id": "level-04-week-18-05-offline-writes-sync-conflicts-recall-2",
         "prompt": "Why use operation ID?",
         "answer": "To deduplicate at-least-once delivery."
       },
       {
+        "id": "level-04-week-18-05-offline-writes-sync-conflicts-recall-3",
         "prompt": "Who chooses conflict resolution?",
         "answer": "The domain contract for that data."
       }

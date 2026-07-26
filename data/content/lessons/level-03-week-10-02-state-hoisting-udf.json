@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-10-02-state-hoisting-udf-recall-1",
         "prompt": "Which direction does state travel?",
         "answer": "Down from its owner to rendering content."
       },
       {
+        "id": "level-03-week-10-02-state-hoisting-udf-recall-2",
         "prompt": "Which direction do events travel?",
         "answer": "Up from content to the state owner."
       },
       {
+        "id": "level-03-week-10-02-state-hoisting-udf-recall-3",
         "prompt": "Where should shared sibling state live?",
         "answer": "At their lowest common coordinating owner."
       }

@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-04-source-of-truth-cache-ttl-recall-1",
         "prompt": "What should offline-first UI observe?",
         "answer": "The local durable source of truth."
       },
       {
+        "id": "level-04-week-18-04-source-of-truth-cache-ttl-recall-2",
         "prompt": "Does TTL mean delete immediately?",
         "answer": "No, it indicates freshness policy."
       },
       {
+        "id": "level-04-week-18-04-source-of-truth-cache-ttl-recall-3",
         "prompt": "Where should refresh results go?",
         "answer": "Into the local source of truth transactionally."
       }

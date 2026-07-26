@@ -167,14 +167,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-34-04-play-integrity-request-binding-verdicts-recall-1",
         "prompt": "What must the backend do with requestHash?",
         "answer": "Recompute the digest from the canonical server-visible request and compare it with the verified verdict field."
       },
       {
+        "id": "level-08-week-34-04-play-integrity-request-binding-verdicts-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-34-04-play-integrity-request-binding-verdicts-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

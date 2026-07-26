@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-02-single-flight-token-refresh-recall-1",
         "prompt": "What does single-flight guarantee?",
         "answer": "One shared refresh for concurrent callers."
       },
       {
+        "id": "level-04-week-17-02-single-flight-token-refresh-recall-2",
         "prompt": "Why compare token generation?",
         "answer": "Another caller may already have refreshed successfully."
       },
       {
+        "id": "level-04-week-17-02-single-flight-token-refresh-recall-3",
         "prompt": "When should session clear?",
         "answer": "When refresh is terminally invalid or expired."
       }

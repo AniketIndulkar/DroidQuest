@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface-recall-1",
         "prompt": "Why can a PendingIntent be security-sensitive?",
         "answer": "It lets its holder perform the wrapped operation using the creator application’s identity and permissions."
       },
       {
+        "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-31-04-component-intent-pendingintent-attack-surface-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

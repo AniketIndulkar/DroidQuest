@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-05-02-projects-modules-source-sets-recall-1",
         "prompt": "What does settings.gradle.kts control?",
         "answer": "It identifies the project and included build modules."
       },
       {
+        "id": "level-02-week-05-02-projects-modules-source-sets-recall-2",
         "prompt": "Which source set contains device tests?",
         "answer": "The androidTest source set contains tests compiled to run on an Android device."
       },
       {
+        "id": "level-02-week-05-02-projects-modules-source-sets-recall-3",
         "prompt": "Why prefer implementation dependencies?",
         "answer": "They keep internal dependencies from becoming unnecessary consumer API."
       }

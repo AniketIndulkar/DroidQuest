@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-05-view-compose-interoperability-recall-1",
         "prompt": "What embeds Compose inside Views?",
         "answer": "ComposeView hosts a composition as a View."
       },
       {
+        "id": "level-02-week-08-05-view-compose-interoperability-recall-2",
         "prompt": "What embeds a View inside Compose?",
         "answer": "AndroidView or AndroidViewBinding."
       },
       {
+        "id": "level-02-week-08-05-view-compose-interoperability-recall-3",
         "prompt": "Where should shared screen state live?",
         "answer": "Above the toolkit boundary in one state holder."
       }

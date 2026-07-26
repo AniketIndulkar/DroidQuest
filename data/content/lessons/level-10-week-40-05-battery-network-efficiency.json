@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-40-05-battery-network-efficiency-recall-1",
         "prompt": "Why can many tiny cellular requests cost more than one batch?",
         "answer": "Each request can incur scheduling, connection and radio high-power tail overhead."
       },
       {
+        "id": "level-10-week-40-05-battery-network-efficiency-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-40-05-battery-network-efficiency-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

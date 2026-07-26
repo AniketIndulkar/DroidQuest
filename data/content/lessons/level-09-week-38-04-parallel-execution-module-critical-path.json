@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-04-parallel-execution-module-critical-path-recall-1",
         "prompt": "Which graph property limits the best possible parallel build time?",
         "answer": "The duration of the longest dependent chain—the critical path."
       },
       {
+        "id": "level-09-week-38-04-parallel-execution-module-critical-path-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-04-parallel-execution-module-critical-path-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

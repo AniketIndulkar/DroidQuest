@@ -188,14 +188,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-02-custom-layout-measure-placement-recall-1",
         "prompt": "How often may a child be measured?",
         "answer": "Exactly once in a measurement pass."
       },
       {
+        "id": "level-03-week-12-02-custom-layout-measure-placement-recall-2",
         "prompt": "What does placeRelative respect?",
         "answer": "Current left-to-right or right-to-left layout direction."
       },
       {
+        "id": "level-03-week-12-02-custom-layout-measure-placement-recall-3",
         "prompt": "What size may a parent report?",
         "answer": "A size inside its incoming constraints."
       }

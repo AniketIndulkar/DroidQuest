@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-52-05-specialisation-portfolio-architecture-recall-1",
         "prompt": "What turns a project into expert evidence?",
         "answer": "Reproducible artifacts plus defensible decisions, tests, measurements, operations, failures, limitations, and review context."
       },
       {
+        "id": "level-12-week-52-05-specialisation-portfolio-architecture-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-52-05-specialisation-portfolio-architecture-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

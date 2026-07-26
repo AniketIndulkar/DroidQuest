@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-02-03-collections-transformations-recall-1",
         "prompt": "Which collection represents unique membership?",
         "answer": "Set represents a group whose elements are unique."
       },
       {
+        "id": "level-01-week-02-03-collections-transformations-recall-2",
         "prompt": "What output does groupBy produce?",
         "answer": "A map from each key to the list of elements sharing that key."
       },
       {
+        "id": "level-01-week-02-03-collections-transformations-recall-3",
         "prompt": "When should Sequence be introduced?",
         "answer": "When measured workload characteristics justify changing a clear eager pipeline."
       }

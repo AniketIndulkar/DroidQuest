@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-37-01-convention-plugins-build-standards-recall-1",
         "prompt": "Why are convention plugins preferable to subprojects blocks?",
         "answer": "They make shared configuration explicit, composable, testable and applied only to modules declaring that capability."
       },
       {
+        "id": "level-09-week-37-01-convention-plugins-build-standards-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-37-01-convention-plugins-build-standards-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

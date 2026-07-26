@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-03-02-generics-variance-recall-1",
         "prompt": "Why is MutableList invariant?",
         "answer": "It both accepts and returns elements, so broader substitution could corrupt its element type."
       },
       {
+        "id": "level-01-week-03-02-generics-variance-recall-2",
         "prompt": "What mnemonic explains variance directions?",
         "answer": "Producer out and consumer in."
       },
       {
+        "id": "level-01-week-03-02-generics-variance-recall-3",
         "prompt": "What does a generic bound provide?",
         "answer": "It restricts type arguments to values supporting required behaviour."
       }

@@ -1,5 +1,7 @@
 package dev.novanest.droidquest
 
+import dev.novanest.droidquest.domain.ReviewRating
+import dev.novanest.droidquest.domain.ReviewState
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -50,5 +52,15 @@ class ProgressRepositoryTest {
         repo.completeChallenge("chal-1", 40, 2)
         assertEquals(40, repo.current.totalXp)
         assertTrue(repo.current.isChallengeComplete("chal-1"))
+    }
+
+    @Test
+    fun review_state_is_upserted_by_stable_recall_id() = runTest {
+        val repo = FakeProgressRepository()
+        val state = ReviewState("lesson-a-recall-1", 1234L, 1, 1, 0, 1000L, ReviewRating.GOOD)
+
+        repo.saveReviewState(state)
+
+        assertEquals(state, repo.current.reviewState("lesson-a-recall-1"))
     }
 }

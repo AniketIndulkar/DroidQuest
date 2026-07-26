@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory-recall-1",
         "prompt": "Why can a JNI global reference cause a managed leak?",
         "answer": "It is a GC root-like retained reference until explicitly deleted, so the object and its reachable graph remain live."
       },
       {
+        "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-11-week-47-02-managed-heap-gc-allocation-native-memory-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

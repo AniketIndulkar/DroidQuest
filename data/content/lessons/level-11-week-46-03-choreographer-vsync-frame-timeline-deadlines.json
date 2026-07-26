@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-recall-1",
         "prompt": "Why use frameTimeNanos for animation progress?",
         "answer": "It represents the scheduler frame timeline, keeping motion time-based across dropped frames and changing refresh rates."
       },
       {
+        "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-46-03-choreographer-vsync-frame-timeline-deadlines-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

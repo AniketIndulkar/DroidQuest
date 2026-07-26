@@ -196,14 +196,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests-recall-1",
         "prompt": "What extra value does stateIn require?",
         "answer": "An initial current value."
       },
       {
+        "id": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests-recall-2",
         "prompt": "What does WhileSubscribed follow?",
         "answer": "The presence and timing of subscribers."
       },
       {
+        "id": "level-04-week-15-06-statein-sharein-lifecycle-flow-tests-recall-3",
         "prompt": "Where should catch usually appear for shared upstream errors?",
         "answer": "Before stateIn or shareIn."
       }

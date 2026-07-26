@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-02-01-classes-objects-composition-recall-1",
         "prompt": "What should a constructor guarantee?",
         "answer": "It should gather required inputs and create an object whose invariants hold."
       },
       {
+        "id": "level-01-week-02-01-classes-objects-composition-recall-2",
         "prompt": "When does an interface earn its place?",
         "answer": "At a meaningful capability, variation boundary, external dependency, or test seam."
       },
       {
+        "id": "level-01-week-02-01-classes-objects-composition-recall-3",
         "prompt": "What does composition make explicit?",
         "answer": "Which focused collaborators an object uses to perform its responsibility."
       }

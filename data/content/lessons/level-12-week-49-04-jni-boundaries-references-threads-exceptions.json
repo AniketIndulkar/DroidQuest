@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-49-04-jni-boundaries-references-threads-exceptions-recall-1",
         "prompt": "What must a native-created thread do before using JNI?",
         "answer": "Attach to the JavaVM to obtain its own JNIEnv, then detach before the thread terminates."
       },
       {
+        "id": "level-12-week-49-04-jni-boundaries-references-threads-exceptions-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-49-04-jni-boundaries-references-threads-exceptions-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

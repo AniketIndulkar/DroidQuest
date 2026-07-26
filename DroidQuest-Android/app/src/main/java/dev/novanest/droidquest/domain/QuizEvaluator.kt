@@ -26,9 +26,10 @@ sealed interface UserAnswer {
 data class QuizScore(val correct: Int, val total: Int, val fraction: Double, val passed: Boolean)
 
 /**
- * Pure quiz grading for all nine question types. No content mutation, no correct answers
- * exposed. All comparisons go through [normalize] so trivial casing/whitespace differences
- * do not fail an otherwise correct answer.
+ * Pure quiz grading for all nine question types. All objective comparisons go through
+ * [normalize] so trivial casing/whitespace differences do not fail an otherwise correct answer.
+ * Open-ended prose is self-assessed after the learner compares it with the authored model answer;
+ * requiring an exact sentence would punish valid wording rather than measure understanding.
  */
 object QuizEvaluator {
 
@@ -44,6 +45,18 @@ object QuizEvaluator {
 
     /** Option labels a question presents (already strings in the content). */
     fun optionLabels(q: QuestionDto): List<String> = q.options?.map { it.jsonPrimitive.content } ?: emptyList()
+
+    fun requiresSelfAssessment(q: QuestionDto): Boolean =
+        q.type == QuestionType.SHORT_ANSWER || q.type == QuestionType.SPOT_BUG
+
+    /** Learner-facing reference answer shown after a miss or during an open-ended self-check. */
+    fun modelAnswer(q: QuestionDto): String = when (q.type) {
+        QuestionType.MULTIPLE_CHOICE -> q.answer.jsonArray.texts().joinToString("\n") { "• $it" }
+        QuestionType.ORDER_STEPS -> q.answer.jsonArray.texts().mapIndexed { i, step -> "${i + 1}. $step" }.joinToString("\n")
+        QuestionType.MATCH_PAIRS -> q.answer.jsonObject.textMap().entries.joinToString("\n") { (left, right) -> "$left → $right" }
+        QuestionType.TRUE_FALSE -> if (q.answer.asBool()) "True" else "False"
+        else -> q.answer.asText()
+    }
 
     /** For match_pairs, the left keys and the pool of right values to choose from. */
     fun matchLefts(q: QuestionDto): List<String> = q.answer.jsonObject.keys.toList()
@@ -85,9 +98,16 @@ object QuizEvaluator {
         }
     }
 
-    fun score(quiz: QuizDto, answers: Map<String, UserAnswer>): QuizScore {
+    fun score(
+        quiz: QuizDto,
+        answers: Map<String, UserAnswer>,
+        selfAssessments: Map<String, Boolean> = emptyMap(),
+    ): QuizScore {
         val total = quiz.questions.size
-        val correct = quiz.questions.count { isCorrect(it, answers[it.id] ?: UserAnswer.None) }
+        val correct = quiz.questions.count { question ->
+            if (requiresSelfAssessment(question)) selfAssessments[question.id] == true
+            else isCorrect(question, answers[question.id] ?: UserAnswer.None)
+        }
         val fraction = if (total == 0) 0.0 else correct.toDouble() / total
         return QuizScore(correct, total, fraction, fraction >= quiz.passingScore)
     }

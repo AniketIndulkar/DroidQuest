@@ -187,14 +187,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-06-05-resources-qualifiers-localisation-recall-1",
         "prompt": "Why are default resources required?",
         "answer": "They provide a compatible value when no qualified alternative matches."
       },
       {
+        "id": "level-02-week-06-05-resources-qualifiers-localisation-recall-2",
         "prompt": "When should plurals be used?",
         "answer": "When grammar or wording depends on a numeric quantity."
       },
       {
+        "id": "level-02-week-06-05-resources-qualifiers-localisation-recall-3",
         "prompt": "Why use current UI Context for resources?",
         "answer": "It reflects the current locale, theme, and display configuration."
       }

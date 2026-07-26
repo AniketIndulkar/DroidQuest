@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-19-02-immutable-ui-state-udf-recall-1",
         "prompt": "What problem should immutable ui state and unidirectional data flow solve?",
         "answer": "They make UI mutation traceable by representing the screen as one immutable snapshot and routing events through a single state owner."
       },
       {
+        "id": "level-05-week-19-02-immutable-ui-state-udf-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-19-02-immutable-ui-state-udf-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

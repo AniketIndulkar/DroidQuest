@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-22-05-multi-module-banking-capstone-recall-1",
         "prompt": "What problem should capstone: multi-module banking demo solve?",
         "answer": "It demonstrates an integrated banking flow whose layers, modules, scopes, replacements, and recovery paths each have a testable reason to exist."
       },
       {
+        "id": "level-05-week-22-05-multi-module-banking-capstone-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-22-05-multi-module-banking-capstone-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

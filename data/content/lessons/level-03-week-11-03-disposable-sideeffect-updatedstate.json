@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-11-03-disposable-sideeffect-updatedstate-recall-1",
         "prompt": "What must DisposableEffect provide?",
         "answer": "An onDispose cleanup block."
       },
       {
+        "id": "level-03-week-11-03-disposable-sideeffect-updatedstate-recall-2",
         "prompt": "When does SideEffect run?",
         "answer": "After each successful recomposition."
       },
       {
+        "id": "level-03-week-11-03-disposable-sideeffect-updatedstate-recall-3",
         "prompt": "What does rememberUpdatedState avoid?",
         "answer": "Restarting an effect solely to refresh a captured value."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation-recall-1",
         "prompt": "What must happen when flag configuration cannot be fetched?",
         "answer": "The app follows a predefined safe cached/default behaviour without blocking critical startup or losing durable state."
       },
       {
+        "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-42-05-feature-flags-kill-switches-safe-operation-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

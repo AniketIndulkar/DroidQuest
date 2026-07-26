@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-05-stateflow-sharedflow-events-recall-1",
         "prompt": "What must StateFlow always have?",
         "answer": "A current value."
       },
       {
+        "id": "level-04-week-15-05-stateflow-sharedflow-events-recall-2",
         "prompt": "What controls SharedFlow history for new subscribers?",
         "answer": "Its replay count."
       },
       {
+        "id": "level-04-week-15-05-stateflow-sharedflow-events-recall-3",
         "prompt": "Can SharedFlow complete normally?",
         "answer": "No, completion must be materialised."
       }

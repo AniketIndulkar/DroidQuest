@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction-recall-1",
         "prompt": "Why should correlation values be bounded and non-identifying?",
         "answer": "They connect related operations without exposing identity or creating unbounded grouping cardinality."
       },
       {
+        "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-10-week-43-01-structured-logging-event-taxonomy-redaction-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-01-stability-skipping-performance-recall-1",
         "prompt": "What does stability help Compose decide?",
         "answer": "Whether equal inputs make skipping safe."
       },
       {
+        "id": "level-03-week-12-01-stability-skipping-performance-recall-2",
         "prompt": "Is recomposition count alone a diagnosis?",
         "answer": "No, duration and user impact matter."
       },
       {
+        "id": "level-03-week-12-01-stability-skipping-performance-recall-3",
         "prompt": "Where can fast-changing reads move?",
         "answer": "To layout or drawing when composition is unnecessary."
       }

@@ -167,14 +167,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle-recall-1",
         "prompt": "What does the PKCE verifier prove at code redemption?",
         "answer": "That the redeemer is the client instance that created the challenge for that authorisation transaction."
       },
       {
+        "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-34-01-oauth-pkce-session-token-lifecycle-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

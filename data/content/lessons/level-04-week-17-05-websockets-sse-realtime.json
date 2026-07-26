@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-17-05-websockets-sse-realtime-recall-1",
         "prompt": "Which transport is naturally bidirectional?",
         "answer": "WebSocket."
       },
       {
+        "id": "level-04-week-17-05-websockets-sse-realtime-recall-2",
         "prompt": "What should callbackFlow cleanup use?",
         "answer": "awaitClose."
       },
       {
+        "id": "level-04-week-17-05-websockets-sse-realtime-recall-3",
         "prompt": "What is authoritative after a suspected event gap?",
         "answer": "A reconciled snapshot or local source of truth."
       }

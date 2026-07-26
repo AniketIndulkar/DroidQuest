@@ -187,14 +187,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-03-04-annotations-reflection-dsls-recall-1",
         "prompt": "What controls whether reflection can see an annotation?",
         "answer": "Its retention must include runtime."
       },
       {
+        "id": "level-01-week-03-04-annotations-reflection-dsls-recall-2",
         "prompt": "Why prefer generated direct code?",
         "answer": "It preserves compile-time checks, traceability, and often lower runtime overhead."
       },
       {
+        "id": "level-01-week-03-04-annotations-reflection-dsls-recall-3",
         "prompt": "What is the result of a good builder?",
         "answer": "An ordinary validated model independent of the temporary DSL scope."
       }

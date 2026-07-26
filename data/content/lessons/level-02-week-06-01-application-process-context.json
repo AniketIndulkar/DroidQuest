@@ -212,14 +212,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-06-01-application-process-context-recall-1",
         "prompt": "Is Application lifetime the same as installation lifetime?",
         "answer": "No, its instance exists only for the current application process."
       },
       {
+        "id": "level-02-week-06-01-application-process-context-recall-2",
         "prompt": "When is an activity Context required?",
         "answer": "For UI work that needs the current activity, window, or theme."
       },
       {
+        "id": "level-02-week-06-01-application-process-context-recall-3",
         "prompt": "What must a deep link assume?",
         "answer": "It may enter through a newly created process with no in-memory state."
       }

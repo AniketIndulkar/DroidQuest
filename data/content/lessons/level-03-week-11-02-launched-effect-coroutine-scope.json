@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-11-02-launched-effect-coroutine-scope-recall-1",
         "prompt": "When does LaunchedEffect start?",
         "answer": "On composition entry and again after a key change."
       },
       {
+        "id": "level-03-week-11-02-launched-effect-coroutine-scope-recall-2",
         "prompt": "When is rememberCoroutineScope useful?",
         "answer": "Launching UI-owned suspending work from events."
       },
       {
+        "id": "level-03-week-11-02-launched-effect-coroutine-scope-recall-3",
         "prompt": "What happens when composition leaves?",
         "answer": "Its launched and remembered-scope coroutines are cancelled."
       }

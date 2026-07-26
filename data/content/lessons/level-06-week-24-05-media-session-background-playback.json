@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-06-week-24-05-media-session-background-playback-recall-1",
         "prompt": "What should be defined before selecting a platform API?",
         "answer": "The user-visible promise, timing, lifetime, precision, privacy, ownership, and fallback."
       },
       {
+        "id": "level-06-week-24-05-media-session-background-playback-recall-2",
         "prompt": "Why must a platform callback be treated as external input?",
         "answer": "It can be stale, duplicated, malformed, cancelled, or delivered after the original process and UI are gone."
       },
       {
+        "id": "level-06-week-24-05-media-session-background-playback-recall-3",
         "prompt": "What proves a platform feature is production-ready?",
         "answer": "Useful degradation plus tests for absence, denial, lifecycle loss, duplication, and representative hardware behaviour."
       }

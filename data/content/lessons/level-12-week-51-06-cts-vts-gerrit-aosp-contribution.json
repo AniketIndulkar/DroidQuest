@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution-recall-1",
         "prompt": "What keeps amended commits grouped as patchsets of one Gerrit review?",
         "answer": "The stable Change-Id footer in the commit message."
       },
       {
+        "id": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-51-06-cts-vts-gerrit-aosp-contribution-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-47-03-process-importance-lmkd-trim-memory-recall-1",
         "prompt": "What should survive a memory-pressure kill?",
         "answer": "Durable user intent and recoverable state, while recreatable caches and process objects may be discarded."
       },
       {
+        "id": "level-11-week-47-03-process-importance-lmkd-trim-memory-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-11-week-47-03-process-importance-lmkd-trim-memory-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

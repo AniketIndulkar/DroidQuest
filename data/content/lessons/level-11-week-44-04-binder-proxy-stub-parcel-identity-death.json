@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death-recall-1",
         "prompt": "Why must authorization happen before clearCallingIdentity?",
         "answer": "The original kernel-supplied caller identity is the trustworthy subject; clearing it changes subsequent checks to the service identity."
       },
       {
+        "id": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-44-04-binder-proxy-stub-parcel-identity-death-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

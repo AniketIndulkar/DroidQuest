@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-07-02-runtime-permissions-recall-1",
         "prompt": "What comes before requesting permission?",
         "answer": "Evaluate a lower-access API or system-mediated alternative."
       },
       {
+        "id": "level-02-week-07-02-runtime-permissions-recall-2",
         "prompt": "When should a rationale appear?",
         "answer": "When useful to explain why the user-invoked feature needs that access."
       },
       {
+        "id": "level-02-week-07-02-runtime-permissions-recall-3",
         "prompt": "How should denial affect optional features?",
         "answer": "Degrade that feature gracefully while unrelated app functions continue."
       }

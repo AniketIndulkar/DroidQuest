@@ -189,14 +189,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-09-02-modifiers-constraints-order-recall-1",
         "prompt": "Which direction do constraints travel?",
         "answer": "Parents pass constraints down to children."
       },
       {
+        "id": "level-03-week-09-02-modifiers-constraints-order-recall-2",
         "prompt": "Which direction do measured sizes travel?",
         "answer": "Children report chosen sizes back up."
       },
       {
+        "id": "level-03-week-09-02-modifiers-constraints-order-recall-3",
         "prompt": "Why accept a Modifier parameter?",
         "answer": "It gives callers standard placement, semantics, interaction, and test control."
       }

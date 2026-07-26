@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-07-05-tasks-back-stack-app-links-recall-1",
         "prompt": "What does Back normally do?",
         "answer": "Removes the current destination and returns through user navigation history."
       },
       {
+        "id": "level-02-week-07-05-tasks-back-stack-app-links-recall-2",
         "prompt": "When is onNewIntent used?",
         "answer": "When launch semantics reuse an existing activity instance for a new intent."
       },
       {
+        "id": "level-02-week-07-05-tasks-back-stack-app-links-recall-3",
         "prompt": "What verifies an Android App Link?",
         "answer": "The HTTPS site Digital Asset Links association with package and signing identity."
       }

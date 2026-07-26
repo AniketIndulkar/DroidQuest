@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-14-04-exceptions-supervision-recall-1",
         "prompt": "What happens after child failure in a normal scope?",
         "answer": "The parent and siblings are cancelled."
       },
       {
+        "id": "level-04-week-14-04-exceptions-supervision-recall-2",
         "prompt": "Where does async expose its failure?",
         "answer": "When its Deferred is awaited."
       },
       {
+        "id": "level-04-week-14-04-exceptions-supervision-recall-3",
         "prompt": "What does supervisorScope change?",
         "answer": "A child failure does not automatically cancel siblings."
       }

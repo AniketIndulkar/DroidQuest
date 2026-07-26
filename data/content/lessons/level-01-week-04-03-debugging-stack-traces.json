@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-03-debugging-stack-traces-recall-1",
         "prompt": "Where do you begin reading a JVM stack trace?",
         "answer": "At the exception and first relevant application frame, then outward through callers and causes."
       },
       {
+        "id": "level-01-week-04-03-debugging-stack-traces-recall-2",
         "prompt": "What makes a debugging hypothesis useful?",
         "answer": "It predicts evidence that can confirm or disprove one explanation."
       },
       {
+        "id": "level-01-week-04-03-debugging-stack-traces-recall-3",
         "prompt": "Why add a regression test?",
         "answer": "It proves the original failure is repaired and guards against its return."
       }

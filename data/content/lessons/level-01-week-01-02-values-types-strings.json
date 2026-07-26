@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-02-values-types-strings-recall-1",
         "prompt": "When should you prefer val over var?",
         "answer": "Prefer val whenever the reference does not need to be reassigned."
       },
       {
+        "id": "level-01-week-01-02-values-types-strings-recall-2",
         "prompt": "What does type inference do?",
         "answer": "It lets the compiler determine a declaration type from its assigned value."
       },
       {
+        "id": "level-01-week-01-02-values-types-strings-recall-3",
         "prompt": "When does a string template need braces?",
         "answer": "Use braces around an expression or when its boundary would otherwise be unclear."
       }

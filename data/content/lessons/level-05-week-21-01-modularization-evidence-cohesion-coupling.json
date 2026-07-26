@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-21-01-modularization-evidence-cohesion-coupling-recall-1",
         "prompt": "What problem should modularisation evidence, cohesion, and coupling solve?",
         "answer": "They address measured ownership, encapsulation, reuse, testing, or build problems; increasing module count without such evidence is not an improvement."
       },
       {
+        "id": "level-05-week-21-01-modularization-evidence-cohesion-coupling-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-21-01-modularization-evidence-cohesion-coupling-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

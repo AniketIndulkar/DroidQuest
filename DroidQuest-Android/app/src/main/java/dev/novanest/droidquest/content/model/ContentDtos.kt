@@ -194,7 +194,12 @@ data class TrapDto(val mistake: String, val why: String, val fix: String)
 data class ChallengeIntroDto(val task: String, val successLooksLike: String)
 
 @Serializable
-data class RecallDto(val prompt: String, val answer: String)
+data class RecallDto(
+    /** Permanent learner-progress key. Empty only when reading a legacy content snapshot. */
+    val id: String = "",
+    val prompt: String,
+    val answer: String,
+)
 
 @Serializable
 data class RevisionDto(

@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-07-04-broadcasts-providers-pending-intents-recall-1",
         "prompt": "How long should onReceive work remain?",
         "answer": "Brief enough to complete within the receiver delivery window."
       },
       {
+        "id": "level-02-week-07-04-broadcasts-providers-pending-intents-recall-2",
         "prompt": "When does internal data need a ContentProvider?",
         "answer": "Only when a URI/framework or cross-application data contract requires it."
       },
       {
+        "id": "level-02-week-07-04-broadcasts-providers-pending-intents-recall-3",
         "prompt": "What does PendingIntent delegate?",
         "answer": "A predefined future operation executed with the creator application identity."
       }

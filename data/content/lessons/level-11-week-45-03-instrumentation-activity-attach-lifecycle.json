@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle-recall-1",
         "prompt": "What critical objects are associated during Activity attachment?",
         "answer": "Base context, application, component/token identity, window, instrumentation, configuration, and framework controllers."
       },
       {
+        "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-45-03-instrumentation-activity-attach-lifecycle-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

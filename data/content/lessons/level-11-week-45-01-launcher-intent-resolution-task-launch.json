@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-45-01-launcher-intent-resolution-task-launch-recall-1",
         "prompt": "Why is intent resolution distinct from activity execution?",
         "answer": "Resolution selects an eligible component; task, process, scheduling, lifecycle, window, and rendering work still follow."
       },
       {
+        "id": "level-11-week-45-01-launcher-intent-resolution-task-launch-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-45-01-launcher-intent-resolution-task-launch-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

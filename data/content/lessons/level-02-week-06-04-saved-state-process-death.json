@@ -204,14 +204,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-06-04-saved-state-process-death-recall-1",
         "prompt": "What belongs in saved state?",
         "answer": "Small values required to reconstruct UI, such as IDs, query text, or navigation keys."
       },
       {
+        "id": "level-02-week-06-04-saved-state-process-death-recall-2",
         "prompt": "Why does ViewModel need SavedStateHandle?",
         "answer": "ViewModel itself does not survive system-initiated process death."
       },
       {
+        "id": "level-02-week-06-04-saved-state-process-death-recall-3",
         "prompt": "Does Back normally preserve a dismissed destination?",
         "answer": "No, explicit dismissal usually removes that screen and its saved-state expectation."
       }

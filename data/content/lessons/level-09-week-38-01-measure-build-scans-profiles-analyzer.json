@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer-recall-1",
         "prompt": "Why record cache and daemon state in a benchmark?",
         "answer": "They materially change the work performed, so uncontrolled states make before/after results incomparable."
       },
       {
+        "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-01-measure-build-scans-profiles-analyzer-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

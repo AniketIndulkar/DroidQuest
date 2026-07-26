@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm-recall-1",
         "prompt": "What is the strongest direct binary compatibility test?",
         "answer": "Run a consumer compiled against the old library using the candidate replacement without recompiling the consumer."
       },
       {
+        "id": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-48-02-binary-source-compatibility-kotlin-jvm-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

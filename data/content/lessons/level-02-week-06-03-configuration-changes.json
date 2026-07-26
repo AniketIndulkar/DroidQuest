@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-06-03-configuration-changes-recall-1",
         "prompt": "Why does Android recreate on configuration change?",
         "answer": "To rebuild UI and resources for the new environment."
       },
       {
+        "id": "level-02-week-06-03-configuration-changes-recall-2",
         "prompt": "What survives recreation but not process death?",
         "answer": "A correctly scoped ViewModel and its in-memory state."
       },
       {
+        "id": "level-02-week-06-03-configuration-changes-recall-3",
         "prompt": "Is rotation the only configuration change?",
         "answer": "No, locale, font scale, night mode, window size, and input configuration also change."
       }

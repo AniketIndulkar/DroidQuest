@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-35-03-providers-properties-build-inputs-recall-1",
         "prompt": "What does flatMap preserve that reading a file path early can lose?",
         "answer": "Lazy calculation and producer dependency information carried by the nested Provider."
       },
       {
+        "id": "level-09-week-35-03-providers-properties-build-inputs-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-35-03-providers-properties-build-inputs-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

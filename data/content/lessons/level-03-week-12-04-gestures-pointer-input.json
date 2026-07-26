@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-12-04-gestures-pointer-input-recall-1",
         "prompt": "Why prefer Button over raw tap detection?",
         "answer": "It supplies semantics, focus, feedback, and expected interaction."
       },
       {
+        "id": "level-03-week-12-04-gestures-pointer-input-recall-2",
         "prompt": "What do pointerInput keys control?",
         "answer": "Cancellation and restart of the input coroutine."
       },
       {
+        "id": "level-03-week-12-04-gestures-pointer-input-recall-3",
         "prompt": "What should drag cancellation do?",
         "answer": "Return transient gesture state to a defined safe state."
       }

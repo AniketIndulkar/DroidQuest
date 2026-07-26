@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-05-week-20-03-hilt-components-scopes-lifetimes-recall-1",
         "prompt": "What problem should hilt components, scopes, and lifetimes solve?",
         "answer": "They align object ownership with Android lifecycles and graph visibility so instances are shared only as long and as widely as their consumers require."
       },
       {
+        "id": "level-05-week-20-03-hilt-components-scopes-lifetimes-recall-2",
         "prompt": "What makes an architecture boundary trustworthy?",
         "answer": "A small explicit contract, controlled dependency direction, and evidence under failure and replacement."
       },
       {
+        "id": "level-05-week-20-03-hilt-components-scopes-lifetimes-recall-3",
         "prompt": "When should an abstraction or module be removed?",
         "answer": "When its navigation and maintenance cost exceeds the protection, reuse, ownership, or measured build value it provides."
       }

@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-31-05-apk-inspection-reverse-engineering-r8-recall-1",
         "prompt": "Which release artifact is required to interpret obfuscated production stack traces?",
         "answer": "The exact R8 mapping file produced for that release."
       },
       {
+        "id": "level-08-week-31-05-apk-inspection-reverse-engineering-r8-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-31-05-apk-inspection-reverse-engineering-r8-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

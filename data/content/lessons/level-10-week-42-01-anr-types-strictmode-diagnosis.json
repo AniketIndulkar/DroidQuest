@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-42-01-anr-types-strictmode-diagnosis-recall-1",
         "prompt": "Why inspect other threads for an ANR?",
         "answer": "The main thread may be waiting on a lock, binder or worker whose stack reveals the actual causal dependency."
       },
       {
+        "id": "level-10-week-42-01-anr-types-strictmode-diagnosis-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-10-week-42-01-anr-types-strictmode-diagnosis-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

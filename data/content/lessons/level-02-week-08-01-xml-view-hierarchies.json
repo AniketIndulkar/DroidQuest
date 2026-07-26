@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-08-01-xml-view-hierarchies-recall-1",
         "prompt": "What does inflation do?",
         "answer": "Parses XML and creates the corresponding View object hierarchy."
       },
       {
+        "id": "level-02-week-08-01-xml-view-hierarchies-recall-2",
         "prompt": "What are the three main traversal stages?",
         "answer": "Measure determines sizes, layout assigns bounds, and draw renders pixels."
       },
       {
+        "id": "level-02-week-08-01-xml-view-hierarchies-recall-3",
         "prompt": "Why use sp for text?",
         "answer": "It respects user font-scale preferences."
       }

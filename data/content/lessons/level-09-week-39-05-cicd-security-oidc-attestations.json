@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-05-cicd-security-oidc-attestations-recall-1",
         "prompt": "What security property does OIDC improve over a stored cloud key?",
         "answer": "It issues short-lived, claim-bound credentials without keeping a long-lived cloud secret in GitHub."
       },
       {
+        "id": "level-09-week-39-05-cicd-security-oidc-attestations-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-05-cicd-security-oidc-attestations-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

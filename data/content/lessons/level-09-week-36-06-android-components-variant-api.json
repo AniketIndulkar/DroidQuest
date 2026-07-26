@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-36-06-android-components-variant-api-recall-1",
         "prompt": "Why must generated output include the variant identity?",
         "answer": "Multiple variants may build together; isolated paths prevent overwrites, races and incorrect cache reuse."
       },
       {
+        "id": "level-09-week-36-06-android-components-variant-api-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-36-06-android-components-variant-api-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

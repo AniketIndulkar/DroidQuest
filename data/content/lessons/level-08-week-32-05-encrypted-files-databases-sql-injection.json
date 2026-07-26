@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-32-05-encrypted-files-databases-sql-injection-recall-1",
         "prompt": "Why can a placeholder not safely represent a dynamic sort column?",
         "answer": "Parameters bind data values, not SQL identifiers or executable query structure; identifiers need an allowlist."
       },
       {
+        "id": "level-08-week-32-05-encrypted-files-databases-sql-injection-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-32-05-encrypted-files-databases-sql-injection-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

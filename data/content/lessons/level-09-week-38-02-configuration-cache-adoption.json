@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-02-configuration-cache-adoption-recall-1",
         "prompt": "What does configuration cache reuse?",
         "answer": "The configured task graph and configuration state, allowing Gradle to skip configuration for a compatible invocation."
       },
       {
+        "id": "level-09-week-38-02-configuration-cache-adoption-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-02-configuration-cache-adoption-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

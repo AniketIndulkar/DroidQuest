@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-10-01-state-remember-saveable-recall-1",
         "prompt": "What does remember survive?",
         "answer": "Recomposition at the same composition identity."
       },
       {
+        "id": "level-03-week-10-01-state-remember-saveable-recall-2",
         "prompt": "What does rememberSaveable add?",
         "answer": "Saved-instance-state restoration for supported values."
       },
       {
+        "id": "level-03-week-10-01-state-remember-saveable-recall-3",
         "prompt": "Where does durable note data belong?",
         "answer": "In a repository backed by persistent storage."
       }

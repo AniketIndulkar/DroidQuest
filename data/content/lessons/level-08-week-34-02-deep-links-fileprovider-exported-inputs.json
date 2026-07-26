@@ -174,14 +174,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs-recall-1",
         "prompt": "What should a sensitive deep link carry?",
         "answer": "An opaque operation reference that is revalidated and authorised server-side, not trusted authority or sensitive credentials."
       },
       {
+        "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-34-02-deep-links-fileprovider-exported-inputs-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-04-github-actions-android-pipeline-dag-recall-1",
         "prompt": "What must deployment promote?",
         "answer": "The exact immutable artifact whose digest and tests were approved, not a newly rebuilt equivalent."
       },
       {
+        "id": "level-09-week-39-04-github-actions-android-pipeline-dag-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-04-github-actions-android-pipeline-dag-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

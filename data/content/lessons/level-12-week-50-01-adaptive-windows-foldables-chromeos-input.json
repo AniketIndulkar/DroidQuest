@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input-recall-1",
         "prompt": "Why is window size more useful than device category?",
         "answer": "The app renders into a changeable window whose size and features may not match a fixed phone, tablet, or foldable label."
       },
       {
+        "id": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-50-01-adaptive-windows-foldables-chromeos-input-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

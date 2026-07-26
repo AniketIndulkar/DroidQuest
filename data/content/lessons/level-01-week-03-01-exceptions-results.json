@@ -185,14 +185,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-03-01-exceptions-results-recall-1",
         "prompt": "When should a layer catch an exception?",
         "answer": "When it has a policy to translate, recover, clean up, or communicate it."
       },
       {
+        "id": "level-01-week-03-01-exceptions-results-recall-2",
         "prompt": "Why use a sealed domain result?",
         "answer": "It makes expected outcomes explicit and exhaustively handled."
       },
       {
+        "id": "level-01-week-03-01-exceptions-results-recall-3",
         "prompt": "What should wrapping an exception preserve?",
         "answer": "The original cause and safe context needed for diagnosis."
       }

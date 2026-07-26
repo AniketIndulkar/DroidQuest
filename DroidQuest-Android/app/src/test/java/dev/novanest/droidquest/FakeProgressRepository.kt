@@ -1,6 +1,7 @@
 package dev.novanest.droidquest
 
 import dev.novanest.droidquest.domain.RewardPolicy
+import dev.novanest.droidquest.domain.ReviewState
 import dev.novanest.droidquest.progress.LearnerProgress
 import dev.novanest.droidquest.progress.LearnerSettings
 import dev.novanest.droidquest.progress.ProgressRepository
@@ -42,6 +43,10 @@ class FakeProgressRepository(initial: LearnerProgress = LearnerProgress()) : Pro
     override suspend fun completeChallenge(challengeId: String, rewardXp: Int, rewardStars: Int) = state.update {
         if (challengeId in it.completedChallengeIds) it
         else it.copy(completedChallengeIds = it.completedChallengeIds + challengeId, totalXp = it.totalXp + rewardXp, totalStars = it.totalStars + rewardStars)
+    }
+
+    override suspend fun saveReviewState(state: ReviewState) = this.state.update {
+        it.copy(reviewStates = it.reviewStates + (state.recallItemId to state))
     }
 
     override suspend fun setGithubConnected(connected: Boolean) = updateSettings { it.copy(githubConnected = connected) }

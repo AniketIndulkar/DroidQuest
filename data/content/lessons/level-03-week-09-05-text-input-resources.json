@@ -196,14 +196,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-09-05-text-input-resources-recall-1",
         "prompt": "Why can a controlled field look frozen?",
         "answer": "Its onValueChange path does not publish a new value."
       },
       {
+        "id": "level-03-week-09-05-text-input-resources-recall-2",
         "prompt": "How should quantities be displayed?",
         "answer": "Use plural resources with locale-aware quantity selection."
       },
       {
+        "id": "level-03-week-09-05-text-input-resources-recall-3",
         "prompt": "When is contentDescription null?",
         "answer": "When imagery is decorative or already equivalently represented."
       }

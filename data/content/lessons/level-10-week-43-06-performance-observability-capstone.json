@@ -186,14 +186,17 @@
     },
     "recall": [
       {
+        "id": "level-10-week-43-06-performance-observability-capstone-recall-1",
         "prompt": "What is the central distinction in the capstone evidence?",
         "answer": "Controlled lab measurements establish causal performance changes; field observability establishes population health after release."
       },
       {
+        "id": "level-10-week-43-06-performance-observability-capstone-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-10-week-43-06-performance-observability-capstone-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

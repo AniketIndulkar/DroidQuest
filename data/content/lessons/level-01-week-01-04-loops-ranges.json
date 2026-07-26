@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-04-loops-ranges-recall-1",
         "prompt": "When is a for loop the clearer choice?",
         "answer": "Use for when iterating over a known range or collection of values."
       },
       {
+        "id": "level-01-week-01-04-loops-ranges-recall-2",
         "prompt": "What three facts define a while loop?",
         "answer": "Its initial state, continuation condition, and progress update."
       },
       {
+        "id": "level-01-week-01-04-loops-ranges-recall-3",
         "prompt": "Why does 0..size often cause a bug?",
         "answer": "The closed range includes size, which is beyond the last zero-based index."
       }

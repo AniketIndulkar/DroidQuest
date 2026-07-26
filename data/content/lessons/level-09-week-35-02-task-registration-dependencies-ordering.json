@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-35-02-task-registration-dependencies-ordering-recall-1",
         "prompt": "What is the safest way to connect two file-producing tasks?",
         "answer": "Set the consumer input from the producer output Provider so Gradle infers the task dependency."
       },
       {
+        "id": "level-09-week-35-02-task-registration-dependencies-ordering-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-35-02-task-registration-dependencies-ordering-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

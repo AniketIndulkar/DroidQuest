@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-11-week-46-01-view-traversal-measure-layout-draw-recall-1",
         "prompt": "When is requestLayout required instead of only invalidate?",
         "answer": "When a change can affect measured size or child positioning and therefore requires a new geometry traversal."
       },
       {
+        "id": "level-11-week-46-01-view-traversal-measure-layout-draw-recall-2",
         "prompt": "What must be recorded with systems evidence?",
         "answer": "The Android and app build, device, configuration, starting state, workload, process or thread context, and exact capture method."
       },
       {
+        "id": "level-11-week-46-01-view-traversal-measure-layout-draw-recall-3",
         "prompt": "How should application code use platform-internals knowledge?",
         "answer": "Use it to diagnose and reason about public behavior, not to depend on hidden implementation APIs or names."
       }

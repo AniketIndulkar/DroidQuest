@@ -182,14 +182,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-01-01-first-program-recall-1",
         "prompt": "Where does a standalone Kotlin program begin?",
         "answer": "Execution begins in the function named main."
       },
       {
+        "id": "level-01-week-01-01-first-program-recall-2",
         "prompt": "What is the difference between syntax and logic errors?",
         "answer": "Syntax errors break language rules; logic errors run but produce unintended behaviour."
       },
       {
+        "id": "level-01-week-01-01-first-program-recall-3",
         "prompt": "Why predict output before running code?",
         "answer": "The comparison exposes where your mental model differs from actual execution."
       }

@@ -15,6 +15,7 @@ import dev.novanest.droidquest.ui.state.DroidQuestUiState
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
 import dev.novanest.droidquest.ui.state.NavState
 import dev.novanest.droidquest.ui.state.QuizUiState
+import dev.novanest.droidquest.ui.state.QuizPhase
 import dev.novanest.droidquest.ui.state.Screen
 import dev.novanest.droidquest.ui.theme.DroidQuestTheme
 import kotlinx.coroutines.runBlocking
@@ -59,5 +60,30 @@ class QuizNonMcqRenderTest {
         rule.onNodeWithText("True").assertIsDisplayed()
         rule.onNodeWithText("False").assertIsDisplayed()
         rule.onNodeWithText("Check Answer").assertIsDisplayed()
+    }
+
+    @Test
+    fun wrong_code_output_reveals_exact_expected_output_and_gentle_guidance() {
+        val content = content()
+        val quiz = content.quizzesById.values.first { candidate ->
+            candidate.questions.any { it.type == QuestionType.CODE_OUTPUT }
+        }
+        val index = quiz.questions.indexOfFirst { it.type == QuestionType.CODE_OUTPUT }
+        val question = quiz.questions[index]
+
+        val ctx = InstrumentationRegistry.getInstrumentation().targetContext
+        val vm = DroidQuestViewModel(DroidQuestContentRepository(AssetContentSource(ctx)), InMemoryProgressRepository())
+        val ui = DroidQuestUiState(
+            loadState = ContentLoadState.Success(content),
+            nav = NavState(screen = Screen.REVISION, quizId = quiz.id),
+            quiz = QuizUiState(quizId = quiz.id, index = index, phase = QuizPhase.FEEDBACK, lastCorrect = false),
+        )
+
+        rule.setContent { DroidQuestTheme { RevisionScreen(vm, content, ui) } }
+
+        rule.onNodeWithText("Enter what the program prints—not Kotlin code.").assertIsDisplayed()
+        rule.onNodeWithText("Expected answer").assertIsDisplayed()
+        rule.onNodeWithText(question.answer.toString().trim('"')).assertIsDisplayed()
+        rule.onNodeWithText("Let’s learn from this one").assertIsDisplayed()
     }
 }

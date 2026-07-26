@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-39-01-signed-aab-artifact-identity-recall-1",
         "prompt": "Which key signs APKs delivered through Play App Signing?",
         "answer": "The app-signing key managed by Play; the developer upload key authenticates the uploaded bundle."
       },
       {
+        "id": "level-09-week-39-01-signed-aab-artifact-identity-recall-2",
         "prompt": "What evidence should exist before changing this system?",
         "answer": "A representative scenario, recorded environment and version, a user-visible outcome, and evidence that isolates the responsible mechanism."
       },
       {
+        "id": "level-09-week-39-01-signed-aab-artifact-identity-recall-3",
         "prompt": "What turns a local improvement into a production capability?",
         "answer": "A repeatable regression guard plus explicit ownership, rollout thresholds, observability, and recovery."
       }

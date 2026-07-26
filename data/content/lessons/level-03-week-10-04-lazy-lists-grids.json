@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-10-04-lazy-lists-grids-recall-1",
         "prompt": "What does contentPadding control?",
         "answer": "Spacing inside the scrolling content."
       },
       {
+        "id": "level-03-week-10-04-lazy-lists-grids-recall-2",
         "prompt": "Why specify contentType?",
         "answer": "To identify compatible reusable item structures."
       },
       {
+        "id": "level-03-week-10-04-lazy-lists-grids-recall-3",
         "prompt": "Who prevents duplicate page loads?",
         "answer": "The paging or state owner with explicit load state."
       }

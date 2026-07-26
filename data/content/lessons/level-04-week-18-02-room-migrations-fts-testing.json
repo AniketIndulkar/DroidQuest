@@ -195,14 +195,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-18-02-room-migrations-fts-testing-recall-1",
         "prompt": "Why export Room schemas?",
         "answer": "To preserve historical structure for migration review and tests."
       },
       {
+        "id": "level-04-week-18-02-room-migrations-fts-testing-recall-2",
         "prompt": "When is destructive fallback acceptable?",
         "answer": "Only for explicitly disposable rebuildable data."
       },
       {
+        "id": "level-04-week-18-02-room-migrations-fts-testing-recall-3",
         "prompt": "What verifies real SQL behaviour?",
         "answer": "Tests using an actual Room database."
       }

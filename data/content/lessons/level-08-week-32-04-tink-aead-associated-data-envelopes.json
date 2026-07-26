@@ -167,14 +167,17 @@
     },
     "recall": [
       {
+        "id": "level-08-week-32-04-tink-aead-associated-data-envelopes-recall-1",
         "prompt": "Which attack can account-bound associated data prevent?",
         "answer": "Substituting valid ciphertext from one user, tenant, record type, or purpose into another context."
       },
       {
+        "id": "level-08-week-32-04-tink-aead-associated-data-envelopes-recall-2",
         "prompt": "What should happen before choosing a security API?",
         "answer": "Identify the asset, attacker capability, trust boundary, abuse path, impact, and authority owner."
       },
       {
+        "id": "level-08-week-32-04-tink-aead-associated-data-envelopes-recall-3",
         "prompt": "Why must recovery be part of a security design?",
         "answer": "Keys, credentials, certificates, devices, dependencies, and policies change or fail; unsafe or unavailable recovery can defeat the control and user promise."
       }

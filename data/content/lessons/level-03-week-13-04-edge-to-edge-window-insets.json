@@ -191,14 +191,17 @@
     },
     "recall": [
       {
+        "id": "level-03-week-13-04-edge-to-edge-window-insets-recall-1",
         "prompt": "What does edge-to-edge permit?",
         "answer": "Drawing application content behind system bars."
       },
       {
+        "id": "level-03-week-13-04-edge-to-edge-window-insets-recall-2",
         "prompt": "What prevents duplicate inset use?",
         "answer": "Explicit ownership and inset consumption."
       },
       {
+        "id": "level-03-week-13-04-edge-to-edge-window-insets-recall-3",
         "prompt": "Where do inset modifiers apply updates?",
         "answer": "During the layout phase."
       }

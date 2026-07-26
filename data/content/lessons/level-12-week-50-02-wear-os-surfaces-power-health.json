@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-12-week-50-02-wear-os-surfaces-power-health-recall-1",
         "prompt": "When is a complication preferable to a full app?",
         "answer": "For a tiny frequently glanced value or action that users need directly on the watch face."
       },
       {
+        "id": "level-12-week-50-02-wear-os-surfaces-power-health-recall-2",
         "prompt": "What must accompany an expert Android artifact?",
         "answer": "Exact source and build identity, supported versions, contracts, tests, measurements, security and privacy review, release evidence, owner, and recovery plan."
       },
       {
+        "id": "level-12-week-50-02-wear-os-surfaces-power-health-recall-3",
         "prompt": "Why record unsupported cases?",
         "answer": "They prevent consumers and operators from treating an untested or impossible condition as a silent guarantee."
       }

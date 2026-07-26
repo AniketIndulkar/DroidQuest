@@ -192,14 +192,17 @@
     },
     "recall": [
       {
+        "id": "level-01-week-04-06-expense-manager-capstone-recall-1",
         "prompt": "Why should the domain avoid terminal and filesystem APIs?",
         "answer": "So rules remain testable, reusable, and independent of delivery technology."
       },
       {
+        "id": "level-01-week-04-06-expense-manager-capstone-recall-2",
         "prompt": "What makes an acceptance example useful?",
         "answer": "It specifies observable input, outcome, and invalid behaviour."
       },
       {
+        "id": "level-01-week-04-06-expense-manager-capstone-recall-3",
         "prompt": "What evidence closes the capstone?",
         "answer": "Passing focused tests, manual adapter checks, reviewed history, and current documentation."
       }

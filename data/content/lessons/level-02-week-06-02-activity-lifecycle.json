@@ -210,14 +210,17 @@
     },
     "recall": [
       {
+        "id": "level-02-week-06-02-activity-lifecycle-recall-1",
         "prompt": "What is the difference between started and resumed?",
         "answer": "Started means visible; resumed means foreground and interactive."
       },
       {
+        "id": "level-02-week-06-02-activity-lifecycle-recall-2",
         "prompt": "Why keep onPause short?",
         "answer": "The next foreground activity may be waiting for it to finish."
       },
       {
+        "id": "level-02-week-06-02-activity-lifecycle-recall-3",
         "prompt": "Does ViewModel permit holding a View?",
         "answer": "No, it can outlive the activity instance and would retain destroyed UI."
       }

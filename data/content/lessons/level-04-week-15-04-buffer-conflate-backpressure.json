@@ -184,14 +184,17 @@
     },
     "recall": [
       {
+        "id": "level-04-week-15-04-buffer-conflate-backpressure-recall-1",
         "prompt": "What happens without buffer?",
         "answer": "A slow collector suspends sequential upstream emission."
       },
       {
+        "id": "level-04-week-15-04-buffer-conflate-backpressure-recall-2",
         "prompt": "What does conflate retain?",
         "answer": "The latest value while dropping older intermediates."
       },
       {
+        "id": "level-04-week-15-04-buffer-conflate-backpressure-recall-3",
         "prompt": "How does collectLatest differ?",
         "answer": "It cancels an in-progress collector body."
       }

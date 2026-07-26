@@ -179,14 +179,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache-recall-1",
         "prompt": "Why can implementation dependencies improve build performance?",
         "answer": "They keep internal dependency types off consumer compile ABIs, reducing classpaths and downstream invalidation."
       },
       {
+        "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-38-06-abi-dependency-analysis-ci-cache-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }

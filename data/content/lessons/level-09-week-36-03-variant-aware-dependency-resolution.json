@@ -172,14 +172,17 @@
     },
     "recall": [
       {
+        "id": "level-09-week-36-03-variant-aware-dependency-resolution-recall-1",
         "prompt": "When should a library dependency use api rather than implementation?",
         "answer": "When its types are intentionally part of the library’s public ABI and must be visible to consumers."
       },
       {
+        "id": "level-09-week-36-03-variant-aware-dependency-resolution-recall-2",
         "prompt": "What makes custom Gradle work trustworthy?",
         "answer": "Complete declared inputs and outputs, deterministic isolated execution, lazy wiring, public APIs and functional tests."
       },
       {
+        "id": "level-09-week-36-03-variant-aware-dependency-resolution-recall-3",
         "prompt": "What should precede a build-performance change?",
         "answer": "A representative workflow, controlled baseline and evidence locating the critical path or avoidable work."
       }
