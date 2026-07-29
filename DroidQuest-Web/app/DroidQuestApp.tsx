@@ -119,11 +119,16 @@ export function DroidQuestApp() {
   const openLesson = useCallback(
     async (id: string) => {
       if (!content) return;
-      const loaded = await loadLesson(content.index, id);
-      setLesson(loaded);
-      const node = nodeForLesson(content, id);
-      if (node) local.markNodeRead(node.id);
+      setLesson(undefined);
       go("lesson", id);
+      try {
+        const loaded = await loadLesson(content.index, id);
+        setLesson(loaded);
+        const node = nodeForLesson(content, id);
+        if (node) local.markNodeRead(node.id);
+      } catch (reason) {
+        setError(reason instanceof Error ? reason.message : "The lesson could not be loaded");
+      }
     },
     [content, go, local],
   );
@@ -131,8 +136,13 @@ export function DroidQuestApp() {
   const openQuiz = useCallback(
     async (id: string) => {
       if (!content) return;
-      setQuiz(await loadQuiz(content.index, id));
+      setQuiz(undefined);
       go("quiz", id);
+      try {
+        setQuiz(await loadQuiz(content.index, id));
+      } catch (reason) {
+        setError(reason instanceof Error ? reason.message : "The quiz could not be loaded");
+      }
     },
     [content, go],
   );
@@ -140,8 +150,13 @@ export function DroidQuestApp() {
   const openChallenge = useCallback(
     async (id: string) => {
       if (!content) return;
-      setChallenge(await loadChallenge(content.index, id));
+      setChallenge(undefined);
       go("challenge", id);
+      try {
+        setChallenge(await loadChallenge(content.index, id));
+      } catch (reason) {
+        setError(reason instanceof Error ? reason.message : "The challenge could not be loaded");
+      }
     },
     [content, go],
   );
@@ -250,6 +265,7 @@ export function DroidQuestApp() {
               }
             />
           )}
+          {view.name === "lesson" && !lesson && <InlineLoading label="Opening lesson…" />}
           {view.name === "quiz" && quiz && (
             <QuizView
               quiz={quiz}
@@ -272,6 +288,7 @@ export function DroidQuestApp() {
               }
             />
           )}
+          {view.name === "quiz" && !quiz && <InlineLoading label="Preparing quiz…" />}
           {view.name === "challenge" && challenge && (
             <ChallengeView
               challenge={challenge}
@@ -286,6 +303,7 @@ export function DroidQuestApp() {
               }
             />
           )}
+          {view.name === "challenge" && !challenge && <InlineLoading label="Opening challenge…" />}
           {view.name === "search" && (
             <SearchView onOpen={openSearchResult} />
           )}
@@ -312,6 +330,10 @@ export function DroidQuestApp() {
       <MobileNav active={view.name} onNavigate={(name) => go(name)} />
     </div>
   );
+}
+
+function InlineLoading({ label }: { label: string }) {
+  return <div className="inline-loading"><span className="brand-mark">DQ</span><p>{label}</p></div>;
 }
 
 function Sidebar({

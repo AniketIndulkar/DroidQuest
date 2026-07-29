@@ -112,7 +112,12 @@ export function useLocalProgress() {
     const next = update(progressRef.current);
     progressRef.current = next;
     setProgress(next);
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      // Guest and privacy-restricted sessions may block browser storage. Keep the
+      // in-memory snapshot usable so persistence can never block navigation.
+    }
     return next;
   }, []);
 
