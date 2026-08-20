@@ -1,0 +1,36 @@
+{
+  "name": "droidquest-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync:content": "node scripts/sync-content.mjs",
+    "predev": "npm run sync:content",
+    "dev": "vite",
+    "prebuild": "npm run sync:content",
+    "build": "tsc -b && vite build",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "desktop:build:app": "tauri build --bundles app"
+  },
+  "dependencies": {
+    "@droidquest/domain": "file:../packages/droidquest-domain",
+    "@droidquest/react": "file:../packages/droidquest-react",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.3",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/node": "^22.19.19",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.1"
+  }
+}

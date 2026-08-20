@@ -6,16 +6,19 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "shared:build": "npm run build --prefix ../packages/droidquest-domain && npm run build --prefix ../packages/droidquest-react",
     "sync:content": "node scripts/sync-content.mjs",
-    "predev": "npm run sync:content",
+    "predev": "npm run shared:build && npm run sync:content",
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
-    "prebuild": "npm run sync:content",
+    "prebuild": "npm run shared:build && npm run sync:content",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {
+    "@droidquest/domain": "file:../packages/droidquest-domain",
+    "@droidquest/react": "file:../packages/droidquest-react",
     "next": "16.2.6",
     "react": "19.2.6",
     "react-dom": "19.2.6"
