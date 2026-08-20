@@ -8,6 +8,17 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import javax.inject.Inject
 
+val uploadStoreFile = providers.environmentVariable("DROIDQUEST_UPLOAD_STORE_FILE")
+val uploadStorePassword = providers.environmentVariable("DROIDQUEST_UPLOAD_STORE_PASSWORD")
+val uploadKeyAlias = providers.environmentVariable("DROIDQUEST_UPLOAD_KEY_ALIAS")
+val uploadKeyPassword = providers.environmentVariable("DROIDQUEST_UPLOAD_KEY_PASSWORD")
+val hasUploadSigning = listOf(
+    uploadStoreFile,
+    uploadStorePassword,
+    uploadKeyAlias,
+    uploadKeyPassword,
+).all { it.isPresent }
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -50,14 +61,28 @@ android {
         applicationId = "dev.novanest.droidquest"
         minSdk = 24
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = providers.gradleProperty("ciVersionCode").orNull?.toInt() ?: 3
+        versionName = providers.gradleProperty("ciVersionName").orNull ?: "0.3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (hasUploadSigning) {
+            create("upload") {
+                storeFile = file(uploadStoreFile.get())
+                storePassword = uploadStorePassword.get()
+                keyAlias = uploadKeyAlias.get()
+                keyPassword = uploadKeyPassword.get()
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (hasUploadSigning) {
+                signingConfig = signingConfigs.getByName("upload")
+            }
             optimization {
                 enable = false
             }

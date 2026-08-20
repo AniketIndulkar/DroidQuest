@@ -73,6 +73,28 @@ Refresh the app after editing `../data`:
 ./gradlew :app:assembleDebug && adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
+## Home-screen learning bite
+
+The Android app exposes a resizable **DroidQuest · Learning bite** widget. Add it from the launcher's
+widget picker. It draws entirely from the verified bundled curriculum and works offline:
+
+- concise recall answers appear as facts with a recall cue;
+- single-choice and true/false questions reveal the correct answer and explanation immediately;
+- two questions are targeted for each fact, with recent topics interleaved;
+- misses return after 10 minutes, while correct retrievals expand through 1, 3, 7, 21, and 60 days;
+- the system requests a rotation every 12 hours, and **Next bite** rotates on demand.
+
+Android launcher widgets are visible at the natural post-unlock home-screen moment, but Android does
+not guarantee a third-party callback on every unlock. Periodic widget delivery is also system-managed
+and may be delayed for battery health. The evidence, trade-offs, anti-compulsion guardrails, and
+measurement plan are documented in [`../docs/LEARNING_BITE_DESIGN.md`](../docs/LEARNING_BITE_DESIGN.md).
+
+## Internal Play releases
+
+Merges to `main` that change Android or bundled curriculum content run the signed App Bundle release
+workflow and publish to Play's internal track. See [`../docs/ANDROID_INTERNAL_RELEASE.md`](../docs/ANDROID_INTERNAL_RELEASE.md)
+for the one-time Play Console setup and required GitHub Actions secrets.
+
 ## Tests
 
 - **Unit (`src/test`)** — parse + hash-verify all bundled content, index counts, content-API/version compatibility, stable-ID lookup, roadmap unlock/preview/first-node/completion, all nine quiz evaluators, passing score, idempotent rewards, persisted progress (via a fake repository), and search routing. Unit tests read `../data/content` directly (source of truth) via `FileContentSource`.
