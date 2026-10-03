@@ -1,0 +1,39 @@
+{
+  "name": "@droidquest/domain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./access": {
+      "types": "./dist/src/access.d.ts",
+      "default": "./dist/src/access.js"
+    },
+    "./content": {
+      "types": "./dist/src/content.d.ts",
+      "default": "./dist/src/content.js"
+    },
+    "./progress": {
+      "types": "./dist/src/progress.d.ts",
+      "default": "./dist/src/progress.js"
+    },
+    "./ports/progress-store": {
+      "types": "./dist/src/ports/progress-store.d.ts",
+      "default": "./dist/src/ports/progress-store.js"
+    },
+    "./types": {
+      "types": "./dist/src/types.d.ts",
+      "default": "./dist/src/types.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  }
+}
