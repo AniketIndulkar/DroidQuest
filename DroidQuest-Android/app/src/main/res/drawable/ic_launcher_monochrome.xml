@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed-icon silhouette: pin with the "</>" mark and gem knocked out. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M54,81.96L38.02,65.98A22.6,22.6 0 1 1 69.98,65.98Z
+M51.4,46.6L47.2,50L51.4,53.4L52.4,52.7L49.2,50L52.4,47.3Z
+M57.1,45L52.7,55L51.1,54.4L55.5,44.4Z
+M56.6,46.6L60.8,50L56.6,53.4L55.6,52.7L58.8,50L55.6,47.3Z" />
+</vector>

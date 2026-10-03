@@ -31,6 +31,8 @@ import dev.novanest.droidquest.content.model.CategoryStatus
 import dev.novanest.droidquest.content.model.SearchDocumentDto
 import dev.novanest.droidquest.ui.state.DroidQuestUiState
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
+import dev.novanest.droidquest.ui.components.ClayGlyph
+import dev.novanest.droidquest.ui.components.ClayTile
 import dev.novanest.droidquest.ui.theme.DQ
 import dev.novanest.droidquest.ui.theme.hexColor
 
@@ -100,8 +102,8 @@ private fun SearchResultRow(vm: DroidQuestViewModel, content: LoadedContent, doc
             .clickable(enabled = !locked) { route(vm, content, doc) }.alpha(if (locked) 0.5f else 1f).padding(horizontal = 14.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Box(Modifier.size(38.dp).clip(RoundedCornerShape(10.dp)).background(color.copy(alpha = 0.16f)), contentAlignment = Alignment.Center) {
-            Text(glyphFor(doc.type), color = color, fontSize = 15.sp)
+        ClayTile(color, 38.dp, shape = RoundedCornerShape(10.dp)) { clay ->
+            ClayGlyph(glyphFor(doc.type), clay, 15.sp)
         }
         Column(Modifier.weight(1f)) {
             Text(doc.title, color = DQ.TextPrimary, fontSize = 14.sp, fontWeight = FontWeight.Bold, maxLines = 1)

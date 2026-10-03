@@ -49,6 +49,9 @@ import dev.novanest.droidquest.ui.screens.TopicDetailScreen
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
 import dev.novanest.droidquest.ui.state.Screen
 import dev.novanest.droidquest.ui.state.isTopLevel
+import dev.novanest.droidquest.ui.components.ClayGlyph
+import dev.novanest.droidquest.ui.components.ClayOrb
+import dev.novanest.droidquest.ui.theme.ClayPalette
 import dev.novanest.droidquest.ui.theme.DQ
 
 private data class NavTab(val screen: Screen, val glyph: String, val label: String)
@@ -178,9 +181,8 @@ private fun AiHelper(open: Boolean, onToggle: () -> Unit, modifier: Modifier = M
                 Text("Optional hints live here. AI assistance is a network extra — all learning works fully offline without it.", color = DQ.TextPrimary, fontSize = 13.sp, lineHeight = 19.5.sp)
             }
         }
-        Box(
-            Modifier.size(46.dp).clip(CircleShape).background(DQ.CardAlt).border(1.dp, DQ.white(0.12f), CircleShape).clickable(onClick = onToggle),
-            contentAlignment = Alignment.Center,
-        ) { Text("✦", color = DQ.BlueLight, fontSize = 17.sp) }
+        ClayOrb(ClayPalette.Blue, 46.dp, Modifier.clip(CircleShape).clickable(onClick = onToggle)) {
+            ClayGlyph("✦", ClayPalette.Blue, 18.sp, fontWeight = FontWeight.Normal)
+        }
     }
 }

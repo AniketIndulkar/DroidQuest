@@ -33,11 +33,14 @@ import dev.novanest.droidquest.content.model.RoadmapNodeDto
 import dev.novanest.droidquest.content.model.RoadmapNodeType
 import dev.novanest.droidquest.domain.NodeProgress
 import dev.novanest.droidquest.domain.ProgressionPolicy
+import dev.novanest.droidquest.ui.components.ClayGlyph
 import dev.novanest.droidquest.ui.components.ProgressBar
 import dev.novanest.droidquest.ui.state.DroidQuestUiState
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
 import dev.novanest.droidquest.ui.state.UiDerive
 import dev.novanest.droidquest.ui.theme.DQ
+import dev.novanest.droidquest.ui.theme.clay
+import dev.novanest.droidquest.ui.theme.clayFor
 import dev.novanest.droidquest.ui.theme.hexColor
 
 @Composable
@@ -109,6 +112,7 @@ private fun NodeRow(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQu
     val isCheckpoint = node.type == RoadmapNodeType.CHECKPOINT
     val shape: Shape = if (isBoss || isCheckpoint) RoundedCornerShape(14.dp) else CircleShape
     val enabled = prog != NodeProgress.LOCKED
+    val clay = clayFor(color)
     val badgeBg = when (prog) {
         NodeProgress.COMPLETED -> color
         NodeProgress.LOCKED -> DQ.BadgeDim
@@ -125,10 +129,12 @@ private fun NodeRow(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQu
         Modifier.fillMaxWidth().clickable(enabled = enabled) { vm.openNode(node.id) }.alpha(if (enabled) 1f else 0.5f),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Box(Modifier.size(46.dp).clip(shape).background(badgeBg).border(2.dp, badgeBorder, shape), contentAlignment = Alignment.Center) {
+        val badge = if (prog == NodeProgress.COMPLETED) Modifier.size(46.dp).clay(shape, clay, 8.dp)
+        else Modifier.size(46.dp).clip(shape).background(badgeBg).border(2.dp, badgeBorder, shape)
+        Box(badge, contentAlignment = Alignment.Center) {
             when (prog) {
                 NodeProgress.LOCKED -> Box(Modifier.size(12.dp, 9.dp).clip(RoundedCornerShape(2.dp)).background(DQ.text(0.35f)))
-                NodeProgress.COMPLETED -> Text("✓", color = DQ.ScreenBg, fontSize = 16.sp, fontWeight = FontWeight.Black)
+                NodeProgress.COMPLETED -> ClayGlyph("✓", clay, 16.sp)
                 NodeProgress.AVAILABLE -> Text(if (isBoss || isCheckpoint) "★" else "▸", color = color, fontSize = 14.sp, fontWeight = FontWeight.Black)
             }
         }

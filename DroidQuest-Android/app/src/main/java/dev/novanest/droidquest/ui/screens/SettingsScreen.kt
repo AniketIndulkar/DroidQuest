@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -25,10 +24,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.novanest.droidquest.content.LoadedContent
+import dev.novanest.droidquest.ui.components.ClayGlyph
+import dev.novanest.droidquest.ui.components.ClayOrb
 import dev.novanest.droidquest.ui.components.ToggleSwitch
 import dev.novanest.droidquest.ui.state.DroidQuestUiState
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
 import dev.novanest.droidquest.ui.state.UiDerive
+import dev.novanest.droidquest.ui.theme.ClayPalette
 import dev.novanest.droidquest.ui.theme.DQ
 
 @Composable
@@ -43,8 +45,8 @@ fun SettingsScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQue
         // Profile
         Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(DQ.Card).border(1.dp, DQ.Border, RoundedCornerShape(16.dp)).padding(16.dp),
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-            Box(Modifier.size(52.dp).clip(CircleShape).background(DQ.Blue.copy(alpha = 0.18f)), contentAlignment = Alignment.Center) {
-                Text("You", color = DQ.BlueLight, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold)
+            ClayOrb(ClayPalette.Blue, 52.dp) {
+                ClayGlyph("You", ClayPalette.Blue, 15.sp, fontWeight = FontWeight.ExtraBold)
             }
             Column(Modifier.weight(1f)) {
                 Text("Learner", color = DQ.TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
