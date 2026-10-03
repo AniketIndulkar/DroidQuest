@@ -1,5 +1,11 @@
 package dev.novanest.droidquest.ui.screens
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,32 +18,42 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.novanest.droidquest.content.LoadedContent
 import dev.novanest.droidquest.content.model.CategoryStatus
-import dev.novanest.droidquest.ui.components.Diamond
+import dev.novanest.droidquest.ui.components.ClayGlyph
+import dev.novanest.droidquest.ui.components.ClayOrb
+import dev.novanest.droidquest.ui.components.ClayTile
 import dev.novanest.droidquest.ui.components.ProgressBar
 import dev.novanest.droidquest.ui.state.DroidQuestUiState
 import dev.novanest.droidquest.ui.state.DroidQuestViewModel
 import dev.novanest.droidquest.ui.state.Screen
 import dev.novanest.droidquest.ui.state.UiDerive
+import dev.novanest.droidquest.ui.theme.ClayPalette
 import dev.novanest.droidquest.ui.theme.DQ
+import dev.novanest.droidquest.ui.theme.clay
 import dev.novanest.droidquest.ui.theme.hexColor
 import dev.novanest.droidquest.ui.theme.iconGlyph
 
@@ -58,8 +74,11 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
         // Header
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Box(Modifier.size(34.dp).clip(CircleShape).background(DQ.Card).border(2.dp, DQ.Green, CircleShape), contentAlignment = Alignment.Center) {
-                    Diamond(DQ.Green, 10.dp)
+                ClayOrb(ClayPalette.Green, 34.dp) {
+                    Box(
+                        Modifier.size(11.dp).rotate(45f).clip(RoundedCornerShape(2.dp))
+                            .background(Brush.linearGradient(listOf(ClayPalette.InkLight, ClayPalette.InkDark))),
+                    )
                 }
                 Text("DroidQuest", color = DQ.TextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.2.sp)
             }
@@ -89,9 +108,9 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
         }
 
         // XP / progress card
-        Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(DQ.Card).border(1.dp, DQ.Border, RoundedCornerShape(20.dp)).padding(18.dp),
+        Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(DQ.Card).border(1.dp, DQ.Green.copy(alpha = 0.15f), RoundedCornerShape(20.dp)).padding(18.dp),
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            XpRing(catPct, level)
+            XpHex(catPct, level)
             Column(Modifier.weight(1f)) {
                 Text("${progress.totalXp} XP", color = DQ.text(0.6f), fontSize = 13.sp, modifier = Modifier.padding(bottom = 2.dp))
                 Text(currentCat.title, color = DQ.TextPrimary, fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 6.dp))
@@ -102,19 +121,34 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
         // Next up
         if (next != null) {
             val cat = content.category(next.categoryId)
-            Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp))
-                    .background(DQ.Amber.copy(alpha = 0.10f)).border(1.dp, DQ.Amber.copy(alpha = 0.3f), RoundedCornerShape(20.dp))
-                    .clickable { vm.openNode(next.id) }.padding(18.dp),
+            val nextProgress = UiDerive.categoryProgress(content, progress, next.categoryId)
+            val cardShape = RoundedCornerShape(20.dp)
+            Box(
+                Modifier.fillMaxWidth().clip(cardShape)
+                    .background(Brush.linearGradient(listOf(DQ.Amber.copy(alpha = 0.16f), DQ.Amber.copy(alpha = 0.05f))))
+                    .border(1.dp, DQ.Amber.copy(alpha = 0.3f), cardShape)
+                    .clickable { vm.openNode(next.id) },
             ) {
-                Row(Modifier.fillMaxWidth().padding(bottom = 10.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text("NEXT UP", color = DQ.Amber, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.5.sp)
-                    Text("+${next.rewards.xp} XP", color = DQ.text(0.5f), fontSize = 12.sp)
+                Canvas(Modifier.align(Alignment.TopEnd).size(90.dp)) {
+                    drawPath(
+                        Path().apply { moveTo(size.width, 0f); lineTo(0f, 0f); lineTo(size.width, size.height); close() },
+                        DQ.Amber.copy(alpha = 0.08f),
+                    )
                 }
-                Text(next.title, color = DQ.TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text(cat?.title ?: "", color = DQ.text(0.5f), fontSize = 12.sp)
-                    Text("Continue ›", color = DQ.Amber, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Column(Modifier.fillMaxWidth().padding(18.dp)) {
+                    Row(Modifier.fillMaxWidth().padding(bottom = 10.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            QuestGem()
+                            Text("NEXT UP", color = DQ.Amber, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.5.sp)
+                        }
+                        Text("+${next.rewards.xp} XP", color = DQ.text(0.5f), fontSize = 12.sp)
+                    }
+                    Text(next.title, color = DQ.TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
+                    ProgressBar(nextProgress.pct, DQ.Amber, modifier = Modifier.padding(bottom = 10.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text("${cat?.title ?: ""} · ${nextProgress.completed} of ${nextProgress.total}", color = DQ.text(0.5f), fontSize = 12.sp, modifier = Modifier.weight(1f))
+                        Text("Continue ›", color = DQ.Amber, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
         } else {
@@ -139,8 +173,8 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
                             .clickable { vm.openCategory(cat.id) }.padding(horizontal = 14.dp, vertical = 12.dp).alpha(if (locked) 0.55f else 1f),
                         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        Box(Modifier.size(36.dp).clip(RoundedCornerShape(10.dp)).background(color.copy(alpha = 0.16f)), contentAlignment = Alignment.Center) {
-                            Text(iconGlyph(cat.theme.icon), color = color, fontSize = 16.sp)
+                        ClayTile(color, 36.dp, shape = RoundedCornerShape(10.dp)) { clay ->
+                            ClayGlyph(iconGlyph(cat.theme.icon), clay, 16.sp)
                         }
                         Column(Modifier.weight(1f)) {
                             Text(cat.title, color = DQ.TextPrimary, fontSize = 14.sp, fontWeight = FontWeight.Bold)
@@ -154,21 +188,67 @@ fun HomeScreen(vm: DroidQuestViewModel, content: LoadedContent, ui: DroidQuestUi
     }
 }
 
+/** Pointy-top hexagon inscribed in a [w] x [h] box, offset by [dx]/[dy]. */
+private fun hexPath(w: Float, h: Float, dx: Float = 0f, dy: Float = 0f): Path = Path().apply {
+    moveTo(dx + w * 0.5f, dy)
+    lineTo(dx + w, dy + h * 0.25f)
+    lineTo(dx + w, dy + h * 0.75f)
+    lineTo(dx + w * 0.5f, dy + h)
+    lineTo(dx, dy + h * 0.75f)
+    lineTo(dx, dy + h * 0.25f)
+    close()
+}
+
 @Composable
-private fun XpRing(pct: Int, level: Int) {
+private fun XpHex(pct: Int, level: Int) {
     Box(Modifier.size(72.dp), contentAlignment = Alignment.Center) {
         Canvas(Modifier.size(72.dp)) {
-            val stroke = 8.dp.toPx()
-            val arcSize = Size(size.width - stroke, size.height - stroke)
-            val topLeft = Offset(stroke / 2, stroke / 2)
-            drawArc(Color(0xFF2A322F), -90f, 360f, false, topLeft, arcSize, style = Stroke(stroke))
-            drawArc(DQ.Green, -90f, 360f * pct / 100f, false, topLeft, arcSize, style = Stroke(stroke, cap = StrokeCap.Round))
-        }
-        Box(Modifier.size(56.dp).clip(CircleShape).background(DQ.Card), contentAlignment = Alignment.Center) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("$level", color = DQ.TextPrimary, fontSize = 15.sp, fontWeight = FontWeight.Black)
-                Text("LEVEL", color = DQ.text(0.5f), fontSize = 8.sp, letterSpacing = 0.5.sp)
+            val outer = hexPath(size.width, size.height)
+            drawPath(outer, DQ.text(0.08f))
+            clipPath(outer) {
+                // Conic fill from 12 o'clock, clipped to the hexagon.
+                drawArc(
+                    DQ.Green, -90f, 360f * pct.coerceIn(0, 100) / 100f, useCenter = true,
+                    topLeft = Offset(-size.width / 2, -size.height / 2), size = Size(size.width * 2, size.height * 2),
+                )
             }
+            val inset = 4.dp.toPx()
+            drawPath(hexPath(size.width - inset * 2, size.height - inset * 2, inset, inset), DQ.Card)
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("$level", color = DQ.TextPrimary, fontSize = 17.sp, fontWeight = FontWeight.Black)
+            Text("LEVEL", color = DQ.text(0.5f), fontSize = 7.5.sp, letterSpacing = 0.5.sp)
+        }
+    }
+}
+
+/** Gold clay gem with the board's slow attention pulse. */
+@Composable
+private fun QuestGem() {
+    val pulse by rememberInfiniteTransition(label = "questPulse").animateFloat(
+        initialValue = 0f, targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(2200, easing = LinearEasing), RepeatMode.Restart),
+        label = "questPulseProgress",
+    )
+    val shape = RoundedCornerShape(6.dp)
+    val clay = ClayPalette.Amber
+    Box(
+        Modifier.size(26.dp).drawBehind {
+            val spread = pulse * 9.dp.toPx()
+            rotate(45f) {
+                drawRoundRect(
+                    DQ.Amber.copy(alpha = 0.5f * (1f - pulse)),
+                    topLeft = Offset(-spread / 2, -spread / 2),
+                    size = Size(size.width + spread, size.height + spread),
+                    cornerRadius = CornerRadius(6.dp.toPx() + spread / 2),
+                    style = Stroke(spread),
+                )
+            }
+        },
+        contentAlignment = Alignment.Center,
+    ) {
+        Box(Modifier.size(26.dp).rotate(45f).clay(shape, clay, 6.dp), contentAlignment = Alignment.Center) {
+            ClayGlyph("✦", clay, 13.sp, Modifier.rotate(-45f))
         }
     }
 }
