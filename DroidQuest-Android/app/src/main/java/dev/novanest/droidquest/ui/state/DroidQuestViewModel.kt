@@ -67,6 +67,23 @@ class DroidQuestViewModel(
         if (prev != null) prev.copy(backStack = cur.backStack.dropLast(1)) else cur.copy(screen = Screen.HOME)
     }
 
+    /**
+     * System back (button or gesture). Steps back one level instead of leaving the app, and
+     * returns false only when there is nothing left to dismiss (already on Home) so the
+     * caller lets the system leave.
+     */
+    fun handleSystemBack(): Boolean {
+        val cur = nav.value
+        return when {
+            cur.aiOpen -> { nav.update { it.copy(aiOpen = false) }; true }
+            cur.screen == Screen.REVISION -> { exitQuiz(); true }
+            cur.screen == Screen.REVIEW -> { exitReview(); true }
+            !cur.screen.isTopLevel -> { back(); true }
+            cur.screen != Screen.HOME -> { goTo(Screen.HOME); true }
+            else -> false
+        }
+    }
+
     fun openCategory(categoryId: String) =
         push(nav.value.copy(screen = Screen.REGION, categoryId = categoryId, aiOpen = false))
 

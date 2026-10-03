@@ -1,6 +1,7 @@
 package dev.novanest.droidquest.ui
 
 import android.content.Intent
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -77,6 +78,8 @@ fun DroidQuestApp(vm: DroidQuestViewModel) {
                 val content = load.content
                 val screen = ui.nav.screen
                 val aiVisible = screen != Screen.REVISION && screen != Screen.REVIEW && screen != Screen.SETTINGS
+                // Off Home (or with the AI bubble open) back steps within the app; on a bare Home it exits.
+                BackHandler(enabled = screen != Screen.HOME || ui.nav.aiOpen) { vm.handleSystemBack() }
                 Column(Modifier.fillMaxSize().windowInsetsPadding(androidx.compose.foundation.layout.WindowInsets.systemBars)) {
                     Box(Modifier.weight(1f).fillMaxWidth()) {
                         when (screen) {
