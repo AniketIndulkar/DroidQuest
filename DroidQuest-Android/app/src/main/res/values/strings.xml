@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">DroidQuest</string>
+    <string name="widget_header">DroidQuest · Learning bite</string>
+    <string name="widget_description">A small fact or retrieval question from your DroidQuest curriculum.</string>
+    <string name="widget_open_app">Open DroidQuest</string>
+    <string name="widget_quick_fact">Quick fact</string>
+    <string name="widget_quick_check">Quick check</string>
+    <string name="widget_recall_cue">Recall cue: %1$s</string>
+    <string name="widget_correct">Correct · %1$s</string>
+    <string name="widget_not_quite">Not quite · %1$s</string>
+    <string name="widget_next_bite">Next bite</string>
+    <string name="widget_skip">Skip · next</string>
+    <string name="widget_retry">Retry</string>
+    <string name="widget_unavailable_title">Content unavailable</string>
+    <string name="widget_unavailable_body">Open DroidQuest to check the bundled curriculum, then retry.</string>
 </resources>
